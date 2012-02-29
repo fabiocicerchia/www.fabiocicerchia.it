@@ -1,0 +1,18 @@
+[submodule "web/media/css/bootstrap"]
+	path = web/media/css/bootstrap
+	url = git://github.com/twitter/bootstrap.git
+[submodule "lib/vendor/OWASP-CRS"]
+	path = lib/vendor/OWASP-CRS
+	url = git://github.com/fabiocicerchia/OWASP-CRS.git
+[submodule "web/minify"]
+	path = web/minify
+	url = git://github.com/mrclay/minify.git
+[submodule "lib/vendor/Twig"]
+	path = lib/vendor/Twig
+	url = git://github.com/fabpot/Twig.git
+[submodule "lib/vendor/Silex-Extensions"]
+	path = lib/vendor/Silex-Extensions
+	url = git://github.com/fate/Silex-Extensions.git
+[submodule "lib/vendor/mongodb"]
+	path = lib/vendor/mongodb
+	url = git://github.com/doctrine/mongodb.git
