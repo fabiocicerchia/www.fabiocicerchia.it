@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:fh="http://purl.org/syndication/history/1.0">
+    <id>http://www.fabiocicerchia.it/api</id>
+    <title type="text">Fabio Cicerchia API - Index</title>
+    <subtitle type="html"></subtitle>
+
+    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
+    <author>
+        <name>Fabio Cicerchia</name>
+        <uri>http://www.fabiocicerchia.it</uri>
+        <email>info@fabiocicerchia.it</email>
+    </author>
+    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
+
+    {% for route in routes %}
+    <entry>
+        <id>http://www.fabiocicerchia.it/api/{{ route }}</id>
+        <title type="text">{{ route|capitalize }} API</title>
+        <summary type="text"></summary>
+        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+        <published>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</published>
+
+        <link rel="index" href="http://www.fabiocicerchia.it/api/{{ route }}" />
+    </entry>
+    {% endfor %}
+</feed>

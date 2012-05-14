@@ -1,10 +1,9 @@
 #!/usr/bin/perl -w
 
 #
-# FABIO CICERCHIA - STYLING EXERCISES JUST FOR FUN
+# FABIO CICERCHIA - WEBSITE
 # Copyright (C) 2012. All Rights reserved.
 #
 
 use strict;
-
 

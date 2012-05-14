@@ -2,13 +2,13 @@
 
 /**
  *
- * FABIO CICERCHIA - STYLING EXERCISES JUST FOR FUN
+ * FABIO CICERCHIA - WEBSITE
  * Copyright (C) 2012. All Rights reserved.
  *
  */
 
 require_once __DIR__ . '/../../apps/api/silex.phar';
- 	
+
 use Silex\WebTestCase;
 
 class AppTest extends WebTestCase

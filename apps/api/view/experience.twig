@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:http://www.fabiocicerchia.it/api.php/experience</id>
+    <title type="text">Fabio Cicerchia API - Experience</title>
+    <subtitle type="text"></subtitle>
+
+    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+    <author>
+        <name>Fabio Cicerchia</name>
+        <uri>http://www.fabiocicerchia.it</uri>
+        <email>info@fabiocicerchia.it</email>
+    </author>
+    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
+
+    {% for entry in entries %}
+    <entry>
+        <id>urn:uuid:{{ entry._id }}</id>
+        <title type="text">{{ entry.role }}</title>
+        <summary type="text">{{ entry.role }}</summary>
+        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+        <published>{{ entry.date.end }}</published>
+
+        <!--link rel="index" href="http://www.fabiocicerchia.it/api.php/experience/{{ entry._id }}" /-->
+        <content type="xhtml">
+            <!--h3 itemprop="name" class="summary">{{ entry.role }}</h3-->
+            <!--div class="dates">{{ entry.date.start }} {{ entry.date.end }}</div-->
+            <div itemtype="http://schema.org/Organization" itemscope="itemscope" class="contact">
+                <a title="{{ entry.company.name }}" rel="nofollow" href="{{ entry.company.url }}" target="_blank" itemprop="url" class="url">
+                    <span itemprop="name" class="fn">{{ entry.company.name }}</span>
+                </a>
+                <div itemprop="description">
+                    <p>{{ entry.description }}</p> <!-- TODO: ADD TO MONGODB -->
+                </div>
+                <address itemtype="http://schema.org/PostalAddress" itemscope="itemscope" itemprop="address" class="adr">
+                    <span itemprop="postalCode" class="postal-code">{{ entry.company.location.cap }}</span>
+                    <span itemprop="addressLocality" class="locality">{{ entry.company.location.city }}</span>
+                    <span itemprop="addressCountry" class="country-name">{{ entry.company.location.country }}</span>
+                </address>
+            </div>
+            {% if entry.technologies %}
+            <dl class="first adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+                <dt itemprop="name">Technologies</dt>
+                {% for technology in entry.technologies|keys %}
+                {% if loop.last %}
+                <dd class="last" itemprop="itemListElement">{{ technology }}</dd>
+                {% else %}
+                <dd itemprop="itemListElement">{{ technology }}</dd>
+                {% endif %}
+                {% endfor %}
+            </dl>
+            {% endif %}
+            {% if entry.tools %}
+            <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+                <dt itemprop="name">Tools</dt>
+                {% for tool in entry.tools|keys %}
+                {% if loop.last %}
+                <dd class="last" itemprop="itemListElement">{{ tool }}</dd>
+                {% else %}
+                <dd itemprop="itemListElement">{{ tool }}</dd>
+                {% endif %}
+                {% endfor %}
+            </dl>
+            {% endif %}
+            {% if entry.methodologies|keys %}
+            <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+                <dt itemprop="name">Methodologies</dt>
+                {% for methodology in entry.methodologies %}
+                {% if loop.last %}
+                <dd class="last" itemprop="itemListElement">{{ methodology }}</dd>
+                {% else %}
+                <dd itemprop="itemListElement">{{ methodology }}</dd>
+                {% endif %}
+                {% endfor %}
+            </dl>
+            {% endif %}
+            {% if entry.techniques %}
+            <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+                <dt itemprop="name">Techniques</dt>
+                {% for technique in entry.techniques|keys %}
+                {% if loop.last %}
+                <dd class="last" itemprop="itemListElement">{{ technique }}</dd>
+                {% else %}
+                <dd itemprop="itemListElement">{{ technique }}</dd>
+                {% endif %}
+                {% endfor %}
+            </dl>
+            {% endif %}
+        </content>
+    </entry>
+    {% endfor %}
+</feed>

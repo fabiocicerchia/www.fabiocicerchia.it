@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:http://www.fabiocicerchia.it/api.php/education</id>
+    <title type="text">Fabio Cicerchia API - Education</title>
+    <subtitle type="text"></subtitle>
+
+    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+    <author>
+        <name>Fabio Cicerchia</name>
+        <uri>http://www.fabiocicerchia.it</uri>
+        <email>info@fabiocicerchia.it</email>
+    </author>
+    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
+
+    {% for entry in entries %}
+    <entry>
+        <id>urn:uuid:{{ entry._id }}</id>
+        <title type="text">{{ entry.title }}</title>
+        <summary type="text">{{ entry.title }}</summary>
+        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+        <published>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</published>
+
+        <!--link rel="index" href="http://www.fabiocicerchia.it/api.php/education/{{ entry._id }}" /-->
+        <content type="xhtml">
+            <!--h3 itemprop="name" class="summary">{{ entry.title }}</h3-->
+            <!--div class="dates">{{ entry.date.end|date("Y-m-d") }}</div-->
+            <div itemtype="http://schema.org/Organization" itemscope="itemscope" class="contact">
+                <a title="{{ entry.institute.name }}" rel="nofollow" href="{{ entry.institute.url }}" target="_blank" itemprop="url" class="url">
+                    <span itemprop="name" class="fn">{{ entry.institute.name }}</span>
+                </a>
+                <!--span itemprop="description"></span-->
+                <address itemtype="http://schema.org/PostalAddress" itemscope="itemscope" itemprop="address" class="adr">
+                    <span itemprop="postalCode" class="postal-code">{{ entry.institute.location.cap }}</span>
+                    <span itemprop="addressLocality" class="locality">{{ entry.institute.location.city }}</span>
+                    <span itemprop="addressCountry" class="country-name">{{ entry.institute.location.country }}</span>
+                </address>
+            </div>
+            <strong>Activities:</strong>
+            <ul itemtype="http://schema.org/ItemList" itemscope="itemscope">
+                {% for activity in entry.activities %}
+                {% if loop.last %}
+                <li class="last" itemprop="itemListElement">{{ activity }}</li>
+                {% else %}
+                <li itemprop="itemListElement">{{ activity }}</li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </content>
+    </entry>
+    {% endfor %}
+</feed>

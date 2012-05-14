@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:http://www.fabiocicerchia.it/api.php/information</id>
+    <title type="text">Fabio Cicerchia API - Information</title>
+    <subtitle type="text"></subtitle>
+
+    <updated>{{ "now"|date("Y-m-d\TH:i:s\Z") }}</updated>
+    <author>
+        <name>Fabio Cicerchia</name>
+        <uri>http://www.fabiocicerchia.it</uri>
+        <email>info@fabiocicerchia.it</email>
+    </author>
+    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
+
+    <entry>
+        <id>urn:uuid:{{ main_key }}</id>
+        <title type="text"></title>
+        <summary type="text"></summary>
+        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+        <published>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</published>
+
+        <content type="xhtml">
+            <div id="hcard-Fabio-Cicerchia" itemtype="http://schema.org/Person" itemscope="itemscope" class="vcard">
+                <img src="/media/images/me.jpg" alt="A photograph of Fabio Cicerchia in black and white" itemprop="image" class="photo" height="475" width="180" />
+                <!--ul itemtype="http://schema.org/ItemList" itemscope="itemscope" class="flags">
+                    <li itemprop="itemListElement" class="first">
+                        <a title="Translate to English" href="/" class="en">Translate to English</a>
+                    </li>
+                    <li itemprop="itemListElement" class="last">
+                        <a title="Traduci in Italiano" href="/it" class="it">Traduci in Italiano</a>
+                    </li>
+                </ul-->
+                <h1>
+                    <a title="The URL of my web site" itemprop="name" href="http://www.fabiocicerchia.it" class="fn n">
+                        <span class="given-name" lang="it">Fabio</span>
+                        <span class="family-name" lang="it">Cicerchia</span> - 
+                        <span itemprop="jobTitle" class="role">Web Developer</span> <!-- TODO: ADD TO MONGODB -->
+                    </a>
+                </h1>
+                <address itemtype="http://schema.org/PostalAddress" itemscope="itemscope" itemprop="address" class="adr">
+                    <span itemprop="addressLocality" class="locality">{{ entry.location.city }}</span>
+                    <span itemprop="addressCountry" class="country-name">{{ entry.location.country }}</span>
+                </address>
+                <ul>
+                    <li>
+                        <span itemprop="nationality">{{ entry.nationality|capitalize }}</span>
+                    </li>
+                    <li>
+                        <span itemprop="gender">{{ entry.gender|capitalize }}</span>
+                    </li>
+                    <li>{{ entry.birth_day }}</li>
+                    <li>
+                        <span itemprop="telephone" class="tel">{{ entry.telephone.uk }}</span>
+                    </li>
+                    <li>
+                        <a title="" rel="nofollow me" href="http://www.fabiocicerchia.it" target="_blank" itemprop="url" class="url">
+                            http://www.fabiocicerchia.it
+                        </a>
+                    </li>
+                    <li class="hide">
+                        <a title="The my email address" rel="nofollow me" href="mailto:{{ entry.contacts.email }}" itemprop="email" class="email">{{ entry.contacts.email }}</a>
+                    </li>
+                    <!--li class="last">
+                        <ul itemtype="http://schema.org/ItemList" itemscope="itemscope" class="social">
+                            <li itemprop="itemListElement" class="first">
+                                <a title="The my email address" rel="nofollow me" href="mailto:info@fabiocicerchia.it">info@fabiocicerchia.it</a>
+                            </li>
+                            <li itemprop="itemListElement">
+                                <a title="Download the vCard format" href="/vcard" class="my_vcard">vCard</a>
+                            </li>
+                            <li itemprop="itemListElement">
+                                <a title="Print this document" href="/print" class="print">Print</a>
+                            </li>
+                            <li itemprop="itemListElement">
+                                <a title="Facebook" href="https://www.facebook.com/fabio.cicerchia" class="facebook" target="_blank">Facebook</a>
+                            </li>
+                            <li itemprop="itemListElement">
+                                <a title="LinkedIn" href="http://www.linkedin.com/in/fabiocicerchia" class="linkedin" target="_blank">LinkedIn</a>
+                            </li>
+                            <li itemprop="itemListElement">
+                                <a title="MSN Messenger" href="msnim:chat?contact=fabio.cicerchia@live.it" class="msn_messenger" target="_blank">MSN Messenger</a>
+                            </li>
+                            <li itemprop="itemListElement">
+                                <a title="Skype" href="skype:fabio.cicerchia?call" class="skype" target="_blank">Skype</a>
+                            </li>
+                            <li itemprop="itemListElement" class="last">
+                                <a title="Some informations..." href="#" class="help">?</a>
+                            </li>
+                        </ul>
+                    </li-->
+                </ul>
+        </content>
+    </entry>
+</feed>

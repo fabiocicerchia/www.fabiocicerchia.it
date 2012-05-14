@@ -1,17 +1,17 @@
 /* HUMANS RESPONSIBLE & COLOPHON */
-	Site name:   Fabio Cicerchia
-	Site URL:    http://www.fabiocicerchia.it/
+    Site name:   Fabio Cicerchia
+    Site URL:    http://www.fabiocicerchia.it/
 
 /* TEAM */
-	Handyman:    Fabio Cicerchia
-	Contact:     info [at] fabiocicerchia.it
-	Twitter:     @fabiocicerchia
-	From:        Palestrina, Rome, Italy
+    Handyman:    Fabio Cicerchia
+    Contact:     info [at] fabiocicerchia.it
+    Twitter:     @fabiocicerchia
+    From:        Palestrina, Rome, Italy
 
 /* SITE */
-	Last update: 2012/02/29
-    Technology:	 Linux, Apache, MongoDB, PHP, Perl, Python, JavaScript, Node.js, REST
-    Components:	 Silex, jQuery, Twitter Bootstrap, Google Minify, OWASP-CRS
+    Last update: 2012/02/29
+    Technology:  Linux, Apache, MongoDB, PHP, Perl, Python, JavaScript, Node.js, REST
+    Components:  Silex, jQuery, Twitter Bootstrap, Google Minify, OWASP-CRS
     Standards:   HTML5 & XHTML, CSS2.1 & CSS3
-	Language:    English / Italian
-	Software:    vim and gedit
+    Language:    English / Italian
+    Software:    vim and gedit

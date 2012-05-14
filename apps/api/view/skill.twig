@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:http://www.fabiocicerchia.it/api.php/skikll</id>
+    <title type="text">Fabio Cicerchia API - Skill</title>
+    <subtitle type="text"></subtitle>
+
+    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+    <author>
+        <name>Fabio Cicerchia</name>
+        <uri>http://www.fabiocicerchia.it</uri>
+        <email>info@fabiocicerchia.it</email>
+    </author>
+    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
+
+    {% for main_key, entry in entries %}
+    <entry>
+        <id>urn:uuid:{{ entry._id }}</id>
+        <title type="text">{{ main_key|capitalize }}</title>
+        <summary type="text">{{ main_key|capitalize }}</summary>
+        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+
+        <!--link rel="index" href="http://www.fabiocicerchia.it/api.php/skill/{{ entry._id }}" /-->
+        <content type="xhtml">
+            <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+                <dt itemprop="name">{{ main_key|capitalize }}</dt>
+                {% for level, skills in entry %}
+                {% if level != '_id' %}
+                <dd itemprop="itemListElement">{{ level|capitalize }} proficiency: {{ skills|join(', ') }}.</dd>
+                {% endif %}
+                {% endfor %}
+            </dl>
+        </content>
+    </entry>
+    {% endfor %}
+</feed>
