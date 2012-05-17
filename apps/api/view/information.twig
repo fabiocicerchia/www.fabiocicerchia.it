@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:uuid:http://www.fabiocicerchia.it/api.php/information</id>
+<?xml version="1.0" encoding="UTF-8"?>
+<service xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:{{ main_id }}</id>
     <title type="text">Fabio Cicerchia API - Information</title>
-    <subtitle type="text"></subtitle>
+    <link rel="self" href="http://www.fabiocicerchia.it/api.php/information" />
+    <link rel="describedby" href="http://www.fabiocicerchia.it/api.php/service-expression-syntax" type="plain/txt" />
+    <link rel="author" href="http://www.fabiocicerchia.it" />
 
-    <updated>{{ "now"|date("Y-m-d\TH:i:s\Z") }}</updated>
+    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
     <author>
         <name>Fabio Cicerchia</name>
         <uri>http://www.fabiocicerchia.it</uri>
@@ -13,11 +15,10 @@
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
     <entry>
-        <id>urn:uuid:{{ main_key }}</id>
-        <title type="text"></title>
-        <summary type="text"></summary>
+        <id>urn:uuid:{{ main_id }}</id>
+        <title>Information</title>
+        <!-- TODO: INSERT THE LINK TAG -->
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
-        <published>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</published>
 
         <content type="xhtml">
             <div id="hcard-Fabio-Cicerchia" itemtype="http://schema.org/Person" itemscope="itemscope" class="vcard">
@@ -89,6 +90,7 @@
                         </ul>
                     </li-->
                 </ul>
+            </div>
         </content>
     </entry>
-</feed>
+</service>

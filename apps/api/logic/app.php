@@ -31,10 +31,16 @@ $app->error(function (\Exception $e, $code) {
 // -----------------------------------------------------------------------------
 $app->get('/', function() use($app) {
     $routes = array_keys($app['routes']->all());
-    $content = $app['twig']->render('root.twig', array('routes' => $routes));
+    $routes = array_combine(array_map(function($value) { return md5($value); }, $routes), $routes);
+
+    $data = array(
+        'main_id' => md5('http://www.fabiocicerchia.it/api.php/'),
+        'routes'  => $routes
+    );
+    $content = $app['twig']->render('root.twig', $data);
 
     $response = new Response($content);
-    $response->headers->set('Content-type', 'application/atom+xml');
+    $response->headers->set('Content-type', 'application/xml'); // TODO: application/atom+xml
     $response->setCache(array(
         'max_age'  => 10,
         's_maxage' => 10
@@ -51,10 +57,15 @@ $app->get('/information', function() use($app) {
     $entries = $coll->find()->toArray();
 
     $main_key = array_slice(array_keys($entries), 0, 1);
-    $content = $app['twig']->render('information.twig', array('entry' => $entries[$main_key[0]], 'main_key' => $main_key[0]));
+    $data = array(
+        'entry'    => $entries[$main_key[0]],
+        'main_key' => $main_key[0],
+        'main_id'  => md5('information')
+    );
+    $content = $app['twig']->render('information.twig', $data);
 
     $response = new Response($content);
-    $response->headers->set('Content-type', 'application/atom+xml');
+    $response->headers->set('Content-type', 'application/xml');
     $response->setCache(array(
         'max_age'  => 10,
         's_maxage' => 10
@@ -70,10 +81,14 @@ $app->get('/education', function() use($app) {
     $coll = $app['mongodb']->selectDatabase('curriculum')->selectCollection('education');
     $entries = $coll->find()->sort(array('date.end' => 'desc'))->toArray();
 
-    $content = $app['twig']->render('education.twig', array('entries' => $entries));
+    $data = array(
+        'entries' => $entries,
+        'main_id' => md5('education')
+    );
+    $content = $app['twig']->render('education.twig', $data);
 
     $response = new Response($content);
-    $response->headers->set('Content-type', 'application/atom+xml');
+    $response->headers->set('Content-type', 'application/xml');
     $response->setCache(array(
         'max_age'  => 10,
         's_maxage' => 10
@@ -89,10 +104,14 @@ $app->get('/experience', function() use($app) {
     $coll = $app['mongodb']->selectDatabase('curriculum')->selectCollection('experience');
     $entries = $coll->find()->sort(array('date.end' => 'desc'))->toArray();
 
-    $content = $app['twig']->render('experience.twig', array('entries' => $entries));
+    $data = array(
+        'entries' => $entries,
+        'main_id' => md5('experience') // TODO: CHANGE ALL THE VALUES
+    );
+    $content = $app['twig']->render('experience.twig', $data);
 
     $response = new Response($content);
-    $response->headers->set('Content-type', 'application/atom+xml');
+    $response->headers->set('Content-type', 'application/xml');
     $response->setCache(array(
         'max_age'  => 10,
         's_maxage' => 10
@@ -120,7 +139,7 @@ $app->get('/skill', function() use($app) {
     $content = $app['twig']->render('skill.twig', array('entries' => $new_entries));
 
     $response = new Response($content);
-    $response->headers->set('Content-type', 'application/atom+xml');
+    $response->headers->set('Content-type', 'application/xml');
     $response->setCache(array(
         'max_age'  => 10,
         's_maxage' => 10
@@ -136,10 +155,14 @@ $app->get('/language', function() use($app) {
     $coll = $app['mongodb']->selectDatabase('curriculum')->selectCollection('language');
     $entries = $coll->find()->toArray();
 
-    $content = $app['twig']->render('language.twig', array('entries' => $entries));
+    $data = array(
+        'entries' => $entries,
+        'main_id' => md5('language')
+    );
+    $content = $app['twig']->render('language.twig', $data);
 
     $response = new Response($content);
-    $response->headers->set('Content-type', 'application/atom+xml');
+    $response->headers->set('Content-type', 'application/xml');
     $response->setCache(array(
         'max_age'  => 10,
         's_maxage' => 10
@@ -147,5 +170,19 @@ $app->get('/language', function() use($app) {
 
     return $response;
 })->method('GET')->bind('language');
+
+// -----------------------------------------------------------------------------
+// ROUTE SERVICE EXPRESSION SYNTAX ---------------------------------------------
+// -----------------------------------------------------------------------------
+$app->get('/service-expression-syntax', function() use($app) {
+    $response = new Response($app['twig']->render('service-expression-syntax.twig'));
+    $response->headers->set('Content-type', 'plain/text');
+    $response->setCache(array(
+        'max_age'  => 10,
+        's_maxage' => 10
+    ));
+
+    return $response;
+})->method('GET')->bind('service_expression_syntax');
 
 return $app;

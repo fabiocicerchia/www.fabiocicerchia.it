@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:uuid:http://www.fabiocicerchia.it/api.php/skikll</id>
+<?xml version="1.0" encoding="UTF-8"?>
+<service xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:{{ main_id }}</id>
     <title type="text">Fabio Cicerchia API - Skill</title>
-    <subtitle type="text"></subtitle>
+    <link rel="self" href="http://www.fabiocicerchia.it/api.php/skill" />
+    <link rel="describedby" href="http://www.fabiocicerchia.it/api.php/service-expression-syntax" type="plain/txt" />
+    <link rel="author" href="http://www.fabiocicerchia.it" />
 
-    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
     <author>
         <name>Fabio Cicerchia</name>
         <uri>http://www.fabiocicerchia.it</uri>
@@ -15,21 +17,21 @@
     {% for main_key, entry in entries %}
     <entry>
         <id>urn:uuid:{{ entry._id }}</id>
-        <title type="text">{{ main_key|capitalize }}</title>
-        <summary type="text">{{ main_key|capitalize }}</summary>
+        <title>{{ main_key|capitalize }}</title>
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
 
-        <!--link rel="index" href="http://www.fabiocicerchia.it/api.php/skill/{{ entry._id }}" /-->
         <content type="xhtml">
+            {% for level, skills in entry %}
+            {% if level != '_id' %}
             <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
-                <dt itemprop="name">{{ main_key|capitalize }}</dt>
-                {% for level, skills in entry %}
-                {% if level != '_id' %}
-                <dd itemprop="itemListElement">{{ level|capitalize }} proficiency: {{ skills|join(', ') }}.</dd>
-                {% endif %}
+                <dt itemprop="name">{{ level|capitalize }} proficiency</dt>
+                {% for skill in skills %}
+                <dd itemprop="itemListElement">{{ skill }}</dd>
                 {% endfor %}
             </dl>
+            {% endif %}
+            {% endfor %}
         </content>
     </entry>
     {% endfor %}
-</feed>
+</service>

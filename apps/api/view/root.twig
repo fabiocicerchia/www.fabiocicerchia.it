@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xmlns:fh="http://purl.org/syndication/history/1.0">
-    <id>http://www.fabiocicerchia.it/api</id>
-    <title type="text">Fabio Cicerchia API - Index</title>
-    <subtitle type="html"></subtitle>
+<?xml version="1.0" encoding="UTF-8"?>
+<service xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:{{ main_id }}</id>
+    <title type="text">Fabio Cicerchia API - Entry Point</title>
+    <link rel="self" href="http://www.fabiocicerchia.it/api.php/" />
+    <link rel="describedby" href="http://www.fabiocicerchia.it/api.php/service-expression-syntax" type="plain/txt" />
+    <link rel="author" href="http://www.fabiocicerchia.it" />
 
     <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
     <author>
@@ -12,15 +14,17 @@
     </author>
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
-    {% for route in routes %}
-    <entry>
-        <id>http://www.fabiocicerchia.it/api/{{ route }}</id>
-        <title type="text">{{ route|capitalize }} API</title>
-        <summary type="text"></summary>
+    {% for md5, route in routes %}
+    <entrypoint>
+        <id>urn:uuid:{{ md5 }}</id>
+        {% if route == 'root' %}
+        <title>Entry Point</title>
+        <link rel="self" href="http://www.fabiocicerchia.it/api.php/" type="application/xml" />
+        {% else %}
+        <title>{{ route|capitalize }}</title>
+        <link rel="service" href="http://www.fabiocicerchia.it/api.php/{{ route }}" type="application/xml" />
+        {% endif %}
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
-        <published>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</published>
-
-        <link rel="index" href="http://www.fabiocicerchia.it/api/{{ route }}" />
-    </entry>
+    </entrypoint>
     {% endfor %}
-</feed>
+</service>
