@@ -25,7 +25,7 @@ MSGFMT=msgfmt
 PEAR_INSTALL_FLAGS=--alldeps
 
 CURRENTDIR=.
-SOURCEDIR="$(CURRENTDIR)/app/api/"
+SOURCEDIR=$(CURRENTDIR)/apps/api/
 
 ################################################################################
 # GENERAL ACTIONS
@@ -35,7 +35,7 @@ all: .info test sca
 
 .info:
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(ECHO) "FABIO CICERCHIA - STYLING EXERCISES JUST FOR FUN"
+	$(ECHO) "FABIO CICERCHIA - WEBSITE"
 	$(ECHO) "--------------------------------------------------------------------------------"
 
 install-environment: install-bcompiler install-imagick install-phpunit install-docblox install-pdepend install-phpmd install-phpcs

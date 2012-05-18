@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:uuid:{{ main_id }}</id>
+    <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Experience</title>
-    <link rel="self" href="http://www.fabiocicerchia.it/api.php/experience" />
-    <link rel="describedby" href="http://www.fabiocicerchia.it/api.php/service-expression-syntax" type="plain/txt" />
-    <link rel="author" href="http://www.fabiocicerchia.it" />
+    <link rel="self"
+          href="http://{{ app.request.host }}{{ app.request.requestUri }}" />
+    <link rel="describedby"
+          href="http://{{ app.request.host }}/api.php/service-expression-syntax"
+          type="plain/txt" />
+    <link rel="author" href="http://{{ app.request.host }}" />
 
     <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
     <author>
@@ -25,25 +28,42 @@
         <content type="xhtml">
             <!--h3 itemprop="name" class="summary">{{ entry.role }}</h3-->
             <!--div class="dates">{{ entry.date.start }} {{ entry.date.end }}</div-->
-            <div itemtype="http://schema.org/Organization" itemscope="itemscope" class="contact">
-                <a title="{{ entry.company.name }}" rel="nofollow" href="{{ entry.company.url }}" target="_blank" itemprop="url" class="url">
-                    <span itemprop="name" class="fn">{{ entry.company.name }}</span>
+            <div itemtype="http://schema.org/Organization"
+                 itemscope="itemscope" class="contact">
+                <a title="{{ entry.company.name }}" rel="nofollow"
+                   href="{{ entry.company.url }}" target="_blank"
+                   itemprop="url" class="url">
+                    <span itemprop="name" class="fn">
+                        {{ entry.company.name }}
+                    </span>
                 </a>
                 <div itemprop="description">
                     <p>{{ entry.description }}</p> <!-- TODO: ADD TO MONGODB -->
                 </div>
-                <address itemtype="http://schema.org/PostalAddress" itemscope="itemscope" itemprop="address" class="adr">
-                    <span itemprop="postalCode" class="postal-code">{{ entry.company.location.cap }}</span>
-                    <span itemprop="addressLocality" class="locality">{{ entry.company.location.city }}</span>
-                    <span itemprop="addressCountry" class="country-name">{{ entry.company.location.country }}</span>
+                <address itemtype="http://schema.org/PostalAddress"
+                         itemscope="itemscope" itemprop="address"
+                         class="adr">
+                    <span itemprop="postalCode" class="postal-code">
+                        {{ entry.company.location.cap }}
+                    </span>
+                    <span itemprop="addressLocality" class="locality">
+                        {{ entry.company.location.city }}
+                    </span>
+                    <span itemprop="addressCountry" class="country-name">
+                        {{ entry.company.location.country }}
+                    </span>
                 </address>
             </div>
             {% if entry.technologies %}
-            <dl class="first adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+            <dl class="first adjacent"
+                itemtype="http://schema.org/ItemList"
+                itemscope="itemscope">
                 <dt itemprop="name">Technologies</dt>
                 {% for technology in entry.technologies|keys %}
                 {% if loop.last %}
-                <dd class="last" itemprop="itemListElement">{{ technology }}</dd>
+                <dd class="last" itemprop="itemListElement">
+                    {{ technology }}
+                </dd>
                 {% else %}
                 <dd itemprop="itemListElement">{{ technology }}</dd>
                 {% endif %}
@@ -51,7 +71,8 @@
             </dl>
             {% endif %}
             {% if entry.tools %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+            <dl class="adjacent" itemtype="http://schema.org/ItemList"
+                itemscope="itemscope">
                 <dt itemprop="name">Tools</dt>
                 {% for tool in entry.tools|keys %}
                 {% if loop.last %}
@@ -63,11 +84,14 @@
             </dl>
             {% endif %}
             {% if entry.methodologies|keys %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+            <dl class="adjacent" itemtype="http://schema.org/ItemList"
+                itemscope="itemscope">
                 <dt itemprop="name">Methodologies</dt>
                 {% for methodology in entry.methodologies %}
                 {% if loop.last %}
-                <dd class="last" itemprop="itemListElement">{{ methodology }}</dd>
+                <dd class="last" itemprop="itemListElement">
+                    {{ methodology }}
+                </dd>
                 {% else %}
                 <dd itemprop="itemListElement">{{ methodology }}</dd>
                 {% endif %}
@@ -75,11 +99,14 @@
             </dl>
             {% endif %}
             {% if entry.techniques %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+            <dl class="adjacent" itemtype="http://schema.org/ItemList"
+                itemscope="itemscope">
                 <dt itemprop="name">Techniques</dt>
                 {% for technique in entry.techniques|keys %}
                 {% if loop.last %}
-                <dd class="last" itemprop="itemListElement">{{ technique }}</dd>
+                <dd class="last" itemprop="itemListElement">
+                    {{ technique }}
+                </dd>
                 {% else %}
                 <dd itemprop="itemListElement">{{ technique }}</dd>
                 {% endif %}

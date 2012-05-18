@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:uuid:{{ main_id }}</id>
+    <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Education</title>
-    <link rel="self" href="http://www.fabiocicerchia.it/api.php/education" />
-    <link rel="describedby" href="http://www.fabiocicerchia.it/api.php/service-expression-syntax" type="plain/txt" />
-    <link rel="author" href="http://www.fabiocicerchia.it" />
+    <link rel="self"
+          href="http://{{ app.request.host }}{{ app.request.requestUri }}" />
+    <link rel="describedby"
+          href="http://{{ app.request.host }}/api.php/service-expression-syntax"
+          type="plain/txt" />
+    <link rel="author" href="http://{{ app.request.host }}" />
 
     <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
     <author>
@@ -25,22 +28,38 @@
         <content type="xhtml">
             <!--h3 itemprop="name" class="summary">{{ entry.title }}</h3-->
             <!--div class="dates">{{ entry.date.end|date("Y-m-d") }}</div-->
-            <div itemtype="http://schema.org/Organization" itemscope="itemscope" class="contact">
-                <a title="{{ entry.institute.name }}" rel="nofollow" href="{{ entry.institute.url }}" target="_blank" itemprop="url" class="url">
-                    <span itemprop="name" class="fn">{{ entry.institute.name }}</span>
+            <div itemtype="http://schema.org/Organization"
+                 itemscope="itemscope" class="contact">
+                <a title="{{ entry.institute.name }}" rel="nofollow"
+                   href="{{ entry.institute.url }}" target="_blank"
+                   itemprop="url" class="url">
+                    <span itemprop="name" class="fn">
+                        {{ entry.institute.name }}
+                    </span>
                 </a>
                 <!--span itemprop="description"></span-->
-                <address itemtype="http://schema.org/PostalAddress" itemscope="itemscope" itemprop="address" class="adr">
-                    <span itemprop="postalCode" class="postal-code">{{ entry.institute.location.cap }}</span>
-                    <span itemprop="addressLocality" class="locality">{{ entry.institute.location.city }}</span>
-                    <span itemprop="addressCountry" class="country-name">{{ entry.institute.location.country }}</span>
+                <address itemtype="http://schema.org/PostalAddress"
+                         itemscope="itemscope" itemprop="address"
+                         class="adr">
+                    <span itemprop="postalCode" class="postal-code">
+                        {{ entry.institute.location.cap }}
+                    </span>
+                    <span itemprop="addressLocality" class="locality">
+                        {{ entry.institute.location.city }}
+                    </span>
+                    <span itemprop="addressCountry" class="country-name">
+                        {{ entry.institute.location.country }}
+                    </span>
                 </address>
             </div>
             <strong>Activities:</strong>
-            <ul itemtype="http://schema.org/ItemList" itemscope="itemscope">
+            <ul itemtype="http://schema.org/ItemList"
+                itemscope="itemscope">
                 {% for activity in entry.activities %}
                 {% if loop.last %}
-                <li class="last" itemprop="itemListElement">{{ activity }}</li>
+                <li class="last" itemprop="itemListElement">
+                    {{ activity }}
+                </li>
                 {% else %}
                 <li itemprop="itemListElement">{{ activity }}</li>
                 {% endif %}

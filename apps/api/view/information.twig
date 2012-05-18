@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:uuid:{{ main_id }}</id>
+    <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Information</title>
-    <link rel="self" href="http://www.fabiocicerchia.it/api.php/information" />
-    <link rel="describedby" href="http://www.fabiocicerchia.it/api.php/service-expression-syntax" type="plain/txt" />
-    <link rel="author" href="http://www.fabiocicerchia.it" />
+    <link rel="self"
+          href="http://{{ app.request.host }}{{ app.request.requestUri }}" />
+    <link rel="describedby"
+          href="http://{{ app.request.host }}/api.php/service-expression-syntax"
+          type="plain/txt" />
+    <link rel="author" href="http://{{ app.request.host }}" />
 
     <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
     <author>
@@ -15,14 +18,19 @@
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
     <entry>
-        <id>urn:uuid:{{ main_id }}</id>
+        <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
         <title>Information</title>
         <!-- TODO: INSERT THE LINK TAG -->
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
 
         <content type="xhtml">
-            <div id="hcard-Fabio-Cicerchia" itemtype="http://schema.org/Person" itemscope="itemscope" class="vcard">
-                <img src="/media/images/me.jpg" alt="A photograph of Fabio Cicerchia in black and white" itemprop="image" class="photo" height="475" width="180" />
+            <div id="hcard-Fabio-Cicerchia"
+                 itemtype="http://schema.org/Person"
+                 itemscope="itemscope" class="vcard">
+                <img src="/media/images/me.jpg"
+                     alt="A photograph of Fabio Cicerchia in black and white"
+                     itemprop="image" class="photo"
+                     height="475" width="180" />
                 <!--ul itemtype="http://schema.org/ItemList" itemscope="itemscope" class="flags">
                     <li itemprop="itemListElement" class="first">
                         <a title="Translate to English" href="/" class="en">Translate to English</a>
@@ -32,34 +40,53 @@
                     </li>
                 </ul-->
                 <h1>
-                    <a title="The URL of my web site" itemprop="name" href="http://www.fabiocicerchia.it" class="fn n">
+                    <a title="The URL of my web site" itemprop="name"
+                       href="http://www.fabiocicerchia.it" class="fn n">
                         <span class="given-name" lang="it">Fabio</span>
                         <span class="family-name" lang="it">Cicerchia</span> - 
                         <span itemprop="jobTitle" class="role">Web Developer</span> <!-- TODO: ADD TO MONGODB -->
                     </a>
                 </h1>
-                <address itemtype="http://schema.org/PostalAddress" itemscope="itemscope" itemprop="address" class="adr">
-                    <span itemprop="addressLocality" class="locality">{{ entry.location.city }}</span>
-                    <span itemprop="addressCountry" class="country-name">{{ entry.location.country }}</span>
+                <address itemtype="http://schema.org/PostalAddress"
+                         itemscope="itemscope" itemprop="address"
+                         class="adr">
+                    <span itemprop="addressLocality" class="locality">
+                        {{ entries[main_key].location.city }}
+                    </span>
+                    <span itemprop="addressCountry" class="country-name">
+                        {{ entries[main_key].location.country }}
+                    </span>
                 </address>
                 <ul>
                     <li>
-                        <span itemprop="nationality">{{ entry.nationality|capitalize }}</span>
+                        <span itemprop="nationality">
+                            {{ entries[main_key].nationality|capitalize }}
+                        </span>
                     </li>
                     <li>
-                        <span itemprop="gender">{{ entry.gender|capitalize }}</span>
+                        <span itemprop="gender">
+                            {{ entries[main_key].gender|capitalize }}
+                        </span>
                     </li>
-                    <li>{{ entry.birth_day }}</li>
+                    <li>{{ entries[main_key].birth_day }}</li>
                     <li>
-                        <span itemprop="telephone" class="tel">{{ entry.telephone.uk }}</span>
+                        <span itemprop="telephone" class="tel">
+                            {{ entries[main_key].telephone.uk }}
+                        </span>
                     </li>
                     <li>
-                        <a title="" rel="nofollow me" href="http://www.fabiocicerchia.it" target="_blank" itemprop="url" class="url">
-                            http://www.fabiocicerchia.it
+                        <a title="" rel="nofollow me" 
+                           href="http://{{ app.request.host }}"
+                           target="_blank" itemprop="url" class="url">
+                            http://{{ app.request.host }}
                         </a>
                     </li>
                     <li class="hide">
-                        <a title="The my email address" rel="nofollow me" href="mailto:{{ entry.contacts.email }}" itemprop="email" class="email">{{ entry.contacts.email }}</a>
+                        <a title="The my email address" rel="nofollow me"
+                           href="mailto:{{ entries[main_key].contacts.email }}"
+                           itemprop="email" class="email">
+                            {{ entries[main_key].contacts.email }}
+                        </a>
                     </li>
                     <!--li class="last">
                         <ul itemtype="http://schema.org/ItemList" itemscope="itemscope" class="social">

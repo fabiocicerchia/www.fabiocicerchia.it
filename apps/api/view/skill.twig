@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:uuid:{{ main_id }}</id>
+    <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Skill</title>
-    <link rel="self" href="http://www.fabiocicerchia.it/api.php/skill" />
-    <link rel="describedby" href="http://www.fabiocicerchia.it/api.php/service-expression-syntax" type="plain/txt" />
-    <link rel="author" href="http://www.fabiocicerchia.it" />
+    <link rel="self" 
+          href="http://{{ app.request.host }}{{ app.request.requestUri }}" />
+    <link rel="describedby" 
+          href="http://{{ app.request.host }}/api.php/service-expression-syntax"
+          type="plain/txt" />
+    <link rel="author" href="http://{{ app.request.host }}" />
 
     <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
     <author>
@@ -23,7 +26,8 @@
         <content type="xhtml">
             {% for level, skills in entry %}
             {% if level != '_id' %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList" itemscope="itemscope">
+            <dl class="adjacent" itemtype="http://schema.org/ItemList"
+                itemscope="itemscope">
                 <dt itemprop="name">{{ level|capitalize }} proficiency</dt>
                 {% for skill in skills %}
                 <dd itemprop="itemListElement">{{ skill }}</dd>
