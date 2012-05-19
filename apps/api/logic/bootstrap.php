@@ -43,7 +43,7 @@ $app->register($urlGeneratorServiceProvider);
 // HTTP CACHE PROVIDER ---------------------------------------------------------
 // -----------------------------------------------------------------------------
 $options = array(
-    'http_cache.cache_dir' => __DIR__.'/cache/',
+    'http_cache.cache_dir' => __DIR__ . '/../../../cache/api/',
 );
 $httpCacheServiceProvider = new HttpCacheServiceProvider();
 $app->register($httpCacheServiceProvider, $options);

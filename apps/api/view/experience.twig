@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<service xmlns="http://www.w3.org/2005/Atom">
+<entities xmlns="http://www.w3.org/2005/Atom">
     <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Experience</title>
     <link rel="self"
@@ -17,49 +17,49 @@
     </author>
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
-    {% for entry in entries %}
-    <entry>
-        <id>urn:uuid:{{ entry._id }}</id>
-        <title>{{ entry.role }}</title>
+    {% for entity in entities %}
+    <entity>
+        <id>urn:uuid:{{ entity._id }}</id>
+        <title>{{ entity.role }}</title>
         <!-- TODO: INSERT THE LINK TAG -->
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
-        <published>{{ entry.date.end }}</published>
+        <published>{{ entity.date.end }}</published>
 
         <content type="xhtml">
-            <!--h3 itemprop="name" class="summary">{{ entry.role }}</h3-->
-            <!--div class="dates">{{ entry.date.start }} {{ entry.date.end }}</div-->
+            <!--h3 itemprop="name" class="summary">{{ entity.role }}</h3-->
+            <!--div class="dates">{{ entity.date.start }} {{ entity.date.end }}</div-->
             <div itemtype="http://schema.org/Organization"
                  itemscope="itemscope" class="contact">
-                <a title="{{ entry.company.name }}" rel="nofollow"
-                   href="{{ entry.company.url }}" target="_blank"
+                <a title="{{ entity.company.name }}" rel="nofollow"
+                   href="{{ entity.company.url }}" target="_blank"
                    itemprop="url" class="url">
                     <span itemprop="name" class="fn">
-                        {{ entry.company.name }}
+                        {{ entity.company.name }}
                     </span>
                 </a>
                 <div itemprop="description">
-                    <p>{{ entry.description }}</p> <!-- TODO: ADD TO MONGODB -->
+                    <p>{{ entity.description }}</p> <!-- TODO: ADD TO MONGODB -->
                 </div>
                 <address itemtype="http://schema.org/PostalAddress"
                          itemscope="itemscope" itemprop="address"
                          class="adr">
                     <span itemprop="postalCode" class="postal-code">
-                        {{ entry.company.location.cap }}
+                        {{ entity.company.location.cap }}
                     </span>
                     <span itemprop="addressLocality" class="locality">
-                        {{ entry.company.location.city }}
+                        {{ entity.company.location.city }}
                     </span>
                     <span itemprop="addressCountry" class="country-name">
-                        {{ entry.company.location.country }}
+                        {{ entity.company.location.country }}
                     </span>
                 </address>
             </div>
-            {% if entry.technologies %}
+            {% if entity.technologies %}
             <dl class="first adjacent"
                 itemtype="http://schema.org/ItemList"
                 itemscope="itemscope">
                 <dt itemprop="name">Technologies</dt>
-                {% for technology in entry.technologies|keys %}
+                {% for technology in entity.technologies|keys %}
                 {% if loop.last %}
                 <dd class="last" itemprop="itemListElement">
                     {{ technology }}
@@ -70,11 +70,11 @@
                 {% endfor %}
             </dl>
             {% endif %}
-            {% if entry.tools %}
+            {% if entity.tools %}
             <dl class="adjacent" itemtype="http://schema.org/ItemList"
                 itemscope="itemscope">
                 <dt itemprop="name">Tools</dt>
-                {% for tool in entry.tools|keys %}
+                {% for tool in entity.tools|keys %}
                 {% if loop.last %}
                 <dd class="last" itemprop="itemListElement">{{ tool }}</dd>
                 {% else %}
@@ -83,11 +83,11 @@
                 {% endfor %}
             </dl>
             {% endif %}
-            {% if entry.methodologies|keys %}
+            {% if entity.methodologies|keys %}
             <dl class="adjacent" itemtype="http://schema.org/ItemList"
                 itemscope="itemscope">
                 <dt itemprop="name">Methodologies</dt>
-                {% for methodology in entry.methodologies %}
+                {% for methodology in entity.methodologies %}
                 {% if loop.last %}
                 <dd class="last" itemprop="itemListElement">
                     {{ methodology }}
@@ -98,11 +98,11 @@
                 {% endfor %}
             </dl>
             {% endif %}
-            {% if entry.techniques %}
+            {% if entity.techniques %}
             <dl class="adjacent" itemtype="http://schema.org/ItemList"
                 itemscope="itemscope">
                 <dt itemprop="name">Techniques</dt>
-                {% for technique in entry.techniques|keys %}
+                {% for technique in entity.techniques|keys %}
                 {% if loop.last %}
                 <dd class="last" itemprop="itemListElement">
                     {{ technique }}
@@ -114,6 +114,6 @@
             </dl>
             {% endif %}
         </content>
-    </entry>
+    </entity>
     {% endfor %}
-</service>
+</entities>

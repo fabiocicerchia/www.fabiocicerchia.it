@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<service xmlns="http://www.w3.org/2005/Atom">
+<entities xmlns="http://www.w3.org/2005/Atom">
     <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Education</title>
     <link rel="self"
@@ -17,24 +17,24 @@
     </author>
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
-    {% for entry in entries %}
-    <entry>
-        <id>urn:uuid:{{ entry._id }}</id>
-        <title>{{ entry.title }}</title>
+    {% for entity in entities %}
+    <entity>
+        <id>urn:uuid:{{ entity._id }}</id>
+        <title>{{ entity.title }}</title>
         <!-- TODO: INSERT THE LINK TAG -->
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
-        <published>{{ entry.date.end }}</published> <!-- TODO: CHANGE ALL THIS DATES -->
+        <published>{{ entity.date.end }}</published> <!-- TODO: CHANGE ALL THIS DATES -->
 
         <content type="xhtml">
-            <!--h3 itemprop="name" class="summary">{{ entry.title }}</h3-->
-            <!--div class="dates">{{ entry.date.end|date("Y-m-d") }}</div-->
+            <!--h3 itemprop="name" class="summary">{{ entity.title }}</h3-->
+            <!--div class="dates">{{ entity.date.end|date("Y-m-d") }}</div-->
             <div itemtype="http://schema.org/Organization"
                  itemscope="itemscope" class="contact">
-                <a title="{{ entry.institute.name }}" rel="nofollow"
-                   href="{{ entry.institute.url }}" target="_blank"
+                <a title="{{ entity.institute.name }}" rel="nofollow"
+                   href="{{ entity.institute.url }}" target="_blank"
                    itemprop="url" class="url">
                     <span itemprop="name" class="fn">
-                        {{ entry.institute.name }}
+                        {{ entity.institute.name }}
                     </span>
                 </a>
                 <!--span itemprop="description"></span-->
@@ -42,20 +42,20 @@
                          itemscope="itemscope" itemprop="address"
                          class="adr">
                     <span itemprop="postalCode" class="postal-code">
-                        {{ entry.institute.location.cap }}
+                        {{ entity.institute.location.cap }}
                     </span>
                     <span itemprop="addressLocality" class="locality">
-                        {{ entry.institute.location.city }}
+                        {{ entity.institute.location.city }}
                     </span>
                     <span itemprop="addressCountry" class="country-name">
-                        {{ entry.institute.location.country }}
+                        {{ entity.institute.location.country }}
                     </span>
                 </address>
             </div>
             <strong>Activities:</strong>
             <ul itemtype="http://schema.org/ItemList"
                 itemscope="itemscope">
-                {% for activity in entry.activities %}
+                {% for activity in entity.activities %}
                 {% if loop.last %}
                 <li class="last" itemprop="itemListElement">
                     {{ activity }}
@@ -66,6 +66,6 @@
                 {% endfor %}
             </ul>
         </content>
-    </entry>
+    </entity>
     {% endfor %}
-</service>
+</entities>

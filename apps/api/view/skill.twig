@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<service xmlns="http://www.w3.org/2005/Atom">
+<entities xmlns="http://www.w3.org/2005/Atom">
     <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Skill</title>
     <link rel="self" 
@@ -17,14 +17,14 @@
     </author>
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
-    {% for main_key, entry in entries %}
-    <entry>
-        <id>urn:uuid:{{ entry._id }}</id>
+    {% for main_key, entity in entities %}
+    <entity>
+        <id>urn:uuid:{{ entity._id }}</id>
         <title>{{ main_key|capitalize }}</title>
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
 
         <content type="xhtml">
-            {% for level, skills in entry %}
+            {% for level, skills in entity %}
             {% if level != '_id' %}
             <dl class="adjacent" itemtype="http://schema.org/ItemList"
                 itemscope="itemscope">
@@ -36,6 +36,6 @@
             {% endif %}
             {% endfor %}
         </content>
-    </entry>
+    </entity>
     {% endfor %}
-</service>
+</entities>

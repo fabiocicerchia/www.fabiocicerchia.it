@@ -16,19 +16,21 @@
     </author>
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
+    <entrypoint>
+        <id>urn:uuid:{{ "root"|md5 }}</id>
+        <title>Entry Point</title>
+        <link rel="self" href="http://{{ app.request.host }}/api.php/"
+              type="application/atom+xml" title="Entry Point" />
+        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+    </entrypoint>
     {% for route in routes %}
     <entrypoint>
         <id>urn:uuid:{{ route|md5 }}</id>
-        {% if route == 'root' %}
-        <title>Entry Point</title>
-        <link rel="self" href="http://{{ app.request.host }}/api.php/"
-              type="application/atom+xml" />
-        {% else %}
         <title>{{ route|capitalize }}</title>
         <link rel="service"
               href="http://{{ app.request.host }}/api.php/{{ route }}"
-              type="application/atom+xml" />
-        {% endif %}
+              type="application/atom+xml"
+              title="{{ route|capitalize }}" />
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
     </entrypoint>
     {% endfor %}

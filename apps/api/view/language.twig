@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<service xmlns="http://www.w3.org/2005/Atom">
+<entities xmlns="http://www.w3.org/2005/Atom">
     <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Language</title>
     <link rel="self"
@@ -17,15 +17,15 @@
     </author>
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
-    {% for entry in entries %}
-    <entry>
-        <id>urn:uuid:{{ entry._id }}</id>
-        <title>{{ entry.language }}</title>
+    {% for entity in entities %}
+    <entity>
+        <id>urn:uuid:{{ entity._id }}</id>
+        <title>{{ entity.language }}</title>
         <!-- TODO: INSERT THE LINK TAG -->
         <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
 
         <content type="xhtml">
-            {% for knowledge, level in entry.knowledge %}
+            {% for knowledge, level in entity.knowledge %}
             <dl class="adjacent" itemtype="http://schema.org/ItemList"
                 itemscope="itemscope">
                 <dt itemprop="name">{{ knowledge }}</dt>
@@ -33,6 +33,6 @@
             </dl>
             {% endfor %}
         </content>
-    </entry>
+    </entity>
     {% endfor %}
-</service>
+</entities>

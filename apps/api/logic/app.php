@@ -1,5 +1,4 @@
 <?php
-
 /**
  * FABIO CICERCHIA - WEBSITE
  *
@@ -36,11 +35,12 @@ $allowed_api = array(
 // -----------------------------------------------------------------------------
 // ERROR HANDLING --------------------------------------------------------------
 // -----------------------------------------------------------------------------
+
 /**
- * Error Lambda Function
+ * Error Lambda Function.
  *
- * @param Exception $e    DESCRIPTION
- * @param integer   $code DESCRIPTION
+ * @param Exception $e    The Exception instance.
+ * @param integer   $code The exception code.
  *
  * @return Response
  */
@@ -54,11 +54,12 @@ $app->error($error);
 // -----------------------------------------------------------------------------
 // ROUTE ROOT ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
+
 /**
- * Root Lambda Function
+ * Root Lambda Function.
  *
- * @param Silex\Application $app
- * @param array             $allowed_api
+ * @param Silex\Application $app         The Silex Application instance.
+ * @param array             $allowed_api The array of allowed APIs.
  *
  * @return Response
  */
@@ -73,7 +74,7 @@ $root = function() use($app, $allowed_api) {
     $content = $app['twig']->render('root.twig', $data);
 
     $response = new Response($content);
-    $response->headers->set('Content-type', 'application/xml');
+    $response->headers->set('Content-type', 'application/vnd.fc.ses.+xml;v=1.0');
 
     return $response;
 };
@@ -82,66 +83,68 @@ $app->get('/', $root)->method('GET')->bind('root');
 // -----------------------------------------------------------------------------
 // ROUTE API -------------------------------------------------------------------
 // -----------------------------------------------------------------------------
+
 /**
- * API Lambda Function
+ * API Lambda Function.
  *
- * @param string            $api_name
- * @param Silex\Application $app
- * @param array             $allowed_api
+ * @param string            $api_name    The API name retrieved from URL.
+ * @param Silex\Application $app         The Silex Application instance.
+ * @param array             $allowed_api The array of allowed APIs.
  *
  * @return Response
  */
 $api = function($api_name) use($app, $allowed_api) {
     if (in_array($allowed_api, $api_name) === false) {
-        $app->abort(404, "The API $api_name does not exist.");
+        $app->abort(404, 'The API ' . $api_name. ' does not exist.');
     }
 
     $database = $app['mongodb']->selectDatabase('curriculum');
     $coll     = $database->selectCollection($api_name);
-    $entries  = $coll->find()->sort(array('date.end' => 'desc'))->toArray(); // TODO: CHECK THE SORT
+    // TODO: The field date.end doesn't exists in the "skill" collection.
+    $entities = $coll->find()->sort(array('date.end' => 'desc'))->toArray();
 
-    // NOTICE: CUSTOM CODE FOR SKILL API
+    // NOTICE: Custom code for "skill" API
     if ($api_name === 'skill') {
-        $entries = elaborateSkillEntries($entries);
+        $entities = elaborateSkillEntities($entities);
     }
 
-    $data = array('entries' => $entries);
+    $data = array('entities' => $entities);
 
-    // NOTICE: CUSTOM CODE FOR INFORMATION API
+    // NOTICE: Custom code for "information" API
     if ($api_name === 'information') {
-        $data['main_key'] = array_shift(array_keys($entries), 0, 1));
+        $data['main_key'] = array_shift(array_keys($entities), 0, 1);
     }
 
     $content = $app['twig']->render($api_name . '.twig', $data);
 
     $response = new Response($content);
-    $response->headers->set('Content-type', 'application/atom+xml');
+    $response->headers->set('Content-type', 'application/vnd.fc.ses.+xml;v=1.0');
 
     return $response;
 };
 
 /**
- * elaborateSkillEntries
+ * elaborateSkillEntities
  *
- * @param array $entries
+ * @param array $entities The list of the records retrieved.
  *
  * @return array
  */
-function elaborateSkillEntries($entries)
+function elaborateSkillEntities($entities)
 {
-    $new_entries = array();
+    $new_entities = array();
 
-    foreach ($entries as $entry) {
+    foreach ($entities as $entry) {
         // TODO: set a key like "type" => "methodologies|techniques"
         $main_key = array_shift(array_slice(array_keys($entry), 1, 1));
 
         foreach ($entry[$main_key] as $name => $item) {
-            $new_entries[$main_key]['_id'] = strval($entry['_id']);
-            $new_entries[$main_key][$item['proficiency']][] = $name;
+            $new_entities[$main_key]['_id'] = strval($entry['_id']);
+            $new_entities[$main_key][$item['proficiency']][] = $name;
         }
     }
 
-    return $new_entries;
+    return $new_entities;
 }
 
 $app->get('/{api_name}', $api)->assert('api_name', '[a-z]+')
@@ -150,10 +153,11 @@ $app->get('/{api_name}', $api)->assert('api_name', '[a-z]+')
 // -----------------------------------------------------------------------------
 // ROUTE SERVICE EXPRESSION SYNTAX ---------------------------------------------
 // -----------------------------------------------------------------------------
+
 /**
- * Service Expression Syntax Lambda Function
+ * Service Expression Syntax Lambda Function.
  *
- * @param Silex\Application $app
+ * @param Silex\Application $app The Silex Application instance.
  *
  * @return Response
  */

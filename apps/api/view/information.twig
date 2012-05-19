@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<service xmlns="http://www.w3.org/2005/Atom">
+<entities xmlns="http://www.w3.org/2005/Atom">
     <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Information</title>
     <link rel="self"
@@ -17,7 +17,7 @@
     </author>
     <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
 
-    <entry>
+    <entity>
         <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
         <title>Information</title>
         <!-- TODO: INSERT THE LINK TAG -->
@@ -51,27 +51,27 @@
                          itemscope="itemscope" itemprop="address"
                          class="adr">
                     <span itemprop="addressLocality" class="locality">
-                        {{ entries[main_key].location.city }}
+                        {{ entities[main_key].location.city }}
                     </span>
                     <span itemprop="addressCountry" class="country-name">
-                        {{ entries[main_key].location.country }}
+                        {{ entities[main_key].location.country }}
                     </span>
                 </address>
                 <ul>
                     <li>
                         <span itemprop="nationality">
-                            {{ entries[main_key].nationality|capitalize }}
+                            {{ entities[main_key].nationality|capitalize }}
                         </span>
                     </li>
                     <li>
                         <span itemprop="gender">
-                            {{ entries[main_key].gender|capitalize }}
+                            {{ entities[main_key].gender|capitalize }}
                         </span>
                     </li>
-                    <li>{{ entries[main_key].birth_day }}</li>
+                    <li>{{ entities[main_key].birth_day }}</li>
                     <li>
                         <span itemprop="telephone" class="tel">
-                            {{ entries[main_key].telephone.uk }}
+                            {{ entities[main_key].telephone.uk }}
                         </span>
                     </li>
                     <li>
@@ -83,9 +83,9 @@
                     </li>
                     <li class="hide">
                         <a title="The my email address" rel="nofollow me"
-                           href="mailto:{{ entries[main_key].contacts.email }}"
+                           href="mailto:{{ entities[main_key].contacts.email }}"
                            itemprop="email" class="email">
-                            {{ entries[main_key].contacts.email }}
+                            {{ entities[main_key].contacts.email }}
                         </a>
                     </li>
                     <!--li class="last">
@@ -119,5 +119,5 @@
                 </ul>
             </div>
         </content>
-    </entry>
-</service>
+    </entity>
+</entities>
