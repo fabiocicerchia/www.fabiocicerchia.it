@@ -2,15 +2,15 @@
 
 /**
  * FABIO CICERCHIA - WEBSITE
- * Copyright (C) 2012. All Rights reserved.
  *
  * PHP Version 5
  *
- * @category API
- * @package  API
- * @author   Fabio Cicerchia <info@fabiocicerchia.it>
- * @license  TBD <http://www.fabiocicerchia.it>
- * @link     http://www.fabiocicerchia.it
+ * @category  API
+ * @package   API
+ * @author    Fabio Cicerchia <info@fabiocicerchia.it>
+ * @copyright 2012 Fabio Cicerchia. All Rights reserved.
+ * @license   TBD <http://www.fabiocicerchia.it>
+ * @link      http://www.fabiocicerchia.it
  */
 
 use Silex\Provider\TwigServiceProvider;
@@ -29,7 +29,9 @@ $options = array(
 );
 $twigServiceProvider = new TwigServiceProvider();
 $app->register($twigServiceProvider, $options);
-$app['twig']->addFilter('md5', new Twig_Filter_Function('md5'));
+
+$md5_filter = new Twig_Filter_Function('md5');
+$app['twig']->addFilter('md5', $md5_filter);
 
 // -----------------------------------------------------------------------------
 // URL GENERATOR PROVIDER ------------------------------------------------------
