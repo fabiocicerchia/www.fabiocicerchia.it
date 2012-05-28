@@ -1,10 +1,9 @@
 <?php
-
 /**
  * FABIO CICERCHIA - WEBSITE
  * Copyright (C) 2012. All Rights reserved.
  *
- * PHP Version 5
+ * PHP Version 5.4
  *
  * @category API
  * @package  API
@@ -21,4 +20,8 @@ $app = require_once __DIR__ . '/../apps/api/logic/app.php';
 // -----------------------------------------------------------------------------
 // RUN IT ----------------------------------------------------------------------
 // -----------------------------------------------------------------------------
+if ($app['debug']) {
+    return $app->run();
+}
+
 $app['http_cache']->run();

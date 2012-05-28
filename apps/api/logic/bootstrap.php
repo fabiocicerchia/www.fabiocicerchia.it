@@ -1,9 +1,8 @@
 <?php
-
 /**
  * FABIO CICERCHIA - WEBSITE
  *
- * PHP Version 5
+ * PHP Version 5.4
  *
  * @category  API
  * @package   API
@@ -17,16 +16,19 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\HttpCacheServiceProvider;
 
+// TODO: MAKE THIS DINAMICAL
+$app['debug'] = true;
+
 $silexExtDirectory = __DIR__ . '/../../../lib/vendor/Silex-Extensions/src';
 $app['autoloader']->registerNamespace('SilexExtension', $silexExtDirectory);
 
 // -----------------------------------------------------------------------------
 // TWIG PROVIDER ---------------------------------------------------------------
 // -----------------------------------------------------------------------------
-$options = array(
+$options = [
     'twig.path'       => __DIR__ . '/../view',
     'twig.class_path' => __DIR__ . '/../../../lib/vendor/Twig/lib',
-);
+];
 $twigServiceProvider = new TwigServiceProvider();
 $app->register($twigServiceProvider, $options);
 
@@ -42,23 +44,23 @@ $app->register($urlGeneratorServiceProvider);
 // -----------------------------------------------------------------------------
 // HTTP CACHE PROVIDER ---------------------------------------------------------
 // -----------------------------------------------------------------------------
-$options = array(
+$options = [
     'http_cache.cache_dir' => __DIR__ . '/../../../cache/api/',
-);
+];
 $httpCacheServiceProvider = new HttpCacheServiceProvider();
 $app->register($httpCacheServiceProvider, $options);
 
 // -----------------------------------------------------------------------------
 // MONGODB PROVIDER ------------------------------------------------------------
 // -----------------------------------------------------------------------------
-$options = array(
+$options = [
     'mongodb.class_path' => __DIR__ . '/../../../lib/vendor/mongodb/lib',
-    'mongodb.connection' => array(
+    'mongodb.connection' => [
         'server'       => 'mongodb://localhost',
-        'options'      => array(),
+        'options'      => [],
         'eventmanager' => function($eventmanager) {
         }
-    )
-);
+    ]
+];
 $mongoDbExtension = new SilexExtension\MongoDbExtension();
 $app->register($mongoDbExtension, $options);
