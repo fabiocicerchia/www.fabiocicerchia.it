@@ -58,10 +58,9 @@
     <Directory /home/fabio/Web/fabiocicerchia.github.com/web>
         Order allow,deny
         Allow from all
-#        Require all granted
-        AllowOverride All
+        AllowOverride None
 
-        Options All +Indexes
+        Options All -Indexes
 
         <IfModule mod_actions.c>
             # THE HEAD METHOD IS INCLUDED INTO GET
@@ -85,14 +84,14 @@
           RewriteCond %{REQUEST_FILENAME} -d
           RewriteRule ^.+$               -                               [NC,L]
 
-          RewriteRule ^minified/(.*)     minify/min/?f=media/$1 [L]
+          RewriteRule ^minified/(.+\.css) minify/min/?f=$1 [L]
         </IfModule>
    </Directory>
 
    <Directory />
-       AllowOverride All
+       AllowOverride None
 
-       Options All +Indexes
+       Options All -Indexes
 
         <IfModule mod_perl.c>
             #SetHandler perl-script
