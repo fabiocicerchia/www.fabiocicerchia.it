@@ -13,7 +13,7 @@ Status of This Memo
 
 Copyright Notice
 
-   Copyright (c) {{ "now"|date("Y") }} Fabio Cicerchia.
+   Copyright (c) {{ "now"|custom_date("Y") }} Fabio Cicerchia.
    All rights reserved.
 
 Abstract
@@ -28,7 +28,7 @@ Abstract
    items, known as "entity", each with an extensible set of attached
    metadata.  For example, each entity has an ID and a category.
 
-   The primary use case that SES addresses is to help in serving raw data 
+   The primary use case that SES addresses is to help in serving raw data
    from an HTTP interface, no matter about the data-source (ie, a database).
 
 1.1.  Examples
@@ -51,7 +51,7 @@ Abstract
       <link rel="service" href="http://example.org/api.php/Users" type="application/vnd.fc.ses.+xml;v=1.0" title="Users" />
     </entrypoint>
   </service>
-   
+
 2.  Notational Conventions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -89,5 +89,5 @@ Abstract
 2.1.1.3.   Entity
 
     Used to identify a single entity: inside an entity tag there is no
-    limitation in which tags can be used, as they usually represent the 
+    limitation in which tags can be used, as they usually represent the
     entity's attributes.

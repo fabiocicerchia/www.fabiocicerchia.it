@@ -2,26 +2,26 @@
 <entities xmlns="http://www.w3.org/2005/Atom">
     <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
     <title type="text">Fabio Cicerchia API - Skill</title>
-    <link rel="self" 
+    <link rel="self"
           href="http://{{ app.request.host }}{{ app.request.requestUri }}" />
-    <link rel="describedby" 
+    <link rel="describedby"
           href="http://{{ app.request.host }}/api.php/service-expression-syntax"
           type="plain/txt" />
     <link rel="author" href="http://{{ app.request.host }}" />
 
-    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
+    <updated>{{ "now"|custom_date("Y-m-d") }}T{{ "now"|custom_date("Y-m-d") }}Z</updated>
     <author>
         <name>Fabio Cicerchia</name>
         <uri>http://www.fabiocicerchia.it</uri>
         <email>info@fabiocicerchia.it</email>
     </author>
-    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
+    <rights>Copyright (c) {{ "now"|custom_date("Y") }}, Fabio Cicerchia</rights>
 
     {% for main_key, entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
         <title>{{ main_key|capitalize }}</title>
-        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+        <updated>{{ "now"|custom_date("Y-m-d") }}T{{ "now"|custom_date("H:i:s") }}Z</updated>
 
         <content type="xhtml">
             {% for level, skills in entity %}

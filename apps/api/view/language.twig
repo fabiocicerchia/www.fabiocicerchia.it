@@ -9,26 +9,26 @@
           type="plain/txt" />
     <link rel="author" href="http://{{ app.request.host }}" />
 
-    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
+    <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
     <author>
         <name>Fabio Cicerchia</name>
         <uri>http://www.fabiocicerchia.it</uri>
         <email>info@fabiocicerchia.it</email>
     </author>
-    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
+    <rights>Copyright (c) {{ "now"|custom_date("Y") }}, Fabio Cicerchia</rights>
 
     {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
-        <title>{{ entity.language }}</title>
+        <title>{{ entity.language|i18n(current_lang) }}</title>
         <!-- TODO: INSERT THE LINK TAG -->
-        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+        <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
 
         <content type="xhtml">
             {% for knowledge, level in entity.knowledge %}
             <dl class="adjacent" itemtype="http://schema.org/ItemList"
                 itemscope="itemscope">
-                <dt itemprop="name">{{ knowledge }}</dt>
+                <dt itemprop="name">{{ knowledge }}</dt><!-- TODO: TRANSLATE IT -->
                 <dd class="last" itemprop="itemListElement">{{ level }}</dd>
             </dl>
             {% endfor %}

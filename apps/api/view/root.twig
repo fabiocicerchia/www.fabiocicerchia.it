@@ -8,20 +8,20 @@
           type="plain/txt" />
     <link rel="author" href="http://{{ app.request.host }}" />
 
-    <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("Y-m-d") }}Z</updated>
+    <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
     <author>
         <name>Fabio Cicerchia</name>
         <uri>http://www.fabiocicerchia.it</uri>
         <email>info@fabiocicerchia.it</email>
     </author>
-    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>
+    <rights>Copyright (c) {{ "now"|custom_date("Y") }}, Fabio Cicerchia</rights>
 
     <entrypoint>
         <id>urn:uuid:{{ "root"|md5 }}</id>
         <title>Entry Point</title>
         <link rel="self" href="http://{{ app.request.host }}/api.php/"
-              type="application/atom+xml" title="Entry Point" />
-        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+              type="{{ mime_type }}" title="Entry Point" />
+        <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
     </entrypoint>
     {% for route in routes %}
     <entrypoint>
@@ -29,9 +29,9 @@
         <title>{{ route|capitalize }}</title>
         <link rel="service"
               href="http://{{ app.request.host }}/api.php/{{ route }}"
-              type="application/atom+xml"
+              type="{{ mime_type }}"
               title="{{ route|capitalize }}" />
-        <updated>{{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z</updated>
+        <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
     </entrypoint>
     {% endfor %}
 </service>
