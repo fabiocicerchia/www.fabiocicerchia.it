@@ -69,13 +69,10 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
         $new_entities = array();
 
         foreach ($entities as $entry) {
-            // TODO: set a key like "type" => "methodologies|techniques"
-            $keys = array_slice(array_keys($entry), 1, 1);
-            $main_key = array_shift($keys);
-            $new_entities[$main_key] = ['_id' => strval($entry['_id'])];
+            $new_entities[$entry['name']['en_GB']]['_id'] = $entry['_id'];
 
-            foreach ($entry[$main_key] as $name => $item) {
-                $new_entities[$main_key][$item['proficiency']][] = $name;
+            foreach ($entry['list'] as $item) {
+                $new_entities[$entry['name']['en_GB']][$item['proficiency']][] = $item['name']; // TODO: fix the lang
             }
         }
 

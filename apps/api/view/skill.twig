@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entities xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
-    <title type="text">Fabio Cicerchia API - Skill</title>
-    <link rel="self"
-          href="http://{{ app.request.host }}{{ app.request.requestUri }}" />
-    <link rel="describedby"
-          href="http://{{ app.request.host }}/api.php/service-expression-syntax"
-          type="plain/txt" />
-    <link rel="author" href="http://{{ app.request.host }}" />
-
-    <updated>{{ "now"|custom_date("Y-m-d") }}T{{ "now"|custom_date("Y-m-d") }}Z</updated>
-    <author>
-        <name>Fabio Cicerchia</name>
-        <uri>http://www.fabiocicerchia.it</uri>
-        <email>info@fabiocicerchia.it</email>
-    </author>
-    <rights>Copyright (c) {{ "now"|custom_date("Y") }}, Fabio Cicerchia</rights>
+    {% include '_header.twig' %}
 
     {% for main_key, entity in entities %}
     <entity>
@@ -30,7 +15,7 @@
                 itemscope="itemscope">
                 <dt itemprop="name">{{ level|capitalize }} proficiency</dt>
                 {% for skill in skills %}
-                <dd itemprop="itemListElement">{{ skill }}</dd>
+                <dd itemprop="itemListElement">{{ skill|i18n(current_lang) }}</dd>
                 {% endfor %}
             </dl>
             {% endif %}

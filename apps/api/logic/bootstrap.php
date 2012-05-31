@@ -41,59 +41,9 @@ $options = [
 $twigServiceProvider = new TwigServiceProvider();
 $app->register($twigServiceProvider, $options);
 
-// TODO: MOVE THIS
-/**
- * Converts a date to the given format.
- * Workaround to avoid the problem of missing DateTime classes
- *
- * <pre>
- *   {{ post.published_at|custom_date("m/d/Y") }}
- * </pre>
- *
- * @param DateTime|DateInterval|string $date     A date
- * @param string                       $format   A format
- * @param DateTimeZone|string          $timezone A timezone
- *
- * @return string The formatter date
- */
-function twig_custom_date_filter($date, $format = null, $timezone = null)
-{
-    date_default_timezone_set('UTC');
-    return date($format, strtotime($date));
-}
-
-// TODO: MOVE THIS
-/**
- * Print the localized value.
- *
- * <pre>
- *   {{ localized_value|i18n("en") }}
- * </pre>
- *
- * @param mixed                        $value    A localized value
- * @param string                       $language A language
- *
- * @return string The formatter date
- */
-function twig_i18n_filter($value, $language)
-{
-    if (is_array($value) === true) {
-        if (array_key_exists($language, $value) === true) {
-            return $value[$language];
-        }
-
-        return $value['en'];
-    }
-
-    return $value;
-}
-
 $md5_filter = new Twig_Filter_Function('md5');
 $app['twig']->addFilter('md5', $md5_filter);
-$custom_date_filter = new Twig_Filter_Function('twig_custom_date_filter');
-$app['twig']->addFilter('custom_date', $custom_date_filter);
-$i18n_filter = new Twig_Filter_Function('twig_i18n_filter');
-$app['twig']->addFilter('i18n', $i18n_filter);
+$app['twig']->addExtension(new FabioCicerchia\Api\TwigExtension($app));
 
 // -----------------------------------------------------------------------------
 // URL GENERATOR PROVIDER ------------------------------------------------------
