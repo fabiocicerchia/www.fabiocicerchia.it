@@ -39,9 +39,10 @@ SUPPRESS_OUTPUT=>> /dev/null
 
 # DIRECTORIES
 CURRENTDIR=.
-API_APP_SOURCEDIR=$(CURRENTDIR)/apps/api/
-API_LIB_SOURCEDIR=$(CURRENTDIR)/lib/vendor/FabioCicerchia/Api/
-API_TEST_SOURCEDIR=$(CURRENTDIR)/test/api/
+API_APP_SOURCEDIR=$(CURRENTDIR)/apps/api
+API_LIB_SOURCEDIR=$(CURRENTDIR)/lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api
+API_TEST_SOURCEDIR=$(CURRENTDIR)/test/api
+REPORTDIR=$(CURRENTDIR)/report
 
 ################################################################################
 # GENERAL ACTIONS
@@ -172,45 +173,53 @@ config-apache:
 	$(A2ENMOD) expires
 	$(A2ENMOD) php5
 
+# TODO: SUPPRESS OUTPUT
+# TODO: FIX EXIT CODE
 run-phpcs:
 	$(ECHO) "RUNNING PHP_CodeSniffer"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" "$(API_APP_SOURCEDIR)"
+	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/app/phpcs.xml" "$(API_APP_SOURCEDIR)" || echo -n ""
+	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/lib/phpcs.xml" "$(API_LIB_SOURCEDIR)" || echo -n ""
+	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/test/phpcs.xml" "$(API_TEST_SOURCEDIR)" || echo -n ""
 
+# TODO: SUPPRESS OUTPUT
+# TODO: FIX EXIT CODE
 run-phpmd:
 	$(ECHO) "RUNNING PHPMD"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPMD) "$(API_APP_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/phpmd_app.xml"
-	$(PHPMD) "$(API_LIB_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/phpmd_lib.xml"
-	$(PHPMD) "$(API_TEST_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/phpmd_test.xml"
+	$(PHPMD) "$(API_APP_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/app/phpmd.xml" || echo -n ""
+	$(PHPMD) "$(API_LIB_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/lib/phpmd.xml" || echo -n ""
+	$(PHPMD) "$(API_TEST_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/test/phpmd.xml" || echo -n ""
 
+# TODO: SUPPRESS OUTPUT
+# TODO: FIX EXIT CODE
 run-phploc:
 	$(ECHO) "RUNNING PHPLOC"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/phploc_app.xml" "$(API_APP_SOURCEDIR)"
-	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/phploc_lib.xml" "$(API_LIB_SOURCEDIR)"
-	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/phploc_test.xml" "$(API_TEST_SOURCEDIR)"
+	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/app/phploc.xml" "$(API_APP_SOURCEDIR)"
+	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/lib/phploc.xml" "$(API_LIB_SOURCEDIR)"
+	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/test/phploc.xml" "$(API_TEST_SOURCEDIR)"
 
 run-phpcpd:
 	$(ECHO) "RUNNING PHPCPD"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/phpcpd_app.xml" "$(API_APP_SOURCEDIR)" > "$(REPORTDIR)/api/logs/duplications_app.txt"
-	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/phpcpd_lib.xml" "$(API_LIB_SOURCEDIR)" > "$(REPORTDIR)/api/logs/duplications_lib.txt"
-	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/phpcpd_test.xml" "$(API_TEST_SOURCEDIR)" > "$(REPORTDIR)/api/logs/duplications_test.txt"
+	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/app/phpcpd.xml" "$(API_APP_SOURCEDIR)" > "$(REPORTDIR)/api/logs/app/duplications.txt"
+	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/lib/phpcpd.xml" "$(API_LIB_SOURCEDIR)" > "$(REPORTDIR)/api/logs/lib/duplications.txt"
+	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/test/phpcpd.xml" "$(API_TEST_SOURCEDIR)" > "$(REPORTDIR)/api/logs/test/duplications.txt"
 
 run-pdepend:
 	$(ECHO) "RUNNING PHP_DEPEND"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_app.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_app.svg" --jdepend-xml="$(REPORTDIR)/api/log/pdepend_app.xml" "$(API_APP_SOURCEDIR)"
-	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_lib.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_lib.svg" --jdepend-xml="$(REPORTDIR)/api/log/pdepend_lib.xml" "$(API_LIB_SOURCEDIR)"
-	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_test.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_test.svg" --jdepend-xml="$(REPORTDIR)/api/log/pdepend_test.xml" "$(API_TEST_SOURCEDIR)"
+	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_app.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_app.svg" --jdepend-xml="$(REPORTDIR)/api/logs/app/pdepend.xml" "$(API_APP_SOURCEDIR)"
+	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_lib.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_lib.svg" --jdepend-xml="$(REPORTDIR)/api/logs/lib/pdepend.xml" "$(API_LIB_SOURCEDIR)"
+	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_test.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_test.svg" --jdepend-xml="$(REPORTDIR)/api/logs/test/pdepend.xml" "$(API_TEST_SOURCEDIR)"
 
 run-phpcb:
 	$(ECHO) "RUNNING PHP_CODE_BROWSER"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPCB) --log="$(REPORTDIR)/api/logs/" --source="$(API_APP_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/app"
-	$(PHPCB) --log="$(REPORTDIR)/api/logs/" --source="$(API_LIB_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/lib"
-	$(PHPCB) --log="$(REPORTDIR)/api/logs/" --source="$(API_TEST_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/test"
+	$(PHPCB) --log="$(REPORTDIR)/api/logs/app/" --source="$(API_APP_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/app"
+	$(PHPCB) --log="$(REPORTDIR)/api/logs/lib/" --source="$(API_LIB_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/lib"
+	$(PHPCB) --log="$(REPORTDIR)/api/logs/test/" --source="$(API_TEST_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/test"
 
 run-phpdoc:
 	$(ECHO) "RUNNING PHPDOCUMENTOR"
