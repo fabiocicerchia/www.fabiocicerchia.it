@@ -4,29 +4,34 @@
 #
 
 # SYSTEM COMMANDS
-RM=rm -rf
-MKDIR=mkdir -p
-CP=cp -r
-CHMOD=chmod
-ECHO=@echo
-LN=ln -s
-WGET=wget
-GIT=git
 SUDO=sudo
 
+APT=$(SUDO) apt-get
+CD=cd
+CHMOD=chmod
+CP=cp -r
+CURL=curl
+ECHO=@echo
+GIT=git
+LN=ln -s
+MKDIR=mkdir -p
+RM=rm -rf
+WGET=wget
+
 # CUSTOM COMMANDS
-PHP=php
-PECL=$(SUDO) pecl
-PEAR=$(SUDO) pear
-PHPUNIT=phpunit
-PHPCS=phpcs -s -v
-PHPMD=phpmd
-PHPLOC=phploc
-PHPCPD=phpcpd
-PDEPEND=pdepend
-PHPCB=phpcb
-MSGFMT=msgfmt
 A2ENMOD=$(SUDO) a2enmod
+MSGFMT=msgfmt
+PDEPEND=pdepend
+PEAR=$(SUDO) pear
+PECL=$(SUDO) pecl
+PHP=php
+PHPCB=phpcb
+PHPCPD=phpcpd
+PHPCS=phpcs -s -v
+PHPDOC=phpdoc
+PHPLOC=phploc
+PHPMD=phpmd
+PHPUNIT=phpunit
 
 # FLAGS
 PEAR_INSTALL_FLAGS=--alldeps
@@ -34,7 +39,9 @@ SUPPRESS_OUTPUT=>> /dev/null
 
 # DIRECTORIES
 CURRENTDIR=.
-SOURCEDIR=$(CURRENTDIR)/apps/api/
+API_APP_SOURCEDIR=$(CURRENTDIR)/apps/api/
+API_LIB_SOURCEDIR=$(CURRENTDIR)/lib/vendor/FabioCicerchia/Api/
+API_TEST_SOURCEDIR=$(CURRENTDIR)/test/api/
 
 ################################################################################
 # GENERAL ACTIONS
@@ -54,8 +61,8 @@ init-environment:
 	$(WGET) http://silex.sensiolabs.org/get/silex.phar -O apps/api/silex.phar
 	$(GIT) submodule init
 	$(GIT) submodule update
-	cd lib/vendor/mongodb
-	curl -s http://getcomposer.org/installer | $(PHP)
+	$(CD) lib/vendor/mongodb
+	$(CURL) -s http://getcomposer.org/installer | $(PHP)
 	$(PHP) composer.phar install
 
 install-environment: install-php54 install-imagick install-phpunit install-phpcb install-phpcc install-phpcov install-phpcpd install-phploc install-phpdoc2 install-pdepend install-phpmd install-phpcs install-phpmongo
@@ -77,9 +84,9 @@ install-php54:
 	$(ECHO) "INSTALLING PHP 5.4"
 	$(ECHO) "--------------------------------------------------------------------------------"
 	$(SUDO) add-apt-repository ppa:ondrej/php5
-	$(SUDO) apt-get update
-	$(SUDO) apt-get upgrade
-	$(SUDO) apt-get dist-upgrade
+	$(APT) update
+	$(APT) upgrade
+	$(APT) dist-upgrade
 
 install-imagick:
 	$(ECHO) "INSTALLING IMAGICK"
@@ -127,6 +134,7 @@ install-phpdoc2:
 	$(ECHO) "--------------------------------------------------------------------------------"
 	$(PEAR) channel-discover pear.phpdoc.org$(SUPPRESS_OUTPUT)
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpdoc/phpDocumentor-alpha
+	$(APT) install graphviz
 
 install-pdepend:
 	$(ECHO) "INSTALLING PHP_DEPEND"
@@ -140,7 +148,6 @@ install-phpmd:
 	$(PEAR) channel-discover pear.phpmd.org $(SUPPRESS_OUTPUT)
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpmd/PHP_PMD
 
-# TODO: ADD CHANNEL-DISCOVER
 install-phpcs:
 	$(ECHO) "INSTALLING PHP_CodeSniffer"
 	$(ECHO) "--------------------------------------------------------------------------------"
@@ -154,41 +161,58 @@ install-phpmongo:
 config-apache:
 	$(ECHO) "CONFIGURING APACHE"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(A2ENMOD) speling mod-security actions rewrite perl cache disk_cache mem_cache expires php5
+	$(A2ENMOD) speling
+	$(A2ENMOD) mod-security
+	$(A2ENMOD) actions
+	$(A2ENMOD) rewrite
+	$(A2ENMOD) perl
+	$(A2ENMOD) cache
+	$(A2ENMOD) disk_cache
+	$(A2ENMOD) mem_cache
+	$(A2ENMOD) expires
+	$(A2ENMOD) php5
 
-# TODO: ADD CHANNEL-DISCOVER
 run-phpcs:
 	$(ECHO) "RUNNING PHP_CodeSniffer"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" "$(SOURCEDIR)"
+	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" "$(API_APP_SOURCEDIR)"
 
 run-phpmd:
 	$(ECHO) "RUNNING PHPMD"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPMD) "$(SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/phpmd.xml"
+	$(PHPMD) "$(API_APP_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/phpmd_app.xml"
+	$(PHPMD) "$(API_LIB_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/phpmd_lib.xml"
+	$(PHPMD) "$(API_TEST_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/phpmd_test.xml"
 
 run-phploc:
 	$(ECHO) "RUNNING PHPLOC"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/phploc.xml" "$(SOURCEDIR)"
+	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/phploc_app.xml" "$(API_APP_SOURCEDIR)"
+	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/phploc_lib.xml" "$(API_LIB_SOURCEDIR)"
+	$(PHPLOC) --log-xml "$(REPORTDIR)/api/logs/phploc_test.xml" "$(API_TEST_SOURCEDIR)"
 
 run-phpcpd:
 	$(ECHO) "RUNNING PHPCPD"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/phpcpd.xml" "$(SOURCEDIR)" > "$(REPORTDIR)/api/logs/duplications.txt"
+	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/phpcpd_app.xml" "$(API_APP_SOURCEDIR)" > "$(REPORTDIR)/api/logs/duplications_app.txt"
+	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/phpcpd_lib.xml" "$(API_LIB_SOURCEDIR)" > "$(REPORTDIR)/api/logs/duplications_lib.txt"
+	$(PHPCPD) --log-pmd "$(REPORTDIR)/api/logs/phpcpd_test.xml" "$(API_TEST_SOURCEDIR)" > "$(REPORTDIR)/api/logs/duplications_test.txt"
 
 run-pdepend:
 	$(ECHO) "RUNNING PHP_DEPEND"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/cli.pdepend-chart.svg" --overview-pyramid="$(REPORTDIR)/api/cli.pdepend-pyramid.svg" --jdepend-xml="$(REPORTDIR)/api/log/pdepend.xml" "$(SOURCEDIR)"
+	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_app.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_app.svg" --jdepend-xml="$(REPORTDIR)/api/log/pdepend_app.xml" "$(API_APP_SOURCEDIR)"
+	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_lib.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_lib.svg" --jdepend-xml="$(REPORTDIR)/api/log/pdepend_lib.xml" "$(API_LIB_SOURCEDIR)"
+	$(PDEPEND) --jdepend-chart="$(REPORTDIR)/api/pdepend-chart_test.svg" --overview-pyramid="$(REPORTDIR)/api/pdepend-pyramid_test.svg" --jdepend-xml="$(REPORTDIR)/api/log/pdepend_test.xml" "$(API_TEST_SOURCEDIR)"
 
 run-phpcb:
 	$(ECHO) "RUNNING PHP_CODE_BROWSER"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPCB) --log="$(REPORTDIR)/api/logs/" --source="$(SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser"
+	$(PHPCB) --log="$(REPORTDIR)/api/logs/" --source="$(API_APP_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/app"
+	$(PHPCB) --log="$(REPORTDIR)/api/logs/" --source="$(API_LIB_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/lib"
+	$(PHPCB) --log="$(REPORTDIR)/api/logs/" --source="$(API_TEST_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/test"
 
 run-phpdoc:
 	$(ECHO) "RUNNING PHPDOCUMENTOR"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	phpdoc -d "$(SOURCEDIR)" -t "$(REPORTDIR)/docs/api"
-
+	$(PHPDOC)
