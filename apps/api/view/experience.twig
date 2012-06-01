@@ -5,7 +5,8 @@
     {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
-        <title>{{ entity.role|i18n(current_lang) }}</title>
+        <title type="text">{{ entity.role|i18n(current_lang) }}</title>
+        <summary type="xhtml">{ { entity.description|i18n(current_lang) }}</summary> <!-- TODO: ADD TO MONGO -->
         <!-- TODO: INSERT THE LINK TAG -->
         <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
         {% if entity.date.end is defined %}
@@ -14,101 +15,120 @@
         <published>{{ entity.date|custom_date("Y-m-d\TH:i:s\Z") }}</published>
         {% endif %}
 
-        <content type="xhtml">
-            <div itemtype="http://schema.org/Organization"
-                 itemscope="itemscope" class="contact">
-                {% if entity.contact.url is defined %}
-                <a title="{{ entity.company.name }}" rel="nofollow"
-                   href="{{ entity.company.url }}" target="_blank"
-                   itemprop="url" class="url">
-                    <span itemprop="name" class="fn">
-                        {{ entity.company.name }}
-                    </span>
-                </a>
-                {% else %}
-                    <span itemprop="name" class="fn">
-                        {{ entity.company.name }}
-                    </span>
+        <content>
+            <company>
+                <title type="text">{{ entity.company.name }}</title>
+                {% if entity.company.url is defined %}
+                <link rel="related" href="{{ entity.company.url }}" />
                 {% endif %}
-                <div itemprop="description">
-                    <p>{ { entity.description|i18n(current_lang) }}</p> <!-- TODO: ADD TO MONGODB -->
-                </div>
                 {% if entity.location is defined %}
-                <address itemtype="http://schema.org/PostalAddress"
-                         itemscope="itemscope" itemprop="address"
-                         class="adr">
-                    <span itemprop="postalCode" class="postal-code">
-                        {{ entity.company.location.cap }}
-                    </span>
-                    <span itemprop="addressLocality" class="locality">
-                        {{ entity.company.location.city|i18n(current_lang) }}
-                    </span>
-                    <span itemprop="addressCountry" class="country-name">
-                        {{ entity.company.location.country|i18n(current_lang) }}
-                    </span>
+                <address>
+                    <postalcode>{{ entity.company.location.cap }}</postalcode>
+                    <city>{{ entity.company.location.city|i18n(current_lang) }}</city>
+                    <country>{{ entity.company.location.country|i18n(current_lang) }}</city>
                 </address>
                 {% endif %}
-            </div>
+            </company>
+
+            {% if entity.activities is defined %}
+            <activities>
+                {% for activity in entity.activities|i18n(current_lang) %}
+                <activity>{{ activity }}</activity>
+                {% endfor %}
+            </activities>
+            {% endif %}
+
             {% if entity.technologies is defined %}
-            <dl class="first adjacent"
-                itemtype="http://schema.org/ItemList"
-                itemscope="itemscope">
-                <dt itemprop="name">Technologies</dt>
+            <technologies>
                 {% for technology in entity.technologies|keys %}
-                {% if loop.last %}
-                <dd class="last" itemprop="itemListElement">
-                    {{ technology }}
-                </dd>
-                {% else %}
-                <dd itemprop="itemListElement">{{ technology }}</dd>
-                {% endif %}
+                <technology>{{ technology }}</technology>
                 {% endfor %}
-            </dl>
+            </technologies>
             {% endif %}
+
             {% if entity.tools is defined %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList"
-                itemscope="itemscope">
-                <dt itemprop="name">Tools</dt>
+            <tools>
                 {% for tool in entity.tools|keys %}
-                {% if loop.last %}
-                <dd class="last" itemprop="itemListElement">{{ tool }}</dd>
-                {% else %}
-                <dd itemprop="itemListElement">{{ tool }}</dd>
-                {% endif %}
+                <tool>{{ tool }}</tool>
                 {% endfor %}
-            </dl>
+            </tools>
             {% endif %}
+
             {% if entity.methodologies is defined %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList"
-                itemscope="itemscope">
-                <!-- TODO: JOIN WITH I18N -->
-                <dt itemprop="name">Methodologies</dt>
-                {% for methodology in entity.methodologies %}
-                {% if loop.last %}
-                <dd class="last" itemprop="itemListElement">
-                    {{ methodology }}
-                </dd>
-                {% else %}
-                <dd itemprop="itemListElement">{{ methodology }}</dd>
-                {% endif %}
+            <methodologies>
+                {% for methodology in entity.methodologies|keys %}
+                <methodology>{{ methodology }}</methodology>
                 {% endfor %}
-            </dl>
+            </methodologies>
             {% endif %}
+
             {% if entity.techniques is defined %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList"
-                itemscope="itemscope">
-                <!-- TODO: JOIN WITH I18N -->
-                <dt itemprop="name">Techniques</dt>
+            <techniques>
                 {% for technique in entity.techniques|keys %}
-                {% if loop.last %}
-                <dd class="last" itemprop="itemListElement">
-                    {{ technique }}
-                </dd>
-                {% else %}
-                <dd itemprop="itemListElement">{{ technique }}</dd>
-                {% endif %}
+                <technique>{{ technique }}</technique>
                 {% endfor %}
-            </dl>
+            </techniques>
+            {% endif %}
+
+            {% if entity.projects is defined %}
+            <projects>
+                {% for project in entity.projects %}
+                <project>
+                    <title type="text">{{ project.name|i18n(current_lang) }}</title>
+                    <summary type="xhtml">{{ project.description|i18n(current_lang) }}</summary>
+                    <role>{{ project.role|i18n(current_lang) }}</role>
+                    {% if project.url is defined %}
+                    <link rel="related" href="{{ project.url }}" />
+                    {% endif %}
+                    <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
+                    {% if project.end is defined %}
+                    <published>{{ entity.date.end|custom_date("Y-m-d\TH:i:s\Z") }}</published>
+                    {% else %}
+                    <published>{{ entity.date|custom_date("Y-m-d\TH:i:s\Z") }}</published>
+                    {% endif %}
+
+                    {% if project.activities is defined %}
+                    <activities>
+                        {% for activity in project.activities|i18n(current_lang) %}
+                        <activity>{{ activity }}</activity>
+                        {% endfor %}
+                    </activities>
+                    {% endif %}
+
+                    {% if project.techniques is defined %}
+                    <techniques>
+                        {% for technique in project.techniques|keys %}
+                        <technique>{{ technique }}</technique>
+                        {% endfor %}
+                    </techniques>
+                    {% endif %}
+
+                    {% if project.technologies is defined %}
+                    <technologies>
+                        {% for technology in project.technologies|keys %}
+                        <technology>{{ technology }}</technology>
+                        {% endfor %}
+                    </technologies>
+                    {% endif %}
+
+                    {% if project.tools is defined %}
+                    <tools>
+                        {% for tool in project.tools|keys %}
+                        <tool>{{ tool }}</tool>
+                        {% endfor %}
+                    </tools>
+                    {% endif %}
+
+                    {% if project.methodologies is defined %}
+                    <methodologies>
+                        {% for methodology in project.methodologies|keys %}
+                        <methodology>{{ methodology }}</methodology>
+                        {% endfor %}
+                    </methodologies>
+                    {% endif %}
+                </project>
+                {% endfor %}
+            </projects>
             {% endif %}
         </content>
     </entity>

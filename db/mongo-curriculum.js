@@ -58,8 +58,8 @@ db.getCollection("education").insert({
     }
   },
   "date": {
-    "start": "ISODate("2012-04-02T00: 00: 00.100Z")",
-    "end": "ISODate("2012-04-27T00: 00: 00.100Z")",
+    "start": "ISODate("2012-04-02T00:00:00.100Z")",
+    "end": "ISODate("2012-04-27T00:00:00.100Z")",
     "hours": 80
   },
   "activities": {
@@ -87,7 +87,7 @@ db.getCollection("education").insert({
   "_id": "ObjectId("4fc7b3d9f7c5e27a69b8d79c")",
   "title": {
     "en_GB": "Industrial Expert Technician - Computer Science Specialization Project 'ABACUS'",
-    "it_IT": "Perito Capotecnico"
+    "it_IT": "Perito Industriale Capotecnico - Specializzazione Informatica Progetto 'Abacus'"
   },
   "institute": {
     "name": "ITIS Enrico Fermi",
@@ -106,8 +106,8 @@ db.getCollection("education").insert({
     }
   },
   "date": {
-    "start": "ISODate("2000-09-04T00: 00: 00.200Z")",
-    "end": "ISODate("2005-07-05T00: 00: 00.200Z")"
+    "start": "ISODate("2000-09-04T00:00:00.200Z")",
+    "end": "ISODate("2005-07-05T00:00:00.200Z")"
   },
   "activities": {
     "en_GB": [
@@ -153,7 +153,7 @@ db.getCollection("education").insert({
       }
     }
   },
-  "date": "ISODate("2008-06-25T00: 00: 00.200Z")",
+  "date": "ISODate("2008-06-25T00:00:00.200Z")",
   "activities": {
     "en_GB": [
       "PHP Basics",
@@ -170,7 +170,18 @@ db.getCollection("education").insert({
       "Theory and Design"
     ],
     "it_IT": [
-      
+      "Basi di PHP",
+      "Funzioni",
+      "Array",
+      "Programmazione Orientata agli Oggetti",
+      "Sicurezza",
+      "XML e Web Services",
+      "Stringhe e Patterns",
+      "Database e SQL",
+      "Interazione Utent (Form, Session, Cookie, HTTP Header)",
+      "Stream e Files",
+      "Differenze tra PHP 4 e PHP 5",
+      "Teoria e Progettazione"
     ]
   }
 });
@@ -195,7 +206,7 @@ db.getCollection("education").insert({
       }
     }
   },
-  "date": "ISODate("2009-09-23T00: 00: 00.200Z")",
+  "date": "ISODate("2009-09-23T00:00:00.200Z")",
   "activities": {
     "en_GB": [
       "Internet Business Foundation",
@@ -203,7 +214,9 @@ db.getCollection("education").insert({
       "Network Technology Foundation"
     ],
     "it_IT": [
-      
+      "Fondamenti di Internet Business",
+      "Fondamenti di Sviluppo di Siti",
+      "Fondamenti di Reti"
     ]
   }
 });
@@ -211,7 +224,7 @@ db.getCollection("education").insert({
   "_id": "ObjectId("4fc7b3f2f7c5e27a69b8d79f")",
   "title": {
     "en_GB": "CIW Application Developer",
-    "it_IT": ""
+    "it_IT": "CIW Application Developer"
   },
   "institute": {
     "name": "CIW Prometric Test Center 'Finsa Tech S.r.l.'",
@@ -228,14 +241,15 @@ db.getCollection("education").insert({
       }
     }
   },
-  "date": "ISODate("2011-02-08T00: 00: 00.100Z")",
+  "date": "ISODate("2011-02-08T00:00:00.100Z")",
   "activities": {
     "en_GB": [
       "Fundamentals of CGI Using Perl",
       "Dynamic Server Pages"
     ],
     "it_IT": [
-      
+      "Fondamenti di CGI utilizzando Perl",
+      "Pagine Dinamiche lato Server"
     ]
   }
 });
@@ -272,7 +286,13 @@ db.getCollection("education").insert({
       "Navigation and communication network"
     ],
     "it_IT": [
-      
+      "Concetti di base dell'ICT",
+      "Uso del computer e gestione dei file",
+      "Elaborazione testi",
+      "Foglio elettronico",
+      "Uso delle basi di dati",
+      "Strumenti di presentazione",
+      "Navigazione e comunicazione in rete"
     ]
   }
 });
@@ -286,7 +306,7 @@ db.getCollection("education").insert({
     "name": "IWA",
     "url": "http:\/\/www.iwanet.org"
   },
-  "date": "ISODate("2011-04-27T00: 00: 00.200Z")",
+  "date": "ISODate("2011-04-27T00:00:00.200Z")",
   "activities": {
     "en_GB": [
       "CIW Associate",
@@ -294,7 +314,9 @@ db.getCollection("education").insert({
       "At least 2 years of work experience"
     ],
     "it_IT": [
-      
+      "CIW Associate",
+      "CIW Application Developer",
+      "Almeno 2 anni di esperienze lavorative"
     ]
   }
 });
@@ -304,7 +326,7 @@ db.getCollection("experience").insert({
   "_id": "ObjectId("4fc7b550f7c5e27a69b8d7a3")",
   "role": {
     "en_GB": "Web \/ Software Developer",
-    "it_IT": ""
+    "it_IT": "Sviluppatore Web \/ Applicazioni"
   },
   "company": {
     "name": "ADQ S.p.A.",
@@ -322,110 +344,83 @@ db.getCollection("experience").insert({
     }
   },
   "date": {
-    "start": "ISODate("2007-05-24T00: 00: 00.200Z")",
-    "end": "ISODate("2007-12-31T00: 00: 00.200Z")"
+    "start": "ISODate("2007-05-24T00:00:00.200Z")",
+    "end": "ISODate("2007-12-31T00:00:00.200Z")"
   },
   "description": {
     "en_GB": "Design and development of some web sites, applications web-based and desktop.",
-    "it_IT": ""
-  },
-  "activities": {
-    "en_GB": [
-      
-    ],
-    "it_IT": [
-      
-    ]
+    "it_IT": "Progettazione e sviluppo di alcuni siti web, applicazioni web e desktop."
   },
   "projects": [
     {
       "name": "StockInformatica",
-      "url": "",
       "date": {
-        "start": "ISODate("2012-05-31T18: 15: 44.608Z")",
-        "end": "ISODate("2012-05-31T18: 15: 44.608Z")"
+        "start": "ISODate("2007-05-16T00:00:00.000Z")",
+        "end": "ISODate("2007-12-31T00:00:00.000Z")"
       },
       "role": {
-        "en_GB": "",
-        "it_IT": ""
+        "en_GB": "Lead Developer",
+        "it_IT": "Lead Developer"
       },
       "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
+        "en_GB": "Maintenance and subsequent redevelopment an e-commerce site that sold electronic and computer products.",
+        "it_IT": "Manutenzione e ristrutturazione successiva di un sito e-commerce che vendeva prodotti di elettronica e computer."
       },
       "technologies": [
-        
+        "PHP": {
+          "months": 7
+        },
+        "Visual Basic": {
+          "months": 3
+        },
+        "ASP.net": {
+          "months": 7
+        }
       ],
       "tools": [
-        
+        "osCommerce": {
+          "months": 7
+        }
       ]
     },
     {
       "name": "ItalianCamper",
-      "url": "",
       "date": {
-        "start": "ISODate("2012-05-31T18: 15: 44.608Z")",
-        "end": "ISODate("2012-05-31T18: 15: 44.608Z")"
+        "start": "ISODate("2007-05-16T00:00:00.000Z")",
+        "end": "ISODate("2007-12-31T00:00:00.000Z")"
       },
       "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
+        "en_GB": "Lead Developer",
+        "it_IT": "Lead Developer"
       },
       "technologies": [
-        
-      ],
-      "tools": [
-        
+        "PHP": {
+          "months": 7
+        }
       ]
     },
     {
       "name": "NoPayZone",
-      "url": "",
       "date": {
-        "start": "ISODate("2012-05-31T18: 15: 44.608Z")",
-        "end": "ISODate("2012-05-31T18: 15: 44.608Z")"
+        "start": "ISODate("2007-10-01T00:00:00.000Z")",
+        "end": "ISODate("2007-12-31T00:00:00.000Z")"
       },
       "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
+        "en_GB": "Lead Developer",
+        "it_IT": "Lead Developer"
       },
       "technologies": [
-        
+        "PHP": {
+          "months": 2
+        },
+        "Visual Basic": {
+          "months": 2
+        }
       ],
       "tools": [
-        
+        "Wordpress": {
+          "months": 4
+        }
       ]
     }
   ],
@@ -478,8 +473,8 @@ db.getCollection("experience").insert({
     }
   },
   "date": {
-    "start": "ISODate("2005-10-03T00: 00: 00.200Z")",
-    "end": "ISODate("2006-10-02T00: 00: 00.200Z")"
+    "start": "ISODate("2005-10-03T00:00:00.200Z")",
+    "end": "ISODate("2006-10-02T00:00:00.200Z")"
   }
 });
 db.getCollection("experience").insert({
@@ -504,8 +499,8 @@ db.getCollection("experience").insert({
     }
   },
   "date": {
-    "start": "ISODate("2004-05-01T00: 00: 00.200Z")",
-    "end": "ISODate("2005-10-01T00: 00: 00.200Z")"
+    "start": "ISODate("2004-05-01T00:00:00.200Z")",
+    "end": "ISODate("2005-10-01T00:00:00.200Z")"
   }
 });
 db.getCollection("experience").insert({
@@ -531,45 +526,28 @@ db.getCollection("experience").insert({
     }
   },
   "date": {
-    "start": "ISODate("2012-03-30T00: 00: 00.100Z")"
+    "start": "ISODate("2012-03-30T00:00:00.100Z")"
   },
-  "activities": {
-    "en_GB": [
-      
-    ],
-    "it_IT": [
-      
-    ]
-  },
-  "projects": [
-    
-  ],
-  "methodologies": [
-    
-  ],
-  "techniques": [
-    
-  ],
   "technologies": {
     "JavaScript": {
-      "months": 0
+      "months": -1
     },
     "PHP": {
-      "months": 0
+      "months": -1
     },
     "MySQL": {
-      "months": 0
+      "months": -1
     },
     "XML": {
-      "months": 0
+      "months": -1
     }
   },
   "tools": {
     "SVN": {
-      "months": 0
+      "months": -1
     },
     "Jira": {
-      "months": 0
+      "months": -1
     },
     "GreenHopper": {
       "months": 0
@@ -599,19 +577,54 @@ db.getCollection("experience").insert({
     }
   },
   "date": {
-    "start": "ISODate("2008-01-02T00: 00: 00.200Z")",
-    "end": "ISODate("2008-06-16T00: 00: 00.200Z")"
+    "start": "ISODate("2008-01-02T00:00:00.200Z")",
+    "end": "ISODate("2008-06-16T00:00:00.200Z")"
   },
   "activities": {
     "en_GB": [
-      
+      "Management of channels Video, Bynight, MIX and Blog of Excite",
+      "Creation of user management system (frontend side) of Excite",
+      "Maintenance of the sites of Excite Europe Network, the Network NanoPublishing and Corporate sites",
+      "Maintenance of a system for tracking ROI"
     ],
     "it_IT": [
-      
+      "Gestione dei canali Video, Bynight, MIX e Blog di Excite",
+      "Creazione del Sistema di Gestione degli Utenti (lato frontend) di Excite",
+      "Manutenzione dei siti del Network di Excite Europa, del Network NanoPublishing e dei siti Corporate",
+      "Manutenzione di un sistema per il tracciamento del ROI"
     ]
   },
   "projects": [
-    
+    {
+      "name": "Excite's User Management System",
+      "url": "http://user.excite.it/access/user",
+      "role": {
+        "en_GB": "Frontend Developer",
+        "it_IT": "Frontend Developer"
+      },
+      "technologies": [
+        "JavaScript": {
+          "months": 0
+        },
+        "PHP": {
+          "months": 0
+        },
+        "PostgreSQL": {
+          "months": 0
+        },
+        "XML": {
+          "months": 0
+        }
+        "SVN": {
+          "months": 0
+        },
+      ],
+      "tools": [
+        "Prototype": {
+          "months": 12
+        }
+      ]
+    },
   ],
   "methodologies": {
     "Waterfall Model": {
@@ -693,113 +706,151 @@ db.getCollection("experience").insert({
     }
   },
   "date": {
-    "start": "ISODate("2010-06-16T00: 00: 00.200Z")",
-    "end": "ISODate("2012-03-30T00: 00: 00.200Z")"
-  },
-  "activities": {
-    "en_GB": [
-      
-    ],
-    "it_IT": [
-      
-    ]
+    "start": "ISODate("2010-06-16T00:00:00.200Z")",
+    "end": "ISODate("2012-03-30T00:00:00.200Z")"
   },
   "projects": [
     {
       "name": "Samsung S Galaxy",
-      "url": "",
-      "date": {
-        "start": "ISODate("2012-05-31T18: 17: 31.313Z")",
-        "end": "ISODate("2012-05-31T18: 17: 31.313Z")"
-      },
       "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
+        "en_GB": "PHP Developer",
+        "it_IT": "PHP Developer"
       },
       "technologies": [
-        
+        "PHP": {
+          "months": 5
+        },
+        "SVN": {
+          "months": 5
+        }
       ],
-      "tools": [
-        
-      ]
     },
     {
       "name": "Policlinic Campus Biomedical of Rome",
       "url": "http:\/\/www.policlinicocampusbiomedico.it",
       "date": {
-        "start": "ISODate("2012-05-31T18: 17: 31.313Z")",
-        "end": "ISODate("2012-05-31T18: 17: 31.313Z")"
+        "start": "ISODate("2010-07-01T00:00:00.000Z")",
+        "end": "ISODate("2010-12-31T00:00:00.000Z")"
       },
       "role": {
-        "en_GB": "",
-        "it_IT": ""
+        "en_GB": "Lead Developer",
+        "it_IT": "Lead Developer"
       },
       "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
+        "en_GB": "Integration into Joomla CMS some custom features like photo and video gallery, custom search to find doctors and appointments with the possibility to book or cancel them, integration and aggregation of clinical departments retrieved by an external service.",
+        "it_IT": "Integrazione in Joomla CMS di alcune funzioni personalizzate, come foto e video gallery, ricerca personalizzata per trovare medici e appuntamenti con la possibilità di prenotare o cancellare, integrazione e aggregazione dei reparti clinici recuperati da un servizio esterno."
       },
       "technologies": [
-        
+        "PHP": {
+          "months": 5
+        },
+        "MySQL": {
+          "months": 5
+        },
+        "Oracle": {
+          "months": 5
+        },
+        "SQL Server": {
+          "months": 5
+        }
       ],
       "tools": [
-        
+        "Joomla": {
+          "months": 5
+        }
+        "SVN": {
+          "months": 5
+        },
       ]
     },
     {
       "name": "San Raffaele",
       "url": "http:\/\/www.sanraffaele.it",
       "date": {
-        "start": "ISODate("2012-05-31T18: 17: 31.313Z")",
-        "end": "ISODate("2012-05-31T18: 17: 31.313Z")"
+        "start": "ISODate("2010-09-01T00:00:00.000Z")",
+        "end": "ISODate("2012-05-31T00:00:00.000Z")"
       },
       "role": {
-        "en_GB": "",
-        "it_IT": ""
+        "en_GB": "Lead Developer",
+        "it_IT": "Lead Developer"
       },
       "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
+        "en_GB": "Development and Project Management of a multilanguage web portal for a big italian healthcare company.\nThe portal ranging from a CMS to health structures management (which are composed of departments) through some form of profiled user registration, booking, contact and form to ask question directly to doctors.\nThere are available also a supplier management system (registration, payment, confidential documents archive) and a formation system to manage all the courses provided from internal and externals universities, with the possibility to book them.",
+        "it_IT": "Sviluppo e Project Management di un portale web multilingue per una grande azienda sanitaria italiana.\nIl portale va da un CMS per la gestione delle strutture sanitarie (formata da dipartimenti) attraverso una qualche profilazione dell'utente registrato, prenotazione,  modulo contatti e per fare domanda direttamente ai medici.\nSono a disposizione anche un sistema di gestione dei fornitori (registrazione, pagamento, archivio documenti riservati) e un sistema di formazione per gestire tutti i corsi previsti dalle università sia interni che esterni, con la possibilità di prenotarli."
       },
       "methodologies": [
-        
+        "SCRUM": {
+          "months": 6
+        },
+        "eXtreme Programming": {
+          "months": 10
+        }
       ],
       "techniques": [
-        
+        "Automated Builds": {
+          "months": 16
+        },
+        "Continuous Integration": {
+          "months": 16
+        },
+        "Pair Programming": {
+          "months": 16
+        },
+        "Pomodoro Technique": {
+          "months": 16
+        },
+        "Unit and Functional Testing": {
+          "months": 16
+        },
+        "User Stories & Planning Poker": {
+          "months": 16
+        }
       ],
       "technologies": [
-        
+        "JavaScript": {
+          "months": 16
+        },
+        "PHP": {
+          "months": 16
+        },
+        "MySQL": {
+          "months": 16
+        },
+        "SQLite": {
+          "months": 16
+        },
+        "SVN": {
+          "months": 16
+        },
       ],
       "tools": [
-        
+        "jQuery": {
+          "months": 16
+        },
+        "Symfony": {
+          "months": 16
+        },
+        "SVN": {
+          "months": 16
+        },
+        "Jira": {
+          "months": 16
+        },
+        "Hudson": {
+          "months": 16
+        },
+        "Alfresco": {
+          "months": 16
+        }
       ]
     }
   ],
   "methodologies": {
     "SCRUM": {
-      "months": 9
+      "months": 6
     },
     "eXtreme Programming": {
-      "months": 12
+      "months": 10
     }
   },
   "techniques": {
@@ -893,262 +944,100 @@ db.getCollection("experience").insert({
     }
   },
   "date": {
-    "start": "ISODate("2003-05-01T00: 00: 00.200Z")"
+    "start": "ISODate("2003-05-01T00:00:00.200Z")"
   },
   "description": {
     "en_GB": "Web sites development and implementation (showcase sites and custom web applications).\nFrom June 2006 development and project management of Bonzai (planning, design, development and maintaining).\nFrom August 2005 collaboration with the Art Director Jeroen Bertsch. Realization of showcase sites with Wordpress and customized systems.",
-    "it_IT": ""
-  },
-  "activities": {
-    "en_GB": [
-      
-    ],
-    "it_IT": [
-      
-    ]
+    "it_IT": "Sviluppo e realizzazione siti web (siti vetrina e applicazioni web personalizzate).\nDa Giugno 2006 sviluppo e gestione del progetto Bonzai ( pianificazione, progettazione, sviluppo e manutenzione).\nDa Agosto 2005 collaborazione con l'Art Director Jeroen Bertsch. Realizzazione di siti vetrina con Wordpress e con sistemi ad-hoc."
   },
   "projects": [
     {
       "name": "Evidenziati",
-      "url": "",
-      "date": {
-        "start": "ISODate("2012-05-31T18: 18: 21.526Z")",
-        "end": "ISODate("2012-05-31T18: 18: 21.526Z")"
-      },
-      "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
-      },
-      "methodologies": [
-        
-      ],
-      "techniques": [
-        
-      ],
-      "technologies": [
-        
-      ],
-      "tools": [
-        
-      ]
     },
     {
       "name": "Bonzai",
       "url": "http:\/\/www.bonzai-project.org",
       "date": {
-        "start": "ISODate("2012-05-31T18: 18: 21.526Z")",
-        "end": "ISODate("2012-05-31T18: 18: 21.526Z")"
+        "start": "ISODate("2006-01-01T00:00:00.00Z")",
       },
       "role": {
-        "en_GB": "",
-        "it_IT": ""
+        "en_GB": "Lead Developer",
+        "it_IT": "Lead Developer"
       },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
-      },
-      "techniques": [
-        
-      ],
       "technologies": [
-        
+        "PHP": {
+          "months": 0
+        },
+        "C": {
+          "months": 0
+        }
       ],
       "tools": [
-        
-      ]
+        "GIT": {
+          "months": 0
+        },
+        "cUnit": {
+          "months": 0
+        },
+        "phpUnit": {
+          "months": 0
+        },
+        "Automake": {
+          "months": 0
+        },
+        "Splint": {
+          "months": 0
+        },
+        "Jenkins": {
+          "months": 0
+        },
+        "Sonar": {
+          "months": 0
+        },
+        "Mantis": {
+          "months": 0
+        }
+      ],
+      "techniques": {
+        "Code Coverage": {
+          "months": 0
+        },
+        "Pomodoro Technique": {
+          "months": 0
+        },
+        "Profiling": {
+          "months": 0
+        },
+        "Source Code Analysis": {
+          "months": 0
+        },
+        "Unit and Functional Testing": {
+          "months": 0
+        }
+      },
     },
     {
       "name": "Studio Baggio",
       "url": "http:\/\/www.studiobaggio.eu",
-      "date": {
-        "start": "ISODate("2012-05-31T18: 18: 21.526Z")",
-        "end": "ISODate("2012-05-31T18: 18: 21.526Z")"
-      },
-      "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "technologies": [
-        
-      ],
-      "tools": [
-        
-      ]
     },
     {
       "name": "Top Business Solutions",
       "url": "http:\/\/www.tbs-srl.com",
-      "date": {
-        "start": "ISODate("2012-05-31T18: 18: 21.526Z")",
-        "end": "ISODate("2012-05-31T18: 18: 21.526Z")"
-      },
-      "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "technologies": [
-        
-      ],
-      "tools": [
-        
-      ]
     },
     {
       "name": "Good Night And Good Luck",
-      "date": {
-        "start": "ISODate("2012-05-31T18: 18: 21.526Z")",
-        "end": "ISODate("2012-05-31T18: 18: 21.526Z")"
-      },
-      "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "technologies": [
-        
-      ],
-      "tools": [
-        
-      ]
     },
     {
       "name": "Comitato 'Villa di Adriano'",
       "url": "http:\/\/www.villadiadriano.it",
-      "date": {
-        "start": "ISODate("2012-05-31T18: 18: 21.526Z")",
-        "end": "ISODate("2012-05-31T18: 18: 21.526Z")"
-      },
-      "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
-      },
-      "methodologies": [
-        
-      ],
-      "techniques": [
-        
-      ],
-      "technologies": [
-        
-      ],
-      "tools": [
-        
-      ]
     },
     {
       "name": "OCE S.r.l.",
       "url": "http:\/\/www.ocesrl.com",
-      "date": {
-        "start": "ISODate("2012-05-31T18: 18: 21.526Z")",
-        "end": "ISODate("2012-05-31T18: 18: 21.526Z")"
-      },
-      "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
-      },
-      "methodologies": [
-        
-      ],
-      "techniques": [
-        
-      ],
-      "technologies": [
-        
-      ],
-      "tools": [
-        
-      ]
     },
     {
       "name": "Cilia Bus S.r.l.",
       "url": "http:\/\/www.ciliabus.it",
-      "date": {
-        "start": "ISODate("2012-05-31T18: 18: 21.526Z")",
-        "end": "ISODate("2012-05-31T18: 18: 21.526Z")"
-      },
-      "role": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "description": {
-        "en_GB": "",
-        "it_IT": ""
-      },
-      "activities": {
-        "en_GB": [
-          
-        ],
-        "it_IT": [
-          
-        ]
-      },
-      "methodologies": [
-        
-      ],
-      "techniques": [
-        
-      ],
-      "technologies": [
-        
-      ],
-      "tools": [
-        
-      ]
     }
   ],
   "techniques": {
@@ -1246,7 +1135,7 @@ db.getCollection("experience").insert({
 /** information records **/
 db.getCollection("information").insert({
   "_id": "ObjectId("4fc7b628f7c5e27a69b8d7aa")",
-  "birth_day": "ISODate("1986-02-09T00: 00: 00.0Z")",
+  "birth_day": "ISODate("1986-02-09T00:00:00.0Z")",
   "contacts": {
     "msn": "fabio.cicerchia@live.it",
     "skype": "fabio.cicerchia",

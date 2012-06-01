@@ -3,23 +3,6 @@
  * FABIO CICERCHIA - WEBSITE
  *
  * PHP Version 5.4
-
- * @category   API
- * @package    FabioCicerchia\Api\Service
- * @subpackage Education
- * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia. All Rights reserved.
- * @license    TBD <http://www.fabiocicerchia.it>
- * @link       http://www.fabiocicerchia.it
- * @version    XXX
- */
-
-namespace FabioCicerchia\Api\Service;
-
-use FabioCicerchia\Api;
-
-/**
- * TODO: Message
  *
  * @category   API
  * @package    FabioCicerchia\Api\Service
@@ -28,25 +11,40 @@ use FabioCicerchia\Api;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
- * @version    XXX
+ */
+
+namespace FabioCicerchia\Api\Service;
+
+use FabioCicerchia\Api;
+
+/**
+ * The Education Service.
+ *
+ * @category   API
+ * @package    FabioCicerchia\Api\Service
+ * @subpackage Education
+ * @author     Fabio Cicerchia <info@fabiocicerchia.it>
+ * @copyright  2012 Fabio Cicerchia. All Rights reserved.
+ * @license    TBD <http://www.fabiocicerchia.it>
+ * @link       http://www.fabiocicerchia.it
  */
 class Education extends \FabioCicerchia\Api\ServiceAbstract
 {
     // {{{ PROPERTIES
     /**
-     * @var string $collection_name TODO: Message
+     * @var string $collection_name The name of the collection.
      */
     protected $collection_name = 'education';
     // }}}
 
     // {{{ execDataQuery
     /**
-     * TODO: Message
+     * Retrieve all the documents from a collection.
      *
      * @internal
      * @return <Type> TODO: Message
-     * @see    http://example.com/my/bar Documentation of Foo.
-     * @see    FabioCicerchia\Api\ServiceAbstract::getCollection() TODO: Message
+     * @see    http://example.com/my/bar Documentation of Foo. // TODO: LINK FOR MONGO
+     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     protected function execDataQuery()
     {
@@ -54,16 +52,21 @@ class Education extends \FabioCicerchia\Api\ServiceAbstract
     }
     // }}}
 
-    // {{{ postElaborateData
+    // {{{ elaborateData
     /**
-     * TODO: Message
+     * Modify if needed the data.
+     *
+     * @param  object $data The data.
      *
      * @internal
-     * @return void
+     * @return array
      */
-    protected function postElaborateData()
+    protected function elaborateData($data)
     {
-        $this->data = ['entities' => $this->data];
+        $data = parent::elaborateData($data);
+        $data = ['entities' => $data];
+
+        return $data;
     }
     // }}}
 }

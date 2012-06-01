@@ -5,21 +5,18 @@
     {% for main_key, entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
-        <title>{{ main_key|capitalize }}</title>
+        <title type="text">{{ main_key|capitalize }}</title>
         <updated>{{ "now"|custom_date("Y-m-d") }}T{{ "now"|custom_date("H:i:s") }}Z</updated>
 
-        <content type="xhtml">
-            {% for level, skills in entity %}
-            {% if level != '_id' %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList"
-                itemscope="itemscope">
-                <dt itemprop="name">{{ level|capitalize }} proficiency</dt>
-                {% for skill in skills %}
-                <dd itemprop="itemListElement">{{ skill|i18n(current_lang) }}</dd>
-                {% endfor %}
-            </dl>
-            {% endif %}
+        <content>
+            <skills>
+            {% for skill in entity.list %}
+                <skill>
+                    <title type="text">{{ skill.name|i18n(current_lang) }}</title>
+                    <level>{{ skill.proficiency|capitalize }} proficiency</level>
+                </skill>
             {% endfor %}
+            </skills>
         </content>
     </entity>
     {% endfor %}

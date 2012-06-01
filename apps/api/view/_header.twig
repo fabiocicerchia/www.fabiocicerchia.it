@@ -1,9 +1,9 @@
     <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
-    <title type="text">Fabio Cicerchia API - Education</title>
+    <title type="text">Fabio Cicerchia API - {{ api_name|capitalize }}</title>
     <link rel="self"
           href="http://{{ app.request.host }}{{ app.request.requestUri }}" />
     <link rel="describedby"
-          href="http://{{ app.request.host }}/api.php/service-expression-syntax"
+          href="http://{{ app.request.host }}/api.php/api-definition-syntax"
           type="plain/txt" />
     <link rel="author" href="http://{{ app.request.host }}" />
 

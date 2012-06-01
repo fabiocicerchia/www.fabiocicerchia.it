@@ -3,21 +3,6 @@
  * FABIO CICERCHIA - WEBSITE
  *
  * PHP Version 5.4
-
- * @category   API
- * @package    FabioCicerchia\Api\Service
- * @subpackage EntryPoint
- * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia. All Rights reserved.
- * @license    TBD <http://www.fabiocicerchia.it>
- * @link       http://www.fabiocicerchia.it
- * @version    XXX
- */
-
-namespace FabioCicerchia\Api\Service;
-
-/**
- * TODO: Message
  *
  * @category   API
  * @package    FabioCicerchia\Api\Service
@@ -26,24 +11,37 @@ namespace FabioCicerchia\Api\Service;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
- * @version    XXX
+ */
+
+namespace FabioCicerchia\Api\Service;
+
+/**
+ * The EntryPoint.
+ *
+ * @category   API
+ * @package    FabioCicerchia\Api\Service
+ * @subpackage EntryPoint
+ * @author     Fabio Cicerchia <info@fabiocicerchia.it>
+ * @copyright  2012 Fabio Cicerchia. All Rights reserved.
+ * @license    TBD <http://www.fabiocicerchia.it>
+ * @link       http://www.fabiocicerchia.it
  */
 class EntryPoint
 {
     // {{{ PROPERTIES
     /**
-     * @var array $services TODO: Message
+     * @var array $services The list of active services.
      */
     protected $services = ['information', 'education', 'experience', 'skill', 'language'];
     // }}}
 
     // {{{ getServices
     /**
-     * Message
+     * Getter for $services.
      *
      * @api
-     * @return array TODO: Message
-     * @see    FabioCicerchia\Api\Service\EntryPoint::$services TODO: Message
+     * @return array
+     * @see    FabioCicerchia\Api\Service\EntryPoint::$services The list of active services.
      * @throw
      */
     public function getServices()

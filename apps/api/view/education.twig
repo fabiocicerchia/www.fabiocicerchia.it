@@ -5,7 +5,7 @@
     {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
-        <title>{{ entity.title|i18n(current_lang) }}</title>
+        <title type="text">{{ entity.title|i18n(current_lang) }}</title>
         <!-- TODO: INSERT THE LINK TAG -->
         <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
         {% if entity.date.end is defined %}
@@ -14,52 +14,28 @@
         <published>{{ entity.date|custom_date("Y-m-d\TH:i:s\Z") }}</published>
         {% endif %}
 
-        <content type="xhtml">
-            <div itemtype="http://schema.org/Organization"
-                 itemscope="itemscope" class="contact">
-                {% if entity.institute.url is defined %}
-                <a title="{{ entity.institute.name }}" rel="nofollow"
-                   href="{{ entity.institute.url }}" target="_blank"
-                   itemprop="url" class="url">
-                    <span itemprop="name" class="fn">
-                        {{ entity.institute.name }}
-                    </span>
-                </a>
-                {% else %}
-                    <span itemprop="name" class="fn">
-                        {{ entity.institute.name }}
-                    </span>
+        <content>
+            <company>
+                <title type="text">{{ entity.institute.name }}</title>
+                {% if entity.company.url is defined %}
+                <link rel="related" href="{{ entity.institute.url }}" />
                 {% endif %}
-                <!--span itemprop="description"></span-->
                 {% if entity.location is defined %}
-                <address itemtype="http://schema.org/PostalAddress"
-                         itemscope="itemscope" itemprop="address"
-                         class="adr">
-                    <span itemprop="postalCode" class="postal-code">
-                        {{ entity.institute.location.cap }}
-                    </span>
-                    <span itemprop="addressLocality" class="locality">
-                        {{ entity.institute.location.city|i18n(current_lang) }}
-                    </span>
-                    <span itemprop="addressCountry" class="country-name">
-                        {{ entity.institute.location.country|i18n(current_lang) }}
-                    </span>
+                <address>
+                    <postalcode>{{ entity.institute.location.cap }}</postalcode>
+                    <city>{{ entity.institute.location.city|i18n(current_lang) }}</city>
+                    <country>{{ entity.institute.location.country|i18n(current_lang) }}</country>
                 </address>
                 {% endif %}
-            </div>
-            <strong>Activities:</strong>
-            <ul itemtype="http://schema.org/ItemList"
-                itemscope="itemscope">
+            </company>
+
+            {% if entity.activities is defined %}
+            <activities>
                 {% for activity in entity.activities|i18n(current_lang) %}
-                {% if loop.last %}
-                <li class="last" itemprop="itemListElement">
-                    {{ activity }}
-                </li>
-                {% else %}
-                <li itemprop="itemListElement">{{ activity }}</li>
-                {% endif %}
+                <activity>{{ activity }}</activity>
                 {% endfor %}
-            </ul>
+            </activities>
+            {% endif %}
         </content>
     </entity>
     {% endfor %}

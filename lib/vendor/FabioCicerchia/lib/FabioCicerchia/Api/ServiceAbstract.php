@@ -3,21 +3,6 @@
  * FABIO CICERCHIA - WEBSITE
  *
  * PHP Version 5.4
-
- * @category   API
- * @package    FabioCicerchia\Api
- * @subpackage ServiceAbstract
- * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia. All Rights reserved.
- * @license    TBD <http://www.fabiocicerchia.it>
- * @link       http://www.fabiocicerchia.it
- * @version    XXX
- */
-
-namespace FabioCicerchia\Api;
-
-/**
- * TODO: Message
  *
  * @category   API
  * @package    FabioCicerchia\Api
@@ -26,37 +11,50 @@ namespace FabioCicerchia\Api;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
- * @version    XXX
+ */
+
+namespace FabioCicerchia\Api;
+
+/**
+ * The Abstract class for every Service.
+ *
+ * @category   API
+ * @package    FabioCicerchia\Api
+ * @subpackage ServiceAbstract
+ * @author     Fabio Cicerchia <info@fabiocicerchia.it>
+ * @copyright  2012 Fabio Cicerchia. All Rights reserved.
+ * @license    TBD <http://www.fabiocicerchia.it>
+ * @link       http://www.fabiocicerchia.it
  */
 abstract class ServiceAbstract implements ServiceInterface
 {
     // {{{ PROPERTIES
     /**
-     * @var object $_collection TODO: Message
+     * @var object $_collection The Collection Handle.
      */
     private $_collection = null;
 
     /**
-     * @var string $collection_name TODO: Message
+     * @var string $collection_name The name of the collection.
      */
     protected $collection_name = null;
 
     /**
-     * @var array $data TODO: Message
+     * @var array $data The data.
      */
     protected $data = [];
     // }}}
 
     // {{{ __construct
     /**
-     * TODO: Message
+     * The constructor.
      *
-     * @param  object $db_handle TODO: Message
+     * @param  object $db_handle The Database Handle.
      *
      * @internal
-     * @return void TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::setDatabase() TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::run() TODO: Message
+     * @return void
+     * @see    FabioCicerchia\Api\ServiceAbstract::setDatabase() Executed to set up the database handle.
+     * @see    FabioCicerchia\Api\ServiceAbstract::run()         Launch the main task.
      */
     public function __construct($db_handle)
     {
@@ -67,14 +65,14 @@ abstract class ServiceAbstract implements ServiceInterface
 
     // {{{ setDatabase
     /**
-     * TODO: Message
+     * Executed to set up the database handle.
      *
-     * @param  object $db_handle TODO: Message
+     * @param  object $db_handle The Database Handle
      *
      * @internal
-     * @return void TODO: Message
-     * @see    http://example.com/my/bar Documentation of Foo.
-     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection TODO: Message
+     * @return void
+     * @see    http://example.com/my/bar Documentation of Foo. // TODO: LINK FOR MONGO
+     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     protected function setDatabase($db_handle)
     {
@@ -84,12 +82,12 @@ abstract class ServiceAbstract implements ServiceInterface
 
     // {{{ execDataQuery
     /**
-     * TODO: Message
+     * Retrieve all the documents from a collection.
      *
      * @internal
      * @return <Type> TODO: Message
-     * @see    http://example.com/my/bar Documentation of Foo.
-     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection TODO: Message
+     * @see    http://example.com/my/bar Documentation of Foo. // TODO: LINK FOR MONGO
+     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     protected function execDataQuery()
     {
@@ -99,17 +97,15 @@ abstract class ServiceAbstract implements ServiceInterface
 
     // {{{ getRawData
     /**
-     * TODO: Message
+     * Retrieve the data from the collection and manipulate it.
      *
      * @internal
-     * @return array TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::execDataQuery() TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::elaborateData() TODO: Message
+     * @return array
+     * @see    FabioCicerchia\Api\ServiceAbstract::execDataQuery() Retrieve all the documents from a collection.
      */
     protected function getRawData()
     {
         $data = $this->execDataQuery();
-        $data = $this->elaborateData($data);
 
         return $data;
     }
@@ -117,57 +113,47 @@ abstract class ServiceAbstract implements ServiceInterface
 
     // {{{ elaborateData
     /**
-     * TODO: Message
+     * Modify if needed the data.
      *
-     * @param  object $data TODO: Message
+     * @param  object $data The data.
      *
      * @internal
-     * @return object TODO: Message
+     * @return array
      */
     protected function elaborateData($data)
     {
-        return $data;
-    }
-    // }}}
+        $data = is_array($data) === true ? $data : $data->toArray();
 
-    // {{{ postElaborateData
-    /**
-     * TODO: Message
-     *
-     * @internal
-     * @return void
-     */
-    protected function postElaborateData()
-    {
+        return $data;
     }
     // }}}
 
     // {{{ run
     /**
-     * TODO: Message
+     * Launch the main task.
      *
      * @api
-     * @return void TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::getRawData() TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::postElaborateData() TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::$data TODO: Message
+     * @return void
+     * @see    FabioCicerchia\Api\ServiceAbstract::getRawData()    Retrieve the data from the collection and manipulate it.
+     * @see    FabioCicerchia\Api\ServiceAbstract::elaborateData() Modify if needed the data.
+     * @see    FabioCicerchia\Api\ServiceAbstract::$data           The data.
      * @throw
      */
     public function run()
     {
         $data = $this->getRawData();
-        $this->data = is_array($data) === true ? $data : $data->toArray(); // TODO: CHANGE THIS
-        $this->postElaborateData();
+
+        $this->data = $this->elaborateData($data);
     }
     // }}}
 
     // {{{ getData
     /**
-     * TODO: Message
+     * Getter for $data.
      *
      * @api
-     * @return array TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::$data TODO: Message
+     * @return array
+     * @see    FabioCicerchia\Api\ServiceAbstract::$data The data.
      */
     public function getData()
     {
@@ -177,11 +163,11 @@ abstract class ServiceAbstract implements ServiceInterface
 
     // {{{ getCollection
     /**
-     * TODO: Message
+     * Getter for $_collection.
      *
      * @api
-     * @return object TODO: Message
-     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection TODO: Message
+     * @return object
+     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     public function getCollection()
     {

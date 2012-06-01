@@ -3,7 +3,7 @@
  * FABIO CICERCHIA - WEBSITE
  *
  * PHP Version 5.4
-
+*
  * @category   API
  * @package    FabioCicerchia\Api\Service
  * @subpackage Strategy
@@ -11,7 +11,6 @@
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
- * @version    XXX
  */
 
 namespace FabioCicerchia\Api\Service;
@@ -19,7 +18,7 @@ namespace FabioCicerchia\Api\Service;
 use FabioCicerchia\Api;
 
 /**
- * TODO: Message
+ * The Strategy Pattern applied.
  *
  * @category   API
  * @package    FabioCicerchia\Api\Service
@@ -28,29 +27,28 @@ use FabioCicerchia\Api;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
- * @version    XXX
  */
 class Strategy implements \FabioCicerchia\Api\StrategyInterface
 {
     // {{{ PROPERTIES
     /**
-     * @var object $_strategy TODO: Message
+     * @var object $_strategy The instance of Service.
      */
     private $_strategy = null;
     // }}}
 
     // {{{ __construct
     /**
-     * TODO: Message
+     * The constructor.
      *
-     * @param  string $service_name TODO: Message
-     * @param  object $db_handle TODO: Message
+     * @param  string $service_name The name of the service.
+     * @param  object $db_handle    The Database Handle.
      *
      * @api
-     * @return void TODO: Message
-     * @see    http://example.com/my/bar Documentation of Foo.
-     * @see    FabioCicerchia\Api\Service\Strategy::$_strategy TODO: Message
-     * @throw UnexpectedValueException
+     * @return void
+     * @see    http://example.com/my/bar Documentation of Foo. // TODO: exception link
+     * @see    FabioCicerchia\Api\Service\Strategy::$_strategy The instance of Service.
+     * @throw  UnexpectedValueException
      */
     public function __construct($service_name, $db_handle)
     {
@@ -66,12 +64,12 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
 
     // {{{ getData
     /**
-     * TODO: Message
+     * Retrieve the data from the Service.
      *
      * @api
-     * @return array TODO: Message
-     * @see    FabioCicerchia\Api\Service\Strategy::$_strategy TODO: Message
-     * @see    FabioCicerchia\Api\Service\*::getData() TODO: Message
+     * @return array
+     * @see    FabioCicerchia\Api\Service\Strategy::$_strategy The instance of Service.
+     * @see    FabioCicerchia\Api\Service\*::getData()         Getter for $data.
      */
     public function getData()
     {

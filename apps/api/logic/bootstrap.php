@@ -10,7 +10,6 @@
  * @copyright 2012 Fabio Cicerchia. All Rights reserved.
  * @license   TBD <http://www.fabiocicerchia.it>
  * @link      http://www.fabiocicerchia.it
- * @version   XXX
  */
 
 use Silex\Provider\TwigServiceProvider;

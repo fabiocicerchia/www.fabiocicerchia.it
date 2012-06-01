@@ -10,7 +10,6 @@
  * @copyright 2012 Fabio Cicerchia. All Rights reserved.
  * @license   TBD <http://www.fabiocicerchia.it>
  * @link      http://www.fabiocicerchia.it
- * @version   XXX
  */
 
 // -----------------------------------------------------------------------------
@@ -40,7 +39,7 @@ use FabioCicerchia\Api\Service\Strategy;
  *
  * @return Response
  */
-$error = function (\Exception $e, $code)
+$error = function (\Exception $e, $code) use ($app)
 {
     if ($app['debug']) {
         return;
@@ -65,20 +64,21 @@ $app->error($error);
  */
 $root = function() use($app)
 {
-    $entryPoint = new EntryPoint();
-    $services = $entryPoint->getServices();
-    //$custom_map = function($value) {
-    //    return md5($value);
-    //};
+    $entryPoint  = new EntryPoint();
+    $services    = $entryPoint->getServices();
     $md5_mapping = array_map('md5', $services);
     $routes      = array_combine($md5_mapping, $services);
 
-    $mime_type = 'application/vnd.fc.ses.+xml;v=1.0';
+    $mime_type = 'application/vnd.ads+xml;v=1.0';
     if ($app['debug'] === true) {
         $mime_type = 'application/xml';
     }
 
-    $data    = ['routes' => $routes, 'mime_type' => $mime_type];
+    $data    = [
+        'routes'    => $routes,
+        'mime_type' => $mime_type,
+        'api_name'  => 'entry point'
+    ];
     $content = $app['twig']->render('root.twig', $data);
 
     $response = new Response($content);
@@ -111,11 +111,12 @@ $api = function($api_name) use($app)
     }
 
     $data = $service->getData();
+    $data['api_name'] = $api_name;
     $data['current_lang'] = 'en_GB'; // TODO: MODIFY THIS
 
     $content = $app['twig']->render($api_name . '.twig', $data);
 
-    $mime_type = 'application/vnd.fc.ses.+xml;v=1.0';
+    $mime_type = 'application/vnd.ads+xml;v=1.0';
     if ($app['debug'] === true) {
         $mime_type = 'application/xml';
     }

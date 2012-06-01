@@ -1,0 +1,254 @@
+Fabio Cicerchia
+Request for Comments: 0001                               Fabio Cicerchia
+Category: MIME media type draft                                 May 2012
+
+
+                       The API Definition Syntax
+
+Status of This Memo
+
+   This memo provides information for the Internet community. It does
+   not specify an Internet standard of any kind. Distribution of this
+   memo is unlimited.
+
+Copyright Notice
+
+   Copyright (c) {{ "now"|custom_date("Y") }} Fabio Cicerchia.
+   All rights reserved.
+
+Abstract
+
+   This document illustrates the media type ADS (API Definition Syntax)
+   used for data-exchange for REST architectures' consumers.
+
+   The API Definition Syntax (ADS) is a custom extension to the
+   Atom Syndication Format. The Atom format is documented in the Atom
+   Syndication Format.
+
+1.  Introduction
+
+   ADS is an Atom-based XML-dialect that describes lists of related
+   information known as "entities". Entities are composed of a number of
+   items, known as "entity", each with an extensible set of attached
+   metadata. For example, each entity has a title.
+
+   The primary use case that ADS addresses is to help in serving raw
+   data from an HTTP interface, no matter about the data-source (ie, a
+   database).
+
+   Both kinds of ADS Documents are specified in terms of the XML
+   Information Set, serialized as XML 1.0 [W3C.REC-xml-20040204] and
+   identified with the "application/vnd.ads+xml;v=1.0" media type.
+   ADS Documents MUST be well-formed XML.  This specification does not
+   define a DTD for ADS Documents, and hence does not require them to
+   be valid (in the sense used by XML).
+
+1.1.  Examples
+
+   A brief ADS Document:
+
+  <?xml version="1.0" encoding="utf-8" ?>
+  <service>
+    <title>Webservice</title>
+    <link href="http://example.org/api.php" />
+    <updated>2012-05-01T00:00:00Z</updated>
+    <author>
+      <name>Fabio Cicerchia</name>
+    </author>
+
+    <entrypoint>
+      <link rel="self" href="http://example.org/api.php"
+            type="application/vnd.ads+xml;v=1.0" title="Entry point" />
+    </entrypoint>
+    <entrypoint>
+      <link rel="service" href="http://example.org/api.php/information"
+            type="application/vnd.ads+xml;v=1.0" title="Information" />
+    </entrypoint>
+  </service>
+
+1.2.  Namespace and Version
+
+   The XML Namespaces URI [W3C.REC-xml-names-19990114] for the XML data
+   format described in this specification is:
+
+   http://{{ app.request.host }}/api.php/api-definition-syntax
+
+   For convenience, this data format may be referred to as "ADS 0.1".
+   This specification uses "ADS" internally.
+
+2.  Notational Conventions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in [RFC2119].
+
+2.1.  XML-Related Conventions
+
+2.1.1.  XML tags
+
+   ADS Document formats are specified in terms of the XML
+   Information Set, serialized as XML 1.0 [W3C.REC-xml-20040204].
+
+   There is no limitation in providing metadata with ADS, while the
+   built-in tags of ADS are:
+
+     o  The ones expressed via XML's namespaces mechanism.
+     o  All those ones provided by the Atom Syndication Format.
+     o  A series of generally understood media-type level tags.
+
+2.1.2.  Media type level tags
+
+2.1.2.1.   Service
+
+   The service tag allows you to identify the entry point of the
+   exposed HTTP interface.
+
+   Clients SHOULD start from this resource in order to consume each
+   feature offered by the architecture.
+
+   Service tag MUST contain one or more entrypoint tags, which identify
+   services exposed by the interface.
+
+2.1.2.2.   Entities
+
+   Used to describe a collection of entities.
+
+2.1.2.3.   Entity
+
+   Used to identify a single entity: inside an entity tag there is no
+   limitation in which tags can be used, as they usually represent the
+   entity's attributes.
+
+2.1.2.4.   Company
+
+   Used to identify a single company: inside an entity tag there is no
+   limitation in which tags can be used, as they usually represent the
+   company's attributes.
+
+   The "address" tag SHOULD be always present.
+
+2.1.2.5.   Address
+
+   Used to identify an address: inside an address tag there is no
+   limitation in which tags can be used, as they usually represent the
+   address's attributes.
+
+   The "postalcode", "city" and "country" tags SHOULD be always present.
+
+2.1.2.6.   Postalcode
+
+   Used to identify a postal code: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.7.   City
+
+   Used to identify a city: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.8.   Country
+
+   Used to identify a country: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.9.   Activities
+
+   Used to describe a collection of activities.
+
+2.1.2.10.  Activity
+
+   Used to identify an activity: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.11.  Technologies
+
+   Used to describe a collection of technologies.
+
+2.1.2.12.  Technology
+
+   Used to identify a technology: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.13.  Tools
+
+   Used to describe a collection of tools.
+
+2.1.2.14.  Tool
+
+   Used to identify a tool: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.15.  Methodologies
+
+   Used to describe a collection of methodologies.
+
+2.1.2.16.  Methodology
+
+   Used to identify a methodology: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.17.  Techniques
+
+   Used to describe a collection of techniques.
+
+2.1.2.18.  Technique
+
+   Used to identify a technique: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.19.  Projects
+
+   Used to describe a collection of projects.
+
+2.1.2.20.  Project
+
+   Used to identify a project: inside a project tag there is no
+   limitation in which tags can be used, as they usually represent the
+   project's attributes.
+
+2.1.2.21.  Role
+
+   Used to identify a project: inside a project tag there is no
+   limitation in which tags can be used, as they usually represent the
+   project's attributes.
+
+2.1.2.22.  Skills
+
+   Used to describe a collection of skills.
+
+2.1.2.23.  Skill
+
+   Used to identify a skill: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+2.1.2.24.  Level
+
+   Used to identify a level: the content of the tag MUST NOT
+   contain child elements. Such text is intended to be presented to
+   humans in a readable fashion.
+
+3.  References
+
+3.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119, March 1997.
+
+   [W3C.REC-xml-20040204]
+              Yergeau, F., Paoli, J., Sperberg-McQueen, C., Bray, T.,
+              and E. Maler, "Extensible Markup Language (XML) 1.0 (Third
+              Edition)", W3C REC REC-xml-20040204, February 2004,
+              <http://www.w3.org/TR/2004/REC-xml-20040204>.
+
+   [W3C.REC-xml-names-19990114]
+              Hollander, D., Bray, T., and A. Layman, "Namespaces in
+              XML", W3C REC REC-xml-names-19990114, January 1999,
+              <http://www.w3.org/TR/1999/REC-xml-names-19990114>.

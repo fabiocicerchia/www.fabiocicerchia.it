@@ -5,18 +5,19 @@
     {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
-        <title>{{ entity.language|i18n(current_lang) }}</title>
+        <title type="text">{{ entity.language|i18n(current_lang) }}</title>
         <!-- TODO: INSERT THE LINK TAG -->
         <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
 
-        <content type="xhtml">
-            {% for knowledge, level in entity.knowledge %}
-            <dl class="adjacent" itemtype="http://schema.org/ItemList"
-                itemscope="itemscope">
-                <dt itemprop="name">{{ knowledge }}</dt><!-- TODO: TRANSLATE IT -->
-                <dd class="last" itemprop="itemListElement">{{ level }}</dd>
-            </dl>
-            {% endfor %}
+        <content>
+            <skills>
+                {% for knowledge, level in entity.knowledge %}
+                <skill>
+                    <title type="text">{{ knowledge|capitalize }}</title><!-- TODO: TRANSLATE IT -->
+                    <level>{{ level }}</level>
+                </skill>
+                {% endfor %}
+            </skills>
         </content>
     </entity>
     {% endfor %}
