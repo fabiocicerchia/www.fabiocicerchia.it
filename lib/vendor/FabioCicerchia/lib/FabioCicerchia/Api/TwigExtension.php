@@ -30,26 +30,26 @@ class TwigExtension extends \Twig_Extension
 {
     // {{{ getName
     /**
-     * TODO: Message
+     * Returns the name of the extension.
      *
-     * @return string
+     * @return stringThe extension name.
      */
     public function getName() {
-        return "FabioCicerchia";
+        return 'FabioCicerchia';
     }
     // }}}
 
     // {{{ getFilters
     /**
-     * TODO: Message
+     * Returns a list of filters to add to the existing list.
      *
-     * @return array
+     * @return array An array of tests.
      */
     public function getFilters() {
-        return array(
-            "custom_date" => new \Twig_Filter_Method($this, "custom_date"),
-            "i18n"        => new \Twig_Filter_Method($this, "i18n")
-        );
+        return [
+            'custom_date' => new \Twig_Filter_Method($this, 'custom_date'),
+            'i18n'        => new \Twig_Filter_Method($this, 'i18n')
+        ];
     }
     // }}}
 

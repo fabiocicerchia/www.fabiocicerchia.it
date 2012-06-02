@@ -26,11 +26,11 @@ namespace FabioCicerchia\Api;
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
  */
-abstract class ServiceAbstract implements ServiceInterface
+abstract class ServiceAbstract
 {
     // {{{ PROPERTIES
     /**
-     * @var object $_collection The Collection Handle.
+     * @var \Doctrine\MongoDB\Collection $_collection The Collection Handle.
      */
     private $_collection = null;
 
@@ -67,14 +67,14 @@ abstract class ServiceAbstract implements ServiceInterface
     /**
      * Executed to set up the database handle.
      *
-     * @param  object $db_handle The Database Handle
+     * @param  \Doctrine\MongoDB\Database $db_handle The Database Handle
      *
      * @internal
      * @return void
-     * @see    http://example.com/my/bar Documentation of Foo. // TODO: LINK FOR MONGO
+     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
      * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
-    protected function setDatabase($db_handle)
+    protected function setDatabase(\Doctrine\MongoDB\Database $db_handle)
     {
         $this->_collection = $db_handle->selectCollection($this->collection_name);
     }
@@ -85,8 +85,8 @@ abstract class ServiceAbstract implements ServiceInterface
      * Retrieve all the documents from a collection.
      *
      * @internal
-     * @return <Type> TODO: Message
-     * @see    http://example.com/my/bar Documentation of Foo. // TODO: LINK FOR MONGO
+     * @return \Doctrine\MongoDB\Cursor
+     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
      * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     protected function execDataQuery()

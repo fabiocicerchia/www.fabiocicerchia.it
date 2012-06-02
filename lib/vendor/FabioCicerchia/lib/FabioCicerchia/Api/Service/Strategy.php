@@ -46,7 +46,7 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
      *
      * @api
      * @return void
-     * @see    http://example.com/my/bar Documentation of Foo. // TODO: exception link
+     * @see    http://www.php.net/manual/en/class.unexpectedvalueexception.php
      * @see    FabioCicerchia\Api\Service\Strategy::$_strategy The instance of Service.
      * @throw  UnexpectedValueException
      */

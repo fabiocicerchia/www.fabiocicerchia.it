@@ -42,8 +42,8 @@ class Education extends \FabioCicerchia\Api\ServiceAbstract
      * Retrieve all the documents from a collection.
      *
      * @internal
-     * @return <Type> TODO: Message
-     * @see    http://example.com/my/bar Documentation of Foo. // TODO: LINK FOR MONGO
+     * @return \Doctrine\MongoDB\Cursor
+     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
      * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     protected function execDataQuery()
