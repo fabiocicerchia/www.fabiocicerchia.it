@@ -299,8 +299,8 @@ db.getCollection("education").insert({
 db.getCollection("education").insert({
   "_id": "ObjectId("4fc7b402f7c5e27a69b8d7a1")",
   "title": {
-    "en_GB": "IWA Ceritified Web Professional Application Developer",
-    "it_IT": ""
+    "en_GB": "IWA Certified Web Professional Application Developer",
+    "it_IT": "IWA Certified Web Professional Application Developer"
   },
   "institute": {
     "name": "IWA",
@@ -1143,8 +1143,8 @@ db.getCollection("information").insert({
   },
   "gender": "male",
   "info": {
-    "en_GB": "I'm a passionate Web Developer and a security maniac, always looking for new challenges and a never-ending know-how. Since 2003 I've always been focused on PHP and JS applications and I found the time to certificate myself as a PHP 5 Engineer, CIW Application Developer and IWA Web Professional; apart from these, I never forgot the basics: I'm an expert using bash and writing complex Regular Expressions. I'm interested and involved also on SEO, Accessibility and Project Management. Lately I'm mainly focused on in-depth study of MongoDB, Node.js and Python.\nIn the last years I've been daily committed on projects with the RAD framework Symfony, using practices like automated tests and always trying to use bleeding edge technologies and methods for my work. I also have on-the-battlefield experience about agile development, as, in DNSEE, we implemented some of the agile techniques (iteration planning, test-first, collective code ownership and so on).\nFor passion, curiosity and interest I've created Bonzai (formerly known as phpGuardian), an open-source tool for encoding the PHP projects.",
-    "it_IT": ""
+    "en_GB": "I'm a passionate Web Developer and a security maniac, always looking for new challenges and a never-ending know-how. Since 2003 I've always been focused on PHP and JS applications and I found the time to certificate myself as a PHP 5 Engineer, CIW Application Developer and IWA Web Professional; apart from these, I never forgot the basics: I'm an expert using bash and writing complex Regular Expressions. I'm interested and involved even on SEO, Accessibility and Project Management. Lately I'm mainly focused on in-depth study of MongoDB, Node.js and Python.\nIn the last years I've been daily committed on projects with the RAD framework Symfony, using practices like automated tests and always trying to use bleeding edge technologies and methods for my work. I also have on-the-battlefield experience about agile development, as, in DNSEE, we implemented some of the agile techniques (iteration planning, test-first, collective code ownership and so on).\nFor passion, curiosity and interest I've created Bonzai (formerly known as phpGuardian), an open-source tool for encoding the PHP projects.",
+    "it_IT": "Sono uno sviluppatore web appassionato, un maniaco della sicurezza sempre alla ricerca di nuove sfide e di un know-how senza fine. Dal 2003 sono sempre stato focalizzato su PHP e applicazioni JS, ho trovato il tempo di certificarmi come un ingegnere PHP 5, CIW Application Developer e IWA Web Professional, oltre a questo, non ho mai dimenticato le nozioni di base: sono esperto nell'utilizzo di bash e nello scrivere RegEx complesse. Sono interessato e impegnato anche su SEO, Accessibilità e Project Management. Recentemente sto studiando approfonditamente MongoDB, Node.js e Python.\nNegli ultimi anni sono stato quotidianamente impegnato su progetti con Symfony framework, utilizzando tecniche come test automatizzati e sempre cercando di utilizzare tecnologie e metodi all'avanguardia per il mio lavoro. Ho anche esperienze sul campo riguardo lo sviluppo agile, come, in Dnsee, abbiamo implementato alcune delle tecniche agili (iteration planning, test-first, collective code ownership e così via).\nPer la passione, curiosità e interesse ho creato Bonzai (precedentemente noto come phpGuardian), uno strumento per codificare i sorgenti di progetti PHP."
   },
   "interest": {
     "en_GB": [
