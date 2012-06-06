@@ -71,7 +71,14 @@ class TwigExtension extends \Twig_Extension
     public function custom_date($date, $format = null, $timezone = null)
     {
         date_default_timezone_set('UTC');
-        return date($format, strtotime($date));
+
+        $timestamp = strtotime($date);
+
+        if ($date instanceOf \MongoDate) {
+            $timestamp = $date->sec;
+        }
+
+        return date($format, $timestamp);
     }
     // }}}
 

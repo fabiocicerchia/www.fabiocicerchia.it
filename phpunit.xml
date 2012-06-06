@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
     backupGlobals="false"
-    backupStaticAttributes="false"
     cacheTokens="false"
-    colors="false"
+    colors="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
-    forceCoversAnnotation="false"
-    mapTestClassNameToCoveredClassName="false"
     processIsolation="false"
-    stopOnError="false"
     stopOnFailure="false"
-    stopOnIncomplete="false"
-    stopOnSkipped="false"
-    strict="true"
-    verbose="true">
+    syntaxCheck="false">
+
     <testsuites>
-        <testsuite name="StilingExecircises">
-            <file>tests/site/test.php</file>
+        <testsuite name="UnitTests">
+            <directory>./test/api/unit</directory>
+        </testsuite>
+        <testsuite name="FunctionalTests">
+            <directory>./test/api/functional</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <blacklist>
+            <directory>tests</directory>
+        </blacklist>
+    </filter>
+    <!--logging>
+        <log type="coverage-html" target="report/cli/code_coverage" charset="UTF-8" yui="true" highlight="false" lowUpperBound="35" highLowerBound="70"/>
+    </logging-->
 </phpunit>

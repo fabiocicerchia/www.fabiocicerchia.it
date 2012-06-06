@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 $app = new Silex\Application();
 
-require_once __DIR__ . '/bootstrap.php';
+require __DIR__ . '/bootstrap.php';
 
 use FabioCicerchia\Api\Service\EntryPoint;
 use FabioCicerchia\Api\Service\Strategy;
@@ -82,7 +82,7 @@ $root = function() use($app)
     $content = $app['twig']->render('root.twig', $data);
 
     $response = new Response($content);
-    $response->headers->set('Content-type', $data['mime_type']);
+    $response->headers->set('Content-Type', $data['mime_type']);
 
     return $response;
 };
@@ -122,7 +122,7 @@ $api = function($api_name) use($app)
     }
 
     $response = new Response($content);
-    $response->headers->set('Content-type', $mime_type);
+    $response->headers->set('Content-Type', $mime_type);
 
     return $response;
 };
@@ -131,25 +131,25 @@ $app->get('/{api_name}', $api)->assert('api_name', '[a-z]+')
     ->method('GET')->bind('api');
 
 // -----------------------------------------------------------------------------
-// ROUTE SERVICE EXPRESSION SYNTAX ---------------------------------------------
+// ROUTE API DEFINITION SYNTAX -------------------------------------------------
 // -----------------------------------------------------------------------------
 
 /**
- * Service Expression Syntax - Closure.
+ * API Definition Syntax - Closure.
  *
  * @param Silex\Application $app The Silex Application instance.
  *
  * @return Response
  */
-$service_expression_syntax = function() use($app) {
-    $content = $app['twig']->render('service_expression_syntax.twig', $data);
+$api_definition_syntax = function() use($app) {
+    $content = $app['twig']->render('api-definition-syntax.twig');
     $response = new Response($content);
-    $response->headers->set('Content-type', 'text/plain');
+    $response->headers->set('Content-Type', 'text/plain');
 
     return $response;
 };
-$app->get('/service-expression-syntax', $service_expression_syntax)
-    ->method('GET')->bind('service_expression_syntax');
+$app->get('/api-definition-syntax', $api_definition_syntax)
+    ->method('GET')->bind('api_definition_syntax');
 
 // -----------------------------------------------------------------------------
 // RETURN APP ------------------------------------------------------------------

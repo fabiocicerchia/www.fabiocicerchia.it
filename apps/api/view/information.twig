@@ -7,7 +7,7 @@
         <title type="text">{{ entities[main_key].name.first_name }} {{ entities[main_key].name.last_name }}</title>
         <summary type="xhtml">{{ entities[main_key].info|i18n(current_lang) }}</summary>
         <!-- TODO: INSERT THE LINK TAG -->
-        <updated>{{ "now"|custom_date("Y-m-d\TH:i:s\Z") }}</updated>
+        <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
 
         <content type="xhtml">
             <img src="/media/images/me.jpg"
@@ -32,7 +32,7 @@
                         {{ entities[main_key].gender|capitalize }}
                     </span>
                 </li>
-                <li>{{ entities[main_key].birth_day|custom_date("Y-m-d\TH:i:s\Z") }}</li>
+                <li>{{ entities[main_key].birth_day|custom_date("Y-m-d\\TH:i:s\\Z") }}</li>
                 <li>
                     <span itemprop="telephone" class="tel">
                         {{ entities[main_key].telephone.uk }}

@@ -122,7 +122,11 @@ abstract class ServiceAbstract
      */
     protected function elaborateData($data)
     {
-        $data = is_array($data) === true ? $data : $data->toArray();
+        if ($data instanceOf \Doctrine\MongoDB\Cursor) {
+            $data = $data->toArray();
+        } elseif (is_array($data) !== true) {
+            $data = (array)$data;
+        }
 
         return $data;
     }
@@ -166,7 +170,7 @@ abstract class ServiceAbstract
      * Getter for $_collection.
      *
      * @api
-     * @return object
+     * @return \Doctrine\MongoDB\Collection
      * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     public function getCollection()
