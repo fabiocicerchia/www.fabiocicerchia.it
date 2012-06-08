@@ -37,13 +37,13 @@ class ServiceAbstractTest extends PHPUnit_Framework_TestCase
     public function testRunEmptyData()
     {
         $stub = $this->getMockBuilder('FabioCicerchia\Api\ServiceAbstract')
-                     ->setMethods(array('getRawData', 'elaborateData'))
+                     ->setMethods(['getRawData', 'elaborateData'])
                      ->disableOriginalConstructor()
                      ->getMock();
 
         $stub->expects($this->any())
              ->method('getRawData')
-             ->will($this->returnValue(array()));
+             ->will($this->returnValue([]));
 
         $stub->expects($this->any())
              ->method('elaborateData')
@@ -51,7 +51,7 @@ class ServiceAbstractTest extends PHPUnit_Framework_TestCase
 
         $stub->run();
 
-        $this->assertEquals(array(), $stub->getData());
+        $this->assertEquals([], $stub->getData());
     }
     // }}}
 
@@ -63,9 +63,9 @@ class ServiceAbstractTest extends PHPUnit_Framework_TestCase
      */
     public function testGetDataReturnCorrectValue()
     {
-        $stub = $this->getMockForAbstractClass('FabioCicerchia\Api\ServiceAbstract', array(), '', false);
+        $stub = $this->getMockForAbstractClass('FabioCicerchia\Api\ServiceAbstract', [], '', false);
 
-        $this->assertEquals(array(), $stub->getData());
+        $this->assertEquals([], $stub->getData());
         $this->assertInternalType('array', $stub->getData());
     }
     // }}}
@@ -78,7 +78,7 @@ class ServiceAbstractTest extends PHPUnit_Framework_TestCase
      */
     public function testGetCollectionReturnCorrectValue()
     {
-        $stub = $this->getMockForAbstractClass('FabioCicerchia\Api\ServiceAbstract', array(), '', false);
+        $stub = $this->getMockForAbstractClass('FabioCicerchia\Api\ServiceAbstract', [], '', false);
 
         $this->assertEquals(null, $stub->getCollection());
     }

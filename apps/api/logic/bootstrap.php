@@ -19,7 +19,10 @@ use Silex\Provider\HttpCacheServiceProvider;
 // -----------------------------------------------------------------------------
 // DEBUG FLAG ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-$app['debug'] = isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'www.fabiocicerchia.it' ? false : true;
+$app['debug'] = isset($_SERVER['HTTP_HOST'])
+                && $_SERVER['HTTP_HOST'] === 'www.fabiocicerchia.it'
+                ? false
+                : true;
 
 // -----------------------------------------------------------------------------
 // REGISTERING NAMESPACES ------------------------------------------------------
@@ -67,7 +70,7 @@ $options = [
     'mongodb.connection' => [
         'server'       => 'mongodb://localhost',
         'options'      => [],
-        'eventmanager' => function($eventmanager) {
+        'eventmanager' => function ($eventmanager) {
         }
     ]
 ];

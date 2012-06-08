@@ -5,9 +5,7 @@
     {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
-        <title type="text">{{ entity.role|i18n(current_lang) }}</title>
-        <summary type="xhtml">{ { entity.description|i18n(current_lang) }}</summary> <!-- TODO: ADD TO MONGO -->
-        <!-- TODO: INSERT THE LINK TAG -->
+        <title type="text">{{ entity.role }}</title>
         <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
         {% if entity.date.end is defined %}
         <published>{{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
@@ -26,15 +24,15 @@
                 {% if entity.location is defined %}
                 <address>
                     <postalcode>{{ entity.company.location.cap }}</postalcode>
-                    <city>{{ entity.company.location.city|i18n(current_lang) }}</city>
-                    <country>{{ entity.company.location.country|i18n(current_lang) }}</city>
+                    <city>{{ entity.company.location.city }}</city>
+                    <country>{{ entity.company.location.country }}</city>
                 </address>
                 {% endif %}
             </company>
 
             {% if entity.activities is defined %}
             <activities>
-                {% for activity in entity.activities|i18n(current_lang) %}
+                {% for activity in entity.activities %}
                 <activity>{{ activity }}</activity>
                 {% endfor %}
             </activities>
@@ -76,9 +74,9 @@
             <projects>
                 {% for project in entity.projects %}
                 <project>
-                    <title type="text">{{ project.name|i18n(current_lang) }}</title>
-                    <summary type="xhtml">{{ project.description|i18n(current_lang) }}</summary>
-                    <role>{{ project.role|i18n(current_lang) }}</role>
+                    <title type="text">{{ project.name }}</title>
+                    <summary type="xhtml">{{ project.description }}</summary>
+                    <role>{{ project.role }}</role>
                     {% if project.url is defined %}
                     <link rel="related" href="{{ project.url }}" />
                     {% endif %}
@@ -93,7 +91,7 @@
 
                     {% if project.activities is defined %}
                     <activities>
-                        {% for activity in project.activities|i18n(current_lang) %}
+                        {% for activity in project.activities %}
                         <activity>{{ activity }}</activity>
                         {% endfor %}
                     </activities>

@@ -32,7 +32,13 @@ class EntryPoint
     /**
      * @var array $services The list of active services.
      */
-    protected $services = ['information', 'education', 'experience', 'skill', 'language'];
+    protected $services = [
+        'information',
+        'education',
+        'experience',
+        'skill',
+        'language'
+    ];
     // }}}
 
     // {{{ getServices

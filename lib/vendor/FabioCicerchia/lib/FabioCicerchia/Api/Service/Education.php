@@ -32,9 +32,9 @@ class Education extends \FabioCicerchia\Api\ServiceAbstract
 {
     // {{{ PROPERTIES
     /**
-     * @var string $collection_name The name of the collection.
+     * @var string $collectionName The name of the collection.
      */
-    protected $collection_name = 'education';
+    protected $collectionName = 'education';
     // }}}
 
     // {{{ execDataQuery
@@ -42,13 +42,14 @@ class Education extends \FabioCicerchia\Api\ServiceAbstract
      * Retrieve all the documents from a collection.
      *
      * @internal
-     * @return \Doctrine\MongoDB\Cursor
+     * @return array
      * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
      * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     protected function execDataQuery()
     {
-        return $this->getCollection()->find()->sort(array('date.end' => 'desc'));
+        return $this->getCollection()
+                    ->find()->sort(['date.end' => 'desc'])->toArray();
     }
     // }}}
 
@@ -56,12 +57,12 @@ class Education extends \FabioCicerchia\Api\ServiceAbstract
     /**
      * Modify if needed the data.
      *
-     * @param  object $data The data.
+     * @param array $data The data.
      *
      * @internal
      * @return array
      */
-    protected function elaborateData($data)
+    protected function elaborateData(array $data)
     {
         $data = parent::elaborateData($data);
         $data = ['entities' => $data];

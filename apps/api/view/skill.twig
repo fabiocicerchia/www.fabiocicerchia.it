@@ -12,7 +12,7 @@
             <skills>
             {% for skill in entity.list %}
                 <skill>
-                    <title type="text">{{ skill.name|i18n(current_lang) }}</title>
+                    <title type="text">{{ skill.name }}</title>
                     <level>{{ skill.proficiency|capitalize }} proficiency</level>
                 </skill>
             {% endfor %}

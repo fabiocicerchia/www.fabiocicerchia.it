@@ -30,14 +30,14 @@ abstract class ServiceAbstract
 {
     // {{{ PROPERTIES
     /**
-     * @var \Doctrine\MongoDB\Collection $_collection The Collection Handle.
+     * @var \Doctrine\MongoDB\Collection $collection The Collection Handle.
      */
-    private $_collection = null;
+    private $collection = null;
 
     /**
-     * @var string $collection_name The name of the collection.
+     * @var string $collectionName The name of the collection.
      */
-    protected $collection_name = null;
+    protected $collectionName = null;
 
     /**
      * @var array $data The data.
@@ -49,14 +49,14 @@ abstract class ServiceAbstract
     /**
      * The constructor.
      *
-     * @param  object $db_handle The Database Handle.
+     * @param  \Doctrine\MongoDB\Database $db_handle The Database Handle.
      *
      * @internal
      * @return void
      * @see    FabioCicerchia\Api\ServiceAbstract::setDatabase() Executed to set up the database handle.
      * @see    FabioCicerchia\Api\ServiceAbstract::run()         Launch the main task.
      */
-    public function __construct($db_handle)
+    public function __construct(\Doctrine\MongoDB\Database $db_handle)
     {
         $this->setDatabase($db_handle);
         $this->run();
@@ -72,11 +72,11 @@ abstract class ServiceAbstract
      * @internal
      * @return void
      * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
-     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
+     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
      */
     protected function setDatabase(\Doctrine\MongoDB\Database $db_handle)
     {
-        $this->_collection = $db_handle->selectCollection($this->collection_name);
+        $this->collection = $db_handle->selectCollection($this->collectionName);
     }
     // }}}
 
@@ -85,13 +85,13 @@ abstract class ServiceAbstract
      * Retrieve all the documents from a collection.
      *
      * @internal
-     * @return \Doctrine\MongoDB\Cursor
+     * @return array
      * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
-     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
+     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
      */
     protected function execDataQuery()
     {
-        return $this->_collection->find();
+        return $this->collection->find()->toArray();
     }
     // }}}
 
@@ -115,19 +115,13 @@ abstract class ServiceAbstract
     /**
      * Modify if needed the data.
      *
-     * @param  object $data The data.
+     * @param array $data The data.
      *
      * @internal
      * @return array
      */
-    protected function elaborateData($data)
+    protected function elaborateData(array $data)
     {
-        if ($data instanceOf \Doctrine\MongoDB\Cursor) {
-            $data = $data->toArray();
-        } elseif (is_array($data) !== true) {
-            $data = (array)$data;
-        }
-
         return $data;
     }
     // }}}
@@ -138,7 +132,7 @@ abstract class ServiceAbstract
      *
      * @api
      * @return void
-     * @see    FabioCicerchia\Api\ServiceAbstract::getRawData()    Retrieve the data from the collection and manipulate it.
+     * @see    FabioCicerchia\Api\ServiceAbstract::getRawData()    Retrieve data from the collection and manipulate it.
      * @see    FabioCicerchia\Api\ServiceAbstract::elaborateData() Modify if needed the data.
      * @see    FabioCicerchia\Api\ServiceAbstract::$data           The data.
      * @throw
@@ -167,15 +161,29 @@ abstract class ServiceAbstract
 
     // {{{ getCollection
     /**
-     * Getter for $_collection.
+     * Getter for $collection.
      *
      * @api
      * @return \Doctrine\MongoDB\Collection
-     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
+     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
      */
     public function getCollection()
     {
-        return $this->_collection;
+        return $this->collection;
+    }
+    // }}}
+
+    // {{{ getCollectionName
+    /**
+     * Getter for $collectionName.
+     *
+     * @api
+     * @return string
+     * @see    FabioCicerchia\Api\ServiceAbstract::$collectionName The name of the collection.
+     */
+    public function getCollectionName()
+    {
+        return $this->collectionName;
     }
     // }}}
 }

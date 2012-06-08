@@ -48,7 +48,6 @@ class TwigExtension extends \Twig_Extension
     public function getFilters() {
         return [
             'custom_date' => new \Twig_Filter_Method($this, 'custom_date'),
-            'i18n'        => new \Twig_Filter_Method($this, 'i18n')
         ];
     }
     // }}}
@@ -62,13 +61,12 @@ class TwigExtension extends \Twig_Extension
      *   {{ post.published_at|custom_date("m/d/Y") }}
      * </pre>
      *
-     * @param int|string $date     A date.
-     * @param string     $format   A format.
-     * @param string     $timezone A timezone.
+     * @param int|string $date   A date.
+     * @param string     $format A format.
      *
      * @return string The formatter date.
      */
-    public function custom_date($date, $format = null, $timezone = null)
+    public function custom_date($date, $format = null)
     {
         date_default_timezone_set('UTC');
 
@@ -79,33 +77,6 @@ class TwigExtension extends \Twig_Extension
         }
 
         return date($format, $timestamp);
-    }
-    // }}}
-
-    // {{{ i18n
-    /**
-     * Print the localized value.
-     *
-     * <pre>
-     *   {{ localized_value|i18n("en") }}
-     * </pre>
-     *
-     * @param mixed  $value    A localized value.
-     * @param string $language A language.
-     *
-     * @return string The formatter date.
-     */
-    public function i18n($value, $language)
-    {
-        if (is_array($value) === true) {
-            if (array_key_exists($language, $value) === true) {
-                return $value[$language];
-            }
-
-            return $value['en'];
-        }
-
-        return $value;
     }
     // }}}
 }

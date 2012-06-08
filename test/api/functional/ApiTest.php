@@ -246,21 +246,6 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
-    // {{{ testEntrypointRouteCheckWithoutData
-    /**
-     * Test the route "Entrypoint" to check without data.
-     *
-     * @return void
-     */
-    public function testEntrypointRouteCheckWithoutData()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/');
-
-        // TODO: WHAT?
-    }
-    // }}}
-
     // {{{ testEntrypointRouteCheckWrongHttpMethod
     /**
      * Test the route "Entrypoint" to check the Response with a wrong HTTP Method.
@@ -310,6 +295,25 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
+    }
+    // }}}
+
+    // {{{ testEntrypointRouteCheckLanguage
+    /**
+     * Test the route "Entrypoint" to check the Language.
+     *
+     * @return void
+     */
+    public function testEntrypointRouteCheckLanguage()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+
+        $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -453,21 +457,6 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
-    // {{{ testInformationRouteCheckWithoutData
-    /**
-     * Test the route "Information" to check without data.
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckWithoutData()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information');
-
-        // TODO: WHAT?
-    }
-    // }}}
-
     // {{{ testInformationRouteCheckWrongHttpMethod
     /**
      * Test the route "Information" to check the Response with a wrong HTTP Method.
@@ -517,6 +506,25 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/information');
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
+    }
+    // }}}
+
+    // {{{ testInformationRouteCheckLanguage
+    /**
+     * Test the route "Information" to check the Language.
+     *
+     * @return void
+     */
+    public function testInformationRouteCheckLanguage()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/information', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+
+        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+
+        $crawler = $client->request('GET', '/information', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -668,21 +676,6 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
-    // {{{ testEducationRouteCheckWithoutData
-    /**
-     * Test the route "Education" to check without data.
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckWithoutData()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education');
-
-        // TODO: WHAT?
-    }
-    // }}}
-
     // {{{ testEducationRouteCheckWrongHttpMethod
     /**
      * Test the route "Education" to check the Response with a wrong HTTP Method.
@@ -732,6 +725,25 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/education');
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
+    }
+    // }}}
+
+    // {{{ testEducationRouteCheckLanguage
+    /**
+     * Test the route "Education" to check the Language.
+     *
+     * @return void
+     */
+    public function testEducationRouteCheckLanguage()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/education', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+
+        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+
+        $crawler = $client->request('GET', '/education', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -806,7 +818,6 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > summary')->text());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > published')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
@@ -937,21 +948,6 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
-    // {{{ testExperienceRouteCheckWithoutData
-    /**
-     * Test the route "Experience" to check without data.
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckWithoutData()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience');
-
-        // TODO: WHAT?
-    }
-    // }}}
-
     // {{{ testExperienceRouteCheckWrongHttpMethod
     /**
      * Test the route "Experience" to check the Response with a wrong HTTP Method.
@@ -1001,6 +997,25 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/experience');
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
+    }
+    // }}}
+
+    // {{{ testExperienceRouteCheckLanguage
+    /**
+     * Test the route "Experience" to check the Language.
+     *
+     * @return void
+     */
+    public function testExperienceRouteCheckLanguage()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/experience', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+
+        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+
+        $crawler = $client->request('GET', '/experience', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -1152,21 +1167,6 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
-    // {{{ testSkillRouteCheckWithoutData
-    /**
-     * Test the route "Skill" to check without data.
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckWithoutData()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill');
-
-        // TODO: WHAT?
-    }
-    // }}}
-
     // {{{ testSkillRouteCheckWrongHttpMethod
     /**
      * Test the route "Skill" to check the Response with a wrong HTTP Method.
@@ -1216,6 +1216,25 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/skill');
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
+    }
+    // }}}
+
+    // {{{ testSkillRouteCheckLanguage
+    /**
+     * Test the route "Skill" to check the Language.
+     *
+     * @return void
+     */
+    public function testSkillRouteCheckLanguage()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/skill', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+
+        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+
+        $crawler = $client->request('GET', '/skill', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -1367,21 +1386,6 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
-    // {{{ testLanguageRouteCheckWithoutData
-    /**
-     * Test the route "Language" to check without data.
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckWithoutData()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language');
-
-        // TODO: WHAT?
-    }
-    // }}}
-
     // {{{ testLanguageRouteCheckWrongHttpMethod
     /**
      * Test the route "Language" to check the Response with a wrong HTTP Method.
@@ -1434,6 +1438,25 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
+    // {{{ testLanguageRouteCheckLanguage
+    /**
+     * Test the route "Language" to check the Language.
+     *
+     * @return void
+     */
+    public function testLanguageRouteCheckLanguage()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/language', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+
+        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+
+        $crawler = $client->request('GET', '/language', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+    }
+    // }}}
+
     // {{{ testApiDefinitionSyntaxRouteCheckStatusCode
     /**
      * Test the route "ApiDefinitionSyntax" to check the HTTP Status Code.
@@ -1480,37 +1503,6 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
-    // {{{ testApiDefinitionSyntaxRouteCheckResponse
-    /**
-     * Test the route "api-definition-syntax" to check the Response.
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckResponse()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        // TODO
-    }
-    // }}}
-
-    // {{{ testApiDefinitionSyntaxRouteCheckResponseWithDebug
-    /**
-     * Test the route "api-definition-syntax" to check the Response with Debug flag enabled.
-     *
-     * @depends setUpDebug
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckResponseWithDebug()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        // TODO
-    }
-    // }}}
-
     // {{{ testApiDefinitionSyntaxRouteCheckCache
     /**
      * Test the route "api-definition-syntax" to check the Cache.
@@ -1539,21 +1531,6 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/api-definition-syntax');
 
         // TODO
-    }
-    // }}}
-
-    // {{{ testApiDefinitionSyntaxRouteCheckWithoutData
-    /**
-     * Test the route "api-definition-syntax" to check without data.
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckWithoutData()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        // TODO: WHAT?
     }
     // }}}
 
@@ -1606,6 +1583,21 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/api-definition-syntax');
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
+    }
+    // }}}
+
+    // {{{ testApiDefinitionSyntaxRouteCheckLanguage
+    /**
+     * Test the route "ApiDefinitionSyntax" to check the Language.
+     *
+     * @return void
+     */
+    public function testApiDefinitionSyntaxRouteCheckLanguage()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/api-definition-syntax', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -1717,21 +1709,6 @@ class ApiTest extends WebTestCase
     }
     // }}}
 
-    // {{{ test404RouteCheckWithoutData
-    /**
-     * Test the route "404" to check without data.
-     *
-     * @return void
-     */
-    public function test404RouteCheckWithoutData()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404');
-
-        // TODO: WHAT?
-    }
-    // }}}
-
     // {{{ test404RouteCheckWrongHttpMethod
     /**
      * Test the route "404" to check the Response with a wrong HTTP Method.
@@ -1781,6 +1758,25 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/404');
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
+    }
+    // }}}
+
+    // {{{ test404RouteCheckLanguage
+    /**
+     * Test the route "404" to check the Language.
+     *
+     * @return void
+     */
+    public function test404RouteCheckLanguage()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/404', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+
+        $crawler = $client->request('GET', '/404', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
+
+        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 }

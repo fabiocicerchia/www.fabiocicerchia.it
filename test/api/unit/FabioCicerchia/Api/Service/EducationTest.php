@@ -38,17 +38,13 @@ class EducationTest extends PHPUnit_Framework_TestCase
     public function testRunEmptyData()
     {
         $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Education')
-                     ->setMethods(array('execDataQuery'))
+                     ->setMethods(['getRawData'])
                      ->disableOriginalConstructor()
                      ->getMock();
 
         $stub->expects($this->any())
-             ->method('execDataQuery')
-             ->will($this->returnValue(array()));
-
-        $stub->expects($this->any())
              ->method('getRawData')
-             ->will($this->returnValue(array()));
+             ->will($this->returnValue([]));
 
         $stub->run();
 

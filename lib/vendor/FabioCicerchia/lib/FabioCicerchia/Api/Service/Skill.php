@@ -32,21 +32,21 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
 {
     // {{{ PROPERTIES
     /**
-     * @var string $collection_name The name of the collection.
+     * @var string $collectionName The name of the collection.
      */
-    protected $collection_name = 'skill';
+    protected $collectionName = 'skill';
     // }}}
 
     // {{{ elaborateData
     /**
      * Modify if needed the data.
      *
-     * @param  object $data The data.
+     * @param array $data The data.
      *
      * @internal
      * @return array
      */
-    protected function elaborateData($data)
+    protected function elaborateData(array $data)
     {
         $data = parent::elaborateData($data);
         $data = ['entities' => $data];

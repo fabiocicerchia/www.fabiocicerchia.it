@@ -38,13 +38,13 @@ class LanguageTest extends PHPUnit_Framework_TestCase
     public function testRunEmptyData()
     {
         $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Language')
-                     ->setMethods(array('execDataQuery'))
+                     ->setMethods(['execDataQuery'])
                      ->disableOriginalConstructor()
                      ->getMock();
 
         $stub->expects($this->any())
              ->method('execDataQuery')
-             ->will($this->returnValue(array()));
+             ->will($this->returnValue([]));
 
         $stub->run();
 

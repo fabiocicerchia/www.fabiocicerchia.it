@@ -32,9 +32,9 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
 {
     // {{{ PROPERTIES
     /**
-     * @var object $_strategy The instance of Service.
+     * @var object $strategy The instance of Service.
      */
-    private $_strategy = null;
+    private $strategy = null;
     // }}}
 
     // {{{ __construct
@@ -42,20 +42,24 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
      * The constructor.
      *
      * @param  string $service_name The name of the service.
-     * @param  object $db_handle    The Database Handle.
+     * @param  \Doctrine\MongoDB\Database $db_handle    The Database Handle.
      *
      * @api
      * @return void
      * @see    http://www.php.net/manual/en/class.unexpectedvalueexception.php
-     * @see    FabioCicerchia\Api\Service\Strategy::$_strategy The instance of Service.
+     * @see    FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
      * @throw  UnexpectedValueException
      */
-    public function __construct($service_name, $db_handle)
+    public function __construct($service_name, \Doctrine\MongoDB\Database $db_handle)
     {
-        $className = '\\FabioCicerchia\\Api\\Service\\' . ucfirst($service_name);
+        if (is_string($service_name) === false) {
+            throw new InvalidArgumentException('The parameter $service_name must be a string.'); // TODO: TOO LONG
+        }
+
+        $class = '\\FabioCicerchia\\Api\\Service\\' . ucfirst($service_name);
 
         try {
-            $this->_strategy = new $className($db_handle);
+            $this->strategy = new $class($db_handle);
         } catch (Exception $e) {
             throw new UnexpectedValueException($e->getMessage(), $e->getCode());
         }
@@ -68,12 +72,12 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
      *
      * @api
      * @return array
-     * @see    FabioCicerchia\Api\Service\Strategy::$_strategy The instance of Service.
+     * @see    FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
      * @see    FabioCicerchia\Api\Service\*::getData()         Getter for $data.
      */
     public function getData()
     {
-        return $this->_strategy->getData();
+        return $this->strategy->getData();
     }
     // }}}
 }

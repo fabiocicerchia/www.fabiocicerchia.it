@@ -13,7 +13,7 @@
  */
 
 // -----------------------------------------------------------------------------
-// INIT SILEX & SETUP SOME STUFF -----------------------------------------------
+// INIT SILEX ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 require_once __DIR__ . '/../silex.phar';
 
@@ -23,132 +23,56 @@ use Symfony\Component\HttpFoundation\Response;
 $app = new Silex\Application();
 
 require __DIR__ . '/bootstrap.php';
+require __DIR__ . '/controller.php';
 
 use FabioCicerchia\Api\Service\EntryPoint;
 use FabioCicerchia\Api\Service\Strategy;
+use FabioCicerchia\Api\Utils;
 
 // -----------------------------------------------------------------------------
 // ERROR HANDLING --------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-/**
- * Error - Closure.
- *
- * @param Exception $e    The Exception instance.
- * @param integer   $code The exception code.
- *
- * @return Response
- */
-$error = function (\Exception $e, $code) use ($app)
-{
-    if ($app['debug']) {
-        return;
-    }
-
-    $response = new Response($e->getMessage(), $code);
-
-    return $response;
-};
-$app->error($error);
+if (empty($closures['error']) === true
+    || is_callable($closures['error']) === false
+) {
+    throw new DomainException('The closure "error" must be defined!');
+}
+$app->error($closures['error']);
 
 // -----------------------------------------------------------------------------
 // ROUTE ROOT ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-/**
- * Root - Closure.
- *
- * @param Silex\Application $app The Silex Application instance.
- *
- * @return Response
- */
-$root = function() use($app)
-{
-    $entryPoint  = new EntryPoint();
-    $services    = $entryPoint->getServices();
-    $md5_mapping = array_map('md5', $services);
-    $routes      = array_combine($md5_mapping, $services);
-
-    $mime_type = 'application/vnd.ads+xml;v=1.0';
-    if ($app['debug'] === true) {
-        $mime_type = 'application/xml';
-    }
-
-    $data    = [
-        'routes'    => $routes,
-        'mime_type' => $mime_type,
-        'api_name'  => 'entry point'
-    ];
-    $content = $app['twig']->render('root.twig', $data);
-
-    $response = new Response($content);
-    $response->headers->set('Content-Type', $data['mime_type']);
-
-    return $response;
-};
-$app->get('/', $root)->method('GET')->bind('root');
+if (empty($closures['root']) === true
+    || is_callable($closures['root']) === false
+) {
+    throw new DomainException('The closure "root" must be defined!');
+}
+$app->get('/', $closures['root'])->method('GET')->bind('root');
 
 // -----------------------------------------------------------------------------
 // ROUTE API -------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-/**
- * API - Closure.
- *
- * @param string            $api_name The API name retrieved from URL.
- * @param Silex\Application $app      The Silex Application instance.
- *
- * @return Response
- */
-$api = function($api_name) use($app)
-{
-    $database = $app['mongodb']->selectDatabase('curriculum');
-
-    try {
-        $service = new Strategy($api_name, $database);
-    } catch (UnexpectedValueException $e) {
-        $app->abort(404, 'The API ' . $api_name. ' does not exist.');
-    }
-
-    $data = $service->getData();
-    $data['api_name'] = $api_name;
-    $data['current_lang'] = 'en_GB'; // TODO: MODIFY THIS
-
-    $content = $app['twig']->render($api_name . '.twig', $data);
-
-    $mime_type = 'application/vnd.ads+xml;v=1.0';
-    if ($app['debug'] === true) {
-        $mime_type = 'application/xml';
-    }
-
-    $response = new Response($content);
-    $response->headers->set('Content-Type', $mime_type);
-
-    return $response;
-};
-
-$app->get('/{api_name}', $api)->assert('api_name', '[a-z]+')
+if (empty($closures['api']) === true
+    || is_callable($closures['api']) === false
+) {
+    throw new DomainException('The closure "api" must be defined!');
+}
+$app->get('/{api_name}', $closures['api'])->assert('api_name', '[a-z]+')
     ->method('GET')->bind('api');
 
 // -----------------------------------------------------------------------------
 // ROUTE API DEFINITION SYNTAX -------------------------------------------------
 // -----------------------------------------------------------------------------
 
-/**
- * API Definition Syntax - Closure.
- *
- * @param Silex\Application $app The Silex Application instance.
- *
- * @return Response
- */
-$api_definition_syntax = function() use($app) {
-    $content = $app['twig']->render('api-definition-syntax.twig');
-    $response = new Response($content);
-    $response->headers->set('Content-Type', 'text/plain');
-
-    return $response;
-};
-$app->get('/api-definition-syntax', $api_definition_syntax)
+if (empty($closures['api_definition_syntax']) === true
+    || is_callable($closures['api_definition_syntax']) === false
+) {
+    throw new DomainException('The closure "api_definition_syntax" must be defined!');
+}
+$app->get('/api-definition-syntax', $closures['api_definition_syntax'])
     ->method('GET')->bind('api_definition_syntax');
 
 // -----------------------------------------------------------------------------

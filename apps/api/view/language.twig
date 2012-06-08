@@ -5,8 +5,7 @@
     {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
-        <title type="text">{{ entity.language|i18n(current_lang) }}</title>
-        <!-- TODO: INSERT THE LINK TAG -->
+        <title type="text">{{ entity.language }}</title>
         <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
 
         <content>

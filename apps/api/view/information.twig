@@ -5,8 +5,7 @@
     <entity>
         <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
         <title type="text">{{ entities[main_key].name.first_name }} {{ entities[main_key].name.last_name }}</title>
-        <summary type="xhtml">{{ entities[main_key].info|i18n(current_lang) }}</summary>
-        <!-- TODO: INSERT THE LINK TAG -->
+        <summary type="xhtml">{{ entities[main_key].info }}</summary>
         <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
 
         <content type="xhtml">
@@ -15,16 +14,16 @@
                  itemprop="image" class="photo"
                  height="475" width="180" />
             <address>
-                <city>{{ entities[main_key].location.city|i18n(current_lang) }}</city>
-                <country>{{ entities[main_key].location.country|i18n(current_lang) }}</country>
+                <city>{{ entities[main_key].location.city }}</city>
+                <country>{{ entities[main_key].location.country }}</country>
             </address>
             <ul>
                 <li>
-                    <span>{{ entities[main_key].marital_status|i18n(current_lang)|capitalize }}</span>
+                    <span>{{ entities[main_key].marital_status|capitalize }}</span>
                 </li>
                 <li>
                     <span itemprop="nationality">
-                        {{ entities[main_key].nationality|i18n(current_lang)|capitalize }}
+                        {{ entities[main_key].nationality|capitalize }}
                     </span>
                 </li>
                 <li>
