@@ -53,7 +53,7 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
     public function __construct($service_name, \Doctrine\MongoDB\Database $db_handle)
     {
         if (is_string($service_name) === false) {
-            throw new InvalidArgumentException('The parameter $service_name must be a string.'); // TODO: TOO LONG
+            throw new \InvalidArgumentException('The parameter $service_name must be a string.'); // TODO: TOO LONG
         }
 
         $class = '\\FabioCicerchia\\Api\\Service\\' . ucfirst($service_name);

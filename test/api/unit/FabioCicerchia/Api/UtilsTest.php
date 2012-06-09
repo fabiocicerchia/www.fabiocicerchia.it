@@ -38,15 +38,15 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     {
         $db_language = ['it' => 'it_IT', 'en' => 'en_GB'];
         $string      = 'da, en-gb;q=0.8, en;q=0.7';
-        $this->assertEquals('en_GB', \FabioCicerchia\Api\Utils::getCurrentLanguage($db_language, $string));
+        $this->assertEquals('en', \FabioCicerchia\Api\Utils::getCurrentLanguage($db_language, $string));
 
         $db_language = ['it' => 'it_IT', 'en' => 'en_GB'];
         $string      = 'da, it-it;q=0.8, en;q=0.7';
-        $this->assertEquals('it_IT', \FabioCicerchia\Api\Utils::getCurrentLanguage($db_language, $string));
+        $this->assertEquals('it', \FabioCicerchia\Api\Utils::getCurrentLanguage($db_language, $string));
 
         $db_language = ['da' => 'da_DK', 'en' => 'en_GB'];
         $string      = 'da, it-it;q=0.8, en;q=0.7';
-        $this->assertEquals('da_DK', \FabioCicerchia\Api\Utils::getCurrentLanguage($db_language, $string));
+        $this->assertEquals('da', \FabioCicerchia\Api\Utils::getCurrentLanguage($db_language, $string));
     }
     // }}}
 

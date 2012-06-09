@@ -309,11 +309,11 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -520,11 +520,11 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/information', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/information', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -739,11 +739,11 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/education', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/education', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -1011,11 +1011,11 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/experience', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/experience', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -1230,11 +1230,11 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/skill', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/skill', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -1449,11 +1449,11 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/language', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        $this->assertEquals('it_IT', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/language', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -1597,7 +1597,7 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/api-definition-syntax', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 
@@ -1772,11 +1772,11 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/404', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/404', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
-        $this->assertEquals('en_GB', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}}
 }

@@ -44,13 +44,12 @@ class Utils
     public static function getCurrentLanguage(array $available_languages, $accept_language)
     {
         if (is_string($accept_language) === false) {
-            throw new InvalidArgumentException('The parameter $accept_language must be a string.');
+            throw new \InvalidArgumentException('The parameter $accept_language must be a string.');
         }
 
         $accept_language    = preg_replace('/([a-z]{2})-([a-z]{2})/', '\1', $accept_language);
         $accepted_languages = self::httpPriorityOrder($accept_language);
         $current_lang       = self::retrieveCurrentLanguage(array_keys($available_languages), $accepted_languages);
-        $current_lang       = $available_languages[$current_lang];
 
         return $current_lang;
     }
@@ -91,7 +90,7 @@ class Utils
     protected static function httpPriorityOrder($string)
     {
         if (is_string($string) === false) {
-            throw new InvalidArgumentException('The parameter $string must be a string.');
+            throw new \InvalidArgumentException('The parameter $string must be a string.');
         }
 
         $string = preg_replace('/ +/', '', $string);
@@ -128,11 +127,11 @@ class Utils
     protected static function httpCustomSorting($a, $b)
     {
         if (is_string($a) === false) {
-            throw new InvalidArgumentException('The parameter $a must be a string.');
+            throw new \InvalidArgumentException('The parameter $a must be a string.');
         }
 
         if (is_string($b) === false) {
-            throw new InvalidArgumentException('The parameter $b must be a string.');
+            throw new \InvalidArgumentException('The parameter $b must be a string.');
         }
 
         list($a_priority, $a_order, $a_value) = explode(' ', $a);
@@ -179,7 +178,7 @@ class Utils
      */
     public static function convertForI18n(array $data, $language) {
         if (is_string($language) === false) {
-            throw new InvalidArgumentException('The parameter $language must be a string.');
+            throw new \InvalidArgumentException('The parameter $language must be a string.');
         }
 
         if (isset($data[$language])) {
