@@ -2,39 +2,40 @@
 <entities xmlns="http://www.w3.org/2005/Atom">
     {% include '_header.twig' %}
 
+    {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
-        <title type="text">{{ entities[main_key].name.first_name }} {{ entities[main_key].name.last_name }}</title>
-        <summary type="xhtml">{{ entities[main_key].info }}</summary>
+        <title type="text">{{ entity.name.first_name }} {{ entity.name.last_name }}</title>
+        <summary type="xhtml">{{ entity.info }}</summary>
         <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
 
         <content type="xhtml">
             <img src="/media/images/me.jpg"
-                 alt="A photograph of {{ entities[main_key].name.first_name }} {{ entities[main_key].name.last_name }} in black and white"
+                 alt="A photograph of {{ entity.name.first_name }} {{ entity.name.last_name }} in black and white"
                  itemprop="image" class="photo"
                  height="475" width="180" />
             <address>
-                <city>{{ entities[main_key].location.city }}</city>
-                <country>{{ entities[main_key].location.country }}</country>
+                <city>{{ entity.location.city }}</city>
+                <country>{{ entity.location.country }}</country>
             </address>
             <ul>
                 <li>
-                    <span>{{ entities[main_key].marital_status|capitalize }}</span>
+                    <span>{{ entity.marital_status|capitalize }}</span>
                 </li>
                 <li>
                     <span itemprop="nationality">
-                        {{ entities[main_key].nationality|capitalize }}
+                        {{ entity.nationality|capitalize }}
                     </span>
                 </li>
                 <li>
                     <span itemprop="gender">
-                        {{ entities[main_key].gender|capitalize }}
+                        {{ entity.gender|capitalize }}
                     </span>
                 </li>
-                <li>{{ entities[main_key].birth_day|custom_date("Y-m-d\\TH:i:s\\Z") }}</li>
+                <li>{{ entity.birth_day|custom_date("Y-m-d\\TH:i:s\\Z") }}</li>
                 <li>
                     <span itemprop="telephone" class="tel">
-                        {{ entities[main_key].telephone.uk }}
+                        {{ entity.telephone.uk }}
                     </span>
                 </li>
                 <li>
@@ -46,12 +47,13 @@
                 </li>
                 <li class="hide">
                     <a title="The my email address" rel="nofollow me"
-                       href="mailto:{{ entities[main_key].contacts.email }}"
+                       href="mailto:{{ entity.contacts.email }}"
                        itemprop="email" class="email">
-                        {{ entities[main_key].contacts.email }}
+                        {{ entity.contacts.email }}
                     </a>
                 </li>
             </ul>
         </content>
     </entity>
+    {% endfor %}
 </entities>

@@ -50,7 +50,7 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     }
     // }}}
 
-    // {{{ testGetCurrentLanguage
+    // {{{ testConvertForI18n
     /**
      * Test method "convertForI18n".
      *

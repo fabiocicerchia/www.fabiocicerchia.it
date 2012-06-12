@@ -42,7 +42,7 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
     }
 
     $response = new Response($e->getMessage(), $code);
-    $response->headers->set('Content-Language', 'en_GB');
+    $response->headers->set('Content-Language', 'en');
 
     return $response;
 };
@@ -59,12 +59,15 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
  * @return Response
  */
 $closures['root'] = function () use ($app) {
+    // MimeType
     $mime_type = $app['debug'] === true
                  ? 'application/xml'
                  : 'application/vnd.ads+xml;v=1.0';
 
+    // DB
     $database = $app['mongodb']->selectDatabase('curriculum');
 
+    // Business Logic
     $entryPoint = new EntryPoint();
 
     $data = [
@@ -73,10 +76,13 @@ $closures['root'] = function () use ($app) {
         'api_name'  => 'entry point'
     ];
 
+    // Rendering
     $content  = $app['twig']->render('root.twig', $data);
+
+    // Response
     $response = new Response($content);
     $response->headers->set('Content-Type',     $data['mime_type']);
-    $response->headers->set('Content-Language', 'en_GB');
+    $response->headers->set('Content-Language', 'en');
 
     return $response;
 };
@@ -95,11 +101,15 @@ $closures['root'] = function () use ($app) {
  */
 $closures['api'] = function ($api_name) use ($app) {
     if (is_string($api_name) === false) {
-        throw new InvalidArgumentException('The parameter $api_name must be a string.');
+        throw new \InvalidArgumentException('The parameter $api_name must be a string.');
     }
 
+    // DB
     $database = $app['mongodb']->selectDatabase('curriculum');
 
+    if ($api_name === 'info') $api_name = 'information';
+
+    // Business Logic
     try {
         $service = new Strategy($api_name, $database);
     } catch (UnexpectedValueException $e) {
@@ -109,24 +119,50 @@ $closures['api'] = function ($api_name) use ($app) {
     $data = $service->getData();
     $data['api_name'] = $api_name;
 
-    $accept_language  = $app['request']->headers->get('accept-language');
-    $db_languages     = $database->selectCollection('language')
-                                 ->find([], ['code' => true])->toArray();
-    foreach($db_languages as $language_code) {
-        $short_lang = substr($language_code['code'], 0, strpos($language_code['code'], '_'));
-        $available_languages[$short_lang] = $language_code['code'];
+    // Response
+    $response = new Response();
+    if ($app['debug'] === false) {
+        $firstRecord  = $data['entities'][array_keys($data['entities'])[0]];
+        $lastModified = isset($firstRecord['date'])
+                        ? $firstRecord['date']['end']->sec
+                        : filemtime(__DIR__ . '/../../../db/mongo-curriculum.js');
+        $response->setPublic();
+        $response->setMaxAge(28800);
+        $response->setSharedMaxAge(28800);
+        $response->setETag(md5(serialize($data)));
+        $response->headers->set('Last-Modified', date('r', $lastModified));
     }
-    $current_lang     = Utils::getCurrentLanguage($available_languages, $accept_language);
-    $data['entities'] = Utils::convertForI18n($data['entities'], $current_lang);
 
-    $mime_type = $app['debug'] === true
-                 ? 'application/xml'
-                 : 'application/vnd.ads+xml;v=1.0';
+    if ($response->isNotModified($app['request']) === false) {
+        // MimeType
+        $mime_type = $app['debug'] === true
+                     ? 'application/xml'
+                     : 'application/vnd.ads+xml;v=1.0';
+        $response->headers->set('Content-Type', $mime_type);
 
-    $content  = $app['twig']->render($api_name . '.twig', $data);
-    $response = new Response($content);
-    $response->headers->set('Content-Type',     $mime_type);
-    $response->headers->set('Content-Language', $current_lang);
+        // Language
+        $current_lang        = 'en';
+        $available_languages = [$current_lang => $current_lang];
+        $accept_language     = $app['request']->headers->get('accept-language');
+        if (empty($accept_language) === false) {
+            $db_languages = $database->selectCollection('language')
+                                     ->find([], ['code' => true])->toArray();
+
+            foreach($db_languages as $language_code) {
+                $short_lang = substr($language_code['code'], 0, strpos($language_code['code'], '_'));
+                $available_languages[$short_lang] = $language_code['code'];
+            }
+
+            $current_lang = Utils::getCurrentLanguage($available_languages, $accept_language);
+        }
+        $response->headers->set('Content-Language', $current_lang);
+
+        $data['entities'] = Utils::convertForI18n($data['entities'], $available_languages[$current_lang]);
+
+        // Rendering
+        $content = $app['twig']->render($api_name . '.twig', $data);
+        $response->setContent($content);
+    }
 
     return $response;
 };
@@ -146,7 +182,7 @@ $closures['api_definition_syntax'] = function () use ($app) {
     $content  = $app['twig']->render('api-definition-syntax.twig');
     $response = new Response($content);
     $response->headers->set('Content-Type',     'text/plain');
-    $response->headers->set('Content-Language', 'en_GB');
+    $response->headers->set('Content-Language', 'en');
 
     return $response;
 };

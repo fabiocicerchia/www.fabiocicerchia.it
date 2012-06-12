@@ -65,11 +65,7 @@ class Information extends \FabioCicerchia\Api\ServiceAbstract
     protected function elaborateData(array $data)
     {
         $data = parent::elaborateData($data);
-
-        $keys     = array_keys($data);
-        $main_key = array_shift($keys);
-
-        $data = ['entities' => $data, 'main_key' => $main_key];
+        $data = ['entities' => $data];
 
         return $data;
     }

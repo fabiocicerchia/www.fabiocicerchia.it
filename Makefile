@@ -162,16 +162,17 @@ install-phpmongo:
 config-apache:
 	$(ECHO) "CONFIGURING APACHE"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(A2ENMOD) speling
-	$(A2ENMOD) mod-security
 	$(A2ENMOD) actions
-	$(A2ENMOD) rewrite
-	$(A2ENMOD) perl
 	$(A2ENMOD) cache
 	$(A2ENMOD) disk_cache
-	$(A2ENMOD) mem_cache
 	$(A2ENMOD) expires
+	$(A2ENMOD) headers
+	$(A2ENMOD) mem_cache
+	$(A2ENMOD) mod-security
+	$(A2ENMOD) perl
 	$(A2ENMOD) php5
+	$(A2ENMOD) rewrite
+	$(A2ENMOD) speling
 
 # TODO: SUPPRESS OUTPUT
 # TODO: FIX EXIT CODE
