@@ -1,0 +1,127 @@
+[% USE date %]
+
+<section id="experience">
+    <div class="page-header">
+        <!-- TODO: I18N -->
+        <h2>Experience</h2>
+    </div>
+
+    <div class="row">
+        <div class="span12 vcalendar">
+            [% FOREACH entity = data.experience.entity %]
+            <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent">
+                <div class="page-header">
+                    <h3 class="summary">[% entity.title.content %]</h3>
+                </div>
+                <div class="dates">
+                    <span class="dtstart">[% date.format(entity.update, "%a, %d %b %Y %H:%M:%S GMT") %]</span>
+                    [% IF entity.update == entity.published %] <!-- TODO: CHANGE -->
+                    <span class="dtend">[% date.format(entity.published, "%a, %d %b %Y %H:%M:%S GMT") %]</span>
+                    [% END %]
+                </div>
+                <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
+                    <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
+
+                    <address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+                        [% IF entity.content.company.address.postalcode %]
+                        <span class="postal-code" itemprop="postalCode">[% entity.content.company.address.postalcode %]</span>
+                        [% END %]
+                        [% IF entity.content.company.address.city %]
+                        <span class="locality" itemprop="addressLocality">[% entity.content.company.address.city %]</span>
+                        [% END %]
+                        [% IF entity.content.company.address.country %]
+                        <span class="country-name" itemprop="addressCountry">[% entity.content.company.address.country %]</span>
+                        [% END %]
+                    </address>
+                </div>
+                <div itemprop="description">
+                    <!-- TODO: MISSING -->
+                    <p></p>
+                </div>
+                <!-- TODO: activities -->
+                [% IF entity.content.projects.size > 0 %]
+                <dl class="main_works">
+                    <dt>Main projects developed</dt>
+                    [% FOREACH project IN entity.content.projects %]
+                    <dd itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+                        <span itemprop="name">[% project.title.content %]</span>
+                        <!-- TODO: role -->
+                        <!-- TODO: summary -->
+                        <!-- TODO: start date -->
+                        <!-- TODO: end date -->
+                        [% IF project.link %]
+                        <a itemprop="url" target="_blank" href="[% project.link.href %]" rel="nofollow" title="The URL of the [% project.title.content %]">[% project.link.href %]</a>
+                        [% END %]
+                        [% IF project.methodologies.size > 0 %]
+                        <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                            <dt itemprop="name">Methodologies</dt>
+                            [% FOREACH methodology IN project.methodologies %]
+                            <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% methodology %]</dd>
+                            [% END %]
+                        </dl>
+                        [% END %]
+                        [% IF project.technologies.size > 0 %]
+                        <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                            <dt itemprop="name">Technologies</dt>
+                            [% FOREACH technology IN project.technologies %]
+                            <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technology %]</dd>
+                            [% END %]
+                        </dl>
+                        [% END %]
+                        [% IF project.tools.size > 0 %]
+                        <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                            <dt itemprop="name">Tools</dt>
+                            [% FOREACH tool IN project.tools %]
+                            <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% tool %]</dd>
+                            [% END %]
+                        </dl>
+                        [% END %]
+                        [% IF entity.content.techniques.size > 0 %]
+                        <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                            <dt itemprop="name">Techniques</dt>
+                            [% FOREACH technique IN entity.content.techniques %]
+                            <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technique %]</dd>
+                            [% END %]
+                        </dl>
+                        [% END %]
+                    </dd>
+                    [% END %]
+                </dl>
+                [% END %]
+                [% IF entity.content.methodologies.size > 0 %]
+                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                    <dt itemprop="name">Methodologies</dt>
+                    [% FOREACH methodology IN entity.content.methodologies %]
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% methodology %]</dd>
+                    [% END %]
+                </dl>
+                [% END %]
+                [% IF entity.content.technologies.size > 0 %]
+                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                    <dt itemprop="name">Technologies</dt>
+                    [% FOREACH technology IN entity.content.technologies %]
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technology %]</dd>
+                    [% END %]
+                </dl>
+                [% END %]
+                [% IF entity.content.tools.size > 0 %]
+                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                    <dt itemprop="name">Tools</dt>
+                    [% FOREACH tool IN entity.content.tools %]
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% tool %]</dd>
+                    [% END %]
+                </dl>
+                [% END %]
+                [% IF entity.content.techniques.size > 0 %]
+                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                    <dt itemprop="name">Techniques</dt>
+                    [% FOREACH technique IN entity.content.techniques %]
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technique %]</dd>
+                    [% END %]
+                </dl>
+                [% END %]
+            </div>
+            [% END %]
+        </div>
+    </div>
+</section>

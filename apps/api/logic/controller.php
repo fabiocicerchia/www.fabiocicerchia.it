@@ -107,8 +107,6 @@ $closures['api'] = function ($api_name) use ($app) {
     // DB
     $database = $app['mongodb']->selectDatabase('curriculum');
 
-    if ($api_name === 'info') $api_name = 'information';
-
     // Business Logic
     try {
         $service = new Strategy($api_name, $database);

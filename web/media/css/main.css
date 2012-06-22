@@ -1,7 +1,258 @@
-/**
- *
- * FABIO CICERCHIA - WEBSITE
- * Copyright (C) 2012. All Rights reserved.
- *
- */
+a, a * {
+    color:              #006680;
+    cursor:             pointer;
+}
+a:hover, a:hover * {
+    color:              #7FB2BF;
+}
+/*
+body {
+    color:              #111;
+    font-family:        'Ubuntu', sans-serif;
+    font-size:          11pt;
+    line-height:        1.4em;
+}
 
+a, a * {
+    color:              #236;
+    cursor:             pointer;
+    text-decoration:    none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    clear:              both;
+    color:              #000;
+    font-family:        'PT Serif', serif;
+}
+
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+    color:              #000;
+}
+
+h1 {
+    background-color:   #FFF;
+    border-bottom:      3px solid #111;
+    border-top:         3px solid #111;
+    display:            block;
+    font-size:          2em;
+    margin:             2em 0 0.8em;
+    padding:            0.5em 0;
+    position:           fixed;
+    text-align:         center;
+    text-transform:     uppercase;
+    top:                0;
+    width:              70%;
+}
+
+h2 {
+    border-bottom:      3px solid #003;
+    font-size:          1.5em;
+    margin:             0.8em 0;
+    padding:            1em 0 0.3em 0;
+}
+
+h2, h2 * {
+    color:              #003;
+}
+
+h3 {
+    border-bottom:      2px solid #111;
+    font-size:          1.1em;
+    margin:             0.8em 0;
+    padding:            1em 0 0.3em 0;
+    text-transform:     uppercase;
+}
+
+h3:before {
+    color:              #268;
+    content:            "» ";
+    font-size:          1.2em;
+}
+
+a:hover:after {
+    color:              #268;
+}
+
+h2 a:after {
+    color:              #CCC;
+    content:            " ¶";
+}
+
+h2 a:hover:after {
+    color:              #CCC;
+}
+
+.hresume {
+    background-color:   #FFF;
+    border-left:        1px solid #CCC;
+    border-right:       1px solid #CCC;
+    box-shadow:         0em 0em 5em #BBC;
+    margin-left:        15%;
+    padding:            9em 1em 3em 1em;
+    width:              70%;
+}
+
+#nav {
+    background-color:   #FFF;
+    display:            block;
+    padding:            1em 0 5.5em;
+    position:           fixed;
+    top:                0;
+    width:              70%;
+}
+
+#nav ul li {
+    display:            inline-block !important;
+    float:              left;
+    margin:             0 1% 0 1%;
+    width:              18% !important;
+}
+
+#nav li a:hover {
+    border-bottom:      1px solid #EEF;
+    font-weight:        bold;
+}
+
+#nav a {
+    color:              #000;
+    display:            inline-block !important;
+    font-size:          0.9em;
+    padding-bottom:     0.5em;
+    text-align:         center;
+    width:              100%;
+}
+*/
+
+div.vevent .dates {
+    float:              right;
+}
+
+/*
+.section div.vevent > * {
+    margin-left:        1em;
+    margin-right:       1em;
+}
+
+.section div.vevent h3 {
+    margin-left:        0;
+    margin-right:       0;
+}
+
+.section {
+    clear:              both;
+}
+*/
+
+body {
+    line-height:        1.6em;
+}
+
+p {
+    padding:            0 1em;
+    text-align:         justify;
+}
+
+/*
+.vevent {
+    margin-bottom:      2em;
+}
+
+#skills .span4 dl {
+    margin-bottom:      2em;
+}
+*/
+
+#overview img {
+    float:              left;
+    margin-right:       1.5em;
+}
+
+.subnav {
+    width:              86%;
+    margin:             0 0 0 auto;
+}
+
+.subnav-fixed {
+    top:                0;
+    width:              100%;
+}
+
+.subnav .brand {
+    display:            none;
+}
+
+.subnav-fixed .brand {
+    display:            block;
+    font-size:          1.2em;
+    font-weight:        bold;
+    padding:            8px 20px 8px 13px;
+}
+
+section {
+    padding-top:        1em;
+}
+
+body {
+    padding-top:        3em;
+}
+
+dl {
+    border-top:         0.1em dotted #CCC;
+    margin:             1em 0em 0em 0em;
+    padding-top:        0.8em;
+}
+
+dl.first {
+    border:             0px;
+    margin-top:         0em;
+}
+
+dl dt, dl dd {
+    display:            inline-block;
+    padding-right:      0.3em;
+}
+
+dl dd:after {
+    content:            ", ";
+}
+
+dl dt {
+    font-weight:        bold;
+}
+
+dt:before {
+    color:              #CCC;
+    content:            "» ";
+}
+
+dl dt:after {
+    content:            ": ";
+}
+
+dl dd.last:after {
+    content:            ".";
+}
+
+#skills dt:after {
+    content:            "";
+}
+
+#skills dd:after {
+    content:            ".";
+}
+
+#skills dt, #skills dd {
+    display:            block;
+}
+
+div.vevent ul li {
+    display:            inline-block;
+}
+
+div.vevent ul li:after {
+    content:            ", ";
+}
+
+div.vevent ul li.last:after {
+    content:            ".";
+}

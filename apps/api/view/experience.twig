@@ -21,11 +21,11 @@
                 {% if entity.company.url is defined %}
                 <link rel="related" href="{{ entity.company.url }}" />
                 {% endif %}
-                {% if entity.location is defined %}
+                {% if entity.company.location is defined %}
                 <address>
                     <postalcode>{{ entity.company.location.cap }}</postalcode>
                     <city>{{ entity.company.location.city }}</city>
-                    <country>{{ entity.company.location.country }}</city>
+                    <country>{{ entity.company.location.country }}</country>
                 </address>
                 {% endif %}
             </company>

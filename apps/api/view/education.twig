@@ -18,7 +18,7 @@
         <content>
             <company>
                 <title type="text">{{ entity.institute.name }}</title>
-                {% if entity.company.url is defined %}
+                {% if entity.institute.url is defined %}
                 <link rel="related" href="{{ entity.institute.url }}" />
                 {% endif %}
                 {% if entity.location is defined %}

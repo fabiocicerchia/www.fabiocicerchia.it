@@ -23,6 +23,9 @@
 
     # LOG #####################################################################
     LogLevel  warn
+    #<IfModule mod_perl.c>
+    #    PerlWarn On
+    #</IfModule>
 
     LogFormat "%h %l %u %t \"%r\" %>s %b" common
     LogFormat "\"%r\" %D"                 measure-time
@@ -141,18 +144,18 @@
     </IfModule>
 
     # EXPIRES #################################################################
-    <IfModule mod_expires.c>
-        ExpiresActive On
-
-        ExpiresByType image/x-icon             "access plus 1 month"
-        ExpiresByType image/gif                "access plus 1 month"
-        ExpiresByType image/jpeg               "access plus 1 month"
-        ExpiresByType image/png                "access plus 1 month"
-        ExpiresByType application/javascript   "access plus 2 week"
-        ExpiresByType application/x-javascript "access plus 2 week"
-        ExpiresByType text/css                 "access plus 2 week"
-    </IfModule>
-
+#    <IfModule mod_expires.c>
+#        ExpiresActive On
+#
+#        ExpiresByType image/x-icon             "access plus 1 month"
+#        ExpiresByType image/gif                "access plus 1 month"
+#        ExpiresByType image/jpeg               "access plus 1 month"
+#        ExpiresByType image/png                "access plus 1 month"
+#        ExpiresByType application/javascript   "access plus 2 week"
+#        ExpiresByType application/x-javascript "access plus 2 week"
+#        ExpiresByType text/css                 "access plus 2 week"
+#    </IfModule>
+#
     # PHP #####################################################################
     <IfModule mod_php5.c>
         php_value zlib.output_compression 16386

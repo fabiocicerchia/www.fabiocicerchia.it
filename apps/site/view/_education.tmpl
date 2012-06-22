@@ -1,0 +1,37 @@
+[% USE date %]
+
+<section id="education">
+    <div class="page-header">
+        <!-- TODO: I18N -->
+        <h2>Education</h2>
+    </div>
+
+    <div class="row">
+        <div class="span12 vcalendar">
+            [% FOREACH entity IN data.education.entity %]
+            [% IF loop.index mod 2 == 0 %]<div class="row-fluid">[% END %]
+            <div itemscope="itemscope" itemtype="http://schema.org/EducationEvent" class="span6 education vevent">
+                <h3 class="summary" itemprop="name">[% entity.title.content %]</h3>
+                <div class="dates">
+                    <span class="dtstart">[% date.format(entity.update, "%a, %d %b %Y %H:%M:%S GMT") %]</span>
+                    [% IF entity.update == entity.published %] <!-- TODO: CHANGE -->
+                    <span class="dtend">[% date.format(entity.published, "%a, %d %b %Y %H:%M:%S GMT") %]</span>
+                    [% END %]
+                </div>
+                <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
+                    <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
+                </div>
+                <!-- TODO: I18N -->
+                <strong>Activities:</strong>
+                <ul itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                    [% FOREACH activity = entity.content.activities %]
+                    <li[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</li>
+                    [% END %]
+                </ul>
+            </div>
+            [% IF loop.count mod 2 == 0 %]</div>[% END %]
+            [% END %]
+            [% IF loop.count mod 2 == 0 %]</div>[% END %]
+        </div>
+    </div>
+</section>

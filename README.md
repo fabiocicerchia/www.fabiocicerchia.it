@@ -15,6 +15,7 @@ Link      http://www.fabiocicerchia.it
   * Cache
   * Disk Cache
   * Expires
+  * Headers
   * Mem Cache
   * PHP5
   * Perl
@@ -49,8 +50,6 @@ Link      http://www.fabiocicerchia.it
  * Silex
   * HttpCacheService
   * Twig
-  * UrlGenerator
- * Silex-Extension
 
 ### Tools
  * PHPUnit
@@ -82,14 +81,16 @@ Link      http://www.fabiocicerchia.it
 
 ### Technologies
  * Perl
+ * HTML 5
 
 ### Libraries
  * Meyer CSS Reset
  * OWASP - Core Rule Set
+ * Twitter Bootstrap
  * Perl Modules
   * Data::Dumper
   * File::Basename
-  * LWP::Simple
+  * LWP
   * Template
   * XML::Simple
 
