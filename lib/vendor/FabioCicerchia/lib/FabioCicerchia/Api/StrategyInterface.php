@@ -4,7 +4,7 @@
  *
  * PHP Version 5.4
  *
- * @category   API
+ * @category   Code
  * @package    FabioCicerchia\Api
  * @subpackage StrategyInterface
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -18,7 +18,7 @@ namespace FabioCicerchia\Api;
 /**
  * Message
  *
- * @category   API
+ * @category   Code
  * @package    FabioCicerchia\Api
  * @subpackage StrategyInterface
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>

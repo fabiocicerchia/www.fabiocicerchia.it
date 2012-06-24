@@ -4,7 +4,7 @@
  *
  * PHP Version 5.4
  *
- * @category   API
+ * @category   Code
  * @package    FabioCicerchia\Api\Service
  * @subpackage Information
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -20,7 +20,7 @@ use FabioCicerchia\Api;
 /**
  * The Information Service.
  *
- * @category   API
+ * @category   Code
  * @package    FabioCicerchia\Api\Service
  * @subpackage Information
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -32,7 +32,9 @@ class Information extends \FabioCicerchia\Api\ServiceAbstract
 {
     // {{{ PROPERTIES
     /**
-     * @var string $collectionName The name of the collection.
+     * The name of the collection.
+     *
+     * @var string $collectionName
      */
     protected $collectionName = 'information';
     // }}}

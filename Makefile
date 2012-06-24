@@ -5,37 +5,37 @@
 
 # SYSTEM COMMANDS
 SUDO=sudo
+HIDDEN=@
 
-APT=$(SUDO) apt-get
-CD=cd
-CHMOD=chmod
-CP=cp -r
-CURL=curl
-ECHO=@echo
-GIT=git
-LN=ln -s
-MKDIR=mkdir -p
-RM=rm -rf
-WGET=wget
+APT=$(SUDO) $(HIDDEN)apt-get
+CD=$(HIDDEN)cd
+CHMOD=$(HIDDEN)chmod
+CP=$(HIDDEN)cp -r
+CURL=$(HIDDEN)curl
+ECHO=$(HIDDEN)echo
+GIT=$(HIDDEN)git
+LN=$(HIDDEN)ln -s
+MKDIR=$(HIDDEN)mkdir -p
+RM=$(HIDDEN)rm -rf
+WGET=$(HIDDEN)wget
 
 # CUSTOM COMMANDS
-A2ENMOD=$(SUDO) a2enmod
-MSGFMT=msgfmt
-PDEPEND=pdepend
-PEAR=$(SUDO) pear
-PECL=$(SUDO) pecl
-PHP=php
-PHPCB=phpcb
-PHPCPD=phpcpd
-PHPCS=phpcs -s -v
-PHPDOC=phpdoc
-PHPLOC=phploc
-PHPMD=phpmd
-PHPUNIT=phpunit
+A2ENMOD=$(SUDO) $(HIDDEN)a2enmod
+PDEPEND=$(HIDDEN)pdepend
+PEAR=$(SUDO) $(HIDDEN)pear
+PECL=$(SUDO) $(HIDDEN)pecl
+PERL=$(HIDDEN)perl
+PHP=$(HIDDEN)php
+PHPCB=$(HIDDEN)phpcb
+PHPCPD=$(HIDDEN)phpcpd
+PHPCS=$(HIDDEN)phpcs -s -v
+PHPDOC=$(HIDDEN)phpdoc
+PHPLOC=$(HIDDEN)phploc
+PHPMD=$(HIDDEN)phpmd
+PHPUNIT=$(HIDDEN)phpunit
 
 # FLAGS
 PEAR_INSTALL_FLAGS=--alldeps
-SUPPRESS_OUTPUT=>> /dev/null
 
 # DIRECTORIES
 CURRENTDIR=.
@@ -56,9 +56,8 @@ info:
 	$(ECHO) "--------------------------------------------------------------------------------"
 
 init-environment:
-	$(ECHO) "RUN THE TESTS"
+	$(ECHO) "INSTALL THE ENVIRONMENT"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(WGET) http://meyerweb.com/eric/tools/css/reset/reset.css -O web/media/css/reset.css
 	$(WGET) http://silex.sensiolabs.org/get/silex.phar -O apps/api/silex.phar
 	$(GIT) submodule init
 	$(GIT) submodule update
@@ -70,10 +69,11 @@ install-environment: install-php54 install-imagick install-phpunit install-phpcb
 
 config-environment: config-apache
 
-test:
+tests:
 	$(ECHO) "RUN THE TESTS"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPUNIT)
+	$(PHPUNIT) || true
+	$(PERL) test/site/test.pl
 
 sca: run-phpcs run-phpmd run-phploc run phpcpd run-pdepend run-phpcb
 
@@ -97,56 +97,56 @@ install-imagick:
 install-phpunit:
 	$(ECHO) "INSTALLING PHPUNIT"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.phpunit.de $(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.phpunit.de || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpunit/PHPUnit
 
 install-phpcb:
 	$(ECHO) "INSTALLING PHP_CODE_BROWSER"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.phpunit.de $(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.phpunit.de || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpunit/PHP_CodeBrowser
 
 install-phpcc:
 	$(ECHO) "INSTALLING PHP_CODE_COVERAGE"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.phpunit.de $(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.phpunit.de || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpunit/PHP_CodeCoverage
 
 install-phpcov:
 	$(ECHO) "INSTALLING PHPCOV"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.phpunit.de $(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.phpunit.de || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpunit/phpcov
 
 install-phpcpd:
 	$(ECHO) "INSTALLING PHPCPD"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.phpunit.de $(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.phpunit.de || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpunit/phpcpd
 
 install-phploc:
 	$(ECHO) "INSTALLING PHPLOC"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.phpunit.de $(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.phpunit.de || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpunit/phploc
 
 install-phpdoc2:
 	$(ECHO) "INSTALLING PHPDOCUMENTOR2"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.phpdoc.org$(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.phpdoc.org || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpdoc/phpDocumentor-alpha
 	$(APT) install graphviz
 
 install-pdepend:
 	$(ECHO) "INSTALLING PHP_DEPEND"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.pdepend.org $(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.pdepend.org || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) pdepend/PHP_Depend-beta
 
 install-phpmd:
 	$(ECHO) "INSTALLING PHPMD"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PEAR) channel-discover pear.phpmd.org $(SUPPRESS_OUTPUT)
+	$(PEAR) channel-discover pear.phpmd.org || true
 	$(PEAR) install $(PEAR_INSTALL_FLAGS) phpmd/PHP_PMD
 
 install-phpcs:
@@ -174,26 +174,20 @@ config-apache:
 	$(A2ENMOD) rewrite
 	$(A2ENMOD) speling
 
-# TODO: SUPPRESS OUTPUT
-# TODO: FIX EXIT CODE
 run-phpcs:
 	$(ECHO) "RUNNING PHP_CodeSniffer"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/app/phpcs.xml" "$(API_APP_SOURCEDIR)" || echo -n ""
-	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/lib/phpcs.xml" "$(API_LIB_SOURCEDIR)" || echo -n ""
-	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/test/phpcs.xml" "$(API_TEST_SOURCEDIR)" || echo -n ""
+	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/app/phpcs.xml" "$(API_APP_SOURCEDIR)" || true
+	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/lib/phpcs.xml" "$(API_LIB_SOURCEDIR)" || true
+	$(PHPCS) --standard="$(CURRENTDIR)/lib/PHPCS/ruleset.xml" --report=xml --report-file="$(REPORTDIR)/api/logs/test/phpcs.xml" "$(API_TEST_SOURCEDIR)" || true
 
-# TODO: SUPPRESS OUTPUT
-# TODO: FIX EXIT CODE
 run-phpmd:
 	$(ECHO) "RUNNING PHPMD"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(PHPMD) "$(API_APP_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/app/phpmd.xml" || echo -n ""
-	$(PHPMD) "$(API_LIB_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/lib/phpmd.xml" || echo -n ""
-	$(PHPMD) "$(API_TEST_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/test/phpmd.xml" || echo -n ""
+	$(PHPMD) "$(API_APP_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/app/phpmd.xml" || true
+	$(PHPMD) "$(API_LIB_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/lib/phpmd.xml" || true
+	$(PHPMD) "$(API_TEST_SOURCEDIR)" xml codesize,design,naming,unusedcode --reportfile "$(REPORTDIR)/api/logs/test/phpmd.xml" || true
 
-# TODO: SUPPRESS OUTPUT
-# TODO: FIX EXIT CODE
 run-phploc:
 	$(ECHO) "RUNNING PHPLOC"
 	$(ECHO) "--------------------------------------------------------------------------------"

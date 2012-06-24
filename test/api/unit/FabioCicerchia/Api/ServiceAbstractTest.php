@@ -4,7 +4,7 @@
  *
  * PHP Version 5.4
  *
- * @category   API
+ * @category   Test
  * @package    FabioCicerchia\Api
  * @subpackage ServiceAbstract
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -13,12 +13,14 @@
  * @link       http://www.fabiocicerchia.it
  */
 
+// TODO: CHANGE PATH + DIR_SEP
 require_once __DIR__ . '/../../../../../lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/ServiceAbstract.php';
+require_once __DIR__ . '/../../../../../lib/vendor/FabioCicerchia/lib/FabioCicerchia/TestCase.php';
 
 /**
  * The Abstract class for every Service.
  *
- * @category   API
+ * @category   Test
  * @package    FabioCicerchia\Api
  * @subpackage ServiceAbstract
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -26,7 +28,8 @@ require_once __DIR__ . '/../../../../../lib/vendor/FabioCicerchia/lib/FabioCicer
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
  */
-class ServiceAbstractTest extends PHPUnit_Framework_TestCase
+// TODO: CHANGE CLASS
+class ServiceAbstractTest extends FabioCicerchia\TestCase
 {
     // {{{ testRunEmptyData
     /**

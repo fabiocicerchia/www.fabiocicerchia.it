@@ -4,7 +4,7 @@
  *
  * PHP Version 5.4
  *
- * @category   API
+ * @category   Test
  * @package    FabioCicerchia\Api
  * @subpackage Utils
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../../../../lib/vendor/FabioCicerchia/lib/FabioCicer
 /**
  * The Utils Test class.
  *
- * @category   API
+ * @category   Test
  * @package    FabioCicerchia\Api
  * @subpackage Utils
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>

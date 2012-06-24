@@ -13,7 +13,6 @@
  */
 
 use Silex\Provider\TwigServiceProvider;
-use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\HttpCacheServiceProvider;
 
 // -----------------------------------------------------------------------------
@@ -46,12 +45,6 @@ $app->register($twigServiceProvider, $options);
 $md5_filter = new Twig_Filter_Function('md5');
 $app['twig']->addFilter('md5', $md5_filter);
 $app['twig']->addExtension(new FabioCicerchia\Api\TwigExtension($app));
-
-// -----------------------------------------------------------------------------
-// URL GENERATOR PROVIDER ------------------------------------------------------
-// -----------------------------------------------------------------------------
-$urlGeneratorServiceProvider = new UrlGeneratorServiceProvider();
-$app->register($urlGeneratorServiceProvider);
 
 // -----------------------------------------------------------------------------
 // HTTP CACHE PROVIDER ---------------------------------------------------------

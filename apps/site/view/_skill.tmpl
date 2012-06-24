@@ -13,8 +13,8 @@
                     [% FOREACH item = skill.content.skills %]
                     <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
                         <dt itemprop="name">[% item.key %]</dt>
-                        [% FOREACH subitem = item.value %]
-                        <dd itemprop="itemListElement">[% subitem %]</dd>
+                        [% FOREACH subitem = item.value.sort %]
+                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% subitem %]</dd>
                         [% END %]
                     </dl>
                     [% END %]

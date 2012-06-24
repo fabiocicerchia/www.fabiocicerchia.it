@@ -4,7 +4,7 @@
  *
  * PHP Version 5.4
  *
- * @category  Api
+ * @category  Test
  * @package   Api
  * @author    Fabio Cicerchia <info@fabiocicerchia.it>
  * @copyright 2012 Fabio Cicerchia. All Rights reserved.
@@ -21,8 +21,8 @@ use Silex\WebTestCase;
 /**
  * The Application Test Suite.
  *
- * @category   API
- * @package    WebTestCase
+ * @category   Test
+ * @package    Api
  * @subpackage AppTest
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.

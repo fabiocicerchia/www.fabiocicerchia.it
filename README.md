@@ -50,6 +50,8 @@ Link      http://www.fabiocicerchia.it
  * Silex
   * HttpCacheService
   * Twig
+ * Silex-Extension
+  * MongoDbExtension
 
 ### Tools
  * PHPUnit
@@ -93,6 +95,7 @@ Link      http://www.fabiocicerchia.it
   * LWP
   * Template
   * XML::Simple
+  * Test::More
 
 ### Tools
  * Google Minify

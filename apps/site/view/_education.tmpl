@@ -13,25 +13,24 @@
             <div itemscope="itemscope" itemtype="http://schema.org/EducationEvent" class="span6 education vevent">
                 <h3 class="summary" itemprop="name">[% entity.title.content %]</h3>
                 <div class="dates">
-                    <span class="dtstart">[% date.format(entity.update, "%a, %d %b %Y %H:%M:%S GMT") %]</span>
-                    [% IF entity.update == entity.published %] <!-- TODO: CHANGE -->
-                    <span class="dtend">[% date.format(entity.published, "%a, %d %b %Y %H:%M:%S GMT") %]</span>
-                    [% END %]
+                    <!-- TODO: ADD dtend -->
+                    <!-- TODO: ADD date.format(, "%a, %d %b %Y %H:%M:%S GMT") -->
+                    <span class="dtstart">[% entity.published %]</span>
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
                     <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
                 </div>
-                <!-- TODO: I18N -->
-                <strong>Activities:</strong>
-                <ul itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                    <!-- TODO: I18N -->
+                    <dt itemprop="name">Activities</dt>
                     [% FOREACH activity = entity.content.activities %]
-                    <li[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</li>
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</li>
                     [% END %]
-                </ul>
+                </dl>
             </div>
             [% IF loop.count mod 2 == 0 %]</div>[% END %]
             [% END %]
-            [% IF loop.count mod 2 == 0 %]</div>[% END %]
+            [% IF loop.count mod 2 == 0 %]</div>[% END %] <!-- TODO: CHANGE THIS -->
         </div>
     </div>
 </section>

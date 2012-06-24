@@ -14,10 +14,9 @@
                     <h3 class="summary">[% entity.title.content %]</h3>
                 </div>
                 <div class="dates">
-                    <span class="dtstart">[% date.format(entity.update, "%a, %d %b %Y %H:%M:%S GMT") %]</span>
-                    [% IF entity.update == entity.published %] <!-- TODO: CHANGE -->
-                    <span class="dtend">[% date.format(entity.published, "%a, %d %b %Y %H:%M:%S GMT") %]</span>
-                    [% END %]
+                    <!-- TODO: ADD dtend -->
+                    <!-- TODO: ADD date.format(, "%a, %d %b %Y %H:%M:%S GMT") -->
+                    <span class="dtstart">[% entity.published %]</span>
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
                     <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
@@ -38,55 +37,71 @@
                     <!-- TODO: MISSING -->
                     <p></p>
                 </div>
-                <!-- TODO: activities -->
-                [% IF entity.content.projects.size > 0 %]
-                <dl class="main_works">
-                    <dt>Main projects developed</dt>
-                    [% FOREACH project IN entity.content.projects %]
-                    <dd itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
-                        <span itemprop="name">[% project.title.content %]</span>
-                        <!-- TODO: role -->
-                        <!-- TODO: summary -->
-                        <!-- TODO: start date -->
-                        <!-- TODO: end date -->
-                        [% IF project.link %]
-                        <a itemprop="url" target="_blank" href="[% project.link.href %]" rel="nofollow" title="The URL of the [% project.title.content %]">[% project.link.href %]</a>
-                        [% END %]
-                        [% IF project.methodologies.size > 0 %]
-                        <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                            <dt itemprop="name">Methodologies</dt>
-                            [% FOREACH methodology IN project.methodologies %]
-                            <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% methodology %]</dd>
-                            [% END %]
-                        </dl>
-                        [% END %]
-                        [% IF project.technologies.size > 0 %]
-                        <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                            <dt itemprop="name">Technologies</dt>
-                            [% FOREACH technology IN project.technologies %]
-                            <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technology %]</dd>
-                            [% END %]
-                        </dl>
-                        [% END %]
-                        [% IF project.tools.size > 0 %]
-                        <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                            <dt itemprop="name">Tools</dt>
-                            [% FOREACH tool IN project.tools %]
-                            <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% tool %]</dd>
-                            [% END %]
-                        </dl>
-                        [% END %]
-                        [% IF entity.content.techniques.size > 0 %]
-                        <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                            <dt itemprop="name">Techniques</dt>
-                            [% FOREACH technique IN entity.content.techniques %]
-                            <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technique %]</dd>
-                            [% END %]
-                        </dl>
-                        [% END %]
-                    </dd>
+                [% IF entity.content.activities.size > 0 %]
+                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                    <!-- TODO: I18N -->
+                    <dt itemprop="name">Activities</dt>
+                    [% FOREACH activity = entity.content.activities %]
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</li>
                     [% END %]
                 </dl>
+                [% END %]
+                [% IF entity.content.projects.size > 0 %]
+                <!-- TODO: OPTIMIZE -->
+                <div class="accordion" id="accordion[% entity.title.content.replace(" ", "") %]">
+                    [% FOREACH project IN entity.content.projects %]
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <!-- TODO: OPTIMIZE -->
+                            <a href="#collapse[% project.title.content.replace(" ", "") %]" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion[% entity.title.content.replace(" ", "") %]">
+                                <span itemprop="name">[% project.title.content %]</span>
+                            </a>
+                        </div>
+                        <!-- TODO: OPTIMIZE -->
+                        <div id="collapse[% project.title.content.replace(" ", "") %]" class="accordion-body collapse">
+                            <!-- TODO: role -->
+                            <!-- TODO: summary -->
+                            <!-- TODO: start date -->
+                            <!-- TODO: end date -->
+                            [% IF project.link %]
+                                <a itemprop="url" target="_blank" href="[% project.link.href %]" rel="nofollow" title="The URL of the [% project.title.content %]">[% project.link.href %]</a>
+                            [% END %]
+                            [% IF project.methodologies.size > 0 %]
+                            <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                                <dt itemprop="name">Methodologies</dt>
+                                [% FOREACH methodology IN project.methodologies %]
+                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% methodology %]</dd>
+                                [% END %]
+                            </dl>
+                            [% END %]
+                            [% IF project.technologies.size > 0 %]
+                            <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                                <dt itemprop="name">Technologies</dt>
+                                [% FOREACH technology IN project.technologies %]
+                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technology %]</dd>
+                                [% END %]
+                            </dl>
+                            [% END %]
+                            [% IF project.tools.size > 0 %]
+                            <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                                <dt itemprop="name">Tools</dt>
+                                [% FOREACH tool IN project.tools %]
+                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% tool %]</dd>
+                                [% END %]
+                            </dl>
+                            [% END %]
+                            [% IF entity.content.techniques.size > 0 %]
+                            <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                                <dt itemprop="name">Techniques</dt>
+                                [% FOREACH technique IN entity.content.techniques %]
+                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technique %]</dd>
+                                [% END %]
+                            </dl>
+                            [% END %]
+                        </div>
+                    </div>
+                    [% END %]
+                </div>
                 [% END %]
                 [% IF entity.content.methodologies.size > 0 %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">

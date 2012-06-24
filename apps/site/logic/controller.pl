@@ -4,7 +4,7 @@
 #
 # Perl Version 5
 #
-# @category  Site
+# @category  Code
 # @package   Site
 # @author    Fabio Cicerchia <info@fabiocicerchia.it>
 # @copyright 2012 Fabio Cicerchia. All Rights reserved.

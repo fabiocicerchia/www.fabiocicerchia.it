@@ -4,7 +4,7 @@
  *
  * PHP Version 5.4
  *
- * @category   API
+ * @category   Code
  * @package    FabioCicerchia\Api\Service
  * @subpackage EntryPoint
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -18,7 +18,7 @@ namespace FabioCicerchia\Api\Service;
 /**
  * The EntryPoint.
  *
- * @category   API
+ * @category   Code
  * @package    FabioCicerchia\Api\Service
  * @subpackage EntryPoint
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -30,7 +30,9 @@ class EntryPoint
 {
     // {{{ PROPERTIES
     /**
-     * @var array $services The list of active services.
+     * The list of active services.
+     *
+     * @var array $services
      */
     protected $services = [
         'information',

@@ -4,35 +4,34 @@
  *
  * PHP Version 5.4
  *
- * @category  Api
- * @package   Api
- * @author    Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright 2012 Fabio Cicerchia. All Rights reserved.
- * @license   TBD <http://www.fabiocicerchia.it>
- * @link      http://www.fabiocicerchia.it
+ * @category   Code
+ * @package    Api
+ * @subpackage App
+ * @author     Fabio Cicerchia <info@fabiocicerchia.it>
+ * @copyright  2012 Fabio Cicerchia. All Rights reserved.
+ * @license    TBD <http://www.fabiocicerchia.it>
+ * @link       http://www.fabiocicerchia.it
  */
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use FabioCicerchia\Api\Service\EntryPoint;
+use FabioCicerchia\Api\Service\Strategy;
+use FabioCicerchia\Api\Utils;
 
 // -----------------------------------------------------------------------------
 // INIT SILEX ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 require_once __DIR__ . '/../silex.phar';
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
 $app = new Silex\Application();
 
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/controller.php';
 
-use FabioCicerchia\Api\Service\EntryPoint;
-use FabioCicerchia\Api\Service\Strategy;
-use FabioCicerchia\Api\Utils;
-
 // -----------------------------------------------------------------------------
 // ERROR HANDLING --------------------------------------------------------------
 // -----------------------------------------------------------------------------
-
 if (empty($closures['error']) === true
     || is_callable($closures['error']) === false
 ) {
@@ -43,7 +42,6 @@ $app->error($closures['error']);
 // -----------------------------------------------------------------------------
 // ROUTE ROOT ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-
 if (empty($closures['root']) === true
     || is_callable($closures['root']) === false
 ) {
@@ -54,7 +52,6 @@ $app->get('/', $closures['root'])->method('GET')->bind('root');
 // -----------------------------------------------------------------------------
 // ROUTE API -------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-
 if (empty($closures['api']) === true
     || is_callable($closures['api']) === false
 ) {
@@ -66,7 +63,6 @@ $app->get('/{api_name}', $closures['api'])->assert('api_name', '[a-z]+')
 // -----------------------------------------------------------------------------
 // ROUTE API DEFINITION SYNTAX -------------------------------------------------
 // -----------------------------------------------------------------------------
-
 if (empty($closures['api_definition_syntax']) === true
     || is_callable($closures['api_definition_syntax']) === false
 ) {

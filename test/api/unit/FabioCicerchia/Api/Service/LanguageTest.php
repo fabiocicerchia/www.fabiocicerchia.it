@@ -4,7 +4,7 @@
  *
  * PHP Version 5.4
  *
- * @category   API
+ * @category   Test
  * @package    FabioCicerchia\Api\Service
  * @subpackage LanguageTest
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -19,7 +19,7 @@ require_once __DIR__ . '/../../../../../../lib/vendor/FabioCicerchia/lib/FabioCi
 /**
  * The Language Test Class.
  *
- * @category   API
+ * @category   Test
  * @package    FabioCicerchia\Api\Service
  * @subpackage LanguageTest
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>

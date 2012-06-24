@@ -3,8 +3,8 @@
  * FABIO CICERCHIA - WEBSITE
  *
  * PHP Version 5.4
-*
- * @category   API
+ *
+ * @category   Code
  * @package    FabioCicerchia\Api\Service
  * @subpackage Strategy
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -20,7 +20,7 @@ use FabioCicerchia\Api;
 /**
  * The Strategy Pattern applied.
  *
- * @category   API
+ * @category   Code
  * @package    FabioCicerchia\Api\Service
  * @subpackage Strategy
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
@@ -32,7 +32,9 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
 {
     // {{{ PROPERTIES
     /**
-     * @var object $strategy The instance of Service.
+     * The instance of Service.
+     *
+     * @var object $strategy
      */
     private $strategy = null;
     // }}}
@@ -41,7 +43,7 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
     /**
      * The constructor.
      *
-     * @param  string $service_name The name of the service.
+     * @param  string                     $service_name The name of the service.
      * @param  \Doctrine\MongoDB\Database $db_handle    The Database Handle.
      *
      * @api
