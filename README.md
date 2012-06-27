@@ -1,7 +1,7 @@
 # FABIO CICERCHIA - WEBSITE
-Copyright (C) 2012. All Rights reserved.
-License   TBD <http://www.fabiocicerchia.it>
-Link      http://www.fabiocicerchia.it
+Copyright (C) 2012. All Rights reserved.  
+License   TBD <http://www.fabiocicerchia.it>  
+Link      http://www.fabiocicerchia.it  
 
 ## General
 
@@ -94,6 +94,7 @@ Link      http://www.fabiocicerchia.it
   * File::Basename
   * File::Spec
   * LWP
+  * Pod::Coverage
   * Template
   * Test::More
   * XML::Simple

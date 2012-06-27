@@ -84,7 +84,7 @@ sub new
 }
 # }}}
 
-# {{{ show - DON'T OPEN
+# {{{ show
 ############################################
 # Usage      : FabioCicerchia::Site->show()
 # Purpose    : Run the required action.
@@ -103,7 +103,7 @@ sub show
 }
 # }}}
 
-# {{{ executeAction - DON'T OPEN
+# {{{ executeAction
 ############################################
 # Usage      : FabioCicerchia::Site->executeAction()
 # Purpose    : Execute a custom & dynamical action.
@@ -123,7 +123,7 @@ sub executeAction
 }
 # }}}
 
-# {{{ actionShow - DON'T OPEN
+# {{{ actionShow
 ############################################
 # Usage      : FabioCicerchia::Site->actionShow()
 # Purpose    : The "show" action.
@@ -166,7 +166,7 @@ sub actionShow
 }
 # }}}
 
-# {{{ elaborateData - DON'T OPEN
+# {{{ elaborateData
 ############################################
 # Usage      : FabioCicerchia::Site->elaborateData()
 # Purpose    : Change the data.
@@ -196,7 +196,7 @@ sub elaborateData
 }
 # }}}
 
-# {{{ action404 - DON'T OPEN
+# {{{ action404
 ############################################
 # Usage      : FabioCicerchia::Site->action404()
 # Purpose    : Print a 404 error.
@@ -212,7 +212,7 @@ sub action404
 }
 # }}}
 
-# {{{ setRequest - DON'T OPEN
+# {{{ setRequest
 ############################################
 # Usage      : FabioCicerchia::Site->setRequest()
 # Purpose    : Set the main parameters for the request.
@@ -244,7 +244,7 @@ sub setRequest
 }
 # }}}
 
-# {{{ callAPI - DON'T OPEN
+# {{{ callAPI
 ############################################
 # Usage      : FabioCicerchia::Site->callAPI()
 # Purpose    : Call an URL and return its content.
@@ -268,7 +268,7 @@ sub callAPI
 }
 # }}}
 
-# {{{ retrieveXML - DON'T OPEN
+# {{{ retrieveXML
 ############################################
 # Usage      : FabioCicerchia::Site->retrieveXML()
 # Purpose    : Retrieve XML from an URL.
