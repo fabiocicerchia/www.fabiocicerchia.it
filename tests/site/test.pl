@@ -147,7 +147,7 @@ subtest 'Unit Testing' => sub {
 };
 
 subtest 'Functional Testing' => sub {
-    %ENV = (
+    local %ENV = (
         'SCRIPT_NAME',          '/index.pl',
         'SERVER_NAME',          'fabiocicerchia.it',
         'SERVER_ADMIN',         '[no address given]',
@@ -180,5 +180,5 @@ subtest 'Functional Testing' => sub {
     my $obj = new_ok($class_name);
     $obj->show();
 
-    pass();
+    pass('Functional Testing');
 };

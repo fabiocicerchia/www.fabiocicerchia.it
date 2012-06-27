@@ -40,7 +40,7 @@ PHPUNIT=$(HIDDEN)phpunit
 PEAR_INSTALL_FLAGS=--alldeps
 
 # DIRECTORIES
-CURRENTDIR=`pwd`
+CURRENTDIR=.
 API_APP_SOURCEDIR=$(CURRENTDIR)/apps/api
 API_LIB_SOURCEDIR=$(CURRENTDIR)/lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api
 API_TEST_SOURCEDIR=$(CURRENTDIR)/tests/api
@@ -173,10 +173,22 @@ install-phpmongo:
 install-perl-modules:
 	$(ECHO) "INSTALLING PERL MODULES"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	$(CPAN) install Template
+	$(CPAN) install Data::Dumper
+	$(CPAN) install Devel::Cover
 	$(CPAN) install File::Basename
-	$(CPAN) install XML::Simple
+	$(CPAN) install File::Spec
 	$(CPAN) install LWP
+	$(CPAN) install Pod::Coverage
+	$(CPAN) install Template
+	$(CPAN) install Test::More
+	$(CPAN) install XML::Simple
+	cd /tmp/
+	svn co http://guest@perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic/ --password guest
+	cd Perl-Critic
+	perl Makefile.PL
+	make
+	make test
+	sudo make install
 
 config-apache:
 	$(ECHO) "CONFIGURING APACHE"
@@ -234,6 +246,12 @@ run-phpcb:
 	$(PHPCB) --log="$(REPORTDIR)/api/logs/app/" --source="$(API_APP_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/app"
 	$(PHPCB) --log="$(REPORTDIR)/api/logs/lib/" --source="$(API_LIB_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/lib"
 	$(PHPCB) --log="$(REPORTDIR)/api/logs/test/" --source="$(API_TEST_SOURCEDIR)" --output="$(REPORTDIR)/api/code_browser/test"
+
+run-perlcritic:
+	$(ECHO) "RUNNING PERL CRITIC"
+	$(ECHO) "--------------------------------------------------------------------------------"
+	find $(SITE_APP_SOURCEDIR) -type f -name "*.pl" | xargs perl critic.pl
+	find $(SITE_TEST_SOURCEDIR) -type f -name "*.pl" | xargs perl critic.pl
 
 run-phpdoc:
 	$(ECHO) "RUNNING PHPDOCUMENTOR"

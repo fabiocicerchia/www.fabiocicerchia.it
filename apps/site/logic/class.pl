@@ -73,9 +73,9 @@ sub new
                                : $self->{'i18nDefault'};
 
     my $tmp = dirname($ENV{'SCRIPT_FILENAME'});
-    $tmp =~ s/$ENV{'DOCUMENT_ROOT'}//;
+    $tmp =~ s/$ENV{'DOCUMENT_ROOT'}//x;
     $self->{'baseUrl'} = '/' . $tmp . '/';
-    $self->{'baseUrl'} =~ s/\/\//\//g;
+    $self->{'baseUrl'} =~ s/\/\//\//gx;
     if ($self->{'baseUrl'} eq $ENV{'DOCUMENT_ROOT'}) {
         $self->{'baseUrl'} = '/';
     }
@@ -100,6 +100,8 @@ sub show
     if (defined($output)) {
         print $output;
     }
+
+    return;
 }
 # }}}
 
@@ -209,6 +211,8 @@ sub action404
 
     print "HTTP/1.1 404 Not Found\n\n";
     print "Location: /\n\n";
+
+    return;
 }
 # }}}
 
@@ -226,21 +230,23 @@ sub setRequest
     my @allowed_keys = keys $self->{'request'};
 
     my %get_params = ();
-    my @pairs = split(/&/, $ENV{'QUERY_STRING'});
+    my @pairs = split(/&/x, $ENV{'QUERY_STRING'});
     foreach my $pair (@pairs) {
-        my ($name, $value) = split(/=/, $pair);
+        my ($name, $value) = split(/=/x, $pair);
         $name =~ tr/+/ /;
-        $name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+        $name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/egx;
         $value =~ tr/+/ /;
-        $value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+        $value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/egx;
         $get_params{$name} = $value;
     }
 
     while (my ($key, $value) = each(%get_params)) {
-        if (grep $_ eq $key, @allowed_keys) {
+        if (grep { $_ eq $key } @allowed_keys) {
             $self->{request}{$key} = $value;
         }
     }
+
+    return;
 }
 # }}}
 
