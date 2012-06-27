@@ -15,11 +15,6 @@
 
 namespace FabioCicerchia;
 
-// pear channel-discover pear.bovigo.org
-// pear install bovigo/vfsStream-beta
-require_once 'vfsStream/vfsStream.php';
-require_once 'PHP/Timer.php';
-
 /**
  * The TestCase class for every Test.
  *
@@ -39,26 +34,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @var object
      */
     protected $object = null;
-
-    /**
-     * The max value for the running time.
-     * @var integer
-     */
-    protected $maxRunningTime = 0;
-
-    /**
-     * The Virtual Root.
-     *
-     * @var vfsStreamDirectory
-     */
-    private $_vfs_root;
-
-    /**
-     * The Virtual Root path.
-     *
-     * @var string
-     */
-    private $vfs_root_path;
 
     /**
      * Constructs a test case with the given name.
@@ -84,11 +59,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-
-        $className = get_class($this);
-
-        $this->_root         = \vfsStream::setup($className);
-        $this->vfs_root_path = \vfsStream::url($className) . DIRECTORY_SEPARATOR;
     }
 
     /**
@@ -179,7 +149,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @return mixed The results from the method.
      */
-    final protected function _callMethod($method, array $params = array())
+    final protected function callMethod($method, array $params = array())
     {
         $method = $this->retrieveMethod($this->object, $method);
 
@@ -249,61 +219,5 @@ class TestCase extends \PHPUnit_Framework_TestCase
     final public function pass($message = 'Test passed')
     {
         self::assertThat(null, self::anything(), $message);
-    }
-
-    /**
-     * Override to run the test and assert its state.
-     *
-     * @return mixed
-     * @throws RuntimeException
-     */
-    final protected function runTest()
-    {
-        \PHP_Timer::start();
-        parent::runTest();
-        $time = \PHP_Timer::stop();
-
-        if ($this->maxRunningTime != 0 &&
-            $time > $this->maxRunningTime) {
-            $this->fail(
-              sprintf(
-                'expected running time: <= %s but was: %s',
-
-                $this->maxRunningTime,
-                $time
-              )
-            );
-        }
-    }
-
-    /**
-     * setMaxRunningTime
-     *
-     * @param integer $maxRunningTime
-     *
-     * @throws InvalidArgumentException
-     * @since Method available since Release 2.3.0
-     * @deprecated 3.3 No available used.
-     */
-    final public function setMaxRunningTime($maxRunningTime)
-    {
-        if (is_integer($maxRunningTime) &&
-            $maxRunningTime >= 0) {
-            $this->maxRunningTime = $maxRunningTime;
-        } else {
-            throw new \InvalidArgumentException;
-        }
-    }
-
-    /**
-     * getMaxRunningTime
-     *
-     * @return integer
-     * @since Method available since Release 2.3.0
-     * @deprecated 3.3 No longer available.
-     */
-    final public function getMaxRunningTime()
-    {
-        return $this->maxRunningTime;
     }
 }

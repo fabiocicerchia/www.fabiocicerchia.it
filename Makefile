@@ -21,6 +21,8 @@ WGET=$(HIDDEN)wget
 
 # CUSTOM COMMANDS
 A2ENMOD=$(SUDO) $(HIDDEN)a2enmod
+COVER=$(HIDDEN)cover
+CPAN=$(SUDO) $(HIDDEN) cpan
 PDEPEND=$(HIDDEN)pdepend
 PEAR=$(SUDO) $(HIDDEN)pear
 PECL=$(SUDO) $(HIDDEN)pecl
@@ -38,17 +40,19 @@ PHPUNIT=$(HIDDEN)phpunit
 PEAR_INSTALL_FLAGS=--alldeps
 
 # DIRECTORIES
-CURRENTDIR=.
+CURRENTDIR=`pwd`
 API_APP_SOURCEDIR=$(CURRENTDIR)/apps/api
 API_LIB_SOURCEDIR=$(CURRENTDIR)/lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api
-API_TEST_SOURCEDIR=$(CURRENTDIR)/test/api
+API_TEST_SOURCEDIR=$(CURRENTDIR)/tests/api
+SITE_APP_SOURCEDIR=$(CURRENTDIR)/apps/site
+SITE_TEST_SOURCEDIR=$(CURRENTDIR)/tests/site
 REPORTDIR=$(CURRENTDIR)/report
 
 ################################################################################
 # GENERAL ACTIONS
 ################################################################################
 
-all: info test sca
+all: info tests sca docs
 
 info:
 	$(ECHO) "--------------------------------------------------------------------------------"
@@ -65,17 +69,24 @@ init-environment:
 	$(CURL) -s http://getcomposer.org/installer | $(PHP)
 	$(PHP) composer.phar install
 
-install-environment: install-php54 install-imagick install-phpunit install-phpcb install-phpcc install-phpcov install-phpcpd install-phploc install-phpdoc2 install-pdepend install-phpmd install-phpcs install-phpmongo
+install-environment: install-php54 install-imagick install-phpunit install-phpcb install-phpcc install-phpcov install-phpcpd install-phploc install-phpdoc2 install-pdepend install-phpmd install-phpcs install-phpmongo install-perl-modules
 
 config-environment: config-apache
 
-tests:
+tests: test-php test-perl
 	$(ECHO) "RUN THE TESTS"
 	$(ECHO) "--------------------------------------------------------------------------------"
+
+test-php:
 	$(PHPUNIT) || true
-	$(PERL) test/site/test.pl
+
+test-perl:
+	$(PERL) -MDevel::Cover=-dir,$(REPORTDIR)/site/logs $(SITE_TEST_SOURCEDIR)/test.pl
+	$(COVER) -outputdir $(REPORTDIR)/site/code_coverage $(REPORTDIR)/site/logs/cover_db
 
 sca: run-phpcs run-phpmd run-phploc run phpcpd run-pdepend run-phpcb
+
+docs: run-phpdoc
 
 ################################################################################
 # SPECIFIC ACTIONS
@@ -158,6 +169,14 @@ install-phpmongo:
 	$(ECHO) "INSTALLING PHP MONGODB"
 	$(ECHO) "--------------------------------------------------------------------------------"
 	$(PECL) install mongo
+
+install-perl-modules:
+	$(ECHO) "INSTALLING PERL MODULES"
+	$(ECHO) "--------------------------------------------------------------------------------"
+	$(CPAN) install Template
+	$(CPAN) install File::Basename
+	$(CPAN) install XML::Simple
+	$(CPAN) install LWP
 
 config-apache:
 	$(ECHO) "CONFIGURING APACHE"

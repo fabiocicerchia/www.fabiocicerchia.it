@@ -6,8 +6,8 @@ Link      http://www.fabiocicerchia.it
 ## General
 
 ### Technologies
- * Apache 2.2
- * MongoDB
+ * Apache 2.2.22
+ * MongoDB 2.0.4
 
 ### Libraries
  * Apache Modules
@@ -18,13 +18,13 @@ Link      http://www.fabiocicerchia.it
   * Headers
   * Mem Cache
   * PHP5
-  * Perl
+  * Perl 2.0.5
   * Rewrite
   * Security
   * Speling
 
 ### Tools
- * GIT (Repository on GitHub)
+ * GIT 1.7.9.5 (Repository on GitHub)
  * Makefile
 
 ### Coding Standards
@@ -38,7 +38,7 @@ Link      http://www.fabiocicerchia.it
 ## API
 
 ### Technologies
- * MongoDB
+ * MongoDB 2.0.4
  * PHP 5.4
 
 ### Protocols
@@ -54,16 +54,16 @@ Link      http://www.fabiocicerchia.it
   * MongoDbExtension
 
 ### Tools
- * PHPUnit
- * PHP_CodeBrowser
- * PHP_CodeCoverage
- * PHP_Code_Sniffer
- * PHP_Depend
- * PHP_MD
- * phpDocumentor 2
- * phpcov
- * phpcpd
- * phploc
+ * PHPUnit 3.6.11
+ * PHP_CodeBrowser 1.0.2
+ * PHP_CodeCoverage 1.1.2
+ * PHP_Code_Sniffer 1.3.4
+ * PHP_Depend 1.0.7
+ * PHP_MD 1.3.3
+ * phpDocumentor 2.0.0a3
+ * phpcov 1.0.0
+ * phpcpd 1.3.5
+ * phploc 1.6.4
 
 ### Coding Standards
  * PHP Framework Interop Group Standards
@@ -82,23 +82,24 @@ Link      http://www.fabiocicerchia.it
 ## Site
 
 ### Technologies
- * Perl
+ * Perl 5.14.2
  * HTML 5
 
 ### Libraries
- * Meyer CSS Reset
- * OWASP - Core Rule Set
- * Twitter Bootstrap
+ * OWASP - Core Rule Set 2.2.3
+ * Twitter Bootstrap 2.0.4
  * Perl Modules
   * Data::Dumper
+  * Devel::Cover
   * File::Basename
+  * File::Spec
   * LWP
   * Template
-  * XML::Simple
   * Test::More
+  * XML::Simple
 
 ### Tools
- * Google Minify
+ * Google Minify 2.1.5
 
 ### Coding Standards
  * TBW

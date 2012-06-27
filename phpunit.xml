@@ -12,18 +12,22 @@
 
     <testsuites>
         <testsuite name="UnitTests">
-            <directory>./test/api/unit</directory>
+            <directory>./tests/api/unit</directory>
         </testsuite>
         <testsuite name="FunctionalTests">
-            <directory>./test/api/functional</directory>
+            <directory>./tests/api/functional</directory>
         </testsuite>
     </testsuites>
     <filter>
+        <whitelist>
+            <directory>apps</directory>
+            <directory>lib/vendor/FabioCicerchia</directory>
+        </whitelist>
         <blacklist>
             <directory>tests</directory>
         </blacklist>
     </filter>
-    <!--logging>
-        <log type="coverage-html" target="report/cli/code_coverage" charset="UTF-8" yui="true" highlight="false" lowUpperBound="35" highLowerBound="70"/>
-    </logging-->
+    <logging>
+        <log type="coverage-html" target="report/api/code_coverage" charset="UTF-8" yui="true" highlight="false" lowUpperBound="35" highLowerBound="70"/>
+    </logging>
 </phpunit>

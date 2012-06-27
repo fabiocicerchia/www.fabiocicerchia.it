@@ -13,6 +13,7 @@
 #
 
 use strict;
+use warnings;
 use File::Basename;
 
 do (dirname(__FILE__) . '/../apps/site/logic/controller.pl');
