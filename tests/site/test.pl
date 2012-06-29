@@ -13,10 +13,19 @@ use File::Basename;
 use File::Spec;
 
 # Check the requirements
-require_ok('Template');
+require_ok('Data::Dumper');
+require_ok('Date::Format');
+require_ok('Devel::Cover');
+require_ok('Digest::MD5');
 require_ok('File::Basename');
-require_ok('XML::Simple');
+require_ok('File::Spec');
+require_ok('HTTP::Cache::Transparent');
 require_ok('LWP');
+require_ok('POSIX');
+require_ok('Pod::Coverage');
+require_ok('Template');
+require_ok('Test::More');
+require_ok('XML::Simple');
 
 # Check the files
 do File::Spec->rel2abs(dirname(__FILE__)) . '/../../apps/site/logic/class.pl';
@@ -34,6 +43,8 @@ subtest 'Unit Testing' => sub {
     can_ok($class_name, qw(setRequest));
     can_ok($class_name, qw(callAPI));
     can_ok($class_name, qw(retrieveXML));
+    can_ok($class_name, qw(getData));
+    can_ok($class_name, qw(getItemData));
 
 #    subtest 'Testing method: new' => sub {
 #        my $obj = new_ok($class_name);

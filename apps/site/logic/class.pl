@@ -16,21 +16,24 @@ package FabioCicerchiaSite;
 
 use strict;
 use warnings;
-use Template; # NOTICE: MISSING MODULE
+use Data::Dumper;
+use Date::Format;
+use DateTime;
+use Digest::MD5;
 use File::Basename;
-use XML::Simple; # NOTICE: MISSING MODULE
+use HTTP::Cache::Transparent;
 use LWP;
+use POSIX qw(mktime);
+use Template;
+use XML::Simple;
 
 # {{{ new
 ############################################
 # Usage      : FabioCicerchia::Site->new()
-# Purpose    : Defaults for 'new'
-# Returns    : A hash of defaults
-# Parameters : none
-# Throws     : no exceptions
-# Comments   : No corresponding attribute,
-#            : gathers data from each
-#            : attr_def attribute
+# Purpose    : Generate a new instance.
+# Returns    : Self.
+# Parameters : None.
+# Throws     : No exceptions.
 sub new
 {
     my $class = shift;
@@ -137,22 +140,16 @@ sub actionShow
 {
     my $self = shift;
 
-    my $data = {
-        'root'        => $self->retrieveXML('/',            $self->{'i18nCurrent'}),
-        'information' => $self->retrieveXML('/information', $self->{'i18nCurrent'}),
-        'education'   => $self->retrieveXML('/education',   $self->{'i18nCurrent'}),
-        'experience'  => $self->retrieveXML('/experience',  $self->{'i18nCurrent'}),
-        'skill'       => $self->retrieveXML('/skill',       $self->{'i18nCurrent'}),
-        'language'    => $self->retrieveXML('/language',    $self->{'i18nCurrent'})
-    };
-
-    $data = $self->elaborateData($data);
-
+    my $data = $self->getData();
     my $vars = {
         'HTTP_HOST' => $ENV{'HTTP_HOST'},
-        'data'      => $data
+        'data'      => $data->[0]
     };
 
+    #TODO: IMPLEMENT IF NOT MODIFIED
+    print "Cache-Control: public, max-age=28800, smax-age=28800\n";
+    print "Last-Modified: " . time2str("%a, %d %b %Y %H:%M:%S GMT", $data->[1]) . "\n";
+    print "ETag: \"" . $data->[2] . "\"\n";
     print "Content-Type: " . $self->{'contentType'} . "; charset=UTF-8\n";
     print "Content-Language: " . $self->{'i18nCurrent'} . "\n";
     print "\n";
@@ -261,6 +258,12 @@ sub callAPI
 {
     my ($self, $url, $language) = @_;
 
+    HTTP::Cache::Transparent::init({
+        BasePath => "/home/fabio/Web/fabiocicerchia.github.com/cache/site", # TODO: CHANGE
+        MaxAge   => 8 * 24,
+        NoUpdate => 15 * 60,
+    });
+
     my $browser = LWP::UserAgent->new();
     $browser->timeout(10);
     $browser->default_header('Accept-Language' => $language);
@@ -279,14 +282,13 @@ sub callAPI
 # Usage      : FabioCicerchia::Site->retrieveXML()
 # Purpose    : Retrieve XML from an URL.
 # Returns    : XML::Simple object.
-# Parameters : String $url, String $language.
+# Parameters : String $content.
 # Throws     : No exceptions.
 # See Also   : $self->callAPI()
 sub retrieveXML
 {
-    my ($self, $url, $language) = @_;
+    my ($self, $content) = @_;
 
-    my $response = $self->callAPI($url, $language);
     my $simple   = XML::Simple->new(
         'KeepRoot'   => 0,
         'KeyAttr'    => [],
@@ -303,6 +305,80 @@ sub retrieveXML
         }
     );
 
-    return $simple->XMLin($response->content());
+    return $simple->XMLin($content);
+}
+# }}}
+
+# {{{ getData
+############################################
+# Usage      : FabioCicerchia::Site->getData()
+# Purpose    : Retrieve the data from the API.
+# Returns    : Array.
+# Parameters : None.
+# Throws     : No exceptions.
+# See Also   : $self->getItemData()
+sub getData
+{
+    my $self = shift;
+
+    my $ctx = Digest::MD5->new;
+    my $data    = {};
+    my $last_ts = 0;
+    my $hash;
+    my $response;
+    my $url;
+
+    my @api_list = ('root', 'information', 'education', 'experience', 'skill', 'language');
+
+    API:
+    foreach my $api (@api_list) {
+        $url = $api eq 'root' ? '' : $api;
+
+        $response     = $self->getItemData('/' . $url, $self->{'i18nCurrent'});
+        $data->{$api} = $response->[0];
+        $hash         = $hash . $response->[2];
+
+        if ($response->[1] > $last_ts) {
+            $last_ts = $response->[1];
+        }
+    }
+    $ctx->add($hash);
+
+    $data = $self->elaborateData($data);
+
+    return [$data, $last_ts, $ctx->hexdigest];
+}
+# }}}
+
+# {{{ getItemData
+############################################
+# Usage      : FabioCicerchia::Site->getData()
+# Purpose    : Retrieve the data from the API.
+# Returns    : Array.
+# Parameters : String $url, String $language.
+# Throws     : No exceptions.
+# See Also   : $self->callAPI()
+#            : $self->retrieveXML()
+sub getItemData
+{
+    my ($self, $url, $language) = @_;
+
+    my %mon2num = qw(jan 1 feb 2 mar 3 apr 4 may 5 jun 6 jul 7 aug 8 sep 9 oct 10 nov 11 dec 12);
+    my $ctx = Digest::MD5->new;
+    my $ts = 0;
+
+    my $response      = $self->callAPI($url, $language);
+    my $data          = $self->retrieveXML($response->content());
+    my $last_modified = defined($response->headers()->{'last-modified'})
+                        ? $response->headers()->{'last-modified'}
+                        : "";
+    if ($last_modified ne "") {
+        my @date = split(/[\s:]/x, $last_modified);
+        $ts      = POSIX::mktime($date[6], $date[5], $date[4], $date[1], $mon2num{lc $date[2]} - 1, $date[3] - 1900);
+    }
+
+    $ctx->add($response->content());
+
+    return [$data, $ts, $ctx->hexdigest];
 }
 # }}}

@@ -174,10 +174,14 @@ install-perl-modules:
 	$(ECHO) "INSTALLING PERL MODULES"
 	$(ECHO) "--------------------------------------------------------------------------------"
 	$(CPAN) install Data::Dumper
+	$(CPAN) install Date::Format
 	$(CPAN) install Devel::Cover
+	$(CPAN) install Digest::MD5
 	$(CPAN) install File::Basename
 	$(CPAN) install File::Spec
+	$(CPAN) install HTTP::Cache::Transparent
 	$(CPAN) install LWP
+	$(CPAN) install POSIX
 	$(CPAN) install Pod::Coverage
 	$(CPAN) install Template
 	$(CPAN) install Test::More

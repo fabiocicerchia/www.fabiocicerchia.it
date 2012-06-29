@@ -117,14 +117,21 @@ $closures['api'] = function ($api_name) use ($app) {
     $response = new Response();
     if ($app['debug'] === false) {
         $firstRecord  = $data['entities'][array_keys($data['entities'])[0]];
-        $lastModified = isset($firstRecord['date'])
-                        ? $firstRecord['date']['end']->sec
+        if (isset($firstRecord['date'])) {
+            if (isset($firstRecord['date']['end'])) {
+                $time = $firstRecord['date']['end']->sec;
+            } elseif(isset($firstRecord['date']['start'])) {
+                $time = $firstRecord['date']['start']->sec;
+            }
+        }
+        $lastModified = isset($time)
+                        ? $time
                         : filemtime(__DIR__ . '/../../../db/mongo-curriculum.js');
         $response->setPublic();
         $response->setMaxAge(28800);
         $response->setSharedMaxAge(28800);
         $response->setETag(md5(serialize($data)));
-        $response->headers->set('Last-Modified', date('r', $lastModified));
+        $response->headers->set('Last-Modified', gmdate('D, d M Y H:i:s', $lastModified) . ' GMT');
     }
 
     if ($response->isNotModified($app['request']) === false) {
