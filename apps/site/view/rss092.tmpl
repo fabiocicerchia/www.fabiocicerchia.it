@@ -1,0 +1,30 @@
+[% USE date %]
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="0.92">
+    <channel>
+        <title>Fabio Cicerchia - Web Developer</title>
+        <link>http://www.fabiocicerchia.it</link>
+        <description>[% data.information.entity.0.summary.content %]</description>
+        <webMaster>info@fabiocicerchia.it (Fabio Cicerchia)</webMaster>
+        <pubDate>[% date.format(last_modified, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
+        <language>[% language %]</language>
+        <rating />
+        <docs>http://backend.userland.com/rss092</docs>
+        <!-- TODO: SORTING BY DATES -->
+        [% FOREACH entity IN data.education.entity %]
+        <item>
+            <title>Education - [% entity.title.content %]</title>
+            <description></description>
+            <category>Education</category>
+        </item>
+        [% END %]
+        [% FOREACH entity IN data.experience.entity %]
+        <item>
+            <title>Experience - [% entity.title.content %]</title>
+            <description></description>
+            <category>Experience</category>
+        </item>
+        [% END %]
+    </channel>
+</rss>

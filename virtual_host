@@ -87,7 +87,9 @@
           RewriteCond %{REQUEST_FILENAME} -d
           RewriteRule ^.+$               -                               [NC,L]
 
-          RewriteRule ^minified/(.+\.css) minify/min/?f=$1 [L]
+          RewriteRule ^minified/(.+\.css) minify/min/?f=$1               [L]
+
+          RewriteRule ^(.*)$              index.pl?format=$1             [NC,L]
         </IfModule>
    </Directory>
 
@@ -158,6 +160,7 @@
 #
     # PHP #####################################################################
     <IfModule mod_php5.c>
+        php_value date.timezone           Europe/London
         php_value zlib.output_compression 16386
         php_flag  allow_url_fopen         Off
         php_flag  allow_url_include       Off

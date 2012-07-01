@@ -1,4 +1,5 @@
 [% USE date %]
+[% USE String %]
 
 <section id="education">
     <div class="page-header">
@@ -8,14 +9,17 @@
 
     <div class="row">
         <div class="span12 vcalendar">
+            [% closed = 1 %]
             [% FOREACH entity IN data.education.entity %]
-            [% IF loop.index mod 2 == 0 %]<div class="row-fluid">[% END %]
-            <div itemscope="itemscope" itemtype="http://schema.org/EducationEvent" class="span6 education vevent">
+            [% IF loop.index mod 2 == 0 %]<div class="row-fluid">[% closed = 0 %][% END %]
+            [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+            [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+            <div itemscope="itemscope" itemtype="http://schema.org/EducationEvent" class="span6 education vevent" id="[% id_title %]_[% id_company %]">
                 <h3 class="summary" itemprop="name">[% entity.title.content %]</h3>
                 <div class="dates">
                     <!-- TODO: ADD dtend -->
-                    <!-- TODO: ADD date.format(, "%a, %d %b %Y %H:%M:%S GMT") -->
-                    <span class="dtstart">[% entity.published %]</span>
+                    [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
+                    <span class="dtstart">[% date.format(time, "%a, %d %b %Y") %]</span>
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
                     <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
@@ -28,9 +32,9 @@
                     [% END %]
                 </dl>
             </div>
-            [% IF loop.count mod 2 == 0 %]</div>[% END %]
+            [% IF loop.count mod 2 == 0 %]</div>[% closed = 1 %][% END %]
             [% END %]
-            [% IF loop.count mod 2 == 0 %]</div>[% END %] <!-- TODO: CHANGE THIS -->
+            [% IF closed == 0 %]</div>[% END %] <!-- TODO: CHANGE THIS -->
         </div>
     </div>
 </section>

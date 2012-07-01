@@ -7,22 +7,23 @@
     <div class="row">
         <div class="span12 vcalendar">
             <div class="row-fluid">
+            <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent">
+                [% FOREACH entity IN data.language.entity %]
                 <div class="span6" itemscope="itemscope" itemtype="http://schema.org/Language">
-                    <h3 class="summary" itemprop="name">Italian</h3>
+                    <h3 class="summary" itemprop="name">[% entity.title.content %]</h3>
+                    [% IF entity.content.skills.0.level == "C2" %]
                     <p itemprop="description">Mother Tongue</p>
-                </div>
-                <div class="span6" itemscope="itemscope" itemtype="http://schema.org/Language">
-                    <h3 class="summary" itemprop="name">English</h3>
+                    [% ELSE %]
                     <p itemprop="description">
                         <ul itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                            <li itemprop="itemListElement">Listening: A2</li>
-                            <li itemprop="itemListElement">Reading: B1</li>
-                            <li itemprop="itemListElement">Spoken interaction: A2</li>
-                            <li itemprop="itemListElement">Spoken production: A2</li>
-                            <li itemprop="itemListElement" class="last">Writing: A2</li>
+                            [% FOREACH skill IN entity.content.skills %]
+                            <li itemprop="itemListElement">[% skill.title.content %]: [% skill.level %]</li>
+                            [% END %]
                         </ul>
                     </p>
+                    [% END %]
                 </div>
+                [% END %]
             </div>
         </div>
     </div>

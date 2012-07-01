@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:2.1
+N;CHARSET=UTF-8:Fabio Cicerchia
+FN;CHARSET=UTF-8:Fabio Cicerchia - Senior Web Developer
+ORG;CHARSET=UTF-8:[% data.experience.entity.0.content.company.title.content %];[% data.experience.entity.0.content.company.address.country %]
+ADR;TYPE=WORK,POSTAL;CHARSET=UTF-8:;;;[% data.experience.entity.0.content.company.address.city %];;[% data.experience.entity.0.content.company.address.postalcode %];[% data.experience.entity.0.content.company.address.country %]
+ADR;TYPE=HOME,POSTAL;CHARSET=UTF-8:;;;[% data.information.entity.0.content.address.city %];;;[% data.information.entity.0.content.address.country %]
+TEL;TYPE=CELL,VOICE:[% data.information.entity.0.content.telephone %]
+EMAIL;TYPE=PREF,INTERNET:info@fabiocicerchia.it
+URL;TYPE=HOME:http://www.fabiocicerchia.it
+TITLE;CHARSET=UTF-8:[% data.experience.entity.0.title.content %]
+URL;TYPE=WORK:[% data.experience.entity.0.content.company.link.href %]
+BDAY:[% data.information.entity.0.content.birthday %]
+END:VCARD

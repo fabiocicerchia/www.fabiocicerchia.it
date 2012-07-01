@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Fabio Cicerchia - Senior Web Developer</title>
+        <link>http://www.fabiocicerchia.it</link>
+        <description>[% data.information.entity.0.summary.content %]</description>
+        <language>[% language %]</language>
+        <webMaster>info@fabiocicerchia.it (Fabio Cicerchia)</webMaster>
+        <pubDate>[% date.format(last_modified, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
+        <docs>http://cyber.law.harvard.edu/rss/rss.html</docs>
+        <ttl>1440</ttl>
+        <rating />
+        <atom:link href="http://www.fabiocicerchia.it/rss2" rel="self" type="application/rss+xml" />
+        <!-- TODO: SORTING BY DATES -->
+        [% FOREACH entity IN data.education.entity %]
+        <item>
+            <title>Education - [% entity.title.content %]</title>
+            <description></description>
+            [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
+            <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
+            [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+            [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+            <guid isPermaLink="true">http://www.fabiocicerchia.it/#[% id_title %]_[% id_company %]</guid>
+            <category>Education</category>
+        </item>
+        [% END %]
+        [% FOREACH entity IN data.experience.entity %]
+        <item>
+            <title>Experience - [% entity.title.content %]</title>
+            <description></description>
+            [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
+            <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
+            [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+            [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+            <guid isPermaLink="true">http://www.fabiocicerchia.it/#[% id_title %]_[% id_company %]</guid>
+            <category>Experience</category>
+        </item>
+        [% END %]
+    </channel>
+</rss>

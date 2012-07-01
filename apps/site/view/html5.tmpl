@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="[% language %]">
     <head>
         [% INCLUDE _head.tmpl %]
     </head>
@@ -12,23 +12,27 @@
                 <div class="subnav">
                     <ul class="nav nav-pills" itemscope="itemscope" itemtype="http://schema.org/ItemList">
                         <li class="brand">Fabio Cicerchia</li>
-                        <li itemprop="itemListElement"><a accesskey="s" href="#summary" title="Summary">Summary</a></li>
-                        <li itemprop="itemListElement"><a accesskey="k" href="#skills" title="Skills">Skills</a></li>
-                        <li itemprop="itemListElement"><a accesskey="e" href="#education" title="Education">Education</a></li>
-                        <li itemprop="itemListElement"><a accesskey="x" href="#experience" title="Experience">Experience</a></li>
-                        <li itemprop="itemListElement"><a accesskey="l" href="#languages" title="Languages">Languages</a></li>
+                        <li itemprop="itemListElement"><a accesskey="s" href="#summary" title="Summary"><i class="icon-bullhorn"></i> Summary</a></li>
+                        <li itemprop="itemListElement"><a accesskey="k" href="#skills" title="Skills"><i class="icon-tasks"></i> Skills</a></li>
+                        <li itemprop="itemListElement"><a accesskey="e" href="#education" title="Education"><i class="icon-book"></i> Education</a></li>
+                        <li itemprop="itemListElement"><a accesskey="x" href="#experience" title="Experience"><i class="icon-briefcase"></i> Experience</a></li>
+                        <li itemprop="itemListElement"><a accesskey="l" href="#languages" title="Languages"><i class="icon-flag"></i> Languages</a></li>
                     </ul>
                 </div>
             </header>
 
             [% INCLUDE _summary.tmpl %]
+            <hr />
             [% INCLUDE _skill.tmpl %]
+            <hr />
             [% INCLUDE _education.tmpl %]
+            <hr />
             [% INCLUDE _experience.tmpl %]
+            <hr />
             [% INCLUDE _language.tmpl %]
 
             <footer class="footer">
-                <p class="pull-right"><a href="#">Back to top</a></p>
+                <p class="pull-right"><i class="icon-chevron-up"></i> <a href="#">Back to top</a></p>
             </footer>
         </div>
         [% INCLUDE _js.tmpl %]

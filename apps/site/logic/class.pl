@@ -38,24 +38,27 @@ sub new
 {
     my $class = shift;
     my $self = {
-        'actionCurrent'     => undef,
-        'actionDefault'     => 'show',
-        'baseUrl'           => undef,
-        'cacheTimeout'      => 86400, # 24 * 60 * 60
-        'contentType'       => 'text/html',
-        'filterOutput'      => 1,
-        'formatCurrent'     => undef,
-        'formatDefault'     => 'html5',
-        'i18nAllowed'       => ['it', 'en'],
-        'i18nCurrent'       => undef,
-        'i18nDefault'       => 'en',
-        'request'           => {
+        'actionCurrent' => undef,
+        'actionDefault' => 'show',
+        'contentType'   => 'text/html',
+        'formatAllowed' => {
+            'html5'  => 'text/html',
+            'rss091' => 'application/rss+xml',
+            'rss092' => 'application/rss+xml',
+            'rss1'   => 'application/rss+xml',
+            'rss2'   => 'application/rss+xml',
+            'atom'   => 'application/atom+xml',
+            'vcard'  => 'text/x-vcard'
+        },
+        'formatCurrent' => undef,
+        'formatDefault' => 'html5',
+        'i18nCurrent'   => undef,
+        'i18nDefault'   => 'en',
+        'request'       => {
             'action' => undef,
-            'expand' => undef,
-            'f'      => undef,
             'format' => undef,
             'lang'   => undef
-        },
+        }
     };
     bless $self, $class;
 
@@ -66,22 +69,20 @@ sub new
                                : $self->{'actionDefault'};
 
     $self->{'formatCurrent'} = defined($self->{'request'}{'format'})
-                               ? $self->{'request'}{'format'}
+                               ? (grep { $_ eq $self->{'request'}{'format'} } keys $self->{'formatAllowed'})
+                                 ? $self->{'request'}{'format'}
+                                 : $self->{'formatDefault'}
                                : $self->{'formatDefault'};
+
+    $self->{'contentType'} = defined($self->{'formatAllowed'}{$self->{'formatCurrent'}})
+                             ? $self->{'formatAllowed'}{$self->{'formatCurrent'}}
+                             : $self->{'contentType'};
 
     $self->{'i18nCurrent'} = defined($self->{'request'}{'lang'})
                              ? $self->{'request'}{'lang'}
                              : defined($ENV{'HTTP_ACCEPT_LANGUAGE'})
                                ? $ENV{'HTTP_ACCEPT_LANGUAGE'}
                                : $self->{'i18nDefault'};
-
-    my $tmp = dirname($ENV{'SCRIPT_FILENAME'});
-    $tmp =~ s/$ENV{'DOCUMENT_ROOT'}//x;
-    $self->{'baseUrl'} = '/' . $tmp . '/';
-    $self->{'baseUrl'} =~ s/\/\//\//gx;
-    if ($self->{'baseUrl'} eq $ENV{'DOCUMENT_ROOT'}) {
-        $self->{'baseUrl'} = '/';
-    }
 
     return $self;
 }
@@ -142,8 +143,10 @@ sub actionShow
 
     my $data = $self->getData();
     my $vars = {
-        'HTTP_HOST' => $ENV{'HTTP_HOST'},
-        'data'      => $data->[0]
+        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
+        'data'          => $data->[0],
+        'last_modified' => $data->[1],
+        'language'      => $self->{'i18nCurrent'}
     };
 
     #TODO: IMPLEMENT IF NOT MODIFIED
@@ -159,7 +162,7 @@ sub actionShow
         INCLUDE_PATH => [dirname(__FILE__) . '/../view']
     );
 
-    $template->process('index.tmpl', $vars);
+    $template->process($self->{'formatCurrent'} . '.tmpl', $vars);
 
     return "";
 }

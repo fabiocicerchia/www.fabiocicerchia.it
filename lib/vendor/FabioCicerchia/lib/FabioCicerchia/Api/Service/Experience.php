@@ -50,8 +50,15 @@ class Experience extends \FabioCicerchia\Api\ServiceAbstract
      */
     protected function execDataQuery()
     {
-        return $this->getCollection()
-                     ->find()->sort(['date.end' => 'desc'])->toArray();
+        $part1 = $this->getCollection()
+                     ->find(array('date.end' => array('$exists' => false)))
+                     ->sort(['date.start' => 'desc'])->toArray();
+
+        $part2 = $this->getCollection()
+                     ->find(array('date.end' => array('$exists' => true)))
+                     ->sort(['date.end' => 'desc'])->toArray();
+
+        return array_merge($part1, $part2);
     }
     // }}}
 

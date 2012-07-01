@@ -1,0 +1,37 @@
+[% USE date %]
+
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://www.fabiocicerchia.it/</id>
+    <title>Fabio Cicerchia - Senior Web Developer</title>
+    <link href="http://www.fabiocicerchia.it" />
+    <updated>[% date.format(last_modified, "%Y-%m-%dT%H:%M:%SZ") %]</updated>
+    <author>
+        <name>Fabio Cicerchia</name>
+        <email>info@fabiocicerchia.it</email>
+    </author>
+    <link rel="self" type="application/rss+xml" href="http://www.fabiocicerchia.it/atom" />
+    <!-- TODO: SORTING BY DATES -->
+    [% FOREACH entity IN data.education.entity %]
+    <entry>
+        [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+        [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+        <id>http://www.fabiocicerchia.it/#[% id_title %]_[% id_company %]</id>
+        <title>Education - [% entity.title.content %]</title>
+        <published>[% entity.published %]</published>
+        <updated>[% entity.updated %]</updated>
+        <category term="Education" />
+    </entry>
+    [% END %]
+    [% FOREACH entity IN data.experience.entity %]
+    <entry>
+        [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+        [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+        <id>http://www.fabiocicerchia.it/#[% id_title %]_[% id_company %]</id>
+        <title>Experience - [% entity.title.content %]</title>
+        <published>[% entity.published %]</published>
+        <updated>[% entity.updated %]</updated>
+        <category term="Experience" />
+    </entry>
+    [% END %]
+</feed>
