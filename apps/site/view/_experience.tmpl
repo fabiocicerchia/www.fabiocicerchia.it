@@ -2,8 +2,7 @@
 
 <section id="experience">
     <div class="page-header">
-        <!-- TODO: I18N -->
-        <h2>Experience</h2>
+        <h2>Experience</h2> <!-- TODO: DYNAMIC VALUE -->
     </div>
 
     <div class="row">
@@ -16,9 +15,12 @@
                     <h3 class="summary">[% entity.title.content %]</h3>
                 </div>
                 <div class="dates">
-                    <!-- TODO: ADD dtend -->
-                    [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtstart">[% date.format(time, "%a, %d %b %Y") %]</span>
+                    [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
+                    <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>
+                    [% IF entity.updated && entity.updated != entity.published %]
+                    [% end = entity.updated | replace('T', ' ') | replace('Z', '') %]
+                    <span class="dtend">[% date.format(end, "%a, %d %b %Y") %]</span>
+                    [% END %]
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
                     <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
@@ -41,30 +43,31 @@
                 </div>
                 [% IF entity.content.activities.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <!-- TODO: I18N -->
-                    <dt itemprop="name">Activities</dt>
+                    <dt itemprop="name">Activities</dt> <!-- TODO: DYNAMIC VALUE -->
                     [% FOREACH activity = entity.content.activities %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</li>
                     [% END %]
                 </dl>
                 [% END %]
                 [% IF entity.content.projects.size %]
-                <!-- TODO: OPTIMIZE -->
-                <div class="accordion" id="accordion[% entity.title.content.replace(" ", "") %]">
+                [% current_id = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
+                <div class="accordion" id="accordion[% current_id %]">
                     [% FOREACH project IN entity.content.projects %]
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <!-- TODO: OPTIMIZE -->
-                            <a href="#collapse[% project.title.content.replace(" ", "") %]" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion[% entity.title.content.replace(" ", "") %]">
+                            <a href="#collapse[% current_id %]" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion[% current_id %]">
                                 <span itemprop="name">[% project.title.content %]</span>
                             </a>
                         </div>
-                        <!-- TODO: OPTIMIZE -->
-                        <div id="collapse[% project.title.content.replace(" ", "") %]" class="accordion-body collapse">
-                            <!-- TODO: role -->
+                        <div id="collapse[% current_id %]" class="accordion-body collapse">
+                            <span class="role">[% project.role %]</span>
                             <!-- TODO: summary -->
-                            <!-- TODO: start date -->
-                            <!-- TODO: end date -->
+                            [% start = project.date.start | replace('T', ' ') | replace('Z', '') %]
+                            <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>
+                            [% IF project.date.end && project.date.end != project.date.start %]
+                            [% end = project.date.end | replace('T', ' ') | replace('Z', '') %]
+                            <span class="dtend">[% date.format(end, "%a, %d %b %Y") %]</span>
+                            [% END %]
                             [% IF project.link %]
                                 <a itemprop="url" target="_blank" href="[% project.link.href %]" rel="nofollow" title="The URL of the [% project.title.content %]">[% project.link.href %]</a>
                             [% END %]

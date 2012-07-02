@@ -1,5 +1,5 @@
     <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
-    <title type="text">Fabio Cicerchia API - {{ api_name|capitalize }}</title>
+    <title type="text">Fabio Cicerchia API - {{ api_name|capitalize }}</title> <!-- TODO: DYNAMIC VALUE -->
     <link rel="self"
           href="http://{{ app.request.host }}{{ app.request.requestUri }}" />
     <link rel="describedby"
@@ -9,8 +9,8 @@
 
     <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
     <author>
-        <name>Fabio Cicerchia</name>
-        <uri>http://www.fabiocicerchia.it</uri>
-        <email>info@fabiocicerchia.it</email>
+        <name>Fabio Cicerchia</name> <!-- TODO: DYNAMIC VALUE -->
+        <uri>http://www.fabiocicerchia.it</uri> <!-- TODO: DYNAMIC VALUE -->
+        <email>info@fabiocicerchia.it</email> <!-- TODO: DYNAMIC VALUE -->
     </author>
-    <rights>Copyright (c) {{ "now"|custom_date("Y") }}, Fabio Cicerchia</rights>
+    <rights>Copyright (c) {{ "now"|custom_date("Y") }}, Fabio Cicerchia</rights> <!-- TODO: DYNAMIC VALUE -->

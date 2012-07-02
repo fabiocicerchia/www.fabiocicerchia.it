@@ -1,3 +1,4 @@
+[% USE date %]
 <!DOCTYPE html>
 <html lang="[% language %]">
     <head>
@@ -5,21 +6,7 @@
     </head>
     <body data-spy="scroll" data-target=".subnav" data-offset="50" class="nojs">
         <div class="container hresume">
-            <header class="jumbotron subhead" id="overview">
-                <img src="/media/images/logo_new.png" />
-                <h1>Fabio Cicerchia</h1>
-                <p class="lead">Senior Web Developer - ZCE &amp; IWA CWP</p>
-                <div class="subnav">
-                    <ul class="nav nav-pills" itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                        <li class="brand">Fabio Cicerchia</li>
-                        <li itemprop="itemListElement"><a accesskey="s" href="#summary" title="Summary"><i class="icon-bullhorn"></i> Summary</a></li>
-                        <li itemprop="itemListElement"><a accesskey="k" href="#skills" title="Skills"><i class="icon-tasks"></i> Skills</a></li>
-                        <li itemprop="itemListElement"><a accesskey="e" href="#education" title="Education"><i class="icon-book"></i> Education</a></li>
-                        <li itemprop="itemListElement"><a accesskey="x" href="#experience" title="Experience"><i class="icon-briefcase"></i> Experience</a></li>
-                        <li itemprop="itemListElement"><a accesskey="l" href="#languages" title="Languages"><i class="icon-flag"></i> Languages</a></li>
-                    </ul>
-                </div>
-            </header>
+            [% INCLUDE _header.tmpl %]
 
             [% INCLUDE _summary.tmpl %]
             <hr />
@@ -32,7 +19,7 @@
             [% INCLUDE _language.tmpl %]
 
             <footer class="footer">
-                <p class="pull-right"><i class="icon-chevron-up"></i> <a href="#">Back to top</a></p>
+                <p class="pull-right"><i class="icon-chevron-up"></i> <a href="#">Back to top</a></p> <!-- TODO: DYNAMIC VALUE -->
             </footer>
         </div>
         [% INCLUDE _js.tmpl %]

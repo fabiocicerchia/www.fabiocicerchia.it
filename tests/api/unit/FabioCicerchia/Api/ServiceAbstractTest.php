@@ -13,9 +13,9 @@
  * @link       http://www.fabiocicerchia.it
  */
 
-// TODO: CHANGE PATH + DIR_SEP
-require_once __DIR__ . '/../../../../../lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/ServiceAbstract.php';
-require_once __DIR__ . '/../../../../../lib/vendor/FabioCicerchia/lib/FabioCicerchia/TestCase.php';
+$base_path = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
+require_once $base_path . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'FabioCicerchia' . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'FabioCicerchia' . DIRECTORY_SEPARATOR . 'Api' . DIRECTORY_SEPARATOR . 'ServiceAbstract.php';
+require_once $base_path . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'FabioCicerchia' . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'FabioCicerchia' . DIRECTORY_SEPARATOR . 'TestCase.php';
 
 /**
  * The Abstract class for every Service.
@@ -28,7 +28,6 @@ require_once __DIR__ . '/../../../../../lib/vendor/FabioCicerchia/lib/FabioCicer
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
  */
-// TODO: CHANGE CLASS
 class ServiceAbstractTest extends FabioCicerchia\TestCase
 {
     // {{{ testRunEmptyData

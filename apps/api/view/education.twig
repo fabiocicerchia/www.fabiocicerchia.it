@@ -6,9 +6,10 @@
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
         <title type="text">{{ entity.title }}</title>
-        <!-- TODO: CHANGE THIS! -->
         {% if entity.date.start is defined %}
         <published>{{ entity.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
+        {% else %}
+        <published>{{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
         {% endif %}
         {% if entity.date.end is defined %}
         <updated>{{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>

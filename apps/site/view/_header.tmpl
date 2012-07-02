@@ -1,33 +1,29 @@
-<div id="header">
-    <div class="vcard" id="hcard-Fabio-Cicerchia">
-        <!--img class="photo" height="475" width="180" alt="A photograph of Fabio Cicerchia in black and white" src="/media/images/me.jpg" /-->
-        <!--ul class="flags">
-            <li class="first"><a class="en" href="/" title="Translate to English">Translate to English</a></li>
-            <li class="last"><a class="it" href="/it" title="Traduci in Italiano">Traduci in Italiano</a></li>
-        </ul-->
-        <h1><a class="fn n" href="http://[% HTTP_HOST %]" title="The URL of my web site"><span class="given-name" lang="it" xml:lang="it">Fabio</span> <span class="family-name" lang="it" xml:lang="it">Cicerchia</span> -
-        <span class="role">Web Developer</span></a></h1>
-        <address class="adr">
-            <span class="locality">London</span> <span class="country-name">UK</span>
-        </address>
-        <ul>
-            <li><span class="nationality">Italian</span></li>
-            <li><span class="gender">Male</span></li>
-            <li><span class="bday">1986-02-09</span></li>
-            <li><span class="tel">+44 07831192297</span></li>
-            <li><a class="url _blank" href="http://[% HTTP_HOST %]" rel="nofollow me" title="">http://[% HTTP_HOST %]</a></li>
-            <li class="last">
-                <ul class="social">
-                    <li class="first"><a class="email" href="mailto:info@fabiocicerchia.it" rel="nofollow me" title="The my email address">Email: info@fabiocicerchia.it</a></li>
-                    <li><a class="my_vcard" href="/vcard" title="Download the vCard format">vCard</a></li>
-                    <li><a class="print" href="/print" title="Print this document">Print</a></li>
-                    <li><a class="_blank facebook" href="https://www.facebook.com/fabio.cicerchia" title="Facebook">Facebook</a></li>
-                    <li><a class="_blank linkedin" href="http://www.linkedin.com/in/fabiocicerchia" title="LinkedIn">LinkedIn</a></li>
-                    <li><a class="_blank msn_messenger" href="msnim:chat?contact=fabio.cicerchia@live.it" title="MSN Messenger">MSN Messenger</a></li>
-                    <li><a class="_blank skype" href="skype:fabio.cicerchia?call" title="Skype">Skype</a></li>
-                    <li class="last"><a class="help" href="#" title="Some informations...">?</a></li>
-                </ul>
-            </li>
+<header class="jumbotron subhead vcard" itemscope="itemscope" itemtype="http://schema.org/Person" id="hcard-Fabio-Cicerchia">
+    <img src="/media/images/logo_new.png" />
+    <h1 class="fn n" itemprop="name"><span lang="it" class="given-name">Fabio</span> <span lang="it" class="family-name">Cicerchia</span></h1> <!-- TODO: DYNAMIC VALUE -->
+    <p class="lead role" itemprop="jobTitle">Senior Web Developer - ZCE &amp; IWA CWP</p> <!-- TODO: DYNAMIC VALUE -->
+    <ul>
+        <li><span itemprop="nationality">[% data.information.entity.0.content.nationality %]</span></li>
+        <li><span itemprop="gender">[% data.information.entity.0.content.gender %]</span></li>
+        [% time = data.information.entity.0.content.birthday | replace('T', ' ') | replace('Z', '') %]
+        <li><time class="bday" itemprop="birthDate" datetime="[% time %]">[% date.format(time, "%d %B %Y") %]</time></li>
+        <li><span class="tel" itemprop="telephone">[% data.information.entity.0.content.telephone %]</span></li>
+        <li><a class="url" itemprop="url" target="_blank" href="http://[% HTTP_HOST %]" rel="nofollow me" title="">http://[% HTTP_HOST %]<span class="nw"></span></a></li>
+        <li><a class="email" itemprop="email" href="mailto:info@fabiocicerchia.it" rel="nofollow me" title="The my email address">info@fabiocicerchia.it</a></li> <!-- TODO: DYNAMIC VALUE -->
+    </ul>
+    <address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+        <span class="postal-code" itemprop="postalCode"></span> <!-- TODO: DYNAMIC VALUE -->
+        <span class="locality" itemprop="addressLocality">[% data.information.entity.0.content.address.city %]</span>
+        <span class="country-name" itemprop="addressCountry">[% data.information.entity.0.content.address.country %]</span>
+    </address>
+    <div class="subnav">
+        <ul class="nav nav-pills" itemscope="itemscope" itemtype="http://schema.org/ItemList">
+            <li class="brand">Fabio Cicerchia</li> <!-- TODO: DYNAMIC VALUE -->
+            <li itemprop="itemListElement"><a accesskey="s" href="#summary" title="Summary"><i class="icon-bullhorn"></i> Summary</a></li>
+            <li itemprop="itemListElement"><a accesskey="k" href="#skills" title="Skills"><i class="icon-tasks"></i> Skills</a></li>
+            <li itemprop="itemListElement"><a accesskey="e" href="#education" title="Education"><i class="icon-book"></i> Education</a></li>
+            <li itemprop="itemListElement"><a accesskey="x" href="#experience" title="Experience"><i class="icon-briefcase"></i> Experience</a></li>
+            <li itemprop="itemListElement"><a accesskey="l" href="#languages" title="Languages"><i class="icon-flag"></i> Languages</a></li>
         </ul>
     </div>
-</div>
+</header>

@@ -262,7 +262,7 @@ sub callAPI
     my ($self, $url, $language) = @_;
 
     HTTP::Cache::Transparent::init({
-        BasePath => "/home/fabio/Web/fabiocicerchia.github.com/cache/site", # TODO: CHANGE
+        BasePath => dirname(__FILE__) . "/../../../cache/site",
         MaxAge   => 8 * 24,
         NoUpdate => 15 * 60,
     });
@@ -272,11 +272,7 @@ sub callAPI
     $browser->default_header('Accept-Language' => $language);
     $browser->default_header('Accept' => 'application/vnd.ads+xml;v=1.0');
 
-    my $host = exists($ENV{'HTTP_HOST'})
-               ? $ENV{'HTTP_HOST'}
-               : 'fabiocicerchia.github'; # TODO: CHANGE THIS
-
-    return $browser->get('http://' . $host . '/api.php' . $url);
+    return $browser->get('http://' . $ENV{'HTTP_HOST'} . '/api.php' . $url);
 }
 # }}}
 

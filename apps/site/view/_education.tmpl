@@ -3,8 +3,7 @@
 
 <section id="education">
     <div class="page-header">
-        <!-- TODO: I18N -->
-        <h2>Education</h2>
+        <h2>Education</h2> <!-- TODO: DYNAMIC VALUE -->
     </div>
 
     <div class="row">
@@ -17,9 +16,12 @@
             <div itemscope="itemscope" itemtype="http://schema.org/EducationEvent" class="span6 education vevent" id="[% id_title %]_[% id_company %]">
                 <h3 class="summary" itemprop="name">[% entity.title.content %]</h3>
                 <div class="dates">
-                    <!-- TODO: ADD dtend -->
-                    [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtstart">[% date.format(time, "%a, %d %b %Y") %]</span>
+                    [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
+                    <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>
+                    [% IF entity.updated && entity.updated != entity.published %]
+                    [% end = entity.updated | replace('T', ' ') | replace('Z', '') %]
+                    <span class="dtend">[% date.format(end, "%a, %d %b %Y") %]</span>
+                    [% END %]
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
                     <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
@@ -34,7 +36,7 @@
             </div>
             [% IF loop.count mod 2 == 0 %]</div>[% closed = 1 %][% END %]
             [% END %]
-            [% IF closed == 0 %]</div>[% END %] <!-- TODO: CHANGE THIS -->
+            [% IF closed == 0 %]</div>[% END %]
         </div>
     </div>
 </section>

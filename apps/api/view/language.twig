@@ -12,7 +12,7 @@
             <skills>
                 {% for knowledge, level in entity.knowledge %}
                 <skill>
-                    <title type="text">{{ knowledge|capitalize }}</title><!-- TODO: TRANSLATE IT -->
+                    <title type="text">{{ knowledge|capitalize }}</title>
                     <level>{{ level }}</level>
                 </skill>
                 {% endfor %}

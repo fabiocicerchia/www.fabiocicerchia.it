@@ -1505,6 +1505,10 @@ body {
 
 /* MAIN.CSS */
 
+h1 span {
+    display:                 inline;
+}
+
 a,
 a * {
     color:                   #006680;
@@ -1529,14 +1533,30 @@ p {
     text-align:              justify;
 }
 
-#overview img {
+.vcard > img {
     float:                   left;
     margin-right:            1.5em;
+}
+
+.vcard address {
+    padding:                 0 0.5em;
+}
+
+.vcard address, .vcard > ul {
+    float:                   left;
+    margin-left:             0px;
+}
+
+.vcard > ul li {
+    display:                 inline-block;
+    border-right:            1px solid #CCC;
+    padding:                 0 0.5em;
 }
 
 .subnav {
     width:                   86%;
     margin:                  0 0 0 auto;
+    clear:                   both;
 }
 
 .subnav-fixed {
@@ -1635,4 +1655,14 @@ hr
 
 .row-fluid + .row-fluid {
     margin-top:               3em;
+}
+
+.dates .dtstart:before {
+    content:                  "From: ";
+    font-weight:              bold;
+}
+
+.dates .dtend:before {
+    content:                  " - To: ";
+    font-weight:              bold;
 }

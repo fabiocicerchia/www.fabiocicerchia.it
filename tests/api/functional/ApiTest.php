@@ -12,8 +12,6 @@
  * @link      http://www.fabiocicerchia.it
  */
 
-//namespace YourApp\Tests; TODO
-
 require_once realpath(__DIR__ . '/../../../apps/api/silex.phar');
 
 use Silex\WebTestCase;
