@@ -2,13 +2,13 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://[% HTTP_HOST %]/</id> <!-- TODO: DYNAMIC VALUE -->
-    <title>Fabio Cicerchia - Senior Web Developer</title> <!-- TODO: DYNAMIC VALUE -->
+    <id>http://[% HTTP_HOST %]/</id>
+    <title>Fabio Cicerchia - [% data.information.entity.0.content.role %]</title>
     <link href="http://[% HTTP_HOST %]" />
     <updated>[% date.format(last_modified, "%Y-%m-%dT%H:%M:%SZ") %]</updated>
     <author>
-        <name>Fabio Cicerchia</name> <!-- TODO: DYNAMIC VALUE -->
-        <email>info@fabiocicerchia.it</email> <!-- TODO: DYNAMIC VALUE -->
+        <name>Fabio Cicerchia</name>
+        <email>[% data.information.entity.0.content.contacts.email %]</email>
     </author>
     <link rel="self" type="application/rss+xml" href="http://[% HTTP_HOST %]/atom" />
     <!-- TODO: SORTING BY DATES -->

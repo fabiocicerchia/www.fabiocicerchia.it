@@ -14,6 +14,7 @@
 
 use strict;
 use warnings;
+use version; our $VERSION = qv('1.0');
 use File::Basename;
 
-do (dirname(__FILE__) . '/../apps/site/logic/controller.pl');
+do( dirname(__FILE__) . '/../apps/site/logic/controller.pl' );

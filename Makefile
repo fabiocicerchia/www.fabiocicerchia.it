@@ -179,7 +179,6 @@ install-perl-modules:
 	$(CPAN) install Digest::MD5
 	$(CPAN) install File::Basename
 	$(CPAN) install File::Spec
-	$(CPAN) install HTTP::Cache::Transparent
 	$(CPAN) install LWP
 	$(CPAN) install POSIX
 	$(CPAN) install Pod::Coverage
@@ -254,8 +253,8 @@ run-phpcb:
 run-perlcritic:
 	$(ECHO) "RUNNING PERL CRITIC"
 	$(ECHO) "--------------------------------------------------------------------------------"
-	find $(SITE_APP_SOURCEDIR) -type f -name "*.pl" | xargs perl critic.pl
-	find $(SITE_TEST_SOURCEDIR) -type f -name "*.pl" | xargs perl critic.pl
+	find $(SITE_APP_SOURCEDIR) -type f -name "*.pl" | xargs perl bin/critic.pl
+	find $(SITE_TEST_SOURCEDIR) -type f -name "*.pl" | xargs perl bin/critic.pl
 
 run-phpdoc:
 	$(ECHO) "RUNNING PHPDOCUMENTOR"

@@ -38,7 +38,7 @@ class ApiTest extends WebTestCase
      */
     public function createApplication()
     {
-        $app = require __DIR__ . '/../../../apps/api/logic/app.php';
+        $app = include __DIR__ . '/../../../apps/api/logic/app.php';
 
         $app['debug'] = false;
 
@@ -52,6 +52,8 @@ class ApiTest extends WebTestCase
      *
      * Note: Child classes that define a setUp method must call
      * parent::setUp().
+     *
+     * @return void
      */
     public function setUpDebug()
     {
@@ -170,7 +172,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('service > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('service > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('service > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('service > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('service > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('service > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('service > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint')->count());
@@ -203,7 +205,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('service > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('service > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('service > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('service > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('service > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('service > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('service > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint')->count());
@@ -385,7 +387,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -418,7 +420,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -602,7 +604,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -639,7 +641,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -827,7 +829,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -890,7 +892,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -1105,7 +1107,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -1142,7 +1144,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -1330,7 +1332,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
@@ -1367,7 +1369,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://www.fabiocicerchia.it', $crawler->filter('entities > author > uri')->text());
+        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());

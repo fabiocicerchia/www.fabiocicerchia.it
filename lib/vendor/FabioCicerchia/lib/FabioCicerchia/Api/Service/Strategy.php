@@ -43,14 +43,15 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
     /**
      * The constructor.
      *
-     * @param  string                     $service_name The name of the service.
-     * @param  \Doctrine\MongoDB\Database $db_handle    The Database Handle.
+     * @param string                     $service_name The name of the service.
+     * @param \Doctrine\MongoDB\Database $db_handle    The Database Handle.
      *
      * @api
-     * @return void
      * @see    http://www.php.net/manual/en/class.unexpectedvalueexception.php
      * @see    FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
-     * @throw  UnexpectedValueException
+     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
+     * @return void
      */
     public function __construct($service_name, \Doctrine\MongoDB\Database $db_handle)
     {
@@ -62,8 +63,8 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
 
         try {
             $this->strategy = new $class($db_handle);
-        } catch (Exception $e) {
-            throw new UnexpectedValueException($e->getMessage(), $e->getCode());
+        } catch (\Exception $e) {
+            throw new \UnexpectedValueException($e->getMessage(), $e->getCode());
         }
     }
     // }}}

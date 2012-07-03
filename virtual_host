@@ -122,7 +122,7 @@
 
         # CacheDirLevels * CacheDirLength < 20
         <IfModule mod_disk_cache.c>
-            CacheRoot /home/fabio/Web/fabiocicerchia.github.com/tmp/cache/apache
+            CacheRoot /home/fabio/Web/fabiocicerchia.github.com/cache/apache
             CacheEnable disk /
 
             CacheDirLevels 5

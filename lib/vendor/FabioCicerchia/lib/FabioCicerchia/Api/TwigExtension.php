@@ -34,7 +34,8 @@ class TwigExtension extends \Twig_Extension
      *
      * @return stringThe extension name.
      */
-    public function getName() {
+    public function getName()
+    {
         return 'FabioCicerchia';
     }
     // }}}
@@ -45,14 +46,16 @@ class TwigExtension extends \Twig_Extension
      *
      * @return array An array of tests.
      */
-    public function getFilters() {
+    public function getFilters()
+    {
         return [
-            'custom_date' => new \Twig_Filter_Method($this, 'custom_date'),
+            'custom_date'  => new \Twig_Filter_Method($this, 'customDate'),
+            'preg_replace' => new \Twig_Filter_Method($this, 'pregReplace'),
         ];
     }
     // }}}
 
-    // {{{ custom_date
+    // {{{ customDate
     /**
      * Converts a date to the given format.
      * Workaround to avoid the problem of missing DateTime classes.
@@ -66,7 +69,7 @@ class TwigExtension extends \Twig_Extension
      *
      * @return string The formatter date.
      */
-    public function custom_date($date, $format = null)
+    public function customDate($date, $format = null)
     {
         date_default_timezone_set('UTC');
 
@@ -77,6 +80,27 @@ class TwigExtension extends \Twig_Extension
         }
 
         return date($format, $timestamp);
+    }
+    // }}}
+
+    // {{{ pregReplace
+    /**
+     * Just the preg_replace.
+     *
+     * <pre>
+     *   {{ post.title|preg_replace("/Hello/", "World") }}
+     * </pre>
+     *
+     * @param mixed   $subject     The string or an array with strings to search and replace.
+     * @param mixed   $pattern     The pattern to search for. It can be either a string or an array with strings.
+     * @param mixed   $replacement The string or an array with strings to replace.
+     * @param integer $limit       The maximum possible replacements for each pattern in each subject string.
+     *
+     * @return mixed The result of the preg_replace.
+     */
+    public function pregReplace($subject, $pattern, $replacement, $limit = -1)
+    {
+        return preg_replace($pattern, $replacement, $subject, $limit);
     }
     // }}}
 }

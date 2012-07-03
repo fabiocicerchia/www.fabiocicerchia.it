@@ -1,6 +1,3 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8" />
 <base href="http://[% HTTP_HOST %]" />
@@ -8,32 +5,41 @@
 <link href="http://microformats.org/profile/hcalendar" rel="profile" />
 <link href="http://microformats.org/profile/hcard" rel="profile" />
 <link href="http://microformats.org/profile/hresume" rel="profile" />
-<link href="https://plus.google.com/110733047203682160091" rel="author" title="Fabio Cicerchiaon Google+" />
+<link href="https://plus.google.com/110733047203682160091" rel="author" title="Fabio Cicerchia on Google+" />
 <link href="/humans.txt" rel="author" type="text/plain" />
-<!--link href="/minify/min/?f=media/css/main.css" media="screen" rel="stylesheet" type="text/css" title="Default Layout" /-->
 <link href="/media/css/bootstrap/bootstrap.min.css" rel="stylesheet">
 <link href="/media/css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="/media/css/main.css" rel="stylesheet">
-<link href="it" hreflang="it" rel="alternate" title="Traduzione in Italiano" />
-<link href="/" hreflang="en" rel="alternate" title="English Translation" />
-<link href="/atom" rel="alternate" title="Feed ATOM (English)" type="application/atom+xml" />
-<link href="/rss091" rel="alternate" title="Feed RSS 0.91 (English)" type="application/rss+xml" />
-<link href="/rss092" rel="alternate" title="Feed RSS 0.92 (English)" type="application/rss+xml" />
-<link href="/rss1" rel="alternate" title="Feed RSS 1.0 (English)" type="application/rss+xml" />
-<link href="/rss2" rel="alternate" title="Feed RSS 2.0 (English)" type="application/rss+xml" />
-<meta http-equiv="Default-Style" content="Default Layout" />
-<meta name="dcterms.creator" content="Fabio Cicerchia" /> <!-- TODO: DYNAMIC VALUE -->
-<meta content="I'm a certified web developer with the web passion, the security mania and the thirst for knowledge." name="dcterms.description" /> <!-- TODO: DYNAMIC VALUE -->
-<meta content="en-GB" name="dcterms.language" /> <!-- TODO: DYNAMIC VALUE -->
+[% FOREACH entity IN data.language.entity %]
+<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %][% END %]" hreflang="[% entity.content.code.short %]" rel="alternate" title="[% entity.title.content %]" />
+[% END %]
+[% FOREACH entity IN data.language.entity %]
+<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]atom" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed ATOM ([% entity.title.content %])" type="application/atom+xml" />
+[% END %]
+[% FOREACH entity IN data.language.entity %]
+<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]rss091" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed RSS 0.91 ([% entity.title.content %])" type="application/rss+xml" />
+[% END %]
+[% FOREACH entity IN data.language.entity %]
+<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]rss092" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed RSS 0.92 ([% entity.title.content %])" type="application/rss+xml" />
+[% END %]
+[% FOREACH entity IN data.language.entity %]
+<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]rss1" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed RSS 1.0 ([% entity.title.content %])" type="application/rss+xml" />
+[% END %]
+[% FOREACH entity IN data.language.entity %]
+<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]rss2" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed RSS 2.0 ([% entity.title.content %])" type="application/rss+xml" />
+[% END %]
+<meta name="dcterms.creator" content="Fabio Cicerchia" />
+<meta content="[% data.information.entity.0.summary.content | replace("\n", " ") | replace("[.].*", ".") %]" name="dcterms.description" />
+<meta content="[% language %]" name="dcterms.language" />
 <meta content="Curriculum Vitae" name="dcterms.subject" />
-<meta name="dcterms.title" content="Fabio Cicerchia - Web Developer" /> <!-- TODO: DYNAMIC VALUE -->
-<meta content="I'm a certified web developer with the web passion, the security mania and the thirst for knowledge." name="description" /> <!-- TODO: DYNAMIC VALUE -->
-<meta name="geo.placename" content="London" /> <!-- TODO: DYNAMIC VALUE -->
-<meta content="41.825;12.890" name="geo.position" /> <!-- TODO: DYNAMIC VALUE -->
-<meta content="GB" name="geo.country" /> <!-- TODO: DYNAMIC VALUE -->
-<meta content="certified, web, developer, iwa, ciw, zend, php, mysql" name="keywords" />
-<meta content="41.825, 12.890" name="ICBM" /> <!-- TODO: DYNAMIC VALUE -->
+<meta name="dcterms.title" content="Fabio Cicerchia - [% data.information.entity.0.content.role %]" />
+<meta content="[% data.information.entity.0.summary.content | replace("\n", " ") | replace("[.].*", ".") %]" name="description" />
+<meta name="geo.placename" content="[% data.information.entity.0.content.address.city.content %]" />
+<!--meta content="41.825;12.890" name="geo.position" /-->
+<meta content="[% data.information.entity.0.location.country_code %]" name="geo.country" />
+<meta content="certified, web, developer, iwa, ciw, zend, php, mysql" name="keywords" /><!-- TODO: DYNAMIC VALUE -->
+<!--meta content="41.825, 12.890" name="ICBM" /-->
 <meta content="nofollow" name="robots" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<title>Fabio Cicerchia - Web Developer</title> <!-- TODO: DYNAMIC VALUE -->
+<title>Fabio Cicerchia - [% data.information.entity.0.content.role %]</title>

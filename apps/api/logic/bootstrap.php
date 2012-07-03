@@ -41,7 +41,9 @@ $app->register($twigServiceProvider, $options);
 
 $md5_filter = new Twig_Filter_Function('md5');
 $app['twig']->addFilter('md5', $md5_filter);
-$app['twig']->addExtension(new FabioCicerchia\Api\TwigExtension($app));
+
+$custom_filters = new FabioCicerchia\Api\TwigExtension($app);
+$app['twig']->addExtension($custom_filters);
 
 // -----------------------------------------------------------------------------
 // HTTP CACHE PROVIDER ---------------------------------------------------------
@@ -59,9 +61,7 @@ $options = [
     'mongodb.class_path' => __DIR__ . '/../../../lib/vendor/mongodb/lib',
     'mongodb.connection' => [
         'server'       => 'mongodb://localhost',
-        'options'      => [],
-        'eventmanager' => function ($eventmanager) {
-        }
+        'options'      => []
     ]
 ];
 $mongoDbExtension = new SilexExtension\MongoDbExtension();

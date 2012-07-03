@@ -1,7 +1,7 @@
 <header class="jumbotron subhead vcard" itemscope="itemscope" itemtype="http://schema.org/Person" id="hcard-Fabio-Cicerchia">
     <img src="/media/images/logo_new.png" />
-    <h1 class="fn n" itemprop="name"><span lang="it" class="given-name">Fabio</span> <span lang="it" class="family-name">Cicerchia</span></h1> <!-- TODO: DYNAMIC VALUE -->
-    <p class="lead role" itemprop="jobTitle">Senior Web Developer - ZCE &amp; IWA CWP</p> <!-- TODO: DYNAMIC VALUE -->
+    <h1 class="fn n" itemprop="name"><span lang="it" class="given-name">Fabio</span> <span lang="it" class="family-name">Cicerchia</span></h1>
+    <p class="lead role" itemprop="jobTitle">[% data.information.entity.0.content.role %]</p>
     <ul>
         <li><span itemprop="nationality">[% data.information.entity.0.content.nationality %]</span></li>
         <li><span itemprop="gender">[% data.information.entity.0.content.gender %]</span></li>
@@ -9,7 +9,7 @@
         <li><time class="bday" itemprop="birthDate" datetime="[% time %]">[% date.format(time, "%d %B %Y") %]</time></li>
         <li><span class="tel" itemprop="telephone">[% data.information.entity.0.content.telephone %]</span></li>
         <li><a class="url" itemprop="url" target="_blank" href="http://[% HTTP_HOST %]" rel="nofollow me" title="">http://[% HTTP_HOST %]<span class="nw"></span></a></li>
-        <li><a class="email" itemprop="email" href="mailto:info@fabiocicerchia.it" rel="nofollow me" title="The my email address">info@fabiocicerchia.it</a></li> <!-- TODO: DYNAMIC VALUE -->
+        <li><a class="email" itemprop="email" href="mailto:[% data.information.entity.0.content.contacts.email %]" rel="nofollow me" title="The my email address">[% data.information.entity.0.content.contacts.email %]</a></li>
     </ul>
     <address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
         <span class="postal-code" itemprop="postalCode"></span> <!-- TODO: DYNAMIC VALUE -->
@@ -18,7 +18,7 @@
     </address>
     <div class="subnav">
         <ul class="nav nav-pills" itemscope="itemscope" itemtype="http://schema.org/ItemList">
-            <li class="brand">Fabio Cicerchia</li> <!-- TODO: DYNAMIC VALUE -->
+            <li class="brand">Fabio Cicerchia</li>
             <li itemprop="itemListElement"><a accesskey="s" href="#summary" title="Summary"><i class="icon-bullhorn"></i> Summary</a></li>
             <li itemprop="itemListElement"><a accesskey="k" href="#skills" title="Skills"><i class="icon-tasks"></i> Skills</a></li>
             <li itemprop="itemListElement"><a accesskey="e" href="#education" title="Education"><i class="icon-book"></i> Education</a></li>

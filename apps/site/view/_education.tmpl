@@ -27,8 +27,7 @@
                     <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
                 </div>
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <!-- TODO: I18N -->
-                    <dt itemprop="name">Activities</dt>
+                    <dt itemprop="name">Activities</dt><!-- TODO: DYNAMIC VALUE -->
                     [% FOREACH activity = entity.content.activities %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</li>
                     [% END %]

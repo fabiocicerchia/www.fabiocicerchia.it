@@ -10,10 +10,18 @@
         <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
 
         <content>
+            <role>{{ entity.role }}</role>
             <address>
                 <city>{{ entity.location.city }}</city>
+                <code>{{ entity.location.country_code }}</code>
                 <country>{{ entity.location.country }}</country>
             </address>
+
+            <contacts>
+                {% for type, value in entity.contacts %}
+                <{{ type }}>{{ value }}</{{ type }}>
+                {% endfor %}
+            </contacts>
 
             <maritalstatus>{{ entity.marital_status|capitalize }}</maritalstatus>
             <nationality>{{ entity.nationality|capitalize }}</nationality>

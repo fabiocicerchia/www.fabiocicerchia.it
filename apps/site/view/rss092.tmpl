@@ -3,10 +3,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="0.92">
     <channel>
-        <title>Fabio Cicerchia - Web Developer</title> <!-- TODO: DYNAMIC VALUE -->
+        <title>Fabio Cicerchia - [% data.information.entity.0.content.role %]</title>
         <link>http://[% HTTP_HOST %]</link>
         <description>[% data.information.entity.0.summary.content %]</description>
-        <webMaster>info@fabiocicerchia.it (Fabio Cicerchia)</webMaster> <!-- TODO: DYNAMIC VALUE -->
+        <webMaster>[% data.information.entity.0.content.contacts.email %] (Fabio Cicerchia)</webMaster>
         <pubDate>[% date.format(last_modified, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
         <language>[% language %]</language>
         <rating />
@@ -15,6 +15,10 @@
         [% FOREACH entity IN data.education.entity %]
         <item>
             <title>Education - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+            [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
+            <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
+            [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]
+            <lastBuildDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</lastBuildDate>
             <description></description>
             <category>Education</category> <!-- TODO: DYNAMIC VALUE -->
         </item>
@@ -22,6 +26,10 @@
         [% FOREACH entity IN data.experience.entity %]
         <item>
             <title>Experience - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+            [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
+            <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
+            [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]
+            <lastBuildDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</lastBuildDate>
             <description></description>
             <category>Experience</category> <!-- TODO: DYNAMIC VALUE -->
         </item>

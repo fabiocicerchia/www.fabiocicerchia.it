@@ -30,17 +30,23 @@ abstract class ServiceAbstract
 {
     // {{{ PROPERTIES
     /**
-     * @var \Doctrine\MongoDB\Collection $collection The Collection Handle.
+     * The Collection Handle.
+     *
+     * @var \Doctrine\MongoDB\Collection
      */
     private $collection = null;
 
     /**
-     * @var string $collectionName The name of the collection.
+     * The name of the collection.
+     *
+     * @var string
      */
     protected $collectionName = null;
 
     /**
-     * @var array $data The data.
+     * The data.
+     *
+     * @var array
      */
     protected $data = [];
     // }}}
@@ -49,7 +55,7 @@ abstract class ServiceAbstract
     /**
      * The constructor.
      *
-     * @param  \Doctrine\MongoDB\Database $db_handle The Database Handle.
+     * @param \Doctrine\MongoDB\Database $db_handle The Database Handle.
      *
      * @internal
      * @return void
@@ -60,69 +66,6 @@ abstract class ServiceAbstract
     {
         $this->setDatabase($db_handle);
         $this->run();
-    }
-    // }}}
-
-    // {{{ setDatabase
-    /**
-     * Executed to set up the database handle.
-     *
-     * @param  \Doctrine\MongoDB\Database $db_handle The Database Handle
-     *
-     * @internal
-     * @return void
-     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
-     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
-     */
-    protected function setDatabase(\Doctrine\MongoDB\Database $db_handle)
-    {
-        $this->collection = $db_handle->selectCollection($this->collectionName);
-    }
-    // }}}
-
-    // {{{ execDataQuery
-    /**
-     * Retrieve all the documents from a collection.
-     *
-     * @internal
-     * @return array
-     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
-     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
-     */
-    protected function execDataQuery()
-    {
-        return $this->collection->find()->toArray();
-    }
-    // }}}
-
-    // {{{ getRawData
-    /**
-     * Retrieve the data from the collection and manipulate it.
-     *
-     * @internal
-     * @return array
-     * @see    FabioCicerchia\Api\ServiceAbstract::execDataQuery() Retrieve all the documents from a collection.
-     */
-    protected function getRawData()
-    {
-        $data = $this->execDataQuery();
-
-        return $data;
-    }
-    // }}}
-
-    // {{{ elaborateData
-    /**
-     * Modify if needed the data.
-     *
-     * @param array $data The data.
-     *
-     * @internal
-     * @return array
-     */
-    protected function elaborateData(array $data)
-    {
-        return $data;
     }
     // }}}
 
@@ -142,6 +85,69 @@ abstract class ServiceAbstract
         $data = $this->getRawData();
 
         $this->data = $this->elaborateData($data);
+    }
+    // }}}
+
+    // {{{ elaborateData
+    /**
+     * Modify if needed the data.
+     *
+     * @param array $data The data.
+     *
+     * @internal
+     * @return array
+     */
+    protected function elaborateData(array $data)
+    {
+        return $data;
+    }
+    // }}}
+
+    // {{{ getRawData
+    /**
+     * Retrieve the data from the collection and manipulate it.
+     *
+     * @internal
+     * @return array
+     * @see    FabioCicerchia\Api\ServiceAbstract::execDataQuery() Retrieve all the documents from a collection.
+     */
+    protected function getRawData()
+    {
+        $data = $this->execDataQuery();
+
+        return $data;
+    }
+    // }}}
+
+    // {{{ execDataQuery
+    /**
+     * Retrieve all the documents from a collection.
+     *
+     * @internal
+     * @return array
+     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
+     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
+     */
+    protected function execDataQuery()
+    {
+        return $this->collection->find()->toArray();
+    }
+    // }}}
+
+    // {{{ setDatabase
+    /**
+     * Executed to set up the database handle.
+     *
+     * @param \Doctrine\MongoDB\Database $db_handle The Database Handle
+     *
+     * @internal
+     * @return void
+     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
+     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
+     */
+    protected function setDatabase(\Doctrine\MongoDB\Database $db_handle)
+    {
+        $this->collection = $db_handle->selectCollection($this->collectionName);
     }
     // }}}
 

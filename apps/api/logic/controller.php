@@ -26,11 +26,12 @@ $closures = [];
 // -----------------------------------------------------------------------------
 // ERROR HANDLING --------------------------------------------------------------
 // -----------------------------------------------------------------------------
+
 /**
  * Error - Closure.
  *
- * @param Exception $e    The Exception instance.
- * @param integer   $code The exception code.
+ * @param \Exception $e    The Exception instance.
+ * @param integer    $code The exception code.
  *
  * @return Response
  */
@@ -51,8 +52,7 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
 /**
  * Root - Closure.
  *
- * @param Silex\Application $app The Silex Application instance.
- *
+ * @uses Silex\Application $app The Silex Application instance.
  * @return Response
  */
 $closures['root'] = function () use ($app) {
@@ -70,7 +70,8 @@ $closures['root'] = function () use ($app) {
     $data = [
         'routes'    => $entryPoint->getServices(),
         'mime_type' => $mime_type,
-        'api_name'  => 'entry point'
+        'api_name'  => 'entry point',
+        'email'     => $database->selectCollection('information')->find()->getNext()['contacts']['email']
     ];
 
     // Rendering
@@ -90,9 +91,9 @@ $closures['root'] = function () use ($app) {
 /**
  * API - Closure.
  *
- * @param string            $api_name The API name retrieved from URL.
- * @param Silex\Application $app      The Silex Application instance.
+ * @param string $api_name The API name retrieved from URL.
  *
+ * @uses Silex\Application $app The Silex Application instance.
  * @return Response
  */
 $closures['api'] = function ($api_name) use ($app) {
@@ -117,14 +118,14 @@ $closures['api'] = function ($api_name) use ($app) {
     $response = new Response();
     if ($app['debug'] === false) {
         $firstRecord  = $data['entities'][array_keys($data['entities'])[0]];
-        if (isset($firstRecord['date'])) {
-            if (isset($firstRecord['date']['end'])) {
+        if (isset($firstRecord['date']) === true) {
+            if (isset($firstRecord['date']['end']) === true) {
                 $time = $firstRecord['date']['end']->sec;
-            } elseif(isset($firstRecord['date']['start'])) {
+            } elseif (isset($firstRecord['date']['start']) === true) {
                 $time = $firstRecord['date']['start']->sec;
             }
         }
-        $lastModified = isset($time)
+        $lastModified = isset($time) === true
                         ? $time
                         : filemtime(__DIR__ . '/../../../db/mongo-curriculum.js');
         $response->setPublic();
@@ -146,10 +147,9 @@ $closures['api'] = function ($api_name) use ($app) {
         $available_languages = [$current_lang => $current_lang];
         $accept_language     = $app['request']->headers->get('accept-language');
         if (empty($accept_language) === false) {
-            $db_languages = $database->selectCollection('language')
-                                     ->find([], ['code' => true])->toArray();
+            $db_languages = $database->selectCollection('language')->find([], ['code' => true])->toArray();
 
-            foreach($db_languages as $language_code) {
+            foreach ($db_languages as $language_code) {
                 $short_lang = substr($language_code['code'], 0, strpos($language_code['code'], '_'));
                 $available_languages[$short_lang] = $language_code['code'];
             }
@@ -159,6 +159,7 @@ $closures['api'] = function ($api_name) use ($app) {
         $response->headers->set('Content-Language', $current_lang);
 
         $data['entities'] = Utils::convertForI18n($data['entities'], $available_languages[$current_lang]);
+        $data['email']    = $database->selectCollection('information')->find()->getNext()['contacts']['email'];
 
         // Rendering
         $content = $app['twig']->render($api_name . '.twig', $data);
@@ -174,8 +175,7 @@ $closures['api'] = function ($api_name) use ($app) {
 /**
  * API Definition Syntax - Closure.
  *
- * @param Silex\Application $app The Silex Application instance.
- *
+ * @uses Silex\Application $app The Silex Application instance.
  * @return Response
  */
 $closures['api_definition_syntax'] = function () use ($app) {

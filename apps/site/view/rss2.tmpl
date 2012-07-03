@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Fabio Cicerchia - Senior Web Developer</title> <!-- TODO: DYNAMIC VALUE -->
+        <title>Fabio Cicerchia - [% data.information.entity.0.content.role %]</title>
         <link>http://[% HTTP_HOST %]</link>
         <description>[% data.information.entity.0.summary.content %]</description>
         <language>[% language %]</language>
-        <webMaster>info@fabiocicerchia.it (Fabio Cicerchia)</webMaster> <!-- TODO: DYNAMIC VALUE -->
+        <webMaster>[% data.information.entity.0.content.contacts.email %] (Fabio Cicerchia)</webMaster>
         <pubDate>[% date.format(last_modified, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
         <docs>http://cyber.law.harvard.edu/rss/rss.html</docs>
         <ttl>1440</ttl>

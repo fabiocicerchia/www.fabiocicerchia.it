@@ -36,32 +36,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected $object = null;
 
     /**
-     * Constructs a test case with the given name.
-     *
-     * @param  string $name
-     * @param  array  $data
-     * @param  string $dataName
-     *
-     * @return void
-     */
-    public function __construct($name = NULL, array $data = array(), $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-    }
-
-    /**
-     * setUp
-     * Sets up the fixture, for example, open a network connection.
-     * This method is called before a test is executed.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-    }
-
-    /**
      * tearDown
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
@@ -87,9 +61,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
     public function output($value)
     {
         if ($this->isDebug() === true) {
-            print PHP_EOL;
+            echo PHP_EOL;
             print_r($value);
-            print PHP_EOL;
+            echo PHP_EOL;
         }
     }
 
@@ -212,7 +186,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * pass
      * Just the opposite of PHPUnit_Framework_Assert::fail()
      *
-     * @param $message The message.
+     * @param string $message The message.
      *
      * @return void
      */

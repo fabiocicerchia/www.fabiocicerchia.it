@@ -14,9 +14,10 @@
 
 use strict;
 use warnings;
+use version; our $VERSION = qv('1.0');
 use File::Basename;
 
-do (dirname(__FILE__) . '/class.pl');
+do( dirname(__FILE__) . '/class.pl' );
 
-my $resume = new FabioCicerchiaSite;
+my $resume = FabioCicerchiaSite->new();
 $resume->show();
