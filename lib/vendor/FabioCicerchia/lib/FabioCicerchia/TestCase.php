@@ -2,14 +2,34 @@
 /**
  * FABIO CICERCHIA - WEBSITE
  *
+ * Copyright 2012 Fabio Cicerchia.
+ *
+ * Permission is hereby granted, free of  charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction,  including without limitation the rights
+ * to use,  copy, modify,  merge, publish,  distribute, sublicense,  and/or sell
+ * copies  of the  Software,  and to  permit  persons to  whom  the Software  is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above  copyright notice and this  permission notice shall be  included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE  IS PROVIDED "AS IS",  WITHOUT WARRANTY OF ANY  KIND, EXPRESS OR
+ * IMPLIED,  INCLUDING BUT  NOT LIMITED  TO THE  WARRANTIES OF  MERCHANTABILITY,
+ * FITNESS FOR A  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO  EVENT SHALL THE
+ * AUTHORS  OR COPYRIGHT  HOLDERS  BE LIABLE  FOR ANY  CLAIM,  DAMAGES OR  OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
  * PHP Version 5.4
  *
  * @category   Code
  * @package    FabioCicerchia
  * @subpackage TestCase
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia. All Rights reserved.
- * @license    TBD <http://www.fabiocicerchia.it>
+ * @copyright  2012 Fabio Cicerchia.
+ * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
  */
 
@@ -23,7 +43,7 @@ namespace FabioCicerchia;
  * @subpackage TestCase
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
- * @license    TBD <http://www.fabiocicerchia.it>
+ * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
  */
 class TestCase extends \PHPUnit_Framework_TestCase
@@ -35,8 +55,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected $object = null;
 
+    // {{{ tearDown
     /**
-     * tearDown
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      *
@@ -48,9 +68,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         $this->output(PHP_EOL . str_repeat('#', 80) . PHP_EOL);
     }
+    // }}}
 
+    // {{{ output
     /**
-     * output
      * Prints human-readable information about a variable, only if the debug is
      * enabled.
      *
@@ -66,9 +87,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
             echo PHP_EOL;
         }
     }
+    // }}}
 
+    // {{{ isDebug
     /**
-     * isDebug
      * Check the PHPUnit's debug flag to enable the debug mode.
      *
      * @return boolean The value of the PHPUnit debug.
@@ -77,9 +99,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         return in_array('--debug', $_SERVER['argv']) === true;
     }
+    // }}}
 
+    // {{{ retrieveMethod
     /**
-     * retrieveMethod
      * Change the visibility of a method to use it directly.
      *
      * @param string $object The object's instance.
@@ -89,7 +112,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function retrieveMethod($object, $name)
     {
-        $this->_checkReflectionCompability();
+        $this->checkReflectionCompability();
 
         $class  = new \ReflectionClass(get_class($object));
         $method = $class->getMethod($name);
@@ -98,24 +121,28 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         return $method;
     }
+    // }}}
 
+    // {{{ checkReflectionCompability
     /**
-     * _checkReflectionCompability
      * Check if the current PHP version support the method ReflectionMethod::setAccessible.
      *
      * @return void
      */
-    private function _checkReflectionCompability()
+    private function checkReflectionCompability()
     {
-        $phpVer = PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION;
+        $phpVer = PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION .
+                  '.' . PHP_RELEASE_VERSION;
         if (version_compare($phpVer, '5.3.2') < 0) {
-            $message = 'The current PHP version (%s) doesn\'t support the "ReflectionMethod::setAccessible" method.';
+            $message  = 'The current PHP version (%s) doesn\'t support the ';
+            $message .= '"ReflectionMethod::setAccessible" method.';
             $this->markTestSkipped(sprintf($message, $phpVer));
         }
     }
+    // }}}
 
+    // {{{ callMethod
     /**
-     * callMethod
      * Call a method, changing the visibility.
      *
      * @param string $method The method to call.
@@ -129,9 +156,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         return $method->invokeArgs($this->object, $params);
     }
+    // }}}
 
+    // {{{ retrieveProperty
     /**
-     * retrieveProperty
      * Change the visibility of a property to use it directly.
      *
      * @param string $object The object instance.
@@ -141,7 +169,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function retrieveProperty($object, $name)
     {
-        $this->_checkReflectionCompability();
+        $this->checkReflectionCompability();
 
         $class    = new \ReflectionClass(get_class($object));
         $property = $class->getProperty($name);
@@ -150,9 +178,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         return $property;
     }
+    // }}}
 
+    // {{{ getProperty
     /**
-     * getProperty
      * Get the value of a property, changing the visibility.
      *
      * @param string $name The property to get.
@@ -165,9 +194,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         return $property->getValue($this->object);
     }
+    // }}}
 
+    // {{{ setProperty
     /**
-     * setProperty
      * Set the value of a property, changing the visibility.
      *
      * @param string $name  The property to change.
@@ -179,12 +209,13 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $property = $this->retrieveProperty($this->object, $name);
 
-        return $property->setValue($this->object, $value);
+        $property->setValue($this->object, $value);
     }
+    // }}}
 
+    // {{{ pass
     /**
-     * pass
-     * Just the opposite of PHPUnit_Framework_Assert::fail()
+     * Just the opposite of PHPUnit_Framework_Assert::fail().
      *
      * @param string $message The message.
      *
@@ -194,4 +225,5 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         self::assertThat(null, self::anything(), $message);
     }
+    // }}}
 }

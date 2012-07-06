@@ -2,14 +2,34 @@
 /**
  * FABIO CICERCHIA - WEBSITE
  *
+ * Copyright 2012 Fabio Cicerchia.
+ *
+ * Permission is hereby granted, free of  charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction,  including without limitation the rights
+ * to use,  copy, modify,  merge, publish,  distribute, sublicense,  and/or sell
+ * copies  of the  Software,  and to  permit  persons to  whom  the Software  is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above  copyright notice and this  permission notice shall be  included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE  IS PROVIDED "AS IS",  WITHOUT WARRANTY OF ANY  KIND, EXPRESS OR
+ * IMPLIED,  INCLUDING BUT  NOT LIMITED  TO THE  WARRANTIES OF  MERCHANTABILITY,
+ * FITNESS FOR A  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO  EVENT SHALL THE
+ * AUTHORS  OR COPYRIGHT  HOLDERS  BE LIABLE  FOR ANY  CLAIM,  DAMAGES OR  OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
  * PHP Version 5.4
  *
  * @category   Code
  * @package    FabioCicerchia\Api
  * @subpackage Utils
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia. All Rights reserved.
- * @license    TBD <http://www.fabiocicerchia.it>
+ * @copyright  2012 Fabio Cicerchia.
+ * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
  */
 
@@ -23,7 +43,7 @@ namespace FabioCicerchia\Api;
  * @subpackage Utils
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
- * @license    TBD <http://www.fabiocicerchia.it>
+ * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
  */
 class Utils
@@ -39,18 +59,21 @@ class Utils
      * @api
      * @see    FabioCicerchia\Api\Utils::httpPriorityOrder()
      * @see    FabioCicerchia\Api\Utils::retrieveCurrentLanguage()
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException The parameter $accept_language must be a string.
      * @return string
      */
     public static function getCurrentLanguage(array $available_languages, $accept_language)
     {
         if (is_string($accept_language) === false) {
-            throw new \InvalidArgumentException('The parameter $accept_language must be a string.');
+            $message = 'The parameter $accept_language must be a string.';
+            throw new \InvalidArgumentException($message);
         }
 
         $accept_language    = preg_replace('/([a-z]{2})-([a-z]{2})/', '\1', $accept_language);
         $accepted_languages = self::httpPriorityOrder($accept_language);
-        $current_lang       = self::retrieveCurrentLanguage(array_keys($available_languages), $accepted_languages);
+        
+        $list_keys    = array_keys($available_languages);
+        $current_lang = self::retrieveCurrentLanguage($list_keys, $accepted_languages);
 
         return $current_lang;
     }
@@ -87,13 +110,14 @@ class Utils
      *
      * @internal
      * @see    FabioCicerchia\Api\Utils::httpCustomSorting()
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException The parameter $string must be a string.
      * @return array
      */
     protected static function httpPriorityOrder($string)
     {
         if (is_string($string) === false) {
-            throw new \InvalidArgumentException('The parameter $string must be a string.');
+            $message = 'The parameter $string must be a string.';
+            throw new \InvalidArgumentException($message);
         }
 
         $string = preg_replace('/ +/', '', $string);
@@ -125,17 +149,19 @@ class Utils
      * @param string $b The second element.
      *
      * @internal
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException The parameters $a or $b must be a string.
      * @return integer
      */
     protected static function httpCustomSorting($a, $b)
     {
         if (is_string($a) === false) {
-            throw new \InvalidArgumentException('The parameter $a must be a string.');
+            $message = 'The parameter $a must be a string.';
+            throw new \InvalidArgumentException($message);
         }
 
         if (is_string($b) === false) {
-            throw new \InvalidArgumentException('The parameter $b must be a string.');
+            $message = 'The parameter $b must be a string.';
+            throw new \InvalidArgumentException($message);
         }
 
         list($a_priority, $a_order, $a_value) = explode(' ', $a);
@@ -161,7 +187,9 @@ class Utils
         }
 
         // fourth check on star values
-        if (strpos($a_value, '*') !== false || strpos($b_value, '*') !== false) {
+        if (strpos($a_value, '*') !== false
+            || strpos($b_value, '*') !== false
+        ) {
             return strcmp($b_value, $a_value);
         }
 
@@ -178,13 +206,14 @@ class Utils
      * @param string $language The language.
      *
      * @api
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException The parameter $language must be a string.
      * @return array
      */
     public static function convertForI18n(array $data, $language)
     {
         if (is_string($language) === false) {
-            throw new \InvalidArgumentException('The parameter $language must be a string.');
+            $message = 'The parameter $language must be a string.';
+            throw new \InvalidArgumentException($message);
         }
 
         if (isset($data[$language]) === true) {

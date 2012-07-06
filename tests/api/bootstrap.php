@@ -24,37 +24,31 @@
  *
  * PHP Version 5.4
  *
- * @category   Code
- * @package    FabioCicerchia\Api
- * @subpackage StrategyInterface
- * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia.
- * @license    MIT <http://www.opensource.org/licenses/MIT>
- * @link       http://www.fabiocicerchia.it
+ * @category  Test
+ * @package   Api
+ * @author    Fabio Cicerchia <info@fabiocicerchia.it>
+ * @copyright 2012 Fabio Cicerchia.
+ * @license   MIT <http://www.opensource.org/licenses/MIT>
+ * @link      http://www.fabiocicerchia.it
  */
 
-namespace FabioCicerchia\Api;
+if (defined('DIR_SEP') === false) {
+    define('DIR_SEP', DIRECTORY_SEPARATOR);
+}
 
-/**
- * Message
- *
- * @category   Code
- * @package    FabioCicerchia\Api
- * @subpackage StrategyInterface
- * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia. All Rights reserved.
- * @license    MIT <http://www.opensource.org/licenses/MIT>
- * @link       http://www.fabiocicerchia.it
- */
-interface StrategyInterface
-{
-    // {{{ getData
-    /**
-     * Retrieve the data from the Service.
-     *
-     * @api
-     * @return array
-     */
-    public function getData();
-    // }}}
+if (defined('ROOT_PATH') === false) {
+    define('ROOT_PATH',  __DIR__ . DIR_SEP . '..' . DIR_SEP . '..' . DIR_SEP);
+}
+
+if (defined('VENDOR_PATH') === false) {
+    define('VENDOR_PATH', ROOT_PATH . DIR_SEP . 'lib' . DIR_SEP . 'vendor' . DIR_SEP);
+}
+
+if (defined('LIB_PATH') === false) {
+    $path = VENDOR_PATH . 'FabioCicerchia' . DIR_SEP . 'lib' . DIR_SEP . 'FabioCicerchia';
+    define('LIB_PATH', $path . DIR_SEP);
+}
+
+if (defined('SILEX_FILE') === false) {
+    define('SILEX_FILE', ROOT_PATH . 'apps' . DIR_SEP . 'api' . DIR_SEP . 'silex.phar');
 }
