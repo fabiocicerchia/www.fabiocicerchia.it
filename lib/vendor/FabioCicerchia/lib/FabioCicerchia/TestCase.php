@@ -131,12 +131,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     private function checkReflectionCompability()
     {
-        $phpVer = PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION .
-                  '.' . PHP_RELEASE_VERSION;
-        if (version_compare($phpVer, '5.3.2') < 0) {
+        if (version_compare(PHP_VERSION, '5.3.2') < 0) {
             $message  = 'The current PHP version (%s) doesn\'t support the ';
             $message .= '"ReflectionMethod::setAccessible" method.';
-            $this->markTestSkipped(sprintf($message, $phpVer));
+            $this->markTestSkipped(sprintf($message, PHP_VERSION));
         }
     }
     // }}}

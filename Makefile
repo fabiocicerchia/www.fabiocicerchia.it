@@ -86,7 +86,7 @@ test-perl:
 
 sca: run-phpcs run-phpmd run-phploc run phpcpd run-pdepend run-phpcb
 
-docs: run-phpdoc
+docs: run-phpdoc run-perlpod
 
 ################################################################################
 # SPECIFIC ACTIONS
@@ -260,3 +260,8 @@ run-phpdoc:
 	$(ECHO) "RUNNING PHPDOCUMENTOR"
 	$(ECHO) "--------------------------------------------------------------------------------"
 	$(PHPDOC)
+
+run-perlpod:
+	$(ECHO) "RUNNING PERLPOD"
+	$(ECHO) "--------------------------------------------------------------------------------"
+	pod2html --infile=apps/site/logic/class.pl --outfile=docs/site/class.html

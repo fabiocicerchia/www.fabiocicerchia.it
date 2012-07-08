@@ -30,6 +30,9 @@ These are the coding standards respected in the code:
     * DRY (Don't Repeat Yourself) - [Article](http://programmer.97things.oreilly.com/wiki/index.php/Don%27t_Repeat_Yourself)
     * KISS (Keep It Simple Stupid) - [Article](http://people.apache.org/~fhanik/kiss.html)
     * YAGNI (You Aren't Gonna Need It) - [Article](http://c2.com/xp/YouArentGonnaNeedIt.html)
+ * Documentation
+    * Algorithmic Documentation (Use full-line comments to explain the algorithm.)
+    * Elucidating Documentation (Use end-of-line comments to point out subtleties and oddities.)
  * Testing
     * Unit testing - [Article](http://www.extremeprogramming.org/rules/unittests.html)
     * Functional testing - [Article](http://en.wikipedia.org/wiki/Functional_testing)
@@ -159,7 +162,8 @@ described in the properly section.
 ### 3.1. Coding Standards
 These are the coding standards respected in the code:
 
- * TBW (TODO: WRITE THE NAMES OF CHAPTER OF PBP)
+ * All the standard present in the book "Perl Best Practices" by Damian Conway,
+   respecting the Perl::Critic with the level "brutal".
 
 ### 3.2. Application Design
 These are the application design models that has been applied:

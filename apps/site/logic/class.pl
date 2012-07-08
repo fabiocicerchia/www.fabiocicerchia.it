@@ -47,7 +47,7 @@ use Template;
 use XML::Simple;
 
 # {{{ new
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->new()
 # Purpose    : Generate a new instance.
 # Returns    : Self.
@@ -118,12 +118,12 @@ sub new {
 # }}}
 
 # {{{ set_request
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->set_request()
 # Purpose    : Set the main parameters for the request.
 # Returns    : Nothing.
 # Parameters : None.
-# Throws     : No exceptions
+# Throws     : No exceptions.
 sub set_request {
     my $self = shift;
 
@@ -152,7 +152,7 @@ sub set_request {
 # }}}
 
 # {{{ show
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->show()
 # Purpose    : Run the required action.
 # Returns    : Nothing, just printing.
@@ -173,7 +173,7 @@ sub show {
 # }}}
 
 # {{{ execute_action
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->execute_action()
 # Purpose    : Execute a custom & dynamical action.
 # Returns    : A string, the output that will be printed.
@@ -193,7 +193,7 @@ sub execute_action {
 # }}}
 
 # {{{ action404
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->action404()
 # Purpose    : Print a 404 error.
 # Returns    : Nothing, just printing.
@@ -211,7 +211,7 @@ sub action404 {
 # }}}
 
 # {{{ action_show
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->action_show()
 # Purpose    : The "show" action.
 # Returns    : Nothing, just printing.
@@ -258,7 +258,7 @@ sub action_show {
 # }}}
 
 # {{{ get_data
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->get_data()
 # Purpose    : Retrieve the data from the API.
 # Returns    : Array.
@@ -303,7 +303,7 @@ sub get_data {
 # }}}
 
 # {{{ elaborate_data
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->elaborate_data()
 # Purpose    : Change the data.
 # Returns    : An Hash, the input hash but modified.
@@ -333,7 +333,7 @@ sub elaborate_data {
 # }}}
 
 # {{{ get_item_data
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->get_data()
 # Purpose    : Retrieve the data from the API.
 # Returns    : Array.
@@ -377,7 +377,7 @@ sub get_item_data {
 # }}}
 
 # {{{ retrieve_xml
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->retrieve_xml()
 # Purpose    : Retrieve XML from an URL.
 # Returns    : XML::Simple object.
@@ -409,7 +409,7 @@ sub retrieve_xml {
 # }}}
 
 # {{{ call_api
-### CLASS METHOD ###########################
+### CLASS METHOD ###############################################################
 # Usage      : FabioCicerchia::Site->call_api()
 # Purpose    : Call an URL and return its content.
 # Returns    : String, the output of the URL.
@@ -427,3 +427,185 @@ sub call_api {
 }
 
 # }}}
+
+__END__
+
+=head1 FABIOCICERCHIASITE
+
+=head2 NAME
+
+FabioCicerchiaSite - The Fabio Cicerchia's website class
+
+=head2 VERSION
+
+This documentation refers to package <FabioCicerchiaSite> version 0.1.
+
+=head2 SYNOPSIS
+
+    my $resume = FabioCicerchiaSite->new();
+    $resume->show();
+
+=head2 REQUIRED ARGUMENTS
+
+No arguments are required. You need just few ENV variables:
+
+=over
+
+=item *
+HTTP_HOST
+
+=item *
+QUERY_STRING
+
+=item *
+HTTP_ACCEPT_LANGUAGE
+
+=back
+
+Are needed also the following variables from the querystring:
+
+=over
+
+=item * action
+
+=item * format
+
+=item * lang
+
+=back
+
+=head2 DESCRIPTION
+
+This  package analyse  some parameters  from the  environment and  from the  URL
+querystring to build and execute the  proper custom & dynamical action (could be
+a 404 page or a show action to view the HTML output).
+
+The data  used to show  the information  is retrieved from  a REST API  (the XML
+response will be converted in an object).
+
+=head2 SUBROUTINES/METHODS
+
+A separate section listing the public components of the module's interface.
+These normally consist of either subroutines that may be exported, or methods
+that may be called on objects belonging to the classes that the module provides.
+Name the section accordingly.
+
+In an object-oriented module, this section should begin with a sentence of the
+form "An object of this class represents...", to give the reader a high-level
+context to help them understand the methods that are subsequently described.
+
+=over
+
+=item * C<FabioCicerchia::Site-E<gt>new()>
+
+Generate a new instance.
+
+=item * C<FabioCicerchia::Site-E<gt>set_request()>
+
+Set the main parameters for the request.
+
+=item * C<FabioCicerchia::Site-E<gt>show()>
+
+Run the required action.
+
+=item * C<FabioCicerchia::Site-E<gt>execute_action()>
+
+Execute a custom & dynamical action.
+
+=item * C<FabioCicerchia::Site-E<gt>action404()>
+
+Print a 404 error.
+
+=item * C<FabioCicerchia::Site-E<gt>action_show()>
+
+The "show" action.
+
+=item * C<FabioCicerchia::Site-E<gt>get_data()>
+
+Retrieve the data from the API.
+
+=item * C<FabioCicerchia::Site-E<gt>elaborate_data()>
+
+Change the data.
+
+=item * C<FabioCicerchia::Site-E<gt>get_data()>
+
+Retrieve the data from the API.
+
+=item * C<FabioCicerchia::Site-E<gt>retrieve_xml()>
+
+Retrieve XML from an URL.
+
+=item * C<FabioCicerchia::Site-E<gt>call_api()>
+
+Call an URL and return its content.
+
+=back
+
+=head2 DEPENDENCIES
+
+This is the list of all the other modules that this module relies upon:
+
+=over
+
+=item * Date::Format
+
+Date formating subroutines.
+
+=item * DateTime
+
+A date and time object.
+
+=item * Digest::MD5
+
+Perl interface to the MD5 Algorithm.
+
+=item * File::Basename
+
+Parse file paths into directory, filename and suffix.
+
+=item * LWP
+
+The World-Wide Web library for Perl.
+
+=item * POSIX
+
+Perl interface to IEEE Std 1003.1.
+
+=item * Template
+
+Front-end module to the Template Toolkit.
+
+=item * XML::Simple
+
+Easily read/write XML (esp config files).
+
+=back
+
+=head2 AUTHOR
+
+Fabio Cicerchia <info@fabiocicerchia.it>
+
+=head2 LICENCE AND COPYRIGHT
+
+Copyright 2012 Fabio Cicerchia.
+
+Permission is hereby  granted, free of charge, to any  person obtaining a copy
+of this software and associated  documentation files (the "Software"), to deal
+in the Software  without restriction, including without  limitation the rights
+to  use, copy,  modify, merge,  publish, distribute,  sublicense, and/or  sell
+copies  of  the Software,  and  to  permit persons  to  whom  the Software  is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE  IS PROVIDED "AS  IS", WITHOUT WARRANTY  OF ANY KIND,  EXPRESS OR
+IMPLIED,  INCLUDING BUT  NOT  LIMITED TO  THE  WARRANTIES OF  MERCHANTABILITY,
+FITNESS FOR  A PARTICULAR PURPOSE AND  NONINFRINGEMENT. IN NO EVENT  SHALL THE
+AUTHORS  OR COPYRIGHT  HOLDERS  BE  LIABLE FOR  ANY  CLAIM,  DAMAGES OR  OTHER
+LIABILITY, WHETHER IN AN ACTION OF  CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+=cut
