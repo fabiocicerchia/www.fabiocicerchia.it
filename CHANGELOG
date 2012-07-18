@@ -1,0 +1,141 @@
+================================================================================
+CHANGELOG
+================================================================================
+
+2012-07-08
+    [8ae77ba] closed #16 #29 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #16 [Site] Add code documentation
+              Ref: #29 [Site] Generate the documentation
+
+2012-07-06
+    [3313362] another massive refactoring (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+
+2012-07-03
+    [5788563] massive refactoring (by Fabio Cicerchia <info@fabiocicerchia.it>)
+
+2012-07-02
+    [2a15688] refactoring (by Fabio Cicerchia <info@fabiocicerchia.it>)
+
+2012-07-01
+    [d64418d] closed #28, #18, #17 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #28, [Site] Write the vCard template
+              Ref: #18, [Site] Write the RSS template
+              Ref: #17 [Site] Write the Atom template
+
+2012-06-29
+    [9cc149e] added the files for stream (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+    [6b321f5] closed #21 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #21 [Site] Implement a cache system
+
+2012-06-27
+    [aa64b93] closed #24 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #24 [Site] Generate the reports for the code
+    [9a4fbcb] some minor changes (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [05752ef] removed useless file, for now (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+    [a108f0f] some refactoring and fixing. closed #14 #15 #23 #27 (by Fabio 
+              Cicerchia <info@fabiocicerchia.it>)
+              Ref: #14 [Site] Adapt to use dynamical data
+              Ref: #15 [Site] Uniform to use HTML5 or XHTML
+              Ref: #23 [Site] Create the test suite
+              Ref: #27 [Site] Implement the mechanism to provide content 
+              translated
+
+2012-06-24
+    [a219549] changes to css + draft test suite + refactoring & fixing (by Fabio 
+              Cicerchia <info@fabiocicerchia.it>)
+
+2012-06-22
+    [519c859] first draft of the web site section (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+
+2012-06-12
+    [23b3acc] some refactoring + closed issue #8 (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+              Ref: #8 [API] Implement a cache system
+
+2012-06-09
+    [df5e2e6] fixed a wrong namespace for SPL + fix on language (by Fabio 
+              Cicerchia <info@fabiocicerchia.it>)
+
+2012-06-08
+    [8f9e12c] closed #9 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #9 [API] Implement the mechanism to provide content translated
+
+2012-06-07
+    [35dda4a] closed #11 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #11 [API] Create the test suite
+
+2012-06-06
+    [b4210e4] some fixes due functional testing optimisation for #11 (by Fabio 
+              Cicerchia <info@fabiocicerchia.it>)
+              Ref: #11 [API] Create the test suite
+
+2012-06-02
+    [e143189] some fixes in the phpdoc blocks + remove unused interface. #7 (by 
+              Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #7 [API] Optimise code
+    [7432fc0] closed #5 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #5 [DB] Insert translated data
+
+2012-06-01
+    [6a1df8c] changed the definition of the mimetype, some fixes on the code. 
+              related to #7 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #7 [API] Optimise code
+
+2012-05-31
+    [b543776] closed #13 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #13 [API] Generate the reports for the code
+    [f3f9b0a] forgot to add a file for #7 (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+              Ref: #7 [API] Optimise code
+    [3ec7411] closed #12 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #12 [API] Generate the documentation
+    [b1416ae] closed #4 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #4 [DB] Dump schema and data
+    [c638ce8] closed #7 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #7 [API] Optimise code
+
+2012-05-30
+    [2717eb0] some fixes and refactoring for issue #7 (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+              Ref: #7 [API] Optimise code
+
+2012-05-29
+    [20a93e0] fixed #2 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #2 Customise and test the VirtualHost setting
+
+2012-05-28
+    [7529f3a] closed #10, some code-optimisation for #7 (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+              Ref: #10, [API] Use the array short notation
+              Ref: #7 [API] Optimise code
+    [0ebf84e] closed #6 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #6 Implement the makefile
+
+2012-05-26
+    [2e07324] closes #1 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #1 Install Apache 2.4
+
+2012-05-19
+    [12d656d] added the service expression syntax + fixes on the code to use the 
+              ses (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [d839d15] added comments + mini-refactoring (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+
+2012-05-18
+    [cd0fde4] some fixes to adapt the code to the coding standard + refactoring 
+              (by Fabio Cicerchia <info@fabiocicerchia.it>)
+
+2012-05-17
+    [18e26c4] some improvement to the API structure (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+
+2012-05-14
+    [c31422c] some structure improvement + first draft of the API (by Fabio 
+              Cicerchia <info@fabiocicerchia.it>)
+
+2012-03-01
+    [4754d55] initial version (by Fabio Cicerchia <info@fabiocicerchia.it>)
