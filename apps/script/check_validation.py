@@ -25,7 +25,7 @@
 # Python Version 2.7
 #
 # Category: Code
-# Package:  Site
+# Package:  Script
 # Author:   Fabio Cicerchia <info@fabiocicerchia.it>
 # License:  MIT <http://www.opensource.org/licenses/MIT>
 # Link:     http://www.fabiocicerchia.it
@@ -33,38 +33,7 @@
 
 from __future__ import print_function
 import urllib
-import re
-from lxml import etree
-# http://lxml.de/parsing.html
-
-def validate(http_method, remote_url, params, page, match,
-             excepted_value='.*', match_reverse=False):
-    page = urllib.quote('http://www.fabiocicerchia.it' + page)
-    params = params.replace('%25URI%25', page)
-
-    if (http_method == 'GET'):
-        remote_url = remote_url + '%s' % params
-        data = urllib.urlopen(remote_url).read()
-    else:
-        data = urllib.urlopen(remote_url, params).read()
-
-    parser = etree.XMLParser(ns_clean=False, resolve_entities=False,
-                             recover=True)
-    tree   = etree.fromstring(data, parser)
-
-    elements = tree.xpath(match)
-    text  = ''.join(elements)
-    match = re.match(excepted_value, text, re.DOTALL)
-
-    status = (match != None)
-
-    if match_reverse:
-        status = not status
-
-    if status:
-        return 'OK'
-    else:
-        return 'FAIL' + ' > Check this out to: ' + remote_url
+from common import validate
 
 pages = {
     'url_hp': {
@@ -93,9 +62,7 @@ pages = {
     }
 }
 
-print('=' * 80)
-print(' CHECK VALIDATION')
-print('=' * 80)
+print('CHECK VALIDATION')
 
 print('Validate W3C:')
 for k, v in pages['url_hp'].iteritems():
@@ -108,9 +75,10 @@ for k, v in pages['url_hp'].iteritems():
         'group': 0,
         'user-agent': 'W3C_Validator/1.2'
     })
-    xpath  = './/*[@id="form"]//*[text()="Result:"]/following-sibling::*[1]/text()'
-    res    = validate('GET', 'http://validator.w3.org/check?', url_param, v,
-                      xpath, '.*Passed.*')
+    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+    xpath += 'following-sibling::*[1]/text()'
+    res = validate('GET', 'http://validator.w3.org/check?', url_param, v,
+                   xpath, '.*Passed.*')
 
     print(res)
 
@@ -126,10 +94,11 @@ for k, v in pages['css'].iteritems():
         'vextwarning': '',
         'lang': 'en'
     })
-    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/*[local-name()="h3"]/text()'
-    res    = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
-                      url_param, v, xpath,
-                      '.*Congratulations! No Error Found\..*')
+    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath += '*[local-name()="h3"]/text()'
+    res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
+                   url_param, v, xpath,
+                   '.*Congratulations! No Error Found\..*')
 
     print(res)
 
@@ -145,10 +114,11 @@ for k, v in pages['css'].iteritems():
         'vextwarning': '',
         'lang': 'en'
     })
-    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/*[local-name()="h3"]/text()'
-    res    = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
-                      url_param, v, xpath,
-                      '.*Congratulations! No Error Found\..*')
+    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath += '*[local-name()="h3"]/text()'
+    res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
+                   url_param, v, xpath,
+                   '.*Congratulations! No Error Found\..*')
 
     print(res)
 
@@ -164,10 +134,11 @@ for k, v in pages['css'].iteritems():
         'vextwarning': '',
         'lang': 'en'
     })
-    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/*[local-name()="h3"]/text()'
-    res    = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
-                      url_param, v, xpath,
-                      '.*Congratulations! No Error Found\..*')
+    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath += '*[local-name()="h3"]/text()'
+    res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
+                   url_param, v, xpath,
+                   '.*Congratulations! No Error Found\..*')
 
     print(res)
 
@@ -183,10 +154,11 @@ for k, v in pages['css'].iteritems():
         'vextwarning': '',
         'lang': 'en'
     })
-    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/*[local-name()="h3"]/text()'
-    res    = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
-                      url_param, v, xpath,
-                      '.*Congratulations! No Error Found\..*')
+    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath += '*[local-name()="h3"]/text()'
+    res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
+                   url_param, v, xpath,
+                   '.*Congratulations! No Error Found\..*')
 
     print(res)
 
@@ -195,9 +167,9 @@ for k, v in pages['feed'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'url': '%URI%'})
-    xpath  = './/*[@id="main"]//*[local-name()="h2"]/text()'
-    res    = validate('GET', 'http://validator.w3.org/feed/check.cgi?',
-                      url_param, v, xpath, '.*Congratulations!.*')
+    xpath = './/*[@id="main"]//*[local-name()="h2"]/text()'
+    res = validate('GET', 'http://validator.w3.org/feed/check.cgi?',
+                   url_param, v, xpath, '.*Congratulations!.*')
 
     print(res)
 
@@ -206,18 +178,18 @@ for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'uri': '%URI%'})
-    xpath  = './/*[@class="bad msg"]/text()'
-    res    = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
-                      True)
+    xpath = './/*[@class="bad msg"]/text()'
+    res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
+                   True)
 
     print(res)
 for k, v in pages['feed'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'uri': '%URI%'})
-    xpath  = './/*[@class="bad msg"]/text()'
-    res    = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
-                      True)
+    xpath = './/*[@class="bad msg"]/text()'
+    res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
+                   True)
 
     print(res)
 
@@ -228,9 +200,9 @@ for k, v in pages['feed'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
 #    url_param = urllib.urlencode({'docAddr': '%URI%', 'async': 'false'})
-#    xpath  = './/*[text() = "mobileOK score: "]/..//text()'
-#    res    = validate('GET', 'http://validator.w3.org/mobile/check?',
-#                      url_param, v, xpath, '.*mobileOK score.+9[0-9]%.*')
+#    xpath = './/*[text() = "mobileOK score: "]/..//text()'
+#    res = validate('GET', 'http://validator.w3.org/mobile/check?',
+#                   url_param, v, xpath, '.*mobileOK score.+9[0-9]%.*')
 #
 #    print(res)
 
@@ -239,10 +211,11 @@ for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'url': '%URI%', 'view': 'cse'})
-    xpath  = './/*[@id="form"]//*[text()="Result:"]/following-sibling::*[1]/text()'
-    res    = validate('GET',
-                      'http://www.google.com/webmasters/tools/richsnippets?',
-                      url_param, v, xpath, '.*Errors:.*', True)
+    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+    xpath += 'following-sibling::*[1]/text()'
+    res = validate('GET',
+                   'http://www.google.com/webmasters/tools/richsnippets?',
+                   url_param, v, xpath, '.*Errors:.*', True)
 
     print(res)
 
@@ -258,9 +231,10 @@ for k, v in pages['url_hp'].iteritems():
 #        'depth': '',
 #        'check': 'Check'
 #    })
-#    xpath  = './/*[@id="form"]//*[text()="Result:"]/following-sibling::*[1]/text()'
-#    res    = validate('GET', 'http://validator.w3.org/checklink?', url_param,
-#                      v, xpath, '.*Passed.*')
+#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+#    xpath += 'following-sibling::*[1]/text()'
+#    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
+#                   v, xpath, '.*Passed.*')
 #
 #    print(res)
 #for k, v in pages['feed'].iteritems():
@@ -273,8 +247,14 @@ for k, v in pages['url_hp'].iteritems():
 #        'depth': '',
 #        'check': 'Check'
 #    })
-#    xpath  = './/*[@id="form"]//*[text()="Result:"]/following-sibling::*[1]/text()'
-#    res    = validate('GET', 'http://validator.w3.org/checklink?', url_param,
-#                      v, xpath, '.*Passed.*')
+#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+#    xpath += 'following-sibling::*[1]/text()'
+#    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
+#                   v, xpath, '.*Passed.*')
 #
 #    print(res)
+
+# http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN
+# http://www.sidar.org/hera/
+# YSlow
+# Page Speed

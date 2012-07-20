@@ -1,0 +1,2 @@
+# Ignore every file *.pyc in this directory
+*.pyc
