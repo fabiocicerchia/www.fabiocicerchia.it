@@ -50,10 +50,10 @@ db.getCollection("education").insert({
     },
     "institute": {
         "name": "British Study Centre",
-        "url": "http:\/\/www.british-study.com",
+        "url":  "http:\/\/www.british-study.com",
         "location": {
             "address": "Hannah House, 13-16 Manchester Street",
-            "cap": "W1U 4DJ",
+            "cap":     "W1U 4DJ",
             "city": {
                 "en_GB": "London",
                 "it_IT": "Londra"
@@ -66,7 +66,7 @@ db.getCollection("education").insert({
     },
     "date": {
         "start": ISODate("2012-04-02T00:00:00"),
-        "end": ISODate("2012-04-27T00:00:00"),
+        "end":   ISODate("2012-04-27T00:00:00"),
         "hours": 80
     },
     "activities": {
@@ -82,11 +82,11 @@ db.getCollection("education").insert({
     },
     "date": {
         "start": ISODate("2011-04-27T00:00:00"),
-        "end": ISODate("2011-04-27T00:00:00")
+        "end":   ISODate("2011-04-27T00:00:00")
     },
     "institute": {
         "name": "IWA",
-        "url": "http:\/\/www.iwanet.org"
+        "url":  "http:\/\/www.iwanet.org"
     },
     "title": {
         "en_GB": "IWA Certified Web Professional Application Developer",
@@ -101,13 +101,13 @@ db.getCollection("education").insert({
     },
     "date": {
         "start": ISODate("2011-02-08T00:00:00"),
-        "end": ISODate("2011-02-08T00:00:00")
+        "end":   ISODate("2011-02-08T00:00:00")
     },
     "institute": {
         "name": "CIW Prometric Test Center 'Finsa Tech S.r.l.'",
         "location": {
             "address": "Via dei Gracchi, 209",
-            "cap": "00192",
+            "cap":     "00192",
             "city": {
                 "en_GB": "Rome",
                 "it_IT": "Roma"
@@ -131,13 +131,13 @@ db.getCollection("education").insert({
     },
     "date": {
         "start": ISODate("2009-09-23T00:00:00"),
-        "end": ISODate("2009-09-23T00:00:00")
+        "end":   ISODate("2009-09-23T00:00:00")
     },
     "institute": {
         "name": "CIW Prometric Test Center 'Atrak S.r.l.'",
         "location": {
             "address": "Via Valentino Mazzola, 66",
-            "cap": "00142",
+            "cap":     "00142",
             "city": {
                 "en_GB": "Rome",
                 "it_IT": "Roma"
@@ -161,13 +161,13 @@ db.getCollection("education").insert({
     },
     "date": {
         "start": ISODate("2008-06-25T00:00:00"),
-        "end": ISODate("2008-06-25T00:00:00")
+        "end":   ISODate("2008-06-25T00:00:00")
     },
     "institute": {
         "name": "Zend Pearson Vue Authorised Test Center 'IPSIA Carlo Cattaneo'",
         "location": {
             "address": "Via Antonio Pisano, 9",
-            "cap": "00142",
+            "cap":     "00142",
             "city": {
                 "en_GB": "Rome",
                 "it_IT": "Roma"
@@ -191,12 +191,12 @@ db.getCollection("education").insert({
     },
     "date": {
         "start": ISODate("2005-10-24T00:00:00"),
-        "end": ISODate("2005-12-19T00:00:00"),
+        "end":   ISODate("2005-12-19T00:00:00"),
         "hours": 5
     },
     "institute": {
         "name": "AICA",
-        "url": "http:\/\/www.aicanet.it",
+        "url":  "http:\/\/www.aicanet.it",
         "location": {
             "cap": "00012",
             "city": {
@@ -222,10 +222,10 @@ db.getCollection("education").insert({
     },
     "institute": {
         "name": "ITIS Enrico Fermi",
-        "url": "http:\/\/www.fermifrascati.it\/",
+        "url":  "http:\/\/www.fermifrascati.it\/",
         "location": {
             "address": "Via Cesare Minardi, 14",
-            "cap": "00044",
+            "cap":     "00044",
             "city": {
                 "en_GB": "Frascati",
                 "it_IT": "Frascati"
@@ -238,7 +238,7 @@ db.getCollection("education").insert({
     },
     "date": {
         "start": ISODate("2000-09-04T00:00:00"),
-        "end": ISODate("2005-07-05T00:00:00"),
+        "end":   ISODate("2005-07-05T00:00:00"),
         "hours": 5676
     },
     "activities": {
@@ -256,10 +256,10 @@ db.getCollection("experience").insert({
     },
     "company": {
         "name": "FusePump Limited",
-        "url": "http:\/\/www.fusepump.com",
+        "url":  "http:\/\/www.fusepump.com",
         "location": {
             "address": "Lower Ground Floor, 20-23 Greville Street",
-            "cap": "EC1N 8SS",
+            "cap":     "EC1N 8SS",
             "city": {
                 "en_GB": "London",
                 "it_IT": "Londra"
@@ -275,35 +275,25 @@ db.getCollection("experience").insert({
         "end": -1
     },
     "activities": {
-        "en_GB": [
-            /* TODO: TBW */
-        ],
-        "it_IT": [
-            /* TODO: TBW */
-        ]
+        "en_GB": [] /* TODO: TBW */
+        "it_IT": [] /* TODO: TBW */
     },
-    "projects": [
-        /* TODO: TBW */
-    ],
-    "methodologies": [
-        /* TODO: TBW */
-    ],
-    "techniques": [
-        /* TODO: TBW */
-    ],
+    "projects": [] /* TODO: TBW */
+    "methodologies": [] /* TODO: TBW */
+    "techniques": [] /* TODO: TBW */
     "technologies": {
-        "JavaScript": {"months": 0}, /* TODO: TBW */
-        "PHP": {"months": 0}, /* TODO: TBW */
-        "MySQL": {"months": 0}, /* TODO: TBW */
-        "XML": {"months": 0}, /* TODO: TBW */
-        "Redis": {"months": 0}, /* TODO: TBW */
-        "MongoDB": {"months": 0} /* TODO: TBW */
+        "JavaScript": {"months": 2},
+        "PHP":        {"months": 3},
+        "MySQL":      {"months": 3},
+        "XML":        {"months": 3},
+        "Redis":      {"months": 1},
+        "MongoDB":    {"months": 1}
     },
     "tools": {
-        "SVN": {"months": 0}, /* TODO: TBW */
-        "Jira": {"months": 0}, /* TODO: TBW */
-        "GreenHopper": {"months": 0}, /* TODO: TBW */
-        "Zend Framework": {"months": 0} /* TODO: TBW */
+        "SVN":            {"months": 3},
+        "Jira":           {"months": 2},
+        "GreenHopper":    {"months": 0}, /* TODO: TBW */
+        "Zend Framework": {"months": 1}
     }
 });
 db.getCollection("experience").insert({
@@ -328,7 +318,7 @@ db.getCollection("experience").insert({
     },
     "date": {
         "start": ISODate("2003-05-01T00:00:00"),
-        "end": -1
+        "end":   -1
     },
     "description": {
         "en_GB": "Web sites development and implementation (showcase sites and custom web applications).\nFrom June 2006 development and project management of Bonzai (planning, design, development and maintaining).\nFrom August 2005 collaboration with the Art Director Jeroen Bertsch. Realization of showcase sites with Wordpress and customized systems.",
@@ -337,10 +327,10 @@ db.getCollection("experience").insert({
     "projects": [
         {
             "name": "Bonzai",
-            "url": "http:\/\/www.bonzai-project.org",
+            "url":  "http:\/\/www.bonzai-project.org",
             "date": {
                 "start": ISODate("2006-08-22T00:00:00"),
-                "end": -1
+                "end":   -1
             },
             "role": {
                 "en_GB": "Lead Web & Software Developer",
@@ -351,57 +341,57 @@ db.getCollection("experience").insert({
                 "it_IT": "Il mio progetto personale che trasforma i sorgenti PHP in bytecode (attraverso l'estensione bcompiler)."
             },
             "activities": {
-                "en_GB": [
-                    /* TODO: TBW */
-                ],
-                "it_IT": [
-                    /* TODO: TBW */
-                ]
+                "en_GB": ["Feature Development and Code Maintenance", "Maintenance of Website and repository PEAR", "Documentation"],
+                "it_IT": ["Implementazione feature e Manutenzione del codice", "Manutenzione sito web, repository PEAR", "Documentazione"]
             },
-            "techniques": [
-                /* TODO: TBW */
-            ],
             "technologies": [
-                /* TODO: TBW */
+                "C":     {"months": 8},
+                "PHP":   {"months": 24},
+                "MySQL": {"months": 4},
             ],
             "tools": [
-                /* TODO: TBW */
+                "CVS":            {"months": 6},
+                "GIT":            {"months": 12},
+                "cUnit":          {"months": 8},
+                "phpUnit":        {"months": 12},
+                "Automake":       {"months": 7},
+                "Splint":         {"months": 8},
             ]
         }
     ],
     "techniques": {
-        "Automated Builds": {"months": 0}, /* TODO: TBW */
-        "Code Coverage": {"months": 0}, /* TODO: TBW */
-        "Continuous Integration": {"months": 0}, /* TODO: TBW */
-        "Pomodoro Technique": {"months": 0}, /* TODO: TBW */
-        "Profiling": {"months": 0}, /* TODO: TBW */
-        "Source Code Analysis": {"months": 0}, /* TODO: TBW */
-        "Unit and Functional Testing": {"months": 0} /* TODO: TBW */
+        "Automated Builds":            {"months": '-'},
+        "Code Coverage":               {"months": '-'},
+        "Continuous Integration":      {"months": '-'},
+        "Pomodoro Technique":          {"months": '-'},
+        "Profiling":                   {"months": '-'},
+        "Source Code Analysis":        {"months": '-'},
+        "Unit and Functional Testing": {"months": '-'}
     },
     "technologies": {
-        "JavaScript": {"months": 0}, /* TODO: TBW */
-        "PHP": {"months": 0}, /* TODO: TBW */
-        "MySQL": {"months": 0}, /* TODO: TBW */
-        "SQLite": {"months": 0}, /* TODO: TBW */
-        "C": {"months": 0} /* TODO: TBW */
+        "JavaScript": {"months": '-'},
+        "PHP":        {"months": '-'},
+        "MySQL":      {"months": '-'},
+        "SQLite":     {"months": '-'},
+        "C":          {"months": '-'}
     },
     "tools": {
-        "jQuery": {"months": 0}, /* TODO: TBW */
-        "Prototype": {"months": 0}, /* TODO: TBW */
-        "Wordpress": {"months": 0}, /* TODO: TBW */
-        "Zend Framework": {"months": 0}, /* TODO: TBW */
-        "Joomla": {"months": 0}, /* TODO: TBW */
-        "Silex": {"months": 0}, /* TODO: TBW */
-        "Symfony": {"months": 0}, /* TODO: TBW */
-        "CVS": {"months": 0}, /* TODO: TBW */
-        "GIT": {"months": 0}, /* TODO: TBW */
-        "cUnit": {"months": 0}, /* TODO: TBW */
-        "phpUnit": {"months": 0}, /* TODO: TBW */
-        "Automake": {"months": 0}, /* TODO: TBW */
-        "Splint": {"months": 0}, /* TODO: TBW */
-        "Jenkins": {"months": 0}, /* TODO: TBW */
-        "Sonar": {"months": 0}, /* TODO: TBW */
-        "Mantis": {"months": 0} /* TODO: TBW */
+        "jQuery":         {"months": '-'},
+        "Prototype":      {"months": '-'},
+        "Wordpress":      {"months": '-'},
+        "Zend Framework": {"months": '-'},
+        "Joomla":         {"months": '-'},
+        "Silex":          {"months": '-'},
+        "Symfony":        {"months": '-'},
+        "CVS":            {"months": '-'},
+        "GIT":            {"months": '-'},
+        "cUnit":          {"months": '-'},
+        "phpUnit":        {"months": '-'},
+        "Automake":       {"months": '-'},
+        "Splint":         {"months": '-'},
+        "Jenkins":        {"months": '-'},
+        "Sonar":          {"months": '-'},
+        "Mantis":         {"months": '-'}
     }
 });
 db.getCollection("experience").insert({
@@ -412,10 +402,10 @@ db.getCollection("experience").insert({
     },
     "company": {
         "name": "Dnsee (Interactive Thinking S.r.l.)",
-        "url": "http:\/\/www.dnsee.com",
+        "url":  "http:\/\/www.dnsee.com",
         "location": {
             "address": "Via Flaminia Vecchia, 495",
-            "cap": "00191",
+            "cap":     "00191",
             "city": {
                 "en_GB": "Rome",
                 "it_IT": "Roma"
@@ -428,74 +418,62 @@ db.getCollection("experience").insert({
     },
     "date": {
         "start": ISODate("2010-06-21T00:00:00"),
-        "end": ISODate("2012-03-30T00:00:00")
-    },
-    "activities": {
-        "en_GB": [
-            /* TODO: TBW */
-        ],
-        "it_IT": [
-            /* TODO: TBW */
-        ]
+        "end":   ISODate("2012-03-30T00:00:00")
     },
     "projects": [
         {
-            "name": "Samsung S Galaxy",
+            "name": "Samsung Galaxy S",
             "date": {
                 "start": ISODate("2010-06-21T00:00:00"),
-                "end": ISODate("2012-10-01T00:00:00")
+                "end":   ISODate("2012-10-01T00:00:00")
             },
             "role": {
                 "en_GB": "Web Developer",
                 "it_IT": "Sviluppatore Web"
             },
             "description": {
-                "en_GB": "", /* TODO: TBW */
-                "it_IT": "" /* TODO: TBW */
+                "en_GB": "Development of a mini website for Samsung for the launch of Samsung Galaxy S",
+                "it_IT": "Sviluppo di un minisito per Samsung per il lancio del Samsung Galaxy S"
             },
             "technologies": [
-                /* TODO: TBW */
+                "PHP":   {"months": 2},
+                "MySQL": {"months": 2}
             ],
             "tools": [
-                /* TODO: TBW */
+                "Symfony": {"months": 2}
             ]
         },
         {
             "name": "Policlinic Campus Biomedical of Rome",
-            "url": "http:\/\/www.policlinicocampusbiomedico.it",
+            "url":  "http:\/\/www.policlinicocampusbiomedico.it",
             "date": {
                 "start": ISODate("2010-07-28T00:00:00"),
-                "end": ISODate("2011-12-01T00:00:00")
+                "end":   ISODate("2011-02-01T00:00:00")
             },
             "role": {
-                "en_GB": "Lead Web Developer",
-                "it_IT": "Lead Web Developer"
+                "en_GB": "Web Developer",
+                "it_IT": "Web Developer"
             },
             "description": {
                 "en_GB": "Integration into Joomla CMS some custom features like photo and video gallery, custom search to find doctors and appointments with the possibility to book or cancel them, integration and aggregation of clinical departments retrieved by an external service.",
                 "it_IT": "Integrazione in Joomla CMS di alcune funzioni personalizzate, come foto e video gallery, ricerca personalizzata per trovare medici e appuntamenti con la possibilità di prenotare o cancellare, integrazione e aggregazione di reparti clinici recuperati da un servizio esterno."
             },
-            "activities": {
-                "en_GB": [
-                    /* TODO: TBW */
-                ],
-                "it_IT": [
-                    /* TODO: TBW */
-                ]
-            },
             "technologies": [
-                /* TODO: TBW */
+                "PHP":        {"months": 6},
+                "MySQL":      {"months": 6},
+                "Oracle":     {"months": 2},
+                "SQL Server": {"months": 2}
             ],
             "tools": [
-                /* TODO: TBW */
+                "Joomla": {"months": 4}
             ]
         },
         {
             "name": "San Raffaele",
-            "url": "http:\/\/www.sanraffaele.it",
+            "url":  "http:\/\/www.sanraffaele.it",
             "date": {
                 "start": ISODate("2010-10-05T00:00:00"),
-                "end": ISODate("2012-03-30T00:00:00")
+                "end":   ISODate("2012-03-30T00:00:00")
             },
             "role": {
                 "en_GB": "Lead Web Developer",
@@ -505,58 +483,64 @@ db.getCollection("experience").insert({
                 "en_GB": "Development and Project Management of a multilanguage web portal for a big italian healthcare company.\nThe portal ranging from a CMS to health structure management (which are composed of department) through some form of profiled user registration, booking, contact and form to ask question directly to doctors.\nThere are available also a supplier management system (registration, payment, confidential documents archive) and formation system to manage all the courses provided from internal and externals universities, with the possibility to book them.",
                 "it_IT": "Sviluppo e Project Management di un portale web multilingue per una grande azienda sanitaria italiana.\nIl portale spazia da un CMS per la gestione delle strutture sanitarie (che si compongono di dipartimenti) attraverso varie form di registrazione di utenti profilati, form di prenotazione, contatti e modulo per fare domanda direttamente ai medici.\nSono a disposizione anche un sistema di gestione dei fornitori (registrazione, pagamento, archivio documenti riservati) ed un sistema di formazione per gestire tutti i corsi previsti da università interne ed esterne, con la possibilità di prenotarli."
             },
-            "activities": {
-                "en_GB": [
-                    /* TODO: TBW */
-                ],
-                "it_IT": [
-                    /* TODO: TBW */
-                ]
-            },
             "methodologies": [
-                /* TODO: TBW */
+                "SCRUM":               {"months": 7},
+                "eXtreme Programming": {"months": 10}
             ],
             "techniques": [
-                /* TODO: TBW */
+                "Automated Builds":              {"months": 12},
+                "Continuous Integration":        {"months": 12},
+                "Pair Programming":              {"months": 12},
+                "Pomodoro Technique":            {"months": 6},
+                "Unit and Functional Testing":   {"months": 17},
+                "User Stories & Planning Poker": {"months": 17}
             ],
             "technologies": [
-                /* TODO: TBW */
+                "JavaScript": {"months": 17},
+                "PHP":        {"months": 17},
+                "MySQL":      {"months": 17},
+                "SQLite":     {"months": 10}
             ],
             "tools": [
-                /* TODO: TBW */
+                "jQuery":    {"months": 17},
+                "Symfony":   {"months": 17},
+                "SVN":       {"months": 17},
+                "Jira":      {"months": 17},
+                "Hudson":    {"months": 12},
+                "Alfresco":  {"months": 17}
             ]
         }
     ],
     "methodologies": {
-        "SCRUM": {"months": 9},
+        "SCRUM":               {"months": 9},
         "eXtreme Programming": {"months": 12}
     },
     "techniques": {
-        "Automated Builds": {"months": 12},
-        "Continuous Integration": {"months": 12},
-        "Pair Programming": {"months": 21},
-        "Pomodoro Technique": {"months": 21},
-        "Unit and Functional Testing": {"months": 21},
+        "Automated Builds":              {"months": 12},
+        "Continuous Integration":        {"months": 12},
+        "Pair Programming":              {"months": 21},
+        "Pomodoro Technique":            {"months": 6},
+        "Unit and Functional Testing":   {"months": 21},
         "User Stories & Planning Poker": {"months": 21}
     },
     "technologies": {
         "JavaScript": {"months": 21},
-        "PHP": {"months": 21},
-        "MySQL": {"months": 21},
-        "SQLite": {"months": 12},
+        "PHP":        {"months": 21},
+        "MySQL":      {"months": 21},
+        "SQLite":     {"months": 12},
         "SQL Server": {"months": 5},
-        "Oracle": {"months": 5}
+        "Oracle":     {"months": 5}
     },
     "tools": {
-        "jQuery": {"months": 21},
-        "Symfony": {"months": 21},
-        "Silex": {"months": 6},
-        "Joomla": {"months": 6},
+        "jQuery":    {"months": 21},
+        "Symfony":   {"months": 21},
+        "Silex":     {"months": 6},
+        "Joomla":    {"months": 6},
         "Wordpress": {"months": 6},
-        "SVN": {"months": 21},
-        "Jira": {"months": 21},
-        "Hudson": {"months": 12},
-        "Alfresco": {"months": 21}
+        "SVN":       {"months": 21},
+        "Jira":      {"months": 21},
+        "Hudson":    {"months": 12},
+        "Alfresco":  {"months": 21}
     }
 });
 db.getCollection("experience").insert({
@@ -567,10 +551,10 @@ db.getCollection("experience").insert({
     },
     "company": {
         "name": "Populis s.r.l. (ex GoAdv s.r.l.)",
-        "url": "http:\/\/www.populis.com",
+        "url":  "http:\/\/www.populis.com",
         "location": {
             "address": "Via Cristoforo Colombo, 112",
-            "cap": "001947",
+            "cap":     "001947",
             "city": {
                 "en_GB": "Rome",
                 "it_IT": "Roma"
@@ -583,34 +567,32 @@ db.getCollection("experience").insert({
     },
     "date": {
         "start": ISODate("2008-01-02T00:00:00"),
-        "end": ISODate("2010-06-18T00:00:00")
+        "end":   ISODate("2010-06-18T00:00:00")
     },
     "methodologies": {
         "Waterfall Model": {"months": 30}
     },
-    "projects": [
-        /* TODO: TBW */
-    ],
+    "projects": [] /* TODO: TBW */
     "techniques": {
-        "Pair Programming": {"months": 30},
+        "Pair Programming":            {"months": 30},
         "Unit and Functional Testing": {"months": 24}
     },
     "technologies": {
         "JavaScript": {"months": 30},
-        "PHP": {"months": 30},
-        "MySQL": {"months": 30},
+        "PHP":        {"months": 30},
+        "MySQL":      {"months": 30},
         "PostgreSQL": {"months": 12},
-        "Python": {"months": 6}
+        "Python":     {"months": 6}
     },
     "tools": {
-        "Prototype": {"months": 12},
-        "jQuery": {"months": 12},
-        "Wordpress": {"months": 18},
+        "Prototype":      {"months": 12},
+        "jQuery":         {"months": 12},
+        "Wordpress":      {"months": 18},
         "Zend Framework": {"months": 6},
-        "Joomla": {"months": 6},
-        "CVS": {"months": 30},
-        "SVN": {"months": 30},
-        "FastESP": {"months": 6}
+        "Joomla":         {"months": 6},
+        "CVS":            {"months": 30},
+        "SVN":            {"months": 30},
+        "FastESP":        {"months": 6}
     }
 });
 db.getCollection("experience").insert({
@@ -623,7 +605,7 @@ db.getCollection("experience").insert({
         "name": "ADQ S.p.A.",
         "location": {
             "address": "Via Barnaba Tortolini, 5",
-            "cap": "00197",
+            "cap":     "00197",
             "city": {
                 "en_GB": "Rome",
                 "it_IT": "Roma"
@@ -636,26 +618,18 @@ db.getCollection("experience").insert({
     },
     "date": {
         "start": ISODate("2007-05-24T00:00:00"),
-        "end": ISODate("2007-12-31T00:00:00")
+        "end":   ISODate("2007-12-31T00:00:00")
     },
     "description": {
         "en_GB": "Design and development of some web sites, applications web-based and desktop.",
         "it_IT": ""
-    },
-    "activities": {
-        "en_GB": [
-            /* TODO: TBW */
-        ],
-        "it_IT": [
-            /* TODO: TBW */
-        ]
     },
     "projects": [
         {
             "name": "StockInformatica",
             "date": {
                 "start": ISODate("2007-05-24T00:00:00"),
-                "end": ISODate("2007-12-31T00:00:00")
+                "end":   ISODate("2007-12-31T00:00:00")
             },
             "role": {
                 "en_GB": "Web & Software Developer",
@@ -669,11 +643,11 @@ db.getCollection("experience").insert({
                 "Waterfall Model": {"months": 8}
             },
             "technologies": {
-                "PHP": {"months": 8},
-                "ASP": {"months": 8},
-                "MySQL": {"months": 8},
+                "PHP":          {"months": 8},
+                "ASP":          {"months": 8},
+                "MySQL":        {"months": 8},
                 "Visual Basic": {"months": 4}
-            }
+            },
             "tools": {
                 "osCommerce": {"months": 8}
             }
@@ -682,46 +656,41 @@ db.getCollection("experience").insert({
             "name": "ItalianCamper",
             "date": {
                 "start": ISODate("2007-05-24T00:00:00"),
-                "end": ISODate("2007-12-31T00:00:00")
+                "end":   ISODate("2007-12-31T00:00:00")
             },
             "role": {
                 "en_GB": "Web Developer",
                 "it_IT": "Sviluppatore Web"
             },
-            "description": {
-                "en_GB": "", /* TODO: TBW */
-                "it_IT": "" /* TODO: TBW */
-            },
             "methodologies": {
                 "Waterfall Model": {"months": 8}
             },
             "technologies": {
-                "PHP": {"months": 8},
+                "PHP":   {"months": 8},
                 "MySQL": {"months": 8}
+            },
+            "tools": {
+                "PHP-Nuke": {"months": 8}
             }
         },
         {
             "name": "NoPayZone",
             "date": {
                 "start": ISODate("2007-08-30T00:00:00"),
-                "end": ISODate("2007-09-28T00:00:00")
+                "end":   ISODate("2007-09-28T00:00:00")
             },
             "role": {
                 "en_GB": "Web & Software Developer",
                 "it_IT": "Sviluppatore Web & Software"
             },
-            "description": {
-                "en_GB": "", /* TODO: TBW */
-                "it_IT": "" /* TODO: TBW */
-            },
             "methodologies": {
                 "Waterfall Model": {"months": 1}
             },
             "technologies": {
-                "PHP": {"months": 1},
-                "MySQL": {"months": 1},
+                "PHP":          {"months": 1},
+                "MySQL":        {"months": 1},
                 "Visual Basic": {"months": 1}
-            }
+            },
             "tools": {
                 "Wordpress": {"months": 4}
             }
@@ -730,21 +699,17 @@ db.getCollection("experience").insert({
             "name": "CoolZone",
             "date": {
                 "start": ISODate("2012-08-30T00:00:00"),
-                "end": ISODate("2012-09-28T00:00:00")
+                "end":   ISODate("2012-09-28T00:00:00")
             },
             "role": {
                 "en_GB": "Web Developer",
                 "it_IT": "Sviluppatore Web"
             },
-            "description": {
-                "en_GB": "", /* TODO: TBW */
-                "it_IT": "" /* TODO: TBW */
-            },
             "methodologies": {
                 "Waterfall Model": {"months": 1}
             },
             "technologies": {
-                "PHP": {"months": 1},
+                "PHP":   {"months": 1},
                 "MySQL": {"months": 1}
             }
         }
@@ -772,7 +737,7 @@ db.getCollection("experience").insert({
     },
     "date": {
         "start": ISODate("2005-10-03T00:00:00"),
-        "end": ISODate("2006-10-02T00:00:00")
+        "end":   ISODate("2006-10-02T00:00:00")
     }
 });
 db.getCollection("experience").insert({
@@ -785,7 +750,7 @@ db.getCollection("experience").insert({
         "name": "Studio Bonito",
         "location": {
             "address": "Via della Basilica Romana, 36",
-            "cap": "00036",
+            "cap":     "00036",
             "city": {
                 "en_GB": "Palestrina",
                 "it_IT": "Palestrina"
@@ -798,7 +763,7 @@ db.getCollection("experience").insert({
     },
     "date": {
         "start": ISODate("2004-05-01T00:00:00"),
-        "end": ISODate("2005-10-01T00:00:00")
+        "end":   ISODate("2005-10-01T00:00:00")
     }
 });
 
@@ -807,7 +772,7 @@ db.getCollection("information").insert({
     "_id": ObjectId("4fc7b628f7c5e27a69b8d7aa"),
     "birth_day": ISODate("1986-02-09T00:00:00"),
     "contacts": {
-        "msn": "fabio.cicerchia@live.it",
+        "msn":   "fabio.cicerchia@live.it",
         "skype": "fabio.cicerchia",
         "email": "info@fabiocicerchia.it"
     },
@@ -838,7 +803,7 @@ db.getCollection("information").insert({
     "marital_status": "single",
     "name": {
         "first_name": "Fabio",
-        "last_name": "Cicerchia"
+        "last_name":  "Cicerchia"
     },
     "nationality": {
         "en_GB": "italian",
@@ -848,8 +813,8 @@ db.getCollection("information").insert({
     "social": {
         "facebook": "https:\/\/www.facebook.com\/fabio.cicerchia",
         "linkedin": "http:\/\/linkedin.com\/in\/fabiocicerchia",
-        "github": "https:\/\/github.com\/fabiocicerchia",
-        "twitter": "https:\/\/twitter.com\/fabiocicerchia"
+        "github":   "https:\/\/github.com\/fabiocicerchia",
+        "twitter":  "https:\/\/twitter.com\/fabiocicerchia"
     },
     "telephone": {
         "it": "+39 3480934577",
@@ -863,11 +828,11 @@ db.getCollection("language").insert({
     "code": "en_GB",
     "native": 0,
     "knowledge": {
-        "listening": "A2",
-        "reading": "B1",
+        "listening":          "A2",
+        "reading":            "B1",
         "spoken interaction": "A2",
-        "spoken production": "A2",
-        "writing": "A2"
+        "spoken production":  "A2",
+        "writing":            "A2"
     },
     "language": {
         "en_GB": "English",
@@ -879,11 +844,11 @@ db.getCollection("language").insert({
     "code": "it_IT",
     "native": 1,
     "knowledge": {
-        "listening": "C2",
-        "reading": "C2",
+        "listening":          "C2",
+        "reading":            "C2",
         "spoken interaction": "C2",
-        "spoken production": "C2",
-        "writing": "C2"
+        "spoken production":  "C2",
+        "writing":            "C2"
     },
     "language": {
         "en_GB": "Italian",
@@ -1002,59 +967,59 @@ db.getCollection("skill").insert({
     },
     "list": [
         {
-            "name": "JavaScript",
+            "name":        "JavaScript",
             "proficiency": "advanced"
         },
         {
-            "name": "PHP",
+            "name":        "PHP",
             "proficiency": "expert"
         },
         {
-            "name": "MySQL",
+            "name":        "MySQL",
             "proficiency": "advanced"
         },
         {
-            "name": "PostgreSQL",
+            "name":        "PostgreSQL",
             "proficiency": "intermediate"
         },
         {
-            "name": "SQLite",
+            "name":        "SQLite",
             "proficiency": "intermediate"
         },
         {
-            "name": "SQL Server",
+            "name":        "SQL Server",
             "proficiency": "beginner"
         },
         {
-            "name": "Oracle",
+            "name":        "Oracle",
             "proficiency": "beginner"
         },
         {
-            "name": "XML",
+            "name":        "XML",
             "proficiency": "intermediate"
         },
         {
-            "name": "Redis",
+            "name":        "Redis",
             "proficiency": "beginner"
         },
         {
-            "name": "MongoDB",
+            "name":        "MongoDB",
             "proficiency": "beginner"
         },
         {
-            "name": "Python",
+            "name":        "Python",
             "proficiency": "beginner"
         },
         {
-            "name": "C",
+            "name":        "C",
             "proficiency": "beginner"
         },
         {
-            "name": "ASP",
+            "name":        "ASP",
             "proficiency": "beginner"
         },
         {
-            "name": "ASP.net",
+            "name":        "ASP.net",
             "proficiency": "beginner"
         }
     ]
@@ -1067,91 +1032,91 @@ db.getCollection("skill").insert({
     },
     "list": [
         {
-            "name": "Prototype",
+            "name":        "Prototype",
             "proficiency": "intermediate"
         },
         {
-            "name": "jQuery",
+            "name":        "jQuery",
             "proficiency": "advanced"
         },
         {
-            "name": "Wordpress",
+            "name":        "Wordpress",
             "proficiency": "intermediate"
         },
         {
-            "name": "Zend Framework",
+            "name":        "Zend Framework",
             "proficiency": "beginner"
         },
         {
-            "name": "Joomla",
+            "name":        "Joomla",
             "proficiency": "advanced"
         },
         {
-            "name": "CVS",
+            "name":        "CVS",
             "proficiency": "intermediate"
         },
         {
-            "name": "SVN",
+            "name":        "SVN",
             "proficiency": "advanced"
         },
         {
-            "name": "GIT",
+            "name":        "GIT",
             "proficiency": "intermediate"
         },
         {
-            "name": "FastESP",
+            "name":        "FastESP",
             "proficiency": "beginner"
         },
         {
-            "name": "Jira",
+            "name":        "Jira",
             "proficiency": "advanced"
         },
         {
-            "name": "GreenHopper",
+            "name":        "GreenHopper",
             "proficiency": "beginner"
         },
         {
-            "name": "Symfony",
+            "name":        "Symfony",
             "proficiency": "advanced"
         },
         {
-            "name": "Silex",
+            "name":        "Silex",
             "proficiency": "intermediate"
         },
         {
-            "name": "Hudson",
+            "name":        "Hudson",
             "proficiency": "intermediate"
         },
         {
-            "name": "Alfresco",
+            "name":        "Alfresco",
             "proficiency": "beginner"
         },
         {
-            "name": "cUnit",
+            "name":        "cUnit",
             "proficiency": "beginner"
         },
         {
-            "name": "phpUnit",
+            "name":        "phpUnit",
             "proficiency": "intermediate"
         },
         {
-            "name": "Automake",
+            "name":        "Automake",
             "proficiency": "beginner"
         },
         {
-            "name": "Splint",
+            "name":        "Splint",
             "proficiency": "beginner"
         },
         {
-            "name": "Jenkins",
+            "name":        "Jenkins",
             "proficiency": "intermediate"
         },
         {
-            "name": "Sonar",
+            "name":        "Sonar",
             "proficiency": "beginner"
         },
         {
-            "name": "Mantis",
+            "name":        "Mantis",
             "proficiency": "intermediate"
         }
     ]
@@ -1159,32 +1124,32 @@ db.getCollection("skill").insert({
 
 /** system.indexes records **/
 db.getCollection("system.indexes").insert({
-    "v": 1,
-    "key": {"_id": 1},
-    "ns": "curriculum.education",
+    "v":    1,
+    "key":  {"_id": 1},
+    "ns":   "curriculum.education",
     "name": "_id_"
 });
 db.getCollection("system.indexes").insert({
-    "v": 1,
-    "key": {"_id": 1},
-    "ns": "curriculum.experience",
+    "v":    1,
+    "key":  {"_id": 1},
+    "ns":   "curriculum.experience",
     "name": "_id_"
 });
 db.getCollection("system.indexes").insert({
-    "v": 1,
-    "key": {"_id": 1},
-    "ns": "curriculum.information",
+    "v":    1,
+    "key":  {"_id": 1},
+    "ns":   "curriculum.information",
     "name": "_id_"
 });
 db.getCollection("system.indexes").insert({
-    "v": 1,
-    "key": {"_id": 1},
-    "ns": "curriculum.skill",
+    "v":    1,
+    "key":  {"_id": 1},
+    "ns":   "curriculum.skill",
     "name": "_id_"
 });
 db.getCollection("system.indexes").insert({
-    "v": 1,
-    "key": {"_id": 1},
-    "ns": "curriculum.language",
+    "v":    1,
+    "key":  {"_id": 1},
+    "ns":   "curriculum.language",
     "name": "_id_"
 });
