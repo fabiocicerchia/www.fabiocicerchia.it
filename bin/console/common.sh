@@ -172,12 +172,12 @@ docs() {
 
 init() {
     print_header "INITIALISE THE ENVIRONMENT"
-	$(WGET) http://silex.sensiolabs.org/get/silex.phar -O apps/api/silex.phar
-	$(GIT) submodule init
-	$(GIT) submodule update
-	$(CD) lib/vendor/mongodb
-	$(CURL) -s http://getcomposer.org/installer | $(PHP)
-	$(PHP) composer.phar install
+    wget http://silex.sensiolabs.org/get/silex.phar -O apps/api/silex.phar
+    git submodule init
+    git submodule update
+    cd lib/vendor/mongodb
+    curl -s http://getcomposer.org/installer | $(PHP)
+    php composer.phar install
 
     return $?
 }

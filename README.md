@@ -229,14 +229,16 @@ These are the SEO enhancements that has been implemented:
 ---
 
 ## 4. Script
-TBW
+Here below there's the list of the all technologies, libraries, tools, coding
+standards and application design used to design and develop the utility
+scripts.  
 That list doesn't include the generic elements that, instead, has been
 described in the properly section.
 
 ### 4.1. Coding Standards
 These are the coding standards respected in the code:
 
- * TBW
+ * All the standard defined in the PEP8 document.
 
 ### 4.2. Application Design
 These are the application design models that has been applied:
@@ -246,12 +248,17 @@ These are the application design models that has been applied:
 ### 4.3. Scripting, Markup & Styling Language
 These are the scripting, markup and styling languages that has been involved:
 
- * TBW
+ * Python 2.7 - [Home](http://www.python.org/) | [Doc](http://www.python.org/doc/)
 
 ### 4.4. Libraries
 These are the external libraries that has been used:
 
- * TBW
+ * Python Libraries
+    * urllib - [Doc](http://docs.python.org/library/urllib.html)
+    * time - [Doc](http://docs.python.org/library/time.html)
+    * re - [Doc](http://docs.python.org/library/re.html)
+    * lxml - [Home](http://lxml.de/)
+    * future - [Doc](http://docs.python.org/library/__future__.html)
 
 ### 4.5. Tools
 These are the tools that has been used:
@@ -263,7 +270,9 @@ These are the tools that has been used:
 ---
 
 ## 5. Console
-TBW
+Here below there's the list of the all technologies, libraries, tools, coding
+standards and application design used to design and develop the console tool
+to build the environment, run custom commands, and so on.  
 That list doesn't include the generic elements that, instead, has been
 described in the properly section.
 
@@ -280,7 +289,7 @@ These are the application design models that has been applied:
 ### 4.3. Scripting, Markup & Styling Language
 These are the scripting, markup and styling languages that has been involved:
 
- * TBW
+ * Bash Shell
 
 ### 4.4. Libraries
 These are the external libraries that has been used:
@@ -290,7 +299,46 @@ These are the external libraries that has been used:
 ### 4.5. Tools
 These are the tools that has been used:
 
- * TBW
+ * Internal Tools:
+    * cat
+    * cd
+    * curl
+    * cut
+    * declare
+    * dirname
+    * egrep
+    * find
+    * fold
+    * getopts
+    * sed
+    * seq
+    * source
+    * wc
+    * wget
+    * xargs
+
+ * External Tools:
+    * a2enmod
+    * add-apt-repository
+    * apt-get
+    * cover
+    * cpan
+    * git
+    * pdepend
+    * pear
+    * pecl
+    * pep8
+    * perl
+    * phpcb
+    * phpcpd
+    * phpcs
+    * phpdoc
+    * phploc
+    * phpmd
+    * phpunit
+    * pychecker
+    * pylint
+    * python
 
 ---
 

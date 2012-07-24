@@ -79,7 +79,10 @@ $app['twig']->addExtension($custom_filters);
 // HTTP CACHE PROVIDER ---------------------------------------------------------
 // -----------------------------------------------------------------------------
 $options = [
-    'http_cache.cache_dir' => ROOT_PATH . 'cache' . DIR_SEP . 'api',
+    'http_cache.cache_dir' => ROOT_PATH . 'cache' . DIR_SEP . 'api' . DIR_SEP,
+    'http_cache.options'   => array(
+        'debug' => $app['debug']
+    )
 ];
 $httpCacheServiceProvider = new HttpCacheServiceProvider();
 $app->register($httpCacheServiceProvider, $options);

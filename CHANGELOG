@@ -2,6 +2,21 @@
 CHANGELOG
 ================================================================================
 
+2012-07-24
+    [a433d2c] added information (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [4f9a40e] closed #30 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #30 [Script] Create a script for the benchmarking
+
+2012-07-20
+    [8d2c687] added a console shell (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [d83a92e] cleaning (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [ddaf81a] closed #31 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #31 [Script] Create a script to check the web accessibility
+
+2012-07-18
+    [a64c7c5] closed issue #32 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #32 [Script] Create a script to check the web validation
+
 2012-07-08
     [8ae77ba] closed #16 #29 (by Fabio Cicerchia <info@fabiocicerchia.it>)
               Ref: #16 [Site] Add code documentation

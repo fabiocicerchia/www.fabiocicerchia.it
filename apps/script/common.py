@@ -37,6 +37,12 @@ import re
 from lxml import etree
 # http://lxml.de/parsing.html
 
+def retrieveUrlContent(http_method, remote_url):
+    if (http_method == 'GET'):
+        data = urllib.urlopen(remote_url).read()
+    else:
+        data = urllib.urlopen(remote_url, params).read()
+
 def validate(http_method, remote_url, params, page, match,
              excepted_value='.*', match_reverse=False):
     """Validate an URL calling the defined web site validator,
@@ -56,12 +62,10 @@ def validate(http_method, remote_url, params, page, match,
     """
     page = urllib.quote('http://www.fabiocicerchia.it' + page)
     params = params.replace('%25URI%25', page)
-
     if (http_method == 'GET'):
         remote_url = remote_url + '%s' % params
-        data = urllib.urlopen(remote_url).read()
-    else:
-        data = urllib.urlopen(remote_url, params).read()
+
+    data = retrieveUrlContent(http_method, remote_url)
 
     parser = etree.XMLParser(ns_clean=False, resolve_entities=False,
                              recover=True)

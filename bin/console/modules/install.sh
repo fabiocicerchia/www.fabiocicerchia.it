@@ -147,25 +147,25 @@ install_phpmongo() {
 
 install_perl_modules() {
     print_subheader "INSTALLING PERL MODULES"
-	sudo cpan install Data::Dumper || handle_errors $?
-	sudo cpan install Date::Format || handle_errors $?
-	sudo cpan install Devel::Cover || handle_errors $?
-	sudo cpan install Digest::MD5 || handle_errors $?
-	sudo cpan install File::Basename || handle_errors $?
-	sudo cpan install File::Spec || handle_errors $?
-	sudo cpan install LWP || handle_errors $?
-	sudo cpan install POSIX || handle_errors $?
-	sudo cpan install Pod::Coverage || handle_errors $?
-	sudo cpan install Template || handle_errors $?
-	sudo cpan install Test::More || handle_errors $?
-	sudo cpan install XML::Simple || handle_errors $?
-	cd /tmp/
-	svn co http://guest@perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic/ --password guest || handle_errors $?
-	cd Perl-Critic
-	perl Makefile.PL || handle_errors $?
-	make || handle_errors $?
-	make test || handle_errors $?
-	sudo make install || handle_errors $?
+    sudo cpan install Data::Dumper || handle_errors $?
+    sudo cpan install Date::Format || handle_errors $?
+    sudo cpan install Devel::Cover || handle_errors $?
+    sudo cpan install Digest::MD5 || handle_errors $?
+    sudo cpan install File::Basename || handle_errors $?
+    sudo cpan install File::Spec || handle_errors $?
+    sudo cpan install LWP || handle_errors $?
+    sudo cpan install POSIX || handle_errors $?
+    sudo cpan install Pod::Coverage || handle_errors $?
+    sudo cpan install Template || handle_errors $?
+    sudo cpan install Test::More || handle_errors $?
+    sudo cpan install XML::Simple || handle_errors $?
+    cd /tmp/
+    svn co http://guest@perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic/ --password guest || handle_errors $?
+    cd Perl-Critic
+    perl Makefile.PL || handle_errors $?
+    make || handle_errors $?
+    make test || handle_errors $?
+    sudo make install || handle_errors $?
 
     return $?
 }
