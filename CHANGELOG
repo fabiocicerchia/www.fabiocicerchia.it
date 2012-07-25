@@ -3,6 +3,7 @@ CHANGELOG
 ================================================================================
 
 2012-07-24
+    [59157fe] refactoring & cleanup (by Fabio Cicerchia <info@fabiocicerchia.it>)
     [a433d2c] added information (by Fabio Cicerchia <info@fabiocicerchia.it>)
     [4f9a40e] closed #30 (by Fabio Cicerchia <info@fabiocicerchia.it>)
               Ref: #30 [Script] Create a script for the benchmarking

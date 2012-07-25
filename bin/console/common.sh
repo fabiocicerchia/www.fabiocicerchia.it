@@ -98,7 +98,11 @@ call_subroutines() {
         printf "%${NUM_SPC}s"
 
         RES=`$SUBROUTINE 2>&1`
-        STATUS=`cat /tmp/status.out`
+        STATUS=0
+        if [ -f /tmp/status.out ]; then
+            STATUS=`cat /tmp/status.out`
+            rm /tmp/status.out
+        fi
 
         print_status $STATUS $RES
     done
@@ -108,7 +112,7 @@ call_subroutines() {
 
 handle_errors() {
     # http://fvue.nl/wiki/Bash:_Error_handling
-    echo -n $1 > /tmp/status.out
+    echo -n "$1" > /tmp/status.out
 
     if [ $STOP_ON_ERROR -eq 1 -a $1 -gt 0 ]; then
         horizontal_line
@@ -121,7 +125,7 @@ handle_errors() {
 }
 
 print_status() {
-    if [ $1 -eq 0 ]; then
+    if [ "$1" == "0" ]; then
         echo -e "[$BLDGRN  OK  $TXTRST]"
         return 0;
     fi

@@ -4,96 +4,95 @@ TODO LIST
 
 File: ./db/mongo-curriculum.js
 --------------------------------------------------------------------------------
-  - TBW */ (line 278)
-  - TBW */ (line 279)
-  - TBW */ (line 281)
-  - TBW */ (line 282)
-  - TBW */ (line 283)
-  - TBW */ (line 295)
-  - TBW */ (line 575)
-  - Logie" (line 864)
+  - TBW (line 278)
+  - TBW (line 279)
+  - TBW (line 281)
+  - TBW (line 282)
+  - TBW (line 283)
+  - TBW (line 295)
+  - TBW (line 575)
 
 File: ./lib/PHPCS/ruleset.xml
 --------------------------------------------------------------------------------
   - <No Message> (line 7)
-  - RE-ADD --> (line 22)
+  - RE-ADD (line 22)
 
 File: ./apps/site/view/rss091.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES --> (line 14)
-  - DYNAMIC VALUE --> (line 17)
-  - DYNAMIC VALUE --> (line 27)
+  - SORTING BY DATES (line 14)
+  - DYNAMIC VALUE (line 17)
+  - DYNAMIC VALUE (line 27)
 
 File: ./apps/site/view/atom.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES --> (line 14)
-  - DYNAMIC VALUE --> (line 20)
-  - DYNAMIC VALUE --> (line 23)
-  - DYNAMIC VALUE --> (line 31)
-  - DYNAMIC VALUE --> (line 34)
+  - SORTING BY DATES (line 14)
+  - DYNAMIC VALUE (line 20)
+  - DYNAMIC VALUE (line 23)
+  - DYNAMIC VALUE (line 31)
+  - DYNAMIC VALUE (line 34)
 
 File: ./apps/site/view/rss1.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES --> (line 9)
-  - SORTING BY DATES --> (line 23)
-  - DYNAMIC VALUE --> (line 28)
-  - DYNAMIC VALUE --> (line 37)
+  - SORTING BY DATES (line 9)
+  - SORTING BY DATES (line 23)
+  - DYNAMIC VALUE (line 28)
+  - DYNAMIC VALUE (line 37)
 
 File: ./apps/site/view/_header.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 15)
+  - DYNAMIC VALUE (line 15)
 
 File: ./apps/site/view/_experience.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 5)
-  - MISSING --> (line 41)
-  - DYNAMIC VALUE --> (line 46)
-  - Summary --> (line 64)
+  - DYNAMIC VALUE (line 5)
+  - MISSING (line 41)
+  - DYNAMIC VALUE (line 46)
+  - Summary (line 64)
 
 File: ./apps/site/view/rss092.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES --> (line 14)
-  - DYNAMIC VALUE --> (line 17)
-  - DYNAMIC VALUE --> (line 23)
-  - DYNAMIC VALUE --> (line 28)
-  - DYNAMIC VALUE --> (line 34)
+  - SORTING BY DATES (line 14)
+  - DYNAMIC VALUE (line 17)
+  - DYNAMIC VALUE (line 23)
+  - DYNAMIC VALUE (line 28)
+  - DYNAMIC VALUE (line 34)
 
 File: ./apps/site/view/_js.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 36)
+  - DYNAMIC VALUE (line 36)
 
 File: ./apps/site/view/_head.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 40)
+  - DYNAMIC VALUE (line 40)
 
 File: ./apps/site/view/rss2.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES --> (line 14)
-  - DYNAMIC VALUE --> (line 17)
-  - DYNAMIC VALUE --> (line 24)
-  - DYNAMIC VALUE --> (line 29)
-  - DYNAMIC VALUE --> (line 36)
+  - SORTING BY DATES (line 14)
+  - DYNAMIC VALUE (line 17)
+  - DYNAMIC VALUE (line 24)
+  - DYNAMIC VALUE (line 29)
+  - DYNAMIC VALUE (line 36)
 
 File: ./apps/site/view/html5.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 22)
+  - DYNAMIC VALUE (line 22)
 
 File: ./apps/site/view/_education.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 6)
-  - DYNAMIC VALUE --> (line 30)
+  - DYNAMIC VALUE (line 6)
+  - DYNAMIC VALUE (line 30)
 
 File: ./apps/site/view/_summary.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 3)
+  - DYNAMIC VALUE (line 3)
 
 File: ./apps/site/view/_skill.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 3)
+  - DYNAMIC VALUE (line 3)
 
 File: ./apps/site/view/_language.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE --> (line 3)
+  - DYNAMIC VALUE (line 3)
 
 File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------

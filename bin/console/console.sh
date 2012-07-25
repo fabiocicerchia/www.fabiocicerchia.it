@@ -34,11 +34,18 @@
 ################################################################################
 # LOADING SCRIPTS
 ################################################################################
-CURR_PATH=`dirname $0`
-source $CURR_PATH/config.sh
-source $CURR_PATH/common.sh
+CURRENT_PATH="${BASH_SOURCE[0]}";
+if [ -h "$CURRENT_PATH" ]; then
+    while [ -h "$CURRENT_PATH" ]; do
+        CURRENT_PATH=`readlink "$CURRENT_PATH"`;
+    done
+fi
+CURRENT_PATH=`dirname "$CURRENT_PATH"`
+CURRENT_PATH=`cd "$CURRENT_PATH"; pwd`
+source $CURRENT_PATH/config.sh
+source $CURRENT_PATH/common.sh
 
-MODULES=`find $CURR_PATH/modules -name "*.sh" -type f`
+MODULES=`find $CURRENT_PATH/modules -name "*.sh" -type f`
 for MODULE in $MODULES; do
     source $MODULE
 done

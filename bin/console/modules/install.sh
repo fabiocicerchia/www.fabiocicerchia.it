@@ -43,19 +43,23 @@ pear_add_channel() {
 
 install_php() {
     print_subheader "INSTALLING PHP"
-    sudo add-apt-repository ppa:ondrej/php5 || handle_errors $?
-    sudo apt-get update || handle_errors $?
-    sudo apt-get upgrade || handle_errors $?
-    sudo apt-get dist-upgrade || handle_errors $?
+    #TODO: FIXME
+    echo "Please run manually this commands:"
+    echo "sudo add-apt-repository ppa:ondrej/php5"
+    echo "sudo apt-get update"
+    echo "sudo apt-get upgrade"
+    echo "sudo apt-get dist-upgrade"
 
-    return $?
+    return 1
 }
 
 install_imagick() {
     print_subheader "INSTALLING IMAGICK"
-    sudo pecl install imagick || handle_errors $?
+    #TODO: FIXME
+    echo "Please run manually this commands:"
+    echo "sudo pecl install imagick"
 
-    return $?
+    return 1
 }
 
 install_phpunit() {
@@ -147,25 +151,25 @@ install_phpmongo() {
 
 install_perl_modules() {
     print_subheader "INSTALLING PERL MODULES"
-    sudo cpan install Data::Dumper || handle_errors $?
-    sudo cpan install Date::Format || handle_errors $?
-    sudo cpan install Devel::Cover || handle_errors $?
-    sudo cpan install Digest::MD5 || handle_errors $?
-    sudo cpan install File::Basename || handle_errors $?
-    sudo cpan install File::Spec || handle_errors $?
-    sudo cpan install LWP || handle_errors $?
-    sudo cpan install POSIX || handle_errors $?
-    sudo cpan install Pod::Coverage || handle_errors $?
-    sudo cpan install Template || handle_errors $?
-    sudo cpan install Test::More || handle_errors $?
-    sudo cpan install XML::Simple || handle_errors $?
-    cd /tmp/
-    svn co http://guest@perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic/ --password guest || handle_errors $?
-    cd Perl-Critic
-    perl Makefile.PL || handle_errors $?
-    make || handle_errors $?
-    make test || handle_errors $?
-    sudo make install || handle_errors $?
+    #sudo cpan install Data::Dumper || handle_errors $? # TODO: Doesn't work?
+    #sudo cpan install Date::Format || handle_errors $?
+    #sudo cpan install Devel::Cover || handle_errors $?
+    #sudo cpan install Digest::MD5 || handle_errors $?
+    #sudo cpan install File::Basename || handle_errors $?
+    #sudo cpan install File::Spec || handle_errors $?
+    #sudo cpan install LWP || handle_errors $?
+    #sudo cpan install POSIX || handle_errors $?
+    #sudo cpan install Pod::Coverage || handle_errors $?
+    #sudo cpan install Template || handle_errors $?
+    #sudo cpan install Test::More || handle_errors $?
+    #sudo cpan install XML::Simple || handle_errors $?
+    #cd /tmp/
+    #svn co http://guest@perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic/ --password guest || handle_errors $?
+    #cd Perl-Critic
+    #perl Makefile.PL || handle_errors $?
+    #make || handle_errors $?
+    #make test || handle_errors $?
+    #sudo make install || handle_errors $?
 
     return $?
 }

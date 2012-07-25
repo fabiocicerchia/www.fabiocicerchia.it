@@ -43,22 +43,27 @@ These are the coding standards respected in the code:
     * LF (Line feed, '\n', 0x0A, 10 in decimal) as End Of Line.
     * No empty line as End Of File.
 
-### 1.2. Scripting, Markup & Styling Language
+### 1.2. Application Design
+These are the application design models that has been applied:
+
+ * Git Flow - [Doc](http://nvie.com/posts/a-successful-git-branching-model/)
+
+### 1.3. Scripting, Markup & Styling Language
 These are the scripting, markup and styling languages that has been involved:
 
  * TBW
 
-### 1.3. NoSQL Database
+### 1.4. NoSQL Database
 These are the NoSQL databases that has been involved:
 
  * MongoDB v2.0.4 - [Home](http://www.mongodb.org/) | [Doc](http://docs.mongodb.org/manual/)
 
-### 1.4. Web Server
+### 1.5. Web Server
 These are the web servers involved:
 
  * Apache v2.2.22 - [Home](http://httpd.apache.org/) | [Doc](http://httpd.apache.org/docs/2.2/)
 
-### 1.5. Libraries
+### 1.6. Libraries
 These are the libraries that has been used:
 
  * Apache Modules
@@ -74,11 +79,12 @@ These are the libraries that has been used:
     * Security - [Home](http://www.modsecurity.org/) | [Doc](http://www.modsecurity.org/documentation/)
     * Speling - [Doc](http://httpd.apache.org/docs/2.2/mod/mod_speling.html)
 
-### 1.6. Tools
+### 1.7. Tools
 These are the tools that has been used:
 
- * GIT v1.7.9.5 - [Home](http://git-scm.com/) | [Doc](http://git-scm.com/documentation)
- * Makefile
+ * Git v1.7.9.5 - [Home](http://git-scm.com/) | [Doc](http://git-scm.com/documentation)
+ * Git Flow v0.4.1 - [Repo](https://github.com/nvie/gitflow)
+ * Git Extras - [Repo](https://github.com/visionmedia/git-extras)
 
 ---
 

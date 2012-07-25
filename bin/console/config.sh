@@ -34,7 +34,9 @@
 ################################################################################
 # DIRECTORIES
 ################################################################################
-CURRENTDIR=`dirname $0`
+RELATIVE_CURRENT_PATH=`dirname $0`
+ABSOLUTE_CURRENT_PATH=`cd $RELATIVE_CURRENT_PATH; pwd`
+CURRENTDIR=$ABSOLUTE_CURRENT_PATH
 ROOTDIR=$CURRENTDIR"/../.."
 API_APP_SOURCEDIR=$ROOTDIR/apps/api
 API_LIB_SOURCEDIR=$ROOTDIR/lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api
