@@ -41,6 +41,21 @@ pear_add_channel() {
     return $?
 }
 
+install_gitflow() {
+    print_subheader "INSTALLING GIT FLOW"
+    git clone --recursive git://github.com/nvie/gitflow.git || handle_errors $?
+    sudo make install || handle_errors $?
+
+    return $?
+}
+
+install_gitextras() {
+    print_subheader "INSTALLING GIT EXTRAS"
+    curl https://raw.github.com/visionmedia/git-extras/master/bin/git-extras | INSTALL=y sh || handle_errors $?
+
+    return $?
+}
+
 install_php() {
     print_subheader "INSTALLING PHP"
     #TODO: FIXME
@@ -151,25 +166,25 @@ install_phpmongo() {
 
 install_perl_modules() {
     print_subheader "INSTALLING PERL MODULES"
-    #sudo cpan install Data::Dumper || handle_errors $? # TODO: Doesn't work?
-    #sudo cpan install Date::Format || handle_errors $?
-    #sudo cpan install Devel::Cover || handle_errors $?
-    #sudo cpan install Digest::MD5 || handle_errors $?
-    #sudo cpan install File::Basename || handle_errors $?
-    #sudo cpan install File::Spec || handle_errors $?
-    #sudo cpan install LWP || handle_errors $?
-    #sudo cpan install POSIX || handle_errors $?
-    #sudo cpan install Pod::Coverage || handle_errors $?
-    #sudo cpan install Template || handle_errors $?
-    #sudo cpan install Test::More || handle_errors $?
-    #sudo cpan install XML::Simple || handle_errors $?
-    #cd /tmp/
-    #svn co http://guest@perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic/ --password guest || handle_errors $?
-    #cd Perl-Critic
-    #perl Makefile.PL || handle_errors $?
-    #make || handle_errors $?
-    #make test || handle_errors $?
-    #sudo make install || handle_errors $?
+    sudo cpan install Data::Dumper || handle_errors $?
+    sudo cpan install Date::Format || handle_errors $?
+    sudo cpan install Devel::Cover || handle_errors $?
+    sudo cpan install Digest::MD5 || handle_errors $?
+    sudo cpan install File::Basename || handle_errors $?
+    sudo cpan install File::Spec || handle_errors $?
+    sudo cpan install LWP || handle_errors $?
+    sudo cpan install POSIX || handle_errors $?
+    sudo cpan install Pod::Coverage || handle_errors $?
+    sudo cpan install Template || handle_errors $?
+    sudo cpan install Test::More || handle_errors $?
+    sudo cpan install XML::Simple || handle_errors $?
+    cd /tmp/
+    svn co http://guest@perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic/ --password guest || handle_errors $?
+    cd Perl-Critic
+    perl Makefile.PL || handle_errors $?
+    make || handle_errors $?
+    make test || handle_errors $?
+    sudo make install || handle_errors $?
 
     return $?
 }
@@ -191,6 +206,13 @@ install_pylint() {
 install_pep8() {
     print_subheader "INSTALLING PEP8"
     sudo apt-get install pep8 || handle_errors $?
+
+    return $?
+}
+
+install_capistrano() {
+    print_subheader "INSTALLING CAPISTRANO"
+    sudo apt-get install capistrano || handle_errors $?
 
     return $?
 }
