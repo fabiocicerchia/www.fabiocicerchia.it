@@ -82,9 +82,10 @@ These are the libraries that has been used:
 ### 1.7. Tools
 These are the tools that has been used:
 
- * Git v1.7.9.5 - [Home](http://git-scm.com/) | [Doc](http://git-scm.com/documentation)
- * Git Flow v0.4.1 - [Repo](https://github.com/nvie/gitflow)
+ * Capistrano v2.12.0 - [Repo](https://github.com/capistrano/capistrano)
  * Git Extras - [Repo](https://github.com/visionmedia/git-extras)
+ * Git Flow v0.4.1 - [Repo](https://github.com/nvie/gitflow)
+ * Git v1.7.9.5 - [Home](http://git-scm.com/) | [Doc](http://git-scm.com/documentation)
 
 ---
 

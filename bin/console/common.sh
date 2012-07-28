@@ -91,16 +91,16 @@ print_subheader() {
 }
 
 call_subroutines() {
-    SUBROUTINES=`declare -F | cut -d " " -f 3 | egrep "$1"`
+    SUBROUTINES=$(declare -F | cut -d " " -f 3 | egrep "$1")
     for SUBROUTINE in $SUBROUTINES; do
         echo -en $UNDYLW$SUBROUTINE$TXTRST
-        NUM_SPC=$(( `tput cols` - ${#SUBROUTINE} - 8 ))
+        NUM_SPC=$(( $(tput cols) - ${#SUBROUTINE} - 8 ))
         printf "%${NUM_SPC}s"
 
-        RES=`$SUBROUTINE 2>&1`
+        RES=$($SUBROUTINE 2>&1)
         STATUS=0
         if [ -f /tmp/status.out ]; then
-            STATUS=`cat /tmp/status.out`
+            STATUS=$(cat /tmp/status.out)
             rm /tmp/status.out
         fi
 

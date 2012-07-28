@@ -37,15 +37,15 @@
 CURRENT_PATH="${BASH_SOURCE[0]}";
 if [ -h "$CURRENT_PATH" ]; then
     while [ -h "$CURRENT_PATH" ]; do
-        CURRENT_PATH=`readlink "$CURRENT_PATH"`;
+        CURRENT_PATH=$(readlink "$CURRENT_PATH")
     done
 fi
-CURRENT_PATH=`dirname "$CURRENT_PATH"`
-CURRENT_PATH=`cd "$CURRENT_PATH"; pwd`
+CURRENT_PATH=$(dirname "$CURRENT_PATH")
+CURRENT_PATH=$(cd "$CURRENT_PATH"; pwd)
 source $CURRENT_PATH/config.sh
 source $CURRENT_PATH/common.sh
 
-MODULES=`find $CURRENT_PATH/modules -name "*.sh" -type f`
+MODULES=$(find $CURRENT_PATH/modules -name "*.sh" -type f)
 for MODULE in $MODULES; do
     source $MODULE
 done
@@ -73,15 +73,15 @@ SUBROUTINE=$1
 if [ $HAS_OPTIONS -eq 1 ]; then
     SUBROUTINE=$2
 fi
-IS_VALID=`echo $SUBROUTINE | egrep "^[a-z]+$" | wc -l`
-SUBROUTINE_EXISTS=`declare -F | cut -d " " -f 3 | grep "^$SUBROUTINE$"`
+IS_VALID=$(echo $SUBROUTINE | egrep "^[a-z]+$" | wc -l)
+SUBROUTINE_EXISTS=$(declare -F | cut -d " " -f 3 | grep "^$SUBROUTINE$")
 
 ################################################################################
 # RUN
 ################################################################################
 print_header "CONSOLE"
 print_subheader "Copyright: 2012 Fabio Cicerchia"
-print_subheader "License:   TBD"
+print_subheader "License:   MIT"
 print_subheader "Website:   http://www.fabiocicerchia.it"
 
 if [ "$SUBROUTINE" != "" -a $IS_VALID -eq 1 ]; then
