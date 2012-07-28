@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # FABIO CICERCHIA - WEBSITE
 #
@@ -22,27 +21,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-# Bash Shell
-#
-# Category: Code
-# Package:  Console
+# Category: Config
+# Package:  Generic
 # Author:   Fabio Cicerchia <info@fabiocicerchia.it>
 # License:  MIT <http://www.opensource.org/licenses/MIT>
 # Link:     http://www.fabiocicerchia.it
 #
 
-################################################################################
-# DIRECTORIES
-################################################################################
-RELATIVE_CURRENT_PATH=$(dirname $0)
-ABSOLUTE_CURRENT_PATH=$(cd $RELATIVE_CURRENT_PATH; pwd)
-CURRENTDIR=$ABSOLUTE_CURRENT_PATH
-ROOTDIR=$CURRENTDIR/../..
-API_APP_SOURCEDIR=$ROOTDIR/apps/api
-API_LIB_SOURCEDIR=$ROOTDIR/lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api
-API_TEST_SOURCEDIR=$ROOTDIR/tests/api
-SITE_APP_SOURCEDIR=$ROOTDIR/apps/site
-SITE_TEST_SOURCEDIR=$ROOTDIR/tests/site
-SCRIPT_APP_SOURCEDIR=$ROOTDIR/apps/script
-SCRIPT_TEST_SOURCEDIR=$ROOTDIR/tests/script
-REPORTDIR=$ROOTDIR/report
+set :stages, ['production']
+set :default_stage, 'production'
+
+require 'capistrano/ext/multistage'

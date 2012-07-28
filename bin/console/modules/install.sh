@@ -212,7 +212,9 @@ install_pep8() {
 
 install_capistrano() {
     print_subheader "INSTALLING CAPISTRANO"
-    sudo apt-get install capistrano || handle_errors $?
+    sudo apt-get install gem || handle_errors $?
+    sudo gem install capistrano || handle_errors $?
+    sudo gem install capistrano-ext || handle_errors $?
 
     return $?
 }

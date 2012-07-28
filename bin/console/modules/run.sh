@@ -52,27 +52,27 @@ run_check_validation() {
 run_todo() {
     DIR=$2
 
-    for i in `seq 80`; do echo -n "="; done;
+    for i in $(seq 80); do echo -n "="; done;
     echo -e "\nTODO LIST"
-    for i in `seq 80`; do echo -n "="; done
+    for i in $(seq 80); do echo -n "="; done
     echo -en "\n"
 
-    for FILE in `find $DIR -name "*.*"`; do
+    for FILE in $(find $DIR -name "*.*"); do
         OLDIFS=$IFS
         IFS=$'\n'
 
-        RES=`egrep -rni "TODO" $FILE`
-        RES=`echo "$RES" | sed -r "s/([0-9]+):.*TODO[^0-9a-z]*(.)?/\1: \U\2/i"`
-        RES=`echo "$RES" | sed -r "s/([0-9]+): *(.+)/\2 (line \1)/"`
+        RES=$(egrep -rni "TODO" $FILE)
+        RES=$(echo "$RES" | sed -r "s/([0-9]+):.*TODO[^0-9a-z]*(.)?/\1: \U\2/i")
+        RES=$(echo "$RES" | sed -r "s/([0-9]+): *(.+)/\2 (line \1)/")
 
         if [ "$RES" != "" ]; then
             echo -en "\nFile: $FILE\n"
-            for i in `seq 80`; do echo -n "-"; done
+            for i in $(seq 80); do echo -n "-"; done
 
             for MATCH in $RES; do
-                LINE=`echo "$MATCH" | sed -r "s/^  /<No Message> /"`
-                LINE=`echo -n "  - $LINE" | fold -sw 80 | sed -r "s/^/    /"`
-                LINE=`echo "$LINE" | sed -r "s/^      - /  - /"`
+                LINE=$(echo "$MATCH" | sed -r "s/^  /<No Message> /")
+                LINE=$(echo -n "  - $LINE" | fold -sw 80 | sed -r "s/^/    /")
+                LINE=$(echo "$LINE" | sed -r "s/^      - /  - /")
 
                 echo -ne "\n$LINE"
             done
@@ -85,14 +85,14 @@ run_todo() {
 }
 
 run_changelog() {
-    for i in `seq 80`; do echo -n "="; done;
+    for i in $(seq 80); do echo -n "="; done;
     echo -e "\nCHANGELOG"
-    for i in `seq 80`; do echo -n "="; done
+    for i in $(seq 80); do echo -n "="; done
     echo -en "\n"
 
     OLDIFS=$IFS
     IFS=$'\n'
-    HISTORY=`git log --format="%cd [%h] %s (by %cn <%ce>)" --date=short`
+    HISTORY=$(git log --format="%cd [%h] %s (by %cn <%ce>)" --date=short)
     DATE=""
     for LINE in $HISTORY; do
         NEW_DATE=`echo "$LINE" | cut -d " " -f 1`
@@ -109,7 +109,7 @@ run_changelog() {
                 MATCH=`echo "$TOKEN" | grep "#"`
                 if [ "$MATCH" != "" ]; then
                     URL="https://github.com/fabiocicerchia/fabiocicerchia.github.com/issues/${MATCH/\#/}"
-                    TITLE=`curl $URL 2>&1 | grep '<h2 class="content-title">' | sed -r "s/.*>(.*)<.*/\1/"`
+                    TITLE=$(curl $URL 2>&1 | grep '<h2 class="content-title">' | sed -r "s/.*>(.*)<.*/\1/")
                     echo " Ref: $MATCH $TITLE" | fold -sw 68 | sed -r "s/^/              /" | sed -r "s/^               /              /"
                 fi
             done

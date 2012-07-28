@@ -32,17 +32,19 @@
 #
 
 ################################################################################
-# DIRECTORIES
+# DEPLOY ACTIONS
 ################################################################################
-RELATIVE_CURRENT_PATH=$(dirname $0)
-ABSOLUTE_CURRENT_PATH=$(cd $RELATIVE_CURRENT_PATH; pwd)
-CURRENTDIR=$ABSOLUTE_CURRENT_PATH
-ROOTDIR=$CURRENTDIR/../..
-API_APP_SOURCEDIR=$ROOTDIR/apps/api
-API_LIB_SOURCEDIR=$ROOTDIR/lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api
-API_TEST_SOURCEDIR=$ROOTDIR/tests/api
-SITE_APP_SOURCEDIR=$ROOTDIR/apps/site
-SITE_TEST_SOURCEDIR=$ROOTDIR/tests/site
-SCRIPT_APP_SOURCEDIR=$ROOTDIR/apps/script
-SCRIPT_TEST_SOURCEDIR=$ROOTDIR/tests/script
-REPORTDIR=$ROOTDIR/report
+
+deploy_setup() {
+    print_subheader "CAPISTRANO - DEPLOY:SETUP"
+    cap deploy:setup || handle_errors $?
+
+    return $?
+}
+
+deploy_run() {
+    print_subheader "CAPISTRANO - DEPLOY"
+    cap deploy || handle_errors $?
+
+    return $?
+}

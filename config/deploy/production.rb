@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # FABIO CICERCHIA - WEBSITE
 #
@@ -22,27 +21,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-# Bash Shell
-#
-# Category: Code
-# Package:  Console
+# Category: Config
+# Package:  Generic
 # Author:   Fabio Cicerchia <info@fabiocicerchia.it>
 # License:  MIT <http://www.opensource.org/licenses/MIT>
 # Link:     http://www.fabiocicerchia.it
 #
 
-################################################################################
-# DIRECTORIES
-################################################################################
-RELATIVE_CURRENT_PATH=$(dirname $0)
-ABSOLUTE_CURRENT_PATH=$(cd $RELATIVE_CURRENT_PATH; pwd)
-CURRENTDIR=$ABSOLUTE_CURRENT_PATH
-ROOTDIR=$CURRENTDIR/../..
-API_APP_SOURCEDIR=$ROOTDIR/apps/api
-API_LIB_SOURCEDIR=$ROOTDIR/lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api
-API_TEST_SOURCEDIR=$ROOTDIR/tests/api
-SITE_APP_SOURCEDIR=$ROOTDIR/apps/site
-SITE_TEST_SOURCEDIR=$ROOTDIR/tests/site
-SCRIPT_APP_SOURCEDIR=$ROOTDIR/apps/script
-SCRIPT_TEST_SOURCEDIR=$ROOTDIR/tests/script
-REPORTDIR=$ROOTDIR/report
+set :application,   "Fabio Cicerchia - Website"
+set :domain,        "www.fabiocicerchia.it"
+set :deploy_to,     "/var/www/fabiocicerchia/"
+set :document_root, "/var/www/fabiocicerchia/current/web/"
+
+set :scm,                   :git
+set :repository,            "git://github.com/fabiocicerchia/fabiocicerchia.github.com.git"
+set :branch,                "master"
+set :git_enable_submodules, 1
+set :deploy_via,            :remote_cache
+
+set :user,        "root"
+set :use_sudo,    false
+set :ssh_options, {:forward_agent => true}
+default_run_options[:pty] = true
+
+role :app, domain
+role :web, domain
+role :db,  domain, :primary => true

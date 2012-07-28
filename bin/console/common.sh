@@ -91,16 +91,16 @@ print_subheader() {
 }
 
 call_subroutines() {
-    SUBROUTINES=`declare -F | cut -d " " -f 3 | egrep "$1"`
+    SUBROUTINES=$(declare -F | cut -d " " -f 3 | egrep "$1")
     for SUBROUTINE in $SUBROUTINES; do
         echo -en $UNDYLW$SUBROUTINE$TXTRST
-        NUM_SPC=$(( `tput cols` - ${#SUBROUTINE} - 8 ))
+        NUM_SPC=$(( $(tput cols) - ${#SUBROUTINE} - 8 ))
         printf "%${NUM_SPC}s"
 
-        RES=`$SUBROUTINE 2>&1`
+        RES=$($SUBROUTINE 2>&1)
         STATUS=0
         if [ -f /tmp/status.out ]; then
-            STATUS=`cat /tmp/status.out`
+            STATUS=$(cat /tmp/status.out)
             rm /tmp/status.out
         fi
 
@@ -224,18 +224,19 @@ help() {
     echo -e "${BLDWHT}USAGE:$TXTRST"
     echo -e "$0 [${TXTPUR}OPTIONS$TXTRST] ${TXTCYN}ACTION$TXTRST\n"
     echo -e "${BLDWHT}Available options:$TXTRST"
-    echo -e "    $TXTPUR-s$TXTRST               Stop the execution on error"
-    echo -e "    $TXTPUR-q$TXTRST               Quiet mode\n"
+    echo -e "    $TXTPUR-s$TXTRST                Stop the execution on error"
+    echo -e "    $TXTPUR-q$TXTRST                Quiet mode\n"
     echo -e "${BLDWHT}Available actions:$TXTRST"
-    echo -e "    ${TXTCYN}all$TXTRST            Simply call the following actions: test, sca, docs."
-    echo -e "    ${TXTCYN}config$TXTRST         Configure the environment."
-    echo -e "    ${TXTCYN}docs$TXTRST           Generate the documentation."
-    echo -e "    ${TXTCYN}help$TXTRST           The help."
-    echo -e "    ${TXTCYN}init$TXTRST           Initialise the environment."
-    echo -e "    ${TXTCYN}install$TXTRST        Install all the dependencies."
-    echo -e "    ${TXTCYN}run$TXTRST [${TXTBLU}script${TXTRST}]   Launch multiple scripts."
-    echo -e "    ${TXTCYN}sca$TXTRST            Analise the code."
-    echo -e "    ${TXTCYN}test$TXTRST           Test the code."
+    echo -e "    ${TXTCYN}all$TXTRST               Simply call the following actions: test, sca, docs."
+    echo -e "    ${TXTCYN}config$TXTRST            Configure the environment."
+    echo -e "    ${TXTCYN}deploy$TXTRST [${TXTBLU}action${TXTRST}]   Script to deploy the applications."
+    echo -e "    ${TXTCYN}docs$TXTRST              Generate the documentation."
+    echo -e "    ${TXTCYN}help$TXTRST              The help."
+    echo -e "    ${TXTCYN}init$TXTRST              Initialise the environment."
+    echo -e "    ${TXTCYN}install$TXTRST           Install all the dependencies."
+    echo -e "    ${TXTCYN}run$TXTRST [${TXTBLU}script${TXTRST}]      Launch multiple scripts."
+    echo -e "    ${TXTCYN}sca$TXTRST               Analise the code."
+    echo -e "    ${TXTCYN}test$TXTRST              Test the code."
 
     return $?
 }
