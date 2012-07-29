@@ -31,6 +31,7 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 namespace FabioCicerchia\Api\Service;
@@ -47,30 +48,50 @@ use FabioCicerchia\Api;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
-class Strategy implements \FabioCicerchia\Api\StrategyInterface
+class Strategy
 {
-    // {{{ PROPERTIES
+    // {{{ Properties - Private ================================================
     /**
      * The instance of Service.
      *
      * @var object $strategy
      */
     private $strategy = null;
-    // }}}
+    // }}} =====================================================================
 
-    // {{{ __construct
+    // {{{ Methods - Getter ====================================================
+    // {{{ Method: getData -----------------------------------------------------
+    /**
+     * Retrieve the data from the Service.
+     *
+     * @see FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
+     * @see FabioCicerchia\Api\Service\*::getData()         Getter for $data.
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->strategy->getData();
+    }
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
+
+    // {{{ Methods - Special ===================================================
+    // {{{ Method: __construct -------------------------------------------------
     /**
      * The constructor.
      *
      * @param string                     $service_name The name of the service.
      * @param \Doctrine\MongoDB\Database $db_handle    The Database Handle.
      *
-     * @api
-     * @see    http://www.php.net/manual/en/class.unexpectedvalueexception.php
-     * @see    FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
-     * @throws \InvalidArgumentException The parameter $service_name must be a string.
-     * @throws \UnexpectedValueException The message will be the message of every Exception catched.
+     * @see http://www.php.net/manual/en/class.unexpectedvalueexception.php
+     * @see FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
+     *
+     * @throws InvalidArgumentException The parameter $service_name must be a string.
+     * @throws UnexpectedValueException The message will be the message of every Exception catched.
+     *
      * @return void
      */
     public function __construct($service_name, \Doctrine\MongoDB\Database $db_handle)
@@ -88,20 +109,6 @@ class Strategy implements \FabioCicerchia\Api\StrategyInterface
             throw new \UnexpectedValueException($e->getMessage(), $e->getCode());
         }
     }
-    // }}}
-
-    // {{{ getData
-    /**
-     * Retrieve the data from the Service.
-     *
-     * @api
-     * @return array
-     * @see    FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
-     * @see    FabioCicerchia\Api\Service\*::getData()         Getter for $data.
-     */
-    public function getData()
-    {
-        return $this->strategy->getData();
-    }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

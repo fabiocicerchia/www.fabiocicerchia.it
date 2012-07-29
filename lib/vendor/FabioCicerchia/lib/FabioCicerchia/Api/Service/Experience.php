@@ -31,6 +31,7 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 namespace FabioCicerchia\Api\Service;
@@ -47,26 +48,45 @@ use FabioCicerchia\Api;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 class Experience extends \FabioCicerchia\Api\ServiceAbstract
 {
-    // {{{ PROPERTIES
+    // {{{ Properties - Protected ==============================================
     /**
      * The name of the collection.
      *
      * @var string $collectionName
      */
     protected $collectionName = 'experience';
-    // }}}
+    // }}} =====================================================================
 
-    // {{{ execDataQuery
+    // {{{ Methods - Protected =================================================
+    // {{{ Method: elaborateData -----------------------------------------------
+    /**
+     * Modify if needed the data.
+     *
+     * @param array $data The data.
+     *
+     * @return array
+     */
+    protected function elaborateData(array $data)
+    {
+        $data = parent::elaborateData($data);
+        $data = ['entities' => $data];
+
+        return $data;
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: execDataQuery -----------------------------------------------
     /**
      * Retrieve all the documents from a collection.
      *
-     * @internal
+     * @see https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
+     * @see FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
+     *
      * @return array
-     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
-     * @see    FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
      */
     protected function execDataQuery()
     {
@@ -80,23 +100,6 @@ class Experience extends \FabioCicerchia\Api\ServiceAbstract
 
         return array_merge($part1, $part2);
     }
-    // }}}
-
-    // {{{ elaborateData
-    /**
-     * Modify if needed the data.
-     *
-     * @param array $data The data.
-     *
-     * @internal
-     * @return array
-     */
-    protected function elaborateData(array $data)
-    {
-        $data = parent::elaborateData($data);
-        $data = ['entities' => $data];
-
-        return $data;
-    }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

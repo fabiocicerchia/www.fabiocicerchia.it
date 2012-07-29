@@ -31,10 +31,10 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
-require_once LIB_PATH . 'Api' . DIR_SEP . 'StrategyInterface.php';
-require_once LIB_PATH . 'Api' . DIR_SEP . 'Service' . DIR_SEP . 'Strategy.php';
+require_once LIB_PATH . 'Api/Service/Strategy.php';
 
 /**
  * The Strategy Test Class.
@@ -46,6 +46,7 @@ require_once LIB_PATH . 'Api' . DIR_SEP . 'Service' . DIR_SEP . 'Strategy.php';
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 class StrategyTest extends PHPUnit_Framework_TestCase
 {

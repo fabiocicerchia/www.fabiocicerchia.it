@@ -30,25 +30,21 @@
  * @copyright 2012 Fabio Cicerchia.
  * @license   MIT <http://www.opensource.org/licenses/MIT>
  * @link      http://www.fabiocicerchia.it
+ * @since     File available since Release 0.1
  */
 
-if (defined('DIR_SEP') === false) {
-    define('DIR_SEP', DIRECTORY_SEPARATOR);
-}
-
 if (defined('ROOT_PATH') === false) {
-    define('ROOT_PATH',  __DIR__ . DIR_SEP . '..' . DIR_SEP . '..' . DIR_SEP);
+    define('ROOT_PATH',  __DIR__ . '/../../');
 }
 
 if (defined('VENDOR_PATH') === false) {
-    define('VENDOR_PATH', ROOT_PATH . DIR_SEP . 'lib' . DIR_SEP . 'vendor' . DIR_SEP);
+    define('VENDOR_PATH', ROOT_PATH . '/lib/vendor/');
 }
 
 if (defined('LIB_PATH') === false) {
-    $path = VENDOR_PATH . 'FabioCicerchia' . DIR_SEP . 'lib' . DIR_SEP . 'FabioCicerchia';
-    define('LIB_PATH', $path . DIR_SEP);
+    define('LIB_PATH', VENDOR_PATH . 'FabioCicerchia/lib/FabioCicerchia/');
 }
 
 if (defined('SILEX_FILE') === false) {
-    define('SILEX_FILE', ROOT_PATH . 'apps' . DIR_SEP . 'api' . DIR_SEP . 'silex.phar');
+    define('SILEX_FILE', ROOT_PATH . 'apps/api/silex.phar');
 }

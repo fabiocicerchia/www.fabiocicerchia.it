@@ -31,6 +31,7 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 namespace FabioCicerchia\Api\Service;
@@ -45,10 +46,11 @@ namespace FabioCicerchia\Api\Service;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 class EntryPoint
 {
-    // {{{ PROPERTIES
+    // {{{ Properties - Protected ==============================================
     /**
      * The list of active services.
      *
@@ -61,19 +63,21 @@ class EntryPoint
         'skill',
         'language'
     ];
-    // }}}
+    // }}} =====================================================================
 
-    // {{{ getServices
+    // {{{ Methods - Getter ====================================================
+    // {{{ Method: getServices -------------------------------------------------
     /**
      * Getter for $services.
      *
-     * @api
-     * @see    FabioCicerchia\Api\Service\EntryPoint::$services The list of active services.
+     * @see FabioCicerchia\Api\Service\EntryPoint::$services The list of active services.
+     *
      * @return array
      */
     public function getServices()
     {
         return $this->services;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

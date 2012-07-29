@@ -31,6 +31,7 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 namespace FabioCicerchia\Api;
@@ -45,10 +46,46 @@ namespace FabioCicerchia\Api;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 class Utils
 {
-    // {{{ getCurrentLanguage
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: convertForI18n ----------------------------------------------
+    /**
+     * Return a clean array with all the data converted for the specified
+     * language.
+     *
+     * @param array  $data     The data.
+     * @param string $language The language.
+     *
+     * @throws InvalidArgumentException The parameter $language must be a
+     *                                  string.
+     *
+     * @return array
+     */
+    public static function convertForI18n(array $data, $language)
+    {
+        if (is_string($language) === false) {
+            $message = 'The parameter $language must be a string.';
+            throw new \InvalidArgumentException($message);
+        }
+
+        if (isset($data[$language]) === true) {
+            return $data[$language];
+        }
+
+        foreach ($data as $key => $value) {
+            if (is_array($value) === true) {
+                $data[$key] = self::convertForI18n($value, $language);
+            }
+        }
+
+        return $data;
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: getCurrentLanguage ------------------------------------------
     /**
      * Return the current language based on the available languages and on
      * the HTTP Accept-Language header.
@@ -56,11 +93,12 @@ class Utils
      * @param array  $available_languages The available languages.
      * @param string $accept_language     The string of HTTP Accept-Language.
      *
-     * @api
      * @see    FabioCicerchia\Api\Utils::httpPriorityOrder()
      * @see    FabioCicerchia\Api\Utils::retrieveCurrentLanguage()
-     * @throws \InvalidArgumentException The parameter $accept_language must be
-     *                                   a string.
+     *
+     * @throws InvalidArgumentException The parameter $accept_language must be
+     *                                  a string.
+     *
      * @return string
      */
     public static function getCurrentLanguage(
@@ -80,82 +118,20 @@ class Utils
 
         return $current_lang;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 
-    // {{{ retrieveCurrentLanguage
-    /**
-     * Return the current language based on the available languages and on
-     * the HTTP Accept-Language header.
-     *
-     * @param array $available The available languages.
-     * @param array $accepted  The string of HTTP Accept-Language.
-     *
-     * @internal
-     * @return string
-     */
-    protected static function retrieveCurrentLanguage(
-        array $available,
-        array $accepted
-    ) {
-        foreach ($accepted as $language) {
-            if (array_search($language, $available) !== false) {
-                return $language;
-            }
-        }
-
-        return $available[0];
-    }
-    // }}}
-
-    // {{{ httpPriorityOrder
-    /**
-     * Return an array based on the priority of the HTTP header [RFC2616].
-     *
-     * @param string $string The string of HTTP Header.
-     *
-     * @internal
-     * @see    FabioCicerchia\Api\Utils::httpCustomSorting()
-     * @throws \InvalidArgumentException The parameter $string must be a string.
-     * @return array
-     */
-    protected static function httpPriorityOrder($string)
-    {
-        if (is_string($string) === false) {
-            $message = 'The parameter $string must be a string.';
-            throw new \InvalidArgumentException($message);
-        }
-
-        $string = preg_replace('/ +/', '', $string);
-        $string = preg_replace('/([^,]+),/', '\1;q=1.0,', $string . ',');
-        $string = preg_replace('/(;q=[0-9\.]+);q=[0-9\.]+/', '\1', substr($string, 0, -1));
-        $tokens = explode(',', $string);
-
-        $values = [];
-        foreach ($tokens as $idx => $token) {
-            list($mimetype, $priority) = preg_split('/;q=/', $token);
-            array_push($values, $priority . ' ' . $idx . ' ' . $mimetype);
-        }
-
-        usort($values, ['\\FabioCicerchia\\Api\\Utils', 'httpCustomSorting']);
-
-        foreach ($values as $idx => $value) {
-            $values[$idx] = preg_replace('/.+ ([^ ]+)(?:;level=.+)?$/U', '\1', $value);
-        }
-
-        return array_unique($values);
-    }
-    // }}}
-
-    // {{{ httpCustomSorting
+    // {{{ Methods - Protected =================================================
+    // {{{ Method: httpCustomSorting -------------------------------------------
     /**
      * Sort the array based on the priority of the HTTP header [RFC2616].
      *
      * @param string $a The first element.
      * @param string $b The second element.
      *
-     * @internal
-     * @throws \InvalidArgumentException The parameters $a or $b must be a
-     *                                   string.
+     * @throws InvalidArgumentException The parameters $a or $b must be a
+     *                                  string.
+     *
      * @return integer
      */
     protected static function httpCustomSorting($a, $b)
@@ -202,39 +178,70 @@ class Utils
         // last check on the order value
         return strcmp($a_order, $b_order);
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ convertForI18n
+    // {{{ Method: httpPriorityOrder -------------------------------------------
     /**
-     * Return a clean array with all the data converted for the specified
-     * language.
+     * Return an array based on the priority of the HTTP header [RFC2616].
      *
-     * @param array  $data     The data.
-     * @param string $language The language.
+     * @param string $string The string of HTTP Header.
      *
-     * @api
-     * @throws \InvalidArgumentException The parameter $language must be a
-     *                                   string.
+     * @see    FabioCicerchia\Api\Utils::httpCustomSorting()
+     *
+     * @throws InvalidArgumentException The parameter $string must be a string.
+     *
      * @return array
      */
-    public static function convertForI18n(array $data, $language)
+    protected static function httpPriorityOrder($string)
     {
-        if (is_string($language) === false) {
-            $message = 'The parameter $language must be a string.';
+        if (is_string($string) === false) {
+            $message = 'The parameter $string must be a string.';
             throw new \InvalidArgumentException($message);
         }
 
-        if (isset($data[$language]) === true) {
-            return $data[$language];
+        $string = preg_replace('/ +/', '', $string);
+        $string = preg_replace('/([^,]+),/', '\1;q=1.0,', $string . ',');
+        $string = preg_replace('/(;q=[0-9\.]+);q=[0-9\.]+/', '\1', substr($string, 0, -1));
+        $tokens = explode(',', $string);
+
+        $values = [];
+        foreach ($tokens as $idx => $token) {
+            list($mimetype, $priority) = preg_split('/;q=/', $token);
+            array_push($values, $priority . ' ' . $idx . ' ' . $mimetype);
         }
 
-        foreach ($data as $key => $value) {
-            if (is_array($value) === true) {
-                $data[$key] = self::convertForI18n($value, $language);
+        usort($values, ['\\FabioCicerchia\\Api\\Utils', 'httpCustomSorting']);
+
+        foreach ($values as $idx => $value) {
+            $values[$idx] = preg_replace('/.+ ([^ ]+)(?:;level=.+)?$/U', '\1', $value);
+        }
+
+        return array_unique($values);
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: retrieveCurrentLanguage -------------------------------------
+    /**
+     * Return the current language based on the available languages and on
+     * the HTTP Accept-Language header.
+     *
+     * @param array $available The available languages.
+     * @param array $accepted  The string of HTTP Accept-Language.
+     *
+     * @return string
+     */
+    protected static function retrieveCurrentLanguage(
+        array $available,
+        array $accepted
+    ) {
+        foreach ($accepted as $language) {
+            if (array_search($language, $available) !== false) {
+                return $language;
             }
         }
 
-        return $data;
+        return $available[0];
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

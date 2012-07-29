@@ -31,11 +31,12 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 use \FabioCicerchia\Api\Utils;
 
-require_once LIB_PATH . 'Api' . DIR_SEP . 'Utils.php';
+require_once LIB_PATH . 'Api/Utils.php';
 
 /**
  * The Utils Test class.
@@ -47,6 +48,7 @@ require_once LIB_PATH . 'Api' . DIR_SEP . 'Utils.php';
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 class UtilsTest extends PHPUnit_Framework_TestCase
 {

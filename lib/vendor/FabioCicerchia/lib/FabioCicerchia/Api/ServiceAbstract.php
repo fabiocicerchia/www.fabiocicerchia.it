@@ -31,6 +31,7 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 namespace FabioCicerchia\Api;
@@ -45,17 +46,20 @@ namespace FabioCicerchia\Api;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 abstract class ServiceAbstract
 {
-    // {{{ PROPERTIES
+    // {{{ Properties - Private ================================================
     /**
      * The Collection Handle.
      *
-     * @var \Doctrine\MongoDB\Collection
+     * @var Doctrine\MongoDB\Collection
      */
     private $collection = null;
+    // }}} =====================================================================
 
+    // {{{ Properties - Protected ==============================================
     /**
      * The name of the collection.
      *
@@ -69,38 +73,71 @@ abstract class ServiceAbstract
      * @var array
      */
     protected $data = [];
-    // }}}
+    // }}} =====================================================================
 
-    // {{{ __construct
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: getCollection -----------------------------------------------
     /**
-     * The constructor.
+     * Getter for $collection.
      *
-     * @param \Doctrine\MongoDB\Database $db_handle The Database Handle.
+     * @see FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
+     * @see FabioCicerchia\TestCase::$collection
      *
-     * @internal
-     * @see    FabioCicerchia\Api\ServiceAbstract::setDatabase()
-     *         Executed to set up the database handle.
-     * @see    FabioCicerchia\Api\ServiceAbstract::run()         Launch the main task.
-     * @return void
+     * @since Version 0.1
+     *
+     * @return Doctrine\MongoDB\Collection
      */
-    public function __construct(\Doctrine\MongoDB\Database $db_handle)
+    public function getCollection()
     {
-        $this->setDatabase($db_handle);
-        $this->run();
+        return $this->collection;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ run
+    // {{{ Method: getCollectionName -------------------------------------------
+    /**
+     * Getter for $collectionName.
+     *
+     * @see FabioCicerchia\Api\ServiceAbstract::$collectionName The name of the collection.
+     * @see FabioCicerchia\TestCase::$collectionName
+     *
+     * @since Version 0.1
+     *
+     * @return string
+     */
+    public function getCollectionName()
+    {
+        return $this->collectionName;
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Methods: getData ----------------------------------------------------
+    /**
+     * Getter for $data.
+     *
+     * @see FabioCicerchia\Api\ServiceAbstract::$data The data.
+     * @see FabioCicerchia\TestCase::$data
+     *
+     * @since Version 0.1
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: run ---------------------------------------------------------
     /**
      * Launch the main task.
      *
-     * @api
+     * @see FabioCicerchia\Api\ServiceAbstract::getRawData()    Retrieve data from the collection and manipulate it.
+     * @see FabioCicerchia\Api\ServiceAbstract::elaborateData() Modify if needed the data.
+     * @see FabioCicerchia\Api\ServiceAbstract::$data           The data.
+     *
+     * @since Version 0.1
+     *
      * @return void
-     * @see    FabioCicerchia\Api\ServiceAbstract::getRawData()
-     *         Retrieve data from the collection and manipulate it.
-     * @see    FabioCicerchia\Api\ServiceAbstract::elaborateData() Modify if needed the data.
-     * @see    FabioCicerchia\Api\ServiceAbstract::$data           The data.
-     * @throw
      */
     public function run()
     {
@@ -108,7 +145,8 @@ abstract class ServiceAbstract
 
         $this->data = $this->elaborateData($data);
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 
     // {{{ elaborateData
     /**
@@ -116,7 +154,8 @@ abstract class ServiceAbstract
      *
      * @param array $data The data.
      *
-     * @internal
+     * @since Version 0.1
+     *
      * @return array
      */
     protected function elaborateData(array $data)
@@ -129,10 +168,11 @@ abstract class ServiceAbstract
     /**
      * Retrieve the data from the collection and manipulate it.
      *
-     * @internal
+     * @see FabioCicerchia\Api\ServiceAbstract::execDataQuery() Retrieve all the documents from a collection.
+     *
+     * @since Version 0.1
+     *
      * @return array
-     * @see    FabioCicerchia\Api\ServiceAbstract::execDataQuery()
-     *         Retrieve all the documents from a collection.
      */
     protected function getRawData()
     {
@@ -146,10 +186,12 @@ abstract class ServiceAbstract
     /**
      * Retrieve all the documents from a collection.
      *
-     * @internal
+     * @see https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
+     * @see FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
+     *
+     * @since Version 0.1
+     *
      * @return array
-     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
-     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
      */
     protected function execDataQuery()
     {
@@ -163,56 +205,38 @@ abstract class ServiceAbstract
      *
      * @param \Doctrine\MongoDB\Database $db_handle The Database Handle.
      *
-     * @internal
+     * @see https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
+     * @see FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
+     *
+     * @since Version 0.1
+     *
      * @return void
-     * @see    https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
-     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
      */
     protected function setDatabase(\Doctrine\MongoDB\Database $db_handle)
     {
-        $this->collection = $db_handle->selectCollection($this->collectionName);
+        $this->collection = $db_handle->selectCollection($this->getCollectionName());
     }
     // }}}
+    // }}} =====================================================================
 
-    // {{{ getData
+    // {{{ Methods - Special ===================================================
+    // {{{ Method: __construct -------------------------------------------------
     /**
-     * Getter for $data.
+     * The constructor.
      *
-     * @api
-     * @return array
-     * @see    FabioCicerchia\Api\ServiceAbstract::$data The data.
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-    // }}}
-
-    // {{{ getCollection
-    /**
-     * Getter for $collection.
+     * @param \Doctrine\MongoDB\Database $db_handle The Database Handle.
      *
-     * @api
-     * @return \Doctrine\MongoDB\Collection
-     * @see    FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
-     */
-    public function getCollection()
-    {
-        return $this->collection;
-    }
-    // }}}
-
-    // {{{ getCollectionName
-    /**
-     * Getter for $collectionName.
+     * @see FabioCicerchia\Api\ServiceAbstract::setDatabase() Executed to set up the database handle.
+     * @see FabioCicerchia\Api\ServiceAbstract::run()         Launch the main task.
      *
-     * @api
-     * @return string
-     * @see    FabioCicerchia\Api\ServiceAbstract::$collectionName The name of the collection.
+     * @since Version 0.1
+     * @return void
      */
-    public function getCollectionName()
+    public function __construct(\Doctrine\MongoDB\Database $db_handle)
     {
-        return $this->collectionName;
+        $this->setDatabase($db_handle);
+        $this->run();
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

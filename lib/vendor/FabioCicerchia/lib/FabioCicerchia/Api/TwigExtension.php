@@ -31,6 +31,7 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 namespace FabioCicerchia\Api;
@@ -45,43 +46,18 @@ namespace FabioCicerchia\Api;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 class TwigExtension extends \Twig_Extension
 {
-    // {{{ getName
-    /**
-     * Returns the name of the extension.
-     *
-     * @return stringThe extension name.
-     */
-    public function getName()
-    {
-        return 'FabioCicerchia';
-    }
-    // }}}
-
-    // {{{ getFilters
-    /**
-     * Returns a list of filters to add to the existing list.
-     *
-     * @return array An array of tests.
-     */
-    public function getFilters()
-    {
-        return [
-            'custom_date'  => new \Twig_Filter_Method($this, 'customDate'),
-            'preg_replace' => new \Twig_Filter_Method($this, 'pregReplace'),
-        ];
-    }
-    // }}}
-
-    // {{{ customDate
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: customDate --------------------------------------------------
     /**
      * Converts a date to the given format.
      * Workaround to avoid the problem of missing DateTime classes.
      *
      * <pre>
-     *   {{ post.published_at|custom_date("m/d/Y") }}
+     *   {{ post.published_at|custom_date("d/m/Y") }}
      * </pre>
      *
      * @param integer|string $date   A date.
@@ -101,9 +77,9 @@ class TwigExtension extends \Twig_Extension
 
         return date($format, $timestamp);
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ pregReplace
+    // {{{ Method: pregReplace -------------------------------------------------
     /**
      * Just the preg_replace.
      *
@@ -125,5 +101,35 @@ class TwigExtension extends \Twig_Extension
     {
         return preg_replace($pattern, $replacement, $subject, $limit);
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
+
+    // {{{ Methods - Getter ====================================================
+    // {{{ Method: getFilters --------------------------------------------------
+    /**
+     * Returns a list of filters to add to the existing list.
+     *
+     * @return array An array of tests.
+     */
+    public function getFilters()
+    {
+        return [
+            'custom_date'  => new \Twig_Filter_Method($this, 'customDate'),
+            'preg_replace' => new \Twig_Filter_Method($this, 'pregReplace'),
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: getName -----------------------------------------------------
+    /**
+     * Returns the name of the extension.
+     *
+     * @return string The extension name.
+     */
+    public function getName()
+    {
+        return 'FabioCicerchia';
+    }
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

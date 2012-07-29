@@ -30,6 +30,7 @@
  * @copyright 2012 Fabio Cicerchia.
  * @license   MIT <http://www.opensource.org/licenses/MIT>
  * @link      http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 require_once __DIR__ . '/../../../lib/vendor/autoload.php';
@@ -47,6 +48,7 @@ use Silex\WebTestCase;
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
  * @backupGlobals disabled
+ * @since      File available since Release 0.1
  */
 class ApiTest extends WebTestCase
 {
@@ -58,7 +60,7 @@ class ApiTest extends WebTestCase
      */
     public function createApplication()
     {
-        $app = include ROOT_PATH . 'apps' . DIR_SEP . 'api' . DIR_SEP . 'logic' . DIR_SEP . 'app.php';
+        $app = include ROOT_PATH . 'apps/api/logic/app.php';
 
         $app['debug'] = false;
 

@@ -31,6 +31,7 @@
  * @copyright  2012 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 
 namespace FabioCicerchia;
@@ -45,37 +46,43 @@ namespace FabioCicerchia;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
+ * @since      File available since Release 0.1
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
+    // {{{ Properties - Protected ==============================================
     /**
      * The object's instance.
      *
      * @var object
      */
     protected $object = null;
+    // }}} =====================================================================
 
-    // {{{ tearDown
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: isDebug -----------------------------------------------------
     /**
-     * Tears down the fixture, for example, close a network connection.
-     * This method is called after a test is executed.
+     * Check the PHPUnit's debug flag to enable the debug mode.
      *
-     * @return void
+     * @since Version 0.1
+     *
+     * @return boolean The value of the PHPUnit debug.
      */
-    protected function tearDown()
+    final public function isDebug()
     {
-        parent::tearDown();
-
-        $this->output(PHP_EOL . str_repeat('#', 80) . PHP_EOL);
+        return in_array('--debug', $_SERVER['argv']) === true;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ output
+    // {{{ Method: output ------------------------------------------------------
     /**
      * Prints human-readable information about a variable, only if the debug is
      * enabled.
      *
      * @param mixed $value The value to print.
+     *
+     * @since Version 0.1
+     * @see   \FabioCicerchia\TestCase::isDebug()
      *
      * @return void
      */
@@ -87,26 +94,76 @@ class TestCase extends \PHPUnit_Framework_TestCase
             echo PHP_EOL;
         }
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ isDebug
+    // {{{ Method: pass --------------------------------------------------------
     /**
-     * Check the PHPUnit's debug flag to enable the debug mode.
+     * Just the opposite of PHPUnit_Framework_Assert::fail().
      *
-     * @return boolean The value of the PHPUnit debug.
+     * @param string $message The message.
+     *
+     * @since Version 0.1
+     *
+     * @return void
      */
-    final public function isDebug()
+    final public function pass($message = 'Test passed')
     {
-        return in_array('--debug', $_SERVER['argv']) === true;
+        $this->assertTrue(true, $message);
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 
-    // {{{ retrieveMethod
+    // {{{ Methods - Protected =================================================
+    // {{{ Method: callMethod --------------------------------------------------
+    /**
+     * Call a method, changing the visibility.
+     *
+     * @param string $method The method to call.
+     * @param array  $params The parameters to pass.
+     *
+     * @since Version 0.1
+     * @see   \FabioCicerchia\TestCase::$object
+     * @see   \FabioCicerchia\TestCase::retrieveMethod()
+     *
+     * @return mixed The results from the method.
+     */
+    final protected function callMethod($method, array $params = array())
+    {
+        $method = $this->retrieveMethod($this->object, $method);
+
+        return $method->invokeArgs($this->object, $params);
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: getProperty -------------------------------------------------
+    /**
+     * Get the value of a property, changing the visibility.
+     *
+     * @param string $name The property to get.
+     *
+     * @since Version 0.1
+     * @see   \FabioCicerchia\TestCase::$object
+     * @see   \FabioCicerchia\TestCase::retrieveProperty()
+     *
+     * @return mixed The value of the property.
+     */
+    final protected function getProperty($name)
+    {
+        $property = $this->retrieveProperty($this->object, $name);
+
+        return $property->getValue($this->object);
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: retrieveMethod ----------------------------------------------
     /**
      * Change the visibility of a method to use it directly.
      *
      * @param string $object The object's instance.
      * @param string $name   The method to retrieve.
+     *
+     * @since Version 0.1
+     * @see   \FabioCicerchia\TestCase::checkReflectionCompability()
      *
      * @return \ReflectionMethod The method.
      */
@@ -121,48 +178,17 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         return $method;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ checkReflectionCompability
-    /**
-     * Check if the current PHP version support the method
-     * ReflectionMethod::setAccessible.
-     *
-     * @return void
-     */
-    private function checkReflectionCompability()
-    {
-        if (version_compare(PHP_VERSION, '5.3.2') < 0) {
-            $message  = 'The current PHP version (%s) doesn\'t support the ';
-            $message .= '"ReflectionMethod::setAccessible" method.';
-            $this->markTestSkipped(sprintf($message, PHP_VERSION));
-        }
-    }
-    // }}}
-
-    // {{{ callMethod
-    /**
-     * Call a method, changing the visibility.
-     *
-     * @param string $method The method to call.
-     * @param array  $params The parameters to pass.
-     *
-     * @return mixed The results from the method.
-     */
-    final protected function callMethod($method, array $params = array())
-    {
-        $method = $this->retrieveMethod($this->object, $method);
-
-        return $method->invokeArgs($this->object, $params);
-    }
-    // }}}
-
-    // {{{ retrieveProperty
+    // {{{ Method: retrieveProperty --------------------------------------------
     /**
      * Change the visibility of a property to use it directly.
      *
      * @param string $object The object instance.
      * @param string $name   The property to retrieve.
+     *
+     * @since Version 0.1
+     * @see   \FabioCicerchia\TestCase::checkReflectionCompability()
      *
      * @return \ReflectionProperty The property.
      */
@@ -177,30 +203,18 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         return $property;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ getProperty
-    /**
-     * Get the value of a property, changing the visibility.
-     *
-     * @param string $name The property to get.
-     *
-     * @return mixed The value of the property.
-     */
-    final protected function getProperty($name)
-    {
-        $property = $this->retrieveProperty($this->object, $name);
-
-        return $property->getValue($this->object);
-    }
-    // }}}
-
-    // {{{ setProperty
+    // {{{ Method: setProperty -------------------------------------------------
     /**
      * Set the value of a property, changing the visibility.
      *
      * @param string $name  The property to change.
      * @param mixed  $value The value.
+     *
+     * @since Version 0.1
+     * @see   \FabioCicerchia\TestCase::$object
+     * @see   \FabioCicerchia\TestCase::retrieveProperty()
      *
      * @return void
      */
@@ -210,19 +224,46 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         $property->setValue($this->object, $value);
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ pass
+    // {{{ Method: tearDown ----------------------------------------------------
     /**
-     * Just the opposite of PHPUnit_Framework_Assert::fail().
+     * Tears down the fixture, for example, close a network connection.
+     * This method is called after a test is executed.
      *
-     * @param string $message The message.
+     * @since Version 0.1
+     * @see   \FabioCicerchia\TestCase::output()
      *
      * @return void
      */
-    final public function pass($message = 'Test passed')
+    protected function tearDown()
     {
-        self::assertThat(null, self::anything(), $message);
+        parent::tearDown();
+
+        $this->output(PHP_EOL . str_repeat('#', 80) . PHP_EOL);
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
+
+    // {{{ Methods - Private ===================================================
+    // {{{ Method: checkReflectionCompability ----------------------------------
+    /**
+     * Check if the current PHP version support the method
+     * ReflectionMethod::setAccessible.
+     *
+     * @since Version 0.1
+     * @see   \PHPUnit_Framework_TestCase::markTestSkipped()
+     *
+     * @return void
+     */
+    private function checkReflectionCompability()
+    {
+        if (version_compare(PHP_VERSION, '5.3.2') < 0) {
+            $message  = 'The current PHP version (%s) doesn\'t support the ';
+            $message .= '"ReflectionMethod::setAccessible" method.';
+            $this->markTestSkipped(sprintf($message, PHP_VERSION));
+        }
+    }
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

@@ -48,14 +48,13 @@ $app = new Silex\Application();
 
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/controller.php';
-
 // -----------------------------------------------------------------------------
 // ERROR HANDLING --------------------------------------------------------------
 // -----------------------------------------------------------------------------
 if (empty($closures['error']) === true
     || is_callable($closures['error']) === false
 ) {
-    throw new DomainException('The closure "error" must be defined!');
+    throw new \DomainException('The closure "error" must be defined!');
 }
 $app->error($closures['error']);
 
@@ -65,7 +64,7 @@ $app->error($closures['error']);
 if (empty($closures['root']) === true
     || is_callable($closures['root']) === false
 ) {
-    throw new DomainException('The closure "root" must be defined!');
+    throw new \DomainException('The closure "root" must be defined!');
 }
 $app->get('/', $closures['root'])->method('GET')->bind('root');
 
@@ -75,7 +74,7 @@ $app->get('/', $closures['root'])->method('GET')->bind('root');
 if (empty($closures['api']) === true
     || is_callable($closures['api']) === false
 ) {
-    throw new DomainException('The closure "api" must be defined!');
+    throw new \DomainException('The closure "api" must be defined!');
 }
 $app->get('/{api_name}', $closures['api'])->assert('api_name', '[a-z]+')
     ->method('GET')->bind('api');
@@ -87,7 +86,7 @@ if (empty($closures['api_definition_syntax']) === true
     || is_callable($closures['api_definition_syntax']) === false
 ) {
     $message = 'The closure "api_definition_syntax" must be defined!';
-    throw new DomainException($message);
+    throw new \DomainException($message);
 }
 $app->get('/api-definition-syntax', $closures['api_definition_syntax'])
     ->method('GET')->bind('api_definition_syntax');

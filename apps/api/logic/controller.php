@@ -148,7 +148,7 @@ $closures['api'] = function ($api_name) use ($app) {
             }
         }
 
-        $mongodb_file = ROOT_PATH . 'db' . DIR_SEP . 'mongo-curriculum.js';
+        $mongodb_file = ROOT_PATH . 'db/mongo-curriculum.js';
         $lastModified = isset($time) === true
                         ? $time
                         : filemtime($mongodb_file);
