@@ -34,37 +34,27 @@
 
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\HttpCacheServiceProvider;
+use FabioCicerchia\Api\TwigExtension;
+use SilexExtension\MongoDbExtension;
 
 // -----------------------------------------------------------------------------
 // DEBUG FLAG ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 $app['debug'] = true;
 
-if (defined('DIR_SEP') === false) {
-    define('DIR_SEP', DIRECTORY_SEPARATOR);
-}
 if (defined('ROOT_PATH') === false) {
-    define('ROOT_PATH', __DIR__ . DIR_SEP . '..' . DIR_SEP . '..' . DIR_SEP . '..' . DIR_SEP);
+    define('ROOT_PATH', __DIR__ . '/../../../');
 }
+
 if (defined('VENDOR_PATH') === false) {
-    define('VENDOR_PATH', ROOT_PATH . 'lib' . DIR_SEP . 'vendor' . DIR_SEP);
+    define('VENDOR_PATH', ROOT_PATH . 'lib/vendor/');
 }
-
-// -----------------------------------------------------------------------------
-// REGISTERING NAMESPACES ------------------------------------------------------
-// -----------------------------------------------------------------------------
-$silexExtDirectory = VENDOR_PATH . 'Silex-Extensions' . DIR_SEP . 'src';
-$app['autoloader']->registerNamespace('SilexExtension', $silexExtDirectory);
-
-$customDirectory = VENDOR_PATH . 'FabioCicerchia' . DIR_SEP . 'lib';
-$app['autoloader']->registerNamespace('FabioCicerchia', $customDirectory);
 
 // -----------------------------------------------------------------------------
 // TWIG PROVIDER ---------------------------------------------------------------
 // -----------------------------------------------------------------------------
 $options = [
-    'twig.path'       => __DIR__ . DIR_SEP . '..' . DIR_SEP . 'view',
-    'twig.class_path' => VENDOR_PATH . 'Twig' . DIR_SEP . 'lib',
+    'twig.path' => __DIR__ . '/../view'
 ];
 $twigServiceProvider = new TwigServiceProvider();
 $app->register($twigServiceProvider, $options);
@@ -72,17 +62,15 @@ $app->register($twigServiceProvider, $options);
 $md5_filter = new Twig_Filter_Function('md5');
 $app['twig']->addFilter('md5', $md5_filter);
 
-$custom_filters = new FabioCicerchia\Api\TwigExtension($app);
+$custom_filters = new TwigExtension($app);
 $app['twig']->addExtension($custom_filters);
 
 // -----------------------------------------------------------------------------
 // HTTP CACHE PROVIDER ---------------------------------------------------------
 // -----------------------------------------------------------------------------
 $options = [
-    'http_cache.cache_dir' => ROOT_PATH . 'cache' . DIR_SEP . 'api' . DIR_SEP,
-    'http_cache.options'   => array(
-        'debug' => $app['debug']
-    )
+    'http_cache.cache_dir' => ROOT_PATH . 'cache/api/',
+    'http_cache.options'   => ['debug' => $app['debug']]
 ];
 $httpCacheServiceProvider = new HttpCacheServiceProvider();
 $app->register($httpCacheServiceProvider, $options);
@@ -91,11 +79,11 @@ $app->register($httpCacheServiceProvider, $options);
 // MONGODB PROVIDER ------------------------------------------------------------
 // -----------------------------------------------------------------------------
 $options = [
-    'mongodb.class_path' => VENDOR_PATH . 'mongodb' . DIR_SEP . 'lib',
+    'mongodb.class_path' => VENDOR_PATH . 'mongodb/lib',
     'mongodb.connection' => [
         'server'       => 'mongodb://localhost',
         'options'      => []
     ]
 ];
-$mongoDbExtension = new SilexExtension\MongoDbExtension();
+$mongoDbExtension = new MongoDbExtension();
 $app->register($mongoDbExtension, $options);

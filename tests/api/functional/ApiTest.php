@@ -32,7 +32,7 @@
  * @link      http://www.fabiocicerchia.it
  */
 
-require_once SILEX_FILE;
+require_once __DIR__ . '/../../../lib/vendor/autoload.php';
 
 use Silex\WebTestCase;
 

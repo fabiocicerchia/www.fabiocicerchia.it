@@ -1,0 +1,49 @@
+{
+    "license": "MIT",
+    "homepage": "http://www.fabiocicerchia.it",
+    "authors": [
+        {
+            "name": "Fabio Cicerchia",
+            "email": "info@fabiocicerchia.it",
+            "homepage": "http://www.fabiocicerchia.it",
+            "role": "Lead Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "http://github.com/symfony/BrowserKit"
+        },
+        {
+            "type": "vcs",
+            "url":  "http://github.com/symfony/DomCrawler"
+        },
+        {
+            "type": "vcs",
+            "url":  "http://github.com/symfony/CssSelector"
+        },
+        {
+            "packagist": false
+        }
+    ],
+    "require": {
+        "silex/silex":           "dev-master",
+        "twig/twig":             "1.9.*",
+        "pimple/pimple":         "1.0.*",
+        "fate/Silex-Extensions": "*",
+        "doctrine/mongodb":      "*"
+    },
+    "require-dev": {
+        "symfony/browser-kit":  "2.0.16",
+        "symfony/dom-crawler":  "2.0.16",
+        "symfony/css-selector": "2.0.16"
+    },
+    "autoload": {
+        "psr-0": {
+            "Silex":          "lib/vendor/Silex/src",
+            "FabioCicerchia": "lib/vendor/FabioCicerchia/lib",
+            "SilexExtension": "lib/vendor/Silex-Extensions/src"
+        }
+    },
+    "minimum-stability": "dev"
+}

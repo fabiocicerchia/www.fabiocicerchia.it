@@ -7,12 +7,3 @@
 [submodule "web/minify"]
 	path = web/minify
 	url = git://github.com/mrclay/minify.git
-[submodule "lib/vendor/Twig"]
-	path = lib/vendor/Twig
-	url = git://github.com/fabpot/Twig.git
-[submodule "lib/vendor/Silex-Extensions"]
-	path = lib/vendor/Silex-Extensions
-	url = git://github.com/fate/Silex-Extensions.git
-[submodule "lib/vendor/mongodb"]
-	path = lib/vendor/mongodb
-	url = git://github.com/doctrine/mongodb.git

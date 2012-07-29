@@ -149,7 +149,9 @@ $closures['api'] = function ($api_name) use ($app) {
         }
 
         $mongodb_file = ROOT_PATH . 'db' . DIR_SEP . 'mongo-curriculum.js';
-        $lastModified = isset($time) === true ? $time : filemtime($mongodb_file);
+        $lastModified = isset($time) === true
+                        ? $time
+                        : filemtime($mongodb_file);
         $lastModified = gmdate('D, d M Y H:i:s', $lastModified) . ' GMT';
 
         $response->setPublic();
@@ -179,7 +181,10 @@ $closures['api'] = function ($api_name) use ($app) {
                 $available_languages[$short_lang] = $language_code['code'];
             }
 
-            $current_lang = Utils::getCurrentLanguage($available_languages, $accept_language);
+            $current_lang = Utils::getCurrentLanguage(
+                $available_languages,
+                $accept_language
+            );
         }
         $response->headers->set('Content-Language', $current_lang);
 

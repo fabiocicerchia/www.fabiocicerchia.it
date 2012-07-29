@@ -179,8 +179,11 @@ init() {
     wget http://silex.sensiolabs.org/get/silex.phar -O apps/api/silex.phar
     git submodule init
     git submodule update
+    export COMPOSER_VENDOR_DIR=lib/vendor
+    curl -s http://getcomposer.org/installer | php
+    php composer.phar install
     cd lib/vendor/mongodb
-    curl -s http://getcomposer.org/installer | $(PHP)
+    curl -s http://getcomposer.org/installer | php
     php composer.phar install
 
     return $?

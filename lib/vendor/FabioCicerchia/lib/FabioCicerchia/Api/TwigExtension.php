@@ -111,12 +111,13 @@ class TwigExtension extends \Twig_Extension
      *   {{ post.title|preg_replace("/Hello/", "World") }}
      * </pre>
      *
-     * @param mixed   $subject     The string or an array with strings to search and replace.
-     * @param mixed   $pattern
-     *        The pattern to search for. It can be either a string or an array with strings.
-     * @param mixed   $replacement The string or an array with strings to replace.
-     * @param integer $limit
-     *        The maximum possible replacements for each pattern in each subject string.
+     * @param mixed   $subject     The string or an array with strings to search
+     *                             and replace.
+     * @param mixed   $pattern     The pattern to search for. It can be either
+     *                             a string or an array with strings.
+     * @param mixed   $replacement The string or array with strings to replace.
+     * @param integer $limit       The maximum possible replacements for each
+     *                             pattern in each subject string.
      *
      * @return mixed The result of the preg_replace.
      */

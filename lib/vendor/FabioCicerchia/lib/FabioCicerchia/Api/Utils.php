@@ -59,11 +59,14 @@ class Utils
      * @api
      * @see    FabioCicerchia\Api\Utils::httpPriorityOrder()
      * @see    FabioCicerchia\Api\Utils::retrieveCurrentLanguage()
-     * @throws \InvalidArgumentException The parameter $accept_language must be a string.
+     * @throws \InvalidArgumentException The parameter $accept_language must be
+     *                                   a string.
      * @return string
      */
-    public static function getCurrentLanguage(array $available_languages, $accept_language)
-    {
+    public static function getCurrentLanguage(
+        array $available_languages,
+        $accept_language
+    ) {
         if (is_string($accept_language) === false) {
             $message = 'The parameter $accept_language must be a string.';
             throw new \InvalidArgumentException($message);
@@ -71,7 +74,7 @@ class Utils
 
         $accept_language    = preg_replace('/([a-z]{2})-([a-z]{2})/', '\1', $accept_language);
         $accepted_languages = self::httpPriorityOrder($accept_language);
-        
+
         $list_keys    = array_keys($available_languages);
         $current_lang = self::retrieveCurrentLanguage($list_keys, $accepted_languages);
 
@@ -90,8 +93,10 @@ class Utils
      * @internal
      * @return string
      */
-    protected static function retrieveCurrentLanguage(array $available, array $accepted)
-    {
+    protected static function retrieveCurrentLanguage(
+        array $available,
+        array $accepted
+    ) {
         foreach ($accepted as $language) {
             if (array_search($language, $available) !== false) {
                 return $language;
@@ -149,7 +154,8 @@ class Utils
      * @param string $b The second element.
      *
      * @internal
-     * @throws \InvalidArgumentException The parameters $a or $b must be a string.
+     * @throws \InvalidArgumentException The parameters $a or $b must be a
+     *                                   string.
      * @return integer
      */
     protected static function httpCustomSorting($a, $b)
@@ -200,13 +206,15 @@ class Utils
 
     // {{{ convertForI18n
     /**
-     * Return a clean array with all the data converted for the specified language.
+     * Return a clean array with all the data converted for the specified
+     * language.
      *
      * @param array  $data     The data.
      * @param string $language The language.
      *
      * @api
-     * @throws \InvalidArgumentException The parameter $language must be a string.
+     * @throws \InvalidArgumentException The parameter $language must be a
+     *                                   string.
      * @return array
      */
     public static function convertForI18n(array $data, $language)

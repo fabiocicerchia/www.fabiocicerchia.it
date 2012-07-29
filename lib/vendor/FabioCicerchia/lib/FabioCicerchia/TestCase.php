@@ -125,7 +125,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     // {{{ checkReflectionCompability
     /**
-     * Check if the current PHP version support the method ReflectionMethod::setAccessible.
+     * Check if the current PHP version support the method
+     * ReflectionMethod::setAccessible.
      *
      * @return void
      */

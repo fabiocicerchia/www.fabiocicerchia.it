@@ -68,9 +68,8 @@ class EntryPoint
      * Getter for $services.
      *
      * @api
-     * @return array
      * @see    FabioCicerchia\Api\Service\EntryPoint::$services The list of active services.
-     * @throw
+     * @return array
      */
     public function getServices()
     {

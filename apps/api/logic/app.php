@@ -42,12 +42,12 @@ use FabioCicerchia\Api\Utils;
 // -----------------------------------------------------------------------------
 // INIT SILEX ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'silex.phar';
+require_once __DIR__ . '/../../../lib/vendor/autoload.php';
 
 $app = new Silex\Application();
 
-require __DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php';
-require __DIR__ . DIRECTORY_SEPARATOR . 'controller.php';
+require __DIR__ . '/bootstrap.php';
+require __DIR__ . '/controller.php';
 
 // -----------------------------------------------------------------------------
 // ERROR HANDLING --------------------------------------------------------------
