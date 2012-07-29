@@ -2,6 +2,22 @@
 CHANGELOG
 ================================================================================
 
+2012-07-29
+    [14133cb] refactoring api (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [d51a875] added composer.phar & remove silex.phar (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+
+2012-07-28
+    [6ce7e1b] Merge branch 'feature/script_deploy' into develop (by Fabio 
+              Cicerchia <info@fabiocicerchia.it>)
+    [dd5d096] other fixes (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [877e194] closed issue #33 (by Fabio Cicerchia <info@fabiocicerchia.it>)
+              Ref: #33 [Script] Create a script to deploy the application
+
+2012-07-25
+    [d96e547] some fix (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [3dc9a2c] some minor changes (by Fabio Cicerchia <info@fabiocicerchia.it>)
+
 2012-07-24
     [59157fe] refactoring & cleanup (by Fabio Cicerchia <info@fabiocicerchia.it>)
     [a433d2c] added information (by Fabio Cicerchia <info@fabiocicerchia.it>)

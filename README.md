@@ -192,6 +192,7 @@ These are the specifications that has been respected:
  * RSS 0.92 - [Doc](http://backend.userland.com/stories/rss092)
  * RSS 1.0 - [Doc](http://web.resource.org/rss/1.0/spec)
  * RSS 2.0 - [Doc](http://cyber.law.harvard.edu/rss/rss.html)
+ * Sitemaps XML v0.9 - [Home](http://www.sitemaps.org) | [Doc](http://www.sitemaps.org/protocol.html)
  * vCard v2.1 - [Doc](http://www.imc.org/pdi/vcard-21.txt)
 
 ### 3.5. Libraries
