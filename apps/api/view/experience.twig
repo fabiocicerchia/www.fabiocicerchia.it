@@ -75,7 +75,9 @@
                 {% for project in entity.projects %}
                 <project>
                     <title type="text">{{ project.name }}</title>
+                    {% if project.description is defined %}
                     <summary type="xhtml">{{ project.description }}</summary>
+                    {% endif %}
                     <role>{{ project.role }}</role>
                     {% if project.url is defined %}
                     <link rel="related" href="{{ project.url }}" />

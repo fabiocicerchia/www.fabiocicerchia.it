@@ -275,12 +275,12 @@ db.getCollection("experience").insert({
         "end": -1
     },
     "activities": {
-        "en_GB": [] /* TODO: TBW */
+        "en_GB": [], /* TODO: TBW */
         "it_IT": [] /* TODO: TBW */
     },
-    "projects": [] /* TODO: TBW */
-    "methodologies": [] /* TODO: TBW */
-    "techniques": [] /* TODO: TBW */
+    "projects": [], /* TODO: TBW */
+    "methodologies": [], /* TODO: TBW */
+    "techniques": [], /* TODO: TBW */
     "technologies": {
         "JavaScript": {"months": 2},
         "PHP":        {"months": 3},
@@ -344,19 +344,19 @@ db.getCollection("experience").insert({
                 "en_GB": ["Feature Development and Code Maintenance", "Maintenance of Website and repository PEAR", "Documentation"],
                 "it_IT": ["Implementazione feature e Manutenzione del codice", "Manutenzione sito web, repository PEAR", "Documentazione"]
             },
-            "technologies": [
+            "technologies": {
                 "C":     {"months": 8},
                 "PHP":   {"months": 24},
-                "MySQL": {"months": 4},
-            ],
-            "tools": [
+                "MySQL": {"months": 4}
+            },
+            "tools": {
                 "CVS":            {"months": 6},
                 "GIT":            {"months": 12},
                 "cUnit":          {"months": 8},
                 "phpUnit":        {"months": 12},
                 "Automake":       {"months": 7},
-                "Splint":         {"months": 8},
-            ]
+                "Splint":         {"months": 8}
+            }
         }
     ],
     "techniques": {
@@ -435,13 +435,13 @@ db.getCollection("experience").insert({
                 "en_GB": "Development of a mini website for Samsung for the launch of Samsung Galaxy S",
                 "it_IT": "Sviluppo di un minisito per Samsung per il lancio del Samsung Galaxy S"
             },
-            "technologies": [
+            "technologies": {
                 "PHP":   {"months": 2},
                 "MySQL": {"months": 2}
-            ],
-            "tools": [
+            },
+            "tools": {
                 "Symfony": {"months": 2}
-            ]
+            }
         },
         {
             "name": "Policlinic Campus Biomedical of Rome",
@@ -458,15 +458,15 @@ db.getCollection("experience").insert({
                 "en_GB": "Integration into Joomla CMS some custom features like photo and video gallery, custom search to find doctors and appointments with the possibility to book or cancel them, integration and aggregation of clinical departments retrieved by an external service.",
                 "it_IT": "Integrazione in Joomla CMS di alcune funzioni personalizzate, come foto e video gallery, ricerca personalizzata per trovare medici e appuntamenti con la possibilità di prenotare o cancellare, integrazione e aggregazione di reparti clinici recuperati da un servizio esterno."
             },
-            "technologies": [
+            "technologies": {
                 "PHP":        {"months": 6},
                 "MySQL":      {"months": 6},
                 "Oracle":     {"months": 2},
                 "SQL Server": {"months": 2}
-            ],
-            "tools": [
+            },
+            "tools": {
                 "Joomla": {"months": 4}
-            ]
+            }
         },
         {
             "name": "San Raffaele",
@@ -483,32 +483,32 @@ db.getCollection("experience").insert({
                 "en_GB": "Development and Project Management of a multilanguage web portal for a big italian healthcare company.\nThe portal ranging from a CMS to health structure management (which are composed of department) through some form of profiled user registration, booking, contact and form to ask question directly to doctors.\nThere are available also a supplier management system (registration, payment, confidential documents archive) and formation system to manage all the courses provided from internal and externals universities, with the possibility to book them.",
                 "it_IT": "Sviluppo e Project Management di un portale web multilingue per una grande azienda sanitaria italiana.\nIl portale spazia da un CMS per la gestione delle strutture sanitarie (che si compongono di dipartimenti) attraverso varie form di registrazione di utenti profilati, form di prenotazione, contatti e modulo per fare domanda direttamente ai medici.\nSono a disposizione anche un sistema di gestione dei fornitori (registrazione, pagamento, archivio documenti riservati) ed un sistema di formazione per gestire tutti i corsi previsti da università interne ed esterne, con la possibilità di prenotarli."
             },
-            "methodologies": [
+            "methodologies": {
                 "SCRUM":               {"months": 7},
                 "eXtreme Programming": {"months": 10}
-            ],
-            "techniques": [
+            },
+            "techniques": {
                 "Automated Builds":              {"months": 12},
                 "Continuous Integration":        {"months": 12},
                 "Pair Programming":              {"months": 12},
                 "Pomodoro Technique":            {"months": 6},
                 "Unit and Functional Testing":   {"months": 17},
                 "User Stories & Planning Poker": {"months": 17}
-            ],
-            "technologies": [
+            },
+            "technologies": {
                 "JavaScript": {"months": 17},
                 "PHP":        {"months": 17},
                 "MySQL":      {"months": 17},
                 "SQLite":     {"months": 10}
-            ],
-            "tools": [
+            },
+            "tools": {
                 "jQuery":    {"months": 17},
                 "Symfony":   {"months": 17},
                 "SVN":       {"months": 17},
                 "Jira":      {"months": 17},
                 "Hudson":    {"months": 12},
                 "Alfresco":  {"months": 17}
-            ]
+            }
         }
     ],
     "methodologies": {
@@ -572,7 +572,7 @@ db.getCollection("experience").insert({
     "methodologies": {
         "Waterfall Model": {"months": 30}
     },
-    "projects": [] /* TODO: TBW */
+    "projects": [], /* TODO: TBW */
     "techniques": {
         "Pair Programming":            {"months": 30},
         "Unit and Functional Testing": {"months": 24}

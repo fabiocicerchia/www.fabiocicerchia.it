@@ -197,6 +197,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Entrypoint" to check the Response.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -230,6 +231,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Entrypoint" to check the Response with Debug flag enabled.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -436,6 +438,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Information" to check the Response.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -469,6 +472,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Information" to check the Response with Debug flag enabled.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -504,6 +508,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Information" to check the Cache.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -677,6 +682,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Education" to check the Response.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -714,6 +720,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Education" to check the Response with Debug flag enabled.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -753,6 +760,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Education" to check the Cache.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -927,6 +935,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Experience" to check the Response.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -990,6 +999,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Experience" to check the Response with Debug flag enabled.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -1228,6 +1238,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Skill" to check the Response.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -1265,6 +1276,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Skill" to check the Response with Debug flag enabled.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -1475,6 +1487,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Language" to check the Response.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void
@@ -1512,6 +1525,7 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Language" to check the Response with Debug flag enabled.
      *
+     * @medium
      * @since Version 0.1
      *
      * @return void

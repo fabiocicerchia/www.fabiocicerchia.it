@@ -38,7 +38,7 @@ use warnings;
 use version; our $VERSION = qv('1.0');
 use Data::Dumper; # Just for debug.
 use Date::Format;
-use DateTime;
+#use DateTime;
 use Digest::MD5;
 use File::Basename;
 use LWP;

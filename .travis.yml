@@ -1,0 +1,23 @@
+language: php
+
+php:
+  - 5.4
+
+perl:
+  - "5.14.2"
+
+python:
+  - "2.7"
+
+branches:
+  except:
+    - master
+    - develop
+
+before_script:
+  - export TRAVIS_CI=1
+  - ./console install
+  - ./console init
+  - phpenv rehash
+
+script: ./console -s test

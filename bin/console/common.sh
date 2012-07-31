@@ -91,7 +91,7 @@ print_subheader() {
 }
 
 call_subroutines() {
-    SUBROUTINES=$(declare -F | cut -d " " -f 3 | egrep "$1")
+    SUBROUTINES=$(egrep -r "$1" $CURRENT_PATH/modules/ | cut -d: -f2 | sed -r "s/\(\).*//")
     for SUBROUTINE in $SUBROUTINES; do
         echo -en $UNDYLW$SUBROUTINE$TXTRST
         NUM_SPC=$(( $(tput cols) - ${#SUBROUTINE} - 8 ))
@@ -99,6 +99,7 @@ call_subroutines() {
 
         echo
         $SUBROUTINE 2>&1
+        STATUS=$?
         #RES=$($SUBROUTINE 2>&1)
         #STATUS=0
         #if [ -f /tmp/status.out ]; then
@@ -178,15 +179,12 @@ docs() {
 
 init() {
     print_header "INITIALISE THE ENVIRONMENT"
-    wget http://silex.sensiolabs.org/get/silex.phar -O apps/api/silex.phar
     git submodule init
     git submodule update
     export COMPOSER_VENDOR_DIR=lib/vendor
     curl -s http://getcomposer.org/installer | php
     php composer.phar install
-    cd lib/vendor/mongodb
-    curl -s http://getcomposer.org/installer | php
-    php composer.phar install
+    mongo localhost/curriculum $CURRENT_PATH/../../db/mongo-curriculum.js
 
     return $?
 }

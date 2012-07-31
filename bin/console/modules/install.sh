@@ -36,14 +36,15 @@
 ################################################################################
 
 pear_add_channel() {
-    sudo pear channel-discover $1 || handle_errors $?
+    sudo pear -q channel-discover $1 || handle_errors $?
 
     return $?
 }
 
 install_gitflow() {
     print_subheader "INSTALLING GIT FLOW"
-    git clone --recursive git://github.com/nvie/gitflow.git || handle_errors $?
+    git clone -q --recursive git://github.com/nvie/gitflow.git /tmp/gitflow || handle_errors $?
+    cd /tmp/gitflow || handle_errors $?
     sudo make install || handle_errors $?
 
     return $?
@@ -51,36 +52,49 @@ install_gitflow() {
 
 install_gitextras() {
     print_subheader "INSTALLING GIT EXTRAS"
-    curl https://raw.github.com/visionmedia/git-extras/master/bin/git-extras | INSTALL=y sh || handle_errors $?
+    git clone -q --recursive git://github.com/visionmedia/git-extras.git /tmp/git-extras || handle_errors $?
+    cd /tmp/git-extras || handle_errors $?
+    sudo make install || handle_errors $?
 
     return $?
 }
 
 install_php() {
     print_subheader "INSTALLING PHP"
-    #TODO: FIXME
-    echo "Please run manually this commands:"
-    echo "sudo add-apt-repository ppa:ondrej/php5"
-    echo "sudo apt-get update"
-    echo "sudo apt-get upgrade"
-    echo "sudo apt-get dist-upgrade"
+    if [ "$TRAVIS_CI" == "" ]; then
+        sudo add-apt-repository ppa:ondrej/php5
+        sudo apt-get -q update
+        sudo apt-get -q upgrade
+        sudo apt-get -q dist-upgrade
+    else
+        echo "SKIPPED"
+    fi
 
     return 1
 }
 
+install_mongo() {
+    print_subheader "INSTALLING MONGODB"
+    if [ "$TRAVIS_CI" == "" ]; then
+        sudo apt-get -q install mongodb || handle_errors $?
+    else
+        echo "SKIPPED"
+    fi
+
+    return $?
+}
+
 install_imagick() {
     print_subheader "INSTALLING IMAGICK"
-    #TODO: FIXME
-    echo "Please run manually this commands:"
-    echo "sudo pecl install imagick"
+    sudo apt-get -q install php5-imagick || handle_errors $?
 
-    return 1
+    return $?
 }
 
 install_phpunit() {
     print_subheader "INSTALLING PHPUNIT"
     pear_add_channel "pear.phpunit.de"
-    sudo pear install --alldeps phpunit/PHPUnit || handle_errors $?
+    sudo pear -q install --alldeps phpunit/PHPUnit || handle_errors $?
 
     return $?
 }
@@ -88,7 +102,7 @@ install_phpunit() {
 install_phpcb() {
     print_subheader "INSTALLING PHP_CODE_BROWSER"
     pear_add_channel "pear.phpunit.de"
-    sudo pear install --alldeps phpunit/PHP_CodeBrowser || handle_errors $?
+    #sudo pear -q install --alldeps phpunit/PHP_CodeBrowser || handle_errors $?
 
     return $?
 }
@@ -96,7 +110,7 @@ install_phpcb() {
 install_phpcc() {
     print_subheader "INSTALLING PHP_CODE_COVERAGE"
     pear_add_channel "pear.phpunit.de"
-    sudo pear install --alldeps phpunit/PHP_CodeCoverage || handle_errors $?
+    sudo pear -q install --alldeps phpunit/PHP_CodeCoverage || handle_errors $?
 
     return $?
 }
@@ -104,7 +118,7 @@ install_phpcc() {
 install_phpcov() {
     print_subheader "INSTALLING PHPCOV"
     pear_add_channel "pear.phpunit.de"
-    sudo pear install --alldeps phpunit/phpcov || handle_errors $?
+    sudo pear -q install --alldeps phpunit/phpcov || handle_errors $?
 
     return $?
 }
@@ -112,7 +126,7 @@ install_phpcov() {
 install_phpcpd() {
     print_subheader "INSTALLING PHPCPD"
     pear_add_channel "pear.phpunit.de"
-    sudo pear install --alldeps phpunit/phpcpd || handle_errors $?
+    sudo pear -q install --alldeps phpunit/phpcpd || handle_errors $?
 
     return $?
 }
@@ -120,7 +134,7 @@ install_phpcpd() {
 install_phploc() {
     print_subheader "INSTALLING PHPLOC"
     pear_add_channel "pear.phpunit.de"
-    sudo pear install --alldeps phpunit/phploc || handle_errors $?
+    sudo pear -q install --alldeps phpunit/phploc || handle_errors $?
 
     return $?
 }
@@ -128,8 +142,8 @@ install_phploc() {
 install_phpdoc2() {
     print_subheader "INSTALLING PHPDOCUMENTOR2"
     pear_add_channel "pear.phpdoc.org"
-    sudo pear install --alldeps phpdoc/phpDocumentor-alpha || handle_errors $?
-    sudo apt-get install graphviz || handle_errors $?
+    sudo pear -q install --alldeps phpdoc/phpDocumentor-alpha || handle_errors $?
+    sudo apt-get -q install graphviz || handle_errors $?
 
     return $?
 }
@@ -137,7 +151,7 @@ install_phpdoc2() {
 install_pdepend() {
     print_subheader "INSTALLING PHP_DEPEND"
     pear_add_channel "pear.pdepend.org"
-    sudo pear install --alldeps pdepend/PHP_Depend-beta || handle_errors $?
+    #sudo pear -q install --alldeps pdepend/PHP_Depend-beta || handle_errors $?
 
     return $?
 }
@@ -145,76 +159,83 @@ install_pdepend() {
 install_phpmd() {
     print_subheader "INSTALLING PHPMD"
     pear_add_channel "pear.phpmd.org"
-    sudo pear install --alldeps phpmd/PHP_PMD || handle_errors $?
+    #sudo pear -q install --alldeps phpmd/PHP_PMD || handle_errors $?
 
     return $?
 }
 
 install_phpcs() {
     print_subheader "INSTALLING PHP_CodeSniffer"
-    sudo pear install --alldeps PHP_CodeSniffer-1.3.2 || handle_errors $?
+    sudo pear -q install --alldeps PHP_CodeSniffer-1.3.2 || handle_errors $?
 
     return $?
 }
 
 install_phpmongo() {
     print_subheader "INSTALLING PHP MONGODB"
-    sudo pecl install mongo || handle_errors $?
+    sudo pecl -q install mongo || handle_errors $?
 
     return $?
 }
 
 install_perl_modules() {
     print_subheader "INSTALLING PERL MODULES"
-    sudo cpan install Data::Dumper || handle_errors $?
-    sudo cpan install Date::Format || handle_errors $?
-    sudo cpan install Devel::Cover || handle_errors $?
-    sudo cpan install Digest::MD5 || handle_errors $?
-    sudo cpan install File::Basename || handle_errors $?
-    sudo cpan install File::Spec || handle_errors $?
-    sudo cpan install LWP || handle_errors $?
-    sudo cpan install POSIX || handle_errors $?
-    sudo cpan install Pod::Coverage || handle_errors $?
-    sudo cpan install Template || handle_errors $?
-    sudo cpan install Test::More || handle_errors $?
-    sudo cpan install XML::Simple || handle_errors $?
-    cd /tmp/
-    svn co http://guest@perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic/ --password guest || handle_errors $?
-    cd Perl-Critic
-    perl Makefile.PL || handle_errors $?
-    make || handle_errors $?
-    make test || handle_errors $?
-    sudo make install || handle_errors $?
+    sudo cpanm -n --installdeps install Data::Dumper || handle_errors $?
+    sudo cpanm -n --installdeps install Date::Format || handle_errors $?
+    sudo cpanm -n --installdeps install Devel::Cover || handle_errors $?
+    sudo cpanm -n --installdeps install Digest::MD5 || handle_errors $?
+    sudo cpanm -n --installdeps install File::Basename || handle_errors $?
+    sudo cpanm -n --installdeps install File::Spec || handle_errors $?
+    sudo cpanm -n --installdeps install LWP || handle_errors $?
+    sudo cpanm -n --installdeps install POSIX || handle_errors $?
+    sudo cpanm -n --installdeps install Pod::Coverage || handle_errors $?
+    sudo cpanm -n --installdeps install Template || handle_errors $?
+    sudo cpanm -n --installdeps install Test::More || handle_errors $?
+    sudo cpanm -n --installdeps install XML::Simple || handle_errors $?
+    sudo cpanm -n --installdeps install Perl::Critic || handle_errors $?
+    sudo cpanm -n install Data::Dumper || handle_errors $?
+    sudo cpanm -n install Date::Format || handle_errors $?
+    sudo cpanm -n install Devel::Cover || handle_errors $?
+    sudo cpanm -n install Digest::MD5 || handle_errors $?
+    sudo cpanm -n install File::Basename || handle_errors $?
+    sudo cpanm -n install File::Spec || handle_errors $?
+    sudo cpanm -n install LWP || handle_errors $?
+    sudo cpanm -n install POSIX || handle_errors $?
+    sudo cpanm -n install Pod::Coverage || handle_errors $?
+    sudo cpanm -n install Template || handle_errors $?
+    sudo cpanm -n install Test::More || handle_errors $?
+    sudo cpanm -n install XML::Simple || handle_errors $?
+    sudo cpanm -n install Perl::Critic || handle_errors $?
 
     return $?
 }
 
 install_pychecker() {
     print_subheader "INSTALLING PYCHECKER"
-    sudo apt-get install pychecker || handle_errors $?
+    sudo apt-get -q install pychecker || handle_errors $?
 
     return $?
 }
 
 install_pylint() {
     print_subheader "INSTALLING PYLINT"
-    sudo apt-get install pylint || handle_errors $?
+    sudo apt-get -q install pylint || handle_errors $?
 
     return $?
 }
 
 install_pep8() {
     print_subheader "INSTALLING PEP8"
-    sudo apt-get install pep8 || handle_errors $?
+    sudo apt-get -q install pep8 || handle_errors $?
 
     return $?
 }
 
 install_capistrano() {
     print_subheader "INSTALLING CAPISTRANO"
-    sudo apt-get install gem || handle_errors $?
-    sudo gem install capistrano || handle_errors $?
-    sudo gem install capistrano-ext || handle_errors $?
+    sudo apt-get -q install gem || handle_errors $?
+    sudo gem install -q capistrano || handle_errors $?
+    sudo gem install -q capistrano-ext || handle_errors $?
 
     return $?
 }
