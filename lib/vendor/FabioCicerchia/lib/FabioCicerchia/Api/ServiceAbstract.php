@@ -80,9 +80,7 @@ abstract class ServiceAbstract
     /**
      * Getter for $collection.
      *
-     * @see FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
-     * @see FabioCicerchia\TestCase::$collection
-     *
+     * @see   FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
      * @since Version 0.1
      *
      * @return Doctrine\MongoDB\Collection
@@ -97,9 +95,7 @@ abstract class ServiceAbstract
     /**
      * Getter for $collectionName.
      *
-     * @see FabioCicerchia\Api\ServiceAbstract::$collectionName The name of the collection.
-     * @see FabioCicerchia\TestCase::$collectionName
-     *
+     * @see   FabioCicerchia\Api\ServiceAbstract::$collectionName The name of the collection.
      * @since Version 0.1
      *
      * @return string
@@ -114,9 +110,7 @@ abstract class ServiceAbstract
     /**
      * Getter for $data.
      *
-     * @see FabioCicerchia\Api\ServiceAbstract::$data The data.
-     * @see FabioCicerchia\TestCase::$data
-     *
+     * @see   FabioCicerchia\Api\ServiceAbstract::$data The data.
      * @since Version 0.1
      *
      * @return array
@@ -131,10 +125,9 @@ abstract class ServiceAbstract
     /**
      * Launch the main task.
      *
-     * @see FabioCicerchia\Api\ServiceAbstract::getRawData()    Retrieve data from the collection and manipulate it.
-     * @see FabioCicerchia\Api\ServiceAbstract::elaborateData() Modify if needed the data.
-     * @see FabioCicerchia\Api\ServiceAbstract::$data           The data.
-     *
+     * @see   FabioCicerchia\Api\ServiceAbstract::getRawData()    Retrieve data from the collection and manipulate it.
+     * @see   FabioCicerchia\Api\ServiceAbstract::elaborateData() Modify if needed the data.
+     * @see   FabioCicerchia\Api\ServiceAbstract::$data           The data.
      * @since Version 0.1
      *
      * @return void
@@ -168,8 +161,7 @@ abstract class ServiceAbstract
     /**
      * Retrieve the data from the collection and manipulate it.
      *
-     * @see FabioCicerchia\Api\ServiceAbstract::execDataQuery() Retrieve all the documents from a collection.
-     *
+     * @see   FabioCicerchia\Api\ServiceAbstract::execDataQuery() Retrieve all the documents from a collection.
      * @since Version 0.1
      *
      * @return array
@@ -186,9 +178,8 @@ abstract class ServiceAbstract
     /**
      * Retrieve all the documents from a collection.
      *
-     * @see https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
-     * @see FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
-     *
+     * @link  https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
+     * @see   FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
      * @since Version 0.1
      *
      * @return array
@@ -203,11 +194,11 @@ abstract class ServiceAbstract
     /**
      * Executed to set up the database handle.
      *
-     * @param \Doctrine\MongoDB\Database $db_handle The Database Handle.
+     * @param Doctrine\MongoDB\Database $db_handle The Database Handle.
      *
-     * @see https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
-     * @see FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
-     *
+     * @link  https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
+     * @see   Doctrine\MongoDB\Database::selectCollection()
+     * @see   FabioCicerchia\Api\ServiceAbstract::getCollectionName() Getter for $collectionName.
      * @since Version 0.1
      *
      * @return void
@@ -224,12 +215,12 @@ abstract class ServiceAbstract
     /**
      * The constructor.
      *
-     * @param \Doctrine\MongoDB\Database $db_handle The Database Handle.
+     * @param Doctrine\MongoDB\Database $db_handle The Database Handle.
      *
-     * @see FabioCicerchia\Api\ServiceAbstract::setDatabase() Executed to set up the database handle.
-     * @see FabioCicerchia\Api\ServiceAbstract::run()         Launch the main task.
-     *
+     * @see   FabioCicerchia\Api\ServiceAbstract::setDatabase() Executed to set up the database handle.
+     * @see   FabioCicerchia\Api\ServiceAbstract::run()         Launch the main task.
      * @since Version 0.1
+     *
      * @return void
      */
     public function __construct(\Doctrine\MongoDB\Database $db_handle)

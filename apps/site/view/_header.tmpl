@@ -3,15 +3,16 @@
     <h1 class="fn n" itemprop="name"><span lang="it" class="given-name">Fabio</span> <span lang="it" class="family-name">Cicerchia</span></h1>
     <p class="lead role" itemprop="jobTitle">[% data.information.entity.0.content.role %]</p>
     <ul>
-        <li><span itemprop="nationality">[% data.information.entity.0.content.nationality %]</span></li>
-        <li><span itemprop="gender">[% data.information.entity.0.content.gender %]</span></li>
+        <li><span itemprop="nationality"><i class="icon-flag"></i> [% data.information.entity.0.content.nationality %]</span></li>
+        <li><span itemprop="gender"><i class="icon-user"></i> [% data.information.entity.0.content.gender %]</span></li>
         [% time = data.information.entity.0.content.birthday | replace('T', ' ') | replace('Z', '') %]
-        <li><time class="bday" itemprop="birthDate" datetime="[% time %]">[% date.format(time, "%d %B %Y") %]</time></li>
-        <li><span class="tel" itemprop="telephone">[% data.information.entity.0.content.telephone %]</span></li>
-        <li><a class="url" itemprop="url" target="_blank" href="http://[% HTTP_HOST %]" rel="nofollow me" title="">http://[% HTTP_HOST %]<span class="nw"></span></a></li>
-        <li><a class="email" itemprop="email" href="mailto:[% data.information.entity.0.content.contacts.email %]" rel="nofollow me" title="The my email address">[% data.information.entity.0.content.contacts.email %]</a></li>
+        <li><time class="bday" itemprop="birthDate" datetime="[% time %]"><i class="icon-calendar"></i> [% date.format(time, "%d %B %Y") %]</time></li>
+        <li><span class="tel" itemprop="telephone"><i class="icon-signal"></i> [% data.information.entity.0.content.telephone %]</span></li>
+        <li><a class="url" itemprop="url" target="_blank" href="http://[% HTTP_HOST %]" rel="nofollow me" title=""><i class="icon-globe"></i> http://[% HTTP_HOST %]<span class="nw"></span></a></li>
+        <li><a class="email" itemprop="email" href="mailto:[% data.information.entity.0.content.contacts.email %]" rel="nofollow me" title="The my email address"><i class="icon-envelope"></i> [% data.information.entity.0.content.contacts.email %]</a></li>
     </ul>
     <address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+        <i class="icon-home"></i>
         <span class="postal-code" itemprop="postalCode"></span> <!-- TODO: DYNAMIC VALUE -->
         <span class="locality" itemprop="addressLocality">[% data.information.entity.0.content.address.city %]</span>
         <span class="country-name" itemprop="addressCountry">[% data.information.entity.0.content.address.country %]</span>
@@ -24,6 +25,14 @@
             <li itemprop="itemListElement"><a accesskey="e" href="#education" title="Education"><i class="icon-book"></i> Education</a></li>
             <li itemprop="itemListElement"><a accesskey="x" href="#experience" title="Experience"><i class="icon-briefcase"></i> Experience</a></li>
             <li itemprop="itemListElement"><a accesskey="l" href="#languages" title="Languages"><i class="icon-flag"></i> Languages</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown"><!-- TODO: ADD CSS OR JS (BAD RENDERING) -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>English</li>
+                    <li>Italiano</li>
+                </ul>
+            </li>
         </ul>
     </div>
 </header>

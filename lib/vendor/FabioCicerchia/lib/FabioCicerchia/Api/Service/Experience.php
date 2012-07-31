@@ -68,6 +68,8 @@ class Experience extends \FabioCicerchia\Api\ServiceAbstract
      *
      * @param array $data The data.
      *
+     * @since Version 0.1
+     *
      * @return array
      */
     protected function elaborateData(array $data)
@@ -83,8 +85,9 @@ class Experience extends \FabioCicerchia\Api\ServiceAbstract
     /**
      * Retrieve all the documents from a collection.
      *
-     * @see https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
-     * @see FabioCicerchia\Api\ServiceAbstract::$_collection The Collection Handle.
+     * @link  https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
+     * @see   FabioCicerchia\Api\ServiceAbstract::getCollection() The Collection Handle.
+     * @since Version 0.1
      *
      * @return array
      */

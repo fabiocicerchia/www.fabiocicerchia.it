@@ -61,11 +61,13 @@ class Utils
      *
      * @throws InvalidArgumentException The parameter $language must be a
      *                                  string.
+     * @since  Version 0.1
      *
      * @return array
      */
     public static function convertForI18n(array $data, $language)
     {
+        // TODO: Write a test to cover this condition.
         if (is_string($language) === false) {
             $message = 'The parameter $language must be a string.';
             throw new \InvalidArgumentException($message);
@@ -95,9 +97,9 @@ class Utils
      *
      * @see    FabioCicerchia\Api\Utils::httpPriorityOrder()
      * @see    FabioCicerchia\Api\Utils::retrieveCurrentLanguage()
-     *
      * @throws InvalidArgumentException The parameter $accept_language must be
      *                                  a string.
+     * @since  Version 0.1
      *
      * @return string
      */
@@ -105,6 +107,7 @@ class Utils
         array $available_languages,
         $accept_language
     ) {
+        // TODO: Write a test to cover this condition.
         if (is_string($accept_language) === false) {
             $message = 'The parameter $accept_language must be a string.';
             throw new \InvalidArgumentException($message);
@@ -131,16 +134,19 @@ class Utils
      *
      * @throws InvalidArgumentException The parameters $a or $b must be a
      *                                  string.
+     * @since  Version 0.1
      *
      * @return integer
      */
     protected static function httpCustomSorting($a, $b)
     {
+        // TODO: Write a test to cover this condition.
         if (is_string($a) === false) {
             $message = 'The parameter $a must be a string.';
             throw new \InvalidArgumentException($message);
         }
 
+        // TODO: Write a test to cover this condition.
         if (is_string($b) === false) {
             $message = 'The parameter $b must be a string.';
             throw new \InvalidArgumentException($message);
@@ -155,6 +161,7 @@ class Utils
         }
 
         // second check on level existence
+        // TODO: Write a test to cover this condition.
         $a_match = strpos($a_value, 'level=') !== false;
         $b_match = strpos($b_value, 'level=') !== false;
         if ($a_match === true || $b_match === true) {
@@ -162,6 +169,7 @@ class Utils
         }
 
         // third check on level value
+        // TODO: Write a test to cover this condition.
         $a_level = (float)preg_replace('/.*level=(\d+)$/', '\1', $a_value);
         $b_level = (float)preg_replace('/.*level=(\d+)$/', '\1', $b_value);
         if ($a_level !== $b_level) {
@@ -169,6 +177,7 @@ class Utils
         }
 
         // fourth check on star values
+        // TODO: Write a test to cover this condition.
         if (strpos($a_value, '*') !== false
             || strpos($b_value, '*') !== false
         ) {
@@ -176,6 +185,7 @@ class Utils
         }
 
         // last check on the order value
+        // TODO: Write a test to cover this condition.
         return strcmp($a_order, $b_order);
     }
     // }}} ---------------------------------------------------------------------
@@ -186,14 +196,14 @@ class Utils
      *
      * @param string $string The string of HTTP Header.
      *
-     * @see    FabioCicerchia\Api\Utils::httpCustomSorting()
-     *
      * @throws InvalidArgumentException The parameter $string must be a string.
+     * @since  Version 0.1
      *
      * @return array
      */
     protected static function httpPriorityOrder($string)
     {
+        // TODO: Write a test to cover this condition.
         if (is_string($string) === false) {
             $message = 'The parameter $string must be a string.';
             throw new \InvalidArgumentException($message);
@@ -228,6 +238,8 @@ class Utils
      * @param array $available The available languages.
      * @param array $accepted  The string of HTTP Accept-Language.
      *
+     * @since Version 0.1
+     *
      * @return string
      */
     protected static function retrieveCurrentLanguage(
@@ -240,6 +252,7 @@ class Utils
             }
         }
 
+        // TODO: Write a test to cover this condition.
         return $available[0];
     }
     // }}} ---------------------------------------------------------------------

@@ -81,8 +81,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @param mixed $value The value to print.
      *
+     * @see   FabioCicerchia\TestCase::isDebug()
      * @since Version 0.1
-     * @see   \FabioCicerchia\TestCase::isDebug()
      *
      * @return void
      */
@@ -102,10 +102,12 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @param string $message The message.
      *
+     * @see   PHPUnit_Framework_TestCase::assertTrue()
      * @since Version 0.1
      *
      * @return void
      */
+    // TODO: use this method
     final public function pass($message = 'Test passed')
     {
         $this->assertTrue(true, $message);
@@ -121,9 +123,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param string $method The method to call.
      * @param array  $params The parameters to pass.
      *
+     * @see   FabioCicerchia\TestCase::$object
+     * @see   FabioCicerchia\TestCase::retrieveMethod()
      * @since Version 0.1
-     * @see   \FabioCicerchia\TestCase::$object
-     * @see   \FabioCicerchia\TestCase::retrieveMethod()
      *
      * @return mixed The results from the method.
      */
@@ -141,9 +143,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @param string $name The property to get.
      *
+     * @see   FabioCicerchia\TestCase::$object
+     * @see   FabioCicerchia\TestCase::retrieveProperty()
      * @since Version 0.1
-     * @see   \FabioCicerchia\TestCase::$object
-     * @see   \FabioCicerchia\TestCase::retrieveProperty()
      *
      * @return mixed The value of the property.
      */
@@ -162,10 +164,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param string $object The object's instance.
      * @param string $name   The method to retrieve.
      *
+     * @see   FabioCicerchia\TestCase::checkReflectionCompability()
      * @since Version 0.1
-     * @see   \FabioCicerchia\TestCase::checkReflectionCompability()
      *
-     * @return \ReflectionMethod The method.
+     * @return ReflectionMethod The method.
      */
     protected function retrieveMethod($object, $name)
     {
@@ -187,10 +189,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param string $object The object instance.
      * @param string $name   The property to retrieve.
      *
+     * @see   FabioCicerchia\TestCase::checkReflectionCompability()
      * @since Version 0.1
-     * @see   \FabioCicerchia\TestCase::checkReflectionCompability()
      *
-     * @return \ReflectionProperty The property.
+     * @return ReflectionProperty The property.
      */
     protected function retrieveProperty($object, $name)
     {
@@ -212,9 +214,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * @param string $name  The property to change.
      * @param mixed  $value The value.
      *
+     * @see   FabioCicerchia\TestCase::$object
+     * @see   FabioCicerchia\TestCase::retrieveProperty()
      * @since Version 0.1
-     * @see   \FabioCicerchia\TestCase::$object
-     * @see   \FabioCicerchia\TestCase::retrieveProperty()
      *
      * @return void
      */
@@ -231,8 +233,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      *
+     * @see   FabioCicerchia\TestCase::output()
      * @since Version 0.1
-     * @see   \FabioCicerchia\TestCase::output()
      *
      * @return void
      */
@@ -251,8 +253,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * Check if the current PHP version support the method
      * ReflectionMethod::setAccessible.
      *
+     * @see   PHPUnit_Framework_TestCase::markTestSkipped()
      * @since Version 0.1
-     * @see   \PHPUnit_Framework_TestCase::markTestSkipped()
      *
      * @return void
      */

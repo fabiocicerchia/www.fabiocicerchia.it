@@ -34,8 +34,8 @@
  * @since      File available since Release 0.1
  */
 
-require_once LIB_PATH . 'Api/ServiceAbstract.php';
-require_once LIB_PATH . 'TestCase.php';
+require_once TEST_LIB_PATH . 'Api/ServiceAbstract.php';
+require_once TEST_LIB_PATH . 'TestCase.php';
 
 /**
  * The Abstract class for every Service.
@@ -55,9 +55,11 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
     /**
      * Test method "run" with empty data.
      *
+     * @since Version 0.1
+     *
      * @return void
      */
-    public function testRunEmptyData()
+    public function testRunEmptyData() // TODO: Change name to be useful.
     {
         $stub = $this->getMockBuilder('FabioCicerchia\Api\ServiceAbstract')
                      ->setMethods(['getRawData', 'elaborateData'])
@@ -76,11 +78,13 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
 
         $this->assertEquals([], $stub->getData());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testGetDataReturnCorrectValue
     /**
      * Test method "getData" and check if return the correct value.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -91,11 +95,13 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
         $this->assertEquals([], $stub->getData());
         $this->assertInternalType('array', $stub->getData());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testGetCollectionReturnCorrectValue
     /**
      * Test method "getCollection" and check if return the correct value.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -105,5 +111,5 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
 
         $this->assertEquals(null, $stub->getCollection());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 }

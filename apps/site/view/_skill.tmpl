@@ -7,10 +7,9 @@
         <div class="span12 vcalendar">
             [% closed = 1 %]
             [% FOREACH skill = data.skill.entity %]
-            [% IF loop.index mod 2 == 0 %]<div class="row-fluid">[% closed = 0 %][% END %]
                 [% id_title = skill.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
-                <div class="span6" id="[% id_title %]">
-                    <h3>[% skill.title.content %]</h3>
+                <div class="span3" id="[% id_title %]">
+                    <h3><i class="icon-tasks"></i> [% skill.title.content %]</h3>
                     [% FOREACH item = skill.content.skills %]
                     <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
                         <dt itemprop="name">[% item.key %]</dt>
@@ -20,7 +19,6 @@
                     </dl>
                     [% END %]
                 </div>
-            [% IF loop.count mod 2 == 0 %]</div>[% closed = 1 %][% END %]
             [% END %]
             [% IF closed == 0 %]</div>[% END %]
         </div>

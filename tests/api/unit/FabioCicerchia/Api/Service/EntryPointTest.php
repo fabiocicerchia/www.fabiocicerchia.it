@@ -34,7 +34,8 @@
  * @since      File available since Release 0.1
  */
 
-require_once LIB_PATH . 'Api/Service/EntryPoint.php';
+require_once TEST_LIB_PATH . 'TestCase.php';
+require_once TEST_LIB_PATH . 'Api/Service/EntryPoint.php';
 
 /**
  * The EntryPoint Test Class.
@@ -48,19 +49,21 @@ require_once LIB_PATH . 'Api/Service/EntryPoint.php';
  * @link       http://www.fabiocicerchia.it
  * @since      File available since Release 0.1
  */
-class EntryPointTest extends PHPUnit_Framework_TestCase
+class EntryPointTest extends FabioCicerchia\TestCase
 {
     // {{{ testGetService
     /**
      * Test method "getService".
      *
+     * @since Version 0.1
+     *
      * @return void
      */
-    public function testGetService()
+    public function testGetService() // TODO: Change name to be useful.
     {
         $class = new FabioCicerchia\Api\Service\EntryPoint();
 
         $this->assertInternalType('array', $class->getServices());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 }

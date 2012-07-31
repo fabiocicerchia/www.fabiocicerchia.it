@@ -36,7 +36,7 @@ package FabioCicerchiaSite;
 use strict;
 use warnings;
 use version; our $VERSION = qv('1.0');
-use Data::Dumper;
+use Data::Dumper; # Just for debug.
 use Date::Format;
 use DateTime;
 use Digest::MD5;
@@ -46,8 +46,10 @@ use POSIX qw(mktime);
 use Template;
 use XML::Simple;
 
-# {{{ new
-### CLASS METHOD ###############################################################
+# TODO: Order methods by name.
+# TODO: Reduce external libs.
+
+# {{{ Method: new --------------------------------------------------------------
 # Usage      : FabioCicerchia::Site->new()
 # Purpose    : Generate a new instance.
 # Returns    : Self.
@@ -82,11 +84,13 @@ sub new {
 
     $self->set_request();
 
+    # TODO: Add description, is so obscure!
     $self->{'actionCurrent'} = $self->{'actionDefault'};
     if ( defined( $self->{'request'}{'action'} ) ) {
         $self->{'actionCurrent'} = $self->{'request'}{'action'};
     }
 
+    # TODO: Add description, is so obscure!
     $self->{'formatCurrent'} = $self->{'formatDefault'};
     if ( defined( $self->{'request'}{'format'} ) ) {
         if (
@@ -98,12 +102,14 @@ sub new {
         }
     }
 
+    # TODO: Add description, is so obscure!
     $self->{'contentType'} = $self->{'contentType'};
     if ( defined( $self->{'formatAllowed'}{ $self->{'formatCurrent'} } ) ) {
         $self->{'contentType'} =
           $self->{'formatAllowed'}{ $self->{'formatCurrent'} };
     }
 
+    # TODO: Add description, is so obscure!
     $self->{'i18nCurrent'} = $self->{'i18nDefault'};
     if ( defined( $self->{'request'}{'lang'} ) ) {
         $self->{'i18nCurrent'} = $self->{'request'}{'lang'};
@@ -114,11 +120,9 @@ sub new {
 
     return $self;
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ set_request
-### CLASS METHOD ###############################################################
+# {{{ Method: set_request ------------------------------------------------------
 # Usage      : FabioCicerchia::Site->set_request()
 # Purpose    : Set the main parameters for the request.
 # Returns    : Nothing.
@@ -133,6 +137,7 @@ sub set_request {
     my @pairs = split /&/smx, $ENV{'QUERY_STRING'};
     foreach my $pair (@pairs) {
         my ( $name, $value ) = split /=/smx, $pair;
+        # TODO: Add description, is so obscure!
         $name  =~ tr/+/ /;
         $name  =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/egsmx;
         $value =~ tr/+/ /;
@@ -148,11 +153,9 @@ sub set_request {
 
     return;
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ show
-### CLASS METHOD ###############################################################
+# {{{ Method: show -------------------------------------------------------------
 # Usage      : FabioCicerchia::Site->show()
 # Purpose    : Run the required action.
 # Returns    : Nothing, just printing.
@@ -169,11 +172,9 @@ sub show {
 
     return;
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ execute_action
-### CLASS METHOD ###############################################################
+# {{{ Method: execute_action ---------------------------------------------------
 # Usage      : FabioCicerchia::Site->execute_action()
 # Purpose    : Execute a custom & dynamical action.
 # Returns    : A string, the output that will be printed.
@@ -184,21 +185,21 @@ sub execute_action {
 
     my $method_to_call = 'action_' . $action;
     if ( !$self->can($method_to_call) ) {
+        # TODO: Write a test to cover this
         $method_to_call = 'action404';
     }
 
     return $self->$method_to_call();
 }
-
 # }}}
 
-# {{{ action404
-### CLASS METHOD ###############################################################
+# {{{ Method: action404 --------------------------------------------------------
 # Usage      : FabioCicerchia::Site->action404()
 # Purpose    : Print a 404 error.
 # Returns    : Nothing, just printing.
 # Parameters : None.
 # Throws     : No exceptions.
+# TODO: Write a test to cover this
 sub action404 {
     my $self = shift;
 
@@ -207,11 +208,9 @@ sub action404 {
 
     return;
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ action_show
-### CLASS METHOD ###############################################################
+# {{{ Method: action_show ------------------------------------------------------
 # Usage      : FabioCicerchia::Site->action_show()
 # Purpose    : The "show" action.
 # Returns    : Nothing, just printing.
@@ -254,11 +253,9 @@ sub action_show {
 
     return q{};
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ get_data
-### CLASS METHOD ###############################################################
+# {{{ Method: get_data ---------------------------------------------------------
 # Usage      : FabioCicerchia::Site->get_data()
 # Purpose    : Retrieve the data from the API.
 # Returns    : Array.
@@ -281,15 +278,18 @@ sub get_data {
     foreach my $api (@api_list) {
         $url = $api eq 'root' ? q{} : $api;
 
+        # TODO: Add description, is so obscure!
         my @response =
           $self->get_item_data( q{/} . $url, $self->{'i18nCurrent'} );
         my ( $curr_data, $curr_ts, $curr_hash, $curr_lang ) = @{ $response[0] };
 
+        # TODO: Add description, is so obscure!
         $data->{$api} = $curr_data;
         $hash = defined $curr_hash ? ( $hash . $curr_hash ) : $hash;
         $lang = defined $curr_lang ? $curr_lang             : $lang;
 
         if ( defined $curr_ts && $curr_ts > $last_ts ) {
+            # TODO: Write a test to cover this
             $last_ts = $curr_ts;
         }
     }
@@ -299,11 +299,9 @@ sub get_data {
 
     return [ $data, $last_ts, $ctx->hexdigest, $lang ];
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ elaborate_data
-### CLASS METHOD ###############################################################
+# {{{ Method: elaborate_data ---------------------------------------------------
 # Usage      : FabioCicerchia::Site->elaborate_data()
 # Purpose    : Change the data.
 # Returns    : An Hash, the input hash but modified.
@@ -314,9 +312,11 @@ sub elaborate_data {
 
     my $tmp;
     my $values;
+    # TODO: Add description, is so obscure!
     foreach my $key ( keys $data->{'skill'}->{'entity'} ) {
         $tmp    = {};
         $values = $data->{'skill'}->{'entity'}->[$key]->{'content'}->{'skills'};
+        # TODO: Add description, is so obscure!
         foreach my $key2 ( keys $values ) {
             my $item = $values->[$key2];
             if ( !exists( $tmp->{ $item->{'level'} } ) ) {
@@ -329,11 +329,9 @@ sub elaborate_data {
 
     return $data;
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ get_item_data
-### CLASS METHOD ###############################################################
+# {{{ Method: get_item_data ----------------------------------------------------
 # Usage      : FabioCicerchia::Site->get_data()
 # Purpose    : Retrieve the data from the API.
 # Returns    : Array.
@@ -353,12 +351,15 @@ sub get_item_data {
     my $data          = $self->retrieve_xml( $response->content() );
     my $last_modified = q{};
     if ( defined( $response->headers()->{'last-modified'} ) ) {
+        # TODO: Write a test to cover this
         $last_modified = $response->headers()->{'last-modified'};
     }
 
     if ( $last_modified ne q{} ) {
+        # TODO: Write a test to cover this
         my ( $wday, $day, $month, $year, $hour, $min, $sec ) =
           split /[\s:]/smx, $last_modified;
+        # TODO: Write a test to cover this
         $ts = POSIX::mktime(
             $sec, $min, $hour, $day,
             $mon2num{ lc $month } - 1,
@@ -373,11 +374,9 @@ sub get_item_data {
         $ctx->hexdigest, $response->headers()->{'content-language'}
     ];
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ retrieve_xml
-### CLASS METHOD ###############################################################
+# {{{ Method: retrieve_xml -----------------------------------------------------
 # Usage      : FabioCicerchia::Site->retrieve_xml()
 # Purpose    : Retrieve XML from an URL.
 # Returns    : XML::Simple object.
@@ -387,6 +386,7 @@ sub get_item_data {
 sub retrieve_xml {
     my ( $self, $content ) = @_;
 
+    # TODO: Add description.
     my $simple = XML::Simple->new(
         'KeepRoot'   => 0,
         'KeyAttr'    => [],
@@ -405,11 +405,9 @@ sub retrieve_xml {
 
     return $simple->XMLin($content);
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
-# {{{ call_api
-### CLASS METHOD ###############################################################
+# {{{ Method: call_api ---------------------------------------------------------
 # Usage      : FabioCicerchia::Site->call_api()
 # Purpose    : Call an URL and return its content.
 # Returns    : String, the output of the URL.
@@ -425,9 +423,11 @@ sub call_api {
 
     return $browser->get( 'http://' . $ENV{'HTTP_HOST'} . '/api.php' . $url );
 }
+# }}} --------------------------------------------------------------------------
 
-# }}}
-
+# TODO: Generate pod.
+# TODO: Test::Pod.
+# TODO: Test::Pod::Coverage.
 __END__
 
 =head1 FABIOCICERCHIASITE

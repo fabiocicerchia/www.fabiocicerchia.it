@@ -97,14 +97,16 @@ call_subroutines() {
         NUM_SPC=$(( $(tput cols) - ${#SUBROUTINE} - 8 ))
         printf "%${NUM_SPC}s"
 
-        RES=$($SUBROUTINE 2>&1)
-        STATUS=0
-        if [ -f /tmp/status.out ]; then
-            STATUS=$(cat /tmp/status.out)
-            rm /tmp/status.out
-        fi
+        echo
+        $SUBROUTINE 2>&1
+        #RES=$($SUBROUTINE 2>&1)
+        #STATUS=0
+        #if [ -f /tmp/status.out ]; then
+        #    STATUS=$(cat /tmp/status.out)
+        #    rm /tmp/status.out
+        #fi
 
-        print_status $STATUS $RES
+        #print_status $STATUS $RES
     done
 
     return $STATUS

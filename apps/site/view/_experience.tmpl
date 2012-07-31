@@ -12,7 +12,7 @@
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent" id="[% id_title %]_[% id_company %]">
                 <div class="page-header">
-                    <h3 class="summary">[% entity.title.content %]</h3>
+                    <h3 class="summary"><i class="icon-briefcase"></i> [% entity.title.content %]</h3>
                 </div>
                 <div class="dates">
                     [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
@@ -50,9 +50,9 @@
                 </dl>
                 [% END %]
                 [% IF entity.content.projects.size %]
-                [% current_id = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
                 <div class="accordion" id="accordion[% current_id %]">
                     [% FOREACH project IN entity.content.projects %]
+                    [% current_id = project.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a href="#collapse[% current_id %]" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion[% current_id %]">
@@ -60,7 +60,7 @@
                             </a>
                         </div>
                         <div id="collapse[% current_id %]" class="accordion-body collapse">
-                            <span class="role">[% project.role %]</span>
+                            <span class="role">[% project.role.content %]</span>
                             <!-- TODO: summary -->
                             [% start = project.date.start | replace('T', ' ') | replace('Z', '') %]
                             <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>

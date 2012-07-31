@@ -1,9 +1,9 @@
 <VirtualHost *:80>
     ServerName   fabiocicerchia.github
-    DocumentRoot /home/fabio/Web/fabiocicerchia.github.com/web
+    DocumentRoot /var/www/fabiocicerchia/current/web
 
-    #AddDefaultCharset UTF-8
-    #DefaultLanguage   en-US
+    AddDefaultCharset UTF-8
+    DefaultLanguage   en-GB
     SetEnv            TZ Europe/London
 
     # MIXED ###################################################################
@@ -23,17 +23,14 @@
 
     # LOG #####################################################################
     LogLevel  warn
-    #<IfModule mod_perl.c>
-    #    PerlWarn On
-    #</IfModule>
 
     LogFormat "%h %l %u %t \"%r\" %>s %b" common
     LogFormat "\"%r\" %D"                 measure-time
 
-    CustomLog /home/fabio/Web/fabiocicerchia.github.com/logs/access.log     common
-    CustomLog /home/fabio/Web/fabiocicerchia.github.com/logs/slow_pages.log measure-time
+    CustomLog /var/www/fabiocicerchia/current/logs/access.log     common
+    CustomLog /var/www/fabiocicerchia/current/logs/slow_pages.log measure-time
 
-    ErrorLog  /home/fabio/Web/fabiocicerchia.github.com/logs/error.log
+    ErrorLog  /var/www/fabiocicerchia/current/logs/error.log
 
     # SECURITY ################################################################
     <IfModule mod_security.c>
@@ -44,21 +41,21 @@
 
         SecFilterCheckCookieFormat On
 
-        SecAuditLog /home/fabio/Web/fabiocicerchia.github.com/logs/audit.log
+        SecAuditLog /var/www/fabiocicerchia/current/logs/audit.log
         SecFilterDefaultAction "deny,log,auditlog,status:406"
 
-        Include /home/fabio/Web/fabiocicerchia.github.com/web/modsecurity_crs_10_config.conf
-        Include /home/fabio/Web/fabiocicerchia.github.com/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_20_protocol_violations.conf
-        Include /home/fabio/Web/fabiocicerchia.github.com/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_21_protocol_anomalies.conf
-        Include /home/fabio/Web/fabiocicerchia.github.com/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_40_generic_attacks.conf
-        Include /home/fabio/Web/fabiocicerchia.github.com/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_42_tight_security.conf
-        Include /home/fabio/Web/fabiocicerchia.github.com/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_41_sql_injection_attacks.conf
-        Include /home/fabio/Web/fabiocicerchia.github.com/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_41_xss_attacks.conf
-        Include /home/fabio/Web/fabiocicerchia.github.com/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_45_trojans.conf
+        Include /var/www/fabiocicerchia/current/web/modsecurity_crs_10_config.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_20_protocol_violations.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_21_protocol_anomalies.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_40_generic_attacks.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_42_tight_security.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_41_sql_injection_attacks.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_41_xss_attacks.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_45_trojans.conf
     </IfModule>
 
     # DIRECTORIES #############################################################
-    <Directory /home/fabio/Web/fabiocicerchia.github.com/web>
+    <Directory /var/www/fabiocicerchia/current/web>
         Order allow,deny
         Allow from all
         AllowOverride None
@@ -85,11 +82,11 @@
           RewriteCond %{REQUEST_FILENAME} -s [OR]
           RewriteCond %{REQUEST_FILENAME} -l [OR]
           RewriteCond %{REQUEST_FILENAME} -d
-          RewriteRule ^.+$               -                               [NC,L]
+          RewriteRule ^.+$               -                   [NC,L]
 
-          RewriteRule ^minified/(.+\.css) minify/min/?f=$1               [L]
+          RewriteRule ^minified/(.+\.css) minify/min/?f=$1   [L]
 
-          RewriteRule ^(.*)$              index.pl?format=$1             [NC,L]
+          RewriteRule ^(.*)$              index.pl?format=$1 [NC,L]
         </IfModule>
    </Directory>
 
@@ -99,21 +96,12 @@
        Options All -Indexes
 
         <IfModule mod_perl.c>
-            #SetHandler perl-script
             AddHandler perl-script .pl
             PerlHandler ModPerl::Registry
-            #PerlHandler ModPerl::PerlRun
             PerlSendHeader On
             Options +ExecCGI
         </IfModule>
    </Directory>
-
-    #SetEnvIf Referer "^http:\/\/www.fabiocicerchia.it" local_referal
-    #<Directory ~ /web/media>
-    #    Order Deny,Allow
-    #    Deny from all
-    #    Allow from env=local_referal
-    #</Directory>
 
     # CACHE ###################################################################
     <IfModule mod_cache.c>
@@ -122,7 +110,7 @@
 
         # CacheDirLevels * CacheDirLength < 20
         <IfModule mod_disk_cache.c>
-            CacheRoot /home/fabio/Web/fabiocicerchia.github.com/cache/apache
+            CacheRoot /var/www/fabiocicerchia/current/cache/apache
             CacheEnable disk /
 
             CacheDirLevels 5
@@ -146,18 +134,18 @@
     </IfModule>
 
     # EXPIRES #################################################################
-#    <IfModule mod_expires.c>
-#        ExpiresActive On
-#
-#        ExpiresByType image/x-icon             "access plus 1 month"
-#        ExpiresByType image/gif                "access plus 1 month"
-#        ExpiresByType image/jpeg               "access plus 1 month"
-#        ExpiresByType image/png                "access plus 1 month"
-#        ExpiresByType application/javascript   "access plus 2 week"
-#        ExpiresByType application/x-javascript "access plus 2 week"
-#        ExpiresByType text/css                 "access plus 2 week"
-#    </IfModule>
-#
+    <IfModule mod_expires.c>
+        ExpiresActive On
+
+        ExpiresByType image/x-icon             "access plus 1 month"
+        ExpiresByType image/gif                "access plus 1 month"
+        ExpiresByType image/jpeg               "access plus 1 month"
+        ExpiresByType image/png                "access plus 1 month"
+        ExpiresByType application/javascript   "access plus 2 week"
+        ExpiresByType application/x-javascript "access plus 2 week"
+        ExpiresByType text/css                 "access plus 2 week"
+    </IfModule>
+
     # PHP #####################################################################
     <IfModule mod_php5.c>
         php_value date.timezone           Europe/London
@@ -172,9 +160,9 @@
         php_value memory_limit            128M
         php_value post_max_size           256K
         php_flag  register_globals        Off
-        php_value session.save_path       /home/fabio/Web/fabiocicerchia.github.com/tmp
+        php_value session.save_path       /var/www/fabiocicerchia/current/tmp
         php_value upload_max_filesize     256K
-        php_value upload_tmp_dir          /home/fabio/Web/fabiocicerchia.github.com/tmp
+        php_value upload_tmp_dir          /var/www/fabiocicerchia/current/tmp
         php_flag  session.use_trans_sid   Off
     </IfModule>
 </VirtualHost>

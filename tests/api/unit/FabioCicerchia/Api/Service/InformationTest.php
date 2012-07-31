@@ -34,8 +34,9 @@
  * @since      File available since Release 0.1
  */
 
-require_once LIB_PATH . 'Api/ServiceAbstract.php';
-require_once LIB_PATH . 'Api/Service/Information.php';
+require_once TEST_LIB_PATH . 'TestCase.php';
+require_once TEST_LIB_PATH . 'Api/ServiceAbstract.php';
+require_once TEST_LIB_PATH . 'Api/Service/Information.php';
 
 /**
  * The Information Test Class.
@@ -49,15 +50,17 @@ require_once LIB_PATH . 'Api/Service/Information.php';
  * @link       http://www.fabiocicerchia.it
  * @since      File available since Release 0.1
  */
-class InformationTest extends PHPUnit_Framework_TestCase
+class InformationTest extends FabioCicerchia\TestCase
 {
     // {{{ testRunEmptyData
     /**
      * Test method "run" with empty data.
      *
+     * @since Version 0.1
+     *
      * @return void
      */
-    public function testRunEmptyData()
+    public function testRunEmptyData() // TODO: Change name to be useful.
     {
         $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Information')
                      ->setMethods(['execDataQuery'])
@@ -72,5 +75,5 @@ class InformationTest extends PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('entities', $stub->getData());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 }

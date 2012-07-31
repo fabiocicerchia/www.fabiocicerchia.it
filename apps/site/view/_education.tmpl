@@ -14,7 +14,7 @@
             [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             <div itemscope="itemscope" itemtype="http://schema.org/EducationEvent" class="span6 education vevent" id="[% id_title %]_[% id_company %]">
-                <h3 class="summary" itemprop="name">[% entity.title.content %]</h3>
+                <h3 class="summary" itemprop="name"><i class="icon-book"></i> [% entity.title.content %]</h3>
                 <div class="dates">
                     [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
                     <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>
@@ -29,7 +29,7 @@
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
                     <dt itemprop="name">Activities</dt><!-- TODO: DYNAMIC VALUE -->
                     [% FOREACH activity = entity.content.activities %]
-                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</li>
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</dd>
                     [% END %]
                 </dl>
             </div>

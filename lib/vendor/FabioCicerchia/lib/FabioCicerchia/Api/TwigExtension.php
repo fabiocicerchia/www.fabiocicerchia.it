@@ -63,6 +63,9 @@ class TwigExtension extends \Twig_Extension
      * @param integer|string $date   A date.
      * @param string         $format A format.
      *
+     * @link  http://php.net/manual/en/class.mongodate.php
+     * @since Version 0.1
+     *
      * @return string The formatter date.
      */
     public function customDate($date, $format = null)
@@ -95,6 +98,8 @@ class TwigExtension extends \Twig_Extension
      * @param integer $limit       The maximum possible replacements for each
      *                             pattern in each subject string.
      *
+     * @since Version 0.1
+     *
      * @return mixed The result of the preg_replace.
      */
     public function pregReplace($subject, $pattern, $replacement, $limit = -1)
@@ -108,6 +113,9 @@ class TwigExtension extends \Twig_Extension
     // {{{ Method: getFilters --------------------------------------------------
     /**
      * Returns a list of filters to add to the existing list.
+     *
+     * @see   Twig_Filter_Method
+     * @since Version 0.1
      *
      * @return array An array of tests.
      */
@@ -123,6 +131,8 @@ class TwigExtension extends \Twig_Extension
     // {{{ Method: getName -----------------------------------------------------
     /**
      * Returns the name of the extension.
+     *
+     * @since Version 0.1
      *
      * @return string The extension name.
      */

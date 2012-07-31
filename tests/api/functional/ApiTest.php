@@ -54,19 +54,21 @@ class ApiTest extends WebTestCase
 {
     // {{{ createApplication
     /**
-     * Return the instance of \Silex\Application.
+     * Return the instance of Silex\Application.
      *
-     * @return \Silex\Application
+     * @since Version 0.1
+     *
+     * @return Silex\Application
      */
     public function createApplication()
     {
-        $app = include ROOT_PATH . 'apps/api/logic/app.php';
+        $app = include TEST_ROOT_PATH . 'apps/api/logic/app.php';
 
         $app['debug'] = false;
 
         return $app;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ setUpDebug
     /**
@@ -75,19 +77,26 @@ class ApiTest extends WebTestCase
      * Note: Child classes that define a setUp method must call
      * parent::setUp().
      *
+     * @see   ApiTest::createDebugApplication()
+     * @see   ApiTest::$app
+     * @since Version 0.1
+     *
      * @return void
      */
     public function setUpDebug()
     {
         $this->app = $this->createDebugApplication();
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ createDebugApplication
     /**
-     * Return the instance of \Silex\Application.
+     * Return the instance of Silex\Application.
      *
-     * @return \Silex\Application
+     * @see   ApiTest::createApplication()
+     * @since Version 0.1
+     *
+     * @return Silex\Application
      */
     public function createDebugApplication()
     {
@@ -98,11 +107,13 @@ class ApiTest extends WebTestCase
 
         return $app;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ providerInvalidHttpMethods
     /**
      * Return the list of the invalid HTTP Methods.
+     *
+     * @since Version 0.1
      *
      * @return array
      */
@@ -126,12 +137,15 @@ class ApiTest extends WebTestCase
 
         return [$methods];
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckStatusCode
     /**
      * Test the route "Entrypoint" to check the HTTP Status Code.
      *
+     * @since Version 0.1
+     *
+     * @medium
      * @return void
      */
     public function testEntrypointRouteCheckStatusCode()
@@ -141,11 +155,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckMimetype
     /**
      * Test the route "Entrypoint" to check the MIME Type.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -156,11 +172,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckMimetypeWithDebug
     /**
      * Test the route "Entrypoint" to check the MIME Type with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -173,11 +191,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckResponse
     /**
      * Test the route "Entrypoint" to check the Response.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -204,11 +224,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint > link[rel="service"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('service > entrypoint > updated')->text());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckResponseWithDebug
     /**
      * Test the route "Entrypoint" to check the Response with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -237,11 +259,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint > link[rel="service"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('service > entrypoint > updated')->text());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckCache
     /**
      * Test the route "Entrypoint" to check the Cache.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -252,11 +276,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckCacheWithDebug
     /**
      * Test the route "Entrypoint" to check the Cache with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -269,7 +295,7 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckWrongHttpMethod
     /**
@@ -278,6 +304,8 @@ class ApiTest extends WebTestCase
      * @param string $httpMethod The invalid HTTP Method.
      *
      * @dataProvider providerInvalidHttpMethods
+     * @since        Version 0.1
+     *
      * @return void
      */
     public function testEntrypointRouteCheckWrongHttpMethod($httpMethod)
@@ -287,17 +315,20 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(405, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckWrongHttpMethodWithDebug
     /**
-     * Test the route "Entrypoint" to check the Response with a wrong HTTP Method with Debug flag enabled.
+     * Test the route "Entrypoint" to check the Response with a wrong HTTP
+     * Method with Debug flag enabled.
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider providerInvalidHttpMethods
-     * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+     * @dataProvider             providerInvalidHttpMethods
+     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      * @expectedExceptionMessage No route found for
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function testEntrypointRouteCheckWrongHttpMethodWithDebug($httpMethod)
@@ -307,11 +338,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request($httpMethod, '/');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckCharset
     /**
      * Test the route "Entrypoint" to check the Charset.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -322,11 +355,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEntrypointRouteCheckLanguage
     /**
      * Test the route "Entrypoint" to check the Language.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -335,17 +370,20 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
+        // TODO: Use a @dataProvider
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckStatusCode
     /**
      * Test the route "Information" to check the HTTP Status Code.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -356,11 +394,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckMimetype
     /**
      * Test the route "Information" to check the MIME Type.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -371,11 +411,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckMimetypeWithDebug
     /**
      * Test the route "Information" to check the MIME Type with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -388,11 +430,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckResponse
     /**
      * Test the route "Information" to check the Response.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -419,11 +463,13 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckResponseWithDebug
     /**
      * Test the route "Information" to check the Response with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -452,11 +498,13 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckCache
     /**
      * Test the route "Information" to check the Cache.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -469,11 +517,13 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
         $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckCacheWithDebug
     /**
      * Test the route "Information" to check the Cache with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -486,15 +536,18 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckWrongHttpMethod
     /**
-     * Test the route "Information" to check the Response with a wrong HTTP Method.
+     * Test the route "Information" to check the Response with a wrong HTTP
+     * Method.
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
      * @dataProvider providerInvalidHttpMethods
+     * @since        Version 0.1
+     *
      * @return void
      */
     public function testInformationRouteCheckWrongHttpMethod($httpMethod)
@@ -504,17 +557,20 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(405, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckWrongHttpMethodWithDebug
     /**
-     * Test the route "Information" to check the Response with a wrong HTTP Method with Debug flag enabled.
+     * Test the route "Information" to check the Response with a wrong HTTP
+     * Method with Debug flag enabled.
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider providerInvalidHttpMethods
-     * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+     * @dataProvider             providerInvalidHttpMethods
+     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      * @expectedExceptionMessage No route found for
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function testInformationRouteCheckWrongHttpMethodWithDebug($httpMethod)
@@ -524,11 +580,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request($httpMethod, '/information');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationtRouteCheckCharset
     /**
      * Test the route "Information" to check the Charset.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -539,11 +597,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testInformationRouteCheckLanguage
     /**
      * Test the route "Information" to check the Language.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -558,11 +618,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckStatusCode
     /**
      * Test the route "Education" to check the HTTP Status Code.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -573,11 +635,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckMimetype
     /**
      * Test the route "Education" to check the MIME Type.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -588,11 +652,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckMimetypeWithDebug
     /**
      * Test the route "Education" to check the MIME Type with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -605,11 +671,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckResponse
     /**
      * Test the route "Education" to check the Response.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -640,11 +708,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > activities')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > activities > activity')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckResponseWithDebug
     /**
      * Test the route "Education" to check the Response with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -677,11 +747,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > activities')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > activities > activity')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckCache
     /**
      * Test the route "Education" to check the Cache.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -694,11 +766,13 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
         $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckCacheWithDebug
     /**
      * Test the route "Education" to check the Cache with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -711,7 +785,7 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckWrongHttpMethod
     /**
@@ -720,6 +794,8 @@ class ApiTest extends WebTestCase
      * @param string $httpMethod The invalid HTTP Method.
      *
      * @dataProvider providerInvalidHttpMethods
+     *
+     * @since Version 0.1
      * @return void
      */
     public function testEducationRouteCheckWrongHttpMethod($httpMethod)
@@ -729,17 +805,20 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(405, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckWrongHttpMethodWithDebug
     /**
-     * Test the route "Education" to check the Response with a wrong HTTP Method with Debug flag enabled.
+     * Test the route "Education" to check the Response with a wrong HTTP Method
+     * with Debug flag enabled.
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider providerInvalidHttpMethods
-     * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+     * @dataProvider             providerInvalidHttpMethods
+     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      * @expectedExceptionMessage No route found for
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function testEducationRouteCheckWrongHttpMethodWithDebug($httpMethod)
@@ -749,11 +828,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request($httpMethod, '/education');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckCharset
     /**
      * Test the route "Education" to check the Charset.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -764,11 +845,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testEducationRouteCheckLanguage
     /**
      * Test the route "Education" to check the Language.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -783,11 +866,14 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckStatusCode
     /**
      * Test the route "Experience" to check the HTTP Status Code.
+     *
+     * @medium
+     * @since Version 0.1
      *
      * @return void
      */
@@ -798,11 +884,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckMimetype
     /**
      * Test the route "Experience" to check the MIME Type.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -813,11 +901,14 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckMimetypeWithDebug
     /**
      * Test the route "Experience" to check the MIME Type with Debug flag enabled.
+     *
+     * @medium
+     * @since Version 0.1
      *
      * @return void
      */
@@ -830,11 +921,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckResponse
     /**
      * Test the route "Experience" to check the Response.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -891,11 +984,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > methodologies')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > methodologies > methodology')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckResponseWithDebug
     /**
      * Test the route "Experience" to check the Response with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -955,11 +1050,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > methodologies')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > methodologies > methodology')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckCache
     /**
      * Test the route "Experience" to check the Cache.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -972,11 +1069,13 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
         $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckCacheWithDebug
     /**
      * Test the route "Experience" to check the Cache with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -989,7 +1088,7 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckWrongHttpMethod
     /**
@@ -998,6 +1097,8 @@ class ApiTest extends WebTestCase
      * @param string $httpMethod The invalid HTTP Method.
      *
      * @dataProvider providerInvalidHttpMethods
+     * @since        Version 0.1
+     *
      * @return void
      */
     public function testExperienceRouteCheckWrongHttpMethod($httpMethod)
@@ -1007,7 +1108,7 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(405, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckWrongHttpMethodWithDebug
     /**
@@ -1015,9 +1116,11 @@ class ApiTest extends WebTestCase
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider providerInvalidHttpMethods
-     * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+     * @dataProvider             providerInvalidHttpMethods
+     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      * @expectedExceptionMessage No route found for
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function testExperienceRouteCheckWrongHttpMethodWithDebug($httpMethod)
@@ -1027,11 +1130,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request($httpMethod, '/experience');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckCharset
     /**
      * Test the route "Experience" to check the Charset.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1042,11 +1147,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testExperienceRouteCheckLanguage
     /**
      * Test the route "Experience" to check the Language.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1055,17 +1162,20 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/experience', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
+        // TODO: Use a @dataProvider
         $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/experience', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckStatusCode
     /**
      * Test the route "Skill" to check the HTTP Status Code.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1076,11 +1186,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckMimetype
     /**
      * Test the route "Skill" to check the MIME Type.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1091,11 +1203,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckMimetypeWithDebug
     /**
      * Test the route "Skill" to check the MIME Type with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1108,11 +1222,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckResponse
     /**
      * Test the route "Skill" to check the Response.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1143,11 +1259,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > title')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > level')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckResponseWithDebug
     /**
      * Test the route "Skill" to check the Response with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1180,11 +1298,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > title')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > level')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckCache
     /**
      * Test the route "Skill" to check the Cache.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1197,11 +1317,13 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
         $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckCacheWithDebug
     /**
      * Test the route "Skill" to check the Cache with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1214,7 +1336,7 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckWrongHttpMethod
     /**
@@ -1223,6 +1345,8 @@ class ApiTest extends WebTestCase
      * @param string $httpMethod The invalid HTTP Method.
      *
      * @dataProvider providerInvalidHttpMethods
+     * @since        Version 0.1
+     *
      * @return void
      */
     public function testSkillRouteCheckWrongHttpMethod($httpMethod)
@@ -1232,7 +1356,7 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(405, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckWrongHttpMethodWithDebug
     /**
@@ -1240,9 +1364,11 @@ class ApiTest extends WebTestCase
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider providerInvalidHttpMethods
-     * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+     * @dataProvider             providerInvalidHttpMethods
+     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      * @expectedExceptionMessage No route found for
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function testSkillRouteCheckWrongHttpMethodWithDebug($httpMethod)
@@ -1252,11 +1378,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request($httpMethod, '/skill');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckCharset
     /**
      * Test the route "Skill" to check the Charset.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1267,11 +1395,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testSkillRouteCheckLanguage
     /**
      * Test the route "Skill" to check the Language.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1286,11 +1416,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckStatusCode
     /**
      * Test the route "Language" to check the HTTP Status Code.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1301,11 +1433,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckMimetype
     /**
      * Test the route "Language" to check the MIME Type.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1316,11 +1450,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckMimetypeWithDebug
     /**
      * Test the route "Language" to check the MIME Type with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1333,11 +1469,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckResponse
     /**
      * Test the route "Language" to check the Response.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1368,11 +1506,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > title')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > level')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckResponseWithDebug
     /**
      * Test the route "Language" to check the Response with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1405,11 +1545,13 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > title')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > level')->count());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckCache
     /**
      * Test the route "Language" to check the Cache.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1422,11 +1564,13 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
         $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckCacheWithDebug
     /**
      * Test the route "Language" to check the Cache with Debug flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1439,7 +1583,7 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckWrongHttpMethod
     /**
@@ -1448,6 +1592,8 @@ class ApiTest extends WebTestCase
      * @param string $httpMethod The invalid HTTP Method.
      *
      * @dataProvider providerInvalidHttpMethods
+     *
+     * @since Version 0.1
      * @return void
      */
     public function testLanguageRouteCheckWrongHttpMethod($httpMethod)
@@ -1457,17 +1603,20 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(405, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckWrongHttpMethodWithDebug
     /**
-     * Test the route "Language" to check the Response with a wrong HTTP Method with Debug flag enabled.
+     * Test the route "Language" to check the Response with a wrong HTTP Method
+     * with Debug flag enabled.
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider providerInvalidHttpMethods
-     * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+     * @dataProvider             providerInvalidHttpMethods
+     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      * @expectedExceptionMessage No route found for
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function testLanguageRouteCheckWrongHttpMethodWithDebug($httpMethod)
@@ -1477,11 +1626,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request($httpMethod, '/language');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckCharset
     /**
      * Test the route "Language" to check the Charset.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1492,11 +1643,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testLanguageRouteCheckLanguage
     /**
      * Test the route "Language" to check the Language.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1505,17 +1658,20 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/language', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
+        // TODO: Use a @dataProvider
         $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/language', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckStatusCode
     /**
      * Test the route "ApiDefinitionSyntax" to check the HTTP Status Code.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1526,11 +1682,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckMimetype
     /**
      * Test the route "api-definition-syntax" to check the MIME Type.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1541,11 +1699,14 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('text/plain; charset=UTF-8', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckMimetypeWithDebug
     /**
-     * Test the route "api-definition-syntax" to check the MIME Type with Debug flag enabled.
+     * Test the route "api-definition-syntax" to check the MIME Type with Debug
+     * flag enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1558,11 +1719,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('text/plain; charset=UTF-8', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckCache
     /**
      * Test the route "api-definition-syntax" to check the Cache.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1573,11 +1736,14 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckCacheWithDebug
     /**
-     * Test the route "api-definition-syntax" to check the Cache with Debug flag enabled.
+     * Test the route "api-definition-syntax" to check the Cache with Debug flag
+     * enabled.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1590,15 +1756,18 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckWrongHttpMethod
     /**
-     * Test the route "api-definition-syntax" to check the Response with a wrong HTTP Method.
+     * Test the route "api-definition-syntax" to check the Response with a wrong
+     * HTTP Method.
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
      * @dataProvider providerInvalidHttpMethods
+     * @since        Version 0.1
+     *
      * @return void
      */
     public function testApiDefinitionSyntaxRouteCheckWrongHttpMethod($httpMethod)
@@ -1608,17 +1777,20 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(405, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckWrongHttpMethodWithDebug
     /**
-     * Test the route "api-definition-syntax" to check the Response with a wrong HTTP Method with Debug flag enabled.
+     * Test the route "api-definition-syntax" to check the Response with a wrong
+     * HTTP Method with Debug flag enabled.
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider providerInvalidHttpMethods
-     * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+     * @dataProvider             providerInvalidHttpMethods
+     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      * @expectedExceptionMessage No route found for
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function testApiDefinitionSyntaxRouteCheckWrongHttpMethodWithDebug($httpMethod)
@@ -1628,11 +1800,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request($httpMethod, '/api-definition-syntax');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckCharset
     /**
      * Test the route "ApiDefinitionSyntax" to check the Charset.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1643,11 +1817,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testApiDefinitionSyntaxRouteCheckLanguage
     /**
      * Test the route "ApiDefinitionSyntax" to check the Language.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1658,11 +1834,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckStatusCode
     /**
      * Test the route "404" to check the HTTP Status Code.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1673,11 +1851,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckMimetype
     /**
      * Test the route "404" to check the MIME Type.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1688,14 +1868,16 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('text/html; charset=UTF-8', $client->getResponse()->headers->get('Content-Type'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckMimetypeWithDebug
     /**
      * Test the route "404" to check the MIME Type with Debug flag enabled.
      *
-     * @expectedException Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @expectedExceptionMessage No route found for "GET /404"
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function test404RouteCheckMimetypeWithDebug()
@@ -1705,11 +1887,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/404');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckResponse
     /**
      * Test the route "404" to check the Response.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1720,14 +1904,16 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('No route found for "GET /404"', $client->getResponse()->getContent());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckResponseWithDebug
     /**
      * Test the route "404" to check the Response with Debug flag enabled.
      *
-     * @expectedException Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @expectedExceptionMessage No route found for "GET /404"
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function test404RouteCheckResponseWithDebug()
@@ -1737,11 +1923,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/404');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckCache
     /**
      * Test the route "404" to check the Cache.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1752,14 +1940,16 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckCacheWithDebug
     /**
      * Test the route "404" to check the Cache with Debug flag enabled.
      *
-     * @expectedException Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @expectedExceptionMessage No route found for "GET /404"
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function test404RouteCheckCacheWithDebug()
@@ -1769,7 +1959,7 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/404');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckWrongHttpMethod
     /**
@@ -1778,6 +1968,8 @@ class ApiTest extends WebTestCase
      * @param string $httpMethod The invalid HTTP Method.
      *
      * @dataProvider providerInvalidHttpMethods
+     * @since        Version 0.1
+     *
      * @return void
      */
     public function test404RouteCheckWrongHttpMethod($httpMethod)
@@ -1787,7 +1979,7 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckWrongHttpMethodWithDebug
     /**
@@ -1795,9 +1987,11 @@ class ApiTest extends WebTestCase
      *
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider providerInvalidHttpMethods
-     * @expectedException Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @dataProvider             providerInvalidHttpMethods
+     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @expectedExceptionMessage No route found for
+     * @since                    Version 0.1
+     *
      * @return void
      */
     public function test404RouteCheckWrongHttpMethodWithDebug($httpMethod)
@@ -1807,11 +2001,13 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request($httpMethod, '/404');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckCharset
     /**
      * Test the route "404" to check the Charset.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1822,11 +2018,13 @@ class ApiTest extends WebTestCase
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ test404RouteCheckLanguage
     /**
      * Test the route "404" to check the Language.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -1835,11 +2033,12 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/404', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
+        // TODO: Use a @dataProvider
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
 
         $crawler = $client->request('GET', '/404', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 }

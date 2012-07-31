@@ -33,18 +33,14 @@
  * @since     File available since Release 0.1
  */
 
-if (defined('ROOT_PATH') === false) {
-    define('ROOT_PATH',  __DIR__ . '/../../');
+if (defined('TEST_ROOT_PATH') === false) {
+    define('TEST_ROOT_PATH',  __DIR__ . '/../../');
 }
 
-if (defined('VENDOR_PATH') === false) {
-    define('VENDOR_PATH', ROOT_PATH . '/lib/vendor/');
+if (defined('TEST_VENDOR_PATH') === false) {
+    define('TEST_VENDOR_PATH', TEST_ROOT_PATH . '/lib/vendor/');
 }
 
-if (defined('LIB_PATH') === false) {
-    define('LIB_PATH', VENDOR_PATH . 'FabioCicerchia/lib/FabioCicerchia/');
-}
-
-if (defined('SILEX_FILE') === false) {
-    define('SILEX_FILE', ROOT_PATH . 'apps/api/silex.phar');
+if (defined('TEST_LIB_PATH') === false) {
+    define('TEST_LIB_PATH', TEST_VENDOR_PATH . 'FabioCicerchia/lib/FabioCicerchia/');
 }

@@ -271,7 +271,6 @@ These are the external libraries that has been used:
 ### 4.5. Tools
 These are the tools that has been used:
 
- * Pychecker v0.8.19 - [Home](http://pychecker.sourceforge.net/)
  * pylint v0.25.0 - [Home](http://www.logilab.org/project/pylint)
  * pep8 v0.6.1 - [Doc](http://www.python.org/dev/peps/pep-0008/)
 

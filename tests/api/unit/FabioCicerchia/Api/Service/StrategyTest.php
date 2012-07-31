@@ -34,7 +34,8 @@
  * @since      File available since Release 0.1
  */
 
-require_once LIB_PATH . 'Api/Service/Strategy.php';
+require_once TEST_LIB_PATH . 'TestCase.php';
+require_once TEST_LIB_PATH . 'Api/Service/Strategy.php';
 
 /**
  * The Strategy Test Class.
@@ -48,11 +49,13 @@ require_once LIB_PATH . 'Api/Service/Strategy.php';
  * @link       http://www.fabiocicerchia.it
  * @since      File available since Release 0.1
  */
-class StrategyTest extends PHPUnit_Framework_TestCase
+class StrategyTest extends FabioCicerchia\TestCase
 {
     // {{{ testGetDataReturnCorrectValue
     /**
      * Test method "getData" return the correct value.
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -64,5 +67,5 @@ class StrategyTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(null, $stub->getData());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 }

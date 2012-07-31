@@ -12,9 +12,71 @@ File: ./db/mongo-curriculum.js
   - TBW (line 295)
   - TBW (line 575)
 
+File: ./tests/api/functional/ApiTest.php
+--------------------------------------------------------------------------------
+  - Use a @dataProvider (line 372)
+  - Use a @dataProvider (line 1164)
+  - Use a @dataProvider (line 1660)
+  - Use a @dataProvider (line 2035)
+
+File: ./tests/api/unit/FabioCicerchia/Api/ServiceAbstractTest.php
+--------------------------------------------------------------------------------
+  - Change name to be useful. (line 62)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
+--------------------------------------------------------------------------------
+  - Change name to be useful. (line 61)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/LanguageTest.php
+--------------------------------------------------------------------------------
+  - Change name to be useful. (line 62)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/SkillTest.php
+--------------------------------------------------------------------------------
+  - Change name to be useful. (line 62)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/InformationTest.php
+--------------------------------------------------------------------------------
+  - Change name to be useful. (line 62)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/EducationTest.php
+--------------------------------------------------------------------------------
+  - Change name to be useful. (line 62)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/ExperienceTest.php
+--------------------------------------------------------------------------------
+  - Change name to be useful. (line 62)
+
+File: ./tests/api/unit/FabioCicerchia/Api/UtilsTest.php
+--------------------------------------------------------------------------------
+  - Change name to be useful. (line 63)
+  - Use a @dataProvider (line 65)
+
 File: ./lib/PHPCS/ruleset.xml
 --------------------------------------------------------------------------------
   - <No Message> (line 7)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/TestCase.php
+--------------------------------------------------------------------------------
+  - Use this method (line 110)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
+--------------------------------------------------------------------------------
+  - Write a test to cover this condition. (line 70)
+  - Write a test to cover this condition. (line 110)
+  - Write a test to cover this condition. (line 143)
+  - Write a test to cover this condition. (line 149)
+  - Write a test to cover this condition. (line 164)
+  - Write a test to cover this condition. (line 172)
+  - Write a test to cover this condition. (line 180)
+  - Write a test to cover this condition. (line 188)
+  - Write a test to cover this condition. (line 206)
+  - Write a test to cover this condition. (line 255)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Strategy.php
+--------------------------------------------------------------------------------
+  - Write a test to cover this condition. (line 101)
+  - Write a test to cover this condition. (line 112)
 
 File: ./apps/site/view/rss091.tmpl
 --------------------------------------------------------------------------------
@@ -39,7 +101,8 @@ File: ./apps/site/view/rss1.tmpl
 
 File: ./apps/site/view/_header.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 15)
+  - DYNAMIC VALUE (line 16)
+  - ADD CSS OR JS (BAD RENDERING) (line 29)
 
 File: ./apps/site/view/_experience.tmpl
 --------------------------------------------------------------------------------
@@ -74,7 +137,7 @@ File: ./apps/site/view/rss2.tmpl
 
 File: ./apps/site/view/html5.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 22)
+  - DYNAMIC VALUE (line 26)
 
 File: ./apps/site/view/_education.tmpl
 --------------------------------------------------------------------------------
@@ -95,8 +158,83 @@ File: ./apps/site/view/_language.tmpl
 
 File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------
-  - IMPLEMENT IF NOT MODIFIED (line 237)
+  - Order methods by name. (line 49)
+  - Reduce external libs. (line 50)
+  - Add description, is so obscure! (line 87)
+  - Add description, is so obscure! (line 93)
+  - Add description, is so obscure! (line 105)
+  - Add description, is so obscure! (line 112)
+  - Add description, is so obscure! (line 140)
+  - Write a test to cover this (line 188)
+  - Write a test to cover this (line 202)
+  - IMPLEMENT IF NOT MODIFIED (line 236)
+  - Add description, is so obscure! (line 281)
+  - Add description, is so obscure! (line 286)
+  - Write a test to cover this (line 292)
+  - Add description, is so obscure! (line 315)
+  - Add description, is so obscure! (line 319)
+  - Write a test to cover this (line 354)
+  - Write a test to cover this (line 359)
+  - Write a test to cover this (line 362)
+  - Add description. (line 389)
+  - Generate pod. (line 428)
+  - Test::Pod. (line 429)
+  - Test::Pod::Coverage. (line 430)
+
+File: ./apps/api/logic/controller.php
+--------------------------------------------------------------------------------
+  - Make dynamic the language. (line 68)
+  - Make dynamic the language. (line 113)
+  - Write a test to cover this condition. (line 141)
+  - Write a test to cover this condition. (line 154)
+  - Start refactoring, cut from here  (line 164)
+  - End refactoring, cut to here (line 179)
+  - Start refactoring, cut from here  (line 195)
+  - End refactoring, cut to here (line 213)
+  - Make dynamic the language. (line 247)
+
+File: ./apps/script/common.py
+--------------------------------------------------------------------------------
+  - Change above (line 46)
+  - Add documentation (line 48)
+  - Change above (line 62)
+  - Remove this if (line 95)
+
+File: ./apps/script/benchmark.py
+--------------------------------------------------------------------------------
+  - Change above (line 45)
+  - Add documentation (line 47)
+  - Change above (line 61)
+  - Add documentation (line 63)
+  - Move to a shared file among the others. (line 77)
+  - Line length. (line 119)
 
 File: ./apps/script/check_accessibility.py
 --------------------------------------------------------------------------------
-  - Use http://www.sidar.org/hera/index.php.it ? (line 171)
+  - Move to a shared file among the others. (line 38)
+  - Align block (line 72)
+  - Align block (line 94)
+  - Align block (line 116)
+  - Align block (line 138)
+  - Align block (line 160)
+  - Use http://www.sidar.org/hera/index.php.it ? (line 177)
+
+File: ./apps/script/check_validation.py
+--------------------------------------------------------------------------------
+  - Move to a shared file among the others. (line 38)
+  - Align block (line 72)
+  - Align block (line 91)
+  - Align block (line 112)
+  - Align block (line 133)
+  - Align block (line 154)
+  - Align block (line 233)
+  - Align block (line 250)
+  - Http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN (line 265)
+  - Http://www.sidar.org/hera/ (line 266)
+  - YSlow (line 267)
+  - Page Speed (line 268)
+
+File: ./bin/console/modules/install.sh
+--------------------------------------------------------------------------------
+  - FIXME (line 61)
+  - FIXME (line 73)

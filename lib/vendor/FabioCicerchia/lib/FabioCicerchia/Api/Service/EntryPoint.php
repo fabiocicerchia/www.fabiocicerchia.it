@@ -70,7 +70,8 @@ class EntryPoint
     /**
      * Getter for $services.
      *
-     * @see FabioCicerchia\Api\Service\EntryPoint::$services The list of active services.
+     * @see   FabioCicerchia\Api\Service\EntryPoint::$services The list of active services.
+     * @since Version 0.1
      *
      * @return array
      */

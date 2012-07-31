@@ -35,6 +35,7 @@ from __future__ import print_function
 import urllib
 from common import validate
 
+# TODO: move to a shared file among the others.
 pages = {
     'url_hp': {
         'EN - Homepage (HTML5)': '/?bot=1',
@@ -68,6 +69,7 @@ print('Validate Accessibility (BITV 1.0 - Level 2):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'validate_uri': 'Check It',
@@ -89,6 +91,7 @@ print('Validate Accessibility (Section 508):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'validate_uri': 'Check It',
@@ -110,6 +113,7 @@ print('Validate Accessibility (Stanca Act):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'validate_uri': 'Check It',
@@ -131,6 +135,7 @@ print('Validate Accessibility (WCAG 1.0 - Level AAA):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'validate_uri': 'Check It',
@@ -152,6 +157,7 @@ print('Validate Accessibility (WCAG 2.0 - Level AAA):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'validate_uri': 'Check It',

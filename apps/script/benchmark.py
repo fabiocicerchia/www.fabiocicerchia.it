@@ -36,14 +36,31 @@ import urllib
 from common import retrieveUrlContent
 from time import time
 
+# {{{ Function: getExecutionTime ----------------------------------------------
+# Usage      : FabioCicerchia::Site->new()
+# Purpose    : Generate a new instance.
+# Returns    : Self.
+# Parameters : None.
+# Throws     : No exceptions.
+# TODO: Change above
 def getExecutionTime(url):
+    # TODO: add documentation
     start = time()
     content = retrieveUrlContent('GET', url)
     end = time()
 
     return (end - start)
+# }}} -------------------------------------------------------------------------
 
+# {{{ Function: getAverageExecutionTime ---------------------------------------
+# Usage      : FabioCicerchia::Site->new()
+# Purpose    : Generate a new instance.
+# Returns    : Self.
+# Parameters : None.
+# Throws     : No exceptions.
+# TODO: Change above
 def getAverageExecutionTime(url):
+    # TODO: add documentation
     times = [
         getExecutionTime(url),
         getExecutionTime(url),
@@ -55,7 +72,9 @@ def getAverageExecutionTime(url):
     sum = times[0] + times[1] + times[2] + times[3] + times[4]
 
     return round((sum - min(times) - max(times)) / 3, 5)
+# }}} -------------------------------------------------------------------------
 
+# TODO: move to a shared file among the others.
 pages = {
     'api': {
         'root':        '/',
@@ -95,8 +114,7 @@ pages = {
 for key, value in pages.iteritems():
     print(key.upper());
     for k, v in value.iteritems():
-        str = '    ' + k + ':'
-        spaces = (30 - len(str)) * ' '
-        print(str + spaces, end='')
-        print(getAverageExecutionTime("http://fabiocicerchia.github" + v), end='')
+        spaces = (25 - len(k)) * ' '
+        print('    ' + k + ':' + spaces, end='')
+        print(getAverageExecutionTime("http://fabiocicerchia.github" + v), end='') # TODO: line length.
         print(' sec')

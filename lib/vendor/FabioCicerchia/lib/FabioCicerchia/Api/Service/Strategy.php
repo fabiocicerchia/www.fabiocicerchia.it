@@ -68,6 +68,7 @@ class Strategy
      *
      * @see FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
      * @see FabioCicerchia\Api\Service\*::getData()         Getter for $data.
+     * @since Version 0.1
      *
      * @return array
      */
@@ -83,19 +84,21 @@ class Strategy
     /**
      * The constructor.
      *
-     * @param string                     $service_name The name of the service.
-     * @param \Doctrine\MongoDB\Database $db_handle    The Database Handle.
+     * @param string                    $service_name The name of the service.
+     * @param Doctrine\MongoDB\Database $db_handle    The Database Handle.
      *
-     * @see http://www.php.net/manual/en/class.unexpectedvalueexception.php
-     * @see FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
-     *
+     * @link   http://www.php.net/manual/en/class.invalidargumentexception.php
+     * @link   http://www.php.net/manual/en/class.unexpectedvalueexception.php
+     * @see    FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
      * @throws InvalidArgumentException The parameter $service_name must be a string.
      * @throws UnexpectedValueException The message will be the message of every Exception catched.
+     * @since  Version 0.1
      *
      * @return void
      */
     public function __construct($service_name, \Doctrine\MongoDB\Database $db_handle)
     {
+        // TODO: Write a test to cover this condition.
         if (is_string($service_name) === false) {
             $message = 'The parameter $service_name must be a string.';
             throw new \InvalidArgumentException($message);
@@ -106,6 +109,7 @@ class Strategy
         try {
             $this->strategy = new $class($db_handle);
         } catch (\Exception $e) {
+            // TODO: Write a test to cover this condition.
             throw new \UnexpectedValueException($e->getMessage(), $e->getCode());
         }
     }

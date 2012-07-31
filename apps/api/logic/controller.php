@@ -53,7 +53,11 @@ $closures = [];
  * @param \Exception $e    The Exception instance.
  * @param integer    $code The exception code.
  *
- * @return Response
+ * @uses Silex\Application $app The Silex Application instance.
+ *
+ * @since Version 0.1
+ *
+ * @return Response|null
  */
 $closures['error'] = function (\Exception $e, $code) use ($app) {
     if ($app['debug'] === true) {
@@ -61,7 +65,7 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
     }
 
     $response = new Response($e->getMessage(), $code);
-    $response->headers->set('Content-Language', 'en');
+    $response->headers->set('Content-Language', 'en'); // TODO: make dynamic the language.
 
     return $response;
 };
@@ -72,7 +76,12 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
 /**
  * Root - Closure.
  *
- * @uses Silex\Application $app The Silex Application instance.
+ * @link  https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
+ * @see   FabioCicerchia\Api\Service\EntryPoint::getServices()
+ * @see   Symfony\Component\HttpFoundation\Response
+ * @uses  Silex\Application $app The Silex Application instance.
+ * @since Version 0.1
+ *
  * @return Response
  */
 $closures['root'] = function () use ($app) {
@@ -91,8 +100,8 @@ $closures['root'] = function () use ($app) {
         'routes'    => $entryPoint->getServices(),
         'mime_type' => $mime_type,
         'api_name'  => 'entry point',
-        'email'     => $database->selectCollection('information')
-                                 ->find()->getNext()['contacts']['email']
+        'email'     => $database->selectCollection('information')->find()
+                                 ->getNext()['contacts']['email']
     ];
 
     // Rendering
@@ -101,7 +110,7 @@ $closures['root'] = function () use ($app) {
     // Response
     $response = new Response($content);
     $response->headers->set('Content-Type',     $data['mime_type']);
-    $response->headers->set('Content-Language', 'en');
+    $response->headers->set('Content-Language', 'en'); // TODO: make dynamic the language.
 
     return $response;
 };
@@ -114,10 +123,22 @@ $closures['root'] = function () use ($app) {
  *
  * @param string $api_name The API name retrieved from URL.
  *
- * @uses Silex\Application $app The Silex Application instance.
+ * @link  http://www.php.net/manual/en/class.invalidargumentexception.php
+ * @link  http://www.php.net/manual/en/class.unexpectedvalueexception.php
+ * @see   FabioCicerchia\Api\Service\Strategy::getData()
+ * @see   Symfony\Component\HttpFoundation\Response::setMaxAge()
+ * @see   Symfony\Component\HttpFoundation\Response::setSharedMaxAge()
+ * @see   Symfony\Component\HttpFoundation\Response::setETag()
+ * @see   Symfony\Component\HttpFoundation\Response::isNotModified()
+ * @see   FabioCicerchia\Api\Utils::getCurrentLanguage()
+ * @see   Symfony\Component\HttpFoundation\Response::setContent()
+ * @uses  Silex\Application $app The Silex Application instance.
+ * @since Version 0.1
+ *
  * @return Response
  */
 $closures['api'] = function ($api_name) use ($app) {
+    // TODO: Write a test to cover this condition.
     if (is_string($api_name) === false) {
         $message = 'The parameter $api_name must be a string.';
         throw new \InvalidArgumentException($message);
@@ -130,6 +151,7 @@ $closures['api'] = function ($api_name) use ($app) {
     try {
         $service = new Strategy($api_name, $database);
     } catch (UnexpectedValueException $e) {
+        // TODO: Write a test to cover this condition.
         $app->abort(404, 'The API ' . $api_name. ' does not exist.');
     }
 
@@ -139,6 +161,7 @@ $closures['api'] = function ($api_name) use ($app) {
     // Response
     $response = new Response();
     if ($app['debug'] === false) {
+        // TODO: start refactoring, cut from here -----------------------------
         $firstRecord  = $data['entities'][array_keys($data['entities'])[0]];
         if (isset($firstRecord['date']) === true) {
             if (isset($firstRecord['date']['end']) === true) {
@@ -153,10 +176,10 @@ $closures['api'] = function ($api_name) use ($app) {
                         ? $time
                         : filemtime($mongodb_file);
         $lastModified = gmdate('D, d M Y H:i:s', $lastModified) . ' GMT';
+        // TODO: end refactoring, cut to here ---------------------------------
 
-        $response->setPublic();
         $response->setMaxAge(28800);
-        $response->setSharedMaxAge(28800);
+        $response->setSharedMaxAge(28800); // This set the cache to public.
         $response->setETag(md5(serialize($data)));
         $response->headers->set('Last-Modified', $lastModified);
     }
@@ -169,6 +192,7 @@ $closures['api'] = function ($api_name) use ($app) {
         $response->headers->set('Content-Type', $mime_type);
 
         // Language
+        // TODO: start refactoring, cut from here -----------------------------
         $current_lang        = 'en';
         $available_languages = [$current_lang => $current_lang];
         $accept_language     = $app['request']->headers->get('accept-language');
@@ -186,6 +210,7 @@ $closures['api'] = function ($api_name) use ($app) {
                 $accept_language
             );
         }
+        // TODO: end refactoring, cut to here ---------------------------------
         $response->headers->set('Content-Language', $current_lang);
 
         $to_lang = $available_languages[$current_lang];
@@ -208,14 +233,18 @@ $closures['api'] = function ($api_name) use ($app) {
 /**
  * API Definition Syntax - Closure.
  *
- * @uses Silex\Application $app The Silex Application instance.
+ * @see   Symfony\Component\HttpFoundation\Response
+ * @uses  Silex\Application $app The Silex Application instance.
+ * @since Version 0.1
+ *
  * @return Response
  */
 $closures['api_definition_syntax'] = function () use ($app) {
     $content  = $app['twig']->render('api-definition-syntax.twig');
     $response = new Response($content);
+
     $response->headers->set('Content-Type',     'text/plain');
-    $response->headers->set('Content-Language', 'en');
+    $response->headers->set('Content-Language', 'en'); // TODO: make dynamic the language.
 
     return $response;
 };

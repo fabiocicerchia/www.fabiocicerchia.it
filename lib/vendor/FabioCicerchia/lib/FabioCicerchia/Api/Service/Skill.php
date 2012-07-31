@@ -68,6 +68,9 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
      *
      * @param array $data The data.
      *
+     * @see   FabioCicerchia\Api\ServiceAbstract::elaborateData()
+     * @since Version 0.1
+     *
      * @return array
      */
     protected function elaborateData(array $data)

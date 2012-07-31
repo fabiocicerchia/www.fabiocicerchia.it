@@ -37,12 +37,29 @@ import re
 from lxml import etree
 # http://lxml.de/parsing.html
 
-def retrieveUrlContent(http_method, remote_url):
+# {{{ Function: retrieveUrlContent --------------------------------------------
+# Usage      : FabioCicerchia::Site->new()
+# Purpose    : Generate a new instance.
+# Returns    : Self.
+# Parameters : None.
+# Throws     : No exceptions.
+# TODO: Change above
+def retrieveUrlContent(http_method, remote_url, params):
+    # TODO: add documentation
     if (http_method == 'GET'):
-        data = urllib.urlopen(remote_url).read()
+        data = urllib.urlopen(remote_url + '%s' % params).read()
     else:
         data = urllib.urlopen(remote_url, params).read()
 
+    return data
+
+# {{{ Function: validate ------------------------------------------------------
+# Usage      : FabioCicerchia::Site->new()
+# Purpose    : Generate a new instance.
+# Returns    : Self.
+# Parameters : None.
+# Throws     : No exceptions.
+# TODO: Change above
 def validate(http_method, remote_url, params, page, match,
              excepted_value='.*', match_reverse=False):
     """Validate an URL calling the defined web site validator,
@@ -62,10 +79,8 @@ def validate(http_method, remote_url, params, page, match,
     """
     page = urllib.quote('http://www.fabiocicerchia.it' + page)
     params = params.replace('%25URI%25', page)
-    if (http_method == 'GET'):
-        remote_url = remote_url + '%s' % params
 
-    data = retrieveUrlContent(http_method, remote_url)
+    data = retrieveUrlContent(http_method, remote_url, params)
 
     parser = etree.XMLParser(ns_clean=False, resolve_entities=False,
                              recover=True)
@@ -77,6 +92,7 @@ def validate(http_method, remote_url, params, page, match,
 
     status = (match != None)
 
+    # TODO: remove this if
     if match_reverse:
         status = not status
 

@@ -3,10 +3,10 @@
     "homepage": "http://www.fabiocicerchia.it",
     "authors": [
         {
-            "name": "Fabio Cicerchia",
-            "email": "info@fabiocicerchia.it",
+            "name":     "Fabio Cicerchia",
+            "email":    "info@fabiocicerchia.it",
             "homepage": "http://www.fabiocicerchia.it",
-            "role": "Lead Developer"
+            "role":     "Lead Developer"
         }
     ],
     "repositories": [

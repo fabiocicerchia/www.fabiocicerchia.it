@@ -36,7 +36,7 @@
 
 use \FabioCicerchia\Api\Utils;
 
-require_once LIB_PATH . 'Api/Utils.php';
+require_once TEST_LIB_PATH . 'Api/Utils.php';
 
 /**
  * The Utils Test class.
@@ -50,16 +50,19 @@ require_once LIB_PATH . 'Api/Utils.php';
  * @link       http://www.fabiocicerchia.it
  * @since      File available since Release 0.1
  */
-class UtilsTest extends PHPUnit_Framework_TestCase
+class UtilsTest extends FabioCicerchia\TestCase
 {
     // {{{ testGetCurrentLanguage
     /**
      * Test method "getCurrentLanguage" with real Accept HTTP Header.
      *
+     * @since Version 0.1
+     *
      * @return void
      */
-    public function testGetCurrentLanguage()
+    public function testGetCurrentLanguage() // TODO: Change name to be useful.
     {
+        // TODO: Use a @dataProvider
         $db_language = ['it' => 'it_IT', 'en' => 'en_GB'];
         $string      = 'da, en-gb;q=0.8, en;q=0.7';
         $this->assertEquals('en', Utils::getCurrentLanguage($db_language, $string));
@@ -72,11 +75,13 @@ class UtilsTest extends PHPUnit_Framework_TestCase
         $string      = 'da, it-it;q=0.8, en;q=0.7';
         $this->assertEquals('da', Utils::getCurrentLanguage($db_language, $string));
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
     // {{{ testConvertForI18n
     /**
      * Test method "convertForI18n".
+     *
+     * @since Version 0.1
      *
      * @return void
      */
@@ -84,5 +89,5 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 }

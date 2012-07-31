@@ -35,6 +35,7 @@ from __future__ import print_function
 import urllib
 from common import validate
 
+# TODO: move to a shared file among the others.
 pages = {
     'url_hp': {
         'EN - Homepage (HTML5)': '/?bot=1',
@@ -68,6 +69,7 @@ print('Validate W3C:')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'charset': '(detect automatically)',
@@ -86,6 +88,7 @@ print('Validate CSS 3:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'profile': 'css3',
@@ -106,6 +109,7 @@ print('Validate CSS 2.1:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'profile': 'css21',
@@ -126,6 +130,7 @@ print('Validate CSS 2:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'profile': 'css2',
@@ -146,6 +151,7 @@ print('Validate CSS Mobile:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: align block
     url_param = urllib.urlencode({
         'uri': '%URI%',
         'profile': 'mobile',
@@ -224,6 +230,7 @@ for k, v in pages['url_hp'].iteritems():
 #for k, v in pages['url_hp'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
+#    # TODO: align block
 #    url_param = urllib.urlencode({
 #        'uri': '%URI%',
 #        'summary': 'on',
@@ -240,6 +247,7 @@ for k, v in pages['url_hp'].iteritems():
 #for k, v in pages['feed'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
+#    # TODO: align block
 #    url_param = urllib.urlencode({
 #        'uri': '%URI%',
 #        'summary': 'on',
@@ -254,7 +262,7 @@ for k, v in pages['url_hp'].iteritems():
 #
 #    print(res)
 
-# http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN
-# http://www.sidar.org/hera/
-# YSlow
-# Page Speed
+# TODO: http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN
+# TODO: http://www.sidar.org/hera/
+# TODO: YSlow
+# TODO: Page Speed
