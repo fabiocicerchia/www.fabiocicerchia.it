@@ -6,7 +6,7 @@
         <description>[% data.information.entity.0.summary.content %]</description>
         <items>
             <rdf:Seq>
-                <!-- TODO: SORTING BY DATES -->
+                <!-- TODO: Sorting by date. -->
                 [% FOREACH entity IN data.education.entity %]
                     [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
                     [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
@@ -20,12 +20,12 @@
             </rdf:Seq>
         </items>
     </channel>
-    <!-- TODO: SORTING BY DATES -->
+    <!-- TODO: Sorting by date. -->
     [% FOREACH entity IN data.education.entity %]
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
     <item rdf:about="http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]">
-        <title>Education - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+        <title>Education - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
         <link>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</link>
         <description></description>
     </item>
@@ -34,7 +34,7 @@
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
     <item rdf:about="http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]">
-        <title>Experience - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+        <title>Experience - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
         <link>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</link>
         <description></description>
     </item>

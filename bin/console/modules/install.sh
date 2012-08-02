@@ -61,6 +61,7 @@ install_gitextras() {
 
 install_php() {
     print_subheader "INSTALLING PHP"
+    # TODO: Use "-z $TRAVIS_CI".
     if [ "$TRAVIS_CI" == "" ]; then
         sudo add-apt-repository ppa:ondrej/php5
         sudo apt-get -q update
@@ -75,6 +76,7 @@ install_php() {
 
 install_mongo() {
     print_subheader "INSTALLING MONGODB"
+    # TODO: Use "-z $TRAVIS_CI".
     if [ "$TRAVIS_CI" == "" ]; then
         sudo apt-get -q install mongodb || handle_errors $?
     else
@@ -102,6 +104,7 @@ install_phpunit() {
 install_phpcb() {
     print_subheader "INSTALLING PHP_CODE_BROWSER"
     pear_add_channel "pear.phpunit.de"
+    # TODO: FIXME
     #sudo pear -q install --alldeps phpunit/PHP_CodeBrowser || handle_errors $?
 
     return $?
@@ -151,6 +154,7 @@ install_phpdoc2() {
 install_pdepend() {
     print_subheader "INSTALLING PHP_DEPEND"
     pear_add_channel "pear.pdepend.org"
+    # TODO: FIXME
     #sudo pear -q install --alldeps pdepend/PHP_Depend-beta || handle_errors $?
 
     return $?
@@ -159,6 +163,7 @@ install_pdepend() {
 install_phpmd() {
     print_subheader "INSTALLING PHPMD"
     pear_add_channel "pear.phpmd.org"
+    # TODO: FIXME
     #sudo pear -q install --alldeps phpmd/PHP_PMD || handle_errors $?
 
     return $?

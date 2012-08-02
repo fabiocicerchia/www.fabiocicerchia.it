@@ -11,10 +11,10 @@
         <language>[% language %]</language>
         <rating />
         <docs>http://backend.userland.com/rss092</docs>
-        <!-- TODO: SORTING BY DATES -->
+        <!-- TODO: Sorting by date. -->
         [% FOREACH entity IN data.education.entity %]
         <item>
-            <title>Education - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+            <title>Education - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
             <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]
@@ -24,7 +24,7 @@
         [% END %]
         [% FOREACH entity IN data.experience.entity %]
         <item>
-            <title>Experience - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+            <title>Experience - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
             <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]

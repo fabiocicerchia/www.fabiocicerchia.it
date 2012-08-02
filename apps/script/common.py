@@ -78,6 +78,8 @@ def validate(http_method, remote_url, params, page, match,
                       matched". This behavious is useful to exclude from the
                       match, for example, an error string.
     """
+
+    # TODO: Convert to a dynamic value.
     page = urllib.quote('http://www.fabiocicerchia.it' + page)
     params = params.replace('%25URI%25', page)
 
@@ -98,7 +100,7 @@ def validate(http_method, remote_url, params, page, match,
         status = not status
 
     if status:
-        return 'OK'
+        return 'OK' # TODO: Convert to a dynamic value.
     else:
-        return 'FAIL' + ' > Check this out to: ' + remote_url
+        return 'FAIL' + ' > Check this out to: ' + remote_url # TODO: Convert to a dynamic value.
 # }}} -------------------------------------------------------------------------

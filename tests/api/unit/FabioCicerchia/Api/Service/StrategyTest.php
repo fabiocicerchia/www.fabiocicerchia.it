@@ -61,7 +61,7 @@ class StrategyTest extends FabioCicerchia\TestCase
      */
     public function testGetDataReturnCorrectValue()
     {
-        $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Strategy')
+        $stub = $this->getMockBuilder('FabioCicerchia\\Api\\Service\\Strategy')
                      ->disableOriginalConstructor()
                      ->getMock();
 

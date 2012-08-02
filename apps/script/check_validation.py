@@ -65,6 +65,7 @@ pages = {
 
 print('CHECK VALIDATION')
 
+# TODO: Add description
 print('Validate W3C:')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
@@ -84,6 +85,7 @@ for k, v in pages['url_hp'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate CSS 3:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
@@ -105,6 +107,7 @@ for k, v in pages['css'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate CSS 2.1:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
@@ -126,6 +129,7 @@ for k, v in pages['css'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate CSS 2:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
@@ -147,6 +151,7 @@ for k, v in pages['css'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate CSS Mobile:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
@@ -168,6 +173,7 @@ for k, v in pages['css'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate Feed:')
 for k, v in pages['feed'].iteritems():
     print('    ' + k + ': ', end='')
@@ -179,6 +185,7 @@ for k, v in pages['feed'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate HTTP Headers:')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
@@ -199,6 +206,7 @@ for k, v in pages['feed'].iteritems():
 
     print(res)
 
+# TODO: Uncomment?
 # When call the right URL using urllib this is the response of the page:
 # Servlet has thrown exception:java.lang.NullPointerException
 #print('Validate Mobile:')
@@ -212,6 +220,7 @@ for k, v in pages['feed'].iteritems():
 #
 #    print(res)
 
+# TODO: Add description
 print('Validate Semantics:')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
@@ -225,7 +234,7 @@ for k, v in pages['url_hp'].iteritems():
 
     print(res)
 
-# This takes a while, it worth?
+# TODO: This takes a while, it worth?
 #print('Validate Links:')
 #for k, v in pages['url_hp'].iteritems():
 #    print('    ' + k + ': ', end='')

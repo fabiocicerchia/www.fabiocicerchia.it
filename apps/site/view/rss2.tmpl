@@ -11,29 +11,29 @@
         <ttl>1440</ttl>
         <rating />
         <atom:link href="http://[% HTTP_HOST %]/rss2" rel="self" type="application/rss+xml" />
-        <!-- TODO: SORTING BY DATES -->
+        <!-- TODO: Sorting by date. -->
         [% FOREACH entity IN data.education.entity %]
         <item>
-            <title>Education - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+            <title>Education - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
             <description></description>
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
             <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             <guid isPermaLink="true">http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</guid>
-            <category>Education</category> <!-- TODO: DYNAMIC VALUE -->
+            <category>Education</category><!-- TODO: Convert to a dynamic value. -->
         </item>
         [% END %]
         [% FOREACH entity IN data.experience.entity %]
         <item>
-            <title>Experience - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+            <title>Experience - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
             <description></description>
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
             <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             <guid isPermaLink="true">http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</guid>
-            <category>Experience</category> <!-- TODO: DYNAMIC VALUE -->
+            <category>Experience</category><!-- TODO: Convert to a dynamic value. -->
         </item>
         [% END %]
     </channel>

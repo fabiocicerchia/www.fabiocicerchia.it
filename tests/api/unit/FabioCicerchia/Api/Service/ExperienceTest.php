@@ -62,7 +62,7 @@ class ExperienceTest extends FabioCicerchia\TestCase
      */
     public function testRunWithEmptyData()
     {
-        $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Experience')
+        $stub = $this->getMockBuilder('FabioCicerchia\\Api\\Service\\Experience')
                      ->setMethods(['execDataQuery'])
                      ->disableOriginalConstructor()
                      ->getMock();

@@ -62,7 +62,7 @@ class LanguageTest extends FabioCicerchia\TestCase
      */
     public function testRunWithEmptyData()
     {
-        $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Language')
+        $stub = $this->getMockBuilder('FabioCicerchia\\Api\\Service\\Language')
                      ->setMethods(['execDataQuery'])
                      ->disableOriginalConstructor()
                      ->getMock();

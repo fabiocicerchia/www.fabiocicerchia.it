@@ -65,6 +65,7 @@ pages = {
 
 print('CHECK ACCESSIBILITY')
 
+# TODO: Add description
 print('Validate Accessibility (BITV 1.0 - Level 2):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
@@ -87,6 +88,7 @@ for k, v in pages['url_hp'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate Accessibility (Section 508):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
@@ -109,6 +111,7 @@ for k, v in pages['url_hp'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate Accessibility (Stanca Act):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
@@ -131,6 +134,7 @@ for k, v in pages['url_hp'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate Accessibility (WCAG 1.0 - Level AAA):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
@@ -153,6 +157,7 @@ for k, v in pages['url_hp'].iteritems():
 
     print(res)
 
+# TODO: Add description
 print('Validate Accessibility (WCAG 2.0 - Level AAA):')
 for k, v in pages['url_hp'].iteritems():
     print('    ' + k + ': ', end='')

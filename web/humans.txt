@@ -31,7 +31,7 @@
     Handyman:    Fabio Cicerchia
     Contact:     info [at] fabiocicerchia.it
     Twitter:     @fabiocicerchia
-    From:        London, United Kingdomy
+    From:        London, United Kingdom
 
 /* SITE */
     Last update: 2012/07/31

@@ -1,6 +1,6 @@
 <section id="languages">
     <div class="page-header">
-        <h2>Languages</h2> <!-- TODO: DYNAMIC VALUE -->
+        <h2>Languages</h2><!-- TODO: Convert to a dynamic value. -->
     </div>
 
     <div class="row">
@@ -9,14 +9,19 @@
             <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent">
                 [% FOREACH entity IN data.language.entity %]
                 <div class="span6" itemscope="itemscope" itemtype="http://schema.org/Language">
-                    <h3 class="summary" itemprop="name"><i class="icon-flag"></i> [% entity.title.content %]</h3>
+                    <h3 class="summary" itemprop="name">
+                        <i class="icon-flag"></i>
+                        [% entity.title.content %]
+                    </h3>
                     [% IF entity.content.skills.0.level == "C2" %]
                     <p itemprop="description">Mother Tongue</p>
                     [% ELSE %]
                     <p itemprop="description">
                         <ul itemscope="itemscope" itemtype="http://schema.org/ItemList">
                             [% FOREACH skill IN entity.content.skills %]
-                            <li itemprop="itemListElement">[% skill.title.content %]: [% skill.level %]</li>
+                            <li itemprop="itemListElement">
+                                [% skill.title.content %]: [% skill.level %]
+                            </li>
                             [% END %]
                         </ul>
                     </p>

@@ -72,6 +72,9 @@ subtest 'Unit Testing' => sub {
     can_ok( $class_name, qw(call_api) );
 };
 
+# TODO: Refactor this code below.
+# TODO: Disable the output printing
+# TODO: Add the functional tests for "atom", "rss*", "vcard".
 subtest 'Functional Testing' => sub {
     local %ENV = (
         'SCRIPT_NAME',

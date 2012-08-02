@@ -113,11 +113,11 @@ class Utils
             throw new \InvalidArgumentException($message);
         }
 
-        $accept_language    = preg_replace('/([a-z]{2})-([a-z]{2})/', '\1', $accept_language);
+        $accept_language    = preg_replace('/([a-z]{2})-([a-z]{2})/', '\1', $accept_language); // TODO: Line length.
         $accepted_languages = self::httpPriorityOrder($accept_language);
 
         $list_keys    = array_keys($available_languages);
-        $current_lang = self::retrieveCurrentLanguage($list_keys, $accepted_languages);
+        $current_lang = self::retrieveCurrentLanguage($list_keys, $accepted_languages); // TODO: Line length.
 
         return $current_lang;
     }
@@ -211,7 +211,7 @@ class Utils
 
         $string = preg_replace('/ +/', '', $string);
         $string = preg_replace('/([^,]+),/', '\1;q=1.0,', $string . ',');
-        $string = preg_replace('/(;q=[0-9\.]+);q=[0-9\.]+/', '\1', substr($string, 0, -1));
+        $string = preg_replace('/(;q=[0-9\.]+);q=[0-9\.]+/', '\1', substr($string, 0, -1)); // TODO: Line length.
         $tokens = explode(',', $string);
 
         $values = [];
@@ -223,7 +223,7 @@ class Utils
         usort($values, ['\\FabioCicerchia\\Api\\Utils', 'httpCustomSorting']);
 
         foreach ($values as $idx => $value) {
-            $values[$idx] = preg_replace('/.+ ([^ ]+)(?:;level=.+)?$/U', '\1', $value);
+            $values[$idx] = preg_replace('/.+ ([^ ]+)(?:;level=.+)?$/U', '\1', $value); // TODO: Line length.
         }
 
         return array_unique($values);

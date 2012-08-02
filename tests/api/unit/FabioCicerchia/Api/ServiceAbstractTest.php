@@ -90,7 +90,12 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
      */
     public function testGetDataReturnCorrectValue()
     {
-        $stub = $this->getMockForAbstractClass('FabioCicerchia\Api\ServiceAbstract', [], '', false);
+        $stub = $this->getMockForAbstractClass(
+            'FabioCicerchia\Api\ServiceAbstract',
+            [],
+            '',
+            false
+        );
 
         $this->assertEquals([], $stub->getData());
         $this->assertInternalType('array', $stub->getData());
@@ -107,7 +112,12 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
      */
     public function testGetCollectionReturnCorrectValue()
     {
-        $stub = $this->getMockForAbstractClass('FabioCicerchia\Api\ServiceAbstract', [], '', false);
+        $stub = $this->getMockForAbstractClass(
+            'FabioCicerchia\Api\ServiceAbstract',
+            [],
+            '',
+            false
+        );
 
         $this->assertEquals(null, $stub->getCollection());
     }

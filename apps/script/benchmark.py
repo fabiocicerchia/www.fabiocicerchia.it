@@ -116,5 +116,6 @@ for key, value in pages.iteritems():
     for k, v in value.iteritems():
         spaces = (25 - len(k)) * ' '
         print('    ' + k + ':' + spaces, end='')
+        # TODO: Convert to a dynamic value.
         print(getAverageExecutionTime("http://fabiocicerchia.github" + v), end='') # TODO: line length.
         print(' sec')

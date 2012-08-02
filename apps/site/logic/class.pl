@@ -36,7 +36,7 @@ package FabioCicerchiaSite;
 use strict;
 use warnings;
 use version; our $VERSION = qv('1.0');
-use Data::Dumper; # Just for debug.
+use Data::Dumper; # TODO: Just for debug.
 use Date::Format;
 #use DateTime;
 use Digest::MD5;
@@ -58,6 +58,7 @@ use XML::Simple;
 sub action404 {
     my $self = shift;
 
+    # TODO: Is it useful the return value?
     my $r = print "HTTP/1.1 404 Not Found\n\n";
     $r = print "Location: /\n\n";
 
@@ -78,12 +79,14 @@ sub action404 {
 sub action_show {
     my $self = shift;
 
+    # TODO: Convert this scalar to array, using "@".
     my $general_data  = $self->get_data();
     my $data          = $general_data->[0];
     my $last_modified = $general_data->[1];
     my $etag          = $general_data->[2];
     my $language      = $general_data->[3];
 
+    # TODO: Convert this object to hash, using "()".
     my $vars = {
         'HTTP_HOST'     => $ENV{'HTTP_HOST'},
         'data'          => $data,
@@ -91,7 +94,8 @@ sub action_show {
         'language'      => $language
     };
 
-    #TODO: IMPLEMENT IF NOT MODIFIED
+    # TODO: IMPLEMENT IF NOT MODIFIED
+    # TODO: Is it useful the return value?
     my $r = print 'Cache-Control: public, max-age=28800, smax-age=28800' . "\n";
     $r = print 'Last-Modified: '
       . time2str( '%a, %d %b %Y %H:%M:%S GMT', $last_modified ) . "\n";
@@ -453,6 +457,7 @@ sub show {
 
     my $output = $self->execute_action( $self->{'actionCurrent'} );
     if ( defined $output ) {
+        # TODO: Is it useful the return value?
         my $r = print $output;
     }
 

@@ -62,7 +62,7 @@ class EducationTest extends FabioCicerchia\TestCase
      */
     public function testRunWithEmptyData()
     {
-        $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Education')
+        $stub = $this->getMockBuilder('FabioCicerchia\\Api\\Service\\Education')
                      ->setMethods(['getRawData'])
                      ->disableOriginalConstructor()
                      ->getMock();

@@ -96,7 +96,7 @@ class Strategy
      *
      * @return void
      */
-    public function __construct($service_name, \Doctrine\MongoDB\Database $db_handle)
+    public function __construct($service_name, \Doctrine\MongoDB\Database $db_handle) // TODO: Line length.
     {
         // TODO: Write a test to cover this condition.
         if (is_string($service_name) === false) {
@@ -110,7 +110,7 @@ class Strategy
             $this->strategy = new $class($db_handle);
         } catch (\Exception $e) {
             // TODO: Write a test to cover this condition.
-            throw new \UnexpectedValueException($e->getMessage(), $e->getCode());
+            throw new \UnexpectedValueException($e->getMessage(), $e->getCode()); // TODO: Line length.
         }
     }
     // }}} ---------------------------------------------------------------------

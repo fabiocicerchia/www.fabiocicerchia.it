@@ -2,7 +2,7 @@
 
 <section id="experience">
     <div class="page-header">
-        <h2>Experience</h2> <!-- TODO: DYNAMIC VALUE -->
+        <h2>Experience</h2><!-- TODO: Convert to a dynamic value. -->
     </div>
 
     <div class="row">
@@ -12,7 +12,10 @@
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent" id="[% id_title %]_[% id_company %]">
                 <div class="page-header">
-                    <h3 class="summary"><i class="icon-briefcase"></i> [% entity.title.content %]</h3>
+                    <h3 class="summary">
+                        <i class="icon-briefcase"></i>
+                        [% entity.title.content %]
+                    </h3>
                 </div>
                 <div class="dates">
                     [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
@@ -23,29 +26,41 @@
                     [% END %]
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
-                    <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
+                    <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]">
+                        <span class="fn" itemprop="name">
+                            [% entity.content.company.title.content %]
+                        </span>
+                    </a>
 
                     <address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
                         [% IF entity.content.company.address.postalcode %]
-                        <span class="postal-code" itemprop="postalCode">[% entity.content.company.address.postalcode %]</span>
+                        <span class="postal-code" itemprop="postalCode">
+                            [% entity.content.company.address.postalcode %]
+                        </span>
                         [% END %]
                         [% IF entity.content.company.address.city %]
-                        <span class="locality" itemprop="addressLocality">[% entity.content.company.address.city %]</span>
+                        <span class="locality" itemprop="addressLocality">
+                            [% entity.content.company.address.city %]
+                        </span>
                         [% END %]
                         [% IF entity.content.company.address.country %]
-                        <span class="country-name" itemprop="addressCountry">[% entity.content.company.address.country %]</span>
+                        <span class="country-name" itemprop="addressCountry">
+                            [% entity.content.company.address.country %]
+                        </span>
                         [% END %]
                     </address>
                 </div>
                 <div itemprop="description">
-                    <!-- TODO: MISSING -->
+                    <!-- TODO: Missing. -->
                     <p></p>
                 </div>
                 [% IF entity.content.activities.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Activities</dt> <!-- TODO: DYNAMIC VALUE -->
+                    <dt itemprop="name">Activities</dt><!-- TODO: Convert to a dynamic value. -->
                     [% FOREACH activity = entity.content.activities %]
-                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</li>
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                        [% activity %]
+                    </dd>
                     [% END %]
                 </dl>
                 [% END %]
@@ -61,45 +76,59 @@
                         </div>
                         <div id="collapse[% current_id %]" class="accordion-body collapse">
                             <span class="role">[% project.role.content %]</span>
-                            <!-- TODO: summary -->
+                            <!-- TODO: Summary -->
                             [% start = project.date.start | replace('T', ' ') | replace('Z', '') %]
-                            <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>
+                            <span class="dtstart">
+                                [% date.format(start, "%a, %d %b %Y") %]
+                            </span>
                             [% IF project.date.end && project.date.end != project.date.start %]
                             [% end = project.date.end | replace('T', ' ') | replace('Z', '') %]
-                            <span class="dtend">[% date.format(end, "%a, %d %b %Y") %]</span>
+                            <span class="dtend">
+                                [% date.format(end, "%a, %d %b %Y") %]
+                            </span>
                             [% END %]
                             [% IF project.link %]
-                                <a itemprop="url" target="_blank" href="[% project.link.href %]" rel="nofollow" title="The URL of the [% project.title.content %]">[% project.link.href %]</a>
+                                <a itemprop="url" target="_blank" href="[% project.link.href %]" rel="nofollow" title="The URL of the [% project.title.content %]">
+                                    [% project.link.href %]
+                                </a>
                             [% END %]
                             [% IF project.methodologies.size %]
                             <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                <dt itemprop="name">Methodologies</dt>
+                                <dt itemprop="name">Methodologies</dt><!-- TODO: Convert to a dynamic value. -->
                                 [% FOREACH methodology IN project.methodologies %]
-                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% methodology %]</dd>
+                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                                    [% methodology %]
+                                </dd>
                                 [% END %]
                             </dl>
                             [% END %]
                             [% IF project.technologies.size %]
                             <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                <dt itemprop="name">Technologies</dt>
+                                <dt itemprop="name">Technologies</dt><!-- TODO: Convert to a dynamic value. -->
                                 [% FOREACH technology IN project.technologies %]
-                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technology %]</dd>
+                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                                    [% technology %]
+                                </dd>
                                 [% END %]
                             </dl>
                             [% END %]
                             [% IF project.tools.size %]
                             <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                <dt itemprop="name">Tools</dt>
+                                <dt itemprop="name">Tools</dt><!-- TODO: Convert to a dynamic value. -->
                                 [% FOREACH tool IN project.tools %]
-                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% tool %]</dd>
+                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                                    [% tool %]
+                                </dd>
                                 [% END %]
                             </dl>
                             [% END %]
                             [% IF entity.content.techniques.size %]
                             <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                <dt itemprop="name">Techniques</dt>
+                                <dt itemprop="name">Techniques</dt><!-- TODO: Convert to a dynamic value. -->
                                 [% FOREACH technique IN entity.content.techniques %]
-                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technique %]</dd>
+                                <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                                    [% technique %]
+                                </dd>
                                 [% END %]
                             </dl>
                             [% END %]
@@ -110,33 +139,41 @@
                 [% END %]
                 [% IF entity.content.methodologies.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Methodologies</dt>
+                    <dt itemprop="name">Methodologies</dt><!-- TODO: Convert to a dynamic value. -->
                     [% FOREACH methodology IN entity.content.methodologies %]
-                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% methodology %]</dd>
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                        [% methodology %]
+                    </dd>
                     [% END %]
                 </dl>
                 [% END %]
                 [% IF entity.content.technologies.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Technologies</dt>
+                    <dt itemprop="name">Technologies</dt><!-- TODO: Convert to a dynamic value. -->
                     [% FOREACH technology IN entity.content.technologies %]
-                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technology %]</dd>
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                        [% technology %]
+                    </dd>
                     [% END %]
                 </dl>
                 [% END %]
                 [% IF entity.content.tools.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Tools</dt>
+                    <dt itemprop="name">Tools</dt><!-- TODO: Convert to a dynamic value. -->
                     [% FOREACH tool IN entity.content.tools %]
-                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% tool %]</dd>
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                        [% tool %]
+                    </dd>
                     [% END %]
                 </dl>
                 [% END %]
                 [% IF entity.content.techniques.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Techniques</dt>
+                    <dt itemprop="name">Techniques</dt><!-- TODO: Convert to a dynamic value. -->
                     [% FOREACH technique IN entity.content.techniques %]
-                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% technique %]</dd>
+                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                        [% technique %]
+                    </dd>
                     [% END %]
                 </dl>
                 [% END %]

@@ -62,7 +62,7 @@ class UtilsTest extends FabioCicerchia\TestCase
      */
     public function testGetCurrentLanguage()
     {
-        // TODO: Use a @dataProvider
+        // TODO: Use a @dataProvider.
         $db_language = ['it' => 'it_IT', 'en' => 'en_GB'];
         $string      = 'da, en-gb;q=0.8, en;q=0.7';
         $this->assertEquals('en', Utils::getCurrentLanguage($db_language, $string));
@@ -87,6 +87,7 @@ class UtilsTest extends FabioCicerchia\TestCase
      */
     public function testConvertForI18n()
     {
+        // TODO: Implement this test.
         $this->markTestIncomplete('This test has not been implemented yet.');
     }
     // }}} ---------------------------------------------------------------------

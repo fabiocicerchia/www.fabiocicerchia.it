@@ -62,7 +62,7 @@ class InformationTest extends FabioCicerchia\TestCase
      */
     public function testRunWithEmptyData()
     {
-        $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Information')
+        $stub = $this->getMockBuilder('FabioCicerchia\\Api\\Service\\Information')
                      ->setMethods(['execDataQuery'])
                      ->disableOriginalConstructor()
                      ->getMock();

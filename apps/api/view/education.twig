@@ -6,13 +6,17 @@
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
         <title type="text">{{ entity.title }}</title>
+        <published>
         {% if entity.date.start is defined %}
-        <published>{{ entity.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
+            {{ entity.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}
         {% else %}
-        <published>{{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
+            {{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
         {% endif %}
+        </published>
         {% if entity.date.end is defined %}
-        <updated>{{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
+        <updated>
+            {{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
+        </updated>
         {% endif %}
 
         <content>

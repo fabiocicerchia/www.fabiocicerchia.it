@@ -1,6 +1,6 @@
 <section id="skills">
     <div class="page-header">
-        <h2>Skills</h2> <!-- TODO: DYNAMIC VALUE -->
+        <h2>Skills</h2><!-- TODO: Convert to a dynamic value. -->
     </div>
 
     <div class="row">
@@ -14,7 +14,9 @@
                     <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
                         <dt itemprop="name">[% item.key %]</dt>
                         [% FOREACH subitem = item.value.sort %]
-                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% subitem %]</dd>
+                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+                            [% subitem %]
+                        </dd>
                         [% END %]
                     </dl>
                     [% END %]

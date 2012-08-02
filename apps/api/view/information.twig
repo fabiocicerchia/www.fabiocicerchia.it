@@ -5,7 +5,9 @@
     {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ app.request.requestUri|md5 }}</id>
-        <title type="text">{{ entity.name.first_name }} {{ entity.name.last_name }}</title>
+        <title type="text">
+            {{ entity.name.first_name }} {{ entity.name.last_name }}
+        </title>
         <summary type="xhtml">{{ entity.info }}</summary>
         <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
 
@@ -23,11 +25,21 @@
                 {% endfor %}
             </contacts>
 
-            <maritalstatus>{{ entity.marital_status|capitalize }}</maritalstatus>
-            <nationality>{{ entity.nationality|capitalize }}</nationality>
-            <gender>{{ entity.gender|capitalize }}</gender>
-            <birthday>{{ entity.birth_day|custom_date("Y-m-d\\TH:i:s\\Z") }}</birthday>
-            <telephone>{{ entity.telephone.uk }}</telephone>
+            <maritalstatus>
+                {{ entity.marital_status|capitalize }}
+            </maritalstatus>
+            <nationality>
+                {{ entity.nationality|capitalize }}
+            </nationality>
+            <gender>
+                {{ entity.gender|capitalize }}
+            </gender>
+            <birthday>
+                {{ entity.birth_day|custom_date("Y-m-d\\TH:i:s\\Z") }}
+            </birthday>
+            <telephone>
+                {{ entity.telephone.uk }}
+            </telephone>
         </content>
     </entity>
     {% endfor %}

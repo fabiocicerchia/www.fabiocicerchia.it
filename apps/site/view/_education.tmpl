@@ -3,7 +3,7 @@
 
 <section id="education">
     <div class="page-header">
-        <h2>Education</h2> <!-- TODO: DYNAMIC VALUE -->
+        <h2>Education</h2><!-- TODO: Convert to a dynamic value. -->
     </div>
 
     <div class="row">
@@ -14,7 +14,10 @@
             [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             <div itemscope="itemscope" itemtype="http://schema.org/EducationEvent" class="span6 education vevent" id="[% id_title %]_[% id_company %]">
-                <h3 class="summary" itemprop="name"><i class="icon-book"></i> [% entity.title.content %]</h3>
+                <h3 class="summary" itemprop="name">
+                    <i class="icon-book"></i>
+                    [% entity.title.content %]
+                </h3>
                 <div class="dates">
                     [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
                     <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>
@@ -24,10 +27,14 @@
                     [% END %]
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
-                    <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]"><span class="fn" itemprop="name">[% entity.content.company.title.content %]</span></a>
+                    <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]">
+                        <span class="fn" itemprop="name">
+                            [% entity.content.company.title.content %]
+                        </span>
+                    </a>
                 </div>
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Activities</dt><!-- TODO: DYNAMIC VALUE -->
+                    <dt itemprop="name">Activities</dt><<!-- TODO: Convert to a dynamic value. -->
                     [% FOREACH activity = entity.content.activities %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</dd>
                     [% END %]

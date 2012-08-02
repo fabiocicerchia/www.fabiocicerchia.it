@@ -1,8 +1,9 @@
+<!-- TODO: Use minify -->
 <script type="text/javascript" src="/media/js/jquery.js"></script>
 <script type="text/javascript" src="/media/js/bootstrap/bootstrap.js"></script>
 <script type="text/javascript" src="/media/js/main.js"></script>
 <script type="text/javascript">
-    //<![CDATA[
+//<![CDATA[
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-439670-5']);
@@ -12,12 +13,15 @@
         var ga = document.createElement('script');
         ga.type = 'text/javascript';
         ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.src = ('https:' == document.location.protocol
+                 ? 'https://ssl'
+                 : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(ga, s);
     })();
 
     function downloadJSAtOnload() {
+        // TODO: Restore this behaviour.
         //var element = document.createElement("script");
         //element.src = "/minify/min/?f=media/js/jquery.js,media/js/bootstrap/bootstrap.js,media/js/main.js",
         //document.getElementsByTagName('body')[0].appendChild(element);
@@ -30,8 +34,11 @@
     } else {
         window.onload = downloadJSAtOnload;
     }
-    //]]>
+//]]>
 </script>
 <noscript>
-    <div id="nojs">Your browser does not support JavaScript. Do not worry, this page is thinked to work pretty fine also without JavaScript ;)</div> <!-- TODO: DYNAMIC VALUE -->
+    <div id="nojs"><!-- TODO: Convert to a dynamic value. -->
+        Your browser does not support JavaScript. Do not worry, this page is
+        designed to work pretty fine also without JavaScript ;)
+    </div>
 </noscript>

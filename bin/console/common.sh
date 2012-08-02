@@ -197,6 +197,7 @@ install() {
 }
 
 run() {
+    # TODO: Use "! -z $2".
     if [ "$2" != "" ]; then
         SUBROUTINE="run_$2"
         $SUBROUTINE || handle_errors $?
@@ -223,6 +224,7 @@ test() {
 }
 
 help() {
+    # TODO: Add the list of suboptions (in a dynamically way).
     echo
     echo -e "${BLDWHT}USAGE:$TXTRST"
     echo -e "$0 [${TXTPUR}OPTIONS$TXTRST] ${TXTCYN}ACTION$TXTRST\n"

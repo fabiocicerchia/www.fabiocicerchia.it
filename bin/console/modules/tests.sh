@@ -44,6 +44,7 @@ test_php() {
 
 test_perl() {
     print_subheader "RUNNING TEST::MORE & COVER"
+    # TODO: Use "-z $TRAVIS_CI".
     if [ "$TRAVIS_CI" == "" ]; then
         perl -MDevel::Cover=-dir,$REPORTDIR/site/logs $SITE_TEST_SOURCEDIR/test.pl || handle_errors $?
         cover -outputdir $REPORTDIR/site/code_coverage $REPORTDIR/site/logs/cover_db || handle_errors $?

@@ -35,6 +35,7 @@
 # LOADING SCRIPTS
 ################################################################################
 CURRENT_PATH="${BASH_SOURCE[0]}";
+# Modifier "h": is it a file exists and is a symbolic link?
 if [ -h "$CURRENT_PATH" ]; then
     while [ -h "$CURRENT_PATH" ]; do
         CURRENT_PATH=$(readlink "$CURRENT_PATH")
@@ -84,12 +85,15 @@ print_subheader "Copyright: 2012 Fabio Cicerchia"
 print_subheader "License:   MIT"
 print_subheader "Website:   http://www.fabiocicerchia.it"
 
+# TODO: Use "-n $SUBROUTINE".
 if [ "$SUBROUTINE" != "" -a $IS_VALID -eq 1 ]; then
     $SUBROUTINE $@
     exit $?
+# TODO: Use "-n $SUBROUTINE".
 elif [ "$SUBROUTINE" != "" ]; then
     if [ $IS_VALID -eq 0 ]; then
         echo "You can't call the action called '$SUBROUTINE'."
+    # TODO: Use "-n $SUBROUTINE".
     elif [ "$SUBROUTINE" != "" ]; then
         echo "Doesn't exists an action called '$SUBROUTINE'."
     fi

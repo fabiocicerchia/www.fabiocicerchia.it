@@ -52,9 +52,9 @@ run_check_validation() {
 run_todo() {
     DIR=$2
 
-    for i in $(seq 80); do echo -n "="; done;
+    for i in $(seq 80); do echo -n "="; done; # TODO: Use tr command.
     echo -e "\nTODO LIST"
-    for i in $(seq 80); do echo -n "="; done
+    for i in $(seq 80); do echo -n "="; done # TODO: Use tr command.
     echo -en "\n"
 
     for FILE in $(find $DIR -name "*.*"); do
@@ -65,14 +65,15 @@ run_todo() {
         RES=$(echo "$RES" | sed -r "s/([0-9]+):.*TODO[^0-9a-z]*(.)?/\1: \U\2/i")
         RES=$(echo "$RES" | sed -r "s/([0-9]+): *(.+)/\2 (line \1)/")
 
+        # TODO: Use "-n $RES".
         if [ "$RES" != "" ]; then
             echo -en "\nFile: $FILE\n"
-            for i in $(seq 80); do echo -n "-"; done
+            for i in $(seq 80); do echo -n "-"; done # TODO: Use tr command.
 
             for MATCH in $RES; do
                 LINE=$(echo "$MATCH" | sed -r "s/^  /<No Message> /")
                 LINE=$(echo -n "  - $LINE" | fold -sw 80 | sed -r "s/^/    /")
-                LINE=$(echo "$LINE" | sed -r "s/^      - /  - /")
+                LINE=$(echo "$LINE" | sed -r "s/^      - /  - /") # TODO: Use "{n}", where n is the number of spaces.
 
                 echo -ne "\n$LINE"
             done
@@ -85,9 +86,9 @@ run_todo() {
 }
 
 run_changelog() {
-    for i in $(seq 80); do echo -n "="; done;
+    for i in $(seq 80); do echo -n "="; done; # TODO: Use tr command.
     echo -e "\nCHANGELOG"
-    for i in $(seq 80); do echo -n "="; done
+    for i in $(seq 80); do echo -n "="; done # TODO: Use tr command.
     echo -en "\n"
 
     OLDIFS=$IFS
@@ -101,16 +102,17 @@ run_changelog() {
         fi
 
         LINE=${LINE/$NEW_DATE /}
-        echo " $LINE" | fold -sw 80 | sed -r "s/^/              /" | sed -r "s/^               /    /"
+        echo " $LINE" | fold -sw 80 | sed -r "s/^/              /" | sed -r "s/^               /    /" # TODO: Use "{n}", where n is the number of spaces.
 
         if [[ "$LINE" =~ "#" ]]; then
             IFS=$' '
             for TOKEN in $LINE; do
                 MATCH=`echo "$TOKEN" | grep "#"`
+                # TODO: Use "-n $MATCH".
                 if [ "$MATCH" != "" ]; then
                     URL="https://github.com/fabiocicerchia/fabiocicerchia.github.com/issues/${MATCH/\#/}"
                     TITLE=$(curl $URL 2>&1 | grep '<h2 class="content-title">' | sed -r "s/.*>(.*)<.*/\1/")
-                    echo " Ref: $MATCH $TITLE" | fold -sw 68 | sed -r "s/^/              /" | sed -r "s/^               /              /"
+                    echo " Ref: $MATCH $TITLE" | fold -sw 68 | sed -r "s/^/              /" | sed -r "s/^               /              /" # TODO: Use "{n}", where n is the number of spaces.
                 fi
             done
             IFS=$'\n'

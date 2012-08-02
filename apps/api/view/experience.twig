@@ -6,13 +6,17 @@
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
         <title type="text">{{ entity.role }}</title>
+        <published>
         {% if entity.date.start is defined %}
-        <published>{{ entity.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
+            {{ entity.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}
         {% else %}
-        <published>{{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
+            {{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
         {% endif %}
+        </published>
         {% if entity.date.end is defined %}
-        <updated>{{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
+        <updated>
+            {{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
+        </updated>
         {% endif %}
 
         <content>
@@ -83,13 +87,17 @@
                     <link rel="related" href="{{ project.url }}" />
                     {% endif %}
                     {% if project.date is defined %}
+                        <published>
                         {% if project.date.start is defined %}
-                        <published>{{ project.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
+                            {{ project.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}
                         {% else %}
-                        <published>{{ project.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</published>
+                            {{ project.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
                         {% endif %}
+                        </published>
                         {% if project.date.end is defined %}
-                        <updated>{{ project.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
+                        <updated>
+                            {{ project.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
+                        </updated>
                         {% endif %}
                     {% endif %}
 

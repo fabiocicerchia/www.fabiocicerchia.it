@@ -9,11 +9,6 @@ perl:
 python:
   - "2.7"
 
-branches:
-  except:
-    - master
-    - develop
-
 before_script:
   - export TRAVIS_CI=1
   - ./console install

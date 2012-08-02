@@ -120,18 +120,10 @@ class ApiTest extends WebTestCase
     public function providerInvalidHttpMethods()
     {
         $methods = [
-            'POST',
-            'PUT',
-            'DELETE',
-            'CONNECT',
-            'OPTIONS',
-            'PATCH',
-            'PROPFIND',
-            'PROPPATCH',
-            'MKCOL',
-            'COPY',
-            'MOVE',
-            'LOCK',
+            'POST',     'PUT',          'DELETE',
+            'CONNECT',  'OPTIONS',      'PATCH',
+            'PROPFIND', 'PROPPATCH',    'MKCOL',
+            'COPY',     'MOVE',         'LOCK',
             'UNLOCK'
         ];
 
@@ -148,6 +140,13 @@ class ApiTest extends WebTestCase
      * @medium
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckStatusCode
+    //  * testEducationRouteCheckStatusCode
+    //  * testExperienceRouteCheckStatusCode
+    //  * testSkillRouteCheckStatusCode
+    //  * testLanguageRouteCheckStatusCode
+    //  * testApiDefinitionSyntaxRouteCheckStatusCode
     public function testEntrypointRouteCheckStatusCode()
     {
         $client  = $this->createClient();
@@ -165,6 +164,13 @@ class ApiTest extends WebTestCase
      *
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckMimetype
+    //  * testEducationRouteCheckMimetype
+    //  * testExperienceRouteCheckMimetype
+    //  * testSkillRouteCheckMimetype
+    //  * testLanguageRouteCheckMimetype
+    //  * testApiDefinitionSyntaxRouteCheckMimetype
     public function testEntrypointRouteCheckMimetype()
     {
         $client  = $this->createClient();
@@ -182,6 +188,13 @@ class ApiTest extends WebTestCase
      *
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckMimetypeWithDebug
+    //  * testEducationRouteCheckMimetypeWithDebug
+    //  * testExperienceRouteCheckMimetypeWithDebug
+    //  * testSkillRouteCheckMimetypeWithDebug
+    //  * testLanguageRouteCheckMimetypeWithDebug
+    //  * testApiDefinitionSyntaxRouteCheckMimetypeWithDebug
     public function testEntrypointRouteCheckMimetypeWithDebug()
     {
         $this->setUpDebug();
@@ -271,6 +284,13 @@ class ApiTest extends WebTestCase
      *
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckCache
+    //  * testEducationRouteCheckCache
+    //  * testExperienceRouteCheckCache
+    //  * testSkillRouteCheckCache
+    //  * testLanguageRouteCheckCache
+    //  * testApiDefinitionSyntaxRouteCheckCache
     public function testEntrypointRouteCheckCache()
     {
         $client  = $this->createClient();
@@ -288,6 +308,13 @@ class ApiTest extends WebTestCase
      *
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckCacheWithDebug
+    //  * testEducationRouteCheckCacheWithDebug
+    //  * testExperienceRouteCheckCacheWithDebug
+    //  * testSkillRouteCheckCacheWithDebug
+    //  * testLanguageRouteCheckCacheWithDebug
+    //  * testApiDefinitionSyntaxRouteCheckCacheWithDebug
     public function testEntrypointRouteCheckCacheWithDebug()
     {
         $this->setUpDebug();
@@ -310,6 +337,13 @@ class ApiTest extends WebTestCase
      *
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckCacheHttpMethod
+    //  * testEducationRouteCheckCacheHttpMethod
+    //  * testExperienceRouteCheckCacheHttpMethod
+    //  * testSkillRouteCheckCacheHttpMethod
+    //  * testLanguageRouteCheckCacheHttpMethod
+    //  * testApiDefinitionSyntaxRouteCheckCacheHttpMethod
     public function testEntrypointRouteCheckWrongHttpMethod($httpMethod)
     {
         $client  = $this->createClient();
@@ -333,6 +367,13 @@ class ApiTest extends WebTestCase
      *
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckCacheHttpMethodWithDebug
+    //  * testEducationRouteCheckCacheHttpMethodWithDebug
+    //  * testExperienceRouteCheckCacheHttpMethodWithDebug
+    //  * testSkillRouteCheckCacheHttpMethodWithDebug
+    //  * testLanguageRouteCheckCacheHttpMethodWithDebug
+    //  * testApiDefinitionSyntaxRouteCheckCacheHttpMethodWithDebug
     public function testEntrypointRouteCheckWrongHttpMethodWithDebug($httpMethod)
     {
         $this->setUpDebug();
@@ -350,6 +391,13 @@ class ApiTest extends WebTestCase
      *
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckCharset
+    //  * testEducationRouteCheckCharset
+    //  * testExperienceRouteCheckCharset
+    //  * testSkillRouteCheckCharset
+    //  * testLanguageRouteCheckCharset
+    //  * testApiDefinitionSyntaxRouteCheckCharset
     public function testEntrypointRouteCheckCharset()
     {
         $client  = $this->createClient();
@@ -367,6 +415,13 @@ class ApiTest extends WebTestCase
      *
      * @return void
      */
+    // TODO: Aggregate and use @dataProvider for these methods:
+    //  * testInformationRouteCheckLanguage
+    //  * testEducationRouteCheckLanguage
+    //  * testExperienceRouteCheckLanguage
+    //  * testSkillRouteCheckLanguage
+    //  * testLanguageRouteCheckLanguage
+    //  * testApiDefinitionSyntaxRouteCheckLanguage
     public function testEntrypointRouteCheckLanguage()
     {
         $client  = $this->createClient();
@@ -461,7 +516,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > entity > id')->text());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
+        $this->assertRegExp('/^.+$/m', $crawler->filter('entities > entity > title')->text());
         $this->assertRegExp('/^.+$/m', $crawler->filter('entities > entity > summary')->text());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
@@ -497,7 +552,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > entity > id')->text());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
+        $this->assertRegExp('/^.+$/m', $crawler->filter('entities > entity > title')->text());
         $this->assertRegExp('/^.+$/m', $crawler->filter('entities > entity > summary')->text());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
@@ -706,8 +761,8 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > published')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > published')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content > company')->count());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > content > company > title')->text());
@@ -746,8 +801,8 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > published')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > published')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content > company')->count());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > content > company > title')->text());
@@ -959,8 +1014,8 @@ class ApiTest extends WebTestCase
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > published')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > published')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content > company')->count());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > content > company > title')->text());
@@ -1026,8 +1081,8 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > summary')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > published')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > published')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content > company')->count());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > content > company > title')->text());
@@ -1263,7 +1318,7 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > summary')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill')->count());
@@ -1303,7 +1358,7 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > summary')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
+        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills')->count());
         $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill')->count());

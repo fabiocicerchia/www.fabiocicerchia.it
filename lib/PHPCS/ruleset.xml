@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="FabioCicerchia">
-    <description>The Fabio Cicerchia coding standard built on the PEAR coding standard.</description>
+    <description>Fabio Cicerchia coding standard.</description>
 
     <!-- GENERIC -->
     <rule ref="Generic.Commenting.Fixme" />

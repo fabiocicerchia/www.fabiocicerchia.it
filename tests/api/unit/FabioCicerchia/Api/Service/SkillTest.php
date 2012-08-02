@@ -62,7 +62,7 @@ class SkillTest extends FabioCicerchia\TestCase
      */
     public function testRunWithEmptyData()
     {
-        $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Skill')
+        $stub = $this->getMockBuilder('FabioCicerchia\\Api\\Service\\Skill')
                      ->setMethods(['execDataQuery'])
                      ->disableOriginalConstructor()
                      ->getMock();
