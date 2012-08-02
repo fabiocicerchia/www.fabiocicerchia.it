@@ -46,7 +46,7 @@ from time import time
 def getExecutionTime(url):
     # TODO: add documentation
     start = time()
-    content = retrieveUrlContent('GET', url)
+    content = retrieveUrlContent('GET', url, '')
     end = time()
 
     return (end - start)

@@ -59,7 +59,7 @@ class EntryPointTest extends FabioCicerchia\TestCase
      *
      * @return void
      */
-    public function testGetService() // TODO: Change name to be useful.
+    public function testGetService()
     {
         $class = new FabioCicerchia\Api\Service\EntryPoint();
 

@@ -3,6 +3,8 @@ Copyright (C) 2012. All Rights reserved.
 License   MIT <http://www.opensource.org/licenses/MIT>  
 Link      http://www.fabiocicerchia.it  
 
+[![Build Status](https://secure.travis-ci.org/fabiocicerchia/fabiocicerchia.github.com.png)](http://travis-ci.org/fabiocicerchia/fabiocicerchia.github.com)
+
 ## 1. General
 Here below there's the list of the all technologies, libraries, tools, coding
 standards and application design used to design and develop the global
@@ -218,6 +220,7 @@ These are the external libraries that has been used:
 ### 3.6. Tools
 These are the tools that has been used:
 
+ * CPAN Minus v1.5007 - [Repo](https://github.com/miyagawa/cpanminus)
  * Google Minify v2.1.5 - [Home](http://code.google.com/p/minify/) | [Doc](http://code.google.com/p/minify/wiki/UserGuide)
  * perltidy v20120619 - [Home](http://perltidy.sourceforge.net) | [Doc](http://perltidy.sourceforge.net/perltidy.html)
 
@@ -271,8 +274,9 @@ These are the external libraries that has been used:
 ### 4.5. Tools
 These are the tools that has been used:
 
- * pylint v0.25.0 - [Home](http://www.logilab.org/project/pylint)
+ * epydoc v3.0.1 - [Home](http://epydoc.sourceforge.net/)
  * pep8 v0.6.1 - [Doc](http://www.python.org/dev/peps/pep-0008/)
+ * pylint v0.25.0 - [Home](http://www.logilab.org/project/pylint)
 
 ---
 
@@ -329,7 +333,8 @@ These are the tools that has been used:
     * add-apt-repository
     * apt-get
     * cover
-    * cpan
+    * cpanm
+    * epydoc
     * git
     * pdepend
     * pear
@@ -343,7 +348,7 @@ These are the tools that has been used:
     * phploc
     * phpmd
     * phpunit
-    * pychecker
+    * pod2html
     * pylint
     * python
 

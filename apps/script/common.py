@@ -52,6 +52,7 @@ def retrieveUrlContent(http_method, remote_url, params):
         data = urllib.urlopen(remote_url, params).read()
 
     return data
+# }}} -------------------------------------------------------------------------
 
 # {{{ Function: validate ------------------------------------------------------
 # Usage      : FabioCicerchia::Site->new()
@@ -100,3 +101,4 @@ def validate(http_method, remote_url, params, page, match,
         return 'OK'
     else:
         return 'FAIL' + ' > Check this out to: ' + remote_url
+# }}} -------------------------------------------------------------------------

@@ -2,7 +2,17 @@
 CHANGELOG
 ================================================================================
 
+2012-08-02
+    [d56d4d6] first draft of travis ci conf (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+
+2012-07-31
+    [95d1aa5] massive refactoring and cleaning (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
+
 2012-07-29
+    [f85cc17] added static sitemap.xml (by Fabio Cicerchia 
+              <info@fabiocicerchia.it>)
     [14133cb] refactoring api (by Fabio Cicerchia <info@fabiocicerchia.it>)
     [d51a875] added composer.phar & remove silex.phar (by Fabio Cicerchia 
               <info@fabiocicerchia.it>)

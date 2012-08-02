@@ -46,155 +46,10 @@ use POSIX qw(mktime);
 use Template;
 use XML::Simple;
 
-# TODO: Order methods by name.
 # TODO: Reduce external libs.
 
-# {{{ Method: new --------------------------------------------------------------
-# Usage      : FabioCicerchia::Site->new()
-# Purpose    : Generate a new instance.
-# Returns    : Self.
-# Parameters : None.
-# Throws     : No exceptions.
-sub new {
-    my $class = shift;
-    my $self  = {
-        'actionCurrent' => undef,
-        'actionDefault' => 'show',
-        'contentType'   => 'text/html',
-        'formatAllowed' => {
-            'html5'  => 'text/html',
-            'rss091' => 'application/rss+xml',
-            'rss092' => 'application/rss+xml',
-            'rss1'   => 'application/rss+xml',
-            'rss2'   => 'application/rss+xml',
-            'atom'   => 'application/atom+xml',
-            'vcard'  => 'text/x-vcard'
-        },
-        'formatCurrent' => undef,
-        'formatDefault' => 'html5',
-        'i18nCurrent'   => undef,
-        'i18nDefault'   => 'en',
-        'request'       => {
-            'action' => undef,
-            'format' => undef,
-            'lang'   => undef
-        }
-    };
-    bless $self, $class;
-
-    $self->set_request();
-
-    # TODO: Add description, is so obscure!
-    $self->{'actionCurrent'} = $self->{'actionDefault'};
-    if ( defined( $self->{'request'}{'action'} ) ) {
-        $self->{'actionCurrent'} = $self->{'request'}{'action'};
-    }
-
-    # TODO: Add description, is so obscure!
-    $self->{'formatCurrent'} = $self->{'formatDefault'};
-    if ( defined( $self->{'request'}{'format'} ) ) {
-        if (
-            grep { $_ eq $self->{'request'}{'format'} }
-            keys $self->{'formatAllowed'}
-          )
-        {
-            $self->{'formatCurrent'} = $self->{'request'}{'format'};
-        }
-    }
-
-    # TODO: Add description, is so obscure!
-    $self->{'contentType'} = $self->{'contentType'};
-    if ( defined( $self->{'formatAllowed'}{ $self->{'formatCurrent'} } ) ) {
-        $self->{'contentType'} =
-          $self->{'formatAllowed'}{ $self->{'formatCurrent'} };
-    }
-
-    # TODO: Add description, is so obscure!
-    $self->{'i18nCurrent'} = $self->{'i18nDefault'};
-    if ( defined( $self->{'request'}{'lang'} ) ) {
-        $self->{'i18nCurrent'} = $self->{'request'}{'lang'};
-    }
-    elsif ( defined $ENV{'HTTP_ACCEPT_LANGUAGE'} ) {
-        $self->{'i18nCurrent'} = $ENV{'HTTP_ACCEPT_LANGUAGE'};
-    }
-
-    return $self;
-}
-# }}} --------------------------------------------------------------------------
-
-# {{{ Method: set_request ------------------------------------------------------
-# Usage      : FabioCicerchia::Site->set_request()
-# Purpose    : Set the main parameters for the request.
-# Returns    : Nothing.
-# Parameters : None.
-# Throws     : No exceptions.
-sub set_request {
-    my $self = shift;
-
-    my @allowed_keys = keys $self->{'request'};
-
-    my %get_params = ();
-    my @pairs = split /&/smx, $ENV{'QUERY_STRING'};
-    foreach my $pair (@pairs) {
-        my ( $name, $value ) = split /=/smx, $pair;
-        # TODO: Add description, is so obscure!
-        $name  =~ tr/+/ /;
-        $name  =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/egsmx;
-        $value =~ tr/+/ /;
-        $value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/egsmx;
-        $get_params{$name} = $value;
-    }
-
-    while ( my ( $key, $value ) = each %get_params ) {
-        if ( grep { $_ eq $key } @allowed_keys ) {
-            $self->{request}{$key} = $value;
-        }
-    }
-
-    return;
-}
-# }}} --------------------------------------------------------------------------
-
-# {{{ Method: show -------------------------------------------------------------
-# Usage      : FabioCicerchia::Site->show()
-# Purpose    : Run the required action.
-# Returns    : Nothing, just printing.
-# Parameters : None.
-# Throws     : No exceptions.
-# See Also   : $self->execute_action()
-sub show {
-    my $self = shift;
-
-    my $output = $self->execute_action( $self->{'actionCurrent'} );
-    if ( defined $output ) {
-        my $r = print $output;
-    }
-
-    return;
-}
-# }}} --------------------------------------------------------------------------
-
-# {{{ Method: execute_action ---------------------------------------------------
-# Usage      : FabioCicerchia::Site->execute_action()
-# Purpose    : Execute a custom & dynamical action.
-# Returns    : A string, the output that will be printed.
-# Parameters : A string, the action name.
-# Throws     : No exceptions.
-sub execute_action {
-    my ( $self, $action ) = @_;
-
-    my $method_to_call = 'action_' . $action;
-    if ( !$self->can($method_to_call) ) {
-        # TODO: Write a test to cover this
-        $method_to_call = 'action404';
-    }
-
-    return $self->$method_to_call();
-}
-# }}}
-
 # {{{ Method: action404 --------------------------------------------------------
-# Usage      : FabioCicerchia::Site->action404()
+# Usage      : FabioCicerchiaSite->action404()
 # Purpose    : Print a 404 error.
 # Returns    : Nothing, just printing.
 # Parameters : None.
@@ -211,12 +66,15 @@ sub action404 {
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_show ------------------------------------------------------
-# Usage      : FabioCicerchia::Site->action_show()
+# Usage      : FabioCicerchiaSite->action_show()
 # Purpose    : The "show" action.
 # Returns    : Nothing, just printing.
 # Parameters : None.
 # Throws     : No exceptions.
-# See Also   : $self->retrieve_xml()
+# See Also   : $self->get_data()
+#            : $ENV{'HTTP_HOST'}
+#            : $self->{'contentType'}
+#            : $self->{'formatCurrent'}
 sub action_show {
     my $self = shift;
 
@@ -255,13 +113,70 @@ sub action_show {
 }
 # }}} --------------------------------------------------------------------------
 
+# {{{ Method: call_api ---------------------------------------------------------
+# Usage      : FabioCicerchiaSite->call_api()
+# Purpose    : Call an URL and return its content.
+# Returns    : String, the output of the URL.
+# Parameters : String $url, String $language.
+# Throws     : No exceptions.
+# See Also   : $ENV{'HTTP_HOST'}
+sub call_api {
+    my ( $self, $url, $language ) = @_;
+
+    my $browser = LWP::UserAgent->new();
+    $browser->timeout(10);
+    $browser->default_header( 'Accept-Language' => $language );
+    $browser->default_header( 'Accept' => 'application/vnd.ads+xml;v=1.0' );
+
+    return $browser->get( 'http://' . $ENV{'HTTP_HOST'} . '/api.php' . $url );
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ Method: elaborate_data ---------------------------------------------------
+# Usage      : FabioCicerchiaSite->elaborate_data()
+# Purpose    : Change the data.
+# Returns    : An Hash, the input hash but modified.
+# Parameters : Hash $data.
+# Throws     : No exceptions.
+sub elaborate_data {
+    my ( $self, $data ) = @_;
+
+    my $tmp;
+    my $values;
+
+    # Cycle over each skill...
+    foreach my $key ( keys $data->{'skill'}->{'entity'} ) {
+        $tmp    = {};
+        $values = $data->{'skill'}->{'entity'}->[$key]->{'content'}->{'skills'};
+
+        # ... and over each element ...
+        foreach my $key2 ( keys $values ) {
+            my $item = $values->[$key2];
+
+            # ... then create an array that has as key the "level" value ...
+            if ( !exists( $tmp->{ $item->{'level'} } ) ) {
+                $tmp->{ $item->{'level'} } = [];
+            }
+
+            # ... and as children the "title" values.
+            push $tmp->{ $item->{'level'} }, $item->{'title'}->{'content'};
+        }
+
+        $data->{'skill'}->{'entity'}->[$key]->{'content'}->{'skills'} = $tmp;
+    }
+
+    return $data;
+}
+# }}} --------------------------------------------------------------------------
+
 # {{{ Method: get_data ---------------------------------------------------------
-# Usage      : FabioCicerchia::Site->get_data()
+# Usage      : FabioCicerchiaSite->get_data()
 # Purpose    : Retrieve the data from the API.
 # Returns    : Array.
 # Parameters : None.
 # Throws     : No exceptions.
-# See Also   : $self->get_item_data()
+# See Also   : $self->{'i18nCurrent'}
+#            : $self->elaborate_data()
 sub get_data {
     my $self = shift;
 
@@ -278,12 +193,13 @@ sub get_data {
     foreach my $api (@api_list) {
         $url = $api eq 'root' ? q{} : $api;
 
-        # TODO: Add description, is so obscure!
+        # Retrieve the data from the API for the current route using
+        # "i18nCurrent" as language.
         my @response =
           $self->get_item_data( q{/} . $url, $self->{'i18nCurrent'} );
         my ( $curr_data, $curr_ts, $curr_hash, $curr_lang ) = @{ $response[0] };
 
-        # TODO: Add description, is so obscure!
+        # Add the response to the final array
         $data->{$api} = $curr_data;
         $hash = defined $curr_hash ? ( $hash . $curr_hash ) : $hash;
         $lang = defined $curr_lang ? $curr_lang             : $lang;
@@ -295,44 +211,15 @@ sub get_data {
     }
     $ctx->add($hash);
 
+    # Elaborate the data.
     $data = $self->elaborate_data($data);
 
     return [ $data, $last_ts, $ctx->hexdigest, $lang ];
 }
 # }}} --------------------------------------------------------------------------
 
-# {{{ Method: elaborate_data ---------------------------------------------------
-# Usage      : FabioCicerchia::Site->elaborate_data()
-# Purpose    : Change the data.
-# Returns    : An Hash, the input hash but modified.
-# Parameters : Hash $data.
-# Throws     : No exceptions.
-sub elaborate_data {
-    my ( $self, $data ) = @_;
-
-    my $tmp;
-    my $values;
-    # TODO: Add description, is so obscure!
-    foreach my $key ( keys $data->{'skill'}->{'entity'} ) {
-        $tmp    = {};
-        $values = $data->{'skill'}->{'entity'}->[$key]->{'content'}->{'skills'};
-        # TODO: Add description, is so obscure!
-        foreach my $key2 ( keys $values ) {
-            my $item = $values->[$key2];
-            if ( !exists( $tmp->{ $item->{'level'} } ) ) {
-                $tmp->{ $item->{'level'} } = [];
-            }
-            push $tmp->{ $item->{'level'} }, $item->{'title'}->{'content'};
-        }
-        $data->{'skill'}->{'entity'}->[$key]->{'content'}->{'skills'} = $tmp;
-    }
-
-    return $data;
-}
-# }}} --------------------------------------------------------------------------
-
 # {{{ Method: get_item_data ----------------------------------------------------
-# Usage      : FabioCicerchia::Site->get_data()
+# Usage      : FabioCicerchiaSite->get_data()
 # Purpose    : Retrieve the data from the API.
 # Returns    : Array.
 # Parameters : String $url, String $language.
@@ -376,21 +263,127 @@ sub get_item_data {
 }
 # }}} --------------------------------------------------------------------------
 
+# {{{ Method: execute_action ---------------------------------------------------
+# Usage      : FabioCicerchiaSite->execute_action()
+# Purpose    : Execute a custom & dynamical action.
+# Returns    : A string, the output that will be printed.
+# Parameters : A string, the action name.
+# Throws     : No exceptions.
+# See Also   : $self->action_*()
+#            : $self->action404()
+sub execute_action {
+    my ( $self, $action ) = @_;
+
+    my $method_to_call = 'action_' . $action;
+    if ( !$self->can($method_to_call) ) {
+        # TODO: Write a test to cover this
+        $method_to_call = 'action404';
+    }
+
+    return $self->$method_to_call();
+}
+# }}}
+
+# {{{ Method: new --------------------------------------------------------------
+# Usage      : FabioCicerchiaSite->new()
+# Purpose    : Generate a new instance.
+# Returns    : Self.
+# Parameters : None.
+# Throws     : No exceptions.
+# See Also   : $self->{'actionCurrent'}
+#            : $self->{'actionDefault'}
+#            : $self->{'request'}
+#            : $self->{'formatAllowed'}
+#            : $self->{'formatCurrent'}
+#            : $self->{'i18nDefault'}
+#            : $self->{'i18nCurrent'}
+#            : $ENV{'HTTP_ACCEPT_LANGUAGE'}
+sub new {
+    my $class = shift;
+    my $self  = {
+        'actionCurrent' => undef,
+        'actionDefault' => 'show',
+        'contentType'   => 'text/html',
+        'formatAllowed' => {
+            'html5'  => 'text/html',
+            'rss091' => 'application/rss+xml',
+            'rss092' => 'application/rss+xml',
+            'rss1'   => 'application/rss+xml',
+            'rss2'   => 'application/rss+xml',
+            'atom'   => 'application/atom+xml',
+            'vcard'  => 'text/x-vcard'
+        },
+        'formatCurrent' => undef,
+        'formatDefault' => 'html5',
+        'i18nCurrent'   => undef,
+        'i18nDefault'   => 'en',
+        'request'       => {
+            'action' => undef,
+            'format' => undef,
+            'lang'   => undef
+        }
+    };
+    bless $self, $class;
+
+    $self->set_request();
+
+    # Set the current action by default to "show".
+    $self->{'actionCurrent'} = $self->{'actionDefault'};
+    # Then use the value from the request if exists.
+    if ( defined( $self->{'request'}{'action'} ) ) {
+        $self->{'actionCurrent'} = $self->{'request'}{'action'};
+    }
+
+    # Set the current format by default to "html5".
+    $self->{'formatCurrent'} = $self->{'formatDefault'};
+    # Then use the value from the request if exists ...
+    if ( defined( $self->{'request'}{'format'} ) ) {
+        # ... filtering the values not authorised.
+        if (
+            grep { $_ eq $self->{'request'}{'format'} }
+            keys $self->{'formatAllowed'}
+          )
+        {
+            $self->{'formatCurrent'} = $self->{'request'}{'format'};
+        }
+    }
+
+    # Set the current content type by default to "text/html".
+    $self->{'contentType'} = $self->{'contentType'};
+    # Then use the value based on the current format,
+    if ( defined( $self->{'formatAllowed'}{ $self->{'formatCurrent'} } ) ) {
+        $self->{'contentType'} =
+          $self->{'formatAllowed'}{ $self->{'formatCurrent'} };
+    }
+
+    # Set the current language by default to "en".
+    $self->{'i18nCurrent'} = $self->{'i18nDefault'};
+    # Then use the value from the request or from the http header if exists.
+    if ( defined( $self->{'request'}{'lang'} ) ) {
+        $self->{'i18nCurrent'} = $self->{'request'}{'lang'};
+    }
+    elsif ( defined $ENV{'HTTP_ACCEPT_LANGUAGE'} ) {
+        $self->{'i18nCurrent'} = $ENV{'HTTP_ACCEPT_LANGUAGE'};
+    }
+
+    return $self;
+}
+# }}} --------------------------------------------------------------------------
+
 # {{{ Method: retrieve_xml -----------------------------------------------------
-# Usage      : FabioCicerchia::Site->retrieve_xml()
+# Usage      : FabioCicerchiaSite->retrieve_xml()
 # Purpose    : Retrieve XML from an URL.
 # Returns    : XML::Simple object.
 # Parameters : String $content.
 # Throws     : No exceptions.
-# See Also   : $self->call_api()
+# See Also   : None.
 sub retrieve_xml {
     my ( $self, $content ) = @_;
 
-    # TODO: Add description.
     my $simple = XML::Simple->new(
         'KeepRoot'   => 0,
         'KeyAttr'    => [],
-        'ForceArray' => ['entity'],
+        'ForceArray' => ['entity', 'project'],
         'GroupTags'  => {
             'activities'    => 'activity',
             'activities'    => 'activity',
@@ -407,21 +400,63 @@ sub retrieve_xml {
 }
 # }}} --------------------------------------------------------------------------
 
-# {{{ Method: call_api ---------------------------------------------------------
-# Usage      : FabioCicerchia::Site->call_api()
-# Purpose    : Call an URL and return its content.
-# Returns    : String, the output of the URL.
-# Parameters : String $url, String $language.
+# {{{ Method: set_request ------------------------------------------------------
+# Usage      : FabioCicerchiaSite->set_request()
+# Purpose    : Set the main parameters for the request.
+# Returns    : Nothing.
+# Parameters : None.
 # Throws     : No exceptions.
-sub call_api {
-    my ( $self, $url, $language ) = @_;
+# See Also   : $self->{'request'}
+#            : $ENV{'QUERY_STRING'}
+sub set_request {
+    my $self = shift;
 
-    my $browser = LWP::UserAgent->new();
-    $browser->timeout(10);
-    $browser->default_header( 'Accept-Language' => $language );
-    $browser->default_header( 'Accept' => 'application/vnd.ads+xml;v=1.0' );
+    my @allowed_keys = keys $self->{'request'};
 
-    return $browser->get( 'http://' . $ENV{'HTTP_HOST'} . '/api.php' . $url );
+    my %get_params = ();
+
+    # Get the slitted elements (key=value) from the query string.
+    my @pairs = split /&/smx, $ENV{'QUERY_STRING'};
+    foreach my $pair (@pairs) {
+        # For each element slit again to key & value.
+        my ( $name, $value ) = split /=/smx, $pair;
+
+        # Start cleaning the values removing url encoding.
+        $name  =~ tr/+/ /;
+        $name  =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/egsmx;
+        $value =~ tr/+/ /;
+        $value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/egsmx;
+
+        $get_params{$name} = $value;
+    }
+
+    while ( my ( $key, $value ) = each %get_params ) {
+        if ( grep { $_ eq $key } @allowed_keys ) {
+            $self->{'request'}{$key} = $value;
+        }
+    }
+
+    return;
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ Method: show -------------------------------------------------------------
+# Usage      : FabioCicerchiaSite->show()
+# Purpose    : Run the required action.
+# Returns    : Nothing, just printing.
+# Parameters : None.
+# Throws     : No exceptions.
+# See Also   : $self->{'actionCurrent'}
+#            : $self->execute_action()
+sub show {
+    my $self = shift;
+
+    my $output = $self->execute_action( $self->{'actionCurrent'} );
+    if ( defined $output ) {
+        my $r = print $output;
+    }
+
+    return;
 }
 # }}} --------------------------------------------------------------------------
 
@@ -496,47 +531,47 @@ context to help them understand the methods that are subsequently described.
 
 =over
 
-=item * C<FabioCicerchia::Site-E<gt>new()>
+=item * C<FabioCicerchiaSite-E<gt>new()>
 
 Generate a new instance.
 
-=item * C<FabioCicerchia::Site-E<gt>set_request()>
+=item * C<FabioCicerchiaSite-E<gt>set_request()>
 
 Set the main parameters for the request.
 
-=item * C<FabioCicerchia::Site-E<gt>show()>
+=item * C<FabioCicerchiaSite-E<gt>show()>
 
 Run the required action.
 
-=item * C<FabioCicerchia::Site-E<gt>execute_action()>
+=item * C<FabioCicerchiaSite-E<gt>execute_action()>
 
 Execute a custom & dynamical action.
 
-=item * C<FabioCicerchia::Site-E<gt>action404()>
+=item * C<FabioCicerchiaSite-E<gt>action404()>
 
 Print a 404 error.
 
-=item * C<FabioCicerchia::Site-E<gt>action_show()>
+=item * C<FabioCicerchiaSite-E<gt>action_show()>
 
 The "show" action.
 
-=item * C<FabioCicerchia::Site-E<gt>get_data()>
+=item * C<FabioCicerchiaSite-E<gt>get_data()>
 
 Retrieve the data from the API.
 
-=item * C<FabioCicerchia::Site-E<gt>elaborate_data()>
+=item * C<FabioCicerchiaSite-E<gt>elaborate_data()>
 
 Change the data.
 
-=item * C<FabioCicerchia::Site-E<gt>get_data()>
+=item * C<FabioCicerchiaSite-E<gt>get_data()>
 
 Retrieve the data from the API.
 
-=item * C<FabioCicerchia::Site-E<gt>retrieve_xml()>
+=item * C<FabioCicerchiaSite-E<gt>retrieve_xml()>
 
 Retrieve XML from an URL.
 
-=item * C<FabioCicerchia::Site-E<gt>call_api()>
+=item * C<FabioCicerchiaSite-E<gt>call_api()>
 
 Call an URL and return its content.
 

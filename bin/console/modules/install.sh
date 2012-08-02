@@ -231,6 +231,13 @@ install_pep8() {
     return $?
 }
 
+install_epydoc() {
+    print_subheader "INSTALLING EPYDOC"
+    sudo apt-get -q install python-epydoc || handle_errors $?
+
+    return $?
+}
+
 install_capistrano() {
     print_subheader "INSTALLING CAPISTRANO"
     sudo apt-get -q install gem || handle_errors $?

@@ -14,47 +14,14 @@ File: ./db/mongo-curriculum.js
 
 File: ./tests/api/functional/ApiTest.php
 --------------------------------------------------------------------------------
-  - Use a @dataProvider (line 372)
-  - Use a @dataProvider (line 1164)
-  - Use a @dataProvider (line 1660)
-  - Use a @dataProvider (line 2035)
-
-File: ./tests/api/unit/FabioCicerchia/Api/ServiceAbstractTest.php
---------------------------------------------------------------------------------
-  - Change name to be useful. (line 62)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
---------------------------------------------------------------------------------
-  - Change name to be useful. (line 61)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/LanguageTest.php
---------------------------------------------------------------------------------
-  - Change name to be useful. (line 62)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/SkillTest.php
---------------------------------------------------------------------------------
-  - Change name to be useful. (line 62)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/InformationTest.php
---------------------------------------------------------------------------------
-  - Change name to be useful. (line 62)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/EducationTest.php
---------------------------------------------------------------------------------
-  - Change name to be useful. (line 62)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/ExperienceTest.php
---------------------------------------------------------------------------------
-  - Change name to be useful. (line 62)
+  - Use a @dataProvider (line 375)
+  - Use a @dataProvider (line 1175)
+  - Use a @dataProvider (line 1675)
+  - Use a @dataProvider (line 2050)
 
 File: ./tests/api/unit/FabioCicerchia/Api/UtilsTest.php
 --------------------------------------------------------------------------------
-  - Change name to be useful. (line 63)
   - Use a @dataProvider (line 65)
-
-File: ./lib/PHPCS/ruleset.xml
---------------------------------------------------------------------------------
-  - <No Message> (line 7)
 
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/TestCase.php
 --------------------------------------------------------------------------------
@@ -158,28 +125,17 @@ File: ./apps/site/view/_language.tmpl
 
 File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------
-  - Order methods by name. (line 49)
-  - Reduce external libs. (line 50)
-  - Add description, is so obscure! (line 87)
-  - Add description, is so obscure! (line 93)
-  - Add description, is so obscure! (line 105)
-  - Add description, is so obscure! (line 112)
-  - Add description, is so obscure! (line 140)
-  - Write a test to cover this (line 188)
-  - Write a test to cover this (line 202)
-  - IMPLEMENT IF NOT MODIFIED (line 236)
-  - Add description, is so obscure! (line 281)
-  - Add description, is so obscure! (line 286)
-  - Write a test to cover this (line 292)
-  - Add description, is so obscure! (line 315)
-  - Add description, is so obscure! (line 319)
-  - Write a test to cover this (line 354)
-  - Write a test to cover this (line 359)
-  - Write a test to cover this (line 362)
-  - Add description. (line 389)
-  - Generate pod. (line 428)
-  - Test::Pod. (line 429)
-  - Test::Pod::Coverage. (line 430)
+  - Reduce external libs. (line 49)
+  - Write a test to cover this (line 57)
+  - IMPLEMENT IF NOT MODIFIED (line 94)
+  - Write a test to cover this (line 208)
+  - Write a test to cover this (line 241)
+  - Write a test to cover this (line 246)
+  - Write a test to cover this (line 249)
+  - Write a test to cover this (line 279)
+  - Generate pod. (line 463)
+  - Test::Pod. (line 464)
+  - Test::Pod::Coverage. (line 465)
 
 File: ./apps/api/logic/controller.php
 --------------------------------------------------------------------------------
@@ -187,9 +143,9 @@ File: ./apps/api/logic/controller.php
   - Make dynamic the language. (line 113)
   - Write a test to cover this condition. (line 141)
   - Write a test to cover this condition. (line 154)
-  - Start refactoring, cut from here  (line 164)
+  - Start refactoring, cut from here (line 164)
   - End refactoring, cut to here (line 179)
-  - Start refactoring, cut from here  (line 195)
+  - Start refactoring, cut from here (line 195)
   - End refactoring, cut to here (line 213)
   - Make dynamic the language. (line 247)
 
@@ -197,8 +153,8 @@ File: ./apps/script/common.py
 --------------------------------------------------------------------------------
   - Change above (line 46)
   - Add documentation (line 48)
-  - Change above (line 62)
-  - Remove this if (line 95)
+  - Change above (line 63)
+  - Remove this if (line 96)
 
 File: ./apps/script/benchmark.py
 --------------------------------------------------------------------------------
@@ -234,7 +190,6 @@ File: ./apps/script/check_validation.py
   - YSlow (line 267)
   - Page Speed (line 268)
 
-File: ./bin/console/modules/install.sh
+File: ./bin/console/modules/tests.sh
 --------------------------------------------------------------------------------
-  - FIXME (line 61)
-  - FIXME (line 73)
+  - Find a way to make this works. (line 51)

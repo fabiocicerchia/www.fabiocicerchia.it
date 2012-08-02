@@ -52,7 +52,7 @@ require_once TEST_LIB_PATH . 'Api/Service/Information.php';
  */
 class InformationTest extends FabioCicerchia\TestCase
 {
-    // {{{ testRunEmptyData
+    // {{{ testRunWithEmptyData
     /**
      * Test method "run" with empty data.
      *
@@ -60,7 +60,7 @@ class InformationTest extends FabioCicerchia\TestCase
      *
      * @return void
      */
-    public function testRunEmptyData() // TODO: Change name to be useful.
+    public function testRunWithEmptyData()
     {
         $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Information')
                      ->setMethods(['execDataQuery'])

@@ -52,7 +52,7 @@ require_once TEST_LIB_PATH . 'Api/Service/Language.php';
  */
 class LanguageTest extends FabioCicerchia\TestCase
 {
-    // {{{ testRunEmptyData
+    // {{{ testRunWithEmptyData
     /**
      * Test method "run" with empty data.
      *
@@ -60,7 +60,7 @@ class LanguageTest extends FabioCicerchia\TestCase
      *
      * @return void
      */
-    public function testRunEmptyData() // TODO: Change name to be useful.
+    public function testRunWithEmptyData()
     {
         $stub = $this->getMockBuilder('FabioCicerchia\Api\Service\Language')
                      ->setMethods(['execDataQuery'])

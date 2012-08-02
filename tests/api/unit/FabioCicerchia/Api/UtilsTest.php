@@ -60,7 +60,7 @@ class UtilsTest extends FabioCicerchia\TestCase
      *
      * @return void
      */
-    public function testGetCurrentLanguage() // TODO: Change name to be useful.
+    public function testGetCurrentLanguage()
     {
         // TODO: Use a @dataProvider
         $db_language = ['it' => 'it_IT', 'en' => 'en_GB'];

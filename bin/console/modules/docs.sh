@@ -41,3 +41,17 @@ doc_php() {
 
     return $?
 }
+
+doc_perl() {
+    print_subheader "RUNNING POD"
+    pod2html $SITE_APP_SOURCEDIR/logic/class.pl > $DOCDIR/site/class.html || handle_errors $?
+
+    return $?
+}
+
+doc_python() {
+    print_subheader "RUNNING EPYDOC"
+    epydoc --html --show-private --show-imports --show-sourcecode  $SCRIPT_APP_SOURCEDIR/*.py -o $DOCDIR/script || handle_errors $?
+
+    return $?
+}
