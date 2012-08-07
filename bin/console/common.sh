@@ -197,8 +197,7 @@ install() {
 }
 
 run() {
-    # TODO: Use "! -z $2".
-    if [ "$2" != "" ]; then
+    if [ -n "$2" ]; then
         SUBROUTINE="run_$2"
         $SUBROUTINE || handle_errors $?
     else

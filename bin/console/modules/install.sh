@@ -61,8 +61,7 @@ install_gitextras() {
 
 install_php() {
     print_subheader "INSTALLING PHP"
-    # TODO: Use "-z $TRAVIS_CI".
-    if [ "$TRAVIS_CI" == "" ]; then
+    if [ -z "$TRAVIS_CI" ]; then
         sudo add-apt-repository ppa:ondrej/php5
         sudo apt-get -q update
         sudo apt-get -q upgrade
@@ -76,8 +75,7 @@ install_php() {
 
 install_mongo() {
     print_subheader "INSTALLING MONGODB"
-    # TODO: Use "-z $TRAVIS_CI".
-    if [ "$TRAVIS_CI" == "" ]; then
+    if [ -z "$TRAVIS_CI" ]; then
         sudo apt-get -q install mongodb || handle_errors $?
     else
         echo "SKIPPED"

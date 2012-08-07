@@ -102,8 +102,12 @@ class TwigExtension extends \Twig_Extension
      *
      * @return mixed The result of the preg_replace.
      */
-    public function pregReplace($subject, $pattern, $replacement, $limit = -1) // TODO: Line length.
-    {
+    public function pregReplace(
+        $subject,
+        $pattern,
+        $replacement,
+        $limit = -1
+    ) {
         return preg_replace($pattern, $replacement, $subject, $limit);
     }
     // }}} ---------------------------------------------------------------------

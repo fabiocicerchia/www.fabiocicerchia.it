@@ -96,8 +96,10 @@ class Strategy
      *
      * @return void
      */
-    public function __construct($service_name, \Doctrine\MongoDB\Database $db_handle) // TODO: Line length.
-    {
+    public function __construct(
+        $service_name,
+        \Doctrine\MongoDB\Database $db_handle
+    ) {
         // TODO: Write a test to cover this condition.
         if (is_string($service_name) === false) {
             $message = 'The parameter $service_name must be a string.';
@@ -110,7 +112,10 @@ class Strategy
             $this->strategy = new $class($db_handle);
         } catch (\Exception $e) {
             // TODO: Write a test to cover this condition.
-            throw new \UnexpectedValueException($e->getMessage(), $e->getCode()); // TODO: Line length.
+            throw new \UnexpectedValueException(
+                $e->getMessage(),
+                $e->getCode()
+            );
         }
     }
     // }}} ---------------------------------------------------------------------

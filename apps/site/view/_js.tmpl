@@ -1,7 +1,3 @@
-<!-- TODO: Use minify -->
-<script type="text/javascript" src="/media/js/jquery.js"></script>
-<script type="text/javascript" src="/media/js/bootstrap/bootstrap.js"></script>
-<script type="text/javascript" src="/media/js/main.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 
@@ -21,10 +17,9 @@
     })();
 
     function downloadJSAtOnload() {
-        // TODO: Restore this behaviour.
-        //var element = document.createElement("script");
-        //element.src = "/minify/min/?f=media/js/jquery.js,media/js/bootstrap/bootstrap.js,media/js/main.js",
-        //document.getElementsByTagName('body')[0].appendChild(element);
+        var element = document.createElement("script");
+        element.src = "/minified/js",
+        document.getElementsByTagName('body')[0].appendChild(element);
     }
 
     if (window.addEventListener) {

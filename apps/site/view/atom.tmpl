@@ -28,7 +28,7 @@
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         <id>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</id>
-        <title>Experience - [% entity.title.content %]</title> <!-- TODO: DYNAMIC VALUE -->
+        <title>Experience - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
         <published>[% entity.published %]</published>
         <updated>[% entity.updated %]</updated>
         <category term="Experience" /><!-- TODO: Convert to a dynamic value. -->

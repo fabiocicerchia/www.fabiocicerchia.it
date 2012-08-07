@@ -7,10 +7,7 @@
 <link href="http://microformats.org/profile/hresume" rel="profile" />
 <link href="https://plus.google.com/110733047203682160091" rel="author" title="Fabio Cicerchia on Google+" /><!-- TODO: Convert to a dynamic value. -->
 <link href="/humans.txt" rel="author" type="text/plain" />
-<!-- TODO: Use minify -->
-<link href="/media/css/bootstrap/bootstrap.min.css" rel="stylesheet">
-<link href="/media/css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
-<link href="/media/css/main.css" rel="stylesheet">
+<link href="/minified/css" rel="stylesheet">
 [% FOREACH entity IN data.language.entity %]
 <!-- TODO: Use a variables to make this line shorter. -->
 <link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %][% END %]" hreflang="[% entity.content.code.short %]" rel="alternate" title="[% entity.title.content %]" />

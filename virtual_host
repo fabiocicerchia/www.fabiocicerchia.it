@@ -82,11 +82,11 @@
           RewriteCond %{REQUEST_FILENAME} -s [OR]
           RewriteCond %{REQUEST_FILENAME} -l [OR]
           RewriteCond %{REQUEST_FILENAME} -d
-          RewriteRule ^.+$               -                   [NC,L]
+          RewriteRule ^.+$               -                  [NC,L]
 
-          RewriteRule ^minified/(.+\.css) minify/min/?f=$1   [L]
+          RewriteRule ^minified/(.+)     minify/min/?g=$1   [L]
 
-          RewriteRule ^(.*)$              index.pl?format=$1 [NC,L]
+          RewriteRule ^(.*)$             index.pl?format=$1 [NC,L]
         </IfModule>
    </Directory>
 

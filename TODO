@@ -8,20 +8,47 @@ File: ./db/mongo-curriculum.js
   - TBW (line 279)
   - TBW (line 281)
   - TBW (line 282)
-  - TBW (line 283)
-  - TBW (line 295)
-  - TBW (line 575)
+  - TBW (line 284)
+  - TBW (line 285)
+  - TBW (line 286)
+  - TBW (line 287)
+  - TBW (line 288)
+  - TBW (line 289)
+  - TBW (line 290)
+  - TBW (line 291)
+  - TBW (line 304)
+  - TBW (line 584)
+
+File: ./tests/site/test.pl
+--------------------------------------------------------------------------------
+  - Refactor this code below. (line 75)
+  - Disable the output printing (line 76)
+  - Add the functional tests for "atom", "rss*", "vcard". (line 77)
 
 File: ./tests/api/functional/ApiTest.php
 --------------------------------------------------------------------------------
-  - Use a @dataProvider (line 375)
-  - Use a @dataProvider (line 1175)
-  - Use a @dataProvider (line 1675)
-  - Use a @dataProvider (line 2050)
+  - Aggregate and use @dataProvider for these methods: (line 143)
+  - Aggregate and use @dataProvider for these methods: (line 167)
+  - Aggregate and use @dataProvider for these methods: (line 191)
+  - Aggregate and use @dataProvider for these methods: (line 287)
+  - Aggregate and use @dataProvider for these methods: (line 311)
+  - Aggregate and use @dataProvider for these methods: (line 340)
+  - Aggregate and use @dataProvider for these methods: (line 370)
+  - Aggregate and use @dataProvider for these methods: (line 394)
+  - Aggregate and use @dataProvider for these methods: (line 418)
+  - Use a @dataProvider (line 430)
+  - Use a @dataProvider (line 1230)
+  - Use a @dataProvider (line 1730)
+  - Use a @dataProvider (line 2105)
 
 File: ./tests/api/unit/FabioCicerchia/Api/UtilsTest.php
 --------------------------------------------------------------------------------
-  - Use a @dataProvider (line 65)
+  - Use a @dataProvider. (line 65)
+  - Implement this test. (line 90)
+
+File: ./tests/script/test.py
+--------------------------------------------------------------------------------
+  - Write tests. (line 8)
 
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/TestCase.php
 --------------------------------------------------------------------------------
@@ -47,95 +74,122 @@ File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Strategy.php
 
 File: ./apps/site/view/rss091.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES (line 14)
-  - DYNAMIC VALUE (line 17)
-  - DYNAMIC VALUE (line 27)
+  - Sorting by date. (line 14)
+  - Convert to a dynamic value. (line 17)
+  - Convert to a dynamic value. (line 27)
 
 File: ./apps/site/view/atom.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES (line 14)
-  - DYNAMIC VALUE (line 20)
-  - DYNAMIC VALUE (line 23)
-  - DYNAMIC VALUE (line 31)
-  - DYNAMIC VALUE (line 34)
+  - Sorting by date. (line 14)
+  - Convert to a dynamic value. (line 20)
+  - Convert to a dynamic value. (line 23)
+  - Convert to a dynamic value. (line 31)
+  - Convert to a dynamic value. (line 34)
 
 File: ./apps/site/view/rss1.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES (line 9)
-  - SORTING BY DATES (line 23)
-  - DYNAMIC VALUE (line 28)
-  - DYNAMIC VALUE (line 37)
+  - Sorting by date. (line 9)
+  - Sorting by date. (line 23)
+  - Convert to a dynamic value. (line 28)
+  - Convert to a dynamic value. (line 37)
 
 File: ./apps/site/view/_header.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 16)
-  - ADD CSS OR JS (BAD RENDERING) (line 29)
+  - Convert to a dynamic value. (line 52)
+  - Add CSS or JS (Bad Rendering) (line 94)
 
 File: ./apps/site/view/_experience.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 5)
-  - MISSING (line 41)
-  - DYNAMIC VALUE (line 46)
-  - Summary (line 64)
+  - Convert to a dynamic value. (line 5)
+  - Missing. (line 54)
+  - Convert to a dynamic value. (line 59)
+  - Summary (line 79)
+  - Convert to a dynamic value. (line 97)
+  - Convert to a dynamic value. (line 107)
+  - Convert to a dynamic value. (line 117)
+  - Convert to a dynamic value. (line 127)
+  - Convert to a dynamic value. (line 142)
+  - Convert to a dynamic value. (line 152)
+  - Convert to a dynamic value. (line 162)
+  - Convert to a dynamic value. (line 172)
 
 File: ./apps/site/view/rss092.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES (line 14)
-  - DYNAMIC VALUE (line 17)
-  - DYNAMIC VALUE (line 23)
-  - DYNAMIC VALUE (line 28)
-  - DYNAMIC VALUE (line 34)
+  - Sorting by date. (line 14)
+  - Convert to a dynamic value. (line 17)
+  - Convert to a dynamic value. (line 23)
+  - Convert to a dynamic value. (line 28)
+  - Convert to a dynamic value. (line 34)
 
 File: ./apps/site/view/_js.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 36)
+  - Convert to a dynamic value. (line 40)
 
 File: ./apps/site/view/_head.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 40)
+  - Convert to a dynamic value. (line 8)
+  - Use a variables to make this line shorter. (line 15)
+  - Use a variables to make this line shorter. (line 19)
+  - Use a variables to make this line shorter. (line 23)
+  - Use a variables to make this line shorter (line 27)
+  - Use a variables to make this line shorter (line 31)
+  - Use a variables to make this line shorter (line 35)
+  - Convert to a dynamic value. (line 45)
+  - Convert to a dynamic value. (line 47)
+  - Convert to a dynamic value. (line 48)
 
 File: ./apps/site/view/rss2.tmpl
 --------------------------------------------------------------------------------
-  - SORTING BY DATES (line 14)
-  - DYNAMIC VALUE (line 17)
-  - DYNAMIC VALUE (line 24)
-  - DYNAMIC VALUE (line 29)
-  - DYNAMIC VALUE (line 36)
+  - Sorting by date. (line 14)
+  - Convert to a dynamic value. (line 17)
+  - Convert to a dynamic value. (line 24)
+  - Convert to a dynamic value. (line 29)
+  - Convert to a dynamic value. (line 36)
 
 File: ./apps/site/view/html5.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 26)
+  - Convert to a dynamic value. (line 9)
+  - Convert to a dynamic value. (line 28)
 
 File: ./apps/site/view/_education.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 6)
-  - DYNAMIC VALUE (line 30)
+  - Convert to a dynamic value. (line 6)
+  - Convert to a dynamic value. (line 37)
 
 File: ./apps/site/view/_summary.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 3)
+  - Convert to a dynamic value. (line 3)
 
 File: ./apps/site/view/_skill.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 3)
+  - Convert to a dynamic value. (line 3)
 
 File: ./apps/site/view/_language.tmpl
 --------------------------------------------------------------------------------
-  - DYNAMIC VALUE (line 3)
+  - Convert to a dynamic value. (line 3)
 
 File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------
   - Reduce external libs. (line 49)
   - Write a test to cover this (line 57)
-  - IMPLEMENT IF NOT MODIFIED (line 94)
-  - Write a test to cover this (line 208)
-  - Write a test to cover this (line 241)
-  - Write a test to cover this (line 246)
-  - Write a test to cover this (line 249)
-  - Write a test to cover this (line 279)
-  - Generate pod. (line 463)
-  - Test::Pod. (line 464)
-  - Test::Pod::Coverage. (line 465)
+  - Is it useful the return value? (line 61)
+  - Convert this scalar to array, using "@". (line 82)
+  - Convert this object to hash, using "()". (line 89)
+  - IMPLEMENT IF NOT MODIFIED (line 97)
+  - Is it useful the return value? (line 98)
+  - Write a test to cover this (line 212)
+  - Write a test to cover this (line 245)
+  - Write a test to cover this (line 250)
+  - Write a test to cover this (line 253)
+  - Write a test to cover this (line 283)
+  - Is it useful the return value? (line 460)
+  - Generate pod. (line 468)
+  - Test::Pod. (line 469)
+  - Test::Pod::Coverage. (line 470)
+
+File: ./apps/api/view/skill.twig
+--------------------------------------------------------------------------------
+  - Convert to a dynamic value. (line 19)
 
 File: ./apps/api/logic/controller.php
 --------------------------------------------------------------------------------
@@ -154,7 +208,10 @@ File: ./apps/script/common.py
   - Change above (line 46)
   - Add documentation (line 48)
   - Change above (line 63)
-  - Remove this if (line 96)
+  - Convert to a dynamic value. (line 82)
+  - Remove this if (line 98)
+  - Convert to a dynamic value. (line 103)
+  - Convert to a dynamic value. (line 105)
 
 File: ./apps/script/benchmark.py
 --------------------------------------------------------------------------------
@@ -163,33 +220,63 @@ File: ./apps/script/benchmark.py
   - Change above (line 61)
   - Add documentation (line 63)
   - Move to a shared file among the others. (line 77)
-  - Line length. (line 119)
+  - Convert to a dynamic value. (line 119)
+  - Line length. (line 120)
 
 File: ./apps/script/check_accessibility.py
 --------------------------------------------------------------------------------
   - Move to a shared file among the others. (line 38)
-  - Align block (line 72)
-  - Align block (line 94)
-  - Align block (line 116)
-  - Align block (line 138)
-  - Align block (line 160)
-  - Use http://www.sidar.org/hera/index.php.it ? (line 177)
+  - Add description (line 68)
+  - Align block (line 73)
+  - Add description (line 91)
+  - Align block (line 96)
+  - Add description (line 114)
+  - Align block (line 119)
+  - Add description (line 137)
+  - Align block (line 142)
+  - Add description (line 160)
+  - Align block (line 165)
+  - Use http://www.sidar.org/hera/index.php.it ? (line 182)
 
 File: ./apps/script/check_validation.py
 --------------------------------------------------------------------------------
   - Move to a shared file among the others. (line 38)
-  - Align block (line 72)
-  - Align block (line 91)
-  - Align block (line 112)
-  - Align block (line 133)
-  - Align block (line 154)
-  - Align block (line 233)
-  - Align block (line 250)
-  - Http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN (line 265)
-  - Http://www.sidar.org/hera/ (line 266)
-  - YSlow (line 267)
-  - Page Speed (line 268)
+  - Add description (line 68)
+  - Align block (line 73)
+  - Add description (line 88)
+  - Align block (line 93)
+  - Add description (line 110)
+  - Align block (line 115)
+  - Add description (line 132)
+  - Align block (line 137)
+  - Add description (line 154)
+  - Align block (line 159)
+  - Add description (line 176)
+  - Add description (line 188)
+  - Uncomment? (line 209)
+  - Add description (line 223)
+  - This takes a while, it worth? (line 237)
+  - Align block (line 242)
+  - Align block (line 259)
+  - http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN (line 274)
+  - Http://www.sidar.org/hera/ (line 275)
+  - YSlow (line 276)
+  - Page Speed (line 277)
+
+File: ./bin/console/common.sh
+--------------------------------------------------------------------------------
+  - Add the list of suboptions (in a dynamically way). (line 227)
 
 File: ./bin/console/modules/tests.sh
 --------------------------------------------------------------------------------
-  - Find a way to make this works. (line 51)
+  - Find a way to make this works. (line 52)
+
+File: ./bin/console/modules/install.sh
+--------------------------------------------------------------------------------
+  - FIXME (line 107)
+  - FIXME (line 157)
+  - FIXME (line 166)
+
+File: ./bin/critic.pl
+--------------------------------------------------------------------------------
+  - Is it useful the return value? (line 47)

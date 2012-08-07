@@ -280,7 +280,16 @@ db.getCollection("experience").insert({
     },
     "projects": [], /* TODO: TBW */
     "methodologies": [], /* TODO: TBW */
-    "techniques": [], /* TODO: TBW */
+    "techniques": {
+        "Automated Builds":            {"months": 0}, /* TODO: TBW */
+        "Code Coverage":               {"months": 0}, /* TODO: TBW */
+        "Continuous Integration":      {"months": 0}, /* TODO: TBW */
+        "Pair Programming":            {"months": 0}, /* TODO: TBW */
+        "Pomodoro Technique":          {"months": 0}, /* TODO: TBW */
+        "Profiling":                   {"months": 0}, /* TODO: TBW */
+        "Source Code Analysis":        {"months": 0}, /* TODO: TBW */
+        "Unit and Functional Testing": {"months": 0}  /* TODO: TBW */
+    },
     "technologies": {
         "JavaScript": {"months": 2},
         "PHP":        {"months": 3},
