@@ -14,7 +14,7 @@
         <!-- TODO: Sorting by date. -->
         [% FOREACH entity IN data.education.entity %]
         <item>
-            <title>Education - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
+            <title>[% FILTER gettext %]Education[% END %] - [% entity.title.content %]</title>
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
             <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]
@@ -24,7 +24,7 @@
         [% END %]
         [% FOREACH entity IN data.experience.entity %]
         <item>
-            <title>Experience - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
+            <title>[% FILTER gettext %]Experience[% END %] - [% entity.title.content %]</title>
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
             <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]

@@ -25,7 +25,7 @@
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
     <item rdf:about="http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]">
-        <title>Education - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
+        <title>[% FILTER gettext %]Education[% END %] - [% entity.title.content %]</title>
         <link>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</link>
         <description></description>
     </item>
@@ -34,7 +34,7 @@
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
     <item rdf:about="http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]">
-        <title>Experience - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
+        <title>[% FILTER gettext %]Experience[% END %] - [% entity.title.content %]</title>
         <link>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</link>
         <description></description>
     </item>

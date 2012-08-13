@@ -17,10 +17,10 @@
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         <id>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</id>
-        <title>Education - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
+        <title>[% FILTER gettext %]Education[% END %] - [% entity.title.content %]</title>
         <published>[% entity.published %]</published>
         <updated>[% entity.updated %]</updated>
-        <category term="Education" /><!-- TODO: Convert to a dynamic value. -->
+        <category term="[% FILTER gettext %]Education[% END %]" />
     </entry>
     [% END %]
     [% FOREACH entity IN data.experience.entity %]
@@ -28,10 +28,10 @@
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         <id>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</id>
-        <title>Experience - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
+        <title>[% FILTER gettext %]Experience[% END %] - [% entity.title.content %]</title>
         <published>[% entity.published %]</published>
         <updated>[% entity.updated %]</updated>
-        <category term="Experience" /><!-- TODO: Convert to a dynamic value. -->
+        <category term="[% FILTER gettext %]Experience[% END %]" />
     </entry>
     [% END %]
 </feed>

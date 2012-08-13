@@ -1,6 +1,6 @@
 <section id="languages">
     <div class="page-header">
-        <h2>Languages</h2><!-- TODO: Convert to a dynamic value. -->
+        <h2>[% FILTER gettext %]Languages[% END %]</h2>
     </div>
 
     <div class="row">
@@ -14,7 +14,7 @@
                         [% entity.title.content %]
                     </h3>
                     [% IF entity.content.skills.0.level == "C2" %]
-                    <p itemprop="description">Mother Tongue</p>
+                    <p itemprop="description">[% FILTER gettext %]Mother Tongue[% END %]</p>
                     [% ELSE %]
                     <p itemprop="description">
                         <ul itemscope="itemscope" itemtype="http://schema.org/ItemList">

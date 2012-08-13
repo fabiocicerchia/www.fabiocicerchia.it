@@ -1,14 +1,14 @@
 # FABIO CICERCHIA - WEBSITE
-Copyright (C) 2012. All Rights reserved.  
-License   MIT <http://www.opensource.org/licenses/MIT>  
-Link      http://www.fabiocicerchia.it  
+Copyright (C) 2012. All Rights reserved.
+License   MIT <http://www.opensource.org/licenses/MIT>
+Link      http://www.fabiocicerchia.it
 
 [![Build Status](https://secure.travis-ci.org/fabiocicerchia/fabiocicerchia.github.com.png)](http://travis-ci.org/fabiocicerchia/fabiocicerchia.github.com)
 
 ## 1. General
 Here below there's the list of the all technologies, libraries, tools, coding
 standards and application design used to design and develop the global
-architecture of the web site.  
+architecture of the web site.
 That list doesn't include the more specific elements that, instead, has been
 described in the properly section.
 
@@ -85,16 +85,19 @@ These are the libraries that has been used:
 These are the tools that has been used:
 
  * Capistrano v2.12.0 - [Repo](https://github.com/capistrano/capistrano)
+ * gedit v3.4.1 - [Home](http://projects.gnome.org/gedit/)
  * Git Extras - [Repo](https://github.com/visionmedia/git-extras)
  * Git Flow v0.4.1 - [Repo](https://github.com/nvie/gitflow)
  * Git v1.7.9.5 - [Home](http://git-scm.com/) | [Doc](http://git-scm.com/documentation)
+ * Sublime Text v2.0.1 - [Home](http://www.sublimetext.com/)
+ * vim v7.3.429 - [Home](http://www.vim.org/)
 
 ---
 
 ## 2. API
 Here below there's the list of the all technologies, libraries, tools, coding
 standards and application design used to design and develop the REST API
-Service that provide the data to the Web Site.  
+Service that provide the data to the Web Site.
 That list doesn't include the generic elements that, instead, has been
 described in the properly section.
 
@@ -164,7 +167,7 @@ These are the tools that has been used:
 ## 3. Site
 Here below there's the list of the all technologies, libraries, tools, coding
 standards and application design used to design and develop the Web Site
-that read the data from the REST API Service.  
+that read the data from the REST API Service.
 That list doesn't include the generic elements that, instead, has been
 described in the properly section.
 
@@ -205,10 +208,12 @@ These are the external libraries that has been used:
  * Perl Modules
     * Data::Dumper - [Doc](http://search.cpan.org/~smueller/Data-Dumper-2.131/Dumper.pm)
     * Date::Format - [Doc](http://search.cpan.org/~gbarr/TimeDate-1.20/lib/Date/Format.pm)
+    * Date::Manip - [Doc](http://search.cpan.org/~sbeck/Date-Manip-6.32/lib/Date/Manip.pod)
     * Devel::Cover - [Doc](http://search.cpan.org/~pjcj/Devel-Cover-0.89/lib/Devel/Cover.pm)
     * Digest::MD5 - [Doc](http://search.cpan.org/~gaas/Digest-MD5-2.52/MD5.pm)
     * File::Basename - [Doc](http://search.cpan.org/~rjbs/perl-5.16.0/lib/File/Basename.pm)
     * File::Spec - [Doc](http://search.cpan.org/~kjalb/File-Spec/Spec.pm)
+    * Locale::TextDomain - [Doc](http://search.cpan.org/~guido/libintl-perl-1.20/lib/Locale/TextDomain.pm)
     * LWP - [Doc](http://search.cpan.org/~gaas/libwww-perl-6.04/lib/LWP.pm)
     * POSIX - [Doc](http://search.cpan.org/~rjbs/perl-5.16.0/ext/POSIX/lib/POSIX.pod)
     * Perl::Critic - [Home](http://perlcritic.tigris.org/)
@@ -222,6 +227,7 @@ These are the tools that has been used:
 
  * CPAN Minus v1.5007 - [Repo](https://github.com/miyagawa/cpanminus)
  * Google Minify v2.1.5 - [Home](http://code.google.com/p/minify/) | [Doc](http://code.google.com/p/minify/wiki/UserGuide)
+ * Poedit v1.4.6 - [Home](http://www.poedit.net)
  * perltidy v20120619 - [Home](http://perltidy.sourceforge.net) | [Doc](http://perltidy.sourceforge.net/perltidy.html)
 
 ### 3.7. SEO
@@ -242,7 +248,7 @@ These are the SEO enhancements that has been implemented:
 ## 4. Script
 Here below there's the list of the all technologies, libraries, tools, coding
 standards and application design used to design and develop the utility
-scripts.  
+scripts.
 That list doesn't include the generic elements that, instead, has been
 described in the properly section.
 
@@ -283,7 +289,7 @@ These are the tools that has been used:
 ## 5. Console
 Here below there's the list of the all technologies, libraries, tools, coding
 standards and application design used to design and develop the console tool
-to build the environment, run custom commands, and so on.  
+to build the environment, run custom commands, and so on.
 That list doesn't include the generic elements that, instead, has been
 described in the properly section.
 

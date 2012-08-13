@@ -36,14 +36,16 @@ package FabioCicerchiaSite;
 use strict;
 use warnings;
 use version; our $VERSION = qv('1.0');
+use Data::Dumper;
 use Date::Format;
 use Digest::MD5;
 use File::Basename;
+use Locale::TextDomain('messages', dirname(__FILE__) . '/../locale/');
 use LWP;
-use POSIX qw(mktime);
+use POSIX qw(mktime :locale_h);
 use Template;
 use XML::Simple;
-
+use Template::Filters;
 # TODO: Reduce external libs.
 
 # {{{ Method: action404 --------------------------------------------------------
@@ -84,6 +86,23 @@ sub action_show {
     my $etag          = $general_data->[2];
     my $language      = $general_data->[3];
 
+    my @langTokens = split /,/smx, $language;
+    if (scalar(@langTokens) > 1) {
+        $language = $langTokens[0];
+        $language =~ s/-(..)$/_\U$1/smx;
+
+        # TODO: Remove this ugly workaround.
+        if ($language == 'en_EN') {
+            $language = 'en_GB';
+        }
+    }
+
+    my $gettextLanguage = $language . '.utf8';
+    $ENV{'LANG'} = $gettextLanguage;
+    $ENV{'LANGUAGE'} = $gettextLanguage;
+    $ENV{'LC_ALL'} = $gettextLanguage;
+    setlocale(LC_ALL, $gettextLanguage); # TODO: needed "libintl-perl"
+
     # TODO: Convert this object to hash, using "()".
     my $vars = {
         'HTTP_HOST'     => $ENV{'HTTP_HOST'},
@@ -92,9 +111,17 @@ sub action_show {
         'language'      => $language
     };
 
+    # http://template-toolkit.org/docs/modules/Template/Filters.html#CONFIGURATION_OPTIONS
+    my $filters = Template::Filters->new({
+        FILTERS => {
+            'gettext' => \&gettext
+        },
+    });
+
     # TODO: IMPLEMENT IF NOT MODIFIED
     # TODO: Is it useful the return value?
-    my $r = print 'Cache-Control: public, max-age=28800, smax-age=28800' . "\n";
+    my $r;
+    $r = print 'Cache-Control: public, max-age=28800, smax-age=28800' . "\n";
     $r = print 'Last-Modified: '
       . time2str( '%a, %d %b %Y %H:%M:%S GMT', $last_modified ) . "\n";
     $r = print 'ETag: "' . $etag . q{"} . "\n";
@@ -106,8 +133,11 @@ sub action_show {
     $r = print "\n";
 
     # http://template-toolkit.org/docs/tutorial/Web.html
-    my $template =
-      Template->new( INCLUDE_PATH => [ dirname(__FILE__) . '/../view' ] );
+    my $template = Template->new(
+        INCLUDE_PATH => [ dirname(__FILE__) . '/../view' ],
+        EVAL_PERL    => 1,
+        LOAD_FILTERS => [ $filters ],
+    );
 
     $template->process( $self->{'formatCurrent'} . '.tmpl', $vars );
 
@@ -256,12 +286,33 @@ sub get_item_data {
         );
     }
 
+    my $lang = $response->headers()->{'content-language'};
+    $lang =~ s/.*,([^,]+)$/$1/smx;
+    if (length($lang) == 2) {
+        $lang .= '_' . uc($lang);
+    }
+
     $ctx->add( $response->content() );
 
     return [
         $data,           $ts,
-        $ctx->hexdigest, $response->headers()->{'content-language'}
+        $ctx->hexdigest, $lang
     ];
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ Method: gettext ----------------------------------------------------------
+# Usage      : FabioCicerchiaSite->gettext()
+# Purpose    : Translate a label with gettext.
+# Returns    : A string, the translated label.
+# Parameters : A string, the label.
+# Throws     : No exceptions.
+# See Also   : __()
+# TODO: Add POD.
+sub gettext {
+    my $text = shift;
+
+    return __($text);
 }
 # }}} --------------------------------------------------------------------------
 

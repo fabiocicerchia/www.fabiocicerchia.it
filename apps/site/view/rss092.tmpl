@@ -14,24 +14,24 @@
         <!-- TODO: Sorting by date. -->
         [% FOREACH entity IN data.education.entity %]
         <item>
-            <title>Education - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
+            <title>[% FILTER gettext %]Education[% END %] - [% entity.title.content %]</title>
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
             <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]
             <lastBuildDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</lastBuildDate>
             <description></description>
-            <category>Education</category><!-- TODO: Convert to a dynamic value. -->
+            <category>[% FILTER gettext %]Education[% END %]</category>
         </item>
         [% END %]
         [% FOREACH entity IN data.experience.entity %]
         <item>
-            <title>Experience - [% entity.title.content %]</title><!-- TODO: Convert to a dynamic value. -->
+            <title>[% FILTER gettext %]Experience[% END %] - [% entity.title.content %]</title>
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
             <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]
             <lastBuildDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</lastBuildDate>
             <description></description>
-            <category>Experience</category><!-- TODO: Convert to a dynamic value. -->
+            <category>[% FILTER gettext %]Experience[% END %]</category>
         </item>
         [% END %]
     </channel>

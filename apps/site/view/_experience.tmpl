@@ -1,8 +1,9 @@
 [% USE date %]
+[% manip = date.manip %]
 
 <section id="experience">
     <div class="page-header">
-        <h2>Experience</h2><!-- TODO: Convert to a dynamic value. -->
+        <h2>[% FILTER gettext %]Experience[% END %]</h2>
     </div>
 
     <div class="row">
@@ -19,10 +20,10 @@
                 </div>
                 <div class="dates">
                     [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>
+                    <span class="dtstart">[% date.format(manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
                     [% IF entity.updated && entity.updated != entity.published %]
                     [% end = entity.updated | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtend">[% date.format(end, "%a, %d %b %Y") %]</span>
+                    <span class="dtend">[% date.format(manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
                     [% END %]
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
@@ -56,7 +57,7 @@
                 </div>
                 [% IF entity.content.activities.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Activities</dt><!-- TODO: Convert to a dynamic value. -->
+                    <dt itemprop="name">[% FILTER gettext %]Activities[% END %]</dt>
                     [% FOREACH activity = entity.content.activities %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                         [% activity %]
@@ -79,12 +80,12 @@
                             <!-- TODO: Summary -->
                             [% start = project.date.start | replace('T', ' ') | replace('Z', '') %]
                             <span class="dtstart">
-                                [% date.format(start, "%a, %d %b %Y") %]
+                                [% date.format(manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]
                             </span>
                             [% IF project.date.end && project.date.end != project.date.start %]
                             [% end = project.date.end | replace('T', ' ') | replace('Z', '') %]
                             <span class="dtend">
-                                [% date.format(end, "%a, %d %b %Y") %]
+                                [% date.format(manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]
                             </span>
                             [% END %]
                             [% IF project.link %]
@@ -94,7 +95,7 @@
                             [% END %]
                             [% IF project.methodologies.size %]
                             <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                <dt itemprop="name">Methodologies</dt><!-- TODO: Convert to a dynamic value. -->
+                                <dt itemprop="name">[% FILTER gettext %]Methodologies[% END %]</dt>
                                 [% FOREACH methodology IN project.methodologies %]
                                 <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                                     [% methodology %]
@@ -104,7 +105,7 @@
                             [% END %]
                             [% IF project.technologies.size %]
                             <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                <dt itemprop="name">Technologies</dt><!-- TODO: Convert to a dynamic value. -->
+                                <dt itemprop="name">[% FILTER gettext %]Technologies[% END %]</dt>
                                 [% FOREACH technology IN project.technologies %]
                                 <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                                     [% technology %]
@@ -114,7 +115,7 @@
                             [% END %]
                             [% IF project.tools.size %]
                             <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                <dt itemprop="name">Tools</dt><!-- TODO: Convert to a dynamic value. -->
+                                <dt itemprop="name">[% FILTER gettext %]Tools[% END %]</dt>
                                 [% FOREACH tool IN project.tools %]
                                 <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                                     [% tool %]
@@ -124,7 +125,7 @@
                             [% END %]
                             [% IF entity.content.techniques.size %]
                             <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                <dt itemprop="name">Techniques</dt><!-- TODO: Convert to a dynamic value. -->
+                                <dt itemprop="name">[% FILTER gettext %]Techniques[% END %]</dt>
                                 [% FOREACH technique IN entity.content.techniques %]
                                 <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                                     [% technique %]
@@ -139,7 +140,7 @@
                 [% END %]
                 [% IF entity.content.methodologies.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Methodologies</dt><!-- TODO: Convert to a dynamic value. -->
+                    <dt itemprop="name">[% FILTER gettext %]Methodologies[% END %]</dt>
                     [% FOREACH methodology IN entity.content.methodologies %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                         [% methodology %]
@@ -149,7 +150,7 @@
                 [% END %]
                 [% IF entity.content.technologies.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Technologies</dt><!-- TODO: Convert to a dynamic value. -->
+                    <dt itemprop="name">[% FILTER gettext %]Technologies[% END %]</dt>
                     [% FOREACH technology IN entity.content.technologies %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                         [% technology %]
@@ -159,7 +160,7 @@
                 [% END %]
                 [% IF entity.content.tools.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Tools</dt><!-- TODO: Convert to a dynamic value. -->
+                    <dt itemprop="name">[% FILTER gettext %]Tools[% END %]</dt>
                     [% FOREACH tool IN entity.content.tools %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                         [% tool %]
@@ -169,7 +170,7 @@
                 [% END %]
                 [% IF entity.content.techniques.size %]
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Techniques</dt><!-- TODO: Convert to a dynamic value. -->
+                    <dt itemprop="name">[% FILTER gettext %]Techniques[% END %]</dt>
                     [% FOREACH technique IN entity.content.techniques %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
                         [% technique %]

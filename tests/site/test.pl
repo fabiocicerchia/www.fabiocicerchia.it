@@ -45,12 +45,15 @@ do File::Spec->rel2abs(dirname(__FILE__)) . '/../../apps/site/logic/class.pl';
 # Check the requirements
 require_ok('Data::Dumper');
 require_ok('Date::Format');
+require_ok('Date::Manip');
 require_ok('Devel::Cover');
 require_ok('Digest::MD5');
 require_ok('File::Basename');
 require_ok('File::Spec');
+require_ok('Locale::TextDomain');
 require_ok('LWP');
 require_ok('POSIX');
+require_ok('Perl::Critic');
 require_ok('Pod::Coverage');
 require_ok('Template');
 require_ok('Test::More');
@@ -59,17 +62,18 @@ require_ok('XML::Simple');
 my $class_name = 'FabioCicerchiaSite';
 
 subtest 'Unit Testing' => sub {
-    can_ok( $class_name, qw(new) );
-    can_ok( $class_name, qw(set_request) );
-    can_ok( $class_name, qw(show) );
-    can_ok( $class_name, qw(execute_action) );
     can_ok( $class_name, qw(action404) );
     can_ok( $class_name, qw(action_show) );
-    can_ok( $class_name, qw(get_data) );
-    can_ok( $class_name, qw(elaborate_data) );
-    can_ok( $class_name, qw(get_item_data) );
-    can_ok( $class_name, qw(retrieve_xml) );
     can_ok( $class_name, qw(call_api) );
+    can_ok( $class_name, qw(elaborate_data) );
+    can_ok( $class_name, qw(execute_action) );
+    can_ok( $class_name, qw(get_data) );
+    can_ok( $class_name, qw(get_item_data) );
+    can_ok( $class_name, qw(gettext) );
+    can_ok( $class_name, qw(new) );
+    can_ok( $class_name, qw(retrieve_xml) );
+    can_ok( $class_name, qw(set_request) );
+    can_ok( $class_name, qw(show) );
 };
 
 # TODO: Refactor this code below.

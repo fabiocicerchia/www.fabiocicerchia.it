@@ -1,9 +1,10 @@
 [% USE date %]
+[% manip = date.manip %]
 [% USE String %]
 
 <section id="education">
     <div class="page-header">
-        <h2>Education</h2><!-- TODO: Convert to a dynamic value. -->
+        <h2>[% FILTER gettext %]Education[% END %]</h2>
     </div>
 
     <div class="row">
@@ -20,10 +21,10 @@
                 </h3>
                 <div class="dates">
                     [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtstart">[% date.format(start, "%a, %d %b %Y") %]</span>
+                    <span class="dtstart">[% date.format(manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
                     [% IF entity.updated && entity.updated != entity.published %]
                     [% end = entity.updated | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtend">[% date.format(end, "%a, %d %b %Y") %]</span>
+                    <span class="dtend">[% date.format(manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
                     [% END %]
                 </div>
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
@@ -34,7 +35,7 @@
                     </a>
                 </div>
                 <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">Activities</dt><<!-- TODO: Convert to a dynamic value. -->
+                    <dt itemprop="name">[% FILTER gettext %]Activities[% END %]</dt>
                     [% FOREACH activity = entity.content.activities %]
                     <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</dd>
                     [% END %]

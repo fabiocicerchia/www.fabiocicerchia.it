@@ -185,30 +185,34 @@ install_perl_modules() {
     print_subheader "INSTALLING PERL MODULES"
     sudo cpanm -n --installdeps install Data::Dumper || handle_errors $?
     sudo cpanm -n --installdeps install Date::Format || handle_errors $?
+    sudo cpanm -n --installdeps install Date::Manip || handle_errors $?
     sudo cpanm -n --installdeps install Devel::Cover || handle_errors $?
     sudo cpanm -n --installdeps install Digest::MD5 || handle_errors $?
     sudo cpanm -n --installdeps install File::Basename || handle_errors $?
     sudo cpanm -n --installdeps install File::Spec || handle_errors $?
+    sudo cpanm -n --installdeps install Locale::TextDomain || handle_errors $?
     sudo cpanm -n --installdeps install LWP || handle_errors $?
     sudo cpanm -n --installdeps install POSIX || handle_errors $?
+    sudo cpanm -n --installdeps install Perl::Critic || handle_errors $?
     sudo cpanm -n --installdeps install Pod::Coverage || handle_errors $?
     sudo cpanm -n --installdeps install Template || handle_errors $?
     sudo cpanm -n --installdeps install Test::More || handle_errors $?
     sudo cpanm -n --installdeps install XML::Simple || handle_errors $?
-    sudo cpanm -n --installdeps install Perl::Critic || handle_errors $?
     sudo cpanm -n install Data::Dumper || handle_errors $?
     sudo cpanm -n install Date::Format || handle_errors $?
+    sudo cpanm -n install Date::Manip || handle_errors $?
     sudo cpanm -n install Devel::Cover || handle_errors $?
     sudo cpanm -n install Digest::MD5 || handle_errors $?
     sudo cpanm -n install File::Basename || handle_errors $?
     sudo cpanm -n install File::Spec || handle_errors $?
+    sudo cpanm -n install Locale::TextDomain || handle_errors $?
     sudo cpanm -n install LWP || handle_errors $?
     sudo cpanm -n install POSIX || handle_errors $?
+    sudo cpanm -n install Perl::Critic || handle_errors $?
     sudo cpanm -n install Pod::Coverage || handle_errors $?
     sudo cpanm -n install Template || handle_errors $?
     sudo cpanm -n install Test::More || handle_errors $?
     sudo cpanm -n install XML::Simple || handle_errors $?
-    sudo cpanm -n install Perl::Critic || handle_errors $?
 
     return $?
 }

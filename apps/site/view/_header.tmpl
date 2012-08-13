@@ -20,7 +20,7 @@
                 [% data.information.entity.0.content.gender %]
             </span>
         </li>
-        [% time = data.information.entity.0.content.birthday | replace('T', ' ') | replace('Z', '') %]
+        [% time = data.information.entity.0.content.birthday | trim | replace('T', ' ') | replace('Z', '') %]
         <li>
             <time class="bday" itemprop="birthDate" datetime="[% time %]">
                 <i class="icon-calendar"></i>
@@ -61,44 +61,43 @@
         <ul class="nav nav-pills" itemscope="itemscope" itemtype="http://schema.org/ItemList">
             <li class="brand">Fabio Cicerchia</li>
             <li itemprop="itemListElement">
-                <a accesskey="s" href="#summary" title="Summary">
+                <a accesskey="s" href="#summary" title="[% FILTER gettext %]Summary[% END %]">
                     <i class="icon-bullhorn"></i>
-                    Summary
+                    [% FILTER gettext %]Summary[% END %]
                 </a>
             </li>
             <li itemprop="itemListElement">
-                <a accesskey="k" href="#skills" title="Skills">
+                <a accesskey="k" href="#skills" title="[% FILTER gettext %]Skills[% END %]">
                     <i class="icon-tasks"></i>
-                    Skills
+                    [% FILTER gettext %]Skills[% END %]
                 </a>
             </li>
             <li itemprop="itemListElement">
-                <a accesskey="e" href="#education" title="Education">
+                <a accesskey="e" href="#education" title="[% FILTER gettext %]Education[% END %]">
                     <i class="icon-book"></i>
-                    Education
+                    [% FILTER gettext %]Education[% END %]
                 </a>
             </li>
             <li itemprop="itemListElement">
-                <a accesskey="x" href="#experience" title="Experience">
+                <a accesskey="x" href="#experience" title="[% FILTER gettext %]Experience[% END %]">
                     <i class="icon-briefcase"></i>
-                    Experience
+                    [% FILTER gettext %]Experience[% END %]
                 </a>
             </li>
             <li itemprop="itemListElement">
-                <a accesskey="l" href="#languages" title="Languages">
+                <a accesskey="l" href="#languages" title="[% FILTER gettext %]Languages[% END %]">
                     <i class="icon-flag"></i>
-                    Languages
+                    [% FILTER gettext %]Languages[% END %]
                 </a>
             </li>
-            <li class="divider-vertical"></li>
-            <li class="dropdown"><!-- TODO: Add CSS or JS (Bad Rendering) -->
+            <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Languages
+                    [% FILTER gettext %]Switch Language[% END %]
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li>English</li>
-                    <li>Italiano</li>
+                    <li><a href="#">English</a></li>
+                    <li><a href="#">Italiano</a></li>
                 </ul>
             </li>
         </ul>

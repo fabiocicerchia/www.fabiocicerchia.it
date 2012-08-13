@@ -1,8 +1,13 @@
-================================================================================
+-------------------------------------------------------------------------------
 CHANGELOG
-================================================================================
+-------------------------------------------------------------------------------
+
+2012-08-07
+    [e464222] removed some todos (by Fabio Cicerchia <info@fabiocicerchia.it>)
 
 2012-08-02
+    [e222263] added some todos :| (by Fabio Cicerchia <info@fabiocicerchia.it>)
+    [313cd4f] removed some todo (by Fabio Cicerchia <info@fabiocicerchia.it>)
     [d56d4d6] first draft of travis ci conf (by Fabio Cicerchia 
               <info@fabiocicerchia.it>)
 

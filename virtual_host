@@ -86,7 +86,7 @@
 
           RewriteRule ^minified/(.+)     minify/min/?g=$1   [L]
 
-          RewriteRule ^(.*)$             index.pl?format=$1 [NC,L]
+          RewriteRule ^(.*)$             index.pl?format=$1 [NC,QSA,L]
         </IfModule>
    </Directory>
 
