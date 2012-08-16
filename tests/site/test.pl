@@ -38,6 +38,7 @@ use Test::More qw(no_plan);
 use Devel::Cover;
 use File::Basename;
 use File::Spec;
+use FileHandle;
 
 # Check the files
 do File::Spec->rel2abs(dirname(__FILE__)) . '/../../apps/site/logic/class.pl';
@@ -60,6 +61,11 @@ require_ok('Test::More');
 require_ok('XML::Simple');
 
 my $class_name = 'FabioCicerchiaSite';
+
+# to make STDOUT flush immediately, simply set the variable this can be useful
+# if you are writing to STDOUT in a loop many times the buffering will cause
+# unexpected output results.
+$| = 1;
 
 subtest 'Unit Testing' => sub {
     can_ok( $class_name, qw(action404) );
@@ -138,7 +144,11 @@ subtest 'Functional Testing' => sub {
     );
 
     my $obj = new_ok($class_name);
+
+    open (STDOUT, '>> /dev/null');
+    STDOUT->autoflush(1);
     $obj->show();
+    close(STDOUT);
 
     local %ENV = (
         'SCRIPT_NAME',
@@ -208,7 +218,11 @@ subtest 'Functional Testing' => sub {
     );
 
     $obj = new_ok($class_name);
+
+    open (STDOUT, '>> /dev/null');
+    STDOUT->autoflush(1);
     $obj->show();
+    close(STDOUT);
 
     pass('Functional Testing');
 };

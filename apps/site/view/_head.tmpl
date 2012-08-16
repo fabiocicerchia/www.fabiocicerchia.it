@@ -1,3 +1,4 @@
+[% short_code = entity.content.code.short %]
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8" />
 <base href="http://[% HTTP_HOST %]" />
@@ -5,32 +6,26 @@
 <link href="http://microformats.org/profile/hcalendar" rel="profile" />
 <link href="http://microformats.org/profile/hcard" rel="profile" />
 <link href="http://microformats.org/profile/hresume" rel="profile" />
-<link href="https://plus.google.com/110733047203682160091" rel="author" title="Fabio Cicerchia on Google+" /><!-- TODO: Convert to a dynamic value. -->
+<link href="https://plus.google.com/110733047203682160091" rel="author" title="[% FILTER gettext %]Fabio Cicerchia on Google+[% END %]" />
 <link href="/humans.txt" rel="author" type="text/plain" />
 <link href="/minified/css" rel="stylesheet">
 [% FOREACH entity IN data.language.entity %]
-<!-- TODO: Use a variables to make this line shorter. -->
-<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %][% END %]" hreflang="[% entity.content.code.short %]" rel="alternate" title="[% entity.title.content %]" />
+<link href="/[% IF short_code != "en" %][% short_code %][% END %]" hreflang="[% short_code %]" rel="alternate" title="[% entity.title.content %]" />
 [% END %]
 [% FOREACH entity IN data.language.entity %]
-<!-- TODO: Use a variables to make this line shorter. -->
-<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]atom" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed ATOM ([% entity.title.content %])" type="application/atom+xml" />
+<link href="/[% IF short_code != "en" %][% short_code %]/[% END %]atom" hreflang="[% short_code %]" rel="alternate" title="Feed ATOM ([% entity.title.content %])" type="application/atom+xml" />
 [% END %]
 [% FOREACH entity IN data.language.entity %]
-<!-- TODO: Use a variables to make this line shorter. -->
-<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]rss091" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed RSS 0.91 ([% entity.title.content %])" type="application/rss+xml" />
+<link href="/[% IF short_code != "en" %][% short_code %]/[% END %]rss091" hreflang="[% short_code %]" rel="alternate" title="Feed RSS 0.91 ([% entity.title.content %])" type="application/rss+xml" />
 [% END %]
 [% FOREACH entity IN data.language.entity %]
-<!-- TODO: Use a variables to make this line shorter -->
-<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]rss092" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed RSS 0.92 ([% entity.title.content %])" type="application/rss+xml" />
+<link href="/[% IF short_code != "en" %][% short_code %]/[% END %]rss092" hreflang="[% short_code %]" rel="alternate" title="Feed RSS 0.92 ([% entity.title.content %])" type="application/rss+xml" />
 [% END %]
 [% FOREACH entity IN data.language.entity %]
-<!-- TODO: Use a variables to make this line shorter -->
-<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]rss1" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed RSS 1.0 ([% entity.title.content %])" type="application/rss+xml" />
+<link href="/[% IF short_code != "en" %][% short_code %]/[% END %]rss1" hreflang="[% short_code %]" rel="alternate" title="Feed RSS 1.0 ([% entity.title.content %])" type="application/rss+xml" />
 [% END %]
 [% FOREACH entity IN data.language.entity %]
-<!-- TODO: Use a variables to make this line shorter -->
-<link href="/[% IF entity.content.code.short != "en" %][% entity.content.code.short %]/[% END %]rss2" hreflang="[% entity.content.code.short %]" rel="alternate" title="Feed RSS 2.0 ([% entity.title.content %])" type="application/rss+xml" />
+<link href="/[% IF short_code != "en" %][% short_code %]/[% END %]rss2" hreflang="[% short_code %]" rel="alternate" title="Feed RSS 2.0 ([% entity.title.content %])" type="application/rss+xml" />
 [% END %]
 <meta name="dcterms.creator" content="Fabio Cicerchia" />
 <meta content="[% data.information.entity.0.summary.content | replace("\n", " ") | replace("[.].*", ".") %]" name="dcterms.description" />

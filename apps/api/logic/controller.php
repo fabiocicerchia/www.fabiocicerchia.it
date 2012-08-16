@@ -64,8 +64,11 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
         return;
     }
 
-    $response = new Response($e->getMessage(), $code);
-    $response->headers->set('Content-Language', 'en'); // TODO: make dynamic the language.
+    // TODO: Use translation (http://silex.sensiolabs.org/doc/providers/translation.html).
+    //$message  = 'Error, you are unauthorised to know more about it.';
+    $message = $e->getMessage();
+    $response = new Response($message, $code);
+    $response->headers->set('Content-Language', 'en');
 
     return $response;
 };
@@ -110,7 +113,7 @@ $closures['root'] = function () use ($app) {
     // Response
     $response = new Response($content);
     $response->headers->set('Content-Type',     $data['mime_type']);
-    $response->headers->set('Content-Language', 'en'); // TODO: make dynamic the language.
+    $response->headers->set('Content-Language', 'en');
 
     return $response;
 };
@@ -130,7 +133,6 @@ $closures['root'] = function () use ($app) {
  * @see   Symfony\Component\HttpFoundation\Response::setSharedMaxAge()
  * @see   Symfony\Component\HttpFoundation\Response::setETag()
  * @see   Symfony\Component\HttpFoundation\Response::isNotModified()
- * @see   FabioCicerchia\Api\Utils::getCurrentLanguage()
  * @see   Symfony\Component\HttpFoundation\Response::setContent()
  * @uses  Silex\Application $app The Silex Application instance.
  * @since Version 0.1
@@ -161,25 +163,11 @@ $closures['api'] = function ($api_name) use ($app) {
     // Response
     $response = new Response();
     if ($app['debug'] === false) {
-        // TODO: start refactoring, cut from here -----------------------------
-        $firstRecord  = $data['entities'][array_keys($data['entities'])[0]];
-        if (isset($firstRecord['date']) === true) {
-            if (isset($firstRecord['date']['end']) === true) {
-                $time = $firstRecord['date']['end']->sec;
-            } elseif (isset($firstRecord['date']['start']) === true) {
-                $time = $firstRecord['date']['start']->sec;
-            }
-        }
-
-        $mongodb_file = ROOT_PATH . 'db/mongo-curriculum.js';
-        $lastModified = isset($time) === true
-                        ? $time
-                        : filemtime($mongodb_file);
-        $lastModified = gmdate('D, d M Y H:i:s', $lastModified) . ' GMT';
-        // TODO: end refactoring, cut to here ---------------------------------
+        $lastModified = Utils::getLastModified($data);
 
         $response->setMaxAge(28800);
-        $response->setSharedMaxAge(28800); // This set the cache to public.
+        // This set the cache to public.
+        $response->setSharedMaxAge(28800);
         $response->setETag(md5(serialize($data)));
         $response->headers->set('Last-Modified', $lastModified);
     }
@@ -192,28 +180,8 @@ $closures['api'] = function ($api_name) use ($app) {
         $response->headers->set('Content-Type', $mime_type);
 
         // Language
-        // TODO: start refactoring, cut from here -----------------------------
-        $current_lang        = 'en';
-        $available_languages = [$current_lang => $current_lang];
-        $accept_language     = $app['request']->headers->get('accept-language');
-        if (empty($accept_language) === false) {
-            $db_languages = $database->selectCollection('language')
-                                     ->find([], ['code' => true])->toArray();
-
-            foreach ($db_languages as $language_code) {
-                $short_lang = preg_replace('/_.+/', '', $language_code['code']);
-                $available_languages[$short_lang] = $language_code['code'];
-            }
-
-            $current_lang = Utils::getCurrentLanguage(
-                $available_languages,
-                $accept_language
-            );
-        }
-        // TODO: end refactoring, cut to here ---------------------------------
+        list($current_lang, $to_lang) = Utils::getLanguage($app, $database);
         $response->headers->set('Content-Language', $current_lang);
-
-        $to_lang = $available_languages[$current_lang];
 
         $data['entities'] = Utils::convertForI18n($data['entities'], $to_lang);
         $data['email']    = $database->selectCollection('information')
@@ -244,7 +212,7 @@ $closures['api_definition_syntax'] = function () use ($app) {
     $response = new Response($content);
 
     $response->headers->set('Content-Type',     'text/plain');
-    $response->headers->set('Content-Language', 'en'); // TODO: make dynamic the language.
+    $response->headers->set('Content-Language', 'en');
 
     return $response;
 };

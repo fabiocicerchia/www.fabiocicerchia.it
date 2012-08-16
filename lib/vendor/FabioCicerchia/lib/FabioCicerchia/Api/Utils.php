@@ -123,6 +123,78 @@ class Utils
         return $current_lang;
     }
     // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: getLanguage -------------------------------------------------
+    /**
+     * Retrieve the language based on the HTTP header "Accept-Language" and the
+     * value in the DB.
+     *
+     * @param \Silex\Application         $app      The Silex Application instance.
+     * @param \Doctrine\MongoDB\Database $database The MongoDB Database instance.
+     *
+     * @see    FabioCicerchia\Api\Utils::getCurrentLanguage()
+     * @since  Version 0.1
+     *
+     * @return string
+     */
+    // TODO: Add tests.
+    public static function getLanguage(
+        \Silex\Application $app,
+        \Doctrine\MongoDB\Database $database
+    ) {
+        $current_lang        = 'en';
+        $available_languages = [$current_lang => $current_lang];
+        $accept_language     = $app['request']->headers->get('accept-language');
+        if (empty($accept_language) === false) {
+            $db_languages = $database->selectCollection('language')
+                                     ->find([], ['code' => true])->toArray();
+
+            foreach ($db_languages as $language_code) {
+                $short_lang = preg_replace('/_.+/', '', $language_code['code']);
+                $available_languages[$short_lang] = $language_code['code'];
+            }
+
+            $current_lang = self::getCurrentLanguage(
+                $available_languages,
+                $accept_language
+            );
+        }
+
+        return [$current_lang, $available_languages[$current_lang]];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: getLastModified ---------------------------------------------
+    /**
+     * Retrieve the timestamp of the last modified date.
+     *
+     * @param array $data The data.
+     *
+     * @since Version 0.1
+     *
+     * @return integer
+     */
+    // TODO: Add tests.
+    public static function getLastModified(array $data)
+    {
+        $firstRecord  = $data['entities'][array_keys($data['entities'])[0]];
+        if (isset($firstRecord['date']) === true) {
+            if (isset($firstRecord['date']['end']) === true) {
+                $time = $firstRecord['date']['end']->sec;
+            } elseif (isset($firstRecord['date']['start']) === true) {
+                $time = $firstRecord['date']['start']->sec;
+            }
+        }
+
+        $mongodb_file = ROOT_PATH . 'db/mongo-curriculum.js';
+        $lastModified = isset($time) === true
+                        ? $time
+                        : filemtime($mongodb_file);
+        $lastModified = gmdate('D, d M Y H:i:s', $lastModified) . ' GMT';
+
+        return $lastModified;
+    }
+    // }}} ---------------------------------------------------------------------
     // }}} =====================================================================
 
     // {{{ Methods - Protected =================================================

@@ -33,245 +33,259 @@
 
 from __future__ import print_function
 import urllib
-from common import validate
+from common import *
 
-# TODO: move to a shared file among the others.
-pages = {
-    'url_hp': {
-        'EN - Homepage (HTML5)': '/?bot=1',
-        'EN - Homepage (XHTML)': '/xhtml?bot=1',
-        'EN - Homepage (PRINT)': '/print?bot=1',
-        'IT - Homepage (HTML5)': '/it/?bot=1',
-        'IT - Homepage (XHTML)': '/it/xhtml?bot=1',
-        'IT - Homepage (PRINT)': '/it/print?bot=1'
-    },
-    'css': {
-        'style.css': '/minified/css/style.css',
-        'print.css': '/minified/css/print.css'
-    },
-    'feed': {
-        'EN - RSS 0.91': '/rss091',
-        'EN - RSS 0.92': '/rss092',
-        'EN - RSS 1.0':  '/rss1',
-        'EN - RSS 2.0':  '/rss2',
-        'EN - ATOM':     '/atom',
-        'IT - RSS 0.91': '/it/rss091',
-        'IT - RSS 0.92': '/it/rss092',
-        'IT - RSS 1.0':  '/it/rss1',
-        'IT - RSS 2.0':  '/it/rss2',
-        'IT - ATOM':     '/it/atom'
-    }
-}
+# TODO: http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN
+# TODO: http://www.sidar.org/hera/
+# TODO: YSlow
+# TODO: Page Speed
 
 print('CHECK VALIDATION')
 
-# TODO: Add description
-print('Validate W3C:')
-for k, v in pages['url_hp'].iteritems():
+print('Validate HTTP Headers:')
+for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: align block
+    url_param = urllib.urlencode({'uri': '%URI%'})
+    xpath     = './/*[@class="bad msg"]/text()'
+
+    res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
+                   True)
+
+    print(res)
+
+###############################################################################
+# Web Site Validation of: Homepage
+###############################################################################
+print('Validate W3C:')
+for k, v in pages['site']['url_hp'].iteritems():
+    print('    ' + k + ': ', end='')
+
     url_param = urllib.urlencode({
-        'uri': '%URI%',
-        'charset': '(detect automatically)',
-        'doctype': 'Inline',
-        'group': 0,
+        'uri':       '%URI%',
+        'charset':   '(detect automatically)',
+        'doctype':   'Inline',
+        'group':      0,
         'user-agent': 'W3C_Validator/1.2'
     })
-    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+    xpath  = './/*[@id="form"]//*[text()="Result:"]/'
     xpath += 'following-sibling::*[1]/text()'
+
     res = validate('GET', 'http://validator.w3.org/check?', url_param, v,
                    xpath, '.*Passed.*')
 
     print(res)
 
-# TODO: Add description
+###############################################################################
+# Web Site Validation of: CSS v3
+###############################################################################
 print('Validate CSS 3:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: align block
     url_param = urllib.urlencode({
-        'uri': '%URI%',
-        'profile': 'css3',
-        'usermedium': 'all',
-        'warning': 2,
+        'uri':         '%URI%',
+        'profile':     'css3',
+        'usermedium':  'all',
+        'warning':     2,
         'vextwarning': '',
-        'lang': 'en'
+        'lang':        'en'
     })
-    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/'
     xpath += '*[local-name()="h3"]/text()'
+
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
                    '.*Congratulations! No Error Found\..*')
 
     print(res)
 
-# TODO: Add description
+###############################################################################
+# Web Site Validation of: CSS v2.1
+###############################################################################
 print('Validate CSS 2.1:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: align block
     url_param = urllib.urlencode({
-        'uri': '%URI%',
-        'profile': 'css21',
-        'usermedium': 'all',
-        'warning': 2,
+        'uri':         '%URI%',
+        'profile':     'css21',
+        'usermedium':  'all',
+        'warning':     2,
         'vextwarning': '',
-        'lang': 'en'
+        'lang':        'en'
     })
-    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/'
     xpath += '*[local-name()="h3"]/text()'
+
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
                    '.*Congratulations! No Error Found\..*')
 
     print(res)
 
-# TODO: Add description
+###############################################################################
+# Web Site Validation of: CSS v2
+###############################################################################
 print('Validate CSS 2:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: align block
     url_param = urllib.urlencode({
-        'uri': '%URI%',
-        'profile': 'css2',
+        'uri':        '%URI%',
+        'profile':    'css2',
         'usermedium': 'all',
-        'warning': 2,
+        'warning':     2,
         'vextwarning': '',
-        'lang': 'en'
+        'lang':        'en'
     })
-    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/'
     xpath += '*[local-name()="h3"]/text()'
+
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
                    '.*Congratulations! No Error Found\..*')
 
     print(res)
 
-# TODO: Add description
+###############################################################################
+# Web Site Validation of: CSS vMobile
+###############################################################################
 print('Validate CSS Mobile:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: align block
     url_param = urllib.urlencode({
-        'uri': '%URI%',
-        'profile': 'mobile',
-        'usermedium': 'all',
-        'warning': 2,
+        'uri':         '%URI%',
+        'profile':     'mobile',
+        'usermedium':  'all',
+        'warning':     2,
         'vextwarning': '',
-        'lang': 'en'
+        'lang':        'en'
     })
-    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/'
     xpath += '*[local-name()="h3"]/text()'
+
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
                    '.*Congratulations! No Error Found\..*')
 
     print(res)
 
-# TODO: Add description
+###############################################################################
+# Web Site Validation of: Feed
+###############################################################################
 print('Validate Feed:')
-for k, v in pages['feed'].iteritems():
+for k, v in pages['site']['feed'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'url': '%URI%'})
-    xpath = './/*[@id="main"]//*[local-name()="h2"]/text()'
+    xpath     = './/*[@id="main"]//*[local-name()="h2"]/text()'
+
     res = validate('GET', 'http://validator.w3.org/feed/check.cgi?',
                    url_param, v, xpath, '.*Congratulations!.*')
 
     print(res)
 
-# TODO: Add description
+###############################################################################
+# Web Site Validation of: HTTP Header
+###############################################################################
 print('Validate HTTP Headers:')
-for k, v in pages['url_hp'].iteritems():
+for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'uri': '%URI%'})
-    xpath = './/*[@class="bad msg"]/text()'
-    res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
-                   True)
+    xpath     = './/*[@class="bad msg"]/text()'
 
-    print(res)
-for k, v in pages['feed'].iteritems():
-    print('    ' + k + ': ', end='')
-
-    url_param = urllib.urlencode({'uri': '%URI%'})
-    xpath = './/*[@class="bad msg"]/text()'
     res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
                    True)
 
     print(res)
 
+for k, v in pages['site']['feed'].iteritems():
+    print('    ' + k + ': ', end='')
+
+    url_param = urllib.urlencode({'uri': '%URI%'})
+    xpath     = './/*[@class="bad msg"]/text()'
+
+    res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
+                   True)
+
+    print(res)
+
+###############################################################################
+# Web Site Validation of: Mobile
+###############################################################################
 # TODO: Uncomment?
 # When call the right URL using urllib this is the response of the page:
 # Servlet has thrown exception:java.lang.NullPointerException
 #print('Validate Mobile:')
-#for k, v in pages['url_hp'].iteritems():
+#for k, v in pages['site']['url_hp'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
 #    url_param = urllib.urlencode({'docAddr': '%URI%', 'async': 'false'})
-#    xpath = './/*[text() = "mobileOK score: "]/..//text()'
+#    xpath     = './/*[text() = "mobileOK score: "]/..//text()'
+#
 #    res = validate('GET', 'http://validator.w3.org/mobile/check?',
 #                   url_param, v, xpath, '.*mobileOK score.+9[0-9]%.*')
 #
 #    print(res)
 
-# TODO: Add description
+###############################################################################
+# Web Site Validation of: Semantics
+###############################################################################
 print('Validate Semantics:')
-for k, v in pages['url_hp'].iteritems():
+for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'url': '%URI%', 'view': 'cse'})
-    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+
+    xpath  = './/*[@id="form"]//*[text()="Result:"]/'
     xpath += 'following-sibling::*[1]/text()'
+
     res = validate('GET',
                    'http://www.google.com/webmasters/tools/richsnippets?',
                    url_param, v, xpath, '.*Errors:.*', True)
 
     print(res)
 
-# TODO: This takes a while, it worth?
+###############################################################################
+# Web Site Validation of: Links
+###############################################################################
+# TODO: This takes a while, does it worth?
 #print('Validate Links:')
-#for k, v in pages['url_hp'].iteritems():
+#for k, v in pages['site']['url_hp'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
-#    # TODO: align block
 #    url_param = urllib.urlencode({
-#        'uri': '%URI%',
-#        'summary': 'on',
+#        'uri':       '%URI%',
+#        'summary':   'on',
 #        'hide_type': 'all',
-#        'depth': '',
-#        'check': 'Check'
+#        'depth':     '',
+#        'check':     'Check'
 #    })
-#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+#    xpath  = './/*[@id="form"]//*[text()="Result:"]/'
 #    xpath += 'following-sibling::*[1]/text()'
+#
 #    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
 #                   v, xpath, '.*Passed.*')
 #
 #    print(res)
-#for k, v in pages['feed'].iteritems():
+#
+#for k, v in pages['site']['feed'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
-#    # TODO: align block
 #    url_param = urllib.urlencode({
-#        'uri': '%URI%',
-#        'summary': 'on',
+#        'uri':       '%URI%',
+#        'summary':   'on',
 #        'hide_type': 'all',
-#        'depth': '',
-#        'check': 'Check'
+#        'depth':     '',
+#        'check':     'Check'
 #    })
-#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+#    xpath  = './/*[@id="form"]//*[text()="Result:"]/'
 #    xpath += 'following-sibling::*[1]/text()'
+#
 #    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
 #                   v, xpath, '.*Passed.*')
 #
 #    print(res)
-
-# TODO: http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN
-# TODO: http://www.sidar.org/hera/
-# TODO: YSlow
-# TODO: Page Speed

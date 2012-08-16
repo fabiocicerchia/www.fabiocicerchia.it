@@ -37,17 +37,58 @@ import re
 from lxml import etree
 # http://lxml.de/parsing.html
 
-# {{{ Function: retrieveUrlContent --------------------------------------------
-# Usage      : FabioCicerchia::Site->new()
-# Purpose    : Generate a new instance.
-# Returns    : Self.
-# Parameters : None.
-# Throws     : No exceptions.
-# TODO: Change above
-def retrieveUrlContent(http_method, remote_url, params):
-    # TODO: add documentation
+BASE_URL = 'http://www.fabiocicerchia.it'
+
+pages = {
+    'api': {
+        'root':        '/',
+        'information': '/information',
+        'education':   '/education',
+        'experience':  '/experience',
+        'skill':       '/skill',
+        'language':    '/language'
+    },
+    'site': {
+        'url_hp': {
+            'EN - Homepage (HTML5)': '/',
+            'IT - Homepage (HTML5)': '/it',
+        },
+       'feed': {
+            'EN - RSS 0.91': '/rss091',
+            'EN - RSS 0.92': '/rss092',
+            'EN - RSS 1.0':  '/rss1',
+            'EN - RSS 2.0':  '/rss2',
+            'EN - ATOM':     '/atom',
+            'IT - RSS 0.91': '/it/rss091',
+            'IT - RSS 0.92': '/it/rss092',
+            'IT - RSS 1.0':  '/it/rss1',
+            'IT - RSS 2.0':  '/it/rss2',
+            'IT - ATOM':     '/it/atom'
+        }
+    },
+    'css': {
+        'css': '/minified/css',
+    },
+    'js': {
+        'js': '/minified/js',
+    }
+}
+
+# {{{ Function: retrieve_url_content ------------------------------------------
+def retrieve_url_content(http_method, remote_url, params):
+    """Retrieve the content of an URL that could be called in two ways (GET or
+    POST) sending eventually some data.
+
+    Keyword arguments:
+    http_method    -- HTTP Method to use (GET or POST).
+    remote_url     -- The remote URL that validates the URL.
+    params         -- The param list, could be sent via GET or POST.
+
+    Return value:
+    a string, that contain the URL response."""
+
     if (http_method == 'GET'):
-        data = urllib.urlopen(remote_url + '%s' % params).read()
+        data = urllib.urlopen(remote_url).read()
     else:
         data = urllib.urlopen(remote_url, params).read()
 
@@ -55,12 +96,6 @@ def retrieveUrlContent(http_method, remote_url, params):
 # }}} -------------------------------------------------------------------------
 
 # {{{ Function: validate ------------------------------------------------------
-# Usage      : FabioCicerchia::Site->new()
-# Purpose    : Generate a new instance.
-# Returns    : Self.
-# Parameters : None.
-# Throws     : No exceptions.
-# TODO: Change above
 def validate(http_method, remote_url, params, page, match,
              excepted_value='.*', match_reverse=False):
     """Validate an URL calling the defined web site validator,
@@ -77,30 +112,33 @@ def validate(http_method, remote_url, params, page, match,
     match_reverse  -- The flag that means "if the excepted value is not
                       matched". This behavious is useful to exclude from the
                       match, for example, an error string.
-    """
 
-    # TODO: Convert to a dynamic value.
-    page = urllib.quote('http://www.fabiocicerchia.it' + page)
+    Return value:
+    a string, that contain the response of validation."""
+
+    page   = urllib.quote(BASE_URL + page)
     params = params.replace('%25URI%25', page)
 
-    data = retrieveUrlContent(http_method, remote_url, params)
+    if (http_method == 'GET'):
+        remote_url = remote_url + '%s' % params
+
+    data = retrieve_url_content(http_method, remote_url, params)
 
     parser = etree.XMLParser(ns_clean=False, resolve_entities=False,
                              recover=True)
     tree = etree.fromstring(data, parser)
 
     elements = tree.xpath(match)
-    text = ''.join(elements)
-    match = re.match(excepted_value, text, re.DOTALL)
+    text     = ''.join(elements)
+    match    = re.match(excepted_value, text, re.DOTALL)
 
     status = (match != None)
 
-    # TODO: remove this if
-    if match_reverse:
+    if (match_reverse):
         status = not status
 
     if status:
-        return 'OK' # TODO: Convert to a dynamic value.
+        return 'OK'
     else:
-        return 'FAIL' + ' > Check this out to: ' + remote_url # TODO: Convert to a dynamic value.
+        return 'FAIL' + ' > Check this out to: ' + remote_url
 # }}} -------------------------------------------------------------------------

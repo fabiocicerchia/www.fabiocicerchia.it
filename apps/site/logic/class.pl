@@ -58,7 +58,6 @@ use Template::Filters;
 sub action404 {
     my $self = shift;
 
-    # TODO: Is it useful the return value?
     my $r = print "HTTP/1.1 404 Not Found\n\n";
     $r = print "Location: /\n\n";
 
@@ -79,12 +78,7 @@ sub action404 {
 sub action_show {
     my $self = shift;
 
-    # TODO: Convert this scalar to array, using "@".
-    my $general_data  = $self->get_data();
-    my $data          = $general_data->[0];
-    my $last_modified = $general_data->[1];
-    my $etag          = $general_data->[2];
-    my $language      = $general_data->[3];
+    my ($data, $last_modified, $etag, $language) = $self->get_data();
 
     my @langTokens = split /,/smx, $language;
     if (scalar(@langTokens) > 1) {
@@ -101,9 +95,8 @@ sub action_show {
     $ENV{'LANG'} = $gettextLanguage;
     $ENV{'LANGUAGE'} = $gettextLanguage;
     $ENV{'LC_ALL'} = $gettextLanguage;
-    setlocale(LC_ALL, $gettextLanguage); # TODO: needed "libintl-perl"
+    setlocale(LC_ALL, $gettextLanguage);
 
-    # TODO: Convert this object to hash, using "()".
     my $vars = {
         'HTTP_HOST'     => $ENV{'HTTP_HOST'},
         'data'          => $data,
@@ -119,7 +112,6 @@ sub action_show {
     });
 
     # TODO: IMPLEMENT IF NOT MODIFIED
-    # TODO: Is it useful the return value?
     my $r;
     $r = print 'Cache-Control: public, max-age=28800, smax-age=28800' . "\n";
     $r = print 'Last-Modified: '
@@ -236,6 +228,7 @@ sub get_data {
         $hash = defined $curr_hash ? ( $hash . $curr_hash ) : $hash;
         $lang = defined $curr_lang ? $curr_lang             : $lang;
 
+        #print "#$curr_ts#"; # TODO: investigate why doesn't work.
         if ( defined $curr_ts && $curr_ts > $last_ts ) {
             # TODO: Write a test to cover this
             $last_ts = $curr_ts;
@@ -245,6 +238,9 @@ sub get_data {
 
     # Elaborate the data.
     $data = $self->elaborate_data($data);
+
+    my @return = ($data, $last_ts, $ctx->hexdigest, $lang);
+    return @return;
 
     return [ $data, $last_ts, $ctx->hexdigest, $lang ];
 }
@@ -308,7 +304,6 @@ sub get_item_data {
 # Parameters : A string, the label.
 # Throws     : No exceptions.
 # See Also   : __()
-# TODO: Add POD.
 sub gettext {
     my $text = shift;
 
@@ -506,7 +501,6 @@ sub show {
 
     my $output = $self->execute_action( $self->{'actionCurrent'} );
     if ( defined $output ) {
-        # TODO: Is it useful the return value?
         my $r = print $output;
     }
 
@@ -585,22 +579,6 @@ context to help them understand the methods that are subsequently described.
 
 =over
 
-=item * C<FabioCicerchiaSite-E<gt>new()>
-
-Generate a new instance.
-
-=item * C<FabioCicerchiaSite-E<gt>set_request()>
-
-Set the main parameters for the request.
-
-=item * C<FabioCicerchiaSite-E<gt>show()>
-
-Run the required action.
-
-=item * C<FabioCicerchiaSite-E<gt>execute_action()>
-
-Execute a custom & dynamical action.
-
 =item * C<FabioCicerchiaSite-E<gt>action404()>
 
 Print a 404 error.
@@ -609,25 +587,45 @@ Print a 404 error.
 
 The "show" action.
 
-=item * C<FabioCicerchiaSite-E<gt>get_data()>
+=item * C<FabioCicerchiaSite-E<gt>call_api()>
 
-Retrieve the data from the API.
+Call an URL and return its content.
 
 =item * C<FabioCicerchiaSite-E<gt>elaborate_data()>
 
 Change the data.
 
+=item * C<FabioCicerchiaSite-E<gt>execute_action()>
+
+Execute a custom & dynamical action.
+
 =item * C<FabioCicerchiaSite-E<gt>get_data()>
 
+Retrieve the multiple data from the API.
+
+=item * C<FabioCicerchiaSite-E<gt>get_data_item()>
+
 Retrieve the data from the API.
+
+=item * C<FabioCicerchiaSite-E<gt>get_data_item()>
+
+Translate a label with gettext.
+
+=item * C<FabioCicerchiaSite-E<gt>new()>
+
+Generate a new instance.
 
 =item * C<FabioCicerchiaSite-E<gt>retrieve_xml()>
 
 Retrieve XML from an URL.
 
-=item * C<FabioCicerchiaSite-E<gt>call_api()>
+=item * C<FabioCicerchiaSite-E<gt>set_request()>
 
-Call an URL and return its content.
+Set the main parameters for the request.
+
+=item * C<FabioCicerchiaSite-E<gt>show()>
+
+Run the required action.
 
 =back
 

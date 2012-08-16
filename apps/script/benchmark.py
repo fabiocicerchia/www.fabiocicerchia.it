@@ -33,89 +33,72 @@
 
 from __future__ import print_function
 import urllib
-from common import retrieveUrlContent
+from common import *
 from time import time
 
-# {{{ Function: getExecutionTime ----------------------------------------------
-# Usage      : FabioCicerchia::Site->new()
-# Purpose    : Generate a new instance.
-# Returns    : Self.
-# Parameters : None.
-# Throws     : No exceptions.
-# TODO: Change above
-def getExecutionTime(url):
-    # TODO: add documentation
+# TODO: Change
+BASE_URL = 'http://fabiocicerchia.github'
+
+# {{{ Function: get_execution_time --------------------------------------------
+def get_execution_time(url):
+    """Measure the execution time to fetch a URL.
+
+    Keyword arguments:
+    url -- The remote URL that validates the URL.
+
+    Return value:
+    a string, that contain the response of validation."""
+
     start = time()
-    content = retrieveUrlContent('GET', url, '')
+    retrieve_url_content('GET', url, '')
     end = time()
 
     return (end - start)
 # }}} -------------------------------------------------------------------------
 
-# {{{ Function: getAverageExecutionTime ---------------------------------------
-# Usage      : FabioCicerchia::Site->new()
-# Purpose    : Generate a new instance.
-# Returns    : Self.
-# Parameters : None.
-# Throws     : No exceptions.
-# TODO: Change above
-def getAverageExecutionTime(url):
-    # TODO: add documentation
-    times = [
-        getExecutionTime(url),
-        getExecutionTime(url),
-        getExecutionTime(url),
-        getExecutionTime(url),
-        getExecutionTime(url)
+# {{{ Function: get_average_execution_time ------------------------------------
+def get_average_execution_time(url):
+    """Measure 5 times the execution time to fetch a URL, then discard the best
+    and the worst and return the average.
+
+    Keyword arguments:
+    url -- The remote URL that validates the URL.
+
+    Return value:
+    a float, the average execution time."""
+
+    etime = [
+        get_execution_time(url),
+        get_execution_time(url),
+        get_execution_time(url),
+        get_execution_time(url),
+        get_execution_time(url)
     ]
 
-    sum = times[0] + times[1] + times[2] + times[3] + times[4]
+    sum_time = etime[0] + etime[1] + etime[2] + etime[3] + etime[4]
 
-    return round((sum - min(times) - max(times)) / 3, 5)
+    return round((sum_time - min(etime) - max(etime)) / 3, 5)
 # }}} -------------------------------------------------------------------------
 
-# TODO: move to a shared file among the others.
-pages = {
-    'api': {
-        'root':        '/',
-        'information': '/information',
-        'education':   '/education',
-        'experience':  '/experience',
-        'skill':       '/skill',
-        'language':    '/language'
-    },
-    'site': {
-        'EN - Homepage (HTML5)': '/',
-        'IT - Homepage (HTML5)': '/it',
+# {{{ Function: run -----------------------------------------------------------
+def run(key, elements):
+    """Cycle over each element then print some information and execute the
+    function get_average_execution_time.
 
-        'EN - RSS 0.91': '/rss091',
-        'EN - RSS 0.92': '/rss092',
-        'EN - RSS 1.0':  '/rss1',
-        'EN - RSS 2.0':  '/rss2',
-        'EN - ATOM':     '/atom',
-        'IT - RSS 0.91': '/it/rss091',
-        'IT - RSS 0.92': '/it/rss092',
-        'IT - RSS 1.0':  '/it/rss1',
-        'IT - RSS 2.0':  '/it/rss2',
-        'IT - ATOM':     '/it/atom'
-    },
-    'css': {
-        'bootstrap.min.css':            '/media/css/bootstrap/bootstrap.min.css',
-        'bootstrap-responsive.min.css': '/media/css/bootstrap/bootstrap-responsive.min.css',
-        'main.css':                     '/media/css/main.css'
-    },
-    'js': {
-        'jquery.js':    '/media/js/jquery.js',
-        'bootstrap.js': '/media/js/bootstrap/bootstrap.js',
-        'main.js':      '/media/js/main.js'
-    }
-}
+    Keyword arguments:
+    key      -- A string that identify the elements.
+    elements -- An array with the list of the pages to check."""
 
-for key, value in pages.iteritems():
-    print(key.upper());
-    for k, v in value.iteritems():
-        spaces = (25 - len(k)) * ' '
-        print('    ' + k + ':' + spaces, end='')
-        # TODO: Convert to a dynamic value.
-        print(getAverageExecutionTime("http://fabiocicerchia.github" + v), end='') # TODO: line length.
+    print(key.upper())
+    for subk, subv in elements.iteritems():
+        spaces = (25 - len(subk)) * ' '
+        print('    ' + subk + ':' + spaces, end='')
+        print(get_average_execution_time(BASE_URL + subv), end='')
         print(' sec')
+# }}} -------------------------------------------------------------------------
+
+run('API',       pages['api'])
+run('Web pages', pages['site']['url_hp'])
+run('Feeds',     pages['site']['feed'])
+run('CSS',       pages['css'])
+run('JS',        pages['js'])

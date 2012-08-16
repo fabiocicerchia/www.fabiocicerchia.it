@@ -15,7 +15,7 @@
                         <dt itemprop="name">[% item.key %]</dt>
                         [% FOREACH subitem = item.value.sort %]
                         <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                            [% subitem %]
+                            [% FILTER gettext %][% subitem %] proficiency[% END %]
                         </dd>
                         [% END %]
                     </dl>

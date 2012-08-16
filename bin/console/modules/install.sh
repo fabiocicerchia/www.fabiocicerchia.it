@@ -102,8 +102,12 @@ install_phpunit() {
 install_phpcb() {
     print_subheader "INSTALLING PHP_CODE_BROWSER"
     pear_add_channel "pear.phpunit.de"
-    # TODO: FIXME
-    #sudo pear -q install --alldeps phpunit/PHP_CodeBrowser || handle_errors $?
+
+    if [ -z "$TRAVIS_CI" ]; then
+        sudo pear -q install --alldeps phpunit/PHP_CodeBrowser || handle_errors $?
+    else
+        echo "SKIPPED"
+    fi
 
     return $?
 }
@@ -152,8 +156,12 @@ install_phpdoc2() {
 install_pdepend() {
     print_subheader "INSTALLING PHP_DEPEND"
     pear_add_channel "pear.pdepend.org"
-    # TODO: FIXME
-    #sudo pear -q install --alldeps pdepend/PHP_Depend-beta || handle_errors $?
+
+    if [ -z "$TRAVIS_CI" ]; then
+        sudo pear -q install --alldeps pdepend/PHP_Depend-beta || handle_errors $?
+    else
+        echo "SKIPPED"
+    fi
 
     return $?
 }
@@ -161,8 +169,12 @@ install_pdepend() {
 install_phpmd() {
     print_subheader "INSTALLING PHPMD"
     pear_add_channel "pear.phpmd.org"
-    # TODO: FIXME
-    #sudo pear -q install --alldeps phpmd/PHP_PMD || handle_errors $?
+
+    if [ -z "$TRAVIS_CI" ]; then
+        sudo pear -q install --alldeps phpmd/PHP_PMD || handle_errors $?
+    else
+        echo "SKIPPED"
+    fi
 
     return $?
 }

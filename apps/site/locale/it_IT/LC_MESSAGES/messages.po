@@ -37,14 +37,26 @@ msgstr ""
 msgid "Activities"
 msgstr "Attività"
 
+msgid "advanced proficiency"
+msgstr "livello avanzato"
+
 msgid "Back to top"
 msgstr "Torna su"
+
+msgid "beginner proficiency"
+msgstr "livello principiante"
 
 msgid "Education"
 msgstr "Formazione"
 
 msgid "Experience"
 msgstr "Esperienza"
+
+msgid "expert proficiency"
+msgstr "livello esperto"
+
+msgid "Fabio Cicerchia on Google+"
+msgstr "Fabio Cicerchia su Google+"
 
 msgid "Fork me on GitHub"
 msgstr "Forkami su GitHub"
@@ -54,6 +66,9 @@ msgstr "Vai al repository"
 
 msgid "Heads up!"
 msgstr "Attenzione"
+
+msgid "intermediate proficiency"
+msgstr "livello intermedio"
 
 msgid "Languages"
 msgstr "Lingue"
