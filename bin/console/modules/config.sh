@@ -31,12 +31,16 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Add {{{ }}} as delimiter.
+
 ################################################################################
 # CONFIG ACTIONS
 ################################################################################
 
+# TODO: Remove handle_errors?
 config_apache() {
     print_subheader "CONFIGURING APACHE"
+
     sudo a2enmod actions || handle_errors $?
     sudo a2enmod cache || handle_errors $?
     sudo a2enmod disk_cache || handle_errors $?

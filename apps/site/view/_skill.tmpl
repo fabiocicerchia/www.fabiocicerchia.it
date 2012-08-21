@@ -1,28 +1,16 @@
+<!-- TODO: Sort attribute -->
 <section id="skills">
     <div class="page-header">
         <h2>[% FILTER gettext %]Skills[% END %]</h2>
     </div>
 
     <div class="row">
-        <div class="span12 vcalendar">
-            [% closed = 1 %]
+        <div id="wordcloud" class="wordcloud">
             [% FOREACH skill = data.skill.entity %]
-                [% id_title = skill.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
-                <div class="span3" id="[% id_title %]">
-                    <h3><i class="icon-tasks"></i> [% skill.title.content %]</h3>
-                    [% FOREACH item = skill.content.skills %]
-                    <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                        <dt itemprop="name">[% item.key %]</dt>
-                        [% FOREACH subitem = item.value.sort %]
-                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                            [% FILTER gettext %][% subitem %] proficiency[% END %]
-                        </dd>
-                        [% END %]
-                    </dl>
-                    [% END %]
-                </div>
+            [% FOREACH item = skill.content.skills %]
+            <span data-weight="[% item.months | replace('[\n ]', '') %]" title="[% FILTER gettext %][% item.level | replace('[\n ]', '') %] proficiency[% END %]">[% item.title.content %]</span>
             [% END %]
-            [% IF closed == 0 %]</div>[% END %]
+            [% END %]
         </div>
     </div>
 </section>

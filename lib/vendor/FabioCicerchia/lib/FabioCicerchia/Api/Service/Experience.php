@@ -34,6 +34,8 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 namespace FabioCicerchia\Api\Service;
 
 use FabioCicerchia\Api;
@@ -93,12 +95,13 @@ class Experience extends \FabioCicerchia\Api\ServiceAbstract
      */
     protected function execDataQuery()
     {
+        // TODO: Is it possible to combine them into one?
         $part1 = $this->getCollection()
-                     ->find(array('date.end' => array('$exists' => false)))
+                     ->find(array('date.end' => -1))
                      ->sort(['date.start' => 'desc'])->toArray();
 
         $part2 = $this->getCollection()
-                     ->find(array('date.end' => array('$exists' => true)))
+                     ->find(array('date.end' => array('$ne' => -1)))
                      ->sort(['date.end' => 'desc'])->toArray();
 
         return array_merge($part1, $part2);

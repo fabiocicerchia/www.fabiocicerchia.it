@@ -1,3 +1,4 @@
+<!-- TODO: Sort attribute -->
 <section id="languages">
     <div class="page-header">
         <h2>[% FILTER gettext %]Languages[% END %]</h2>
@@ -6,28 +7,29 @@
     <div class="row">
         <div class="span12 vcalendar">
             <div class="row-fluid">
-            <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent">
-                [% FOREACH entity IN data.language.entity %]
-                <div class="span6" itemscope="itemscope" itemtype="http://schema.org/Language">
-                    <h3 class="summary" itemprop="name">
-                        <i class="icon-flag"></i>
-                        [% entity.title.content %]
-                    </h3>
-                    [% IF entity.content.skills.0.level == "C2" %]
-                    <p itemprop="description">[% FILTER gettext %]Mother Tongue[% END %]</p>
-                    [% ELSE %]
-                    <p itemprop="description">
-                        <ul itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                            [% FOREACH skill IN entity.content.skills %]
-                            <li itemprop="itemListElement">
-                                [% skill.title.content %]: [% skill.level %]
-                            </li>
-                            [% END %]
-                        </ul>
-                    </p>
+                <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent">
+                    [% FOREACH entity IN data.language.entity %]
+                    <div class="span6" itemscope="itemscope" itemtype="http://schema.org/Language">
+                        <h3 class="summary" itemprop="name">
+                            <i class="icon-flag"></i>
+                            [% entity.title.content %]
+                        </h3>
+                        [% IF entity.content.skills.0.level == "C2" %]
+                        <p itemprop="description">[% FILTER gettext %]Mother Tongue[% END %]</p>
+                        [% ELSE %]
+                        <div itemprop="description">
+                            <ul itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                                [% FOREACH skill IN entity.content.skills %]
+                                <li itemprop="itemListElement">
+                                    [% skill.title.content %]: [% skill.level %]
+                                </li>
+                                [% END %]
+                            </ul>
+                        </div>
+                        [% END %]
+                    </div>
                     [% END %]
                 </div>
-                [% END %]
             </div>
         </div>
     </div>

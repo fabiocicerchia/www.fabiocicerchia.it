@@ -31,12 +31,17 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Add {{{ }}} as delimiter.
+
 ################################################################################
 # SCA ACTIONS
 ################################################################################
 
+# TODO: Remove handle_errors?
+# TODO: Wrap multiline.
 sca_phpcs() {
     print_subheader "RUNNING PHP_CodeSniffer"
+
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
@@ -47,8 +52,11 @@ sca_phpcs() {
     return $?
 }
 
+# TODO: Remove handle_errors?
+# TODO: Wrap multiline.
 sca_phpmd() {
     print_subheader "RUNNING PHPMD"
+
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
@@ -59,8 +67,10 @@ sca_phpmd() {
     return $?
 }
 
+# TODO: Remove handle_errors?
 sca_phploc() {
     print_subheader "RUNNING PHPLOC"
+
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
@@ -71,8 +81,11 @@ sca_phploc() {
     return $?
 }
 
+# TODO: Remove handle_errors?
+# TODO: Wrap multiline.
 sca_phpcpd() {
     print_subheader "RUNNING PHPCPD"
+
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
@@ -83,8 +96,11 @@ sca_phpcpd() {
     return $?
 }
 
+# TODO: Remove handle_errors?
+# TODO: Wrap multiline.
 sca_pdepend() {
     print_subheader "RUNNING PHP_DEPEND"
+
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
@@ -95,8 +111,11 @@ sca_pdepend() {
     return $?
 }
 
+# TODO: Remove handle_errors?
+# TODO: Wrap multiline.
 sca_phpcb() {
     print_subheader "RUNNING PHP_CODE_BROWSER"
+
     phpcb --log="$REPORTDIR/api/logs/app/" --source="$API_APPSOURCEDIR" --output="$REPORTDIR/code_browser/app" || handle_errors $?
     phpcb --log="$REPORTDIR/api/logs/lib/" --source="$API_LIBSOURCEDIR" --output="$REPORTDIR/code_browser/lib" || handle_errors $?
     phpcb --log="$REPORTDIR/api/logs/test/" --source="$API_TESTSOURCEDIR" --output="$REPORTDIR/code_browser/test" || handle_errors $?
@@ -106,18 +125,21 @@ sca_phpcb() {
 
 sca_perlcritic() {
     print_subheader "RUNNING PERL CRITIC"
-    find $SITE_APP_SOURCEDIR -type f -name "*.pl" | xargs perl $ROOTDIR/bin/critic.pl
-    find $SITE_TEST_SOURCEDIR -type f -name "*.pl" | xargs perl $ROOTDIR/bin/critic.pl
+
+    find $SITE_APP_SOURCEDIR -type f -name "*.pl" | xargs perlcritic --brutal --statistics --color
+    find $SITE_TEST_SOURCEDIR -type f -name "*.pl" | xargs perlcritic --brutal --statistics --color
 }
 
 sca_pylint() {
     print_subheader "RUNNING PYLINT"
+
     find $SCRIPT_APP_SOURCEDIR -type f -name "*.py" | xargs pylint
     find $SCRIPT_TEST_SOURCEDIR -type f -name "*.py" | xargs pylint
 }
 
 sca_pep8() {
     print_subheader "RUNNING PEP8"
+
     find $SCRIPT_APP_SOURCEDIR -type f -name "*.py" | xargs pep8
     find $SCRIPT_TEST_SOURCEDIR -type f -name "*.py" | xargs pep8
 }

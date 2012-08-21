@@ -32,11 +32,15 @@
  * Link:       http://www.fabiocicerchia.it
  */
 
-var $win = jQuery(window)
-    , $nav = jQuery('.subnav')
-    , navHeight = jQuery('.navbar').first().height()
-    , navTop = jQuery('.subnav').length && jQuery('.subnav').offset().top - navHeight
-    , isFixed = 0;
+jQuery(document).ready(function() {
+    // -------------------------------------------------------------------------
+    // Navigation bar scrolling ------------------------------------------------
+    // -------------------------------------------------------------------------
+    var $win = jQuery(window)
+        , $nav = jQuery('.subnav')
+        , navHeight = jQuery('.navbar').first().height()
+        , navTop = jQuery('.subnav').length && jQuery('.subnav').offset().top - navHeight
+        , isFixed = 0;
 
     processScroll();
 
@@ -53,3 +57,36 @@ var $win = jQuery(window)
             $nav.removeClass('subnav-fixed');
         }
     }
+
+    // -------------------------------------------------------------------------
+    // Show more behaviour -----------------------------------------------------
+    // -------------------------------------------------------------------------
+    jQuery('a.show_hide').click(function(e) {
+        e.preventDefault();
+        jQuery(this).hide();
+        jQuery(this).parents('div.vevent').find('div.hide').show();
+    });
+
+    // -------------------------------------------------------------------------
+    // Awesome Cloud -----------------------------------------------------------
+    // -------------------------------------------------------------------------
+    tagCloudMaxWeight = 0;
+    maxFontSize       = 35;
+    minFontSize       = 8;
+
+    differenceFont = maxFontSize - minFontSize;
+
+    jQuery('#wordcloud span[data-weight]').each(function() {
+        elemWeight        = parseInt(jQuery(this).attr('data-weight'));
+        tagCloudMaxWeight = elemWeight > tagCloudMaxWeight
+                            ? elemWeight
+                            : tagCloudMaxWeight;
+    });
+
+    jQuery('#wordcloud span[data-weight]').each(function() {
+        elemWeight = parseInt(jQuery(this).attr('data-weight'));
+        percentage  = 100 / tagCloudMaxWeight * elemWeight;
+        fontSize    = minFontSize + Math.round(differenceFont / 100 * percentage);
+        jQuery(this).css('font-size', fontSize + 'px');
+    });
+});

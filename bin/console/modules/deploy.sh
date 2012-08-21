@@ -31,19 +31,25 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Add {{{ }}} as delimiter.
+
 ################################################################################
 # DEPLOY ACTIONS
 ################################################################################
 
+# TODO: Remove handle_errors?
 deploy_setup() {
     print_subheader "CAPISTRANO - DEPLOY:SETUP"
+
     cap deploy:setup || handle_errors $?
 
     return $?
 }
 
+# TODO: Remove handle_errors?
 deploy_run() {
     print_subheader "CAPISTRANO - DEPLOY"
+
     cap deploy || handle_errors $?
 
     return $?

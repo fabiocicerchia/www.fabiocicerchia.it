@@ -34,6 +34,10 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+// TODO: 100% Internal Coverage.
+// TODO: 100% Overall Coverage.
+
 require_once TEST_LIB_PATH . 'TestCase.php';
 require_once TEST_LIB_PATH . 'Api/Service/Strategy.php';
 
@@ -51,7 +55,8 @@ require_once TEST_LIB_PATH . 'Api/Service/Strategy.php';
  */
 class StrategyTest extends FabioCicerchia\TestCase
 {
-    // {{{ testGetDataReturnCorrectValue
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: testGetDataReturnCorrectValue -------------------------------
     /**
      * Test method "getData" return the correct value.
      *
@@ -68,4 +73,26 @@ class StrategyTest extends FabioCicerchia\TestCase
         $this->assertEquals(null, $stub->getData());
     }
     // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: testInstancing ----------------------------------------------
+    /**
+     * Test method "__construct".
+     *
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage The parameter $service_name must be a string.
+     *
+     * @since Version 0.1
+     *
+     * @return void
+     */
+    public function testInstancing()
+    {
+        $mongoDb = $this->getMockBuilder('Doctrine\\MongoDB\\Database')
+                        ->disableOriginalConstructor()
+                        ->getMock();
+
+        $instance = new \FabioCicerchia\Api\Service\Strategy(null, $mongoDb);
+    }
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

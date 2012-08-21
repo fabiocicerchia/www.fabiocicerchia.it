@@ -54,6 +54,7 @@ done
 ################################################################################
 # PARAMETERS ELABORATION
 ################################################################################
+# TODO: Refactor!
 STOP_ON_ERROR=0
 SILENT=0
 HAS_OPTIONS=0
@@ -71,11 +72,13 @@ do
 done
 
 SUBROUTINE=$1
+SUBACTION=$2
 if [ $HAS_OPTIONS -eq 1 ]; then
     SUBROUTINE=$2
+    SUBACTION=$3
 fi
 IS_VALID=$(echo $SUBROUTINE | egrep "^[a-z]+$" | wc -l)
-SUBROUTINE_EXISTS=$(declare -F | cut -d " " -f 3 | grep "^$SUBROUTINE$")
+SUBROUTINE_EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
 
 ################################################################################
 # RUN

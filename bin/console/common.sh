@@ -31,6 +31,8 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Add {{{ }}} as delimiter.
+
 ################################################################################
 # COLORS
 ################################################################################
@@ -100,21 +102,13 @@ call_subroutines() {
         echo
         $SUBROUTINE 2>&1
         STATUS=$?
-        #RES=$($SUBROUTINE 2>&1)
-        #STATUS=0
-        #if [ -f /tmp/status.out ]; then
-        #    STATUS=$(cat /tmp/status.out)
-        #    rm /tmp/status.out
-        #fi
-
-        #print_status $STATUS $RES
     done
 
     return $STATUS
 }
 
 handle_errors() {
-    # http://fvue.nl/wiki/Bash:_Error_handling
+    # TODO: http://fvue.nl/wiki/Bash:_Error_handling
     echo -n "$1" > /tmp/status.out
 
     if [ $STOP_ON_ERROR -eq 1 -a $1 -gt 0 ]; then
@@ -166,8 +160,8 @@ all() {
 config() {
     print_header "CONFIGURE THE ENVIRONMENT"
 
-    if [ -n "$2" ]; then
-        SUBROUTINE="config_$2"
+    if [ -n "$SUBACTION" ]; then
+        SUBROUTINE="config_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
             $SUBROUTINE
@@ -182,8 +176,8 @@ config() {
 docs() {
     print_header "GENERATE THE DOCUMENTATION"
 
-    if [ -n "$2" ]; then
-        SUBROUTINE="doc_$2"
+    if [ -n "$SUBACTION" ]; then
+        SUBROUTINE="doc_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
             $SUBROUTINE
@@ -197,6 +191,7 @@ docs() {
 
 init() {
     print_header "INITIALISE THE ENVIRONMENT"
+
     git submodule init
     git submodule update
     export COMPOSER_VENDOR_DIR=lib/vendor
@@ -210,8 +205,8 @@ init() {
 install() {
     print_header "INSTALL THE ENVIRONMENT"
 
-    if [ -n "$2" ]; then
-        SUBROUTINE="install_$2"
+    if [ -n "$SUBACTION" ]; then
+        SUBROUTINE="install_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
             $SUBROUTINE
@@ -224,8 +219,8 @@ install() {
 }
 
 run() {
-    if [ -n "$2" ]; then
-        SUBROUTINE="run_$2"
+    if [ -n "$SUBACTION" ]; then
+        SUBROUTINE="run_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
             $SUBROUTINE || handle_errors $?
@@ -241,8 +236,8 @@ run() {
 sca() {
     print_header "ANALISE THE CODE"
 
-    if [ -n "$2" ]; then
-        SUBROUTINE="sca_$2"
+    if [ -n "$SUBACTION" ]; then
+        SUBROUTINE="sca_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
             $SUBROUTINE
@@ -257,8 +252,8 @@ sca() {
 test() {
     print_header "RUN THE TESTS"
 
-    if [ -n "$2" ]; then
-        SUBROUTINE="test_$2"
+    if [ -n "$SUBACTION" ]; then
+        SUBROUTINE="test_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
             $SUBROUTINE
@@ -270,7 +265,13 @@ test() {
     return $?
 }
 
+# TODO: Wrap multiline.
+list_subactions() {
+    egrep -r "^$1" $CURRENT_PATH/modules/ | cut -d ":" -f 2 | sed -r "s/\(\).*/,/" | sed -r "s/$1//"  | tr "\n" " " | sed -r "s/, $//"
+}
+
 help() {
+
 
     echo
     echo -e "${BLDWHT}USAGE:$TXTRST"
@@ -281,30 +282,33 @@ help() {
     echo -e "${BLDWHT}Available actions:$TXTRST"
     echo -e "    ${TXTCYN}all$TXTRST                  Simply call the following actions: test, sca, docs."
     echo -e "    ${TXTCYN}config$TXTRST [${TXTBLU}subaction${TXTRST}]   Configure the environment."
-    SUBROUTINES=$(egrep -r "^config_" $CURRENT_PATH/modules/ | cut -d: -f2 | sed -r "s/\(\).*/,/" | sed -r "s/config_//"  | tr '\n' ' ' | sed -r "s/, $//")
+    SUBROUTINES=$(list_subactions "config_")
     echo -en "             ${TXTYLW}Subactions${TXTRST}: "
     echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
     echo -e "    ${TXTCYN}deploy$TXTRST [${TXTBLU}subaction${TXTRST}]   Script to deploy the applications."
-    SUBROUTINES=$(egrep -r "^deploy_" $CURRENT_PATH/modules/ | cut -d: -f2 | sed -r "s/\(\).*/,/" | sed -r "s/deploy_//" | sed -r "s/,/,/"  | tr '\n' ' ' | sed -r "s/, $//")
+    SUBROUTINES=$(list_subactions "deploy_")
     echo -en "             ${TXTYLW}Subactions${TXTRST}: "
     echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
     echo -e "    ${TXTCYN}docs$TXTRST [${TXTBLU}subaction${TXTRST}]     Generate the documentation."
-    SUBROUTINES=$(egrep -r "^doc_" $CURRENT_PATH/modules/ | cut -d: -f2 | sed -r "s/\(\).*/,/" | sed -r "s/doc_//"  | tr '\n' ' ' | sed -r "s/, $//")
+    SUBROUTINES=$(list_subactions "doc_")
     echo -en "             ${TXTYLW}Subactions${TXTRST}: "
     echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
     echo -e "    ${TXTCYN}help$TXTRST                 The help."
     echo -e "    ${TXTCYN}init$TXTRST                 Initialise the environment."
     echo -e "    ${TXTCYN}install$TXTRST [${TXTBLU}subaction${TXTRST}]  Install all the dependencies."
-    SUBROUTINES=$(egrep -r "^install_" $CURRENT_PATH/modules/ | cut -d: -f2 | sed -r "s/\(\).*/,/" | sed -r "s/install_//"  | tr '\n' ' ' | sed -r "s/, $//")
+    SUBROUTINES=$(list_subactions "install_")
     echo -en "             ${TXTYLW}Subactions${TXTRST}: "
     echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
     echo -e "    ${TXTCYN}run$TXTRST [${TXTBLU}script${TXTRST}]         Launch multiple scripts."
+    SUBROUTINES=$(list_subactions "run_")
+    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
+    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
     echo -e "    ${TXTCYN}sca$TXTRST [${TXTBLU}subaction${TXTRST}]      Analise the code."
-    SUBROUTINES=$(egrep -r "^sca_" $CURRENT_PATH/modules/ | cut -d: -f2 | sed -r "s/\(\).*/,/" | sed -r "s/sca_//"  | tr '\n' ' ' | sed -r "s/, $//")
+    SUBROUTINES=$(list_subactions "sca_")
     echo -en "             ${TXTYLW}Subactions${TXTRST}: "
     echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
     echo -e "    ${TXTCYN}test$TXTRST [${TXTBLU}subaction${TXTRST}]     Test the code."
-    SUBROUTINES=$(egrep -r "^test_" $CURRENT_PATH/modules/ | cut -d: -f2 | sed -r "s/\(\).*/,/" | sed -r "s/test_//"  | tr '\n' ' ' | sed -r "s/, $//")
+    SUBROUTINES=$(list_subactions "sca_")
     echo -en "             ${TXTYLW}Subactions${TXTRST}: "
     echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
 

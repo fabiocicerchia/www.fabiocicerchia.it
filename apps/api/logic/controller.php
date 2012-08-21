@@ -32,6 +32,8 @@
  * @link      http://www.fabiocicerchia.it
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FabioCicerchia\Api\Service\EntryPoint;
@@ -64,9 +66,8 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
         return;
     }
 
-    // TODO: Use translation (http://silex.sensiolabs.org/doc/providers/translation.html).
-    //$message  = 'Error, you are unauthorised to know more about it.';
-    $message = $e->getMessage();
+    $message  = $e->getMessage(); // TODO: Remove or restore it?
+    $message  = 'Error, you are unauthorised to know more about it.';
     $response = new Response($message, $code);
     $response->headers->set('Content-Language', 'en');
 
@@ -89,7 +90,7 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
  */
 $closures['root'] = function () use ($app) {
     // MimeType
-    $mime_type = $app['debug'] === true
+    $mime_type = $app['debug'] === true // TODO: CamelCase notation.
                  ? 'application/xml'
                  : 'application/vnd.ads+xml;v=1.0';
 
@@ -101,7 +102,7 @@ $closures['root'] = function () use ($app) {
 
     $data = [
         'routes'    => $entryPoint->getServices(),
-        'mime_type' => $mime_type,
+        'mime_type' => $mime_type, // TODO: CamelCase notation.
         'api_name'  => 'entry point',
         'email'     => $database->selectCollection('information')->find()
                                  ->getNext()['contacts']['email']
@@ -112,6 +113,7 @@ $closures['root'] = function () use ($app) {
 
     // Response
     $response = new Response($content);
+    // TODO: Provide different mime-types (XML, JSON, ...)
     $response->headers->set('Content-Type',     $data['mime_type']);
     $response->headers->set('Content-Language', 'en');
 
@@ -139,9 +141,8 @@ $closures['root'] = function () use ($app) {
  *
  * @return Response
  */
-$closures['api'] = function ($api_name) use ($app) {
-    // TODO: Write a test to cover this condition.
-    if (is_string($api_name) === false) {
+$closures['api'] = function ($api_name) use ($app) { // TODO: CamelCase notation.
+    if (is_string($api_name) === false) { // TODO: CamelCase notation.
         $message = 'The parameter $api_name must be a string.';
         throw new \InvalidArgumentException($message);
     }
@@ -151,16 +152,16 @@ $closures['api'] = function ($api_name) use ($app) {
 
     // Business Logic
     try {
-        $service = new Strategy($api_name, $database);
+        $service = new Strategy($api_name, $database); // TODO: CamelCase notation.
     } catch (UnexpectedValueException $e) {
-        // TODO: Write a test to cover this condition.
-        $app->abort(404, 'The API ' . $api_name. ' does not exist.');
+        $app->abort(404, 'The API ' . $api_name. ' does not exist.'); // TODO: CamelCase notation.
     }
 
     $data = $service->getData();
-    $data['api_name'] = $api_name;
+    $data['api_name'] = $api_name; // TODO: CamelCase notation.
 
     // Response
+    // TODO: Less code here below...
     $response = new Response();
     if ($app['debug'] === false) {
         $lastModified = Utils::getLastModified($data);
@@ -172,23 +173,25 @@ $closures['api'] = function ($api_name) use ($app) {
         $response->headers->set('Last-Modified', $lastModified);
     }
 
+    // TODO: Less code here below...
     if ($response->isNotModified($app['request']) === false) {
         // MimeType
-        $mime_type = $app['debug'] === true
+        $mime_type = $app['debug'] === true // TODO: CamelCase notation.
                      ? 'application/xml'
                      : 'application/vnd.ads+xml;v=1.0';
-        $response->headers->set('Content-Type', $mime_type);
+        // TODO: Provide different mime-types (XML, JSON, ...)
+        $response->headers->set('Content-Type', $mime_type); // TODO: CamelCase notation.
 
         // Language
-        list($current_lang, $to_lang) = Utils::getLanguage($app, $database);
-        $response->headers->set('Content-Language', $current_lang);
+        list($current_lang, $to_lang) = Utils::getLanguage($app, $database); // TODO: CamelCase notation.
+        $response->headers->set('Content-Language', $current_lang); // TODO: CamelCase notation.
 
-        $data['entities'] = Utils::convertForI18n($data['entities'], $to_lang);
+        $data['entities'] = Utils::convertForI18n($data['entities'], $to_lang); // TODO: CamelCase notation.
         $data['email']    = $database->selectCollection('information')
                                      ->find()->getNext()['contacts']['email'];
 
         // Rendering
-        $content = $app['twig']->render($api_name . '.twig', $data);
+        $content = $app['twig']->render($api_name . '.twig', $data); // TODO: CamelCase notation.
         $response->setContent($content);
     }
 
@@ -211,6 +214,7 @@ $closures['api_definition_syntax'] = function () use ($app) {
     $content  = $app['twig']->render('api-definition-syntax.twig');
     $response = new Response($content);
 
+    // TODO: Provide different mime-types (XML, JSON, ...)
     $response->headers->set('Content-Type',     'text/plain');
     $response->headers->set('Content-Language', 'en');
 

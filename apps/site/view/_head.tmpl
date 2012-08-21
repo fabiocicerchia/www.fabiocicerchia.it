@@ -1,4 +1,5 @@
 [% short_code = entity.content.code.short %]
+<!-- TODO: Sort attribute -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="utf-8" />
 <base href="http://[% HTTP_HOST %]" />
@@ -8,7 +9,10 @@
 <link href="http://microformats.org/profile/hresume" rel="profile" />
 <link href="https://plus.google.com/110733047203682160091" rel="author" title="[% FILTER gettext %]Fabio Cicerchia on Google+[% END %]" />
 <link href="/humans.txt" rel="author" type="text/plain" />
-<link href="/minified/css" rel="stylesheet">
+<link href="/media/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="/media/css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" />
+<link href="/media/css/main.css" rel="stylesheet" />
+<!-- TODO: Use a list of feeds with a foreach -->
 [% FOREACH entity IN data.language.entity %]
 <link href="/[% IF short_code != "en" %][% short_code %][% END %]" hreflang="[% short_code %]" rel="alternate" title="[% entity.title.content %]" />
 [% END %]
@@ -34,10 +38,10 @@
 <meta name="dcterms.title" content="Fabio Cicerchia - [% data.information.entity.0.content.role %]" />
 <meta content="[% data.information.entity.0.summary.content | replace("\n", " ") | replace("[.].*", ".") %]" name="description" />
 <meta name="geo.placename" content="[% data.information.entity.0.content.address.city.content %]" />
-<!--meta content="41.825;12.890" name="geo.position" /--><!-- TODO: Convert to a dynamic value. -->
+<meta content="[% data.information.entity.0.content.address.coordinates.content %]" name="geo.position" />
 <meta content="[% data.information.entity.0.location.country_code %]" name="geo.country" />
 <meta content="certified, web, developer, iwa, ciw, zend, php, mysql" name="keywords" /><!-- TODO: Convert to a dynamic value. -->
-<!--meta content="41.825, 12.890" name="ICBM" /--><!-- TODO: Convert to a dynamic value. -->
+<meta content="[% data.information.entity.0.content.address.coordinates.content %]" name="ICBM" />
 <meta content="nofollow" name="robots" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 

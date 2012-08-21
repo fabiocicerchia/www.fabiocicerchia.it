@@ -30,8 +30,10 @@
  * @copyright 2012 Fabio Cicerchia.
  * @license   MIT <http://www.opensource.org/licenses/MIT>
  * @link      http://www.fabiocicerchia.it
- * @since      File available since Release 0.1
+ * @since     File available since Release 0.1
  */
+
+// TODO: Run PHP-CS-Fixer.
 
 require_once __DIR__ . '/../../../lib/vendor/autoload.php';
 
@@ -47,12 +49,14 @@ use Silex\WebTestCase;
  * @copyright  2012 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
- * @backupGlobals disabled
  * @since      File available since Release 0.1
+ *
+ * @backupGlobals disabled
  */
 class ApiTest extends WebTestCase
 {
-    // {{{ createApplication
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: createApplication -------------------------------------------
     /**
      * Return the instance of Silex\Application.
      *
@@ -70,26 +74,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ setUpDebug
-    /**
-     * PHPUnit setUp for setting up the application.
-     *
-     * Note: Child classes that define a setUp method must call
-     * parent::setUp().
-     *
-     * @see   ApiTest::createDebugApplication()
-     * @see   ApiTest::$app
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function setUpDebug()
-    {
-        $this->app = $this->createDebugApplication();
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ createDebugApplication
+    // {{{ Method: createDebugApplication --------------------------------------
     /**
      * Return the instance of Silex\Application.
      *
@@ -109,17 +94,234 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ providerInvalidHttpMethods
+    // {{{ Method: setUpDebug --------------------------------------------------
     /**
-     * Return the list of the invalid HTTP Methods.
+     * PHPUnit setUp for setting up the application.
      *
+     * Note: Child classes that define a setUp method must call
+     * parent::setUp().
+     *
+     * @see   ApiTest::createDebugApplication()
+     * @see   ApiTest::$app
      * @since Version 0.1
+     *
+     * @return void
+     */
+    public function setUpDebug()
+    {
+        $this->app = $this->createDebugApplication();
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideUrl --------------------------------------------------
+    /**
+     * Data Provider to return a list of url.
      *
      * @return array
      */
-    public function providerInvalidHttpMethods()
+    public function provideUrl()
     {
-        $methods = [
+        return [
+            // Set #0 ----------------------------------------------------------
+            ['/'],
+            // Set #1 ----------------------------------------------------------
+            ['/information'],
+            // Set #2 ----------------------------------------------------------
+            ['/education'],
+            // Set #3 ----------------------------------------------------------
+            ['/experience'],
+            // Set #4 ----------------------------------------------------------
+            ['/skill'],
+            // Set #5 ----------------------------------------------------------
+            ['/language'],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax'],
+            // Set #7 ----------------------------------------------------------
+            ['/404'],
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideStatusCode -------------------------------------------
+    /**
+     * Data Provider to return a list of URL and its status code.
+     *
+     * @return array
+     */
+    public function provideStatusCode()
+    {
+        return [
+            // Set #0 ----------------------------------------------------------
+            ['/', 200],
+            // Set #1 ----------------------------------------------------------
+            ['/information', 200],
+            // Set #2 ----------------------------------------------------------
+            ['/education', 200],
+            // Set #3 ----------------------------------------------------------
+            ['/experience', 200],
+            // Set #4 ----------------------------------------------------------
+            ['/skill', 200],
+            // Set #5 ----------------------------------------------------------
+            ['/language', 200],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax', 200],
+            // Set #7 ----------------------------------------------------------
+            ['/404', 404],
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideMimeType ---------------------------------------------
+    /**
+     * Data Provider to return a list of URL and its mime type.
+     *
+     * @return array
+     */
+    public function provideMimeType()
+    {
+        return [
+            // Set #0 ----------------------------------------------------------
+            ['/', 'application/vnd.ads+xml;v=1.0'],
+            // Set #1 ----------------------------------------------------------
+            ['/information', 'application/vnd.ads+xml;v=1.0'],
+            // Set #2 ----------------------------------------------------------
+            ['/education', 'application/vnd.ads+xml;v=1.0'],
+            // Set #3 ----------------------------------------------------------
+            ['/experience', 'application/vnd.ads+xml;v=1.0'],
+            // Set #4 ----------------------------------------------------------
+            ['/skill', 'application/vnd.ads+xml;v=1.0'],
+            // Set #5 ----------------------------------------------------------
+            ['/language', 'application/vnd.ads+xml;v=1.0'],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax', 'text/plain; charset=UTF-8'],
+            // Set #7 ----------------------------------------------------------
+            ['/404', 'text/html; charset=UTF-8'],
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideMimeTypeForDebug -------------------------------------
+    /**
+     * Data Provider to return a list of URL and its mime type, when the debug
+     * flag is used.
+     *
+     * @return array
+     */
+    public function provideMimeTypeForDebug()
+    {
+        return [
+            // Set #0 ----------------------------------------------------------
+            ['/', 'application/xml'],
+            // Set #1 ----------------------------------------------------------
+            ['/information', 'application/xml'],
+            // Set #2 ----------------------------------------------------------
+            ['/education', 'application/xml'],
+            // Set #3 ----------------------------------------------------------
+            ['/experience', 'application/xml'],
+            // Set #4 ----------------------------------------------------------
+            ['/skill', 'application/xml'],
+            // Set #5 ----------------------------------------------------------
+            ['/language', 'application/xml'],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax', 'text/plain; charset=UTF-8'],
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideCache ------------------------------------------------
+    /**
+     * Data Provider to return a list of URL and its cache-control value.
+     *
+     * @return array
+     */
+    public function provideCache()
+    {
+        return [
+            // Set #0 ----------------------------------------------------------
+            ['/', 'no-cache'],
+            // Set #1 ----------------------------------------------------------
+            ['/information', 'max-age=28800, public, s-maxage=28800'],
+            // Set #2 ----------------------------------------------------------
+            ['/education', 'max-age=28800, public, s-maxage=28800'],
+            // Set #3 ----------------------------------------------------------
+            ['/experience', 'max-age=28800, public, s-maxage=28800'],
+            // Set #4 ----------------------------------------------------------
+            ['/skill', 'max-age=28800, public, s-maxage=28800'],
+            // Set #5 ----------------------------------------------------------
+            ['/language', 'max-age=28800, public, s-maxage=28800'],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax', 'no-cache'],
+            // Set #7 ----------------------------------------------------------
+            ['/404', 'no-cache'],
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideCacheForDebug ----------------------------------------
+    /**
+     * Data Provider to return a list of URL and its cache-control value, when
+     * the debug flag is used.
+     *
+     * @return array
+     */
+    public function provideCacheForDebug()
+    {
+        return [
+            // Set #0 ----------------------------------------------------------
+            ['/', 'no-cache'],
+            // Set #1 ----------------------------------------------------------
+            ['/information', 'no-cache'],
+            // Set #2 ----------------------------------------------------------
+            ['/education', 'no-cache'],
+            // Set #3 ----------------------------------------------------------
+            ['/experience', 'no-cache'],
+            // Set #4 ----------------------------------------------------------
+            ['/skill', 'no-cache'],
+            // Set #5 ----------------------------------------------------------
+            ['/language', 'no-cache'],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax', 'no-cache'],
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideUrlLanguages -----------------------------------------
+    /**
+     * Data Provider to return a list of URL and its language value.
+     *
+     * @return array
+     */
+    public function provideUrlLanguages()
+    {
+        return [
+            // Set #0 ----------------------------------------------------------
+            ['/', 'en'],
+            // Set #1 ----------------------------------------------------------
+            ['/information', 'it'],
+            // Set #2 ----------------------------------------------------------
+            ['/education', 'it'],
+            // Set #3 ----------------------------------------------------------
+            ['/experience', 'it'],
+            // Set #4 ----------------------------------------------------------
+            ['/skill', 'it'],
+            // Set #5 ----------------------------------------------------------
+            ['/language', 'it'],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax', 'en'],
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideInvalidHttpMethods -----------------------------------
+    /**
+     * Data Provider to return a list of URL and its cache-control value for
+     * each HTTP method.
+     *
+     * @return array
+     */
+    public function provideInvalidHttpMethods()
+    {
+        $httpMethods = [
             'POST',     'PUT',          'DELETE',
             'CONNECT',  'OPTIONS',      'PATCH',
             'PROPFIND', 'PROPPATCH',    'MKCOL',
@@ -127,95 +329,162 @@ class ApiTest extends WebTestCase
             'UNLOCK'
         ];
 
-        return [$methods];
+        $url = [
+            // Set #0 ----------------------------------------------------------
+            ['/', 405],
+            // Set #1 ----------------------------------------------------------
+            ['/information', 405],
+            // Set #2 ----------------------------------------------------------
+            ['/education', 405],
+            // Set #3 ----------------------------------------------------------
+            ['/experience', 405],
+            // Set #4 ----------------------------------------------------------
+            ['/skill', 405],
+            // Set #5 ----------------------------------------------------------
+            ['/language', 405],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax', 405],
+            // Set #7 ----------------------------------------------------------
+            ['/404', 404],
+        ];
+
+        $data = [];
+
+        foreach($httpMethods as $httpMethod) {
+            foreach($url as $elements) {
+                $data[] = [$elements[0], $httpMethod, $elements[1]];
+            }
+        }
+
+        return $data;
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckStatusCode
+    // {{{ Method: provideInvalidHttpMethodsForDebug ---------------------------
     /**
-     * Test the route "Entrypoint" to check the HTTP Status Code.
+     * Data Provider to return a list of URL and its cache-control value for
+     * each HTTP method, when the debug flag is used.
+     *
+     * @return array
+     */
+    public function provideInvalidHttpMethodsForDebug()
+    {
+        $httpMethods = [
+            'POST',     'PUT',          'DELETE',
+            'CONNECT',  'OPTIONS',      'PATCH',
+            'PROPFIND', 'PROPPATCH',    'MKCOL',
+            'COPY',     'MOVE',         'LOCK',
+            'UNLOCK'
+        ];
+
+        $url = [
+            // Set #0 ----------------------------------------------------------
+            ['/', 405],
+            // Set #1 ----------------------------------------------------------
+            ['/information', 405],
+            // Set #2 ----------------------------------------------------------
+            ['/education', 405],
+            // Set #3 ----------------------------------------------------------
+            ['/experience', 405],
+            // Set #4 ----------------------------------------------------------
+            ['/skill', 405],
+            // Set #5 ----------------------------------------------------------
+            ['/language', 405],
+            // Set #6 ----------------------------------------------------------
+            ['/api-definition-syntax', 405],
+        ];
+
+        $data = [];
+
+        foreach($httpMethods as $httpMethod) {
+            foreach($url as $elements) {
+                $data[] = [$elements[0], $httpMethod, $elements[1]];
+            }
+        }
+
+        return $data;
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: testEveryRouteCheckStatusCode -------------------------------
+    /**
+     * Test all the routes to check the HTTP Status Code.
+     *
+     * @param string  $url    The URL to be checked.
+     * @param integer $status The HTTP status code.
+     *
+     * @dataProvider provideStatusCode
      *
      * @since Version 0.1
      *
      * @medium
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckStatusCode
-    //  * testEducationRouteCheckStatusCode
-    //  * testExperienceRouteCheckStatusCode
-    //  * testSkillRouteCheckStatusCode
-    //  * testLanguageRouteCheckStatusCode
-    //  * testApiDefinitionSyntaxRouteCheckStatusCode
-    public function testEntrypointRouteCheckStatusCode()
+    public function testEveryRouteCheckStatusCode($url, $status)
     {
         $client  = $this->createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', $url);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals($status, $client->getResponse()->getStatusCode());
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckMimetype
+    // {{{ Method: testEveryRouteCheckMimetype ---------------------------------
     /**
-     * Test the route "Entrypoint" to check the MIME Type.
+     * Test all the routes to check the MIME Type.
+     *
+     * @param string $url       The URL to be checked.
+     * @param string $mime_type The MIME-Type to be checked.
+     *
+     * @dataProvider provideMimeType
      *
      * @since Version 0.1
      *
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckMimetype
-    //  * testEducationRouteCheckMimetype
-    //  * testExperienceRouteCheckMimetype
-    //  * testSkillRouteCheckMimetype
-    //  * testLanguageRouteCheckMimetype
-    //  * testApiDefinitionSyntaxRouteCheckMimetype
-    public function testEntrypointRouteCheckMimetype()
+    public function testEveryRouteCheckMimetype($url, $mime_type)
     {
         $client  = $this->createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', $url);
 
-        $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
+        $this->assertEquals($mime_type, $client->getResponse()->headers->get('Content-Type'));
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckMimetypeWithDebug
+    // {{{ Method: testEveryRouteCheckMimetypeWithDebug ------------------------
     /**
-     * Test the route "Entrypoint" to check the MIME Type with Debug flag enabled.
+     * Test all the routes to check the MIME Type with Debug flag enabled.
+     *
+     * @param string $url       The URL to be checked.
+     * @param string $mime_type The MIME-Type to be checked.
+     *
+     * @dataProvider provideMimeTypeForDebug
      *
      * @since Version 0.1
      *
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckMimetypeWithDebug
-    //  * testEducationRouteCheckMimetypeWithDebug
-    //  * testExperienceRouteCheckMimetypeWithDebug
-    //  * testSkillRouteCheckMimetypeWithDebug
-    //  * testLanguageRouteCheckMimetypeWithDebug
-    //  * testApiDefinitionSyntaxRouteCheckMimetypeWithDebug
-    public function testEntrypointRouteCheckMimetypeWithDebug()
+    public function testEveryRouteCheckMimetypeWithDebug($url, $mime_type)
     {
         $this->setUpDebug();
 
         $client  = $this->createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', $url);
 
-        $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
+        $this->assertEquals($mime_type, $client->getResponse()->headers->get('Content-Type'));
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckResponse
+    // {{{ Method: testEveryRouteCheckResponse ---------------------------------
     /**
-     * Test the route "Entrypoint" to check the Response.
+     * Test all the routes to check the Response.
      *
      * @medium
      * @since Version 0.1
      *
      * @return void
      */
-    public function testEntrypointRouteCheckResponse()
+    public function testEveryRouteCheckResponse()
     {
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/');
@@ -240,16 +509,16 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckResponseWithDebug
+    // {{{ Method: testEveryRouteCheckResponseWithDebug ------------------------
     /**
-     * Test the route "Entrypoint" to check the Response with Debug flag enabled.
+     * Test all the routes to check the Response with Debug flag enabled.
      *
      * @medium
      * @since Version 0.1
      *
      * @return void
      */
-    public function testEntrypointRouteCheckResponseWithDebug()
+    public function testEveryRouteCheckResponseWithDebug()
     {
         $this->setUpDebug();
 
@@ -276,220 +545,156 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckCache
+    // {{{ Method: testEveryRouteCheckCache ------------------------------------
     /**
-     * Test the route "Entrypoint" to check the Cache.
+     * Test all the routes to check the Cache.
+     *
+     * @param string $url   The URL to be checked.
+     * @param string $cache The cache value to be checked.
+     *
+     * @dataProvider provideCache
      *
      * @since Version 0.1
      *
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckCache
-    //  * testEducationRouteCheckCache
-    //  * testExperienceRouteCheckCache
-    //  * testSkillRouteCheckCache
-    //  * testLanguageRouteCheckCache
-    //  * testApiDefinitionSyntaxRouteCheckCache
-    public function testEntrypointRouteCheckCache()
+    public function testEveryRouteCheckCache($url, $cache)
     {
         $client  = $this->createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', $url);
 
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
+        $this->assertEquals($cache, $client->getResponse()->headers->get('cache-control'));
+
+        $etag = $client->getResponse()->headers->get('etag');
+        if ($etag !== null) {
+            $this->assertRegExp('/^"[0-9a-f]{32}"$/', $etag);
+        }
+
+        $last_modified = $client->getResponse()->headers->get('last-modified');
+        if ($last_modified !== null) {
+            $this->assertRegExp('/^.+$/', $last_modified);
+        }
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckCacheWithDebug
+    // {{{ Method: testEveryRouteCheckCacheWithDebug ---------------------------
     /**
-     * Test the route "Entrypoint" to check the Cache with Debug flag enabled.
+     * Test all the routes to check the Cache with Debug flag enabled.
+     *
+     * @param string $url   The URL to be checked.
+     * @param string $cache The cache value to be checked.
+     *
+     * @dataProvider provideCacheForDebug
      *
      * @since Version 0.1
      *
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckCacheWithDebug
-    //  * testEducationRouteCheckCacheWithDebug
-    //  * testExperienceRouteCheckCacheWithDebug
-    //  * testSkillRouteCheckCacheWithDebug
-    //  * testLanguageRouteCheckCacheWithDebug
-    //  * testApiDefinitionSyntaxRouteCheckCacheWithDebug
-    public function testEntrypointRouteCheckCacheWithDebug()
+    public function testEveryRouteCheckCacheWithDebug($url, $cache)
     {
         $this->setUpDebug();
 
         $client  = $this->createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', $url);
 
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
+        $this->assertEquals($cache, $client->getResponse()->headers->get('cache-control'));
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckWrongHttpMethod
+    // {{{ Method: testEveryRouteCheckWrongHttpMethod --------------------------
     /**
-     * Test the route "Entrypoint" to check the Response with a wrong HTTP Method.
+     * Test all the routes to check the Response with a wrong HTTP Method.
      *
-     * @param string $httpMethod The invalid HTTP Method.
+     * @param string  $url        The URL to be checked.
+     * @param string  $httpMethod The invalid HTTP Method.
+     * @param integer $status     The HTTP status code.
      *
-     * @dataProvider providerInvalidHttpMethods
+     * @dataProvider provideInvalidHttpMethods
      * @since        Version 0.1
      *
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckCacheHttpMethod
-    //  * testEducationRouteCheckCacheHttpMethod
-    //  * testExperienceRouteCheckCacheHttpMethod
-    //  * testSkillRouteCheckCacheHttpMethod
-    //  * testLanguageRouteCheckCacheHttpMethod
-    //  * testApiDefinitionSyntaxRouteCheckCacheHttpMethod
-    public function testEntrypointRouteCheckWrongHttpMethod($httpMethod)
+    public function testEveryRouteCheckWrongHttpMethod($url, $httpMethod, $status)
     {
         $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/');
+        $crawler = $client->request($httpMethod, $url);
 
-        $this->assertEquals(405, $client->getResponse()->getStatusCode());
+        $this->assertEquals($status, $client->getResponse()->getStatusCode());
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckWrongHttpMethodWithDebug
+    // {{{ Method: testEveryRouteCheckWrongHttpMethodWithDebug -----------------
     /**
-     * Test the route "Entrypoint" to check the Response with a wrong HTTP
+     * Test all the routes to check the Response with a wrong HTTP
      * Method with Debug flag enabled.
      *
+     * @param string $url        The URL to be checked.
      * @param string $httpMethod The invalid HTTP Method.
      *
-     * @dataProvider             providerInvalidHttpMethods
+     * @dataProvider             provideInvalidHttpMethodsForDebug
      * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      * @expectedExceptionMessage No route found for
      * @since                    Version 0.1
      *
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckCacheHttpMethodWithDebug
-    //  * testEducationRouteCheckCacheHttpMethodWithDebug
-    //  * testExperienceRouteCheckCacheHttpMethodWithDebug
-    //  * testSkillRouteCheckCacheHttpMethodWithDebug
-    //  * testLanguageRouteCheckCacheHttpMethodWithDebug
-    //  * testApiDefinitionSyntaxRouteCheckCacheHttpMethodWithDebug
-    public function testEntrypointRouteCheckWrongHttpMethodWithDebug($httpMethod)
+    public function testEveryRouteCheckWrongHttpMethodWithDebug($url, $httpMethod)
     {
         $this->setUpDebug();
 
         $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/');
+        $crawler = $client->request($httpMethod, $url);
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckCharset
+    // {{{ Method: testEveryRouteCheckCharset ----------------------------------
     /**
-     * Test the route "Entrypoint" to check the Charset.
+     * Test all the routes to check the Charset.
      *
+     * @param string  $url        The URL to be checked.
+     * @param string  $httpMethod The invalid HTTP Method.
+     * @param integer $status     The HTTP status code.
+     *
+     * @dataProvider provideUrl
      * @since Version 0.1
      *
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckCharset
-    //  * testEducationRouteCheckCharset
-    //  * testExperienceRouteCheckCharset
-    //  * testSkillRouteCheckCharset
-    //  * testLanguageRouteCheckCharset
-    //  * testApiDefinitionSyntaxRouteCheckCharset
-    public function testEntrypointRouteCheckCharset()
+    public function testEveryRouteCheckCharset($url)
     {
         $client  = $this->createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', $url);
 
         $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEntrypointRouteCheckLanguage
+    // {{{ Method: testEveryRouteCheckLanguage ---------------------------------
     /**
-     * Test the route "Entrypoint" to check the Language.
+     * Test all the routes to check the Language.
+     *
+     * @param string $url The URL to be checked.
+     *
+     * @dataProvider provideUrlLanguages
      *
      * @since Version 0.1
      *
      * @return void
      */
-    // TODO: Aggregate and use @dataProvider for these methods:
-    //  * testInformationRouteCheckLanguage
-    //  * testEducationRouteCheckLanguage
-    //  * testExperienceRouteCheckLanguage
-    //  * testSkillRouteCheckLanguage
-    //  * testLanguageRouteCheckLanguage
-    //  * testApiDefinitionSyntaxRouteCheckLanguage
-    public function testEntrypointRouteCheckLanguage()
+    public function testEveryRouteCheckLanguage($url, $lang)
     {
         $client  = $this->createClient();
-        $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
+        $crawler = $client->request('GET', $url, [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
 
-        // TODO: Use a @dataProvider
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
+        $this->assertEquals($lang, $client->getResponse()->headers->get('Content-Language'));
 
-        $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
+        $crawler = $client->request('GET', $url, [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
 
         $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testInformationRouteCheckStatusCode
-    /**
-     * Test the route "Information" to check the HTTP Status Code.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckStatusCode()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testInformationRouteCheckMimetype
-    /**
-     * Test the route "Information" to check the MIME Type.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckMimetype()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information');
-
-        $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testInformationRouteCheckMimetypeWithDebug
-    /**
-     * Test the route "Information" to check the MIME Type with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckMimetypeWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information');
-
-        $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testInformationRouteCheckResponse
+    // {{{ Method: testInformationRouteCheckResponse ---------------------------
     /**
      * Test the route "Information" to check the Response.
      *
@@ -523,7 +728,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testInformationRouteCheckResponseWithDebug
+    // {{{ Method: testInformationRouteCheckResponseWithDebug ------------------
     /**
      * Test the route "Information" to check the Response with Debug flag enabled.
      *
@@ -559,181 +764,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testInformationRouteCheckCache
-    /**
-     * Test the route "Information" to check the Cache.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckCache()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information');
-
-        $this->assertEquals('max-age=28800, public, s-maxage=28800', $client->getResponse()->headers->get('cache-control'));
-        $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
-        $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testInformationRouteCheckCacheWithDebug
-    /**
-     * Test the route "Information" to check the Cache with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckCacheWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information');
-
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testInformationRouteCheckWrongHttpMethod
-    /**
-     * Test the route "Information" to check the Response with a wrong HTTP
-     * Method.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider providerInvalidHttpMethods
-     * @since        Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckWrongHttpMethod($httpMethod)
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/information');
-
-        $this->assertEquals(405, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testInformationRouteCheckWrongHttpMethodWithDebug
-    /**
-     * Test the route "Information" to check the Response with a wrong HTTP
-     * Method with Debug flag enabled.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider             providerInvalidHttpMethods
-     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
-     * @expectedExceptionMessage No route found for
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckWrongHttpMethodWithDebug($httpMethod)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/information');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testInformationtRouteCheckCharset
-    /**
-     * Test the route "Information" to check the Charset.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckCharset()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information');
-
-        $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testInformationRouteCheckLanguage
-    /**
-     * Test the route "Information" to check the Language.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckLanguage()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
-
-        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
-
-        $crawler = $client->request('GET', '/information', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
-
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckStatusCode
-    /**
-     * Test the route "Education" to check the HTTP Status Code.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckStatusCode()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckMimetype
-    /**
-     * Test the route "Education" to check the MIME Type.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckMimetype()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education');
-
-        $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckMimetypeWithDebug
-    /**
-     * Test the route "Education" to check the MIME Type with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckMimetypeWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education');
-
-        $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckResponse
+    // {{{ Method: testEducationRouteCheckResponse -----------------------------
     /**
      * Test the route "Education" to check the Response.
      *
@@ -771,7 +802,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEducationRouteCheckResponseWithDebug
+    // {{{ Method: testEducationRouteCheckResponseWithDebug --------------------
     /**
      * Test the route "Education" to check the Response with Debug flag enabled.
      *
@@ -811,182 +842,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testEducationRouteCheckCache
-    /**
-     * Test the route "Education" to check the Cache.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckCache()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education');
-
-        $this->assertEquals('max-age=28800, public, s-maxage=28800', $client->getResponse()->headers->get('cache-control'));
-        $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
-        $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckCacheWithDebug
-    /**
-     * Test the route "Education" to check the Cache with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckCacheWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education');
-
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckWrongHttpMethod
-    /**
-     * Test the route "Education" to check the Response with a wrong HTTP Method.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider providerInvalidHttpMethods
-     *
-     * @since Version 0.1
-     * @return void
-     */
-    public function testEducationRouteCheckWrongHttpMethod($httpMethod)
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/education');
-
-        $this->assertEquals(405, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckWrongHttpMethodWithDebug
-    /**
-     * Test the route "Education" to check the Response with a wrong HTTP Method
-     * with Debug flag enabled.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider             providerInvalidHttpMethods
-     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
-     * @expectedExceptionMessage No route found for
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckWrongHttpMethodWithDebug($httpMethod)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/education');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckCharset
-    /**
-     * Test the route "Education" to check the Charset.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckCharset()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education');
-
-        $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testEducationRouteCheckLanguage
-    /**
-     * Test the route "Education" to check the Language.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckLanguage()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
-
-        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
-
-        $crawler = $client->request('GET', '/education', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
-
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckStatusCode
-    /**
-     * Test the route "Experience" to check the HTTP Status Code.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckStatusCode()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckMimetype
-    /**
-     * Test the route "Experience" to check the MIME Type.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckMimetype()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience');
-
-        $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckMimetypeWithDebug
-    /**
-     * Test the route "Experience" to check the MIME Type with Debug flag enabled.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckMimetypeWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience');
-
-        $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckResponse
+    // {{{ Method: testExperienceRouteCheckResponse ----------------------------
     /**
      * Test the route "Experience" to check the Response.
      *
@@ -1050,7 +906,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testExperienceRouteCheckResponseWithDebug
+    // {{{ Method: testExperienceRouteCheckResponseWithDebug -------------------
     /**
      * Test the route "Experience" to check the Response with Debug flag enabled.
      *
@@ -1117,179 +973,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testExperienceRouteCheckCache
-    /**
-     * Test the route "Experience" to check the Cache.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckCache()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience');
-
-        $this->assertEquals('max-age=28800, public, s-maxage=28800', $client->getResponse()->headers->get('cache-control'));
-        $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
-        $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckCacheWithDebug
-    /**
-     * Test the route "Experience" to check the Cache with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckCacheWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience');
-
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckWrongHttpMethod
-    /**
-     * Test the route "Experience" to check the Response with a wrong HTTP Method.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider providerInvalidHttpMethods
-     * @since        Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckWrongHttpMethod($httpMethod)
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/experience');
-
-        $this->assertEquals(405, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckWrongHttpMethodWithDebug
-    /**
-     * Test the route "Experience" to check the Response with a wrong HTTP Method with Debug flag enabled.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider             providerInvalidHttpMethods
-     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
-     * @expectedExceptionMessage No route found for
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckWrongHttpMethodWithDebug($httpMethod)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/experience');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckCharset
-    /**
-     * Test the route "Experience" to check the Charset.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckCharset()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience');
-
-        $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testExperienceRouteCheckLanguage
-    /**
-     * Test the route "Experience" to check the Language.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckLanguage()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
-
-        // TODO: Use a @dataProvider
-        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
-
-        $crawler = $client->request('GET', '/experience', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
-
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckStatusCode
-    /**
-     * Test the route "Skill" to check the HTTP Status Code.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckStatusCode()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckMimetype
-    /**
-     * Test the route "Skill" to check the MIME Type.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckMimetype()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill');
-
-        $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckMimetypeWithDebug
-    /**
-     * Test the route "Skill" to check the MIME Type with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckMimetypeWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill');
-
-        $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckResponse
+    // {{{ Method: testSkillRouteCheckResponse ---------------------------------
     /**
      * Test the route "Skill" to check the Response.
      *
@@ -1327,7 +1011,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testSkillRouteCheckResponseWithDebug
+    // {{{ Method: testSkillRouteCheckResponseWithDebug ------------------------
     /**
      * Test the route "Skill" to check the Response with Debug flag enabled.
      *
@@ -1367,178 +1051,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testSkillRouteCheckCache
-    /**
-     * Test the route "Skill" to check the Cache.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckCache()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill');
-
-        $this->assertEquals('max-age=28800, public, s-maxage=28800', $client->getResponse()->headers->get('cache-control'));
-        $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
-        $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckCacheWithDebug
-    /**
-     * Test the route "Skill" to check the Cache with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckCacheWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill');
-
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckWrongHttpMethod
-    /**
-     * Test the route "Skill" to check the Response with a wrong HTTP Method.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider providerInvalidHttpMethods
-     * @since        Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckWrongHttpMethod($httpMethod)
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/skill');
-
-        $this->assertEquals(405, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckWrongHttpMethodWithDebug
-    /**
-     * Test the route "Skill" to check the Response with a wrong HTTP Method with Debug flag enabled.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider             providerInvalidHttpMethods
-     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
-     * @expectedExceptionMessage No route found for
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckWrongHttpMethodWithDebug($httpMethod)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/skill');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckCharset
-    /**
-     * Test the route "Skill" to check the Charset.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckCharset()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill');
-
-        $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testSkillRouteCheckLanguage
-    /**
-     * Test the route "Skill" to check the Language.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckLanguage()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
-
-        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
-
-        $crawler = $client->request('GET', '/skill', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
-
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckStatusCode
-    /**
-     * Test the route "Language" to check the HTTP Status Code.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckStatusCode()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckMimetype
-    /**
-     * Test the route "Language" to check the MIME Type.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckMimetype()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language');
-
-        $this->assertEquals('application/vnd.ads+xml;v=1.0', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckMimetypeWithDebug
-    /**
-     * Test the route "Language" to check the MIME Type with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckMimetypeWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language');
-
-        $this->assertEquals('application/xml', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckResponse
+    // {{{ Method: testLanguageRouteCheckResponse ------------------------------
     /**
      * Test the route "Language" to check the Response.
      *
@@ -1576,7 +1089,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testLanguageRouteCheckResponseWithDebug
+    // {{{ Method: testLanguageRouteCheckResponseWithDebug ---------------------
     /**
      * Test the route "Language" to check the Response with Debug flag enabled.
      *
@@ -1616,349 +1129,7 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testLanguageRouteCheckCache
-    /**
-     * Test the route "Language" to check the Cache.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckCache()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language');
-
-        $this->assertEquals('max-age=28800, public, s-maxage=28800', $client->getResponse()->headers->get('cache-control'));
-        $this->assertRegExp('/^"[0-9a-f]{32}"$/', $client->getResponse()->headers->get('etag'));
-        $this->assertRegExp('/^.+$/', $client->getResponse()->headers->get('last-modified'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckCacheWithDebug
-    /**
-     * Test the route "Language" to check the Cache with Debug flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckCacheWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language');
-
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckWrongHttpMethod
-    /**
-     * Test the route "Language" to check the Response with a wrong HTTP Method.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider providerInvalidHttpMethods
-     *
-     * @since Version 0.1
-     * @return void
-     */
-    public function testLanguageRouteCheckWrongHttpMethod($httpMethod)
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/language');
-
-        $this->assertEquals(405, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckWrongHttpMethodWithDebug
-    /**
-     * Test the route "Language" to check the Response with a wrong HTTP Method
-     * with Debug flag enabled.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider             providerInvalidHttpMethods
-     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
-     * @expectedExceptionMessage No route found for
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckWrongHttpMethodWithDebug($httpMethod)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/language');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckCharset
-    /**
-     * Test the route "Language" to check the Charset.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckCharset()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language');
-
-        $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testLanguageRouteCheckLanguage
-    /**
-     * Test the route "Language" to check the Language.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckLanguage()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
-
-        // TODO: Use a @dataProvider
-        $this->assertEquals('it', $client->getResponse()->headers->get('Content-Language'));
-
-        $crawler = $client->request('GET', '/language', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
-
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckStatusCode
-    /**
-     * Test the route "ApiDefinitionSyntax" to check the HTTP Status Code.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckStatusCode()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckMimetype
-    /**
-     * Test the route "api-definition-syntax" to check the MIME Type.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckMimetype()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        $this->assertEquals('text/plain; charset=UTF-8', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckMimetypeWithDebug
-    /**
-     * Test the route "api-definition-syntax" to check the MIME Type with Debug
-     * flag enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckMimetypeWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        $this->assertEquals('text/plain; charset=UTF-8', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckCache
-    /**
-     * Test the route "api-definition-syntax" to check the Cache.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckCache()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckCacheWithDebug
-    /**
-     * Test the route "api-definition-syntax" to check the Cache with Debug flag
-     * enabled.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckCacheWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckWrongHttpMethod
-    /**
-     * Test the route "api-definition-syntax" to check the Response with a wrong
-     * HTTP Method.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider providerInvalidHttpMethods
-     * @since        Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckWrongHttpMethod($httpMethod)
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/api-definition-syntax');
-
-        $this->assertEquals(405, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckWrongHttpMethodWithDebug
-    /**
-     * Test the route "api-definition-syntax" to check the Response with a wrong
-     * HTTP Method with Debug flag enabled.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider             providerInvalidHttpMethods
-     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
-     * @expectedExceptionMessage No route found for
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckWrongHttpMethodWithDebug($httpMethod)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/api-definition-syntax');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckCharset
-    /**
-     * Test the route "ApiDefinitionSyntax" to check the Charset.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckCharset()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax');
-
-        $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ testApiDefinitionSyntaxRouteCheckLanguage
-    /**
-     * Test the route "ApiDefinitionSyntax" to check the Language.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testApiDefinitionSyntaxRouteCheckLanguage()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/api-definition-syntax', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
-
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckStatusCode
-    /**
-     * Test the route "404" to check the HTTP Status Code.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckStatusCode()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404');
-
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckMimetype
-    /**
-     * Test the route "404" to check the MIME Type.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckMimetype()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404');
-
-        $this->assertEquals('text/html; charset=UTF-8', $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckMimetypeWithDebug
-    /**
-     * Test the route "404" to check the MIME Type with Debug flag enabled.
-     *
-     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @expectedExceptionMessage No route found for "GET /404"
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckMimetypeWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckResponse
+    // {{{ Method: test404RouteCheckResponse -----------------------------------
     /**
      * Test the route "404" to check the Response.
      *
@@ -1971,11 +1142,11 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/404');
 
-        $this->assertEquals('No route found for "GET /404"', $client->getResponse()->getContent());
+        $this->assertEquals('Error, you are unauthorised to know more about it.', $client->getResponse()->getContent());
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ test404RouteCheckResponseWithDebug
+    // {{{ Method: test404RouteCheckResponseWithDebug --------------------------
     /**
      * Test the route "404" to check the Response with Debug flag enabled.
      *
@@ -1993,121 +1164,5 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/404');
     }
     // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckCache
-    /**
-     * Test the route "404" to check the Cache.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckCache()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404');
-
-        $this->assertEquals('no-cache', $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckCacheWithDebug
-    /**
-     * Test the route "404" to check the Cache with Debug flag enabled.
-     *
-     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @expectedExceptionMessage No route found for "GET /404"
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckCacheWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckWrongHttpMethod
-    /**
-     * Test the route "404" to check the Response with a wrong HTTP Method.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider providerInvalidHttpMethods
-     * @since        Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckWrongHttpMethod($httpMethod)
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/404');
-
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckWrongHttpMethodWithDebug
-    /**
-     * Test the route "404" to check the Response with a wrong HTTP Method with Debug flag enabled.
-     *
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider             providerInvalidHttpMethods
-     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @expectedExceptionMessage No route found for
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckWrongHttpMethodWithDebug($httpMethod)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, '/404');
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckCharset
-    /**
-     * Test the route "404" to check the Charset.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckCharset()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404');
-
-        $this->assertEquals('UTF-8', $client->getResponse()->getCharset());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ test404RouteCheckLanguage
-    /**
-     * Test the route "404" to check the Language.
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckLanguage()
-    {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'it']);
-
-        // TODO: Use a @dataProvider
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
-
-        $crawler = $client->request('GET', '/404', [], [], ['HTTP_ACCEPT_LANGUAGE' => 'en']);
-
-        $this->assertEquals('en', $client->getResponse()->headers->get('Content-Language'));
-    }
-    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

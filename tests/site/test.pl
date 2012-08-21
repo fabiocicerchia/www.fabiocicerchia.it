@@ -31,6 +31,8 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Run perlcritic.
+
 use strict;
 use warnings;
 use version; our $VERSION = qv('1.0');
@@ -53,16 +55,18 @@ require_ok('File::Basename');
 require_ok('File::Spec');
 require_ok('Locale::TextDomain');
 require_ok('LWP');
-require_ok('POSIX');
 require_ok('Perl::Critic');
 require_ok('Pod::Coverage');
+require_ok('POSIX');
+require_ok('Readonly');
 require_ok('Template');
+require_ok('Template::Filter');
 require_ok('Test::More');
 require_ok('XML::Simple');
 
 my $class_name = 'FabioCicerchiaSite';
 
-# to make STDOUT flush immediately, simply set the variable this can be useful
+# To make STDOUT flush immediately, simply set the variable this can be useful
 # if you are writing to STDOUT in a loop many times the buffering will cause
 # unexpected output results.
 $| = 1;
@@ -82,66 +86,41 @@ subtest 'Unit Testing' => sub {
     can_ok( $class_name, qw(show) );
 };
 
-# TODO: Refactor this code below.
-# TODO: Disable the output printing
-# TODO: Add the functional tests for "atom", "rss*", "vcard".
 subtest 'Functional Testing' => sub {
-    local %ENV = (
-        'SCRIPT_NAME',
-        '/index.pl',
-        'SERVER_NAME',
-        'fabiocicerchia.it',
-        'SERVER_ADMIN',
-        '[no address given]',
-        'HTTP_ACCEPT_ENCODING',
-        'gzip, deflate',
-        'HTTP_CONNECTION',
-        'keep-alive',
-        'REQUEST_METHOD',
-        'GET',
-        'HTTP_ACCEPT',
-        'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'SCRIPT_FILENAME',
-        '/var/www/fabiocicerchia.it/web/index.pl',
-        'SERVER_SOFTWARE',
-        'Apache/2.2.22 (Ubuntu)',
-        'TZ',
-        'Europe/London',
-        'QUERY_STRING',
-        q{},
-        'REMOTE_PORT',
-        '60403',
-        'HTTP_USER_AGENT',
-'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0.1',
-        'SERVER_PORT',
-        '80',
-        'SERVER_SIGNATURE',
-        q{},
-        'HTTP_ACCEPT_LANGUAGE',
-        'en-gb,en;q=0.5',
-        'REMOTE_ADDR',
-        '127.0.0.1',
-        'SERVER_PROTOCOL',
-        'HTTP/1.1',
-        'MOD_PERL_API_VERSION',
-        '2',
-        'PATH',
-        '/usr/local/bin:/usr/bin:/bin',
-        'REQUEST_URI',
-        q{/},
-        'GATEWAY_INTERFACE',
-        'CGI/1.1',
-        'SERVER_ADDR',
-        '127.0.0.1',
-        'DOCUMENT_ROOT',
-        '/var/www/fabiocicerchia.it/web',
-        'HTTP_HOST',
-        'fabiocicerchia.github',
-        'MOD_PERL',
-        'mod_perl/2.0.5',
-        'UNIQUE_ID',
-        'T@lcSX8AAQEAAAc3AV4AAAAC',
+    my %BASE_ENV = (
+        'SCRIPT_NAME',          '/index.pl',
+        'SERVER_NAME',          'fabiocicerchia.it',
+        'SERVER_ADMIN',         '[no address given]',
+        'HTTP_ACCEPT_ENCODING', 'gzip, deflate',
+        'HTTP_CONNECTION',      'keep-alive',
+        'REQUEST_METHOD',       'GET',
+        'HTTP_ACCEPT',          'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'SCRIPT_FILENAME',      '/var/www/fabiocicerchia.it/web/index.pl',
+        'SERVER_SOFTWARE',      'Apache/2.2.22 (Ubuntu)',
+        'TZ',                   'Europe/London',
+        'QUERY_STRING',         q{},
+        'REMOTE_PORT',          '60403',
+        'HTTP_USER_AGENT',      'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0.1',
+        'SERVER_PORT',          '80',
+        'SERVER_SIGNATURE',     q{},
+        'HTTP_ACCEPT_LANGUAGE', 'en-gb,en;q=0.5',
+        'REMOTE_ADDR',          '127.0.0.1',
+        'SERVER_PROTOCOL',      'HTTP/1.1',
+        'MOD_PERL_API_VERSION', '2',
+        'PATH',                 '/usr/local/bin:/usr/bin:/bin',
+        'REQUEST_URI',          q{/},
+        'GATEWAY_INTERFACE',    'CGI/1.1',
+        'SERVER_ADDR',          '127.0.0.1',
+        'DOCUMENT_ROOT',        '/var/www/fabiocicerchia.it/web',
+        'HTTP_HOST',            'fabiocicerchia.github',
+        'MOD_PERL',             'mod_perl/2.0.5',
+        'UNIQUE_ID',            'T@lcSX8AAQEAAAc3AV4AAAAC',
     );
+
+    ############################################################################
+    # HOMEPAGE
+    ############################################################################
+    local %ENV = %BASE_ENV;
 
     my $obj = new_ok($class_name);
 
@@ -150,72 +129,14 @@ subtest 'Functional Testing' => sub {
     $obj->show();
     close(STDOUT);
 
-    local %ENV = (
-        'SCRIPT_NAME',
-        '/index.pl',
-        'REQUEST_METHOD',
-        'GET',
-        'HTTP_ACCEPT',
-        'text/html,application/xhtml+xml,application/xml,q=0.9,*/*,q=0.8',
-        'SCRIPT_FILENAME',
-        '/home/fabio/Web/fabiocicerchia.github.com/web/index.pl',
-        'SERVER_SOFTWARE',
-        'Apache/2.2.22 (Ubuntu)',
-        'QUERY_STRING',
-        'format=rss2',
-        'REMOTE_PORT',
-        '50192',
-        'HTTP_USER_AGENT',
-'Mozilla/5.0 (X11, Ubuntu, Linux x86_64, rv:13.0) Gecko/20100101 Firefox/13.0.1',
-        'SERVER_SIGNATURE',
-        q{},
-        'REDIRECT_QUERY_STRING',
-        'format=rss2',
-        'REDIRECT_TZ',
-        'Europe/London',
-        'HTTP_ACCEPT_LANGUAGE',
-        'en-gb,en,q=0.5',
-        'PATH',
-        '/usr/local/bin:/usr/bin:/bin',
-        'MOD_PERL_API_VERSION',
-        '2',
-        'GATEWAY_INTERFACE',
-        'CGI/1.1',
-        'DOCUMENT_ROOT',
-        '/home/fabio/Web/fabiocicerchia.github.com/web',
-        'UNIQUE_ID',
-        'T-DCcH8AAQEAACbMOxMAAAAG',
-        'SERVER_NAME',
-        'fabiocicerchia.github',
-        'HTTP_ACCEPT_ENCODING',
-        'gzip, deflate',
-        'SERVER_ADMIN',
-        '[no address given]',
-        'HTTP_CONNECTION',
-        'keep-alive',
-        'REDIRECT_URL',
-        '/rss',
-        'TZ',
-        'Europe/London',
-        'REDIRECT_UNIQUE_ID',
-        'T-DCcH8AAQEAACbMOxMAAAAG',
-        'SERVER_PORT',
-        '80',
-        'REDIRECT_STATUS',
-        '200',
-        'REMOTE_ADDR',
-        '127.0.0.1',
-        'SERVER_PROTOCOL',
-        'HTTP/1.1',
-        'REQUEST_URI',
-        '/rss',
-        'SERVER_ADDR',
-        '127.0.0.1',
-        'HTTP_HOST',
-        'fabiocicerchia.github',
-        'MOD_PERL',
-        'mod_perl/2.0.5',
-    );
+    ############################################################################
+    # RSS2
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    $ENV{'QUERY_STRING'} =          'format=rss2';
+    $ENV{'REDIRECT_QUERY_STRING'} = 'format=rss2';
+    $ENV{'REDIRECT_URL'} =          '/rss2';
+    $ENV{'REQUEST_URI'} =           '/rss2';
 
     $obj = new_ok($class_name);
 
@@ -223,6 +144,102 @@ subtest 'Functional Testing' => sub {
     STDOUT->autoflush(1);
     $obj->show();
     close(STDOUT);
+
+    ############################################################################
+    # RSS1
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    $ENV{'QUERY_STRING'} =          'format=rss1';
+    $ENV{'REDIRECT_QUERY_STRING'} = 'format=rss1';
+    $ENV{'REDIRECT_URL'} =          '/rss1';
+    $ENV{'REQUEST_URI'} =           '/rss1';
+
+    $obj = new_ok($class_name);
+
+    open (STDOUT, '>> /dev/null');
+    STDOUT->autoflush(1);
+    $obj->show();
+    close(STDOUT);
+
+    ############################################################################
+    # RSS092
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    $ENV{'QUERY_STRING'} =          'format=rss092';
+    $ENV{'REDIRECT_QUERY_STRING'} = 'format=rss092';
+    $ENV{'REDIRECT_URL'} =          '/rss092';
+    $ENV{'REQUEST_URI'} =           '/rss092';
+
+    $obj = new_ok($class_name);
+
+    open (STDOUT, '>> /dev/null');
+    STDOUT->autoflush(1);
+    $obj->show();
+    close(STDOUT);
+
+    ############################################################################
+    # RSS091
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    $ENV{'QUERY_STRING'} =          'format=rss091';
+    $ENV{'REDIRECT_QUERY_STRING'} = 'format=rss091';
+    $ENV{'REDIRECT_URL'} =          '/rss091';
+    $ENV{'REQUEST_URI'} =           '/rss091';
+
+    $obj = new_ok($class_name);
+
+    open (STDOUT, '>> /dev/null');
+    STDOUT->autoflush(1);
+    $obj->show();
+    close(STDOUT);
+
+    ############################################################################
+    # ATOM
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    $ENV{'QUERY_STRING'} =          'format=atom';
+    $ENV{'REDIRECT_QUERY_STRING'} = 'format=atom';
+    $ENV{'REDIRECT_URL'} =          '/atom';
+    $ENV{'REQUEST_URI'} =           '/atom';
+
+    $obj = new_ok($class_name);
+
+    open (STDOUT, '>> /dev/null');
+    STDOUT->autoflush(1);
+    $obj->show();
+    close(STDOUT);
+
+    ############################################################################
+    # VCARD
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    $ENV{'QUERY_STRING'} =          'format=vcard';
+    $ENV{'REDIRECT_QUERY_STRING'} = 'format=vcard';
+    $ENV{'REDIRECT_URL'} =          '/vcard';
+    $ENV{'REQUEST_URI'} =           '/vcard';
+
+    $obj = new_ok($class_name);
+
+    open (STDOUT, '>> /dev/null');
+    STDOUT->autoflush(1);
+    $obj->show();
+    close(STDOUT);
+
+    ############################################################################
+    # 404
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    $ENV{'QUERY_STRING'} =          'action=fake';
+    $ENV{'REDIRECT_QUERY_STRING'} = 'action=fake';
+    $ENV{'REDIRECT_URL'} =          '/';
+    $ENV{'REQUEST_URI'} =           '/';
+
+    $obj = new_ok($class_name);
+
+    open (STDOUT, '>> /dev/null');
+    STDOUT->autoflush(1);
+    $obj->show();
+    #close(STDOUT); # Commented to suppress some further error messages.
 
     pass('Functional Testing');
 };

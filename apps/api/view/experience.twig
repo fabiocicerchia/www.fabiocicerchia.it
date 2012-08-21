@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entities xmlns="http://www.w3.org/2005/Atom">
+<!-- TODO: Sort attribute -->
     {% include '_header.twig' %}
 
     {% for entity in entities %}
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
         <title type="text">{{ entity.role }}</title>
+        <!-- TODO: Refactor Extract -->
         <published>
         {% if entity.date.start is defined %}
             {{ entity.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}
@@ -18,8 +20,10 @@
             {{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
         </updated>
         {% endif %}
+        <!-- TODO: End Refactor Extract -->
 
         <content>
+            <!-- TODO: Refactor Extract -->
             <company>
                 <title type="text">{{ entity.company.name }}</title>
                 {% if entity.company.url is defined %}
@@ -27,12 +31,13 @@
                 {% endif %}
                 {% if entity.company.location is defined %}
                 <address>
-                    <postalcode>{{ entity.company.location.cap }}</postalcode>
+                    <postalcode>{{ entity.company.location.postal_code }}</postalcode>
                     <city>{{ entity.company.location.city }}</city>
                     <country>{{ entity.company.location.country }}</country>
                 </address>
                 {% endif %}
             </company>
+            <!-- TODO: End Refactor Extract -->
 
             {% if entity.activities is defined %}
             <activities>

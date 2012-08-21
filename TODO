@@ -2,258 +2,509 @@
 TODO LIST
 --------------------------------------------------------------------------------
 
-File: ./db/mongo-curriculum.js
+File: ./config/phpunit.xml
 --------------------------------------------------------------------------------
 
-  - TBW (line 278)
-  - TBW (line 279)
-  - TBW (line 281)
-  - TBW (line 282)
-  - TBW (line 284)
-  - TBW (line 285)
-  - TBW (line 286)
-  - TBW (line 287)
-  - TBW (line 288)
-  - TBW (line 289)
-  - TBW (line 290)
-  - TBW (line 291)
-  - TBW (line 304)
-  - TBW (line 584)
+  - Attribute sorting (line 2)
+
+File: ./config/deploy.rb
+--------------------------------------------------------------------------------
+
+  - Add "demo" as stage. (line 31)
 
 File: ./tests/site/test.pl
 --------------------------------------------------------------------------------
 
-  - Refactor this code below. (line 78)
-  - Disable the output printing (line 79)
-  - Add the functional tests for "atom", "rss*", "vcard". (line 80)
+  - Run perlcritic. (line 34)
 
 File: ./tests/api/functional/ApiTest.php
 --------------------------------------------------------------------------------
 
-  - Aggregate and use @dataProvider for these methods: (line 143)
-  - Aggregate and use @dataProvider for these methods: (line 167)
-  - Aggregate and use @dataProvider for these methods: (line 191)
-  - Aggregate and use @dataProvider for these methods: (line 287)
-  - Aggregate and use @dataProvider for these methods: (line 311)
-  - Aggregate and use @dataProvider for these methods: (line 340)
-  - Aggregate and use @dataProvider for these methods: (line 370)
-  - Aggregate and use @dataProvider for these methods: (line 394)
-  - Aggregate and use @dataProvider for these methods: (line 418)
-  - Use a @dataProvider (line 430)
-  - Use a @dataProvider (line 1230)
-  - Use a @dataProvider (line 1730)
-  - Use a @dataProvider (line 2105)
+  - Run PHP-CS-Fixer. (line 36)
+
+File: ./tests/api/unit/FabioCicerchia/Api/ServiceAbstractTest.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/StrategyTest.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/LanguageTest.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/SkillTest.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/InformationTest.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/EducationTest.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/ExperienceTest.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
 
 File: ./tests/api/unit/FabioCicerchia/Api/UtilsTest.php
 --------------------------------------------------------------------------------
 
-  - Use a @dataProvider. (line 65)
-  - Implement this test. (line 90)
+  - Run PHP-CS-Fixer. (line 37)
+  - 100% Internal Coverage. (line 38)
+  - 100% Overall Coverage. (line 39)
+
+File: ./tests/api/bootstrap.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 36)
 
 File: ./tests/script/test.py
 --------------------------------------------------------------------------------
 
   - Write tests. (line 8)
 
+File: ./lib/PHPCS/ruleset.xml
+--------------------------------------------------------------------------------
+
+  - Use ruleset for PSR2 (line 5)
+
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/TestCase.php
 --------------------------------------------------------------------------------
 
-  - Use this method (line 110)
+  - Run PHP-CS-Fixer. (line 37)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/ServiceAbstract.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
 
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
 --------------------------------------------------------------------------------
 
-  - Write a test to cover this condition. (line 70)
-  - Write a test to cover this condition. (line 110)
-  - Write a test to cover this condition. (line 144)
-  - Write a test to cover this condition. (line 150)
-  - Write a test to cover this condition. (line 165)
-  - Write a test to cover this condition. (line 173)
-  - Write a test to cover this condition. (line 181)
-  - Write a test to cover this condition. (line 189)
-  - Write a test to cover this condition. (line 207)
-  - Write a test to cover this condition. (line 258)
+  - Run PHP-CS-Fixer. (line 37)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/TwigExtension.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - Remove and just use "date". (line 73)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Language.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/EntryPoint.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - Retrieve automatically the values. (line 61)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Education.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Information.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Skill.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - Refactor. (line 82)
 
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Strategy.php
 --------------------------------------------------------------------------------
 
-  - Write a test to cover this condition. (line 103)
-  - Write a test to cover this condition. (line 114)
+  - Run PHP-CS-Fixer. (line 37)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Experience.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 37)
+  - Is it possible to combine them into one? (line 98)
 
 File: ./apps/site/view/rss091.tmpl
 --------------------------------------------------------------------------------
 
-  - Sorting by date. (line 14)
+  - Sort attribute (line 4)
 
 File: ./apps/site/view/atom.tmpl
 --------------------------------------------------------------------------------
 
-  - Sorting by date. (line 14)
+  - Sort attribute (line 4)
 
 File: ./apps/site/view/rss1.tmpl
 --------------------------------------------------------------------------------
 
-  - Sorting by date. (line 9)
-  - Sorting by date. (line 23)
+  - Sort attribute (line 3)
 
 File: ./apps/site/view/_header.tmpl
 --------------------------------------------------------------------------------
 
-  - Convert to a dynamic value. (line 52)
+  - Sort attribute (line 1)
 
 File: ./apps/site/view/_experience.tmpl
 --------------------------------------------------------------------------------
 
-  - Missing. (line 55)
-  - Summary (line 80)
+  - Sort attribute (line 3)
+  - Refactor Extract (line 21)
+  - End Refactor Extract (line 35)
+  - Refactor Extract (line 43)
+  - End Refactor Extract (line 61)
+  - Refactor Extract (line 71)
+  - End Refactor Extract (line 82)
+  - Refactor Extract (line 115)
+  - End Refactor Extract (line 126)
+  - Refactor Extract (line 127)
+  - End Refactor Extract (line 138)
+  - Refactor Extract (line 139)
+  - End Refactor Extract (line 150)
+  - Refactor Extract (line 151)
+  - End Refactor Extract (line 162)
+  - Refactor Extract (line 168)
+  - End Refactor Extract (line 179)
+  - Refactor Extract (line 180)
+  - End Refactor Extract (line 191)
+  - Refactor Extract (line 192)
+  - End Refactor Extract (line 203)
+  - Refactor Extract (line 204)
+  - End Refactor Extract (line 215)
 
 File: ./apps/site/view/rss092.tmpl
 --------------------------------------------------------------------------------
 
-  - Sorting by date. (line 14)
+  - Sort attribute (line 4)
+
+File: ./apps/site/view/_js.tmpl
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 1)
+  - Implement NoJS Behaviour. (line 36)
 
 File: ./apps/site/view/_head.tmpl
 --------------------------------------------------------------------------------
 
-  - Convert to a dynamic value. (line 8)
-  - Use a variables to make this line shorter. (line 12)
-  - Use a variables to make this line shorter. (line 16)
-  - Use a variables to make this line shorter. (line 20)
-  - Use a variables to make this line shorter (line 24)
-  - Use a variables to make this line shorter (line 28)
-  - Use a variables to make this line shorter (line 32)
-  - Convert to a dynamic value. (line 42)
-  - Convert to a dynamic value. (line 44)
-  - Convert to a dynamic value. (line 45)
+  - Sort attribute (line 2)
+  - Use a list of feeds with a foreach (line 15)
+  - Convert to a dynamic value. (line 43)
 
 File: ./apps/site/view/rss2.tmpl
 --------------------------------------------------------------------------------
 
-  - Sorting by date. (line 14)
+  - Sort attribute (line 4)
+
+File: ./apps/site/view/html5.tmpl
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 4)
+
+File: ./apps/site/view/_education.tmpl
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 4)
+  - Refactor Extract (line 22)
+  - End Refactor Extract (line 31)
+
+File: ./apps/site/view/_summary.tmpl
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 1)
+
+File: ./apps/site/view/_skill.tmpl
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 1)
+
+File: ./apps/site/view/_language.tmpl
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 1)
 
 File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------
 
-  - Reduce external libs. (line 49)
-  - Write a test to cover this (line 57)
-  - Is it useful the return value? (line 61)
-  - Convert this scalar to array, using "@". (line 82)
-  - Remove this ugly workaround. (line 94)
-  - Needed "libintl-perl" (line 104)
-  - Convert this object to hash, using "()". (line 106)
-  - IMPLEMENT IF NOT MODIFIED (line 121)
-  - Is it useful the return value? (line 122)
-  - Write a test to cover this (line 240)
-  - Write a test to cover this (line 273)
-  - Write a test to cover this (line 278)
-  - Write a test to cover this (line 281)
-  - Add POD. (line 311)
-  - Write a test to cover this (line 332)
-  - Is it useful the return value? (line 509)
-  - Generate pod. (line 517)
-  - Test::Pod. (line 518)
-  - Test::Pod::Coverage. (line 519)
+  - Reduce number of modules used. (line 36)
+  - Is it possible to assign a var to 3? (line 101)
+  - Clean this code... (line 114)
+  - IMPLEMENT IF NOT MODIFIED (line 119)
+  - Clean this code... (line 120)
+  - Remove this method. (line 171)
+  - Try to use fewer variables. (line 191)
+  - Test::Pod. (line 495)
+  - Test::Pod::Coverage. (line 496)
+
+File: ./apps/api/view/education.twig
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 3)
+  - Refactor Extract (line 10)
+  - End Refactor Extract (line 23)
+  - Refactor Extract (line 26)
+  - End Refactor Extract (line 40)
+
+File: ./apps/api/view/root.twig
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 3)
+
+File: ./apps/api/view/experience.twig
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 3)
+  - Refactor Extract (line 10)
+  - End Refactor Extract (line 23)
+  - Refactor Extract (line 26)
+  - End Refactor Extract (line 40)
+
+File: ./apps/api/view/information.twig
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 3)
+
+File: ./apps/api/view/_header.twig
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 1)
+
+File: ./apps/api/view/language.twig
+--------------------------------------------------------------------------------
+
+  - Sort attribute (line 3)
 
 File: ./apps/api/view/skill.twig
 --------------------------------------------------------------------------------
 
-  - Convert to a dynamic value. (line 19)
+  - Sort attribute (line 3)
 
 File: ./apps/api/logic/controller.php
 --------------------------------------------------------------------------------
 
-  - Make dynamic the language. (line 68)
-  - Make dynamic the language. (line 113)
-  - Write a test to cover this condition. (line 141)
-  - Write a test to cover this condition. (line 154)
-  - Start refactoring, cut from here (line 164)
-  - End refactoring, cut to here (line 179)
-  - Start refactoring, cut from here (line 195)
-  - End refactoring, cut to here (line 213)
-  - Make dynamic the language. (line 247)
+  - Run PHP-CS-Fixer. (line 35)
+  - Remove or restore it? (line 69)
+  - CamelCase notation. (line 93)
+  - CamelCase notation. (line 105)
+  - Provide different mime-types (XML, JSON, ...) (line 116)
+  - CamelCase notation. (line 144)
+  - CamelCase notation. (line 145)
+  - CamelCase notation. (line 155)
+  - CamelCase notation. (line 157)
+  - CamelCase notation. (line 161)
+  - Less code here below... (line 164)
+  - Less code here below... (line 176)
+  - CamelCase notation. (line 179)
+  - Provide different mime-types (XML, JSON, ...) (line 182)
+  - CamelCase notation. (line 183)
+  - CamelCase notation. (line 186)
+  - CamelCase notation. (line 187)
+  - CamelCase notation. (line 189)
+  - CamelCase notation. (line 194)
+  - Provide different mime-types (XML, JSON, ...) (line 217)
+
+File: ./apps/api/logic/app.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 36)
+
+File: ./apps/api/logic/bootstrap.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 35)
+  - Set this value based on a ENV variable. (line 45)
 
 File: ./apps/script/common.py
 --------------------------------------------------------------------------------
 
-  - Change above (line 46)
-  - Add documentation (line 48)
-  - Change above (line 63)
-  - Convert to a dynamic value. (line 82)
-  - Remove this if (line 98)
-  - Convert to a dynamic value. (line 103)
-  - Convert to a dynamic value. (line 105)
+  - Run PEP8 & PYLINT. (line 34)
+  - Use a demo instance (eg: demo.fabiocicerchia.it) where run this checks.
+    (line 42)
+  - Add a new environment inside virtualhost and capistrano. (line 43)
+  - Remove this condition. (line 141)
 
 File: ./apps/script/benchmark.py
 --------------------------------------------------------------------------------
 
-  - Change above (line 45)
-  - Add documentation (line 47)
-  - Change above (line 61)
-  - Add documentation (line 63)
-  - Move to a shared file among the others. (line 77)
-  - Convert to a dynamic value. (line 119)
-  - Line length. (line 120)
+  - Run PEP8 & PYLINT. (line 34)
+  - Find a way to repeat a command n times. (line 71)
+  - Find a way to sum the values of array. (line 80)
+  - Is it useful to use __main__ here? (line 104)
 
 File: ./apps/script/check_accessibility.py
 --------------------------------------------------------------------------------
 
-  - Move to a shared file among the others. (line 38)
-  - Add description (line 68)
-  - Align block (line 73)
-  - Add description (line 91)
-  - Align block (line 96)
-  - Add description (line 114)
-  - Align block (line 119)
-  - Add description (line 137)
-  - Align block (line 142)
-  - Add description (line 160)
-  - Align block (line 165)
-  - Use http://www.sidar.org/hera/index.php.it ? (line 182)
+  - Run PEP8 & PYLINT. (line 34)
+  - Use http://www.sidar.org/hera/index.php.it ? (line 40)
+  - Serialize to compact the code. (line 51)
+  - Serialize to compact the code. (line 77)
+  - Serialize to compact the code. (line 103)
+  - Serialize to compact the code. (line 129)
+  - Serialize to compact the code. (line 155)
 
 File: ./apps/script/check_validation.py
 --------------------------------------------------------------------------------
 
-  - Move to a shared file among the others. (line 38)
-  - Add description (line 68)
-  - Align block (line 73)
-  - Add description (line 88)
-  - Align block (line 93)
-  - Add description (line 110)
-  - Align block (line 115)
-  - Add description (line 132)
-  - Align block (line 137)
-  - Add description (line 154)
-  - Align block (line 159)
-  - Add description (line 176)
-  - Add description (line 188)
-  - Uncomment? (line 209)
-  - Add description (line 223)
-  - This takes a while, it worth? (line 237)
-  - Align block (line 242)
-  - Align block (line 259)
-  - http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN (line 274)
-  - Http://www.sidar.org/hera/ (line 275)
-  - YSlow (line 276)
-  - Page Speed (line 277)
+  - Run PEP8 & PYLINT. (line 34)
+  - http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN (line 40)
+  - Http://www.sidar.org/hera/ (line 41)
+  - YSlow (line 42)
+  - Page Speed (line 43)
+  - Serialize to compact the code. (line 54)
+  - Serialize to compact the code. (line 77)
+  - Serialize to compact the code. (line 102)
+  - Serialize to compact the code. (line 127)
+  - Serialize to compact the code. (line 152)
+  - Uncomment? (line 214)
+  - This takes a while, does it worth? (line 250)
+
+File: ./web/api.php
+--------------------------------------------------------------------------------
+
+  - Run PHP-CS-Fixer. (line 34)
+  - Remove this true. (line 44)
+
+File: ./web/sitemap.xml
+--------------------------------------------------------------------------------
+
+  - Generate by command line (line 2)
+
+File: ./web/media/css/main.css
+--------------------------------------------------------------------------------
+
+  - Merge duplicate classes. (line 35)
 
 File: ./bin/console/common.sh
 --------------------------------------------------------------------------------
 
-  - Add the list of suboptions (in a dynamically way). (line 226)
+  - Add {{{ }}} as delimiter. (line 34)
+  - Http://fvue.nl/wiki/Bash:_Error_handling (line 111)
+  - Wrap multiline. (line 268)
+
+File: ./bin/console/console.sh
+--------------------------------------------------------------------------------
+
+  - Refactor! (line 57)
+
+File: ./bin/console/modules/config.sh
+--------------------------------------------------------------------------------
+
+  - Add {{{ }}} as delimiter. (line 34)
+  - Remove handle_errors? (line 40)
 
 File: ./bin/console/modules/tests.sh
 --------------------------------------------------------------------------------
 
-  - Find a way to make this works. (line 51)
+  - Add {{{ }}} as delimiter. (line 34)
+  - Remove handle_errors? (line 40)
+  - Remove handle_errors? (line 49)
+  - Find a way to make this works. (line 57)
 
 File: ./bin/console/modules/install.sh
 --------------------------------------------------------------------------------
 
-  - FIXME (line 105)
-  - FIXME (line 155)
-  - FIXME (line 164)
+  - Add {{{ }}} as delimiter. (line 34)
+  - Remove handle_errors? (line 46)
+  - Remove handle_errors? (line 57)
+  - Remove handle_errors? (line 68)
+  - Remove handle_errors? (line 84)
+  - Remove handle_errors? (line 97)
+  - Remove handle_errors? (line 106)
+  - Remove handle_errors? (line 116)
+  - Remove handle_errors? (line 130)
+  - Remove handle_errors? (line 140)
+  - Remove handle_errors? (line 150)
+  - Remove handle_errors? (line 160)
+  - Remove handle_errors? (line 170)
+  - Remove handle_errors? (line 181)
+  - Remove handle_errors? (line 195)
+  - Remove handle_errors? (line 209)
+  - Remove handle_errors? (line 218)
+  - Remove handle_errors? (line 227)
+  - Remove handle_errors? (line 267)
+  - Remove handle_errors? (line 276)
+  - Remove handle_errors? (line 285)
+  - Remove handle_errors? (line 294)
+  - Remove handle_errors? (line 303)
 
-File: ./bin/critic.pl
+File: ./bin/console/modules/sca.sh
 --------------------------------------------------------------------------------
 
-  - Is it useful the return value? (line 47)
+  - Add {{{ }}} as delimiter. (line 34)
+  - Remove handle_errors? (line 40)
+  - Wrap multiline. (line 41)
+  - Remove handle_errors? (line 55)
+  - Wrap multiline. (line 56)
+  - Remove handle_errors? (line 70)
+  - Remove handle_errors? (line 84)
+  - Wrap multiline. (line 85)
+  - Remove handle_errors? (line 99)
+  - Wrap multiline. (line 100)
+  - Remove handle_errors? (line 114)
+  - Wrap multiline. (line 115)
+
+File: ./bin/console/modules/run.sh
+--------------------------------------------------------------------------------
+
+  - Add {{{ }}} as delimiter. (line 34)
+  - Remove handle_errors? (line 40)
+  - Remove handle_errors? (line 49)
+  - Save to a file. (line 58)
+  - Save to a file. (line 93)
+  - Wrap multiline. (line 169)
+  - Wrap multiline. (line 186)
+  - Wrap multiline. (line 205)
+  - Check PEAR/PECL. (line 220)
+  - Wrap multiline. (line 240)
+  - Wrap multiline. (line 267)
+  - Wrap multiline. (line 325)
+
+File: ./bin/console/modules/deploy.sh
+--------------------------------------------------------------------------------
+
+  - Add {{{ }}} as delimiter. (line 34)
+  - Remove handle_errors? (line 40)
+  - Remove handle_errors? (line 49)
+
+File: ./bin/console/modules/docs.sh
+--------------------------------------------------------------------------------
+
+  - Add {{{ }}} as delimiter. (line 34)
+  - Remove handle_errors? (line 40)
+  - Wrap multiline. (line 41)
+  - Remove handle_errors? (line 50)
+  - Remove handle_errors? (line 59)
+  - Wrap multiline. (line 60)

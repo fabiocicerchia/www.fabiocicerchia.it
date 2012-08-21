@@ -34,6 +34,8 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 namespace FabioCicerchia\Api\Service;
 
 use FabioCicerchia\Api;
@@ -100,7 +102,6 @@ class Strategy
         $service_name,
         \Doctrine\MongoDB\Database $db_handle
     ) {
-        // TODO: Write a test to cover this condition.
         if (is_string($service_name) === false) {
             $message = 'The parameter $service_name must be a string.';
             throw new \InvalidArgumentException($message);
@@ -111,11 +112,7 @@ class Strategy
         try {
             $this->strategy = new $class($db_handle);
         } catch (\Exception $e) {
-            // TODO: Write a test to cover this condition.
-            throw new \UnexpectedValueException(
-                $e->getMessage(),
-                $e->getCode()
-            );
+            throw new \UnexpectedValueException($e->getMessage(), $e->getCode());
         }
     }
     // }}} ---------------------------------------------------------------------

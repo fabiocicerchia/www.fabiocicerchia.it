@@ -32,6 +32,8 @@
  * @link      http://www.fabiocicerchia.it
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\HttpCacheServiceProvider;
 use FabioCicerchia\Api\TwigExtension;
@@ -40,7 +42,7 @@ use SilexExtension\MongoDbExtension;
 // -----------------------------------------------------------------------------
 // DEBUG FLAG ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-$app['debug'] = true;
+$app['debug'] = false; // TODO: Set this value based on a ENV variable.
 
 if (defined('ROOT_PATH') === false) {
     define('ROOT_PATH', __DIR__ . '/../../../');
@@ -59,11 +61,11 @@ $options = [
 $twigServiceProvider = new TwigServiceProvider();
 $app->register($twigServiceProvider, $options);
 
-$md5_filter = new Twig_Filter_Function('md5');
-$app['twig']->addFilter('md5', $md5_filter);
+$md5Filter = new Twig_Filter_Function('md5');
+$app['twig']->addFilter('md5', $md5Filter);
 
-$custom_filters = new TwigExtension($app);
-$app['twig']->addExtension($custom_filters);
+$customFilters = new TwigExtension($app);
+$app['twig']->addExtension($customFilters);
 
 // -----------------------------------------------------------------------------
 // HTTP CACHE PROVIDER ---------------------------------------------------------

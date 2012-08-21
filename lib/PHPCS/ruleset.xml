@@ -2,6 +2,8 @@
 <ruleset name="FabioCicerchia">
     <description>Fabio Cicerchia coding standard.</description>
 
+    <!-- TODO: Use ruleset for PSR2 -->
+
     <!-- GENERIC -->
     <rule ref="Generic.Commenting.Fixme" />
     <rule ref="Generic.Commenting.Todo" />

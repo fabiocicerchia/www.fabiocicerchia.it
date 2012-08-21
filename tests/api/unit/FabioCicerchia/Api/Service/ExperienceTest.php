@@ -34,6 +34,10 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+// TODO: 100% Internal Coverage.
+// TODO: 100% Overall Coverage.
+
 require_once TEST_LIB_PATH . 'TestCase.php';
 require_once TEST_LIB_PATH . 'Api/ServiceAbstract.php';
 require_once TEST_LIB_PATH . 'Api/Service/Experience.php';
@@ -52,7 +56,8 @@ require_once TEST_LIB_PATH . 'Api/Service/Experience.php';
  */
 class ExperienceTest extends FabioCicerchia\TestCase
 {
-    // {{{ testRunWithEmptyData
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: testRunWithEmptyData ----------------------------------------
     /**
      * Test method "run" with empty data.
      *
@@ -76,4 +81,5 @@ class ExperienceTest extends FabioCicerchia\TestCase
         $this->assertArrayHasKey('entities', $stub->getData());
     }
     // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

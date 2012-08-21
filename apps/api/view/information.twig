@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entities xmlns="http://www.w3.org/2005/Atom">
+<!-- TODO: Sort attribute -->
     {% include '_header.twig' %}
 
     {% for entity in entities %}
@@ -15,6 +16,7 @@
             <role>{{ entity.role }}</role>
             <address>
                 <city>{{ entity.location.city }}</city>
+                <coordinates>{{ entity.location.coordinates }}</coordinates>
                 <code>{{ entity.location.country_code }}</code>
                 <country>{{ entity.location.country }}</country>
             </address>

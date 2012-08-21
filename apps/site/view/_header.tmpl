@@ -1,5 +1,6 @@
+<!-- TODO: Sort attribute -->
 <header class="jumbotron subhead vcard" itemscope="itemscope" itemtype="http://schema.org/Person" id="hcard-Fabio-Cicerchia">
-    <img src="/media/images/logo_new.png" />
+    <img src="/media/images/logo.png" alt="Fabio Cicerchia Logo: Quality solutions at hand." />
     <h1 class="fn n" itemprop="name">
         <span lang="it" class="given-name">Fabio</span>
         <span lang="it" class="family-name">Cicerchia</span>
@@ -46,17 +47,21 @@
                 [% data.information.entity.0.content.contacts.email %]
             </a>
         </li>
+        <li class="last">
+            <address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+                <i class="icon-home"></i>
+                <span class="postal-code" itemprop="postalCode">
+                    [% data.information.entity.0.content.address.postal_code %]
+                </span>
+                <span class="locality" itemprop="addressLocality">
+                    [% data.information.entity.0.content.address.city %]
+                </span>
+                <span class="country-name" itemprop="addressCountry">
+                    [% data.information.entity.0.content.address.country %]
+                </span>
+            </address>
+        </li>
     </ul>
-    <address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
-        <i class="icon-home"></i>
-        <span class="postal-code" itemprop="postalCode"></span><!-- TODO: Convert to a dynamic value. -->
-        <span class="locality" itemprop="addressLocality">
-            [% data.information.entity.0.content.address.city %]
-        </span>
-        <span class="country-name" itemprop="addressCountry">
-            [% data.information.entity.0.content.address.country %]
-        </span>
-    </address>
     <div class="subnav">
         <ul class="nav nav-pills" itemscope="itemscope" itemtype="http://schema.org/ItemList">
             <li class="brand">Fabio Cicerchia</li>
@@ -96,8 +101,8 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">English</a></li>
-                    <li><a href="#">Italiano</a></li>
+                    <li><a href="/" hreflang="en">English</a></li>
+                    <li><a href="/it" hreflang="it">Italiano</a></li>
                 </ul>
             </li>
         </ul>

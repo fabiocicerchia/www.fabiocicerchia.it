@@ -1,6 +1,7 @@
 [% USE date %]
 <!DOCTYPE html>
-<html lang="[% language %]">
+<html lang="[% language.substr(0, 2) %]">
+<!-- TODO: Sort attribute -->
     <head>
         [% INCLUDE _head.tmpl %]
     </head>
@@ -13,7 +14,7 @@
             [% INCLUDE _header.tmpl %]
 
             <div class="alert alert-info">
-                <button class="close" data-dismiss="alert" type="button">×</button>
+                <button class="close" data-dismiss="alert" type="button">&times;</button>
                 <strong>[% FILTER gettext %]Heads up![% END %]</strong>
                 <br />
                 <p>
@@ -23,13 +24,13 @@
             </div>
 
             [% INCLUDE _summary.tmpl %]
-            <hr />
+
             [% INCLUDE _skill.tmpl %]
-            <hr />
+
             [% INCLUDE _education.tmpl %]
-            <hr />
+
             [% INCLUDE _experience.tmpl %]
-            <hr />
+
             [% INCLUDE _language.tmpl %]
 
             <footer class="footer">

@@ -1,7 +1,7 @@
 [% USE date %]
 [% manip = date.manip %]
 [% USE String %]
-
+<!-- TODO: Sort attribute -->
 <section id="education">
     <div class="page-header">
         <h2>[% FILTER gettext %]Education[% END %]</h2>
@@ -19,6 +19,7 @@
                     <i class="icon-book"></i>
                     [% entity.title.content %]
                 </h3>
+                <!-- TODO: Refactor Extract -->
                 <div class="dates">
                     [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
                     <span class="dtstart">[% date.format(manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
@@ -27,6 +28,7 @@
                     <span class="dtend">[% date.format(manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
                     [% END %]
                 </div>
+                <!-- TODO: End Refactor Extract -->
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
                     <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]">
                         <span class="fn" itemprop="name">
@@ -34,12 +36,17 @@
                         </span>
                     </a>
                 </div>
-                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                    <dt itemprop="name">[% FILTER gettext %]Activities[% END %]</dt>
-                    [% FOREACH activity = entity.content.activities %]
-                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</dd>
-                    [% END %]
-                </dl>
+                [% IF entity.content.activities %]
+                <a href="#" class="show_hide">&raquo; [% FILTER gettext %]Show more ...[% END %]</a>
+                <div class="hide">
+                    <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+                        <dt itemprop="name">[% FILTER gettext %]Activities[% END %]</dt>
+                        [% FOREACH activity = entity.content.activities %]
+                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">[% activity %]</dd>
+                        [% END %]
+                    </dl>
+                </div>
+                [% END %]
             </div>
             [% IF loop.count mod 2 == 0 %]</div>[% closed = 1 %][% END %]
             [% END %]

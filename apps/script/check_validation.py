@@ -31,6 +31,8 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Run PEP8 & PYLINT.
+
 from __future__ import print_function
 import urllib
 from common import *
@@ -42,18 +44,6 @@ from common import *
 
 print('CHECK VALIDATION')
 
-print('Validate HTTP Headers:')
-for k, v in pages['site']['url_hp'].iteritems():
-    print('    ' + k + ': ', end='')
-
-    url_param = urllib.urlencode({'uri': '%URI%'})
-    xpath     = './/*[@class="bad msg"]/text()'
-
-    res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
-                   True)
-
-    print(res)
-
 ###############################################################################
 # Web Site Validation of: Homepage
 ###############################################################################
@@ -61,6 +51,7 @@ print('Validate W3C:')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':       '%URI%',
         'charset':   '(detect automatically)',
@@ -83,6 +74,7 @@ print('Validate CSS 3:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':         '%URI%',
         'profile':     'css3',
@@ -107,6 +99,7 @@ print('Validate CSS 2.1:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':         '%URI%',
         'profile':     'css21',
@@ -131,6 +124,7 @@ print('Validate CSS 2:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':        '%URI%',
         'profile':    'css2',
@@ -155,6 +149,7 @@ print('Validate CSS Mobile:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':         '%URI%',
         'profile':     'mobile',

@@ -31,6 +31,8 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Run PEP8 & PYLINT.
+
 from __future__ import print_function
 import urllib
 from common import *
@@ -46,6 +48,7 @@ print('Validate Accessibility (BITV 1.0 - Level 2):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':                    '%URI%',
         'validate_uri':           'Check It',
@@ -71,6 +74,7 @@ print('Validate Accessibility (Section 508):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':                    '%URI%',
         'validate_uri':           'Check It',
@@ -96,6 +100,7 @@ print('Validate Accessibility (Stanca Act):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':                    '%URI%',
         'validate_uri':           'Check It',
@@ -121,6 +126,7 @@ print('Validate Accessibility (WCAG 1.0 - Level AAA):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':                    '%URI%',
         'validate_uri':           'Check It',
@@ -146,6 +152,7 @@ print('Validate Accessibility (WCAG 2.0 - Level AAA):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
+    # TODO: Serialize to compact the code.
     url_param = urllib.urlencode({
         'uri':                    '%URI%',
         'validate_uri':           'Check It',

@@ -1,24 +1,23 @@
 [% USE date %]
-
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="0.91">
+<!-- TODO: Sort attribute -->
     <channel>
         <title>Fabio Cicerchia - [% data.information.entity.0.content.role %]</title>
-        <link>http://[% HTTP_HOST %]</link>
+        <link>http://[% HTTP_HOST %]/[% language.substr(0, 2) %]</link>
         <description>[% data.information.entity.0.summary.content %]</description>
         <webMaster>[% data.information.entity.0.content.contacts.email %] (Fabio Cicerchia) </webMaster>
         <pubDate>[% date.format(last_modified, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
-        <language>[% language %]</language>
+        <language>[% language.substr(0, 2) %]</language>
         <rating />
         <docs>http://backend.userland.com/rss092</docs>
-        <!-- TODO: Sorting by date. -->
         [% FOREACH entity IN data.education.entity %]
         <item>
             <title>[% FILTER gettext %]Education[% END %] - [% entity.title.content %]</title>
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
-            <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
+            <pubDate>[% date.format(date.manip.UnixDate(time _ " GMT", "%s"), "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]
-            <lastBuildDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</lastBuildDate>
+            <lastBuildDate>[% date.format(date.manip.UnixDate(time _ " GMT", "%s"), "%a, %d %b %Y %H:%M:%S GMT") %]</lastBuildDate>
             <description></description>
         </item>
         [% END %]
@@ -26,9 +25,9 @@
         <item>
             <title>[% FILTER gettext %]Experience[% END %] - [% entity.title.content %]</title>
             [% time = entity.published | replace('T', ' ') | replace('Z', '') %]
-            <pubDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
+            <pubDate>[% date.format(date.manip.UnixDate(time _ " GMT", "%s"), "%a, %d %b %Y %H:%M:%S GMT") %]</pubDate>
             [% time = entity.updated | replace('T', ' ') | replace('Z', '') %]
-            <lastBuildDate>[% date.format(time, "%a, %d %b %Y %H:%M:%S GMT") %]</lastBuildDate>
+            <lastBuildDate>[% date.format(date.manip.UnixDate(time _ " GMT", "%s"), "%a, %d %b %Y %H:%M:%S GMT") %]</lastBuildDate>
             <description></description>
         </item>
         [% END %]

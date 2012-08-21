@@ -31,12 +31,16 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Run PEP8 & PYLINT.
+
 from __future__ import print_function
 import urllib
 import re
 from lxml import etree
 # http://lxml.de/parsing.html
 
+# TODO: Use a demo instance (eg: demo.fabiocicerchia.it) where run this checks.
+# TODO: Add a new environment inside virtualhost and capistrano.
 BASE_URL = 'http://www.fabiocicerchia.it'
 
 pages = {
@@ -134,6 +138,7 @@ def validate(http_method, remote_url, params, page, match,
 
     status = (match != None)
 
+    # TODO: Remove this condition.
     if (match_reverse):
         status = not status
 

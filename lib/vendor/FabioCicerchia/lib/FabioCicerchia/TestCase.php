@@ -34,6 +34,8 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 namespace FabioCicerchia;
 
 /**
@@ -107,7 +109,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    // TODO: use this method
     final public function pass($message = 'Test passed')
     {
         $this->assertTrue(true, $message);

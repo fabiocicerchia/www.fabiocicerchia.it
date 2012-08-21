@@ -1,8 +1,8 @@
 [% USE date %]
-
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://[% HTTP_HOST %]/</id>
+<!-- TODO: Sort attribute -->
+    <id>http://[% HTTP_HOST %]/[% language.substr(0, 2) %]</id>
     <title>Fabio Cicerchia - [% data.information.entity.0.content.role %]</title>
     <link href="http://[% HTTP_HOST %]" />
     <updated>[% date.format(last_modified, "%Y-%m-%dT%H:%M:%SZ") %]</updated>
@@ -10,16 +10,15 @@
         <name>Fabio Cicerchia</name>
         <email>[% data.information.entity.0.content.contacts.email %]</email>
     </author>
-    <link rel="self" type="application/rss+xml" href="http://[% HTTP_HOST %]/atom" />
-    <!-- TODO: Sorting by date. -->
+    <link rel="self" type="application/rss+xml" href="http://[% HTTP_HOST %]/[% language.substr(0, 2) %]/atom" />
     [% FOREACH entity IN data.education.entity %]
     <entry>
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
-        <id>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</id>
+        <id>http://[% HTTP_HOST %]/[% language.substr(0, 2) %]#[% id_title %]_[% id_company %]</id>
         <title>[% FILTER gettext %]Education[% END %] - [% entity.title.content %]</title>
-        <published>[% entity.published %]</published>
-        <updated>[% entity.updated %]</updated>
+        <published>[% entity.published | replace("[\n ]", "") %]</published>
+        <updated>[% entity.updated | replace("[\n ]", "") %]</updated>
         <category term="[% FILTER gettext %]Education[% END %]" />
     </entry>
     [% END %]
@@ -27,10 +26,10 @@
     <entry>
         [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
         [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
-        <id>http://[% HTTP_HOST %]/#[% id_title %]_[% id_company %]</id>
+        <id>http://[% HTTP_HOST %]/[% language.substr(0, 2) %]#[% id_title %]_[% id_company %]</id>
         <title>[% FILTER gettext %]Experience[% END %] - [% entity.title.content %]</title>
-        <published>[% entity.published %]</published>
-        <updated>[% entity.updated %]</updated>
+        <published>[% entity.published | replace("[\n ]", "") %]</published>
+        <updated>[% entity.updated | replace("[\n ]", "") %]</updated>
         <category term="[% FILTER gettext %]Experience[% END %]" />
     </entry>
     [% END %]

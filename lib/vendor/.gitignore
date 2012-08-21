@@ -1,9 +1,14 @@
-# Ignore everything in this directory
-*
+# Ignore in this directory
+autoload.php
+bootstrap
+composer
+doctrine
+fate
+OWASP-CRS
+pimple
+silex
+symfony
+twig
 
 # Except this file
 !.gitignore
-!FabioCicerchia
-!FabioCicerchia/*
-!FabioCicerchia/**/*
-!FabioCicerchia/**/**/*

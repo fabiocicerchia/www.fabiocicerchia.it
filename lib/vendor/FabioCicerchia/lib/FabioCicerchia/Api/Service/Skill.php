@@ -34,6 +34,8 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 namespace FabioCicerchia\Api\Service;
 
 use FabioCicerchia\Api;
@@ -76,9 +78,57 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
     protected function elaborateData(array $data)
     {
         $data = parent::elaborateData($data);
-        $data = ['entities' => $data];
+
+        // TODO: Refactor.
+        // Retrieve the list of skill with its "months" value. -----------------
+        $skillsWithMonths = [];
+
+        $experience = new Experience($this->getCollection()->getDatabase());
+        $experienceData = $experience->getData();
+        foreach($experienceData['entities'] as $entity) {
+            $this->parseSkillValues($entity, $skillsWithMonths);
+            foreach($entity['projects'] as $project) {
+                $this->parseSkillValues($project, $skillsWithMonths);
+            }
+        }
+
+        foreach($data as $key => $item) {
+            foreach($item['list'] as $subkey => $elem) {
+                $monthKey = isset($elem['name']['en_GB'])
+                            ? $elem['name']['en_GB']
+                            : $elem['name'];
+                $data[$key]['list'][$subkey]['months'] = $skillsWithMonths[$monthKey];
+            }
+        }
+
+        $data = ['entities' => $data, 'tags' => $skillsWithMonths];
 
         return $data;
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ parseSkillValues ----------------------------------------------------
+    /**
+     * Retrieve the "months" value inside an array.
+     *
+     * @param  array $entity The array to parse.
+     * @param  array $data   The skill container.
+     *
+     * @return void
+     */
+    private function parseSkillValues(array $entity, array &$data)
+    {
+        $availableKeys = ['methodologies', 'techniques', 'technologies', 'tools'];
+
+        foreach ($availableKeys as $key) {
+            foreach($entity[$key] as $elementKey => $elementValue) {
+                $value = isset($elementValue['months'])
+                         ? intval($elementValue['months'])
+                         : 0;
+
+                $data[$elementKey] += $value;
+            }
+        }
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

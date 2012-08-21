@@ -34,6 +34,10 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+// TODO: 100% Internal Coverage.
+// TODO: 100% Overall Coverage.
+
 require_once TEST_LIB_PATH . 'TestCase.php';
 require_once TEST_LIB_PATH . 'Api/Service/EntryPoint.php';
 
@@ -51,7 +55,8 @@ require_once TEST_LIB_PATH . 'Api/Service/EntryPoint.php';
  */
 class EntryPointTest extends FabioCicerchia\TestCase
 {
-    // {{{ testGetService
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: testGetService ----------------------------------------------
     /**
      * Test method "getService".
      *
@@ -66,4 +71,5 @@ class EntryPointTest extends FabioCicerchia\TestCase
         $this->assertInternalType('array', $class->getServices());
     }
     // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

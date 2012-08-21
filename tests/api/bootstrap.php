@@ -33,6 +33,8 @@
  * @since     File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 if (defined('TEST_ROOT_PATH') === false) {
     define('TEST_ROOT_PATH',  __DIR__ . '/../../');
 }
@@ -43,4 +45,8 @@ if (defined('TEST_VENDOR_PATH') === false) {
 
 if (defined('TEST_LIB_PATH') === false) {
     define('TEST_LIB_PATH', TEST_VENDOR_PATH . 'FabioCicerchia/lib/FabioCicerchia/');
+}
+
+if (defined('ROOT_PATH') === false) {
+    define('ROOT_PATH', TEST_ROOT_PATH);
 }

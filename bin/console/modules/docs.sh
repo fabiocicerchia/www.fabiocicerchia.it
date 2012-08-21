@@ -31,26 +31,36 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Add {{{ }}} as delimiter.
+
 ################################################################################
 # DOCS ACTIONS
 ################################################################################
 
+# TODO: Remove handle_errors?
+# TODO: Wrap multiline.
 doc_php() {
     print_subheader "RUNNING PHPDOCUMENTOR"
-    phpdoc || handle_errors $?
+
+    phpdoc -t $ROOT_DIR/docs/api -d $API_APP_SOURCEDIR -d $API_LIB_SOURCEDIR -d $API_TEST_SOURCEDIR --force --sourcecode --parseprivate || handle_errors $?
 
     return $?
 }
 
+# TODO: Remove handle_errors?
 doc_perl() {
     print_subheader "RUNNING POD"
+
     pod2html $SITE_APP_SOURCEDIR/logic/class.pl > $DOCDIR/site/class.html || handle_errors $?
 
     return $?
 }
 
+# TODO: Remove handle_errors?
+# TODO: Wrap multiline.
 doc_python() {
     print_subheader "RUNNING EPYDOC"
+
     epydoc --html --show-private --show-imports --show-sourcecode  $SCRIPT_APP_SOURCEDIR/*.py -o $DOCDIR/script || handle_errors $?
 
     return $?

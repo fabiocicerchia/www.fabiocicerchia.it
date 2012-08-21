@@ -33,20 +33,23 @@
 
 package FabioCicerchiaSite;
 
+# TODO: Reduce number of modules used.
+
 use strict;
 use warnings;
 use version; our $VERSION = qv('1.0');
-use Data::Dumper;
 use Date::Format;
 use Digest::MD5;
 use File::Basename;
-use Locale::TextDomain('messages', dirname(__FILE__) . '/../locale/');
+use Locale::TextDomain( 'messages', dirname(__FILE__) . '/../locale/' );
 use LWP;
 use POSIX qw(mktime :locale_h);
+use Readonly;
+use Template::Filters;
 use Template;
 use XML::Simple;
-use Template::Filters;
-# TODO: Reduce external libs.
+
+Readonly my $LWP_TIMEOUT => 10;
 
 # {{{ Method: action404 --------------------------------------------------------
 # Usage      : FabioCicerchiaSite->action404()
@@ -54,15 +57,15 @@ use Template::Filters;
 # Returns    : Nothing, just printing.
 # Parameters : None.
 # Throws     : No exceptions.
-# TODO: Write a test to cover this
 sub action404 {
     my $self = shift;
 
-    my $r = print "HTTP/1.1 404 Not Found\n\n";
-    $r = print "Location: /\n\n";
+    print "HTTP/1.1 404 Not Found\n\n";
+    print "Location: /\n\n";
 
     return;
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_show ------------------------------------------------------
@@ -78,24 +81,28 @@ sub action404 {
 sub action_show {
     my $self = shift;
 
-    my ($data, $last_modified, $etag, $language) = $self->get_data();
+    my ( $data, $last_modified, $etag, $language ) = $self->get_data();
 
-    my @langTokens = split /,/smx, $language;
-    if (scalar(@langTokens) > 1) {
-        $language = $langTokens[0];
-        $language =~ s/-(..)$/_\U$1/smx;
-
-        # TODO: Remove this ugly workaround.
-        if ($language == 'en_EN') {
-            $language = 'en_GB';
+    my @lang_tokens = split /,/smx, $language;
+    if ( scalar(@lang_tokens) > 1 ) {
+        if ( substr $lang_tokens[0], 0, 2 == substr $lang_tokens[1], 0, 2 ) {
+            $language = $lang_tokens[0];
+        }
+        else {
+            $language = $lang_tokens[1];
+            if ( length($language) == 2 ) {
+                $language .= q{-} . uc $language;
+            }
         }
     }
 
-    my $gettextLanguage = $language . '.utf8';
-    $ENV{'LANG'} = $gettextLanguage;
-    $ENV{'LANGUAGE'} = $gettextLanguage;
-    $ENV{'LC_ALL'} = $gettextLanguage;
-    setlocale(LC_ALL, $gettextLanguage);
+    my $gettext_language = $language . '.utf8';
+    $gettext_language =~ s/-/_/smx;
+    # TODO: Is it possible to assign a var to 3?
+    $ENV{'LANG'}     = $gettext_language;
+    $ENV{'LANGUAGE'} = $gettext_language;
+    $ENV{'LC_ALL'}   = $gettext_language;
+    setlocale( LC_ALL, $gettext_language );
 
     my $vars = {
         'HTTP_HOST'     => $ENV{'HTTP_HOST'},
@@ -104,37 +111,34 @@ sub action_show {
         'language'      => $language
     };
 
-    # http://template-toolkit.org/docs/modules/Template/Filters.html#CONFIGURATION_OPTIONS
-    my $filters = Template::Filters->new({
-        FILTERS => {
-            'gettext' => \&gettext
-        },
-    });
+    # TODO: Clean this code...
+# http://template-toolkit.org/docs/modules/Template/Filters.html#CONFIGURATION_OPTIONS
+    my $filters =
+        Template::Filters->new( { FILTERS => { 'gettext' => \&gettext }, } );
 
     # TODO: IMPLEMENT IF NOT MODIFIED
-    my $r;
-    $r = print 'Cache-Control: public, max-age=28800, smax-age=28800' . "\n";
-    $r = print 'Last-Modified: '
-      . time2str( '%a, %d %b %Y %H:%M:%S GMT', $last_modified ) . "\n";
-    $r = print 'ETag: "' . $etag . q{"} . "\n";
-    $r =
-        print 'Content-Type: '
-      . $self->{'contentType'}
-      . '; charset=UTF-8' . "\n";
-    $r = print 'Content-Language: ' . $language . "\n";
-    $r = print "\n";
+    # TODO: Clean this code...
+    print 'Cache-Control: public, max-age=28800, smax-age=28800' . "\n";
+    print 'Last-Modified: '
+        . time2str( '%a, %d %b %Y %H:%M:%S GMT', $last_modified ) . "\n";
+    print 'ETag: "' . $etag . q{"} . "\n";
+    print 'Content-Type: ' . $self->{'contentType'} . '; charset=UTF-8' . "\n";
+    print 'Content-Language: ' . $language . "\n";
+    print "\n";
 
     # http://template-toolkit.org/docs/tutorial/Web.html
     my $template = Template->new(
+        ENCODING     => 'utf8',
         INCLUDE_PATH => [ dirname(__FILE__) . '/../view' ],
         EVAL_PERL    => 1,
-        LOAD_FILTERS => [ $filters ],
+        LOAD_FILTERS => [$filters],
     );
 
     $template->process( $self->{'formatCurrent'} . '.tmpl', $vars );
 
     return q{};
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: call_api ---------------------------------------------------------
@@ -148,12 +152,14 @@ sub call_api {
     my ( $self, $url, $language ) = @_;
 
     my $browser = LWP::UserAgent->new();
-    $browser->timeout(10);
+
+    $browser->timeout($LWP_TIMEOUT);
     $browser->default_header( 'Accept-Language' => $language );
     $browser->default_header( 'Accept' => 'application/vnd.ads+xml;v=1.0' );
 
     return $browser->get( 'http://' . $ENV{'HTTP_HOST'} . '/api.php' . $url );
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: elaborate_data ---------------------------------------------------
@@ -162,35 +168,13 @@ sub call_api {
 # Returns    : An Hash, the input hash but modified.
 # Parameters : Hash $data.
 # Throws     : No exceptions.
+# TODO: Remove this method.
 sub elaborate_data {
     my ( $self, $data ) = @_;
 
-    my $tmp;
-    my $values;
-
-    # Cycle over each skill...
-    foreach my $key ( keys $data->{'skill'}->{'entity'} ) {
-        $tmp    = {};
-        $values = $data->{'skill'}->{'entity'}->[$key]->{'content'}->{'skills'};
-
-        # ... and over each element ...
-        foreach my $key2 ( keys $values ) {
-            my $item = $values->[$key2];
-
-            # ... then create an array that has as key the "level" value ...
-            if ( !exists( $tmp->{ $item->{'level'} } ) ) {
-                $tmp->{ $item->{'level'} } = [];
-            }
-
-            # ... and as children the "title" values.
-            push $tmp->{ $item->{'level'} }, $item->{'title'}->{'content'};
-        }
-
-        $data->{'skill'}->{'entity'}->[$key]->{'content'}->{'skills'} = $tmp;
-    }
-
     return $data;
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: get_data ---------------------------------------------------------
@@ -204,6 +188,7 @@ sub elaborate_data {
 sub get_data {
     my $self = shift;
 
+    # TODO: Try to use fewer variables.
     my $ctx     = Digest::MD5->new;
     my $data    = {};
     my $last_ts = 0;
@@ -213,24 +198,23 @@ sub get_data {
 
     my @api_list = qw( root information education experience skill language );
 
-  API:
+API:
     foreach my $api (@api_list) {
         $url = $api eq 'root' ? q{} : $api;
 
         # Retrieve the data from the API for the current route using
         # "i18nCurrent" as language.
         my @response =
-          $self->get_item_data( q{/} . $url, $self->{'i18nCurrent'} );
-        my ( $curr_data, $curr_ts, $curr_hash, $curr_lang ) = @{ $response[0] };
+            $self->get_item_data( q{/} . $url, $self->{'i18nCurrent'} );
+        my ( $curr_data, $curr_ts, $curr_hash, $curr_lang ) =
+            @{ $response[0] };
 
         # Add the response to the final array
         $data->{$api} = $curr_data;
         $hash = defined $curr_hash ? ( $hash . $curr_hash ) : $hash;
         $lang = defined $curr_lang ? $curr_lang             : $lang;
 
-        #print "#$curr_ts#"; # TODO: investigate why doesn't work.
         if ( defined $curr_ts && $curr_ts > $last_ts ) {
-            # TODO: Write a test to cover this
             $last_ts = $curr_ts;
         }
     }
@@ -239,11 +223,10 @@ sub get_data {
     # Elaborate the data.
     $data = $self->elaborate_data($data);
 
-    my @return = ($data, $last_ts, $ctx->hexdigest, $lang);
+    my @return = ( $data, $last_ts, $ctx->hexdigest, $lang );
     return @return;
-
-    return [ $data, $last_ts, $ctx->hexdigest, $lang ];
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: get_item_data ----------------------------------------------------
@@ -258,7 +241,7 @@ sub get_item_data {
     my ( $self, $url, $language ) = @_;
 
     my %mon2num =
-      qw(jan 1 feb 2 mar 3 apr 4 may 5 jun 6 jul 7 aug 8 sep 9 oct 10 nov 11 dec 12);
+        qw(jan 1 feb 2 mar 3 apr 4 may 5 jun 6 jul 7 aug 8 sep 9 oct 10 nov 11 dec 12);
     my $ctx = Digest::MD5->new;
     my $ts  = 0;
 
@@ -266,15 +249,12 @@ sub get_item_data {
     my $data          = $self->retrieve_xml( $response->content() );
     my $last_modified = q{};
     if ( defined( $response->headers()->{'last-modified'} ) ) {
-        # TODO: Write a test to cover this
         $last_modified = $response->headers()->{'last-modified'};
     }
 
     if ( $last_modified ne q{} ) {
-        # TODO: Write a test to cover this
         my ( $wday, $day, $month, $year, $hour, $min, $sec ) =
-          split /[\s:]/smx, $last_modified;
-        # TODO: Write a test to cover this
+            split /[\s:]/smx, $last_modified;
         $ts = POSIX::mktime(
             $sec, $min, $hour, $day,
             $mon2num{ lc $month } - 1,
@@ -283,18 +263,12 @@ sub get_item_data {
     }
 
     my $lang = $response->headers()->{'content-language'};
-    $lang =~ s/.*,([^,]+)$/$1/smx;
-    if (length($lang) == 2) {
-        $lang .= '_' . uc($lang);
-    }
 
     $ctx->add( $response->content() );
 
-    return [
-        $data,           $ts,
-        $ctx->hexdigest, $lang
-    ];
+    return [ $data, $ts, $ctx->hexdigest, $lang ];
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: gettext ----------------------------------------------------------
@@ -309,6 +283,7 @@ sub gettext {
 
     return __($text);
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: execute_action ---------------------------------------------------
@@ -324,12 +299,12 @@ sub execute_action {
 
     my $method_to_call = 'action_' . $action;
     if ( !$self->can($method_to_call) ) {
-        # TODO: Write a test to cover this
         $method_to_call = 'action404';
     }
 
     return $self->$method_to_call();
 }
+
 # }}}
 
 # {{{ Method: new --------------------------------------------------------------
@@ -377,6 +352,7 @@ sub new {
 
     # Set the current action by default to "show".
     $self->{'actionCurrent'} = $self->{'actionDefault'};
+
     # Then use the value from the request if exists.
     if ( defined( $self->{'request'}{'action'} ) ) {
         $self->{'actionCurrent'} = $self->{'request'}{'action'};
@@ -384,13 +360,14 @@ sub new {
 
     # Set the current format by default to "html5".
     $self->{'formatCurrent'} = $self->{'formatDefault'};
+
     # Then use the value from the request if exists ...
     if ( defined( $self->{'request'}{'format'} ) ) {
+
         # ... filtering the values not authorised.
-        if (
-            grep { $_ eq $self->{'request'}{'format'} }
+        if (grep { $_ eq $self->{'request'}{'format'} }
             keys $self->{'formatAllowed'}
-          )
+            )
         {
             $self->{'formatCurrent'} = $self->{'request'}{'format'};
         }
@@ -398,14 +375,16 @@ sub new {
 
     # Set the current content type by default to "text/html".
     $self->{'contentType'} = $self->{'contentType'};
+
     # Then use the value based on the current format,
     if ( defined( $self->{'formatAllowed'}{ $self->{'formatCurrent'} } ) ) {
         $self->{'contentType'} =
-          $self->{'formatAllowed'}{ $self->{'formatCurrent'} };
+            $self->{'formatAllowed'}{ $self->{'formatCurrent'} };
     }
 
     # Set the current language by default to "en".
     $self->{'i18nCurrent'} = $self->{'i18nDefault'};
+
     # Then use the value from the request or from the http header if exists.
     if ( defined( $self->{'request'}{'lang'} ) ) {
         $self->{'i18nCurrent'} = $self->{'request'}{'lang'};
@@ -416,6 +395,7 @@ sub new {
 
     return $self;
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: retrieve_xml -----------------------------------------------------
@@ -431,7 +411,7 @@ sub retrieve_xml {
     my $simple = XML::Simple->new(
         'KeepRoot'   => 0,
         'KeyAttr'    => [],
-        'ForceArray' => ['entity', 'project'],
+        'ForceArray' => [ 'entity', 'project' ],
         'GroupTags'  => {
             'activities'    => 'activity',
             'activities'    => 'activity',
@@ -446,6 +426,7 @@ sub retrieve_xml {
 
     return $simple->XMLin($content);
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: set_request ------------------------------------------------------
@@ -466,6 +447,7 @@ sub set_request {
     # Get the slitted elements (key=value) from the query string.
     my @pairs = split /&/smx, $ENV{'QUERY_STRING'};
     foreach my $pair (@pairs) {
+
         # For each element slit again to key & value.
         my ( $name, $value ) = split /=/smx, $pair;
 
@@ -486,6 +468,7 @@ sub set_request {
 
     return;
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: show -------------------------------------------------------------
@@ -501,34 +484,32 @@ sub show {
 
     my $output = $self->execute_action( $self->{'actionCurrent'} );
     if ( defined $output ) {
-        my $r = print $output;
+        print $output;
     }
 
     return;
 }
+
 # }}} --------------------------------------------------------------------------
 
-# TODO: Generate pod.
 # TODO: Test::Pod.
 # TODO: Test::Pod::Coverage.
 __END__
 
-=head1 FABIOCICERCHIASITE
-
-=head2 NAME
+=head1 NAME
 
 FabioCicerchiaSite - The Fabio Cicerchia's website class
 
-=head2 VERSION
+=head1 VERSION
 
 This documentation refers to package <FabioCicerchiaSite> version 0.1.
 
-=head2 SYNOPSIS
+=head1 SYNOPSIS
 
     my $resume = FabioCicerchiaSite->new();
     $resume->show();
 
-=head2 REQUIRED ARGUMENTS
+=head1 REQUIRED ARGUMENTS
 
 No arguments are required. You need just few ENV variables:
 
@@ -557,7 +538,7 @@ Are needed also the following variables from the querystring:
 
 =back
 
-=head2 DESCRIPTION
+=head1 DESCRIPTION
 
 This  package analyse  some parameters  from the  environment and  from the  URL
 querystring to build and execute the  proper custom & dynamical action (could be
@@ -566,7 +547,7 @@ a 404 page or a show action to view the HTML output).
 The data  used to show  the information  is retrieved from  a REST API  (the XML
 response will be converted in an object).
 
-=head2 SUBROUTINES/METHODS
+=head1 SUBROUTINES/METHODS
 
 A separate section listing the public components of the module's interface.
 These normally consist of either subroutines that may be exported, or methods
@@ -607,7 +588,7 @@ Retrieve the multiple data from the API.
 
 Retrieve the data from the API.
 
-=item * C<FabioCicerchiaSite-E<gt>get_data_item()>
+=item * C<FabioCicerchiaSite-E<gt>gettext()>
 
 Translate a label with gettext.
 
@@ -629,7 +610,7 @@ Run the required action.
 
 =back
 
-=head2 DEPENDENCIES
+=head1 DEPENDENCIES
 
 This is the list of all the other modules that this module relies upon:
 
@@ -639,10 +620,6 @@ This is the list of all the other modules that this module relies upon:
 
 Date formating subroutines.
 
-=item * DateTime
-
-A date and time object.
-
 =item * Digest::MD5
 
 Perl interface to the MD5 Algorithm.
@@ -650,6 +627,10 @@ Perl interface to the MD5 Algorithm.
 =item * File::Basename
 
 Parse file paths into directory, filename and suffix.
+
+=item * Locale::TextDomain
+
+Perl Interface to Uniforum Message Translation.
 
 =item * LWP
 
@@ -663,17 +644,21 @@ Perl interface to IEEE Std 1003.1.
 
 Front-end module to the Template Toolkit.
 
+=item * Template::Filters
+
+Post-processing filters for template blocks.
+
 =item * XML::Simple
 
 Easily read/write XML (esp config files).
 
 =back
 
-=head2 AUTHOR
+=head1 AUTHOR
 
 Fabio Cicerchia <info@fabiocicerchia.it>
 
-=head2 LICENCE AND COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
 Copyright 2012 Fabio Cicerchia.
 

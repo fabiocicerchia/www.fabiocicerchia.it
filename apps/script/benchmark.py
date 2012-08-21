@@ -31,13 +31,14 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
+# TODO: Run PEP8 & PYLINT.
+
 from __future__ import print_function
 import urllib
 from common import *
 from time import time
 
-# TODO: Change
-BASE_URL = 'http://fabiocicerchia.github'
+BASE_URL = 'http://www.fabiocicerchia.it'
 
 # {{{ Function: get_execution_time --------------------------------------------
 def get_execution_time(url):
@@ -67,6 +68,7 @@ def get_average_execution_time(url):
     Return value:
     a float, the average execution time."""
 
+    # TODO: Find a way to repeat a command n times.
     etime = [
         get_execution_time(url),
         get_execution_time(url),
@@ -75,6 +77,7 @@ def get_average_execution_time(url):
         get_execution_time(url)
     ]
 
+    # TODO: Find a way to sum the values of array.
     sum_time = etime[0] + etime[1] + etime[2] + etime[3] + etime[4]
 
     return round((sum_time - min(etime) - max(etime)) / 3, 5)
@@ -97,6 +100,8 @@ def run(key, elements):
         print(' sec')
 # }}} -------------------------------------------------------------------------
 
+# Main ------------------------------------------------------------------------
+# TODO: Is it useful to use __main__ here?
 run('API',       pages['api'])
 run('Web pages', pages['site']['url_hp'])
 run('Feeds',     pages['site']['feed'])

@@ -34,6 +34,8 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 namespace FabioCicerchia\Api\Service;
 
 /**
@@ -56,6 +58,7 @@ class EntryPoint
      *
      * @var array $services
      */
+    // TODO: Retrieve automatically the values.
     protected $services = [
         'information',
         'education',

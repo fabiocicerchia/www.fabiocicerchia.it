@@ -34,6 +34,8 @@
  * @since      File available since Release 0.1
  */
 
+// TODO: Run PHP-CS-Fixer.
+
 namespace FabioCicerchia\Api;
 
 /**
@@ -68,6 +70,7 @@ class TwigExtension extends \Twig_Extension
      *
      * @return string The formatter date.
      */
+    // TODO: Remove and just use "date".
     public function customDate($date, $format = null)
     {
         date_default_timezone_set('UTC');
