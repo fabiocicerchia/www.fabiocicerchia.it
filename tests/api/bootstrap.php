@@ -33,8 +33,6 @@
  * @since     File available since Release 0.1
  */
 
-// TODO: Run PHP-CS-Fixer.
-
 if (defined('TEST_ROOT_PATH') === false) {
     define('TEST_ROOT_PATH',  __DIR__ . '/../../');
 }

@@ -60,7 +60,6 @@ require_ok('Pod::Coverage');
 require_ok('POSIX');
 require_ok('Readonly');
 require_ok('Template');
-require_ok('Template::Filter');
 require_ok('Test::More');
 require_ok('XML::Simple');
 

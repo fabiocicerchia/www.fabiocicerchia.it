@@ -1,7 +1,5 @@
 [% USE date %]
-[% manip = date.manip %]
 [% USE String %]
-<!-- TODO: Sort attribute -->
 <section id="education">
     <div class="page-header">
         <h2>[% FILTER gettext %]Education[% END %]</h2>
@@ -14,7 +12,7 @@
             [% IF loop.index mod 2 == 0 %]<div class="row-fluid">[% closed = 0 %][% END %]
             [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
-            <div itemscope="itemscope" itemtype="http://schema.org/EducationEvent" class="span6 education vevent" id="[% id_title %]_[% id_company %]">
+            <div class="span6 education vevent" id="[% id_title %]_[% id_company %]" itemscope="itemscope" itemtype="http://schema.org/EducationEvent">
                 <h3 class="summary" itemprop="name">
                     <i class="icon-book"></i>
                     [% entity.title.content %]
@@ -22,22 +20,22 @@
                 <!-- TODO: Refactor Extract -->
                 <div class="dates">
                     [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtstart">[% date.format(manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
+                    <span class="dtstart">[% date.format(date.manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
                     [% IF entity.updated && entity.updated != entity.published %]
                     [% end = entity.updated | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtend">[% date.format(manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
+                    <span class="dtend">[% date.format(date.manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
                     [% END %]
                 </div>
                 <!-- TODO: End Refactor Extract -->
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
-                    <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]">
+                    <a class="url" href="[% entity.content.company.link.href %]" itemprop="url" rel="nofollow" target="_blank" title="[% entity.content.company.title.content %]">
                         <span class="fn" itemprop="name">
                             [% entity.content.company.title.content %]
                         </span>
                     </a>
                 </div>
                 [% IF entity.content.activities %]
-                <a href="#" class="show_hide">&raquo; [% FILTER gettext %]Show more ...[% END %]</a>
+                <a class="show_hide" href="#">&raquo; [% FILTER gettext %]Show more ...[% END %]</a>
                 <div class="hide">
                     <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
                         <dt itemprop="name">[% FILTER gettext %]Activities[% END %]</dt>

@@ -1,4 +1,3 @@
-<!-- TODO: Sort attribute -->
 <section id="languages">
     <div class="page-header">
         <h2>[% FILTER gettext %]Languages[% END %]</h2>
@@ -7,7 +6,7 @@
     <div class="row">
         <div class="span12 vcalendar">
             <div class="row-fluid">
-                <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent">
+                <div class="span12 experience vevent" itemscope="itemscope" itemtype="http://schema.org/BusinessEvent">
                     [% FOREACH entity IN data.language.entity %]
                     <div class="span6" itemscope="itemscope" itemtype="http://schema.org/Language">
                         <h3 class="summary" itemprop="name">

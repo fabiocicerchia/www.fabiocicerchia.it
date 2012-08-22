@@ -31,12 +31,11 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
-# TODO: Add {{{ }}} as delimiter.
-
 ################################################################################
 # RUN ACTIONS
 ################################################################################
 
+# {{{ run_check_accessibility() ------------------------------------------------
 # TODO: Remove handle_errors?
 run_check_accessibility() {
     print_subheader "RUNNING CHECK ACCESSIBILITY"
@@ -45,7 +44,9 @@ run_check_accessibility() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ run_check_validation() ---------------------------------------------------
 # TODO: Remove handle_errors?
 run_check_validation() {
     print_subheader "RUNNING CHECK VALIDATION"
@@ -54,7 +55,9 @@ run_check_validation() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ run_todo() ---------------------------------------------------------------
 # TODO: Save to a file.
 run_todo() {
     DIR=$2
@@ -89,7 +92,9 @@ run_todo() {
         IFS=$OLDIFS
     done
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ run_changelog() ----------------------------------------------------------
 # TODO: Save to a file.
 run_changelog() {
     horizontal_line
@@ -127,6 +132,7 @@ run_changelog() {
     IFS=$OLDIFS
 }
 
+# {{{ _ver_cmp_1() -------------------------------------------------------------
 # Compare with one element of version components
 _ver_cmp_1() {
   [[ $1 == $2 ]] && return 0
@@ -136,6 +142,7 @@ _ver_cmp_1() {
   exit 1
 }
 
+# {{{ ver_cmp() ----------------------------------------------------------------
 ver_cmp() {
   A=${1//./ }
   B=${2//./ }
@@ -151,7 +158,9 @@ ver_cmp() {
   return $?
 }
 
+# {{{ run_dependencies() -------------------------------------------------------
 run_dependencies() {
+    # TODO: wrap multiline.
     declare -a commands=('cat' 'curl' 'cut' 'dirname' 'egrep' 'find' 'fold' 'sed' 'seq' 'wc' 'wget' 'xargs');
 
     for i in "${commands[@]}"; do
@@ -277,7 +286,9 @@ run_dependencies() {
         fi
     done
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ run_generate_gettext() ---------------------------------------------------
 run_generate_gettext() {
     CURR_DATE=$(date +%Y-%m-%d\ %H:%M%z)
 
@@ -340,7 +351,9 @@ run_generate_gettext() {
 
     IFS=$OLDIFS
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ run_compile_gettext() ----------------------------------------------------
 run_compile_gettext() {
     FILES_PO=$(find $SITE_APP_SOURCEDIR/locale -name "*.po" -type f)
     for FILE_PO in $FILES_PO; do
@@ -349,3 +362,4 @@ run_compile_gettext() {
 
     echo "done"
 }
+# }}} --------------------------------------------------------------------------

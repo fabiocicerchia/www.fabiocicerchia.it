@@ -34,7 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: Run PHP-CS-Fixer.
 // TODO: 100% Internal Coverage.
 // TODO: 100% Overall Coverage.
 
@@ -144,6 +143,7 @@ class UtilsTest extends FabioCicerchia\TestCase
     public function provideFakeData()
     {
         $mongoDate = new MongoDate;
+
         return [
             // Set #0 ----------------------------------------------------------
             [

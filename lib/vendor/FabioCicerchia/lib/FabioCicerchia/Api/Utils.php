@@ -34,8 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: Run PHP-CS-Fixer.
-
 namespace FabioCicerchia\Api;
 
 /**
@@ -177,9 +175,13 @@ class Utils
     {
         $firstRecord  = $data['entities'][array_keys($data['entities'])[0]];
         if (isset($firstRecord['date']) === true) {
-            if (isset($firstRecord['date']['end']) === true) {
+            if (isset($firstRecord['date']['end']) === true
+                && $firstRecord['date']['end'] instanceof \MongoDate
+            ) {
                 $time = $firstRecord['date']['end']->sec;
-            } elseif (isset($firstRecord['date']['start']) === true) {
+            } elseif (isset($firstRecord['date']['start']) === true
+                && $firstRecord['date']['start'] instanceof \MongoDate
+            ) {
                 $time = $firstRecord['date']['start']->sec;
             }
         }
@@ -237,8 +239,8 @@ class Utils
         }
 
         // third check on level value
-        $a_level = (float)preg_replace('/.*level=(\d+)$/', '\1', $a_value);
-        $b_level = (float)preg_replace('/.*level=(\d+)$/', '\1', $b_value);
+        $a_level = (float) preg_replace('/.*level=(\d+)$/', '\1', $a_value);
+        $b_level = (float) preg_replace('/.*level=(\d+)$/', '\1', $b_value);
         if ($a_level !== $b_level) {
             return strcmp($a_level, $b_level);
         }

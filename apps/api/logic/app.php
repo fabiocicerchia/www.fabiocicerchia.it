@@ -33,14 +33,6 @@
  * @link       http://www.fabiocicerchia.it
  */
 
-// TODO: Run PHP-CS-Fixer.
-
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use FabioCicerchia\Api\Service\EntryPoint;
-use FabioCicerchia\Api\Service\Strategy;
-use FabioCicerchia\Api\Utils;
-
 // -----------------------------------------------------------------------------
 // INIT SILEX ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
@@ -64,7 +56,7 @@ $app->get('/', $closures['root'])->method('GET')->bind('root');
 // -----------------------------------------------------------------------------
 // ROUTE API -------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-$app->get('/{api_name}', $closures['api'])->assert('api_name', '[a-z]+')
+$app->get('/{apiName}', $closures['api'])->assert('apiName', '[a-z]+')
     ->method('GET')->bind('api');
 
 // -----------------------------------------------------------------------------

@@ -33,8 +33,6 @@
  * @since     File available since Release 0.1
  */
 
-// TODO: Run PHP-CS-Fixer.
-
 require_once __DIR__ . '/../../../lib/vendor/autoload.php';
 
 use Silex\WebTestCase;
@@ -350,8 +348,8 @@ class ApiTest extends WebTestCase
 
         $data = [];
 
-        foreach($httpMethods as $httpMethod) {
-            foreach($url as $elements) {
+        foreach ($httpMethods as $httpMethod) {
+            foreach ($url as $elements) {
                 $data[] = [$elements[0], $httpMethod, $elements[1]];
             }
         }
@@ -396,8 +394,8 @@ class ApiTest extends WebTestCase
 
         $data = [];
 
-        foreach($httpMethods as $httpMethod) {
-            foreach($url as $elements) {
+        foreach ($httpMethods as $httpMethod) {
+            foreach ($url as $elements) {
                 $data[] = [$elements[0], $httpMethod, $elements[1]];
             }
         }

@@ -1,9 +1,8 @@
-<!-- TODO: Sort attribute -->
-<header class="jumbotron subhead vcard" itemscope="itemscope" itemtype="http://schema.org/Person" id="hcard-Fabio-Cicerchia">
-    <img src="/media/images/logo.png" alt="Fabio Cicerchia Logo: Quality solutions at hand." />
+<header class="jumbotron subhead vcard" id="hcard-Fabio-Cicerchia" itemscope="itemscope" itemtype="http://schema.org/Person">
+    <img alt="Fabio Cicerchia Logo: Quality solutions at hand." src="/media/images/logo.png" />
     <h1 class="fn n" itemprop="name">
-        <span lang="it" class="given-name">Fabio</span>
-        <span lang="it" class="family-name">Cicerchia</span>
+        <span class="given-name" lang="it">Fabio</span>
+        <span class="family-name" lang="it">Cicerchia</span>
     </h1>
     <p class="lead role" itemprop="jobTitle">
         [% data.information.entity.0.content.role %]
@@ -23,7 +22,7 @@
         </li>
         [% time = data.information.entity.0.content.birthday | trim | replace('T', ' ') | replace('Z', '') %]
         <li>
-            <time class="bday" itemprop="birthDate" datetime="[% time %]">
+            <time class="bday" datetime="[% time %]" itemprop="birthDate">
                 <i class="icon-calendar"></i>
                 [% date.format(time, "%d %B %Y") %]
             </time>
@@ -35,14 +34,14 @@
             </span>
         </li>
         <li>
-            <a class="url" itemprop="url" target="_blank" href="http://[% HTTP_HOST %]" rel="nofollow me" title="">
+            <a class="url" href="http://[% HTTP_HOST %]" itemprop="url" rel="nofollow me" target="_blank" title="[% FILTER gettext %]My web site[% END %]">
                 <i class="icon-globe"></i>
                 http://[% HTTP_HOST %]
                 <span class="nw"></span>
             </a>
         </li>
         <li>
-            <a class="email" itemprop="email" href="mailto:[% data.information.entity.0.content.contacts.email %]" rel="nofollow me" title="The my email address">
+            <a class="email" itemprop="email" href="mailto:[% data.information.entity.0.content.contacts.email %]" rel="nofollow me" title="[% FILTER gettext %]My email address[% END %]">
                 <i class="icon-envelope"></i>
                 [% data.information.entity.0.content.contacts.email %]
             </a>
@@ -96,7 +95,7 @@
                 </a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     [% FILTER gettext %]Switch Language[% END %]
                     <b class="caret"></b>
                 </a>

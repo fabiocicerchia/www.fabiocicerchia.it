@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- TODO: Attribute sorting -->
 <phpunit
-    bootstrap="../tests/api/bootstrap.php"
     backupGlobals="false"
+    bootstrap="../tests/api/bootstrap.php"
     cacheTokens="false"
     colors="true"
     convertErrorsToExceptions="true"
@@ -25,24 +24,25 @@
     </testsuites>
 
     <filter>
+        <blacklist>
+            <directory>../tests</directory>
+        </blacklist>
         <whitelist>
             <directory>../apps</directory>
             <directory>../lib/vendor/FabioCicerchia</directory>
         </whitelist>
-        <blacklist>
-            <directory>../tests</directory>
-        </blacklist>
     </filter>
 
     <logging>
-        <log type="coverage-html"
-             target="../report/api/code_coverage"
+        <log
              charset="UTF-8"
-             yui="true"
              highlight="false"
+             highLowerBound="70"
              lowUpperBound="35"
-             highLowerBound="70"/>
-        <log type="testdox-html" target="../report/api/testdox/testdox.html" />
-        <log type="testdox-text" target="../report/api/testdox/testdox.txt" />
+             target="../report/api/code_coverage"
+             type="coverage-html"
+             yui="true" />
+        <log target="../report/api/testdox/testdox.html" type="testdox-html" />
+        <log target="../report/api/testdox/testdox.txt" type="testdox-text" />
     </logging>
 </phpunit>

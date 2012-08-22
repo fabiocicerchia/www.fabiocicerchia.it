@@ -1,6 +1,5 @@
 [% USE date %]
 [% today_date = date.format(date.now, "%a, %d %b %Y") %]
-<!-- TODO: Sort attribute -->
 <section id="experience">
     <div class="page-header">
         <h2>[% FILTER gettext %]Experience[% END %]</h2>
@@ -11,7 +10,7 @@
             [% FOREACH entity = data.experience.entity %]
             [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
-            <div itemscope="itemscope" itemtype="http://schema.org/BusinessEvent" class="span12 experience vevent" id="[% id_title %]_[% id_company %]">
+            <div class="span12 experience vevent" id="[% id_title %]_[% id_company %]" itemscope="itemscope" itemtype="http://schema.org/BusinessEvent">
                 <div class="page-header">
                     <h3 class="summary">
                         <i class="icon-briefcase"></i>
@@ -34,7 +33,7 @@
                 </div>
                 <!-- TODO: End Refactor Extract -->
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
-                    <a class="url" itemprop="url" target="_blank" href="[% entity.content.company.link.href %]" rel="nofollow" title="[% entity.content.company.title.content %]">
+                    <a class="url" href="[% entity.content.company.link.href %]" itemprop="url" rel="nofollow" target="_blank" title="[% entity.content.company.title.content %]">
                         <span class="fn" itemprop="name">
                             [% entity.content.company.title.content %]
                         </span>
@@ -61,7 +60,7 @@
                     <!-- TODO: End Refactor Extract -->
                 </div>
                 [% IF entity.content.description or entity.content.activities or entity.content.projects or entity.content.methodologies or entity.content.technologies or entity.content.tools or entity.content.techniques %]
-                <a href="#" class="show_hide">&raquo; [% FILTER gettext %]Show more ...[% END %]</a>
+                <a class="show_hide" href="#">&raquo; [% FILTER gettext %]Show more ...[% END %]</a>
                 <div class="hide">
                     [% IF entity.content.description %]
                     <div itemprop="description">
@@ -86,11 +85,11 @@
                         [% current_id = project.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <a href="#collapse[% current_id %]" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion[% current_id %]">
+                                <a class="accordion-toggle" data-parent="#accordion[% current_id %]" data-toggle="collapse" href="#collapse[% current_id %]">
                                     <span itemprop="name">[% project.title.content %]</span>
                                 </a>
                             </div>
-                            <div id="collapse[% current_id %]" class="accordion-body collapse">
+                            <div class="accordion-body collapse" id="collapse[% current_id %]">
                                 <span class="role">[% project.role.content %]</span>
                                 [% IF entity.content.description %]
                                 <div itemprop="description">
@@ -108,7 +107,7 @@
                                 </span>
                                 [% END %]
                                 [% IF project.link %]
-                                    <a itemprop="url" target="_blank" href="[% project.link.href %]" rel="nofollow" title="The URL of the [% project.title.content %]">
+                                    <a href="[% project.link.href %]" itemprop="url" rel="nofollow" target="_blank" title="The URL of the [% project.title.content %]">
                                         [% project.link.href %]
                                     </a>
                                 [% END %]

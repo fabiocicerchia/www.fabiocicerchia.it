@@ -31,21 +31,22 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
-# TODO: Add {{{ }}} as delimiter.
-
 ################################################################################
 # TESTS ACTIONS
 ################################################################################
 
+# {{{ test_php() ---------------------------------------------------------------
 # TODO: Remove handle_errors?
 test_php() {
     print_subheader "RUNNING PHPUNIT"
 
-    phpunit -c $ROOT_DIR/config/phpunit.xml || handle_errors $?
+    phpunit -c $ROOTDIR/config/phpunit.xml || handle_errors $?
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ test_perl() --------------------------------------------------------------
 # TODO: Remove handle_errors?
 test_perl() {
     print_subheader "RUNNING TEST::MORE & COVER"
@@ -59,3 +60,4 @@ test_perl() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------

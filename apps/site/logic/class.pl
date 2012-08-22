@@ -85,7 +85,7 @@ sub action_show {
 
     my @lang_tokens = split /,/smx, $language;
     if ( scalar(@lang_tokens) > 1 ) {
-        if ( substr $lang_tokens[0], 0, 2 == substr $lang_tokens[1], 0, 2 ) {
+        if ( substr $lang_tokens[0], 0, 2 eq substr $lang_tokens[1], 0, 2 ) {
             $language = $lang_tokens[0];
         }
         else {

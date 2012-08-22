@@ -31,12 +31,11 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
-# TODO: Add {{{ }}} as delimiter.
-
 ################################################################################
 # SCA ACTIONS
 ################################################################################
 
+# {{{ sca_phpcs() --------------------------------------------------------------
 # TODO: Remove handle_errors?
 # TODO: Wrap multiline.
 sca_phpcs() {
@@ -51,7 +50,9 @@ sca_phpcs() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ sca_phpmd() --------------------------------------------------------------
 # TODO: Remove handle_errors?
 # TODO: Wrap multiline.
 sca_phpmd() {
@@ -66,7 +67,9 @@ sca_phpmd() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ sca_phploc() -------------------------------------------------------------
 # TODO: Remove handle_errors?
 sca_phploc() {
     print_subheader "RUNNING PHPLOC"
@@ -80,7 +83,9 @@ sca_phploc() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ sca_phpcpd() -------------------------------------------------------------
 # TODO: Remove handle_errors?
 # TODO: Wrap multiline.
 sca_phpcpd() {
@@ -95,7 +100,9 @@ sca_phpcpd() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ sca_pdepend() ------------------------------------------------------------
 # TODO: Remove handle_errors?
 # TODO: Wrap multiline.
 sca_pdepend() {
@@ -110,7 +117,9 @@ sca_pdepend() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ sca_phpcb() --------------------------------------------------------------
 # TODO: Remove handle_errors?
 # TODO: Wrap multiline.
 sca_phpcb() {
@@ -122,24 +131,31 @@ sca_phpcb() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ sca_perlcritic() ---------------------------------------------------------
 sca_perlcritic() {
     print_subheader "RUNNING PERL CRITIC"
 
     find $SITE_APP_SOURCEDIR -type f -name "*.pl" | xargs perlcritic --brutal --statistics --color
     find $SITE_TEST_SOURCEDIR -type f -name "*.pl" | xargs perlcritic --brutal --statistics --color
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ sca_pylint() -------------------------------------------------------------
 sca_pylint() {
     print_subheader "RUNNING PYLINT"
 
     find $SCRIPT_APP_SOURCEDIR -type f -name "*.py" | xargs pylint
     find $SCRIPT_TEST_SOURCEDIR -type f -name "*.py" | xargs pylint
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ sca_pep8() ---------------------------------------------------------------
 sca_pep8() {
     print_subheader "RUNNING PEP8"
 
     find $SCRIPT_APP_SOURCEDIR -type f -name "*.py" | xargs pep8
     find $SCRIPT_TEST_SOURCEDIR -type f -name "*.py" | xargs pep8
 }
+# }}} --------------------------------------------------------------------------

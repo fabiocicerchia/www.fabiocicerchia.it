@@ -34,8 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: Run PHP-CS-Fixer.
-
 namespace FabioCicerchia\Api\Service;
 
 use FabioCicerchia\Api;
@@ -83,21 +81,30 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
         // Retrieve the list of skill with its "months" value. -----------------
         $skillsWithMonths = [];
 
-        $experience = new Experience($this->getCollection()->getDatabase());
-        $experienceData = $experience->getData();
-        foreach($experienceData['entities'] as $entity) {
-            $this->parseSkillValues($entity, $skillsWithMonths);
-            foreach($entity['projects'] as $project) {
-                $this->parseSkillValues($project, $skillsWithMonths);
+        if ($this->getCollection() instanceof \Doctrine\MongoDB\Collection) {
+            $experience = new Experience($this->getCollection()->getDatabase());
+            $experienceData = $experience->getData();
+            foreach ($experienceData['entities'] as $entity) {
+                $this->parseSkillValues($entity, $skillsWithMonths);
+                if (isset($entity['projects']) === true) {
+                    foreach ($entity['projects'] as $project) {
+                        $this->parseSkillValues($project, $skillsWithMonths);
+                    }
+                }
             }
-        }
 
-        foreach($data as $key => $item) {
-            foreach($item['list'] as $subkey => $elem) {
-                $monthKey = isset($elem['name']['en_GB'])
-                            ? $elem['name']['en_GB']
-                            : $elem['name'];
-                $data[$key]['list'][$subkey]['months'] = $skillsWithMonths[$monthKey];
+            foreach ($data as $key => $item) {
+                foreach ($item['list'] as $subkey => $elem) {
+                    $monthKey = isset($elem['name']['en_GB']) === true
+                                ? $elem['name']['en_GB']
+                                : $elem['name'];
+
+                    if (isset($skillsWithMonths[$monthKey]) === false) {
+                        $skillsWithMonths[$monthKey] = 0;
+                    }
+
+                    $data[$key]['list'][$subkey]['months'] = $skillsWithMonths[$monthKey];
+                }
             }
         }
 
@@ -111,8 +118,8 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
     /**
      * Retrieve the "months" value inside an array.
      *
-     * @param  array $entity The array to parse.
-     * @param  array $data   The skill container.
+     * @param array $entity The array to parse.
+     * @param array $data   The skill container.
      *
      * @return void
      */
@@ -121,12 +128,18 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
         $availableKeys = ['methodologies', 'techniques', 'technologies', 'tools'];
 
         foreach ($availableKeys as $key) {
-            foreach($entity[$key] as $elementKey => $elementValue) {
-                $value = isset($elementValue['months'])
-                         ? intval($elementValue['months'])
-                         : 0;
+            if (isset($entity[$key]) === true) {
+                foreach ($entity[$key] as $elementKey => $elementValue) {
+                    $value = isset($elementValue['months']) === true
+                             ? intval($elementValue['months'])
+                             : 0;
 
-                $data[$elementKey] += $value;
+                    if (isset($data[$elementKey]) === false) {
+                        $data[$elementKey] = 0;
+                    }
+
+                    $data[$elementKey] += $value;
+                }
             }
         }
     }

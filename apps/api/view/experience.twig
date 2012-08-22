@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entities xmlns="http://www.w3.org/2005/Atom">
-<!-- TODO: Sort attribute -->
     {% include '_header.twig' %}
 
     {% for entity in entities %}
@@ -27,7 +26,7 @@
             <company>
                 <title type="text">{{ entity.company.name }}</title>
                 {% if entity.company.url is defined %}
-                <link rel="related" href="{{ entity.company.url }}" />
+                <link href="{{ entity.company.url }}" rel="related" />
                 {% endif %}
                 {% if entity.company.location is defined %}
                 <address>
@@ -89,7 +88,7 @@
                     {% endif %}
                     <role>{{ project.role }}</role>
                     {% if project.url is defined %}
-                    <link rel="related" href="{{ project.url }}" />
+                    <link href="{{ project.url }}" rel="related" />
                     {% endif %}
                     {% if project.date is defined %}
                         <published>

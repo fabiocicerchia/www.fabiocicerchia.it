@@ -56,10 +56,6 @@
             "commit-date": "1344453846"
         },
         {
-            "package": "symfony/browser-kit",
-            "version": "v2.0.16"
-        },
-        {
             "package": "symfony/console",
             "version": "dev-master",
             "alias-pretty-version": "2.1.x-dev",
@@ -70,14 +66,6 @@
             "version": "dev-master",
             "source-reference": "3b66f1056f5ac37146d3b755964e8a43a205f2f5",
             "commit-date": "1344349441"
-        },
-        {
-            "package": "symfony/css-selector",
-            "version": "v2.0.16"
-        },
-        {
-            "package": "symfony/dom-crawler",
-            "version": "v2.0.16"
         },
         {
             "package": "symfony/event-dispatcher",

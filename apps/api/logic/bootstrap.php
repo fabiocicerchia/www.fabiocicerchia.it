@@ -32,8 +32,6 @@
  * @link      http://www.fabiocicerchia.it
  */
 
-// TODO: Run PHP-CS-Fixer.
-
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\HttpCacheServiceProvider;
 use FabioCicerchia\Api\TwigExtension;

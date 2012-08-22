@@ -31,18 +31,19 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
-# TODO: Add {{{ }}} as delimiter.
-
 ################################################################################
 # INSTALL ACTIONS
 ################################################################################
 
+# {{{ pear_add_channel() -------------------------------------------------------
 pear_add_channel() {
     sudo pear -q channel-discover $1 || handle_errors $?
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_gitflow() --------------------------------------------------------
 # TODO: Remove handle_errors?
 install_gitflow() {
     print_subheader "INSTALLING GIT FLOW"
@@ -53,7 +54,9 @@ install_gitflow() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_gitextras() ------------------------------------------------------
 # TODO: Remove handle_errors?
 install_gitextras() {
     print_subheader "INSTALLING GIT EXTRAS"
@@ -64,7 +67,9 @@ install_gitextras() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_php() ------------------------------------------------------------
 # TODO: Remove handle_errors?
 install_php() {
     print_subheader "INSTALLING PHP"
@@ -80,7 +85,9 @@ install_php() {
 
     return 1
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_mongo() ----------------------------------------------------------
 # TODO: Remove handle_errors?
 install_mongo() {
     print_subheader "INSTALLING MONGODB"
@@ -93,7 +100,9 @@ install_mongo() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_imagick() --------------------------------------------------------
 # TODO: Remove handle_errors?
 install_imagick() {
     print_subheader "INSTALLING IMAGICK"
@@ -102,7 +111,9 @@ install_imagick() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpunit() --------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpunit() {
     print_subheader "INSTALLING PHPUNIT"
@@ -112,7 +123,9 @@ install_phpunit() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpcb() ----------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpcb() {
     print_subheader "INSTALLING PHP_CODE_BROWSER"
@@ -126,7 +139,9 @@ install_phpcb() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpcc() ----------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpcc() {
     print_subheader "INSTALLING PHP_CODE_COVERAGE"
@@ -136,7 +151,9 @@ install_phpcc() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpcov() ---------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpcov() {
     print_subheader "INSTALLING PHPCOV"
@@ -146,7 +163,9 @@ install_phpcov() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpcpd() ---------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpcpd() {
     print_subheader "INSTALLING PHPCPD"
@@ -156,7 +175,9 @@ install_phpcpd() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phploc() ---------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phploc() {
     print_subheader "INSTALLING PHPLOC"
@@ -166,7 +187,9 @@ install_phploc() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpdoc2() --------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpdoc2() {
     print_subheader "INSTALLING PHPDOCUMENTOR2"
@@ -177,7 +200,9 @@ install_phpdoc2() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_pdepend() --------------------------------------------------------
 # TODO: Remove handle_errors?
 install_pdepend() {
     print_subheader "INSTALLING PHP_DEPEND"
@@ -191,7 +216,9 @@ install_pdepend() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpmd() ----------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpmd() {
     print_subheader "INSTALLING PHPMD"
@@ -205,7 +232,9 @@ install_phpmd() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpcs() ----------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpcs() {
     print_subheader "INSTALLING PHP_CodeSniffer"
@@ -214,7 +243,9 @@ install_phpcs() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_phpmongo() -------------------------------------------------------
 # TODO: Remove handle_errors?
 install_phpmongo() {
     print_subheader "INSTALLING PHP MONGODB"
@@ -223,7 +254,9 @@ install_phpmongo() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_perl_modules() ---------------------------------------------------
 # TODO: Remove handle_errors?
 install_perl_modules() {
     print_subheader "INSTALLING PERL MODULES"
@@ -263,7 +296,9 @@ install_perl_modules() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_pychecker() ------------------------------------------------------
 # TODO: Remove handle_errors?
 install_pychecker() {
     print_subheader "INSTALLING PYCHECKER"
@@ -272,7 +307,9 @@ install_pychecker() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_pylint() ---------------------------------------------------------
 # TODO: Remove handle_errors?
 install_pylint() {
     print_subheader "INSTALLING PYLINT"
@@ -281,7 +318,9 @@ install_pylint() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_pep8() -----------------------------------------------------------
 # TODO: Remove handle_errors?
 install_pep8() {
     print_subheader "INSTALLING PEP8"
@@ -290,7 +329,9 @@ install_pep8() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_epydoc() ---------------------------------------------------------
 # TODO: Remove handle_errors?
 install_epydoc() {
     print_subheader "INSTALLING EPYDOC"
@@ -299,7 +340,9 @@ install_epydoc() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------
 
+# {{{ install_capistrano() -----------------------------------------------------
 # TODO: Remove handle_errors?
 install_capistrano() {
     print_subheader "INSTALLING CAPISTRANO"
@@ -310,3 +353,4 @@ install_capistrano() {
 
     return $?
 }
+# }}} --------------------------------------------------------------------------

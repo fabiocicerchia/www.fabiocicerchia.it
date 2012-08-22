@@ -32,8 +32,6 @@
  * @link      http://www.fabiocicerchia.it
  */
 
-// TODO: Run PHP-CS-Fixer.
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FabioCicerchia\Api\Service\EntryPoint;
@@ -90,9 +88,9 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
  */
 $closures['root'] = function () use ($app) {
     // MimeType
-    $mime_type = $app['debug'] === true // TODO: CamelCase notation.
-                 ? 'application/xml'
-                 : 'application/vnd.ads+xml;v=1.0';
+    $mimeType = $app['debug'] === true
+                ? 'application/xml'
+                : 'application/vnd.ads+xml;v=1.0';
 
     // DB
     $database = $app['mongodb']->selectDatabase('curriculum');
@@ -102,7 +100,7 @@ $closures['root'] = function () use ($app) {
 
     $data = [
         'routes'    => $entryPoint->getServices(),
-        'mime_type' => $mime_type, // TODO: CamelCase notation.
+        'mime_type' => $mimeType,
         'api_name'  => 'entry point',
         'email'     => $database->selectCollection('information')->find()
                                  ->getNext()['contacts']['email']
@@ -126,7 +124,7 @@ $closures['root'] = function () use ($app) {
 /**
  * API - Closure.
  *
- * @param string $api_name The API name retrieved from URL.
+ * @param string $apiName The API name retrieved from URL.
  *
  * @link  http://www.php.net/manual/en/class.invalidargumentexception.php
  * @link  http://www.php.net/manual/en/class.unexpectedvalueexception.php
@@ -141,9 +139,9 @@ $closures['root'] = function () use ($app) {
  *
  * @return Response
  */
-$closures['api'] = function ($api_name) use ($app) { // TODO: CamelCase notation.
-    if (is_string($api_name) === false) { // TODO: CamelCase notation.
-        $message = 'The parameter $api_name must be a string.';
+$closures['api'] = function ($apiName) use ($app) {
+    if (is_string($apiName) === false) {
+        $message = 'The parameter $apiName must be a string.';
         throw new \InvalidArgumentException($message);
     }
 
@@ -152,13 +150,13 @@ $closures['api'] = function ($api_name) use ($app) { // TODO: CamelCase notation
 
     // Business Logic
     try {
-        $service = new Strategy($api_name, $database); // TODO: CamelCase notation.
+        $service = new Strategy($apiName, $database);
     } catch (UnexpectedValueException $e) {
-        $app->abort(404, 'The API ' . $api_name. ' does not exist.'); // TODO: CamelCase notation.
+        $app->abort(404, 'The API ' . $apiName. ' does not exist.');
     }
 
     $data = $service->getData();
-    $data['api_name'] = $api_name; // TODO: CamelCase notation.
+    $data['api_name'] = $apiName;
 
     // Response
     // TODO: Less code here below...
@@ -176,22 +174,22 @@ $closures['api'] = function ($api_name) use ($app) { // TODO: CamelCase notation
     // TODO: Less code here below...
     if ($response->isNotModified($app['request']) === false) {
         // MimeType
-        $mime_type = $app['debug'] === true // TODO: CamelCase notation.
-                     ? 'application/xml'
-                     : 'application/vnd.ads+xml;v=1.0';
+        $mimeType = $app['debug'] === true
+                    ? 'application/xml'
+                    : 'application/vnd.ads+xml;v=1.0';
         // TODO: Provide different mime-types (XML, JSON, ...)
-        $response->headers->set('Content-Type', $mime_type); // TODO: CamelCase notation.
+        $response->headers->set('Content-Type', $mimeType);
 
         // Language
-        list($current_lang, $to_lang) = Utils::getLanguage($app, $database); // TODO: CamelCase notation.
-        $response->headers->set('Content-Language', $current_lang); // TODO: CamelCase notation.
+        list($currentLang, $toLang) = Utils::getLanguage($app, $database);
+        $response->headers->set('Content-Language', $currentLang);
 
-        $data['entities'] = Utils::convertForI18n($data['entities'], $to_lang); // TODO: CamelCase notation.
+        $data['entities'] = Utils::convertForI18n($data['entities'], $toLang);
         $data['email']    = $database->selectCollection('information')
                                      ->find()->getNext()['contacts']['email'];
 
         // Rendering
-        $content = $app['twig']->render($api_name . '.twig', $data); // TODO: CamelCase notation.
+        $content = $app['twig']->render($apiName . '.twig', $data);
         $response->setContent($content);
     }
 

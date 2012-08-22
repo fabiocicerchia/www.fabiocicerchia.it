@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service xmlns="http://www.w3.org/2005/Atom">
-<!-- TODO: Sort attribute -->
     {% include '_header.twig' %}
 
     <entrypoint>
         <id>urn:uuid:{{ "root"|md5 }}</id>
         <title type="text">Entry Point</title>
-        <link rel="self" href="http://{{ app.request.host }}/api.php/"
-              type="{{ mime_type }}" title="Entry Point" />
+        <link href="http://{{ app.request.host }}/api.php/" rel="self"
+              title="Entry Point" type="{{ mime_type }}" />
         <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
     </entrypoint>
     {% for route in routes %}
     <entrypoint>
         <id>urn:uuid:{{ route|md5 }}</id>
         <title type="text">{{ route|capitalize }}</title>
-        <link rel="service"
-              href="http://{{ app.request.host }}/api.php/{{ route }}"
-              type="{{ mime_type }}"
-              title="{{ route|capitalize }}" />
+        <link href="http://{{ app.request.host }}/api.php/{{ route }}"
+              rel="service" title="{{ route|capitalize }}"
+              type="{{ mime_type }}" />
         <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
     </entrypoint>
     {% endfor %}
