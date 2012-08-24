@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="[% language.substr(0, 2) %]">
+    <head>
+        [% INCLUDE _head.tmpl
+           description = "Where I was"
+           title       = "Maps" %]
+    </head>
+    <body class="nojs" data-offset="50" data-spy="scroll" data-target=".subnav">
+        [% INCLUDE partials/navbar.tmpl active = "maps" %]
+
+        <div class="container">
+            <h2>Maps</h2>
+            <h3>Where I was</h3>
+
+            <iframe
+                frameborder="0"
+                height="200px"
+                id="iframe_map"
+                marginheight="0"
+                marginwidth="0"
+                scrolling="no"
+                src="https://maps.google.co.uk/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=https:%2F%2Ffeeds.foursquare.com%2Fhistory%2FXMXM0UGZMN2N2EWTN2T43OPKKQM0PCUE.kml&amp;sll=51.528642,-0.101599&amp;sspn=0.49638,1.352692&amp;t=h&amp;ie=UTF8&amp;ll=51.539502,-0.159302&amp;spn=1.640006,3.515625&amp;z=8&amp;output=embed"
+                width="100%">
+            </iframe>
+
+            <footer class="footer">
+                <p class="pull-right">
+                    <i class="icon-chevron-up"></i>
+                    <a href="javascript: window.scrollTo(0,0);">[% FILTER gettext %]Back to top[% END %]</a>
+                </p>
+            </footer>
+        </div>
+        [% INCLUDE _js.tmpl %]
+    </body>
+</html>

@@ -51,38 +51,6 @@ namespace FabioCicerchia\Api;
 class TwigExtension extends \Twig_Extension
 {
     // {{{ Methods - Public ====================================================
-    // {{{ Method: customDate --------------------------------------------------
-    /**
-     * Converts a date to the given format.
-     * Workaround to avoid the problem of missing DateTime classes.
-     *
-     * <pre>
-     *   {{ post.published_at|custom_date("d/m/Y") }}
-     * </pre>
-     *
-     * @param integer|string $date   A date.
-     * @param string         $format A format.
-     *
-     * @link  http://php.net/manual/en/class.mongodate.php
-     * @since Version 0.1
-     *
-     * @return string The formatter date.
-     */
-    // TODO: Remove and just use "date".
-    public function customDate($date, $format = null)
-    {
-        date_default_timezone_set('UTC');
-
-        $timestamp = strtotime($date);
-
-        if ($date instanceOf \MongoDate) {
-            $timestamp = $date->sec;
-        }
-
-        return date($format, $timestamp);
-    }
-    // }}} ---------------------------------------------------------------------
-
     // {{{ Method: pregReplace -------------------------------------------------
     /**
      * Just the preg_replace.
@@ -127,7 +95,6 @@ class TwigExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            'custom_date'  => new \Twig_Filter_Method($this, 'customDate'),
             'preg_replace' => new \Twig_Filter_Method($this, 'pregReplace'),
         ];
     }

@@ -1,13 +1,12 @@
-[% USE date %]
 <!DOCTYPE html>
 <html lang="[% language.substr(0, 2) %]">
     <head>
-        [% INCLUDE _head.tmpl %]
+        [% INCLUDE _head.tmpl
+           description = data.information.entity.0.summary.content
+           title       = data.information.entity.0.content.role %]
     </head>
     <body class="nojs" data-offset="50" data-spy="scroll" data-target=".subnav">
-        <a href="https://github.com/fabiocicerchia/fabiocicerchia.github.com" id="github_ribbon" target="_blank">
-            <img alt="[% FILTER gettext %]Fork me on GitHub[% END %]" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png">
-        </a>
+        [% INCLUDE partials/navbar.tmpl active = "home" %]
 
         <div class="container hresume">
             [% INCLUDE _header.tmpl %]
@@ -35,7 +34,7 @@
             <footer class="footer">
                 <p class="pull-right">
                     <i class="icon-chevron-up"></i>
-                    <a href="#">[% FILTER gettext %]Back to top[% END %]</a>
+                    <a href="javascript: window.scrollTo(0,0);">[% FILTER gettext %]Back to top[% END %]</a>
                 </p>
             </footer>
         </div>

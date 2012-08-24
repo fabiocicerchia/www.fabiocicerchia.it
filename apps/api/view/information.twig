@@ -9,7 +9,7 @@
             {{ entity.name.first_name }} {{ entity.name.last_name }}
         </title>
         <summary type="xhtml">{{ entity.info }}</summary>
-        <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
+        <updated>{{ "now"|date("Y-m-d\\TH:i:s\\Z") }}</updated>
 
         <content>
             <role>{{ entity.role }}</role>
@@ -36,7 +36,7 @@
                 {{ entity.gender|capitalize }}
             </gender>
             <birthday>
-                {{ entity.birth_day|custom_date("Y-m-d\\TH:i:s\\Z") }}
+                {{ entity.birth_day.sec|date("Y-m-d\\TH:i:s\\Z") }}
             </birthday>
             <telephone>
                 {{ entity.telephone.uk }}

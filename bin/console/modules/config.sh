@@ -36,21 +36,20 @@
 ################################################################################
 
 # {{{ config_apache() ----------------------------------------------------------
-# TODO: Remove handle_errors?
 config_apache() {
     print_subheader "CONFIGURING APACHE"
 
-    sudo a2enmod actions || handle_errors $?
-    sudo a2enmod cache || handle_errors $?
-    sudo a2enmod disk_cache || handle_errors $?
-    sudo a2enmod expires || handle_errors $?
-    sudo a2enmod headers || handle_errors $?
-    sudo a2enmod mem_cache || handle_errors $?
-    sudo a2enmod mod-security || handle_errors $?
-    sudo a2enmod perl || handle_errors $?
-    sudo a2enmod php5 || handle_errors $?
-    sudo a2enmod rewrite || handle_errors $?
-    sudo a2enmod speling || handle_errors $?
+    sudo a2enmod actions
+    sudo a2enmod cache
+    sudo a2enmod disk_cache
+    sudo a2enmod expires
+    sudo a2enmod headers
+    sudo a2enmod mem_cache
+    sudo a2enmod mod-security
+    sudo a2enmod perl
+    sudo a2enmod php5
+    sudo a2enmod rewrite
+    sudo a2enmod speling
 
     return $?
 }

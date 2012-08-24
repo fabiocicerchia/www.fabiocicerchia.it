@@ -7,7 +7,7 @@
         <title type="text">Entry Point</title>
         <link href="http://{{ app.request.host }}/api.php/" rel="self"
               title="Entry Point" type="{{ mime_type }}" />
-        <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
+        <updated>{{ "now"|date("Y-m-d\\TH:i:s\\Z") }}</updated>
     </entrypoint>
     {% for route in routes %}
     <entrypoint>
@@ -16,7 +16,7 @@
         <link href="http://{{ app.request.host }}/api.php/{{ route }}"
               rel="service" title="{{ route|capitalize }}"
               type="{{ mime_type }}" />
-        <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
+        <updated>{{ "now"|date("Y-m-d\\TH:i:s\\Z") }}</updated>
     </entrypoint>
     {% endfor %}
 </service>

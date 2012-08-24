@@ -37,40 +37,38 @@
 
 # {{{ pear_add_channel() -------------------------------------------------------
 pear_add_channel() {
-    sudo pear -q channel-discover $1 || handle_errors $?
+    sudo pear -q channel-discover $1
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_gitflow() --------------------------------------------------------
-# TODO: Remove handle_errors?
 install_gitflow() {
     print_subheader "INSTALLING GIT FLOW"
 
-    git clone -q --recursive git://github.com/nvie/gitflow.git /tmp/gitflow || handle_errors $?
-    cd /tmp/gitflow || handle_errors $?
-    sudo make install || handle_errors $?
+    git clone -q --recursive git://github.com/nvie/gitflow.git /tmp/gitflow
+    cd /tmp/gitflow
+    sudo make install
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_gitextras() ------------------------------------------------------
-# TODO: Remove handle_errors?
 install_gitextras() {
     print_subheader "INSTALLING GIT EXTRAS"
 
-    git clone -q --recursive git://github.com/visionmedia/git-extras.git /tmp/git-extras || handle_errors $?
-    cd /tmp/git-extras || handle_errors $?
-    sudo make install || handle_errors $?
+    git clone -q --recursive git://github.com/visionmedia/git-extras.git \
+        /tmp/git-extras
+    cd /tmp/git-extras
+    sudo make install
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_php() ------------------------------------------------------------
-# TODO: Remove handle_errors?
 install_php() {
     print_subheader "INSTALLING PHP"
 
@@ -88,12 +86,11 @@ install_php() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_mongo() ----------------------------------------------------------
-# TODO: Remove handle_errors?
 install_mongo() {
     print_subheader "INSTALLING MONGODB"
 
     if [ -z "$TRAVIS_CI" ]; then
-        sudo apt-get -q install mongodb || handle_errors $?
+        sudo apt-get -q install mongodb
     else
         echo "SKIPPED"
     fi
@@ -103,36 +100,33 @@ install_mongo() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_imagick() --------------------------------------------------------
-# TODO: Remove handle_errors?
 install_imagick() {
     print_subheader "INSTALLING IMAGICK"
 
-    sudo apt-get -q install php5-imagick || handle_errors $?
+    sudo apt-get -q install php5-imagick
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpunit() --------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpunit() {
     print_subheader "INSTALLING PHPUNIT"
 
     pear_add_channel "pear.phpunit.de"
-    sudo pear -q install --alldeps phpunit/PHPUnit || handle_errors $?
+    sudo pear -q install --alldeps phpunit/PHPUnit
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpcb() ----------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpcb() {
     print_subheader "INSTALLING PHP_CODE_BROWSER"
 
     if [ -z "$TRAVIS_CI" ]; then
         pear_add_channel "pear.phpunit.de"
-        sudo pear -q install --alldeps phpunit/PHP_CodeBrowser || handle_errors $?
+        sudo pear -q install --alldeps phpunit/PHP_CodeBrowser
     else
         echo "SKIPPED"
     fi
@@ -142,74 +136,68 @@ install_phpcb() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpcc() ----------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpcc() {
     print_subheader "INSTALLING PHP_CODE_COVERAGE"
 
     pear_add_channel "pear.phpunit.de"
-    sudo pear -q install --alldeps phpunit/PHP_CodeCoverage || handle_errors $?
+    sudo pear -q install --alldeps phpunit/PHP_CodeCoverage
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpcov() ---------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpcov() {
     print_subheader "INSTALLING PHPCOV"
 
     pear_add_channel "pear.phpunit.de"
-    sudo pear -q install --alldeps phpunit/phpcov || handle_errors $?
+    sudo pear -q install --alldeps phpunit/phpcov
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpcpd() ---------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpcpd() {
     print_subheader "INSTALLING PHPCPD"
 
     pear_add_channel "pear.phpunit.de"
-    sudo pear -q install --alldeps phpunit/phpcpd || handle_errors $?
+    sudo pear -q install --alldeps phpunit/phpcpd
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phploc() ---------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phploc() {
     print_subheader "INSTALLING PHPLOC"
 
     pear_add_channel "pear.phpunit.de"
-    sudo pear -q install --alldeps phpunit/phploc || handle_errors $?
+    sudo pear -q install --alldeps phpunit/phploc
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpdoc2() --------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpdoc2() {
     print_subheader "INSTALLING PHPDOCUMENTOR2"
 
     pear_add_channel "pear.phpdoc.org"
-    sudo pear -q install --alldeps phpdoc/phpDocumentor-alpha || handle_errors $?
-    sudo apt-get -q install graphviz || handle_errors $?
+    sudo pear -q install --alldeps phpdoc/phpDocumentor-alpha
+    sudo apt-get -q install graphviz
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_pdepend() --------------------------------------------------------
-# TODO: Remove handle_errors?
 install_pdepend() {
     print_subheader "INSTALLING PHP_DEPEND"
 
     if [ -z "$TRAVIS_CI" ]; then
         pear_add_channel "pear.pdepend.org"
-        sudo pear -q install --alldeps pdepend/PHP_Depend-beta || handle_errors $?
+        sudo pear -q install --alldeps pdepend/PHP_Depend-beta
     else
         echo "SKIPPED"
     fi
@@ -219,13 +207,12 @@ install_pdepend() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpmd() ----------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpmd() {
     print_subheader "INSTALLING PHPMD"
 
     if [ -z "$TRAVIS_CI" ]; then
         pear_add_channel "pear.phpmd.org"
-        sudo pear -q install --alldeps phpmd/PHP_PMD || handle_errors $?
+        sudo pear -q install --alldeps phpmd/PHP_PMD
     else
         echo "SKIPPED"
     fi
@@ -235,121 +222,113 @@ install_phpmd() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpcs() ----------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpcs() {
     print_subheader "INSTALLING PHP_CodeSniffer"
 
-    sudo pear -q install --alldeps PHP_CodeSniffer-1.3.2 || handle_errors $?
+    sudo pear -q install --alldeps PHP_CodeSniffer-1.3.2
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_phpmongo() -------------------------------------------------------
-# TODO: Remove handle_errors?
 install_phpmongo() {
     print_subheader "INSTALLING PHP MONGODB"
 
-    sudo pecl -q install mongo || handle_errors $?
+    sudo pecl -q install mongo
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_perl_modules() ---------------------------------------------------
-# TODO: Remove handle_errors?
 install_perl_modules() {
     print_subheader "INSTALLING PERL MODULES"
 
-    sudo cpanm -n --installdeps install Data::Dumper || handle_errors $?
-    sudo cpanm -n --installdeps install Date::Format || handle_errors $?
-    sudo cpanm -n --installdeps install Date::Manip || handle_errors $?
-    sudo cpanm -n --installdeps install Devel::Cover || handle_errors $?
-    sudo cpanm -n --installdeps install Digest::MD5 || handle_errors $?
-    sudo cpanm -n --installdeps install File::Basename || handle_errors $?
-    sudo cpanm -n --installdeps install File::Spec || handle_errors $?
-    sudo cpanm -n --installdeps install Locale::TextDomain || handle_errors $?
-    sudo cpanm -n --installdeps install LWP || handle_errors $?
-    sudo cpanm -n --installdeps install Perl::Critic || handle_errors $?
-    sudo cpanm -n --installdeps install Pod::Coverage || handle_errors $?
-    sudo cpanm -n --installdeps install POSIX || handle_errors $?
-    sudo cpanm -n --installdeps install Readonly || handle_errors $?
-    sudo cpanm -n --installdeps install Template || handle_errors $?
-    sudo cpanm -n --installdeps install Test::More || handle_errors $?
-    sudo cpanm -n --installdeps install XML::Simple || handle_errors $?
-    sudo cpanm -n install Data::Dumper || handle_errors $?
-    sudo cpanm -n install Date::Format || handle_errors $?
-    sudo cpanm -n install Date::Manip || handle_errors $?
-    sudo cpanm -n install Devel::Cover || handle_errors $?
-    sudo cpanm -n install Digest::MD5 || handle_errors $?
-    sudo cpanm -n install File::Basename || handle_errors $?
-    sudo cpanm -n install File::Spec || handle_errors $?
-    sudo cpanm -n install Locale::TextDomain || handle_errors $?
-    sudo cpanm -n install LWP || handle_errors $?
-    sudo cpanm -n install Perl::Critic || handle_errors $?
-    sudo cpanm -n install Pod::Coverage || handle_errors $?
-    sudo cpanm -n install POSIX || handle_errors $?
-    sudo cpanm -n install Readonly || handle_errors $?
-    sudo cpanm -n install Template || handle_errors $?
-    sudo cpanm -n install Test::More || handle_errors $?
-    sudo cpanm -n install XML::Simple || handle_errors $?
+    sudo cpanm -n --installdeps install Data::Dumper
+    sudo cpanm -n --installdeps install Date::Format
+    sudo cpanm -n --installdeps install Date::Manip
+    sudo cpanm -n --installdeps install Devel::Cover
+    sudo cpanm -n --installdeps install Digest::MD5
+    sudo cpanm -n --installdeps install File::Basename
+    sudo cpanm -n --installdeps install File::Spec
+    sudo cpanm -n --installdeps install Locale::TextDomain
+    sudo cpanm -n --installdeps install LWP
+    sudo cpanm -n --installdeps install Perl::Critic
+    sudo cpanm -n --installdeps install Pod::Coverage
+    sudo cpanm -n --installdeps install POSIX
+    sudo cpanm -n --installdeps install Readonly
+    sudo cpanm -n --installdeps install Template
+    sudo cpanm -n --installdeps install Test::More
+    sudo cpanm -n --installdeps install XML::Simple
+    sudo cpanm -n install Data::Dumper
+    sudo cpanm -n install Date::Format
+    sudo cpanm -n install Date::Manip
+    sudo cpanm -n install Devel::Cover
+    sudo cpanm -n install Digest::MD5
+    sudo cpanm -n install File::Basename
+    sudo cpanm -n install File::Spec
+    sudo cpanm -n install Locale::TextDomain
+    sudo cpanm -n install LWP
+    sudo cpanm -n install Perl::Critic
+    sudo cpanm -n install Pod::Coverage
+    sudo cpanm -n install POSIX
+    sudo cpanm -n install Readonly
+    sudo cpanm -n install Template
+    sudo cpanm -n install Test::More
+    sudo cpanm -n install XML::Simple
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_pychecker() ------------------------------------------------------
-# TODO: Remove handle_errors?
 install_pychecker() {
     print_subheader "INSTALLING PYCHECKER"
 
-    sudo apt-get -q install pychecker || handle_errors $?
+    sudo apt-get -q install pychecker
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_pylint() ---------------------------------------------------------
-# TODO: Remove handle_errors?
 install_pylint() {
     print_subheader "INSTALLING PYLINT"
 
-    sudo apt-get -q install pylint || handle_errors $?
+    sudo apt-get -q install pylint
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_pep8() -----------------------------------------------------------
-# TODO: Remove handle_errors?
 install_pep8() {
     print_subheader "INSTALLING PEP8"
 
-    sudo apt-get -q install pep8 || handle_errors $?
+    sudo apt-get -q install pep8
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_epydoc() ---------------------------------------------------------
-# TODO: Remove handle_errors?
 install_epydoc() {
     print_subheader "INSTALLING EPYDOC"
 
-    sudo apt-get -q install python-epydoc || handle_errors $?
+    sudo apt-get -q install python-epydoc
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ install_capistrano() -----------------------------------------------------
-# TODO: Remove handle_errors?
 install_capistrano() {
     print_subheader "INSTALLING CAPISTRANO"
 
-    sudo apt-get -q install gem || handle_errors $?
-    sudo gem install -q capistrano || handle_errors $?
-    sudo gem install -q capistrano-ext || handle_errors $?
+    sudo apt-get -q install gem
+    sudo gem install -q capistrano
+    sudo gem install -q capistrano-ext
 
     return $?
 }

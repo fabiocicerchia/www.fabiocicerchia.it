@@ -48,18 +48,10 @@ print('Validate Accessibility (BITV 1.0 - Level 2):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':                    '%URI%',
-        'validate_uri':           'Check It',
-        'MAX_FILE_SIZE':          52428800,
-        'uploadfile':             '',
-        'pastehtml':              '',
-        'rpt_format':             1,
-        'enable_html_validation': 1
-    })
-    url_param = url_param + '&radio_gid[]=1&checkbox_gid[]=8'
-    xpath     = './/*[@id="AC_congrats_msg_for_errors"]/text()'
+    url_param  = 'uri=%URI%&validate_uri=Check It&MAX_FILE_SIZE=52428800&'
+    url_param += 'uploadfile=&pastehtml=&rpt_format=1&enable_html_validation=1'
+    url_param += '&radio_gid[]=1&checkbox_gid[]=8'
+    xpath      = './/*[@id="AC_congrats_msg_for_errors"]/text()'
 
     res = validate('POST', 'http://achecker.ca/checker/index.php',
                    url_param, v, xpath,
@@ -74,18 +66,10 @@ print('Validate Accessibility (Section 508):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':                    '%URI%',
-        'validate_uri':           'Check It',
-        'MAX_FILE_SIZE':          52428800,
-        'uploadfile':             '',
-        'pastehtml':              '',
-        'rpt_format':             1,
-        'enable_html_validation': 1
-    })
-    url_param = url_param + '&radio_gid[]=2&checkbox_gid[]=8'
-    xpath     = './/*[@id="AC_congrats_msg_for_errors"]/text()'
+    url_param  = 'uri=%URI%&validate_uri=Check It&MAX_FILE_SIZE=52428800&'
+    url_param += 'uploadfile=&pastehtml=&rpt_format=1&enable_html_validation=1'
+    url_param += '&radio_gid[]=2&checkbox_gid[]=8'
+    xpath      = './/*[@id="AC_congrats_msg_for_errors"]/text()'
 
     res = validate('POST', 'http://achecker.ca/checker/index.php',
                    url_param, v, xpath,
@@ -100,18 +84,10 @@ print('Validate Accessibility (Stanca Act):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':                    '%URI%',
-        'validate_uri':           'Check It',
-        'MAX_FILE_SIZE':          52428800,
-        'uploadfile':             '',
-        'pastehtml':              '',
-        'rpt_format':             1,
-        'enable_html_validation': 1
-    })
-    url_param = url_param + '&radio_gid[]=3&checkbox_gid[]=8'
-    xpath     = './/*[@id="AC_congrats_msg_for_errors"]/text()'
+    url_param  = 'uri=%URI%&validate_uri=Check It&MAX_FILE_SIZE=52428800&'
+    url_param += 'uploadfile=&pastehtml=&rpt_format=1&enable_html_validation=1'
+    url_param += '&radio_gid[]=3&checkbox_gid[]=8'
+    xpath      = './/*[@id="AC_congrats_msg_for_errors"]/text()'
 
     res = validate('POST', 'http://achecker.ca/checker/index.php',
                    url_param, v, xpath,
@@ -126,18 +102,10 @@ print('Validate Accessibility (WCAG 1.0 - Level AAA):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':                    '%URI%',
-        'validate_uri':           'Check It',
-        'MAX_FILE_SIZE':          52428800,
-        'uploadfile':             '',
-        'pastehtml':              '',
-        'rpt_format':             1,
-        'enable_html_validation': 1
-    })
-    url_param = url_param + '&radio_gid[]=6&checkbox_gid[]=8'
-    xpath     = './/*[@id="AC_congrats_msg_for_errors"]/text()'
+    url_param  = 'uri=%URI%&validate_uri=Check It&MAX_FILE_SIZE=52428800&'
+    url_param += 'uploadfile=&pastehtml=&rpt_format=1&enable_html_validation=1'
+    url_param += '&radio_gid[]=6&checkbox_gid[]=8'
+    xpath      = './/*[@id="AC_congrats_msg_for_errors"]/text()'
 
     res = validate('POST', 'http://achecker.ca/checker/index.php',
                    url_param, v, xpath,
@@ -152,18 +120,10 @@ print('Validate Accessibility (WCAG 2.0 - Level AAA):')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':                    '%URI%',
-        'validate_uri':           'Check It',
-        'MAX_FILE_SIZE':          52428800,
-        'uploadfile':             '',
-        'pastehtml':              '',
-        'rpt_format':             1,
-        'enable_html_validation': 1
-    })
-    url_param = url_param + '&radio_gid[]=9&checkbox_gid[]=8'
-    xpath     = './/*[@id="AC_congrats_msg_for_errors"]/text()'
+    url_param  = 'uri=%URI%&validate_uri=Check It&MAX_FILE_SIZE=52428800&'
+    url_param += 'uploadfile=&pastehtml=&rpt_format=1&enable_html_validation=1'
+    url_param += '&radio_gid[]=9&checkbox_gid[]=8'
+    xpath      = './/*[@id="AC_congrats_msg_for_errors"]/text()'
 
     res = validate('POST', 'http://achecker.ca/checker/index.php',
                    url_param, v, xpath,

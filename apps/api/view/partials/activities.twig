@@ -1,0 +1,7 @@
+{% if input.activities is defined %}
+<activities>
+    {% for activity in input.activities %}
+    <activity>{{ activity }}</activity>
+    {% endfor %}
+</activities>
+{% endif %}

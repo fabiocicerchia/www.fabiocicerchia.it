@@ -36,22 +36,20 @@
 ################################################################################
 
 # {{{ deploy_setup() -----------------------------------------------------------
-# TODO: Remove handle_errors?
 deploy_setup() {
     print_subheader "CAPISTRANO - DEPLOY:SETUP"
 
-    cap deploy:setup || handle_errors $?
+    cap deploy:setup
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ deploy_run() -------------------------------------------------------------
-# TODO: Remove handle_errors?
 deploy_run() {
     print_subheader "CAPISTRANO - DEPLOY"
 
-    cap deploy || handle_errors $?
+    cap deploy
 
     return $?
 }

@@ -7,7 +7,7 @@
         <id>urn:uuid:{{ entity._id }}</id>
         <title type="text">{{ entity.name|capitalize }}</title>
         <updated>
-            {{ "now"|custom_date("Y-m-d") }}T{{ "now"|custom_date("H:i:s") }}Z
+            {{ "now"|date("Y-m-d") }}T{{ "now"|date("H:i:s") }}Z
         </updated>
 
         <content>

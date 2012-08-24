@@ -6,77 +6,16 @@
     <entity>
         <id>urn:uuid:{{ entity._id }}</id>
         <title type="text">{{ entity.role }}</title>
-        <!-- TODO: Refactor Extract -->
-        <published>
-        {% if entity.date.start is defined %}
-            {{ entity.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}
-        {% else %}
-            {{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
-        {% endif %}
-        </published>
-        {% if entity.date.end is defined %}
-        <updated>
-            {{ entity.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
-        </updated>
-        {% endif %}
-        <!-- TODO: End Refactor Extract -->
+        {% include 'partials/publishing.twig' %}
 
         <content>
-            <!-- TODO: Refactor Extract -->
-            <company>
-                <title type="text">{{ entity.company.name }}</title>
-                {% if entity.company.url is defined %}
-                <link href="{{ entity.company.url }}" rel="related" />
-                {% endif %}
-                {% if entity.company.location is defined %}
-                <address>
-                    <postalcode>{{ entity.company.location.postal_code }}</postalcode>
-                    <city>{{ entity.company.location.city }}</city>
-                    <country>{{ entity.company.location.country }}</country>
-                </address>
-                {% endif %}
-            </company>
-            <!-- TODO: End Refactor Extract -->
+            {% include 'partials/company.twig' with {'input': entity } only %}
 
-            {% if entity.activities is defined %}
-            <activities>
-                {% for activity in entity.activities %}
-                <activity>{{ activity }}</activity>
-                {% endfor %}
-            </activities>
-            {% endif %}
-
-            {% if entity.technologies is defined %}
-            <technologies>
-                {% for technology in entity.technologies|keys %}
-                <technology>{{ technology }}</technology>
-                {% endfor %}
-            </technologies>
-            {% endif %}
-
-            {% if entity.tools is defined %}
-            <tools>
-                {% for tool in entity.tools|keys %}
-                <tool>{{ tool }}</tool>
-                {% endfor %}
-            </tools>
-            {% endif %}
-
-            {% if entity.methodologies is defined %}
-            <methodologies>
-                {% for methodology in entity.methodologies|keys %}
-                <methodology>{{ methodology }}</methodology>
-                {% endfor %}
-            </methodologies>
-            {% endif %}
-
-            {% if entity.techniques is defined %}
-            <techniques>
-                {% for technique in entity.techniques|keys %}
-                <technique>{{ technique }}</technique>
-                {% endfor %}
-            </techniques>
-            {% endif %}
+            {% include 'partials/activities.twig' with {'input': entity} only %}
+            {% include 'partials/technologies.twig' with {'input': entity} only %}
+            {% include 'partials/tools.twig' with {'input': entity} only %}
+            {% include 'partials/methodologies.twig' with {'input': entity} only %}
+            {% include 'partials/techniques.twig' with {'input': entity} only %}
 
             {% if entity.projects is defined %}
             <projects>
@@ -90,60 +29,13 @@
                     {% if project.url is defined %}
                     <link href="{{ project.url }}" rel="related" />
                     {% endif %}
-                    {% if project.date is defined %}
-                        <published>
-                        {% if project.date.start is defined %}
-                            {{ project.date.start|custom_date("Y-m-d\\TH:i:s\\Z") }}
-                        {% else %}
-                            {{ project.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
-                        {% endif %}
-                        </published>
-                        {% if project.date.end is defined %}
-                        <updated>
-                            {{ project.date.end|custom_date("Y-m-d\\TH:i:s\\Z") }}
-                        </updated>
-                        {% endif %}
-                    {% endif %}
+                    {% include 'partials/publishing.twig' with {'entity': project} %}
 
-                    {% if project.activities is defined %}
-                    <activities>
-                        {% for activity in project.activities %}
-                        <activity>{{ activity }}</activity>
-                        {% endfor %}
-                    </activities>
-                    {% endif %}
-
-                    {% if project.techniques is defined %}
-                    <techniques>
-                        {% for technique in project.techniques|keys %}
-                        <technique>{{ technique }}</technique>
-                        {% endfor %}
-                    </techniques>
-                    {% endif %}
-
-                    {% if project.technologies is defined %}
-                    <technologies>
-                        {% for technology in project.technologies|keys %}
-                        <technology>{{ technology }}</technology>
-                        {% endfor %}
-                    </technologies>
-                    {% endif %}
-
-                    {% if project.tools is defined %}
-                    <tools>
-                        {% for tool in project.tools|keys %}
-                        <tool>{{ tool }}</tool>
-                        {% endfor %}
-                    </tools>
-                    {% endif %}
-
-                    {% if project.methodologies is defined %}
-                    <methodologies>
-                        {% for methodology in project.methodologies|keys %}
-                        <methodology>{{ methodology }}</methodology>
-                        {% endfor %}
-                    </methodologies>
-                    {% endif %}
+                    {% include 'partials/activities.twig' with {'input': project} only %}
+                    {% include 'partials/technologies.twig' with {'input': project} only %}
+                    {% include 'partials/tools.twig' with {'input': project} only %}
+                    {% include 'partials/methodologies.twig' with {'input': project} only %}
+                    {% include 'partials/techniques.twig' with {'input': project} only %}
                 </project>
                 {% endfor %}
             </projects>

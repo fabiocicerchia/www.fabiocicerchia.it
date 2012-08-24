@@ -1,0 +1,13 @@
+<div class="dates">
+    [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
+    <span class="dtstart">[% date.format(date.manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
+    [% IF entity.updated && entity.updated != entity.published %]
+    [% end = entity.updated | replace('T', ' ') | replace('Z', '') %]
+    [% end_date = date.format(date.manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]
+    [% IF end_date == today_date %]
+    <span class="dtend">[% FILTER gettext %]Today[% END %]</span>
+    [% ELSE %]
+    <span class="dtend">[% end_date %]</span>
+    [% END %]
+    [% END %]
+</div>

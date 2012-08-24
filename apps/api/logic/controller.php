@@ -88,9 +88,16 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
  */
 $closures['root'] = function () use ($app) {
     // MimeType
-    $mimeType = $app['debug'] === true
-                ? 'application/xml'
-                : 'application/vnd.ads+xml;v=1.0';
+    $availableMimeTypes = [
+        'application/vnd.ads+xml;v=1.0',
+        'application/xml',
+        'application/json'
+    ];
+    $requestedMimeType = [];
+    if (isset($_SERVER['HTTP_ACCEPT']) === true) {
+        $requestedMimeType = Utils::httpPriorityOrder($_SERVER['HTTP_ACCEPT']);
+    }
+    $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
 
     // DB
     $database = $app['mongodb']->selectDatabase('curriculum');
@@ -107,11 +114,11 @@ $closures['root'] = function () use ($app) {
     ];
 
     // Rendering
-    $content  = $app['twig']->render('root.twig', $data);
+    $content = $app['twig']->render('root.twig', $data);
+    $content = Utils::transform($content, $mimeType);
 
     // Response
     $response = new Response($content);
-    // TODO: Provide different mime-types (XML, JSON, ...)
     $response->headers->set('Content-Type',     $data['mime_type']);
     $response->headers->set('Content-Language', 'en');
 
@@ -174,10 +181,17 @@ $closures['api'] = function ($apiName) use ($app) {
     // TODO: Less code here below...
     if ($response->isNotModified($app['request']) === false) {
         // MimeType
-        $mimeType = $app['debug'] === true
-                    ? 'application/xml'
-                    : 'application/vnd.ads+xml;v=1.0';
-        // TODO: Provide different mime-types (XML, JSON, ...)
+        $availableMimeTypes = [
+            'application/vnd.ads+xml;v=1.0',
+            'application/xml',
+            'application/json'
+        ];
+        $requestedMimeType = [];
+        if (isset($_SERVER['HTTP_ACCEPT']) === true) {
+            $requestedMimeType = Utils::httpPriorityOrder($_SERVER['HTTP_ACCEPT']);
+        }
+        $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
+
         $response->headers->set('Content-Type', $mimeType);
 
         // Language
@@ -190,6 +204,8 @@ $closures['api'] = function ($apiName) use ($app) {
 
         // Rendering
         $content = $app['twig']->render($apiName . '.twig', $data);
+        $content = Utils::transform($content, $mimeType);
+
         $response->setContent($content);
     }
 
@@ -212,7 +228,6 @@ $closures['api_definition_syntax'] = function () use ($app) {
     $content  = $app['twig']->render('api-definition-syntax.twig');
     $response = new Response($content);
 
-    // TODO: Provide different mime-types (XML, JSON, ...)
     $response->headers->set('Content-Type',     'text/plain');
     $response->headers->set('Content-Language', 'en');
 

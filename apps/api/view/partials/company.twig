@@ -1,0 +1,19 @@
+{% if input.institute is defined %}
+    {% set company = input.institute %}
+{% else %}
+    {% set company = input.company %}
+{% endif %}
+
+<company>
+    <title type="text">{{ company.name }}</title>
+    {% if company.url is defined %}
+    <link href="{{ company.url }}" rel="related" />
+    {% endif %}
+    {% if input.location is defined %}
+    <address>
+        <postalcode>{{ company.location.postal_code }}</postalcode>
+        <city>{{ company.location.city }}</city>
+        <country>{{ company.location.country }}</country>
+    </address>
+    {% endif %}
+</company>

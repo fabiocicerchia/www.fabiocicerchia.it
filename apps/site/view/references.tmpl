@@ -1,0 +1,29 @@
+[% USE date %]
+<!DOCTYPE html>
+<html lang="[% language.substr(0, 2) %]">
+    <head>
+        [% INCLUDE _head.tmpl
+           description = "What the people said"
+           title       = "References" %]
+    </head>
+    <body class="nojs" data-offset="50" data-spy="scroll" data-target=".subnav">
+        [% INCLUDE partials/navbar.tmpl active = "references" %]
+
+        <div class="container">
+            <h2>References</h2>
+            <h3>What the people said</h3>
+
+            <!-- Used just to auth the first time, locally -->
+            <!--script type="in/Login"></script-->
+            <div id="reference_list">Loading...</div>
+
+            <footer class="footer">
+                <p class="pull-right">
+                    <i class="icon-chevron-up"></i>
+                    <a href="javascript: window.scrollTo(0,0);">[% FILTER gettext %]Back to top[% END %]</a>
+                </p>
+            </footer>
+        </div>
+        [% INCLUDE _js.tmpl %]
+    </body>
+</html>

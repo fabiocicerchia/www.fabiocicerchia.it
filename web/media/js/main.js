@@ -32,6 +32,49 @@
  * Link:       http://www.fabiocicerchia.it
  */
 
+function onLinkedInLoad() {
+    // IN.User.logout(); // Used to reset the session...
+    IN.Event.on(IN, "auth", onLinkedInAuth);
+}
+
+function onLinkedInAuth() {
+    IN.API.Connections("me").fields("id", "pictureUrl", "public-profile-url").result(function(result) {
+        url_connections = {};
+        for (idx in result.values) {
+            key = result.values[idx].id;
+            url_connections[key] = {};
+            url_connections[key]['photo'] = result.values[idx].pictureUrl;
+            url_connections[key]['url'] = result.values[idx].publicProfileUrl;
+        }
+
+        IN.API.Raw('/people/~:(recommendations-received)').method('GET').result(function(result) {
+            handleRecommendations(result);
+        });
+    });
+}
+
+function handleRecommendations(result) {
+    recommendations = result.recommendationsReceived.values;
+
+    jQuery('#reference_list').html('');
+
+    for (idx in recommendations) {
+        recommendation = recommendations[idx];
+        user = url_connections[recommendation.recommender.id];
+
+        elem_div = jQuery('<div></div>');
+        elem_blockquote = jQuery('<blockquote></blockquote>');
+        elem_blockquote.html(recommendation.recommendationText);
+        elem_small = jQuery('<small></small>');
+        recommender = recommendation.recommender.firstName + ' ' + recommendation.recommender.lastName;
+        elem_small.html('by <a href="' + user.url + '" target="_blank">' + recommender + '</a>, as ' + recommendation.recommendationType.code + '.');
+        elem_div.append(elem_blockquote);
+        elem_div.append('<img src="' + user.photo + '" />');
+        elem_div.append(elem_small);
+        jQuery('#reference_list').append(elem_div);
+    }
+}
+
 jQuery(document).ready(function() {
     // -------------------------------------------------------------------------
     // Navigation bar scrolling ------------------------------------------------
@@ -57,6 +100,13 @@ jQuery(document).ready(function() {
             $nav.removeClass('subnav-fixed');
         }
     }
+
+    iframeMapHeight = jQuery(window).innerHeight() - jQuery('.navbar').outerHeight() - jQuery('h2').outerHeight() - parseInt(jQuery('h2').css('padding-top')) - jQuery('h3').outerHeight() - jQuery('footer').outerHeight() - parseInt(jQuery('footer').css('margin-top'));
+    jQuery('#iframe_map').css('height', iframeMapHeight + 'px');
+    jQuery(window).resize(function() {
+        iframeMapHeight = jQuery(window).innerHeight() - jQuery('.navbar').outerHeight() - jQuery('h2').outerHeight() - parseInt(jQuery('h2').css('padding-top')) - jQuery('h3').outerHeight() - jQuery('footer').outerHeight() - parseInt(jQuery('footer').css('margin-top'));
+        jQuery('#iframe_map').css('height', iframeMapHeight + 'px');
+    });
 
     // -------------------------------------------------------------------------
     // Show more behaviour -----------------------------------------------------

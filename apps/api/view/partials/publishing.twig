@@ -1,0 +1,16 @@
+<published>
+{% if entity.date.start is defined %}
+    {{ entity.date.start.sec|date("Y-m-d\\TH:i:s\\Z") }}
+{% else %}
+    {{ entity.date.end.sec|date("Y-m-d\\TH:i:s\\Z") }}
+{% endif %}
+</published>
+{% if entity.date.end is defined %}
+<updated>
+{% if entity.date.end.sec is defined %}
+    {{ entity.date.end.sec|date("Y-m-d\\TH:i:s\\Z") }}
+{% else %}
+    {{ "now"|date("Y-m-d\\TH:i:s\\Z") }}
+{% endif %}
+</updated>
+{% endif %}

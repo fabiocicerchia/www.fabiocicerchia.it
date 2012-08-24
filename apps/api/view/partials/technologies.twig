@@ -1,0 +1,7 @@
+{% if input.technologies is defined %}
+<technologies>
+    {% for technology in input.technologies|keys %}
+    <technology>{{ technology }}</technology>
+    {% endfor %}
+</technologies>
+{% endif %}

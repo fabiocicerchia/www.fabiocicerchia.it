@@ -274,7 +274,7 @@ class UtilsTest extends FabioCicerchia\TestCase
      */
     public function testGetCurrentLanguageWithWrongValue()
     {
-        Utils::getCurrentLanguage(array(), null);
+        Utils::getCurrentLanguage([], null);
     }
     // }}} ---------------------------------------------------------------------
 
@@ -311,7 +311,7 @@ class UtilsTest extends FabioCicerchia\TestCase
      */
     public function testConvertForI18nWithWrongValue()
     {
-        Utils::convertForI18n(array(), null);
+        Utils::convertForI18n([], null);
     }
     // }}} ---------------------------------------------------------------------
 
@@ -351,7 +351,7 @@ class UtilsTest extends FabioCicerchia\TestCase
     {
         $method = $this->retrieveMethod(new Utils, 'httpPriorityOrder');
 
-        $this->assertEquals($output, $method->invokeArgs(new Utils, array($input)));
+        $this->assertEquals($output, $method->invokeArgs(new Utils, [$input]));
     }
     // }}} ---------------------------------------------------------------------
 
@@ -369,7 +369,7 @@ class UtilsTest extends FabioCicerchia\TestCase
     public function testHttpPriorityOrderWithWrongValue()
     {
         $method = $this->retrieveMethod(new Utils, 'httpPriorityOrder');
-        $method->invokeArgs(new Utils, array(array()));
+        $method->invokeArgs(new Utils, [[]]);
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

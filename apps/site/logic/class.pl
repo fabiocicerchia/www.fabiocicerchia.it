@@ -38,6 +38,7 @@ package FabioCicerchiaSite;
 use strict;
 use warnings;
 use version; our $VERSION = qv('1.0');
+use Data::Dumper; # TODO: Remove it.
 use Date::Format;
 use Digest::MD5;
 use File::Basename;
@@ -48,6 +49,7 @@ use Readonly;
 use Template::Filters;
 use Template;
 use XML::Simple;
+use JSON qw( decode_json ); # TODO: Add this
 
 Readonly my $LWP_TIMEOUT => 10;
 
@@ -66,6 +68,130 @@ sub action404 {
     return;
 }
 
+# }}} --------------------------------------------------------------------------
+
+# {{{ Method: action_code_snippets ---------------------------------------------
+# Usage      : FabioCicerchiaSite->action_code_snippets()
+# Purpose    : The "code-snippets" action.
+# Returns    : HTML.
+# Parameters : None.
+# Throws     : No exceptions.
+sub action_code_snippets {
+    my $self = shift;
+
+    my $url   = 'https://api.github.com/users/fabiocicerchia/gists';
+
+    my $file_name = '../../../tmp/gists.json';
+    my $file_timestamp = (stat($file_name))[9];
+    my $cache_valid = $file_timestamp > localtime(time) - (24 * 60 * 60);
+
+    my $file = open FILE, '+>', $file_name;
+    local $/;
+
+    if ($cache_valid) {
+        my $data = <FILE>;
+        my $gists = decode_json($data);
+    } else {
+        my $browser = LWP::UserAgent->new();
+        $browser->timeout($LWP_TIMEOUT);
+        my $data  = $browser->get( $url );
+        my $gists = decode_json($data->content());
+        print FILE, $data->content();
+    }
+
+    my $res = close FILE;
+
+    # TODO: Duplicated code.
+    my $vars = {
+        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
+        'language'      => 'en',
+        'data'          => $gists
+    };
+
+    print 'Content-Type: text/html; charset=UTF-8' . "\n";
+    print 'Content-Language: en' . "\n";
+    print "\n";
+
+    my $output = q{};
+    $self->{'template'}->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
+
+    return $output;
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ Method: action_references ------------------------------------------------
+# Usage      : FabioCicerchiaSite->action_references()
+# Purpose    : The "references" action.
+# Returns    : HTML.
+# Parameters : None.
+# Throws     : No exceptions.
+sub action_references {
+    my $self = shift;
+
+    my $vars = {
+        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
+        'language'      => 'en'
+    };
+
+    print 'Content-Type: text/html; charset=UTF-8' . "\n";
+    print 'Content-Language: en' . "\n";
+    print "\n";
+
+    my $output = q{};
+    $self->{'template'}->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
+
+    return $output;
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ Method: action_maps ------------------------------------------------------
+# Usage      : FabioCicerchiaSite->action_maps()
+# Purpose    : The "maps" action.
+# Returns    : HTML.
+# Parameters : None.
+# Throws     : No exceptions.
+sub action_maps {
+    my $self = shift;
+
+    my $vars = {
+        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
+        'language'      => 'en'
+    };
+
+    print 'Content-Type: text/html; charset=UTF-8' . "\n";
+    print 'Content-Language: en' . "\n";
+    print "\n";
+
+    my $output = q{};
+    $self->{'template'}->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
+
+    return $output;
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ Method: action_dev -------------------------------------------------------
+# Usage      : FabioCicerchiaSite->action_dev()
+# Purpose    : The "dev" action.
+# Returns    : HTML.
+# Parameters : None.
+# Throws     : No exceptions.
+sub action_dev {
+    my $self = shift;
+
+    my $vars = {
+        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
+        'language'      => 'en'
+    };
+
+    print 'Content-Type: text/html; charset=UTF-8' . "\n";
+    print 'Content-Language: en' . "\n";
+    print "\n";
+
+    my $output = q{};
+    $self->{'template'}->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
+
+    return $output;
+}
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_show ------------------------------------------------------
@@ -98,10 +224,7 @@ sub action_show {
 
     my $gettext_language = $language . '.utf8';
     $gettext_language =~ s/-/_/smx;
-    # TODO: Is it possible to assign a var to 3?
-    $ENV{'LANG'}     = $gettext_language;
-    $ENV{'LANGUAGE'} = $gettext_language;
-    $ENV{'LC_ALL'}   = $gettext_language;
+    $ENV{'LANG'} = $ENV{'LANGUAGE'} = $ENV{'LC_ALL'} = $gettext_language;
     setlocale( LC_ALL, $gettext_language );
 
     my $vars = {
@@ -134,7 +257,14 @@ sub action_show {
         LOAD_FILTERS => [$filters],
     );
 
-    $template->process( $self->{'formatCurrent'} . '.tmpl', $vars );
+    my $output = q{};
+    $template->process( $self->{'formatCurrent'} . '.tmpl', $vars, \$output );
+
+    #$output =~ s/\/\*.+?\*\/|\/\/.+[\n\r]//gsmx; # NO JS COMMENTS
+    #$output =~ s/<!--[^>]*-->//gsmx; # NO HTML COMMENTS
+    #$output =~ s/(>)\s+(<)|(\s)\s+/\1\2/gsmx; # NO SPACES
+
+    print $output;
 
     return q{};
 }
@@ -162,21 +292,6 @@ sub call_api {
 
 # }}} --------------------------------------------------------------------------
 
-# {{{ Method: elaborate_data ---------------------------------------------------
-# Usage      : FabioCicerchiaSite->elaborate_data()
-# Purpose    : Change the data.
-# Returns    : An Hash, the input hash but modified.
-# Parameters : Hash $data.
-# Throws     : No exceptions.
-# TODO: Remove this method.
-sub elaborate_data {
-    my ( $self, $data ) = @_;
-
-    return $data;
-}
-
-# }}} --------------------------------------------------------------------------
-
 # {{{ Method: get_data ---------------------------------------------------------
 # Usage      : FabioCicerchiaSite->get_data()
 # Purpose    : Retrieve the data from the API.
@@ -184,23 +299,20 @@ sub elaborate_data {
 # Parameters : None.
 # Throws     : No exceptions.
 # See Also   : $self->{'i18nCurrent'}
-#            : $self->elaborate_data()
 sub get_data {
     my $self = shift;
 
-    # TODO: Try to use fewer variables.
     my $ctx     = Digest::MD5->new;
     my $data    = {};
     my $last_ts = 0;
     my $hash    = q{};
-    my $url;
-    my $lang;
+    my ($url, $lang);
 
     my @api_list = qw( root information education experience skill language );
 
 API:
     foreach my $api (@api_list) {
-        $url = $api eq 'root' ? q{} : $api;
+        my $url = $api eq 'root' ? q{} : $api;
 
         # Retrieve the data from the API for the current route using
         # "i18nCurrent" as language.
@@ -219,9 +331,6 @@ API:
         }
     }
     $ctx->add($hash);
-
-    # Elaborate the data.
-    $data = $self->elaborate_data($data);
 
     my @return = ( $data, $last_ts, $ctx->hexdigest, $lang );
     return @return;
@@ -297,6 +406,7 @@ sub gettext {
 sub execute_action {
     my ( $self, $action ) = @_;
 
+    $action =~ s/-/_/gsmx;
     my $method_to_call = 'action_' . $action;
     if ( !$self->can($method_to_call) ) {
         $method_to_call = 'action404';
@@ -324,6 +434,13 @@ sub execute_action {
 sub new {
     my $class = shift;
     my $self  = {
+        'actionAllowed' => [
+            'code-snippets',
+            'references',
+            'maps',
+            'dev',
+            'contacts'
+        ],
         'actionCurrent' => undef,
         'actionDefault' => 'show',
         'contentType'   => 'text/html',
@@ -344,7 +461,8 @@ sub new {
             'action' => undef,
             'format' => undef,
             'lang'   => undef
-        }
+        },
+        'template'      => undef
     };
     bless $self, $class;
 
@@ -352,6 +470,17 @@ sub new {
 
     # Set the current action by default to "show".
     $self->{'actionCurrent'} = $self->{'actionDefault'};
+
+    # Then use the value from the request if exists ...
+    if ( defined( $self->{'request'}{'action'} ) ) {
+        # ... filtering the values not authorised.
+        if (grep { $_ eq $self->{'request'}{'action'} }
+            @{$self->{'actionAllowed'}}
+        )
+        {
+            $self->{'actionCurrent'} = $self->{'request'}{'action'};
+        }
+    }
 
     # Then use the value from the request if exists.
     if ( defined( $self->{'request'}{'action'} ) ) {
@@ -363,11 +492,10 @@ sub new {
 
     # Then use the value from the request if exists ...
     if ( defined( $self->{'request'}{'format'} ) ) {
-
         # ... filtering the values not authorised.
         if (grep { $_ eq $self->{'request'}{'format'} }
             keys $self->{'formatAllowed'}
-            )
+        )
         {
             $self->{'formatCurrent'} = $self->{'request'}{'format'};
         }
@@ -482,10 +610,20 @@ sub set_request {
 sub show {
     my $self = shift;
 
+    # http://template-toolkit.org/docs/modules/Template/Filters.html#CONFIGURATION_OPTIONS
+    my $filters =
+        Template::Filters->new( { FILTERS => { 'gettext' => \&gettext }, } );
+
+    # http://template-toolkit.org/docs/tutorial/Web.html
+    $self->{'template'} = Template->new(
+        ENCODING     => 'utf8',
+        INCLUDE_PATH => [ dirname(__FILE__) . '/../view' ],
+        EVAL_PERL    => 1,
+        LOAD_FILTERS => [$filters],
+    );
+
     my $output = $self->execute_action( $self->{'actionCurrent'} );
-    if ( defined $output ) {
-        print $output;
-    }
+    print $output;
 
     return;
 }
@@ -571,10 +709,6 @@ The "show" action.
 =item * C<FabioCicerchiaSite-E<gt>call_api()>
 
 Call an URL and return its content.
-
-=item * C<FabioCicerchiaSite-E<gt>elaborate_data()>
-
-Change the data.
 
 =item * C<FabioCicerchiaSite-E<gt>execute_action()>
 

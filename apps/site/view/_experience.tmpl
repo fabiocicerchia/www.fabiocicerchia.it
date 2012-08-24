@@ -17,21 +17,7 @@
                         [% entity.title.content %]
                     </h3>
                 </div>
-                <!-- TODO: Refactor Extract -->
-                <div class="dates">
-                    [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtstart">[% date.format(date.manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
-                    [% IF entity.updated && entity.updated != entity.published %]
-                    [% end = entity.updated | replace('T', ' ') | replace('Z', '') %]
-                    [% end_date = date.format(date.manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]
-                    [% IF end_date == today_date %]
-                    <span class="dtend">[% FILTER gettext %]Today[% END %]</span>
-                    [% ELSE %]
-                    <span class="dtend">[% end_date %]</span>
-                    [% END %]
-                    [% END %]
-                </div>
-                <!-- TODO: End Refactor Extract -->
+                [% INCLUDE partials/date.tmpl %]
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
                     <a class="url" href="[% entity.content.company.link.href %]" itemprop="url" rel="nofollow" target="_blank" title="[% entity.content.company.title.content %]">
                         <span class="fn" itemprop="name">
@@ -39,25 +25,7 @@
                         </span>
                     </a>
 
-                    <!-- TODO: Refactor Extract -->
-                    <address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
-                        [% IF entity.content.company.address.postalcode %]
-                        <span class="postal-code" itemprop="postalCode">
-                            [% entity.content.company.address.postalcode %]
-                        </span>
-                        [% END %]
-                        [% IF entity.content.company.address.city %]
-                        <span class="locality" itemprop="addressLocality">
-                            [% entity.content.company.address.city %]
-                        </span>
-                        [% END %]
-                        [% IF entity.content.company.address.country %]
-                        <span class="country-name" itemprop="addressCountry">
-                            [% entity.content.company.address.country %]
-                        </span>
-                        [% END %]
-                    </address>
-                    <!-- TODO: End Refactor Extract -->
+                    [% INCLUDE partials/address.tmpl %]
                 </div>
                 [% IF entity.content.description or entity.content.activities or entity.content.projects or entity.content.methodologies or entity.content.technologies or entity.content.tools or entity.content.techniques %]
                 <a class="show_hide" href="#">&raquo; [% FILTER gettext %]Show more ...[% END %]</a>
@@ -67,18 +35,7 @@
                         <p>[% entity.content.description %]</p>
                     </div>
                     [% END %]
-                    <!-- TODO: Refactor Extract -->
-                    [% IF entity.content.activities.size %]
-                    <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                        <dt itemprop="name">[% FILTER gettext %]Activities[% END %]</dt>
-                        [% FOREACH activity = entity.content.activities %]
-                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                            [% activity %]
-                        </dd>
-                        [% END %]
-                    </dl>
-                    [% END %]
-                    <!-- TODO: End Refactor Extract -->
+                    [% INCLUDE partials/activities.tmpl %]
                     [% IF entity.content.projects.size %]
                     <div class="accordion" id="accordion[% current_id %]">
                         [% FOREACH project IN entity.content.projects %]
@@ -111,107 +68,19 @@
                                         [% project.link.href %]
                                     </a>
                                 [% END %]
-                                <!-- TODO: Refactor Extract -->
-                                [% IF project.methodologies.size %]
-                                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                    <dt itemprop="name">[% FILTER gettext %]Methodologies[% END %]</dt>
-                                    [% FOREACH methodology IN project.methodologies %]
-                                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                                        [% methodology %]
-                                    </dd>
-                                    [% END %]
-                                </dl>
-                                [% END %]
-                                <!-- TODO: End Refactor Extract -->
-                                <!-- TODO: Refactor Extract -->
-                                [% IF project.technologies.size %]
-                                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                    <dt itemprop="name">[% FILTER gettext %]Technologies[% END %]</dt>
-                                    [% FOREACH technology IN project.technologies %]
-                                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                                        [% technology %]
-                                    </dd>
-                                    [% END %]
-                                </dl>
-                                [% END %]
-                                <!-- TODO: End Refactor Extract -->
-                                <!-- TODO: Refactor Extract -->
-                                [% IF project.tools.size %]
-                                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                    <dt itemprop="name">[% FILTER gettext %]Tools[% END %]</dt>
-                                    [% FOREACH tool IN project.tools %]
-                                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                                        [% tool %]
-                                    </dd>
-                                    [% END %]
-                                </dl>
-                                [% END %]
-                                <!-- TODO: End Refactor Extract -->
-                                <!-- TODO: Refactor Extract -->
-                                [% IF entity.content.techniques.size %]
-                                <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                                    <dt itemprop="name">[% FILTER gettext %]Techniques[% END %]</dt>
-                                    [% FOREACH technique IN entity.content.techniques %]
-                                    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                                        [% technique %]
-                                    </dd>
-                                    [% END %]
-                                </dl>
-                                [% END %]
-                                <!-- TODO: End Refactor Extract -->
+                                [% INCLUDE partials/methodologies.tmpl input = project %]
+                                [% INCLUDE partials/technologies.tmpl input = project %]
+                                [% INCLUDE partials/tools.tmpl input = project %]
+                                [% INCLUDE partials/techniques.tmpl input = project %]
                             </div>
                         </div>
                         [% END %]
                     </div>
                     [% END %]
-                    <!-- TODO: Refactor Extract -->
-                    [% IF entity.content.methodologies.size %]
-                    <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                        <dt itemprop="name">[% FILTER gettext %]Methodologies[% END %]</dt>
-                        [% FOREACH methodology IN entity.content.methodologies %]
-                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                            [% methodology %]
-                        </dd>
-                        [% END %]
-                    </dl>
-                    [% END %]
-                    <!-- TODO: End Refactor Extract -->
-                    <!-- TODO: Refactor Extract -->
-                    [% IF entity.content.technologies.size %]
-                    <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                        <dt itemprop="name">[% FILTER gettext %]Technologies[% END %]</dt>
-                        [% FOREACH technology IN entity.content.technologies %]
-                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                            [% technology %]
-                        </dd>
-                        [% END %]
-                    </dl>
-                    [% END %]
-                    <!-- TODO: End Refactor Extract -->
-                    <!-- TODO: Refactor Extract -->
-                    [% IF entity.content.tools.size %]
-                    <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                        <dt itemprop="name">[% FILTER gettext %]Tools[% END %]</dt>
-                        [% FOREACH tool IN entity.content.tools %]
-                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                            [% tool %]
-                        </dd>
-                        [% END %]
-                    </dl>
-                    [% END %]
-                    <!-- TODO: End Refactor Extract -->
-                    <!-- TODO: Refactor Extract -->
-                    [% IF entity.content.techniques.size %]
-                    <dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
-                        <dt itemprop="name">[% FILTER gettext %]Techniques[% END %]</dt>
-                        [% FOREACH technique IN entity.content.techniques %]
-                        <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
-                            [% technique %]
-                        </dd>
-                        [% END %]
-                    </dl>
-                    [% END %]
-                    <!-- TODO: End Refactor Extract -->
+                    [% INCLUDE partials/methodologies.tmpl input = entity %]
+                    [% INCLUDE partials/technologies.tmpl input = entity %]
+                    [% INCLUDE partials/tools.tmpl input = entity %]
+                    [% INCLUDE partials/techniques.tmpl input = entity %]
                 </div>
                 [% END %]
             </div>

@@ -40,7 +40,7 @@ use SilexExtension\MongoDbExtension;
 // -----------------------------------------------------------------------------
 // DEBUG FLAG ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-$app['debug'] = false; // TODO: Set this value based on a ENV variable.
+$app['debug'] = (bool)getenv('DEBUG_FLAG') === true;
 
 if (defined('ROOT_PATH') === false) {
     define('ROOT_PATH', __DIR__ . '/../../../');

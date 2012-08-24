@@ -28,8 +28,7 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
-# TODO: Add "demo" as stage.
-set :stages, ['production']
-set :default_stage, 'production'
+set :stages, ['demo', 'production']
+set :default_stage, 'demo'
 
 require 'capistrano/ext/multistage'

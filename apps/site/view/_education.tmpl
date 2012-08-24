@@ -17,16 +17,7 @@
                     <i class="icon-book"></i>
                     [% entity.title.content %]
                 </h3>
-                <!-- TODO: Refactor Extract -->
-                <div class="dates">
-                    [% start = entity.published | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtstart">[% date.format(date.manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
-                    [% IF entity.updated && entity.updated != entity.published %]
-                    [% end = entity.updated | replace('T', ' ') | replace('Z', '') %]
-                    <span class="dtend">[% date.format(date.manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]</span>
-                    [% END %]
-                </div>
-                <!-- TODO: End Refactor Extract -->
+                [% INCLUDE partials/date.tmpl %]
                 <div class="contact" itemscope="itemscope" itemtype="http://schema.org/Organization">
                     <a class="url" href="[% entity.content.company.link.href %]" itemprop="url" rel="nofollow" target="_blank" title="[% entity.content.company.title.content %]">
                         <span class="fn" itemprop="name">

@@ -1,0 +1,7 @@
+{% if input.methodologies is defined %}
+<methodologies>
+    {% for methodology in input.methodologies|keys %}
+    <methodology>{{ methodology }}</methodology>
+    {% endfor %}
+</methodologies>
+{% endif %}

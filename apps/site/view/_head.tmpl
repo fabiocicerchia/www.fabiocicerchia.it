@@ -31,17 +31,19 @@
 <link href="/[% IF short_code != "en" %][% short_code %]/[% END %]rss2" hreflang="[% short_code %]" rel="alternate" title="Feed RSS 2.0 ([% entity.title.content %])" type="application/rss+xml" />
 [% END %]
 <meta content="Fabio Cicerchia" name="dcterms.creator" />
-<meta content="[% data.information.entity.0.summary.content | replace("\n", " ") | replace("[.].*", ".") %]" name="dcterms.description" />
+<meta content="[% description | replace("\n", " ") | replace("[.].*", ".") %]" name="dcterms.description" />
 <meta content="[% language %]" name="dcterms.language" />
 <meta content="Curriculum Vitae" name="dcterms.subject" />
-<meta content="Fabio Cicerchia - [% data.information.entity.0.content.role %]" name="dcterms.title" />
-<meta content="[% data.information.entity.0.summary.content | replace("\n", " ") | replace("[.].*", ".") %]" name="description" />
+<meta content="Fabio Cicerchia - [% title %]" name="dcterms.title" />
+<meta content="[% description | replace("\n", " ") | replace("[.].*", ".") %]" name="description" />
+[% IF data.information %]
 <meta content="[% data.information.entity.0.content.address.city.content %]" name="geo.placename" />
 <meta content="[% data.information.entity.0.content.address.coordinates.content %]" name="geo.position" />
 <meta content="[% data.information.entity.0.location.country_code %]" name="geo.country" />
-<meta content="certified, web, developer, iwa, ciw, zend, php, mysql" name="keywords" /><!-- TODO: Convert to a dynamic value. -->
 <meta content="[% data.information.entity.0.content.address.coordinates.content %]" name="ICBM" />
+[% END %]
+<meta content="certified, web, developer, iwa, ciw, zend, php, mysql" name="keywords" /><!-- TODO: Convert to a dynamic value. -->
 <meta content="nofollow" name="robots" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<title>Fabio Cicerchia - [% data.information.entity.0.content.role %]</title>
+<title>Fabio Cicerchia - [% title %]</title>

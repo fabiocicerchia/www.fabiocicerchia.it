@@ -36,22 +36,20 @@
 ################################################################################
 
 # {{{ run_check_accessibility() ------------------------------------------------
-# TODO: Remove handle_errors?
 run_check_accessibility() {
     print_subheader "RUNNING CHECK ACCESSIBILITY"
 
-    python $SCRIPT_APP_SOURCEDIR/check_accessibility.py || handle_errors $?
+    python $SCRIPT_APP_SOURCEDIR/check_accessibility.py
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_check_validation() ---------------------------------------------------
-# TODO: Remove handle_errors?
 run_check_validation() {
     print_subheader "RUNNING CHECK VALIDATION"
 
-    python $SCRIPT_APP_SOURCEDIR/check_validation.py || handle_errors $?
+    python $SCRIPT_APP_SOURCEDIR/check_validation.py
 
     return $?
 }
@@ -361,5 +359,11 @@ run_compile_gettext() {
     done
 
     echo "done"
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ run_authors() ------------------------------------------------------------
+run_authors() {
+    git log --pretty="%aN <%aE>" | sort -u > $ROOTDIR/AUTHORS
 }
 # }}} --------------------------------------------------------------------------

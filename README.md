@@ -193,6 +193,10 @@ These are the scripting, markup and styling languages that has been involved:
 These are the specifications that has been respected:
 
  * Atom Syndication (RFC4287) - [Doc](http://www.ietf.org/rfc/rfc4287.txt)
+ * Embedded Gists - [Doc](https://github.com/blog/122-embedded-gists)
+ * Foursquare KML Feed - [Home](https://foursquare.com/feeds/)
+ * Google Maps API - [Home](https://developers.google.com/maps/)
+ * LinkedIn JavaScript API - [Home](http://developer.linkedin.com/javascript)
  * RSS 0.91 - [Doc](http://backend.userland.com/stories/rss091)
  * RSS 0.92 - [Doc](http://backend.userland.com/stories/rss092)
  * RSS 1.0 - [Doc](http://web.resource.org/rss/1.0/spec)

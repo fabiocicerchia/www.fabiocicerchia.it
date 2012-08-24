@@ -1,0 +1,41 @@
+[% USE date %]
+<!DOCTYPE html>
+<html lang="[% language.substr(0, 2) %]">
+    <head>
+        [% INCLUDE _head.tmpl
+           description = "How I solved my daily-problems"
+           title       = "Code Snippets" %]
+    </head>
+    <body class="nojs" data-offset="50" data-spy="scroll" data-target=".subnav">
+        [% INCLUDE partials/navbar.tmpl active = "code-snippets" %]
+
+        <div class="container">
+            <h2>Code Snippets</h2>
+            <h3>How I solved my daily-problems</h3>
+
+            [% USE giter = iterator(data) %]
+            [% FOREACH item IN giter %]
+            <div id="gist_[% item.id %]">
+                [% created_at = item.created_at | replace('T', ' ') | replace('Z', '') %]
+                [% created_at_date = date.format(date.manip.UnixDate(created_at _ " GMT", "%s"), "%a, %d %b %Y %H:%M:%S") %]
+                <a href="[% item.html_url %]" target="_blank"><h3>[% item.description %]</h3></a>
+                <span>[% FILTER gettext %]Created at[% END %] [% created_at_date %]</span>
+                <br />
+                <br />
+                [% FOREACH file IN item.files.keys %]
+                <strong>[% FILTER gettext %]File[% END %]: [% file %]</strong>
+                <script src="https://gist.github.com/[% item.id %].js?file=[% file %]"></script>
+                [% END %]
+            </div>
+            [% END %]
+
+            <footer class="footer">
+                <p class="pull-right">
+                    <i class="icon-chevron-up"></i>
+                    <a href="javascript: window.scrollTo(0,0);">[% FILTER gettext %]Back to top[% END %]</a>
+                </p>
+            </footer>
+        </div>
+        [% INCLUDE _js.tmpl %]
+    </body>
+</html>

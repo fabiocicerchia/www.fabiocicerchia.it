@@ -34,8 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: Run PHP-CS-Fixer.
-
 namespace FabioCicerchia;
 
 /**
@@ -130,7 +128,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @return mixed The results from the method.
      */
-    final protected function callMethod($method, array $params = array())
+    final protected function callMethod($method, array $params = [])
     {
         $method = $this->retrieveMethod($this->object, $method);
 

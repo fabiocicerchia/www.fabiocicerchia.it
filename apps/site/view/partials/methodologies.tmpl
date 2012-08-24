@@ -1,0 +1,14 @@
+[% IF input.content %]
+    [% input = input.content %]
+[% END %]
+
+[% IF input.methodologies.size %]
+<dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+    <dt itemprop="name">[% FILTER gettext %]Methodologies[% END %]</dt>
+    [% FOREACH methodology IN input.methodologies %]
+    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+        [% methodology %]
+    </dd>
+    [% END %]
+</dl>
+[% END %]

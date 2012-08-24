@@ -95,7 +95,7 @@ class Utils
      * @param string $accept_language     The string of HTTP Accept-Language.
      *
      * @see    FabioCicerchia\Api\Utils::httpPriorityOrder()
-     * @see    FabioCicerchia\Api\Utils::retrieveCurrentLanguage()
+     * @see    FabioCicerchia\Api\Utils::retrieveCurrentValue()
      * @throws \InvalidArgumentException The parameter $accept_language must be
      *                                   a string.
      * @since  Version 0.1
@@ -116,7 +116,7 @@ class Utils
         $languages   = self::httpPriorityOrder($accept_lang);
 
         $list_keys    = array_keys($available_languages);
-        $current_lang = self::retrieveCurrentLanguage($list_keys, $languages);
+        $current_lang = self::retrieveCurrentValue($list_keys, $languages);
 
         return $current_lang;
     }
@@ -268,7 +268,7 @@ class Utils
      *
      * @return array
      */
-    protected static function httpPriorityOrder($string)
+    public static function httpPriorityOrder($string)
     {
         if (is_string($string) === false) {
             $message = 'The parameter $string must be a string.';
@@ -298,29 +298,54 @@ class Utils
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ Method: retrieveCurrentLanguage -------------------------------------
+    // {{{ Method: retrieveCurrentValue -------------------------------------
     /**
-     * Return the current language based on the available languages and on
-     * the HTTP Accept-Language header.
+     * Return the current item based on the available items.
      *
-     * @param array $available The available languages.
-     * @param array $accepted  The string of HTTP Accept-Language.
+     * @param array $available The available items.
+     * @param array $accepted  The accepted items.
      *
      * @since Version 0.1
      *
      * @return string
      */
-    protected static function retrieveCurrentLanguage(
+    public static function retrieveCurrentValue(
         array $available,
         array $accepted
     ) {
-        foreach ($accepted as $language) {
-            if (array_search($language, $available) !== false) {
-                return $language;
+        foreach ($accepted as $item) {
+            if (array_search($item, $available) !== false) {
+                return $item;
             }
         }
 
         return $available[0];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: transform ---------------------------------------------------
+    /**
+     * TODO: Add description.
+     *
+     * @param  string $string   TODO: Add description.
+     * @param  string $mimeType TODO: Add description.
+     *
+     * @return void
+     */
+    public function transform($string, $mimeType)
+    {
+        switch($mimeType) {
+            case 'application/json':
+                $xml   = simplexml_load_string($string);
+                $array = json_decode(json_encode((array) $xml), 1);
+                $json  = json_encode($array);
+                return $json;
+
+            case 'application/xml':
+            case 'application/xml':
+            default:
+                return $string;
+        }
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

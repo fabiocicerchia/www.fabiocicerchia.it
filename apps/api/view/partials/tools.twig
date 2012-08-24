@@ -1,0 +1,7 @@
+{% if input.tools is defined %}
+<tools>
+    {% for tool in input.tools|keys %}
+    <tool>{{ tool }}</tool>
+    {% endfor %}
+</tools>
+{% endif %}

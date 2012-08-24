@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="[% language.substr(0, 2) %]">
+    <head>
+        [% INCLUDE _head.tmpl
+           description = "The side behind the screen"
+           title       = "Dev" %]
+    </head>
+    <body class="nojs" data-offset="50" data-spy="scroll" data-target=".subnav">
+        [% INCLUDE partials/navbar.tmpl active = "dev" %]
+
+        <div class="container">
+            <h2>Dev</h2>
+            <h3>The side behind the screen</h3>
+            <ul>
+                <li><a href="/dev/docs/api/index.html">Docs - API</a></li>
+                <li><a href="/dev/docs/script/index.html">Docs - Script</a></li>
+                <li><a href="/dev/docs/site/class.html">Docs - Site</a></li>
+                <li><a href="/dev/report/api/code_coverage/index.html">Report - API - Code Coverage</a></li>
+                <li><a href="/dev/report/api/logs/">Report - API - Logs</a></li>
+                <li><a href="/dev/report/api/testdox/">Report - API - TestDox</a></li>
+                <li><a href="/dev/report/site/code_coverage/coverage.html">Report - Site - Code Coverage</a></li>
+            </ul>
+        </div>
+       [% INCLUDE _js.tmpl %]
+    </body>
+</html>

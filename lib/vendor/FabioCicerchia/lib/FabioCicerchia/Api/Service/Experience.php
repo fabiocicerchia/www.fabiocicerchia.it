@@ -93,16 +93,19 @@ class Experience extends \FabioCicerchia\Api\ServiceAbstract
      */
     protected function execDataQuery()
     {
-        // TODO: Is it possible to combine them into one?
-        $part1 = $this->getCollection()
-                     ->find(array('date.end' => -1))
-                     ->sort(['date.start' => 'desc'])->toArray();
+        $res = $this->getCollection()->find()->toArray();
 
-        $part2 = $this->getCollection()
-                     ->find(array('date.end' => array('$ne' => -1)))
-                     ->sort(['date.end' => 'desc'])->toArray();
+        $data = [];
+        foreach($res as $row) {
+            $key = $row['date']['end'] instanceof \MongoDate
+                   ? $row['date']['end']->sec
+                   : time() . $row['date']['start']->sec;
 
-        return array_merge($part1, $part2);
+            $data[$key] = $row;
+        }
+        krsort($data);
+
+        return array_merge($data);
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

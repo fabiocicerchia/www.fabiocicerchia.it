@@ -50,35 +50,27 @@ namespace FabioCicerchia\Api\Service;
  */
 class EntryPoint
 {
-    // {{{ Properties - Protected ==============================================
-    /**
-     * The list of active services.
-     *
-     * @var array $services
-     */
-    // TODO: Retrieve automatically the values.
-    protected $services = [
-        'information',
-        'education',
-        'experience',
-        'skill',
-        'language'
-    ];
-    // }}} =====================================================================
-
     // {{{ Methods - Getter ====================================================
     // {{{ Method: getServices -------------------------------------------------
     /**
-     * Getter for $services.
+     * Get the list of implemented services.
      *
-     * @see   FabioCicerchia\Api\Service\EntryPoint::$services The list of active services.
      * @since Version 0.1
      *
      * @return array
      */
     public function getServices()
     {
-        return $this->services;
+        $files = scandir(__DIR__);
+        $files = preg_grep('/^.+\.php$/', $files);
+        $files = array_map('strtolower', $files);
+        $files = array_map(function($value) {
+            return preg_replace('/.php$/', '', $value);
+        }, $files);
+
+        unset($files[array_search('entrypoint', $files)]);
+
+        return $files;
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

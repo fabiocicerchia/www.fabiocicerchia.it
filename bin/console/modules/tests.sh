@@ -36,24 +36,22 @@
 ################################################################################
 
 # {{{ test_php() ---------------------------------------------------------------
-# TODO: Remove handle_errors?
 test_php() {
     print_subheader "RUNNING PHPUNIT"
 
-    phpunit -c $ROOTDIR/config/phpunit.xml || handle_errors $?
+    phpunit -c $ROOTDIR/config/phpunit.xml
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ test_perl() --------------------------------------------------------------
-# TODO: Remove handle_errors?
 test_perl() {
     print_subheader "RUNNING TEST::MORE & COVER"
 
     #if [ -z "$TRAVIS_CI" ]; then
-        perl -MDevel::Cover=-dir,$REPORTDIR/site/logs $SITE_TEST_SOURCEDIR/test.pl || handle_errors $?
-        cover -outputdir $REPORTDIR/site/code_coverage $REPORTDIR/site/logs/cover_db || handle_errors $?
+        perl -MDevel::Cover=-dir,$REPORTDIR/site/logs $SITE_TEST_SOURCEDIR/test.pl
+        cover -outputdir $REPORTDIR/site/code_coverage $REPORTDIR/site/logs/cover_db
     #else
     #    echo "SKIPPED" # TODO: find a way to make this works.
     #fi

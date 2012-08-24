@@ -2,115 +2,66 @@
 TODO LIST
 --------------------------------------------------------------------------------
 
-File: ./config/phpunit.xml
---------------------------------------------------------------------------------
-
-  - Attribute sorting (line 2)
-
-File: ./config/deploy.rb
---------------------------------------------------------------------------------
-
-  - Add "demo" as stage. (line 31)
-
-File: ./tests/site/test.pl
---------------------------------------------------------------------------------
-
-  - Run perlcritic. (line 34)
-
-File: ./tests/api/functional/ApiTest.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 36)
-
 File: ./tests/api/unit/FabioCicerchia/Api/ServiceAbstractTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/StrategyTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/LanguageTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/SkillTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/InformationTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/EducationTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/ExperienceTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/api/unit/FabioCicerchia/Api/UtilsTest.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - 100% Internal Coverage. (line 38)
-  - 100% Overall Coverage. (line 39)
-
-File: ./tests/api/bootstrap.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 36)
+  - 100% Internal Coverage. (line 37)
+  - 100% Overall Coverage. (line 38)
 
 File: ./tests/script/test.py
 --------------------------------------------------------------------------------
 
   - Write tests. (line 8)
 
-File: ./lib/PHPCS/ruleset.xml
---------------------------------------------------------------------------------
-
-  - Use ruleset for PSR2 (line 5)
-
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/TestCase.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 37)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/ServiceAbstract.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 37)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
 --------------------------------------------------------------------------------
 
   - Run PHP-CS-Fixer. (line 37)
@@ -118,234 +69,108 @@ File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/TwigExtension.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - Remove and just use "date". (line 73)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Language.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 37)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/EntryPoint.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 37)
-  - Retrieve automatically the values. (line 61)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Education.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 37)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Information.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 37)
+  - Remove and just use "date". (line 71)
 
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Skill.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - Refactor. (line 82)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Strategy.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 37)
+  - Refactor. (line 80)
 
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Experience.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
-  - Is it possible to combine them into one? (line 98)
+  - Is it possible to combine them into one? (line 96)
 
-File: ./apps/site/view/rss091.tmpl
+File: ./apps/site/view/dev.tmpl
 --------------------------------------------------------------------------------
 
-  - Sort attribute (line 4)
+  - Extract (line 20)
+  - Set up the aliases (line 43)
 
-File: ./apps/site/view/atom.tmpl
+File: ./apps/site/view/references.tmpl
 --------------------------------------------------------------------------------
 
-  - Sort attribute (line 4)
-
-File: ./apps/site/view/rss1.tmpl
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 3)
-
-File: ./apps/site/view/_header.tmpl
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 1)
-
-File: ./apps/site/view/_experience.tmpl
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 3)
-  - Refactor Extract (line 21)
-  - End Refactor Extract (line 35)
-  - Refactor Extract (line 43)
-  - End Refactor Extract (line 61)
-  - Refactor Extract (line 71)
-  - End Refactor Extract (line 82)
-  - Refactor Extract (line 115)
-  - End Refactor Extract (line 126)
-  - Refactor Extract (line 127)
-  - End Refactor Extract (line 138)
-  - Refactor Extract (line 139)
-  - End Refactor Extract (line 150)
-  - Refactor Extract (line 151)
-  - End Refactor Extract (line 162)
-  - Refactor Extract (line 168)
-  - End Refactor Extract (line 179)
-  - Refactor Extract (line 180)
-  - End Refactor Extract (line 191)
-  - Refactor Extract (line 192)
-  - End Refactor Extract (line 203)
-  - Refactor Extract (line 204)
-  - End Refactor Extract (line 215)
-
-File: ./apps/site/view/rss092.tmpl
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 4)
+  - Extract (line 20)
+  - Used just to auth the first time, locally (line 51)
+  - Move this (line 62)
 
 File: ./apps/site/view/_js.tmpl
 --------------------------------------------------------------------------------
 
-  - Sort attribute (line 1)
-  - Implement NoJS Behaviour. (line 36)
+  - IN.User.logout(); (line 3)
+  - Use jQuery (line 20)
+  - Use jQuery (line 27)
+  - Implement NoJS Behaviour. (line 76)
 
 File: ./apps/site/view/_head.tmpl
 --------------------------------------------------------------------------------
 
-  - Sort attribute (line 2)
-  - Use a list of feeds with a foreach (line 15)
-  - Convert to a dynamic value. (line 43)
+  - Use a list of feeds with a foreach (line 14)
+  - Change this for the other pages (line 34)
+  - Change this for the other pages (line 38)
+  - Change this for the other pages (line 40)
+  - Convert to a dynamic value. (line 45)
+  - Change this for the other pages (line 50)
 
-File: ./apps/site/view/rss2.tmpl
+File: ./apps/site/view/code-snippets.tmpl
 --------------------------------------------------------------------------------
 
-  - Sort attribute (line 4)
+  - Extract (line 20)
+  - Add id (line 56)
+  - Fix this, that doesn't work (line 74)
 
 File: ./apps/site/view/html5.tmpl
 --------------------------------------------------------------------------------
 
-  - Sort attribute (line 4)
+  - Extract (line 20)
 
-File: ./apps/site/view/_education.tmpl
+File: ./apps/site/view/maps.tmpl
 --------------------------------------------------------------------------------
 
-  - Sort attribute (line 4)
-  - Refactor Extract (line 22)
-  - End Refactor Extract (line 31)
-
-File: ./apps/site/view/_summary.tmpl
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 1)
-
-File: ./apps/site/view/_skill.tmpl
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 1)
-
-File: ./apps/site/view/_language.tmpl
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 1)
+  - Extract (line 19)
+  - This doesn't work properly (line 50)
+  - Hidden the URL (line 51)
 
 File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------
 
   - Reduce number of modules used. (line 36)
-  - Is it possible to assign a var to 3? (line 101)
-  - Clean this code... (line 114)
-  - IMPLEMENT IF NOT MODIFIED (line 119)
-  - Clean this code... (line 120)
-  - Remove this method. (line 171)
-  - Try to use fewer variables. (line 191)
-  - Test::Pod. (line 495)
-  - Test::Pod::Coverage. (line 496)
-
-File: ./apps/api/view/education.twig
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 3)
-  - Refactor Extract (line 10)
-  - End Refactor Extract (line 23)
-  - Refactor Extract (line 26)
-  - End Refactor Extract (line 40)
-
-File: ./apps/api/view/root.twig
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 3)
-
-File: ./apps/api/view/experience.twig
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 3)
-  - Refactor Extract (line 10)
-  - End Refactor Extract (line 23)
-  - Refactor Extract (line 26)
-  - End Refactor Extract (line 40)
-
-File: ./apps/api/view/information.twig
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 3)
-
-File: ./apps/api/view/_header.twig
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 1)
-
-File: ./apps/api/view/language.twig
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 3)
-
-File: ./apps/api/view/skill.twig
---------------------------------------------------------------------------------
-
-  - Sort attribute (line 3)
+  - Remove it. (line 41)
+  - Add this (line 52)
+  - Use cache. (line 84)
+  - Duplicated code. (line 97)
+  - Clean this code... (line 104)
+  - Duplicated code. (line 136)
+  - Clean this code... (line 142)
+  - Duplicated code. (line 174)
+  - Clean this code... (line 180)
+  - Duplicated code. (line 212)
+  - Clean this code... (line 218)
+  - Duplicated code. (line 250)
+  - Clean this code... (line 256)
+  - Is it possible to assign a var to 3? (line 309)
+  - Clean this code... (line 322)
+  - IMPLEMENT IF NOT MODIFIED (line 327)
+  - Clean this code... (line 328)
+  - Remove this method. (line 379)
+  - Try to use fewer variables. (line 399)
+  - Test::Pod. (line 721)
+  - Test::Pod::Coverage. (line 722)
 
 File: ./apps/api/logic/controller.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 35)
-  - Remove or restore it? (line 69)
-  - CamelCase notation. (line 93)
-  - CamelCase notation. (line 105)
-  - Provide different mime-types (XML, JSON, ...) (line 116)
-  - CamelCase notation. (line 144)
-  - CamelCase notation. (line 145)
-  - CamelCase notation. (line 155)
-  - CamelCase notation. (line 157)
-  - CamelCase notation. (line 161)
-  - Less code here below... (line 164)
-  - Less code here below... (line 176)
-  - CamelCase notation. (line 179)
-  - Provide different mime-types (XML, JSON, ...) (line 182)
-  - CamelCase notation. (line 183)
-  - CamelCase notation. (line 186)
-  - CamelCase notation. (line 187)
-  - CamelCase notation. (line 189)
-  - CamelCase notation. (line 194)
-  - Provide different mime-types (XML, JSON, ...) (line 217)
-
-File: ./apps/api/logic/app.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 36)
+  - Remove or restore it? (line 67)
+  - Provide different mime-types (XML, JSON, ...) (line 114)
+  - Less code here below... (line 162)
+  - Less code here below... (line 174)
+  - Provide different mime-types (XML, JSON, ...) (line 180)
+  - Provide different mime-types (XML, JSON, ...) (line 215)
 
 File: ./apps/api/logic/bootstrap.php
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 35)
-  - Set this value based on a ENV variable. (line 45)
+  - Set this value based on a ENV variable. (line 43)
 
 File: ./apps/script/common.py
 --------------------------------------------------------------------------------
@@ -379,7 +204,9 @@ File: ./apps/script/check_validation.py
 --------------------------------------------------------------------------------
 
   - Run PEP8 & PYLINT. (line 34)
-  - http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN (line 40)
+  -
+    Http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&l
+    ocale=en_EN (line 40)
   - Http://www.sidar.org/hera/ (line 41)
   - YSlow (line 42)
   - Page Speed (line 43)
@@ -391,12 +218,6 @@ File: ./apps/script/check_validation.py
   - Uncomment? (line 214)
   - This takes a while, does it worth? (line 250)
 
-File: ./web/api.php
---------------------------------------------------------------------------------
-
-  - Run PHP-CS-Fixer. (line 34)
-  - Remove this true. (line 44)
-
 File: ./web/sitemap.xml
 --------------------------------------------------------------------------------
 
@@ -405,106 +226,53 @@ File: ./web/sitemap.xml
 File: ./web/media/css/main.css
 --------------------------------------------------------------------------------
 
-  - Merge duplicate classes. (line 35)
+  - Merge duplicate classes. */ (line 35)
 
 File: ./bin/console/common.sh
 --------------------------------------------------------------------------------
 
-  - Add {{{ }}} as delimiter. (line 34)
-  - Http://fvue.nl/wiki/Bash:_Error_handling (line 111)
-  - Wrap multiline. (line 268)
+  - Http://fvue.nl/wiki/Bash:_Error_handling (line 118)
+  - Wrap multiline. (line 295)
 
 File: ./bin/console/console.sh
 --------------------------------------------------------------------------------
 
   - Refactor! (line 57)
 
-File: ./bin/console/modules/config.sh
---------------------------------------------------------------------------------
-
-  - Add {{{ }}} as delimiter. (line 34)
-  - Remove handle_errors? (line 40)
-
 File: ./bin/console/modules/tests.sh
 --------------------------------------------------------------------------------
 
-  - Add {{{ }}} as delimiter. (line 34)
-  - Remove handle_errors? (line 40)
-  - Remove handle_errors? (line 49)
-  - Find a way to make this works. (line 57)
-
-File: ./bin/console/modules/install.sh
---------------------------------------------------------------------------------
-
-  - Add {{{ }}} as delimiter. (line 34)
-  - Remove handle_errors? (line 46)
-  - Remove handle_errors? (line 57)
-  - Remove handle_errors? (line 68)
-  - Remove handle_errors? (line 84)
-  - Remove handle_errors? (line 97)
-  - Remove handle_errors? (line 106)
-  - Remove handle_errors? (line 116)
-  - Remove handle_errors? (line 130)
-  - Remove handle_errors? (line 140)
-  - Remove handle_errors? (line 150)
-  - Remove handle_errors? (line 160)
-  - Remove handle_errors? (line 170)
-  - Remove handle_errors? (line 181)
-  - Remove handle_errors? (line 195)
-  - Remove handle_errors? (line 209)
-  - Remove handle_errors? (line 218)
-  - Remove handle_errors? (line 227)
-  - Remove handle_errors? (line 267)
-  - Remove handle_errors? (line 276)
-  - Remove handle_errors? (line 285)
-  - Remove handle_errors? (line 294)
-  - Remove handle_errors? (line 303)
+  - Find a way to make this works. (line 56)
 
 File: ./bin/console/modules/sca.sh
 --------------------------------------------------------------------------------
 
-  - Add {{{ }}} as delimiter. (line 34)
-  - Remove handle_errors? (line 40)
-  - Wrap multiline. (line 41)
-  - Remove handle_errors? (line 55)
-  - Wrap multiline. (line 56)
-  - Remove handle_errors? (line 70)
-  - Remove handle_errors? (line 84)
-  - Wrap multiline. (line 85)
-  - Remove handle_errors? (line 99)
-  - Wrap multiline. (line 100)
-  - Remove handle_errors? (line 114)
-  - Wrap multiline. (line 115)
+  - Wrap multiline. (line 39)
+  - Wrap multiline. (line 91)
 
 File: ./bin/console/modules/run.sh
 --------------------------------------------------------------------------------
 
-  - Add {{{ }}} as delimiter. (line 34)
-  - Remove handle_errors? (line 40)
-  - Remove handle_errors? (line 49)
-  - Save to a file. (line 58)
-  - Save to a file. (line 93)
-  - Wrap multiline. (line 169)
-  - Wrap multiline. (line 186)
-  - Wrap multiline. (line 205)
-  - Check PEAR/PECL. (line 220)
-  - Wrap multiline. (line 240)
-  - Wrap multiline. (line 267)
-  - Wrap multiline. (line 325)
-
-File: ./bin/console/modules/deploy.sh
---------------------------------------------------------------------------------
-
-  - Add {{{ }}} as delimiter. (line 34)
-  - Remove handle_errors? (line 40)
-  - Remove handle_errors? (line 49)
-
-File: ./bin/console/modules/docs.sh
---------------------------------------------------------------------------------
-
-  - Add {{{ }}} as delimiter. (line 34)
-  - Remove handle_errors? (line 40)
-  - Wrap multiline. (line 41)
-  - Remove handle_errors? (line 50)
-  - Remove handle_errors? (line 59)
-  - Wrap multiline. (line 60)
+  -  (line 58)
+  - Save to a file. (line 59)
+  -  (line 60)
+  - LIST" (line 64)
+  - FILE) (line 71)
+  - 0-9a-z]*(.)?/\1: \U\2/i") (line 72)
+  - Save to a file. (line 96)
+  - Wrap multiline. (line 161)
+  - Wrap multiline. (line 176)
+  - Wrap multiline. (line 193)
+  - Wrap multiline. (line 212)
+  - Check PEAR/PECL. (line 227)
+  - TXTRST}" (line 229)
+  - TXTRST}" (line 231)
+  - TXTRST}" (line 233)
+  - TXTRST}" (line 235)
+  - TXTRST}" (line 237)
+  - TXTRST}" (line 239)
+  - TXTRST}" (line 241)
+  - TXTRST}" (line 243)
+  - Wrap multiline. (line 247)
+  - Wrap multiline. (line 274)
+  - Wrap multiline. (line 334)

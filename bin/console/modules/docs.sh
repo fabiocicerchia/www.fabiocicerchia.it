@@ -36,35 +36,33 @@
 ################################################################################
 
 # {{{ doc_php() ----------------------------------------------------------------
-# TODO: Wrap multiline.
-# TODO: Remove handle_errors?
 doc_php() {
     print_subheader "RUNNING PHPDOCUMENTOR"
 
-    phpdoc -t $ROOT_DIR/docs/api -d $API_APP_SOURCEDIR -d $API_LIB_SOURCEDIR -d $API_TEST_SOURCEDIR --force --sourcecode --parseprivate || handle_errors $?
+    cd $DOCDIR
+    phpdoc -t ./api -d $API_APP_SOURCEDIR -d $API_LIB_SOURCEDIR \
+           -d $API_TEST_SOURCEDIR --force --sourcecode --parseprivate
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ doc_perl() ---------------------------------------------------------------
-# TODO: Remove handle_errors?
 doc_perl() {
     print_subheader "RUNNING POD"
 
-    pod2html $SITE_APP_SOURCEDIR/logic/class.pl > $DOCDIR/site/class.html || handle_errors $?
+    pod2html $SITE_APP_SOURCEDIR/logic/class.pl > $DOCDIR/site/class.html
 
     return $?
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ doc_python() -------------------------------------------------------------
-# TODO: Remove handle_errors?
-# TODO: Wrap multiline.
 doc_python() {
     print_subheader "RUNNING EPYDOC"
 
-    epydoc --html --show-private --show-imports --show-sourcecode  $SCRIPT_APP_SOURCEDIR/*.py -o $DOCDIR/script || handle_errors $?
+    epydoc --html --show-private --show-imports --show-sourcecode \
+           $SCRIPT_APP_SOURCEDIR/*.py -o $DOCDIR/script
 
     return $?
 }

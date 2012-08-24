@@ -1,0 +1,7 @@
+{% if input.techniques is defined %}
+<techniques>
+    {% for technique in input.techniques|keys %}
+    <technique>{{ technique }}</technique>
+    {% endfor %}
+</techniques>
+{% endif %}

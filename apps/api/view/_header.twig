@@ -4,10 +4,10 @@
     <link href="http://{{ app.request.host }}/api.php/api-definition-syntax" rel="describedby" type="plain/txt" />
     <link href="http://{{ app.request.host }}" rel="author" />
 
-    <updated>{{ "now"|custom_date("Y-m-d\\TH:i:s\\Z") }}</updated>
+    <updated>{{ "now"|date("Y-m-d\\TH:i:s\\Z") }}</updated>
     <author>
         <name>Fabio Cicerchia</name>
         <uri>http://{{ app.request.host }}</uri>
         <email>{{ email }}</email>
     </author>
-    <rights>Copyright (c) {{ "now"|custom_date("Y") }}, Fabio Cicerchia</rights>
+    <rights>Copyright (c) {{ "now"|date("Y") }}, Fabio Cicerchia</rights>

@@ -1,0 +1,17 @@
+<address class="adr" itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+    [% IF entity.content.company.address.postalcode %]
+    <span class="postal-code" itemprop="postalCode">
+        [% entity.content.company.address.postalcode %]
+    </span>
+    [% END %]
+    [% IF entity.content.company.address.city %]
+    <span class="locality" itemprop="addressLocality">
+        [% entity.content.company.address.city %]
+    </span>
+    [% END %]
+    [% IF entity.content.company.address.country %]
+    <span class="country-name" itemprop="addressCountry">
+        [% entity.content.company.address.country %]
+    </span>
+    [% END %]
+</address>

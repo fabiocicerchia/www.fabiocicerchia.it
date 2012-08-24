@@ -51,16 +51,10 @@ print('Validate W3C:')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':       '%URI%',
-        'charset':   '(detect automatically)',
-        'doctype':   'Inline',
-        'group':      0,
-        'user-agent': 'W3C_Validator/1.2'
-    })
-    xpath  = './/*[@id="form"]//*[text()="Result:"]/'
-    xpath += 'following-sibling::*[1]/text()'
+    url_param  = 'uri=%URI%&charset=(detect automatically)&doctype=Inline'
+    url_param += '&group=0&user-agent=W3C_Validator/1.2'
+    xpath      = './/*[@id="form"]//*[text()="Result:"]/'
+    xpath     += 'following-sibling::*[1]/text()'
 
     res = validate('GET', 'http://validator.w3.org/check?', url_param, v,
                    xpath, '.*Passed.*')
@@ -74,17 +68,9 @@ print('Validate CSS 3:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':         '%URI%',
-        'profile':     'css3',
-        'usermedium':  'all',
-        'warning':     2,
-        'vextwarning': '',
-        'lang':        'en'
-    })
-    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/'
-    xpath += '*[local-name()="h3"]/text()'
+    url_param = 'uri=%URI%&profile=css3&usermedium=all&warning=2&vextwarning=&lang=en'
+    xpath     = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath    += '*[local-name()="h3"]/text()'
 
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
@@ -99,17 +85,9 @@ print('Validate CSS 2.1:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':         '%URI%',
-        'profile':     'css21',
-        'usermedium':  'all',
-        'warning':     2,
-        'vextwarning': '',
-        'lang':        'en'
-    })
-    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/'
-    xpath += '*[local-name()="h3"]/text()'
+    url_param = 'uri=%URI%&profile=css21&usermedium=all&warning=2&vextwarning=&lang=en'
+    xpath     = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath    += '*[local-name()="h3"]/text()'
 
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
@@ -124,17 +102,9 @@ print('Validate CSS 2:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':        '%URI%',
-        'profile':    'css2',
-        'usermedium': 'all',
-        'warning':     2,
-        'vextwarning': '',
-        'lang':        'en'
-    })
-    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/'
-    xpath += '*[local-name()="h3"]/text()'
+    url_param = 'uri=%URI%&profile=css2&usermedium=all&warning=2&vextwarning=&lang=en'
+    xpath     = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath    += '*[local-name()="h3"]/text()'
 
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
@@ -149,17 +119,9 @@ print('Validate CSS Mobile:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    # TODO: Serialize to compact the code.
-    url_param = urllib.urlencode({
-        'uri':         '%URI%',
-        'profile':     'mobile',
-        'usermedium':  'all',
-        'warning':     2,
-        'vextwarning': '',
-        'lang':        'en'
-    })
-    xpath  = './/*[@id="results_container"]//*[local-name()="div"]/'
-    xpath += '*[local-name()="h3"]/text()'
+    url_param = 'uri=%URI%&profile=mobile&usermedium=all&warning=2&vextwarning=&lang=en'
+    xpath     = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath    += '*[local-name()="h3"]/text()'
 
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,

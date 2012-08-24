@@ -336,7 +336,7 @@ textarea[readonly] {
 }
 
 .nav-tabs > li > a:hover {
-    border-color:            #f5f5f5 #f5f5f5 #DDDDDD;
+    border-color:            #F5F5F5 #F5F5F5 #DDDDDD;
 }
 
 .nav-pills > .active > a,
@@ -351,11 +351,11 @@ textarea[readonly] {
 }
 
 .tabs-left > .nav-tabs > li > a:hover {
-    border-color:            #f5f5f5 #dddddd #f5f5f5 #F5F5F5;
+    border-color:            #F5F5F5 #dddddd #F5F5F5 #F5F5F5;
 }
 
 .tabs-right > .nav-tabs > li > a:hover {
-    border-color:            #f5f5f5 #f5f5f5 #f5f5f5 #DDDDDD;
+    border-color:            #F5F5F5 #F5F5F5 #F5F5F5 #DDDDDD;
 }
 
 .navbar-inner {
@@ -405,31 +405,31 @@ textarea[readonly] {
 
 .navbar .nav .active > a,
 .navbar .nav .active > a:hover {
-    background-color:        #DD4814;
+    background-color:        #999999;
 }
 
 .navbar .divider-vertical {
     background-color:        #DD4814;
-    border-right:            1px solid #CE4213;
+    border-right:            1px solid #999999;
 }
 
 .navbar .btn-navbar {
-    background-color:        #D44413;
-    *background-color:       #DD4814;
-    background-image:        -moz-linear-gradient(top, #CE4213, #DD4814);
-    background-image:        -ms-linear-gradient(top, #CE4213, #DD4814);
-    background-image:        -webkit-gradient(linear, 0 0, 0 100%, from(#CE4213), to(#DD4814));
-    background-image:        -webkit-linear-gradient(top, #CE4213, #DD4814);
-    background-image:        -o-linear-gradient(top, #CE4213, #DD4814);
-    background-image:        linear-gradient(top, #CE4213, #DD4814);
-    filter:progid:           DXImageTransform.Microsoft.gradient(startColorstr='#CE4213', endColorstr='#DD4814', GradientType=0);
-    border-color:            #dd4814 #dd4814 #97310E;
+    background-color:        #999999;
+    *background-color:       #999999;
+    background-image:        -moz-linear-gradient(top, #666666, #999999);
+    background-image:        -ms-linear-gradient(top, #666666, #999999);
+    background-image:        -webkit-gradient(linear, 0 0, 0 100%, from(#666666), to(#999999));
+    background-image:        -webkit-linear-gradient(top, #666666, #999999);
+    background-image:        -o-linear-gradient(top, #666666, #999999);
+    background-image:        linear-gradient(top, #666666, #999999);
+    filter:progid:           DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#999999', GradientType=0);
+    border-color:            #999999 #999999 #666666;
 }
 
 .navbar .btn-navbar:hover, .navbar .btn-navbar:active, .navbar .btn-navbar.active, .navbar .btn-navbar.disabled,
 .navbar .btn-navbar[disabled] {
-    background-color:        #DD4814;
-    *background-color:       #C64012;
+    background-color:        #999999;
+    *background-color:       #666666;
 }
 
 .navbar .btn-navbar:active,
@@ -727,17 +727,37 @@ hr.soften {
     height:                  36px;
     background-color:        #EEEEEE; /* Old browsers */
     background-repeat:       repeat-x; /* Repeat the gradient */
-    background-image:        -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%); /* FF3.6+ */
+    background-image:        -moz-linear-gradient(top, #F5F5F5 0%, #eeeeee 100%); /* FF3.6+ */
     background-image:        -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F5F5F5), color-stop(100%, #EEEEEE)); /* Chrome, Safari4+ */
-    background-image:        -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%); /* Chrome 10+, Safari 5.1+ */
-    background-image:        -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%); /* IE10+ */
-    background-image:        -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%); /* Opera 11.10+ */
+    background-image:        -webkit-linear-gradient(top, #F5F5F5 0%, #eeeeee 100%); /* Chrome 10+, Safari 5.1+ */
+    background-image:        -ms-linear-gradient(top, #F5F5F5 0%, #eeeeee 100%); /* IE10+ */
+    background-image:        -o-linear-gradient(top, #F5F5F5 0%, #eeeeee 100%); /* Opera 11.10+ */
     filter: progid:          DXImageTransform.Microsoft.gradient( startColorstr='#F5F5F5', endColorstr='#EEEEEE', GradientType=0 ); /* IE6-9 */
-    background-image:        linear-gradient(top, #f5f5f5 0%, #eeeeee 100%); /* W3C */
+    background-image:        linear-gradient(top, #F5F5F5 0%, #eeeeee 100%); /* W3C */
     border:                  1px solid #E5E5E5;
     -webkit-border-radius:   4px;
     -moz-border-radius:      4px;
     border-radius:           4px;
+}
+
+.navbar-inner {
+    background-color:        #CCCCCC;
+    background-image:        -moz-linear-gradient(top, #CCCCCC, #AAAAAA);
+    background-image:        -ms-linear-gradient(top, #CCCCCC, #AAAAAA);
+    background-image:        -webkit-gradient(linear, 0 0, 0 100%, from(#CCCCCC), to(#AAAAAA));
+    background-image:        -webkit-linear-gradient(top, #CCCCCC, #AAAAAA);
+    background-image:        -o-linear-gradient(top, #CCCCCC, #AAAAAA);
+    background-image:        linear-gradient(top, #CCCCCCCCCCCC, #AAAAAA);
+    filter:progid:           DXImageTransform.Microsoft.gradient(startColorstr='#CCCCCC', endColorstr='#AAAAAA', GradientType=0);
+}
+
+.navbar .nav > li > a {
+    border-left:             1px solid #CCCCCC;
+    border-right:            1px solid #CCCCCC;
+}
+
+.navbar .nav > li > a:hover {
+    background-color:        #CCCCCC;
 }
 
 .subnav .nav {
@@ -1330,10 +1350,6 @@ form.well {
 
 @media (max-width: 768px) {
 
-    body {
-        padding-top:             0;
-    }
-
     .jumbotron .btn {
         margin-bottom:           10px;
     }
@@ -1422,10 +1438,6 @@ form.well {
 
 @media (min-width: 768px) and (max-width: 980px) {
 
-    body {
-        padding-top:             0;
-    }
-
     .jumbotron h1 {
         font-size:               72px;
     }
@@ -1433,6 +1445,14 @@ form.well {
 }
 
 @media (max-width: 980px) {
+
+    body {
+        padding-top:             0px !important;
+    }
+
+    #github_ribbon img {
+        top:                     50px !important;
+    }
 
     .navbar-fixed-top .brand {
         float:                   left;
@@ -1558,7 +1578,7 @@ p {
 }
 
 .subnav-fixed {
-    top:                     0;
+    top:                     40px;
     width:                   100%;
 }
 
@@ -1571,11 +1591,11 @@ p {
     display:                 none;
 }
 
-.subnav-fixed .brand {
+.navbar .brand {
     display:                 block;
     font-size:               1.2em;
     font-weight:             bold;
-    padding:                 8px 20px 8px 13px;
+    padding:                 8px 20px 0px 30px;
 }
 
 section {
@@ -1673,7 +1693,7 @@ hr {
     border:                   0;
     position:                 absolute;
     right:                    0;
-    top:                      0;
+    top:                      40px;
     z-index:                  1;
 }
 
@@ -1756,4 +1776,98 @@ address {
 
 .dropdown-toggle a {
     width:                    105px;
+}
+
+.brand img {
+    padding-bottom:           15px;
+}
+
+#hcard-Fabio-Cicerchia {
+    padding-top:              25px;
+}
+
+.container iframe {
+    height:                   100%;
+}
+
+#reference_list div {
+    border-bottom:            1px solid #CCC;
+    border-left:              10px solid #CCC;
+    margin-bottom:            10px;
+    padding:                  1em;
+}
+
+#reference_list div img {
+    margin-right:             10px;
+    vertical-align:           middle;
+    width:                    40px;
+}
+
+.container > h2 {
+    padding-top:              1em;
+}
+
+.container > h3 {
+    padding-bottom:           1em;
+}
+
+.container.hresume > h2 {
+    padding-top:              0em;
+}
+
+.container.hresume > h3 {
+    padding-bottom:           0em;
+}
+
+.gist-highlight {
+    border-left:              30px solid #EEE;
+    position:                 relative;
+}
+
+.gist-highlight pre {
+    counter-reset:            linenumbers;
+}
+
+.gist-highlight pre div:before {
+    color:                    #AAAAAA;
+    content:                  counter(linenumbers);
+    counter-increment:        linenumbers;
+    left:                     -20px;
+    position:                 absolute;
+    text-align:               right;
+    width:                    15px;
+}
+
+#reference_list blockquote {
+    border-left:              0px;
+    display:                  block !important;
+    font-family:              Georgia, Times, "Times New Roman", serif;
+    font-style:               italic;
+    margin-bottom:            0px;
+    padding:                  10px 20px 0px;
+    text-align:               justify;
+}
+
+#reference_list blockquote:before,
+#reference_list blockquote:after {
+    color:                    #CCCCCC;
+    font-size:                5em;
+    line-height:              0;
+}
+
+#reference_list blockquote:before {
+    content:                  open-quote;
+    padding-right:            10px;
+    vertical-align:           -27px;
+}
+
+#reference_list blockquote:after {
+    content:                  close-quote;
+    font-size:                5em;
+    line-height:              .3;
+    vertical-align:           -37px;
+}
+
+#reference_list small a {
+    text-transform:           capitalize;
 }

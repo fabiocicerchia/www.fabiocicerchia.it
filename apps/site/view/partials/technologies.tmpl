@@ -1,0 +1,14 @@
+[% IF input.content %]
+    [% input = input.content %]
+[% END %]
+
+[% IF input.technologies.size %]
+<dl itemscope="itemscope" itemtype="http://schema.org/ItemList">
+    <dt itemprop="name">[% FILTER gettext %]Technologies[% END %]</dt>
+    [% FOREACH technology IN input.technologies %]
+    <dd[% " class=\"last\"" IF loop.last %] itemprop="itemListElement">
+        [% technology %]
+    </dd>
+    [% END %]
+</dl>
+[% END %]

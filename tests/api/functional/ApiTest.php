@@ -66,48 +66,7 @@ class ApiTest extends WebTestCase
     {
         $app = include TEST_ROOT_PATH . 'apps/api/logic/app.php';
 
-        $app['debug'] = false;
-
         return $app;
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: createDebugApplication --------------------------------------
-    /**
-     * Return the instance of Silex\Application.
-     *
-     * @see   ApiTest::createApplication()
-     * @since Version 0.1
-     *
-     * @return Silex\Application
-     */
-    public function createDebugApplication()
-    {
-        $app = $this->createApplication();
-
-        $app['debug'] = true;
-        unset($app['exception_handler']);
-
-        return $app;
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: setUpDebug --------------------------------------------------
-    /**
-     * PHPUnit setUp for setting up the application.
-     *
-     * Note: Child classes that define a setUp method must call
-     * parent::setUp().
-     *
-     * @see   ApiTest::createDebugApplication()
-     * @see   ApiTest::$app
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function setUpDebug()
-    {
-        $this->app = $this->createDebugApplication();
     }
     // }}} ---------------------------------------------------------------------
 
@@ -198,34 +157,6 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ Method: provideMimeTypeForDebug -------------------------------------
-    /**
-     * Data Provider to return a list of URL and its mime type, when the debug
-     * flag is used.
-     *
-     * @return array
-     */
-    public function provideMimeTypeForDebug()
-    {
-        return [
-            // Set #0 ----------------------------------------------------------
-            ['/', 'application/xml'],
-            // Set #1 ----------------------------------------------------------
-            ['/information', 'application/xml'],
-            // Set #2 ----------------------------------------------------------
-            ['/education', 'application/xml'],
-            // Set #3 ----------------------------------------------------------
-            ['/experience', 'application/xml'],
-            // Set #4 ----------------------------------------------------------
-            ['/skill', 'application/xml'],
-            // Set #5 ----------------------------------------------------------
-            ['/language', 'application/xml'],
-            // Set #6 ----------------------------------------------------------
-            ['/api-definition-syntax', 'text/plain; charset=UTF-8'],
-        ];
-    }
-    // }}} ---------------------------------------------------------------------
-
     // {{{ Method: provideCache ------------------------------------------------
     /**
      * Data Provider to return a list of URL and its cache-control value.
@@ -251,34 +182,6 @@ class ApiTest extends WebTestCase
             ['/api-definition-syntax', 'no-cache'],
             // Set #7 ----------------------------------------------------------
             ['/404', 'no-cache'],
-        ];
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: provideCacheForDebug ----------------------------------------
-    /**
-     * Data Provider to return a list of URL and its cache-control value, when
-     * the debug flag is used.
-     *
-     * @return array
-     */
-    public function provideCacheForDebug()
-    {
-        return [
-            // Set #0 ----------------------------------------------------------
-            ['/', 'no-cache'],
-            // Set #1 ----------------------------------------------------------
-            ['/information', 'no-cache'],
-            // Set #2 ----------------------------------------------------------
-            ['/education', 'no-cache'],
-            // Set #3 ----------------------------------------------------------
-            ['/experience', 'no-cache'],
-            // Set #4 ----------------------------------------------------------
-            ['/skill', 'no-cache'],
-            // Set #5 ----------------------------------------------------------
-            ['/language', 'no-cache'],
-            // Set #6 ----------------------------------------------------------
-            ['/api-definition-syntax', 'no-cache'],
         ];
     }
     // }}} ---------------------------------------------------------------------
@@ -358,52 +261,6 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ Method: provideInvalidHttpMethodsForDebug ---------------------------
-    /**
-     * Data Provider to return a list of URL and its cache-control value for
-     * each HTTP method, when the debug flag is used.
-     *
-     * @return array
-     */
-    public function provideInvalidHttpMethodsForDebug()
-    {
-        $httpMethods = [
-            'POST',     'PUT',          'DELETE',
-            'CONNECT',  'OPTIONS',      'PATCH',
-            'PROPFIND', 'PROPPATCH',    'MKCOL',
-            'COPY',     'MOVE',         'LOCK',
-            'UNLOCK'
-        ];
-
-        $url = [
-            // Set #0 ----------------------------------------------------------
-            ['/', 405],
-            // Set #1 ----------------------------------------------------------
-            ['/information', 405],
-            // Set #2 ----------------------------------------------------------
-            ['/education', 405],
-            // Set #3 ----------------------------------------------------------
-            ['/experience', 405],
-            // Set #4 ----------------------------------------------------------
-            ['/skill', 405],
-            // Set #5 ----------------------------------------------------------
-            ['/language', 405],
-            // Set #6 ----------------------------------------------------------
-            ['/api-definition-syntax', 405],
-        ];
-
-        $data = [];
-
-        foreach ($httpMethods as $httpMethod) {
-            foreach ($url as $elements) {
-                $data[] = [$elements[0], $httpMethod, $elements[1]];
-            }
-        }
-
-        return $data;
-    }
-    // }}} ---------------------------------------------------------------------
-
     // {{{ Method: testEveryRouteCheckStatusCode -------------------------------
     /**
      * Test all the routes to check the HTTP Status Code.
@@ -449,30 +306,6 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ Method: testEveryRouteCheckMimetypeWithDebug ------------------------
-    /**
-     * Test all the routes to check the MIME Type with Debug flag enabled.
-     *
-     * @param string $url       The URL to be checked.
-     * @param string $mime_type The MIME-Type to be checked.
-     *
-     * @dataProvider provideMimeTypeForDebug
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEveryRouteCheckMimetypeWithDebug($url, $mime_type)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', $url);
-
-        $this->assertEquals($mime_type, $client->getResponse()->headers->get('Content-Type'));
-    }
-    // }}} ---------------------------------------------------------------------
-
     // {{{ Method: testEveryRouteCheckResponse ---------------------------------
     /**
      * Test all the routes to check the Response.
@@ -502,42 +335,6 @@ class ApiTest extends WebTestCase
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('service > entrypoint > id')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint > title')->count());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint > link[rel="self"]')->count());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint > link[rel="service"]')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('service > entrypoint > updated')->text());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: testEveryRouteCheckResponseWithDebug ------------------------
-    /**
-     * Test all the routes to check the Response with Debug flag enabled.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEveryRouteCheckResponseWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/');
-
-        $this->assertEquals(1, $crawler->filter('service')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('service > id')->text());
-        $this->assertRegExp('/^Fabio Cicerchia API - .+$/', $crawler->filter('service > title')->text());
-        $this->assertEquals(1, $crawler->filter('service > link[rel="self"]')->count());
-        $this->assertEquals(1, $crawler->filter('service > link[rel="describedby"]')->count());
-        $this->assertEquals(1, $crawler->filter('service > link[rel="author"]')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('service > updated')->text());
-        $this->assertEquals('Fabio Cicerchia', $crawler->filter('service > author > name')->text());
-        $this->assertEquals('http://localhost', $crawler->filter('service > author > uri')->text());
-        $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('service > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('service > rights')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('service > entrypoint > id')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint > title')->count());
-        $this->assertEquals(1, $crawler->filter('service > entrypoint > link[rel="self"]')->count());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint > link[rel="service"]')->count());
         $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('service > entrypoint > updated')->text());
     }
@@ -575,30 +372,6 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ Method: testEveryRouteCheckCacheWithDebug ---------------------------
-    /**
-     * Test all the routes to check the Cache with Debug flag enabled.
-     *
-     * @param string $url   The URL to be checked.
-     * @param string $cache The cache value to be checked.
-     *
-     * @dataProvider provideCacheForDebug
-     *
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEveryRouteCheckCacheWithDebug($url, $cache)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', $url);
-
-        $this->assertEquals($cache, $client->getResponse()->headers->get('cache-control'));
-    }
-    // }}} ---------------------------------------------------------------------
-
     // {{{ Method: testEveryRouteCheckWrongHttpMethod --------------------------
     /**
      * Test all the routes to check the Response with a wrong HTTP Method.
@@ -618,30 +391,6 @@ class ApiTest extends WebTestCase
         $crawler = $client->request($httpMethod, $url);
 
         $this->assertEquals($status, $client->getResponse()->getStatusCode());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: testEveryRouteCheckWrongHttpMethodWithDebug -----------------
-    /**
-     * Test all the routes to check the Response with a wrong HTTP
-     * Method with Debug flag enabled.
-     *
-     * @param string $url        The URL to be checked.
-     * @param string $httpMethod The invalid HTTP Method.
-     *
-     * @dataProvider             provideInvalidHttpMethodsForDebug
-     * @expectedException        Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
-     * @expectedExceptionMessage No route found for
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function testEveryRouteCheckWrongHttpMethodWithDebug($url, $httpMethod)
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request($httpMethod, $url);
     }
     // }}} ---------------------------------------------------------------------
 
@@ -726,42 +475,6 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ Method: testInformationRouteCheckResponseWithDebug ------------------
-    /**
-     * Test the route "Information" to check the Response with Debug flag enabled.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testInformationRouteCheckResponseWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/information');
-
-        $this->assertEquals(1, $crawler->filter('entities')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > id')->text());
-        $this->assertRegExp('/^Fabio Cicerchia API - .+$/', $crawler->filter('entities > title')->text());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="self"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="describedby"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
-        $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
-        $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > entity > id')->text());
-        $this->assertRegExp('/^.+$/m', $crawler->filter('entities > entity > title')->text());
-        $this->assertRegExp('/^.+$/m', $crawler->filter('entities > entity > summary')->text());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
-    }
-    // }}} ---------------------------------------------------------------------
-
     // {{{ Method: testEducationRouteCheckResponse -----------------------------
     /**
      * Test the route "Education" to check the Response.
@@ -773,46 +486,6 @@ class ApiTest extends WebTestCase
      */
     public function testEducationRouteCheckResponse()
     {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/education');
-
-        $this->assertEquals(1, $crawler->filter('entities')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > id')->text());
-        $this->assertRegExp('/^Fabio Cicerchia API - .+$/', $crawler->filter('entities > title')->text());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="self"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="describedby"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
-        $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
-        $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
-        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
-        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > published')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content > company')->count());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > content > company > title')->text());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > activities')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > activities > activity')->count());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: testEducationRouteCheckResponseWithDebug --------------------
-    /**
-     * Test the route "Education" to check the Response with Debug flag enabled.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testEducationRouteCheckResponseWithDebug()
-    {
-        $this->setUpDebug();
-
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/education');
 
@@ -904,73 +577,6 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ Method: testExperienceRouteCheckResponseWithDebug -------------------
-    /**
-     * Test the route "Experience" to check the Response with Debug flag enabled.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testExperienceRouteCheckResponseWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/experience');
-
-        $this->assertEquals(1, $crawler->filter('entities')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > id')->text());
-        $this->assertRegExp('/^Fabio Cicerchia API - .+$/', $crawler->filter('entities > title')->text());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="self"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="describedby"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
-        $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
-        $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > summary')->count());
-        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
-        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > published')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content')->count());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity > content > company')->count());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > content > company > title')->text());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > activities')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > activities > activity')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > technologies')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > technologies > technology')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > tools')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > tools > tool')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > techniques')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > techniques > technique')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > methodologies')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > methodologies > methodology')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > title')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > summary')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > role')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > link[rel="related"]')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > updated')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > published')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > activities')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > activities > activity')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > techniques')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > techniques > technique')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > technologies')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > technologies > technology')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > tools')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > tools > tool')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > methodologies')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > projects > project > methodologies > methodology')->count());
-    }
-    // }}} ---------------------------------------------------------------------
-
     // {{{ Method: testSkillRouteCheckResponse ---------------------------------
     /**
      * Test the route "Skill" to check the Response.
@@ -982,46 +588,6 @@ class ApiTest extends WebTestCase
      */
     public function testSkillRouteCheckResponse()
     {
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/skill');
-
-        $this->assertEquals(1, $crawler->filter('entities')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > id')->text());
-        $this->assertRegExp('/^Fabio Cicerchia API - .+$/', $crawler->filter('entities > title')->text());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="self"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="describedby"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
-        $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
-        $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > summary')->count());
-        $this->assertRegExp('/^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\s*$/m', $crawler->filter('entities > entity > updated')->text());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > title')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > level')->count());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: testSkillRouteCheckResponseWithDebug ------------------------
-    /**
-     * Test the route "Skill" to check the Response with Debug flag enabled.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testSkillRouteCheckResponseWithDebug()
-    {
-        $this->setUpDebug();
-
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/skill');
 
@@ -1087,46 +653,6 @@ class ApiTest extends WebTestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ Method: testLanguageRouteCheckResponseWithDebug ---------------------
-    /**
-     * Test the route "Language" to check the Response with Debug flag enabled.
-     *
-     * @medium
-     * @since Version 0.1
-     *
-     * @return void
-     */
-    public function testLanguageRouteCheckResponseWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/language');
-
-        $this->assertEquals(1, $crawler->filter('entities')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > id')->text());
-        $this->assertRegExp('/^Fabio Cicerchia API - .+$/', $crawler->filter('entities > title')->text());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="self"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="describedby"]')->count());
-        $this->assertEquals(1, $crawler->filter('entities > link[rel="author"]')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > updated')->text());
-        $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
-        $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
-        $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
-        $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
-        $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
-        $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > summary')->count());
-        $this->assertRegExp('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/', $crawler->filter('entities > entity > updated')->text());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > title')->count());
-        $this->assertGreaterThanOrEqual(0, $crawler->filter('entities > entity > content > skills > skill > level')->count());
-    }
-    // }}} ---------------------------------------------------------------------
-
     // {{{ Method: test404RouteCheckResponse -----------------------------------
     /**
      * Test the route "404" to check the Response.
@@ -1141,25 +667,6 @@ class ApiTest extends WebTestCase
         $crawler = $client->request('GET', '/404');
 
         $this->assertEquals('Error, you are unauthorised to know more about it.', $client->getResponse()->getContent());
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: test404RouteCheckResponseWithDebug --------------------------
-    /**
-     * Test the route "404" to check the Response with Debug flag enabled.
-     *
-     * @expectedException        Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @expectedExceptionMessage No route found for "GET /404"
-     * @since                    Version 0.1
-     *
-     * @return void
-     */
-    public function test404RouteCheckResponseWithDebug()
-    {
-        $this->setUpDebug();
-
-        $client  = $this->createClient();
-        $crawler = $client->request('GET', '/404');
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

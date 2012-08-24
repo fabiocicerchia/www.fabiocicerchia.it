@@ -24,11 +24,11 @@
         }
     ],
     "require": {
-        "silex/silex":           "dev-master",
+        "silex/silex":           "1.0.*",
         "twig/twig":             "1.9.*",
         "pimple/pimple":         "1.0.*",
-        "fate/Silex-Extensions": "*",
-        "doctrine/mongodb":      "*",
+        "fate/Silex-Extensions": "dev-master",
+        "doctrine/mongodb":      "1.0.*",
         "symfony/browser-kit":   "2.0.16",
         "symfony/dom-crawler":   "2.0.16",
         "symfony/css-selector":  "2.0.16"
