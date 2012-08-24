@@ -38,7 +38,7 @@ package FabioCicerchiaSite;
 use strict;
 use warnings;
 use version; our $VERSION = qv('1.0');
-use Data::Dumper; # TODO: Remove it.
+use Data::Dumper;    # TODO: Remove it.
 use Date::Format;
 use Digest::MD5;
 use File::Basename;
@@ -49,7 +49,7 @@ use Readonly;
 use Template::Filters;
 use Template;
 use XML::Simple;
-use JSON qw( decode_json ); # TODO: Add this
+use JSON qw( decode_json );    # TODO: Add this
 
 Readonly my $LWP_TIMEOUT => 10;
 
@@ -79,33 +79,41 @@ sub action404 {
 sub action_code_snippets {
     my $self = shift;
 
-    my $url   = 'https://api.github.com/users/fabiocicerchia/gists';
+    my $url = 'https://api.github.com/users/fabiocicerchia/gists';
 
-    my $file_name = '../../../tmp/gists.json';
-    my $file_timestamp = (stat($file_name))[9];
-    my $cache_valid = $file_timestamp > localtime(time) - (24 * 60 * 60);
-
-    my $file = open FILE, '+>', $file_name;
-    local $/;
-
-    if ($cache_valid) {
-        my $data = <FILE>;
-        my $gists = decode_json($data);
-    } else {
-        my $browser = LWP::UserAgent->new();
-        $browser->timeout($LWP_TIMEOUT);
-        my $data  = $browser->get( $url );
-        my $gists = decode_json($data->content());
-        print FILE, $data->content();
+    my $file_name      = dirname(__FILE__) . '/../../../tmp/gists.json';
+    my $cache_valid    = undef;
+    if ( -s $file_name ) {
+        my $file_timestamp = ( stat $file_name )[9];
+        $cache_valid = $file_timestamp > localtime(time) - ( 24 * 60 * 60 );
     }
 
-    my $res = close FILE;
+    my $gists = undef;
+
+    if ($cache_valid) {
+        my $file = open FILE, '<' . $file_name;
+        local $/=undef;
+        my $data  = <FILE>;
+        my $res = close FILE;
+
+        $gists = decode_json($data);
+    }
+    else {
+        my $browser = LWP::UserAgent->new();
+        $browser->timeout($LWP_TIMEOUT);
+        my $data  = $browser->get($url);
+        $gists = decode_json( $data->content() );
+
+        my $file = open FILE, '+>' . $file_name;
+        print FILE $data->content();
+        my $res = close FILE;
+    }
 
     # TODO: Duplicated code.
     my $vars = {
-        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
-        'language'      => 'en',
-        'data'          => $gists
+        'HTTP_HOST' => $ENV{'HTTP_HOST'},
+        'language'  => 'en',
+        'data'      => $gists
     };
 
     print 'Content-Type: text/html; charset=UTF-8' . "\n";
@@ -113,10 +121,12 @@ sub action_code_snippets {
     print "\n";
 
     my $output = q{};
-    $self->{'template'}->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
+    $self->{'template'}
+        ->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
 
     return $output;
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_references ------------------------------------------------
@@ -129,8 +139,8 @@ sub action_references {
     my $self = shift;
 
     my $vars = {
-        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
-        'language'      => 'en'
+        'HTTP_HOST' => $ENV{'HTTP_HOST'},
+        'language'  => 'en'
     };
 
     print 'Content-Type: text/html; charset=UTF-8' . "\n";
@@ -138,10 +148,12 @@ sub action_references {
     print "\n";
 
     my $output = q{};
-    $self->{'template'}->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
+    $self->{'template'}
+        ->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
 
     return $output;
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_maps ------------------------------------------------------
@@ -154,8 +166,8 @@ sub action_maps {
     my $self = shift;
 
     my $vars = {
-        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
-        'language'      => 'en'
+        'HTTP_HOST' => $ENV{'HTTP_HOST'},
+        'language'  => 'en'
     };
 
     print 'Content-Type: text/html; charset=UTF-8' . "\n";
@@ -163,10 +175,12 @@ sub action_maps {
     print "\n";
 
     my $output = q{};
-    $self->{'template'}->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
+    $self->{'template'}
+        ->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
 
     return $output;
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_dev -------------------------------------------------------
@@ -179,8 +193,8 @@ sub action_dev {
     my $self = shift;
 
     my $vars = {
-        'HTTP_HOST'     => $ENV{'HTTP_HOST'},
-        'language'      => 'en'
+        'HTTP_HOST' => $ENV{'HTTP_HOST'},
+        'language'  => 'en'
     };
 
     print 'Content-Type: text/html; charset=UTF-8' . "\n";
@@ -188,10 +202,12 @@ sub action_dev {
     print "\n";
 
     my $output = q{};
-    $self->{'template'}->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
+    $self->{'template'}
+        ->process( $self->{'actionCurrent'} . '.tmpl', $vars, \$output );
 
     return $output;
 }
+
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_show ------------------------------------------------------
@@ -224,7 +240,9 @@ sub action_show {
 
     my $gettext_language = $language . '.utf8';
     $gettext_language =~ s/-/_/smx;
-    $ENV{'LANG'} = $ENV{'LANGUAGE'} = $ENV{'LC_ALL'} = $gettext_language;
+    local $ENV{'LANG'}     = $gettext_language;
+    local $ENV{'LANGUAGE'} = $gettext_language;
+    local $ENV{'LC_ALL'}   = $gettext_language;
     setlocale( LC_ALL, $gettext_language );
 
     my $vars = {
@@ -234,7 +252,7 @@ sub action_show {
         'language'      => $language
     };
 
-    # TODO: Clean this code...
+# TODO: Clean this code...
 # http://template-toolkit.org/docs/modules/Template/Filters.html#CONFIGURATION_OPTIONS
     my $filters =
         Template::Filters->new( { FILTERS => { 'gettext' => \&gettext }, } );
@@ -245,7 +263,9 @@ sub action_show {
     print 'Last-Modified: '
         . time2str( '%a, %d %b %Y %H:%M:%S GMT', $last_modified ) . "\n";
     print 'ETag: "' . $etag . q{"} . "\n";
-    print 'Content-Type: ' . $self->{'contentType'} . '; charset=UTF-8' . "\n";
+    print 'Content-Type: '
+        . $self->{'contentType'}
+        . '; charset=UTF-8' . "\n";
     print 'Content-Language: ' . $language . "\n";
     print "\n";
 
@@ -306,7 +326,8 @@ sub get_data {
     my $data    = {};
     my $last_ts = 0;
     my $hash    = q{};
-    my ($url, $lang);
+    my $url;
+    my $lang;
 
     my @api_list = qw( root information education experience skill language );
 
@@ -434,13 +455,8 @@ sub execute_action {
 sub new {
     my $class = shift;
     my $self  = {
-        'actionAllowed' => [
-            'code-snippets',
-            'references',
-            'maps',
-            'dev',
-            'contacts'
-        ],
+        'actionAllowed' =>
+            [ 'code-snippets', 'references', 'maps', 'dev', 'contacts' ],
         'actionCurrent' => undef,
         'actionDefault' => 'show',
         'contentType'   => 'text/html',
@@ -462,7 +478,7 @@ sub new {
             'format' => undef,
             'lang'   => undef
         },
-        'template'      => undef
+        'template' => undef
     };
     bless $self, $class;
 
@@ -473,10 +489,10 @@ sub new {
 
     # Then use the value from the request if exists ...
     if ( defined( $self->{'request'}{'action'} ) ) {
+
         # ... filtering the values not authorised.
-        if (grep { $_ eq $self->{'request'}{'action'} }
-            @{$self->{'actionAllowed'}}
-        )
+        if ( grep { $_ eq $self->{'request'}{'action'} }
+            @{ $self->{'actionAllowed'} } )
         {
             $self->{'actionCurrent'} = $self->{'request'}{'action'};
         }
@@ -492,10 +508,11 @@ sub new {
 
     # Then use the value from the request if exists ...
     if ( defined( $self->{'request'}{'format'} ) ) {
+
         # ... filtering the values not authorised.
         if (grep { $_ eq $self->{'request'}{'format'} }
             keys $self->{'formatAllowed'}
-        )
+            )
         {
             $self->{'formatCurrent'} = $self->{'request'}{'format'};
         }
@@ -610,7 +627,7 @@ sub set_request {
 sub show {
     my $self = shift;
 
-    # http://template-toolkit.org/docs/modules/Template/Filters.html#CONFIGURATION_OPTIONS
+# http://template-toolkit.org/docs/modules/Template/Filters.html#CONFIGURATION_OPTIONS
     my $filters =
         Template::Filters->new( { FILTERS => { 'gettext' => \&gettext }, } );
 

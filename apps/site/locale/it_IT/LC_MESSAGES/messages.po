@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.2\n"
 "Report-Msgid-Bugs-To: info@fabiocicerchia.it\n"
-"POT-Creation-Date: 2012-08-20 18:37+0100\n"
-"PO-Revision-Date: 2012-08-20 18:37+0100\n"
+"POT-Creation-Date: 2012-08-24 22:13+0100\n"
+"PO-Revision-Date: 2012-08-24 22:13+0100\n"
 "Last-Translator: Fabio Cicerchia <info@fabiocicerchia.it>\n"
 "Language-Team: LANGUAGE <info@fabiocicerchia.it>\n"
 "Language: \n"
@@ -47,6 +47,15 @@ msgstr "Torna su"
 msgid "beginner proficiency"
 msgstr "livello principiante"
 
+msgid "Code Snippets"
+msgstr "Code Snippets"
+
+msgid "Created at"
+msgstr "Creato il"
+
+msgid "Dev"
+msgstr "Dev"
+
 msgid "Education"
 msgstr "Formazione"
 
@@ -59,6 +68,9 @@ msgstr "livello esperto"
 msgid "Fabio Cicerchia on Google+"
 msgstr "Fabio Cicerchia su Google+"
 
+msgid "File"
+msgstr "File"
+
 msgid "Fork me on GitHub"
 msgstr "Forkami su GitHub"
 
@@ -68,17 +80,32 @@ msgstr "Vai al repository"
 msgid "Heads up!"
 msgstr "Attenzione"
 
+msgid "Home"
+msgstr "Home"
+
 msgid "intermediate proficiency"
 msgstr "livello intermedio"
 
 msgid "Languages"
 msgstr "Lingue"
 
+msgid "Maps"
+msgstr "Maps"
+
 msgid "Methodologies"
 msgstr "Metodologie"
 
 msgid "Mother Tongue"
 msgstr "Madrelingua"
+
+msgid "My email address"
+msgstr "Il mio indirizzo email"
+
+msgid "My web site"
+msgstr "Il mio sito web"
+
+msgid "References"
+msgstr "References"
 
 msgid "Show more ..."
 msgstr "Ulteriori informazioni ..."

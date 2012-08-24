@@ -94,7 +94,7 @@ run_todo() {
 
 # {{{ run_changelog() ----------------------------------------------------------
 run_changelog() {
-    python $ROOTDIR/lib/git2changelog/git2changelog.py > $ROOTDIR/CHANGELOG
+    python $ROOTDIR/lib/vendor/git2changelog/git2changelog.py > $ROOTDIR/CHANGELOG
 }
 # }}} --------------------------------------------------------------------------
 
@@ -107,6 +107,7 @@ _ver_cmp_1() {
   # This should not be happening
   exit 1
 }
+# }}} --------------------------------------------------------------------------
 
 # {{{ ver_cmp() ----------------------------------------------------------------
 ver_cmp() {
