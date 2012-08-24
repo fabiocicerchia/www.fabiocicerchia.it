@@ -1,195 +1,1371 @@
---------------------------------------------------------------------------------
-CHANGELOG
---------------------------------------------------------------------------------
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-08-16
-    [5103535] removed some other todo (by Fabio Cicerchia <info@fabiocicerchia.it>)
+  * AUTHORS, BUGS, README.md, TODO, apps/api/logic/bootstrap.php,
+    apps/api/logic/controller.php, apps/api/view/_header.twig,
+    apps/api/view/api-definition-syntax.twig,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/partials/activities.twig,
+    apps/api/view/partials/company.twig,
+    apps/api/view/partials/methodologies.twig,
+    apps/api/view/partials/publishing.twig,
+    apps/api/view/partials/techniques.twig,
+    apps/api/view/partials/technologies.twig,
+    apps/api/view/partials/tools.twig, apps/api/view/root.twig,
+    apps/api/view/skill.twig, apps/script/check_accessibility.py,
+    apps/script/check_validation.py, apps/site/logic/class.pl,
+    apps/site/view/_education.tmpl, apps/site/view/_experience.tmpl,
+    apps/site/view/_head.tmpl, apps/site/view/_header.tmpl,
+    apps/site/view/_js.tmpl, apps/site/view/code-snippets.tmpl,
+    apps/site/view/dev.tmpl, apps/site/view/html5.tmpl,
+    apps/site/view/maps.tmpl, apps/site/view/partials/activities.tmpl,
+    apps/site/view/partials/address.tmpl,
+    apps/site/view/partials/date.tmpl,
+    apps/site/view/partials/methodologies.tmpl,
+    apps/site/view/partials/navbar.tmpl,
+    apps/site/view/partials/techniques.tmpl,
+    apps/site/view/partials/technologies.tmpl,
+    apps/site/view/partials/tools.tmpl,
+    apps/site/view/references.tmpl, bin/console/modules/config.sh,
+    bin/console/modules/deploy.sh, bin/console/modules/docs.sh,
+    bin/console/modules/install.sh, bin/console/modules/run.sh,
+    bin/console/modules/sca.sh, bin/console/modules/tests.sh,
+    composer.json, config/deploy.rb, config/deploy/demo.rb,
+    config/virtual_host,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php,
+    tests/api/functional/ApiTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    tests/site/test.pl, web/media/css/main.css,
+    web/media/images/beta.png, web/media/js/main.js: removed some todo
+    + some fixes
 
-2012-08-13
-    [9012e3c] removed some todos about i18n inside template::toolkit (by Fabio
-              Cicerchia <info@fabiocicerchia.it>)
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 24 Aug 2012 20:46:07 +0100
 
-2012-08-07
-    [e464222] removed some todos (by Fabio Cicerchia <info@fabiocicerchia.it>)
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-08-02
-    [e222263] added some todos :| (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [313cd4f] removed some todo (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [d56d4d6] first draft of travis ci conf (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
+  * apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/logic/controller.php, apps/api/view/_header.twig,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/root.twig, apps/api/view/skill.twig,
+    apps/site/logic/class.pl, apps/site/view/_education.tmpl,
+    apps/site/view/_experience.tmpl, apps/site/view/_head.tmpl,
+    apps/site/view/_header.tmpl, apps/site/view/_js.tmpl,
+    apps/site/view/_language.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/_summary.tmpl, apps/site/view/atom.tmpl,
+    apps/site/view/html5.tmpl, apps/site/view/rss091.tmpl,
+    apps/site/view/rss092.tmpl, apps/site/view/rss1.tmpl,
+    apps/site/view/rss2.tmpl, bin/console/common.sh,
+    bin/console/config.sh, bin/console/modules/config.sh,
+    bin/console/modules/deploy.sh, bin/console/modules/docs.sh,
+    bin/console/modules/install.sh, bin/console/modules/run.sh,
+    bin/console/modules/sca.sh, bin/console/modules/tests.sh,
+    composer.lock, config/phpunit.xml,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php, tests/api/bootstrap.php,
+    tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    tests/site/test.pl, web/api.php: again refactoring, removed some
+    todo
 
-2012-07-31
-    [95d1aa5] massive refactoring and cleaning (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 22 Aug 2012 08:03:04 +0100
 
-2012-07-29
-    [f85cc17] added static sitemap.xml (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
-    [14133cb] refactoring api (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [d51a875] added composer.phar & remove silex.phar (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-07-28
-    [6ce7e1b] Merge branch 'feature/script_deploy' into develop (by Fabio
-              Cicerchia <info@fabiocicerchia.it>)
-    [dd5d096] other fixes (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [877e194] closed issue #33 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #33 [Script] Create a script to deploy the application
+  * CHANGELOG, README.md, TODO, apps/api/logic/app.php,
+    apps/api/logic/bootstrap.php, apps/api/logic/controller.php,
+    apps/api/view/_header.twig,
+    apps/api/view/api-definition-syntax.twig,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/root.twig, apps/api/view/skill.twig,
+    apps/script/benchmark.py, apps/script/check_accessibility.py,
+    apps/script/check_validation.py, apps/script/common.py,
+    apps/site/locale/it_IT/LC_MESSAGES/messages.mo,
+    apps/site/locale/it_IT/LC_MESSAGES/messages.po,
+    apps/site/locale/messages.pot, apps/site/logic/class.pl,
+    apps/site/view/_education.tmpl, apps/site/view/_experience.tmpl,
+    apps/site/view/_head.tmpl, apps/site/view/_header.tmpl,
+    apps/site/view/_js.tmpl, apps/site/view/_language.tmpl,
+    apps/site/view/_skill.tmpl, apps/site/view/_summary.tmpl,
+    apps/site/view/atom.tmpl, apps/site/view/html5.tmpl,
+    apps/site/view/rss091.tmpl, apps/site/view/rss092.tmpl,
+    apps/site/view/rss1.tmpl, apps/site/view/rss2.tmpl,
+    bin/console/common.sh, bin/console/console.sh,
+    bin/console/modules/config.sh, bin/console/modules/deploy.sh,
+    bin/console/modules/docs.sh, bin/console/modules/install.sh,
+    bin/console/modules/run.sh, bin/console/modules/sca.sh,
+    bin/console/modules/tests.sh, bin/critic.pl, composer.lock,
+    composer.phar, config/deploy.rb, config/phpunit.xml,
+    config/system/.perltidyrc, config/virtual_host,
+    db/mongo-curriculum.js, lib/PHPCS/ruleset.xml,
+    lib/vendor/.gitignore,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php, phpdoc.xml,
+    phpunit.xml, tests/api/bootstrap.php,
+    tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    tests/site/test.pl, virtual_host, web/api.php, web/index.pl,
+    web/media/css/main.css, web/media/images/flag_icons/gif/.DS_Store,
+    web/media/images/flag_icons/gif/ad.gif,
+    web/media/images/flag_icons/gif/ae.gif,
+    web/media/images/flag_icons/gif/af.gif,
+    web/media/images/flag_icons/gif/ag.gif,
+    web/media/images/flag_icons/gif/ai.gif,
+    web/media/images/flag_icons/gif/al.gif,
+    web/media/images/flag_icons/gif/am.gif,
+    web/media/images/flag_icons/gif/an.gif,
+    web/media/images/flag_icons/gif/ao.gif,
+    web/media/images/flag_icons/gif/ar.gif,
+    web/media/images/flag_icons/gif/as.gif,
+    web/media/images/flag_icons/gif/at.gif,
+    web/media/images/flag_icons/gif/au.gif,
+    web/media/images/flag_icons/gif/aw.gif,
+    web/media/images/flag_icons/gif/ax.gif,
+    web/media/images/flag_icons/gif/az.gif,
+    web/media/images/flag_icons/gif/ba.gif,
+    web/media/images/flag_icons/gif/bb.gif,
+    web/media/images/flag_icons/gif/bd.gif,
+    web/media/images/flag_icons/gif/be.gif,
+    web/media/images/flag_icons/gif/bf.gif,
+    web/media/images/flag_icons/gif/bg.gif,
+    web/media/images/flag_icons/gif/bh.gif,
+    web/media/images/flag_icons/gif/bi.gif,
+    web/media/images/flag_icons/gif/bj.gif,
+    web/media/images/flag_icons/gif/bm.gif,
+    web/media/images/flag_icons/gif/bn.gif,
+    web/media/images/flag_icons/gif/bo.gif,
+    web/media/images/flag_icons/gif/br.gif,
+    web/media/images/flag_icons/gif/bs.gif,
+    web/media/images/flag_icons/gif/bt.gif,
+    web/media/images/flag_icons/gif/bv.gif,
+    web/media/images/flag_icons/gif/bw.gif,
+    web/media/images/flag_icons/gif/by.gif,
+    web/media/images/flag_icons/gif/bz.gif,
+    web/media/images/flag_icons/gif/ca.gif,
+    web/media/images/flag_icons/gif/catalonia.gif,
+    web/media/images/flag_icons/gif/cc.gif,
+    web/media/images/flag_icons/gif/cd.gif,
+    web/media/images/flag_icons/gif/cf.gif,
+    web/media/images/flag_icons/gif/cg.gif,
+    web/media/images/flag_icons/gif/ch.gif,
+    web/media/images/flag_icons/gif/ci.gif,
+    web/media/images/flag_icons/gif/ck.gif,
+    web/media/images/flag_icons/gif/cl.gif,
+    web/media/images/flag_icons/gif/cm.gif,
+    web/media/images/flag_icons/gif/cn.gif,
+    web/media/images/flag_icons/gif/co.gif,
+    web/media/images/flag_icons/gif/cr.gif,
+    web/media/images/flag_icons/gif/cs.gif,
+    web/media/images/flag_icons/gif/cu.gif,
+    web/media/images/flag_icons/gif/cv.gif,
+    web/media/images/flag_icons/gif/cx.gif,
+    web/media/images/flag_icons/gif/cy.gif,
+    web/media/images/flag_icons/gif/cz.gif,
+    web/media/images/flag_icons/gif/de.gif,
+    web/media/images/flag_icons/gif/dj.gif,
+    web/media/images/flag_icons/gif/dk.gif,
+    web/media/images/flag_icons/gif/dm.gif,
+    web/media/images/flag_icons/gif/do.gif,
+    web/media/images/flag_icons/gif/dz.gif,
+    web/media/images/flag_icons/gif/ec.gif,
+    web/media/images/flag_icons/gif/ee.gif,
+    web/media/images/flag_icons/gif/eg.gif,
+    web/media/images/flag_icons/gif/eh.gif,
+    web/media/images/flag_icons/gif/en.gif,
+    web/media/images/flag_icons/gif/england.gif,
+    web/media/images/flag_icons/gif/er.gif,
+    web/media/images/flag_icons/gif/es.gif,
+    web/media/images/flag_icons/gif/et.gif,
+    web/media/images/flag_icons/gif/europeanunion.gif,
+    web/media/images/flag_icons/gif/fam.gif,
+    web/media/images/flag_icons/gif/fi.gif,
+    web/media/images/flag_icons/gif/fj.gif,
+    web/media/images/flag_icons/gif/fk.gif,
+    web/media/images/flag_icons/gif/fm.gif,
+    web/media/images/flag_icons/gif/fo.gif,
+    web/media/images/flag_icons/gif/fr.gif,
+    web/media/images/flag_icons/gif/ga.gif,
+    web/media/images/flag_icons/gif/gb.gif,
+    web/media/images/flag_icons/gif/gd.gif,
+    web/media/images/flag_icons/gif/ge.gif,
+    web/media/images/flag_icons/gif/gf.gif,
+    web/media/images/flag_icons/gif/gh.gif,
+    web/media/images/flag_icons/gif/gi.gif,
+    web/media/images/flag_icons/gif/gl.gif,
+    web/media/images/flag_icons/gif/gm.gif,
+    web/media/images/flag_icons/gif/gn.gif,
+    web/media/images/flag_icons/gif/gp.gif,
+    web/media/images/flag_icons/gif/gq.gif,
+    web/media/images/flag_icons/gif/gr.gif,
+    web/media/images/flag_icons/gif/gs.gif,
+    web/media/images/flag_icons/gif/gt.gif,
+    web/media/images/flag_icons/gif/gu.gif,
+    web/media/images/flag_icons/gif/gw.gif,
+    web/media/images/flag_icons/gif/gy.gif,
+    web/media/images/flag_icons/gif/hk.gif,
+    web/media/images/flag_icons/gif/hm.gif,
+    web/media/images/flag_icons/gif/hn.gif,
+    web/media/images/flag_icons/gif/hr.gif,
+    web/media/images/flag_icons/gif/ht.gif,
+    web/media/images/flag_icons/gif/hu.gif,
+    web/media/images/flag_icons/gif/id.gif,
+    web/media/images/flag_icons/gif/ie.gif,
+    web/media/images/flag_icons/gif/il.gif,
+    web/media/images/flag_icons/gif/in.gif,
+    web/media/images/flag_icons/gif/io.gif,
+    web/media/images/flag_icons/gif/iq.gif,
+    web/media/images/flag_icons/gif/ir.gif,
+    web/media/images/flag_icons/gif/is.gif,
+    web/media/images/flag_icons/gif/it.gif,
+    web/media/images/flag_icons/gif/jm.gif,
+    web/media/images/flag_icons/gif/jo.gif,
+    web/media/images/flag_icons/gif/jp.gif,
+    web/media/images/flag_icons/gif/ke.gif,
+    web/media/images/flag_icons/gif/kg.gif,
+    web/media/images/flag_icons/gif/kh.gif,
+    web/media/images/flag_icons/gif/ki.gif,
+    web/media/images/flag_icons/gif/km.gif,
+    web/media/images/flag_icons/gif/kn.gif,
+    web/media/images/flag_icons/gif/kp.gif,
+    web/media/images/flag_icons/gif/kr.gif,
+    web/media/images/flag_icons/gif/kw.gif,
+    web/media/images/flag_icons/gif/ky.gif,
+    web/media/images/flag_icons/gif/kz.gif,
+    web/media/images/flag_icons/gif/la.gif,
+    web/media/images/flag_icons/gif/lb.gif,
+    web/media/images/flag_icons/gif/lc.gif,
+    web/media/images/flag_icons/gif/li.gif,
+    web/media/images/flag_icons/gif/lk.gif,
+    web/media/images/flag_icons/gif/lr.gif,
+    web/media/images/flag_icons/gif/ls.gif,
+    web/media/images/flag_icons/gif/lt.gif,
+    web/media/images/flag_icons/gif/lu.gif,
+    web/media/images/flag_icons/gif/lv.gif,
+    web/media/images/flag_icons/gif/ly.gif,
+    web/media/images/flag_icons/gif/ma.gif,
+    web/media/images/flag_icons/gif/mc.gif,
+    web/media/images/flag_icons/gif/md.gif,
+    web/media/images/flag_icons/gif/me.gif,
+    web/media/images/flag_icons/gif/mg.gif,
+    web/media/images/flag_icons/gif/mh.gif,
+    web/media/images/flag_icons/gif/mk.gif,
+    web/media/images/flag_icons/gif/ml.gif,
+    web/media/images/flag_icons/gif/mm.gif,
+    web/media/images/flag_icons/gif/mn.gif,
+    web/media/images/flag_icons/gif/mo.gif,
+    web/media/images/flag_icons/gif/mp.gif,
+    web/media/images/flag_icons/gif/mq.gif,
+    web/media/images/flag_icons/gif/mr.gif,
+    web/media/images/flag_icons/gif/ms.gif,
+    web/media/images/flag_icons/gif/mt.gif,
+    web/media/images/flag_icons/gif/mu.gif,
+    web/media/images/flag_icons/gif/mv.gif,
+    web/media/images/flag_icons/gif/mw.gif,
+    web/media/images/flag_icons/gif/mx.gif,
+    web/media/images/flag_icons/gif/my.gif,
+    web/media/images/flag_icons/gif/mz.gif,
+    web/media/images/flag_icons/gif/na.gif,
+    web/media/images/flag_icons/gif/nc.gif,
+    web/media/images/flag_icons/gif/ne.gif,
+    web/media/images/flag_icons/gif/nf.gif,
+    web/media/images/flag_icons/gif/ng.gif,
+    web/media/images/flag_icons/gif/ni.gif,
+    web/media/images/flag_icons/gif/nl.gif,
+    web/media/images/flag_icons/gif/no.gif,
+    web/media/images/flag_icons/gif/np.gif,
+    web/media/images/flag_icons/gif/nr.gif,
+    web/media/images/flag_icons/gif/nu.gif,
+    web/media/images/flag_icons/gif/nz.gif,
+    web/media/images/flag_icons/gif/om.gif,
+    web/media/images/flag_icons/gif/pa.gif,
+    web/media/images/flag_icons/gif/pe.gif,
+    web/media/images/flag_icons/gif/pf.gif,
+    web/media/images/flag_icons/gif/pg.gif,
+    web/media/images/flag_icons/gif/ph.gif,
+    web/media/images/flag_icons/gif/pk.gif,
+    web/media/images/flag_icons/gif/pl.gif,
+    web/media/images/flag_icons/gif/pm.gif,
+    web/media/images/flag_icons/gif/pn.gif,
+    web/media/images/flag_icons/gif/pr.gif,
+    web/media/images/flag_icons/gif/ps.gif,
+    web/media/images/flag_icons/gif/pt.gif,
+    web/media/images/flag_icons/gif/pw.gif,
+    web/media/images/flag_icons/gif/py.gif,
+    web/media/images/flag_icons/gif/qa.gif,
+    web/media/images/flag_icons/gif/re.gif,
+    web/media/images/flag_icons/gif/ro.gif,
+    web/media/images/flag_icons/gif/rs.gif,
+    web/media/images/flag_icons/gif/ru.gif,
+    web/media/images/flag_icons/gif/rw.gif,
+    web/media/images/flag_icons/gif/sa.gif,
+    web/media/images/flag_icons/gif/sb.gif,
+    web/media/images/flag_icons/gif/sc.gif,
+    web/media/images/flag_icons/gif/scotland.gif,
+    web/media/images/flag_icons/gif/sd.gif,
+    web/media/images/flag_icons/gif/se.gif,
+    web/media/images/flag_icons/gif/sg.gif,
+    web/media/images/flag_icons/gif/sh.gif,
+    web/media/images/flag_icons/gif/si.gif,
+    web/media/images/flag_icons/gif/sj.gif,
+    web/media/images/flag_icons/gif/sk.gif,
+    web/media/images/flag_icons/gif/sl.gif,
+    web/media/images/flag_icons/gif/sm.gif,
+    web/media/images/flag_icons/gif/sn.gif,
+    web/media/images/flag_icons/gif/so.gif,
+    web/media/images/flag_icons/gif/sr.gif,
+    web/media/images/flag_icons/gif/st.gif,
+    web/media/images/flag_icons/gif/sv.gif,
+    web/media/images/flag_icons/gif/sy.gif,
+    web/media/images/flag_icons/gif/sz.gif,
+    web/media/images/flag_icons/gif/tc.gif,
+    web/media/images/flag_icons/gif/td.gif,
+    web/media/images/flag_icons/gif/tf.gif,
+    web/media/images/flag_icons/gif/tg.gif,
+    web/media/images/flag_icons/gif/th.gif,
+    web/media/images/flag_icons/gif/tj.gif,
+    web/media/images/flag_icons/gif/tk.gif,
+    web/media/images/flag_icons/gif/tl.gif,
+    web/media/images/flag_icons/gif/tm.gif,
+    web/media/images/flag_icons/gif/tn.gif,
+    web/media/images/flag_icons/gif/to.gif,
+    web/media/images/flag_icons/gif/tr.gif,
+    web/media/images/flag_icons/gif/tt.gif,
+    web/media/images/flag_icons/gif/tv.gif,
+    web/media/images/flag_icons/gif/tw.gif,
+    web/media/images/flag_icons/gif/tz.gif,
+    web/media/images/flag_icons/gif/ua.gif,
+    web/media/images/flag_icons/gif/ug.gif,
+    web/media/images/flag_icons/gif/um.gif,
+    web/media/images/flag_icons/gif/us.gif,
+    web/media/images/flag_icons/gif/uy.gif,
+    web/media/images/flag_icons/gif/uz.gif,
+    web/media/images/flag_icons/gif/va.gif,
+    web/media/images/flag_icons/gif/vc.gif,
+    web/media/images/flag_icons/gif/ve.gif,
+    web/media/images/flag_icons/gif/vg.gif,
+    web/media/images/flag_icons/gif/vi.gif,
+    web/media/images/flag_icons/gif/vn.gif,
+    web/media/images/flag_icons/gif/vu.gif,
+    web/media/images/flag_icons/gif/wales.gif,
+    web/media/images/flag_icons/gif/wf.gif,
+    web/media/images/flag_icons/gif/ws.gif,
+    web/media/images/flag_icons/gif/ye.gif,
+    web/media/images/flag_icons/gif/yt.gif,
+    web/media/images/flag_icons/gif/za.gif,
+    web/media/images/flag_icons/gif/zm.gif,
+    web/media/images/flag_icons/gif/zw.gif,
+    web/media/images/flag_icons/png/.DS_Store,
+    web/media/images/flag_icons/png/ad.png,
+    web/media/images/flag_icons/png/ae.png,
+    web/media/images/flag_icons/png/af.png,
+    web/media/images/flag_icons/png/ag.png,
+    web/media/images/flag_icons/png/ai.png,
+    web/media/images/flag_icons/png/al.png,
+    web/media/images/flag_icons/png/am.png,
+    web/media/images/flag_icons/png/an.png,
+    web/media/images/flag_icons/png/ao.png,
+    web/media/images/flag_icons/png/ar.png,
+    web/media/images/flag_icons/png/as.png,
+    web/media/images/flag_icons/png/at.png,
+    web/media/images/flag_icons/png/au.png,
+    web/media/images/flag_icons/png/aw.png,
+    web/media/images/flag_icons/png/ax.png,
+    web/media/images/flag_icons/png/az.png,
+    web/media/images/flag_icons/png/ba.png,
+    web/media/images/flag_icons/png/bb.png,
+    web/media/images/flag_icons/png/bd.png,
+    web/media/images/flag_icons/png/be.png,
+    web/media/images/flag_icons/png/bf.png,
+    web/media/images/flag_icons/png/bg.png,
+    web/media/images/flag_icons/png/bh.png,
+    web/media/images/flag_icons/png/bi.png,
+    web/media/images/flag_icons/png/bj.png,
+    web/media/images/flag_icons/png/bm.png,
+    web/media/images/flag_icons/png/bn.png,
+    web/media/images/flag_icons/png/bo.png,
+    web/media/images/flag_icons/png/br.png,
+    web/media/images/flag_icons/png/bs.png,
+    web/media/images/flag_icons/png/bt.png,
+    web/media/images/flag_icons/png/bv.png,
+    web/media/images/flag_icons/png/bw.png,
+    web/media/images/flag_icons/png/by.png,
+    web/media/images/flag_icons/png/bz.png,
+    web/media/images/flag_icons/png/ca.png,
+    web/media/images/flag_icons/png/catalonia.png,
+    web/media/images/flag_icons/png/cc.png,
+    web/media/images/flag_icons/png/cd.png,
+    web/media/images/flag_icons/png/cf.png,
+    web/media/images/flag_icons/png/cg.png,
+    web/media/images/flag_icons/png/ch.png,
+    web/media/images/flag_icons/png/ci.png,
+    web/media/images/flag_icons/png/ck.png,
+    web/media/images/flag_icons/png/cl.png,
+    web/media/images/flag_icons/png/cm.png,
+    web/media/images/flag_icons/png/cn.png,
+    web/media/images/flag_icons/png/co.png,
+    web/media/images/flag_icons/png/cr.png,
+    web/media/images/flag_icons/png/cs.png,
+    web/media/images/flag_icons/png/cu.png,
+    web/media/images/flag_icons/png/cv.png,
+    web/media/images/flag_icons/png/cx.png,
+    web/media/images/flag_icons/png/cy.png,
+    web/media/images/flag_icons/png/cz.png,
+    web/media/images/flag_icons/png/de.png,
+    web/media/images/flag_icons/png/dj.png,
+    web/media/images/flag_icons/png/dk.png,
+    web/media/images/flag_icons/png/dm.png,
+    web/media/images/flag_icons/png/do.png,
+    web/media/images/flag_icons/png/dz.png,
+    web/media/images/flag_icons/png/ec.png,
+    web/media/images/flag_icons/png/ee.png,
+    web/media/images/flag_icons/png/eg.png,
+    web/media/images/flag_icons/png/eh.png,
+    web/media/images/flag_icons/png/en.png,
+    web/media/images/flag_icons/png/england.png,
+    web/media/images/flag_icons/png/er.png,
+    web/media/images/flag_icons/png/es.png,
+    web/media/images/flag_icons/png/et.png,
+    web/media/images/flag_icons/png/europeanunion.png,
+    web/media/images/flag_icons/png/fam.png,
+    web/media/images/flag_icons/png/fi.png,
+    web/media/images/flag_icons/png/fj.png,
+    web/media/images/flag_icons/png/fk.png,
+    web/media/images/flag_icons/png/fm.png,
+    web/media/images/flag_icons/png/fo.png,
+    web/media/images/flag_icons/png/fr.png,
+    web/media/images/flag_icons/png/ga.png,
+    web/media/images/flag_icons/png/gb.png,
+    web/media/images/flag_icons/png/gd.png,
+    web/media/images/flag_icons/png/ge.png,
+    web/media/images/flag_icons/png/gf.png,
+    web/media/images/flag_icons/png/gh.png,
+    web/media/images/flag_icons/png/gi.png,
+    web/media/images/flag_icons/png/gl.png,
+    web/media/images/flag_icons/png/gm.png,
+    web/media/images/flag_icons/png/gn.png,
+    web/media/images/flag_icons/png/gp.png,
+    web/media/images/flag_icons/png/gq.png,
+    web/media/images/flag_icons/png/gr.png,
+    web/media/images/flag_icons/png/gs.png,
+    web/media/images/flag_icons/png/gt.png,
+    web/media/images/flag_icons/png/gu.png,
+    web/media/images/flag_icons/png/gw.png,
+    web/media/images/flag_icons/png/gy.png,
+    web/media/images/flag_icons/png/hk.png,
+    web/media/images/flag_icons/png/hm.png,
+    web/media/images/flag_icons/png/hn.png,
+    web/media/images/flag_icons/png/hr.png,
+    web/media/images/flag_icons/png/ht.png,
+    web/media/images/flag_icons/png/hu.png,
+    web/media/images/flag_icons/png/id.png,
+    web/media/images/flag_icons/png/ie.png,
+    web/media/images/flag_icons/png/il.png,
+    web/media/images/flag_icons/png/in.png,
+    web/media/images/flag_icons/png/io.png,
+    web/media/images/flag_icons/png/iq.png,
+    web/media/images/flag_icons/png/ir.png,
+    web/media/images/flag_icons/png/is.png,
+    web/media/images/flag_icons/png/it.png,
+    web/media/images/flag_icons/png/jm.png,
+    web/media/images/flag_icons/png/jo.png,
+    web/media/images/flag_icons/png/jp.png,
+    web/media/images/flag_icons/png/ke.png,
+    web/media/images/flag_icons/png/kg.png,
+    web/media/images/flag_icons/png/kh.png,
+    web/media/images/flag_icons/png/ki.png,
+    web/media/images/flag_icons/png/km.png,
+    web/media/images/flag_icons/png/kn.png,
+    web/media/images/flag_icons/png/kp.png,
+    web/media/images/flag_icons/png/kr.png,
+    web/media/images/flag_icons/png/kw.png,
+    web/media/images/flag_icons/png/ky.png,
+    web/media/images/flag_icons/png/kz.png,
+    web/media/images/flag_icons/png/la.png,
+    web/media/images/flag_icons/png/lb.png,
+    web/media/images/flag_icons/png/lc.png,
+    web/media/images/flag_icons/png/li.png,
+    web/media/images/flag_icons/png/lk.png,
+    web/media/images/flag_icons/png/lr.png,
+    web/media/images/flag_icons/png/ls.png,
+    web/media/images/flag_icons/png/lt.png,
+    web/media/images/flag_icons/png/lu.png,
+    web/media/images/flag_icons/png/lv.png,
+    web/media/images/flag_icons/png/ly.png,
+    web/media/images/flag_icons/png/ma.png,
+    web/media/images/flag_icons/png/mc.png,
+    web/media/images/flag_icons/png/md.png,
+    web/media/images/flag_icons/png/me.png,
+    web/media/images/flag_icons/png/mg.png,
+    web/media/images/flag_icons/png/mh.png,
+    web/media/images/flag_icons/png/mk.png,
+    web/media/images/flag_icons/png/ml.png,
+    web/media/images/flag_icons/png/mm.png,
+    web/media/images/flag_icons/png/mn.png,
+    web/media/images/flag_icons/png/mo.png,
+    web/media/images/flag_icons/png/mp.png,
+    web/media/images/flag_icons/png/mq.png,
+    web/media/images/flag_icons/png/mr.png,
+    web/media/images/flag_icons/png/ms.png,
+    web/media/images/flag_icons/png/mt.png,
+    web/media/images/flag_icons/png/mu.png,
+    web/media/images/flag_icons/png/mv.png,
+    web/media/images/flag_icons/png/mw.png,
+    web/media/images/flag_icons/png/mx.png,
+    web/media/images/flag_icons/png/my.png,
+    web/media/images/flag_icons/png/mz.png,
+    web/media/images/flag_icons/png/na.png,
+    web/media/images/flag_icons/png/nc.png,
+    web/media/images/flag_icons/png/ne.png,
+    web/media/images/flag_icons/png/nf.png,
+    web/media/images/flag_icons/png/ng.png,
+    web/media/images/flag_icons/png/ni.png,
+    web/media/images/flag_icons/png/nl.png,
+    web/media/images/flag_icons/png/no.png,
+    web/media/images/flag_icons/png/np.png,
+    web/media/images/flag_icons/png/nr.png,
+    web/media/images/flag_icons/png/nu.png,
+    web/media/images/flag_icons/png/nz.png,
+    web/media/images/flag_icons/png/om.png,
+    web/media/images/flag_icons/png/pa.png,
+    web/media/images/flag_icons/png/pe.png,
+    web/media/images/flag_icons/png/pf.png,
+    web/media/images/flag_icons/png/pg.png,
+    web/media/images/flag_icons/png/ph.png,
+    web/media/images/flag_icons/png/pk.png,
+    web/media/images/flag_icons/png/pl.png,
+    web/media/images/flag_icons/png/pm.png,
+    web/media/images/flag_icons/png/pn.png,
+    web/media/images/flag_icons/png/pr.png,
+    web/media/images/flag_icons/png/ps.png,
+    web/media/images/flag_icons/png/pt.png,
+    web/media/images/flag_icons/png/pw.png,
+    web/media/images/flag_icons/png/py.png,
+    web/media/images/flag_icons/png/qa.png,
+    web/media/images/flag_icons/png/re.png,
+    web/media/images/flag_icons/png/ro.png,
+    web/media/images/flag_icons/png/rs.png,
+    web/media/images/flag_icons/png/ru.png,
+    web/media/images/flag_icons/png/rw.png,
+    web/media/images/flag_icons/png/sa.png,
+    web/media/images/flag_icons/png/sb.png,
+    web/media/images/flag_icons/png/sc.png,
+    web/media/images/flag_icons/png/scotland.png,
+    web/media/images/flag_icons/png/sd.png,
+    web/media/images/flag_icons/png/se.png,
+    web/media/images/flag_icons/png/sg.png,
+    web/media/images/flag_icons/png/sh.png,
+    web/media/images/flag_icons/png/si.png,
+    web/media/images/flag_icons/png/sj.png,
+    web/media/images/flag_icons/png/sk.png,
+    web/media/images/flag_icons/png/sl.png,
+    web/media/images/flag_icons/png/sm.png,
+    web/media/images/flag_icons/png/sn.png,
+    web/media/images/flag_icons/png/so.png,
+    web/media/images/flag_icons/png/sr.png,
+    web/media/images/flag_icons/png/st.png,
+    web/media/images/flag_icons/png/sv.png,
+    web/media/images/flag_icons/png/sy.png,
+    web/media/images/flag_icons/png/sz.png,
+    web/media/images/flag_icons/png/tc.png,
+    web/media/images/flag_icons/png/td.png,
+    web/media/images/flag_icons/png/tf.png,
+    web/media/images/flag_icons/png/tg.png,
+    web/media/images/flag_icons/png/th.png,
+    web/media/images/flag_icons/png/tj.png,
+    web/media/images/flag_icons/png/tk.png,
+    web/media/images/flag_icons/png/tl.png,
+    web/media/images/flag_icons/png/tm.png,
+    web/media/images/flag_icons/png/tn.png,
+    web/media/images/flag_icons/png/to.png,
+    web/media/images/flag_icons/png/tr.png,
+    web/media/images/flag_icons/png/tt.png,
+    web/media/images/flag_icons/png/tv.png,
+    web/media/images/flag_icons/png/tw.png,
+    web/media/images/flag_icons/png/tz.png,
+    web/media/images/flag_icons/png/ua.png,
+    web/media/images/flag_icons/png/ug.png,
+    web/media/images/flag_icons/png/um.png,
+    web/media/images/flag_icons/png/us.png,
+    web/media/images/flag_icons/png/uy.png,
+    web/media/images/flag_icons/png/uz.png,
+    web/media/images/flag_icons/png/va.png,
+    web/media/images/flag_icons/png/vc.png,
+    web/media/images/flag_icons/png/ve.png,
+    web/media/images/flag_icons/png/vg.png,
+    web/media/images/flag_icons/png/vi.png,
+    web/media/images/flag_icons/png/vn.png,
+    web/media/images/flag_icons/png/vu.png,
+    web/media/images/flag_icons/png/wales.png,
+    web/media/images/flag_icons/png/wf.png,
+    web/media/images/flag_icons/png/ws.png,
+    web/media/images/flag_icons/png/ye.png,
+    web/media/images/flag_icons/png/yt.png,
+    web/media/images/flag_icons/png/za.png,
+    web/media/images/flag_icons/png/zm.png,
+    web/media/images/flag_icons/png/zw.png,
+    web/media/images/flag_icons/readme.txt, web/media/images/logo.png,
+    web/media/images/logo.svg, web/media/images/logo_new.png,
+    web/media/js/main.js, web/sitemap.xml: massive refactoring, remove
+    several todo, added a lot of new ones
 
-2012-07-25
-    [d96e547] some fix (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [3dc9a2c] some minor changes (by Fabio Cicerchia <info@fabiocicerchia.it>)
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Tue, 21 Aug 2012 08:11:36 +0100
 
-2012-07-24
-    [59157fe] refactoring & cleanup (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [a433d2c] added information (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [4f9a40e] closed #30 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #30 [Script] Create a script for the benchmarking
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-07-20
-    [8d2c687] added a console shell (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [d83a92e] cleaning (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [ddaf81a] closed #31 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #31 [Script] Create a script to check the web accessibility
+  * apps/api/logic/controller.php, apps/api/view/skill.twig,
+    apps/script/benchmark.py, apps/script/check_accessibility.py,
+    apps/script/check_validation.py, apps/script/common.py,
+    apps/site/locale/it_IT/LC_MESSAGES/messages.po,
+    apps/site/locale/messages.pot, apps/site/logic/class.pl,
+    apps/site/view/_head.tmpl, apps/site/view/_skill.tmpl,
+    bin/console/common.sh, bin/console/modules/install.sh,
+    bin/console/modules/tests.sh, lib/vendor/.gitignore,
+    .../lib/FabioCicerchia/Api/Utils.php, tests/site/test.pl: removed
+    some other todo
 
-2012-07-18
-    [a64c7c5] closed issue #32 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #32 [Script] Create a script to check the web validation
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Thu, 16 Aug 2012 08:00:03 +0100
 
-2012-07-08
-    [8ae77ba] closed #16 #29 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #16 [Site] Add code documentation
-              Ref: #29 [Site] Generate the documentation
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-07-06
-    [3313362] another massive refactoring (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
+  * CHANGELOG, README.md, TODO,
+    apps/site/locale/it_IT/LC_MESSAGES/messages.mo,
+    apps/site/locale/it_IT/LC_MESSAGES/messages.po,
+    apps/site/locale/messages.pot, apps/site/logic/class.pl,
+    apps/site/view/_education.tmpl, apps/site/view/_experience.tmpl,
+    apps/site/view/_header.tmpl, apps/site/view/_js.tmpl,
+    apps/site/view/_language.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/_summary.tmpl, apps/site/view/atom.tmpl,
+    apps/site/view/html5.tmpl, apps/site/view/rss091.tmpl,
+    apps/site/view/rss092.tmpl, apps/site/view/rss1.tmpl,
+    apps/site/view/rss2.tmpl, apps/site/view/vcard.tmpl,
+    bin/console/modules/install.sh, lib/vendor/.gitignore,
+    tests/site/test.pl, virtual_host, web/humans.txt,
+    web/media/css/main.css: removed some todos about i18n inside
+    template::toolkit
 
-2012-07-03
-    [5788563] massive refactoring (by Fabio Cicerchia <info@fabiocicerchia.it>)
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Mon, 13 Aug 2012 08:28:03 +0100
 
-2012-07-02
-    [2a15688] refactoring (by Fabio Cicerchia <info@fabiocicerchia.it>)
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-07-01
-    [d64418d] closed #28, #18, #17 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #28, [Site] Write the vCard template
-              Ref: #18, [Site] Write the RSS template
-              Ref: #17 [Site] Write the Atom template
+  * TODO, apps/site/logic/class.pl, apps/site/view/_head.tmpl,
+    apps/site/view/_js.tmpl, apps/site/view/atom.tmpl,
+    bin/console/common.sh, bin/console/console.sh,
+    bin/console/modules/install.sh, bin/console/modules/run.sh,
+    bin/console/modules/tests.sh, db/mongo-curriculum.js,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php, virtual_host: removed some
+    todos
 
-2012-06-29
-    [9cc149e] added the files for stream (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
-    [6b321f5] closed #21 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #21 [Site] Implement a cache system
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Tue, 7 Aug 2012 08:14:40 +0100
 
-2012-06-27
-    [aa64b93] closed #24 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #24 [Site] Generate the reports for the code
-    [9a4fbcb] some minor changes (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [05752ef] removed useless file, for now (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
-    [a108f0f] some refactoring and fixing. closed #14 #15 #23 #27 (by Fabio
-              Cicerchia <info@fabiocicerchia.it>)
-              Ref: #14 [Site] Adapt to use dynamical data
-              Ref: #15 [Site] Uniform to use HTML5 or XHTML
-              Ref: #23 [Site] Create the test suite
-              Ref: #27 [Site] Implement the mechanism to provide content
-              translated
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-06-24
-    [a219549] changes to css + draft test suite + refactoring & fixing (by Fabio
-              Cicerchia <info@fabiocicerchia.it>)
+  * .travis.yml, apps/api/view/education.twig,
+    apps/api/view/experience.twig, apps/api/view/information.twig,
+    apps/api/view/skill.twig, apps/script/benchmark.py,
+    apps/script/check_accessibility.py,
+    apps/script/check_validation.py, apps/script/common.py,
+    apps/site/logic/class.pl, apps/site/view/_education.tmpl,
+    apps/site/view/_experience.tmpl, apps/site/view/_head.tmpl,
+    apps/site/view/_header.tmpl, apps/site/view/_js.tmpl,
+    apps/site/view/_language.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/_summary.tmpl, apps/site/view/atom.tmpl,
+    apps/site/view/html5.tmpl, apps/site/view/rss091.tmpl,
+    apps/site/view/rss092.tmpl, apps/site/view/rss1.tmpl,
+    apps/site/view/rss2.tmpl, bin/console/common.sh,
+    bin/console/console.sh, bin/console/modules/install.sh,
+    bin/console/modules/run.sh, bin/console/modules/tests.sh,
+    bin/critic.pl, lib/PHPCS/ruleset.xml,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    tests/script/test.py, tests/site/test.pl, web/humans.txt,
+    web/media/css/main.css: added some todos :|
+  * CHANGELOG, README.md, TODO, apps/script/benchmark.py,
+    apps/script/common.py, apps/site/logic/class.pl,
+    bin/console/config.sh, bin/console/modules/docs.sh,
+    bin/console/modules/install.sh, docs/script/.gitignore,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php: removed some todo
 
-2012-06-22
-    [519c859] first draft of the web site section (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Thu, 2 Aug 2012 16:34:59 +0100
 
-2012-06-12
-    [23b3acc] some refactoring + closed issue #8 (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
-              Ref: #8 [API] Implement a cache system
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-06-09
-    [df5e2e6] fixed a wrong namespace for SPL + fix on language (by Fabio
-              Cicerchia <info@fabiocicerchia.it>)
+  * .travis.yml, apps/api/view/experience.twig,
+    apps/site/logic/class.pl, bin/console/common.sh,
+    bin/console/modules/install.sh, bin/console/modules/tests.sh,
+    composer.json, db/mongo-curriculum.js,
+    lib/vendor/Silex-Extensions, lib/vendor/Twig,
+    tests/api/functional/ApiTest.php: first draft of travis ci conf
+    changed language setting little fix little fix removed Twig
+    (duplicate) added branche added silent flags changed branches
+    changed branches changes cpan to cpanminus fixes fix on svn auth
+    some fixes disabled phpdepend disabled phpdepend disabled phpcb
+    disabled phpmb some fixes little fix with hardcoded value added
+    perlbrew perlbrew more verbose override perl under /usr/bin
+    override perl under /usr/bin forced override perl under /usr/bin
+    changed perl version fixes finally i can see the light...
+    hopefully disabled again some tasks added mongo import + fix on js
+    file fix to disable the mongodb installation disabled perlbrew
+    fixed path fixed broken test disable perl tests under travis added
+    @medium
+  * Capfile, README.md, TODO, apps/api/logic/app.php,
+    apps/api/logic/bootstrap.php, apps/api/logic/controller.php,
+    apps/script/benchmark.py, apps/script/check_accessibility.py,
+    apps/script/check_validation.py, apps/script/common.py,
+    apps/site/logic/class.pl, apps/site/view/_education.tmpl,
+    apps/site/view/_experience.tmpl, apps/site/view/_header.tmpl,
+    apps/site/view/_language.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/html5.tmpl, bin/console/common.sh,
+    bin/console/modules/sca.sh, composer.json,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php, phpunit.xml,
+    report/api/testdox/.gitignore, tests/api/bootstrap.php,
+    tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    tests/script/.gitignore, virtual_host, web/humans.txt,
+    web/media/css/main.css, web/media/js/main.js, web/sitemap.xml:
+    massive refactoring and cleaning
 
-2012-06-08
-    [8f9e12c] closed #9 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #9 [API] Implement the mechanism to provide content translated
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Tue, 31 Jul 2012 10:48:14 +0100
 
-2012-06-07
-    [35dda4a] closed #11 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #11 [API] Create the test suite
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-06-06
-    [b4210e4] some fixes due functional testing optimisation for #11 (by Fabio
-              Cicerchia <info@fabiocicerchia.it>)
-              Ref: #11 [API] Create the test suite
+  * CHANGELOG, README.md, web/sitemap.xml: added static sitemap.xml
+  * apps/api/logic/app.php, apps/api/logic/controller.php,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/StrategyInterface.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php,
+    tests/api/bootstrap.php, tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php: refactoring api
+  * .gitmodules, TODO, apps/api/logic/app.php,
+    apps/api/logic/bootstrap.php, apps/api/logic/controller.php,
+    apps/api/silex.phar, bin/console/common.sh, bin/console/config.sh,
+    composer.json, lib/PHPCS/ruleset.xml,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php,
+    lib/vendor/mongodb, tests/api/functional/ApiTest.php: added
+    composer.phar & remove silex.phar
 
-2012-06-02
-    [e143189] some fixes in the phpdoc blocks + remove unused interface. #7 (by
-              Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #7 [API] Optimise code
-    [7432fc0] closed #5 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #5 [DB] Insert translated data
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sun, 29 Jul 2012 10:19:22 +0100
 
-2012-06-01
-    [6a1df8c] changed the definition of the mimetype, some fixes on the code.
-              related to #7 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #7 [API] Optimise code
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-05-31
-    [b543776] closed #13 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #13 [API] Generate the reports for the code
-    [f3f9b0a] forgot to add a file for #7 (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
-              Ref: #7 [API] Optimise code
-    [3ec7411] closed #12 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #12 [API] Generate the documentation
-    [b1416ae] closed #4 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #4 [DB] Dump schema and data
-    [c638ce8] closed #7 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #7 [API] Optimise code
+  * README.md, bin/console/common.sh, bin/console/config.sh,
+    bin/console/console.sh, bin/console/modules/run.sh: other fixes
+  * Capfile, apps/script/deploy.py, bin/console/common.sh,
+    bin/console/modules/deploy.sh, bin/console/modules/install.sh,
+    config/deploy.rb, config/deploy/production.rb: closed issue #33
 
-2012-05-30
-    [2717eb0] some fixes and refactoring for issue #7 (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
-              Ref: #7 [API] Optimise code
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sat, 28 Jul 2012 23:03:08 +0100
 
-2012-05-29
-    [20a93e0] fixed #2 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #2 Customise and test the VirtualHost setting
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-05-28
-    [7529f3a] closed #10, some code-optimisation for #7 (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
-              Ref: #10, [API] Use the array short notation
-              Ref: #7 [API] Optimise code
-    [0ebf84e] closed #6 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #6 Implement the makefile
+  * bin/console/modules/install.sh, console: some fix
+  * CHANGELOG, README.md, TODO, bin/console/common.sh,
+    bin/console/config.sh, bin/console/console.sh,
+    bin/console/modules/install.sh: some minor changes
 
-2012-05-26
-    [2e07324] closes #1 (by Fabio Cicerchia <info@fabiocicerchia.it>)
-              Ref: #1 Install Apache 2.4
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 25 Jul 2012 19:19:03 +0100
 
-2012-05-19
-    [12d656d] added the service expression syntax + fixes on the code to use the
-              ses (by Fabio Cicerchia <info@fabiocicerchia.it>)
-    [d839d15] added comments + mini-refactoring (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-05-18
-    [cd0fde4] some fixes to adapt the code to the coding standard + refactoring
-              (by Fabio Cicerchia <info@fabiocicerchia.it>)
+  * CHANGELOG, Makefile, README.md, TODO,
+    apps/api/logic/bootstrap.php, apps/script/common.py,
+    apps/script/deploy.py, apps/script/generate_cache.py,
+    bin/console/common.sh, bin/console/modules/install.sh,
+    bin/console/modules/sca.sh, bin/console/modules/tests.sh:
+    refactoring & cleanup
+  * db/mongo-curriculum.js: added information
+  * apps/script/benchmark.py: closed #30
 
-2012-05-17
-    [18e26c4] some improvement to the API structure (by Fabio Cicerchia
-              <info@fabiocicerchia.it>)
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Tue, 24 Jul 2012 07:45:00 +0100
 
-2012-05-14
-    [c31422c] some structure improvement + first draft of the API (by Fabio
-              Cicerchia <info@fabiocicerchia.it>)
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
-2012-03-01
-    [4754d55] initial version (by Fabio Cicerchia <info@fabiocicerchia.it>)
+  * bin/console/common.sh, bin/console/config.sh,
+    bin/console/console.sh, bin/console/modules/config.sh,
+    bin/console/modules/docs.sh, bin/console/modules/install.sh,
+    bin/console/modules/run.sh, bin/console/modules/sca.sh,
+    bin/console/modules/tests.sh: added a console shell
+  * README.md, apps/script/.gitignore,
+    apps/script/check_validation.py, apps/script/common.py: cleaning
+  * apps/script/check_accessibility.py: closed #31
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 20 Jul 2012 07:23:40 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * CHANGELOG, TODO, apps/script/check_validation.py,
+    db/mongo-curriculum.js: closed issue #32
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 18 Jul 2012 07:50:45 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * Makefile, README.md, apps/site/logic/class.pl,
+    docs/site/.gitignore,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php: closed #16 #29
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sun, 8 Jul 2012 19:20:45 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * README.md, apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/logic/controller.php, apps/site/logic/class.pl,
+    apps/site/logic/controller.pl, apps/site/view/vcard.tmpl,
+    bin/critic.pl, db/mongo-curriculum.js, lib/PHPCS/ruleset.xml,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/StrategyInterface.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php, phpunit.xml,
+    tests/api/bootstrap.php, tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    tests/site/test.pl, web/api.php, web/index.pl: another massive
+    refactoring
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 6 Jul 2012 07:58:50 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * Makefile, README.md, apps/api/logic/bootstrap.php,
+    apps/api/logic/controller.php, apps/api/view/_header.twig,
+    apps/api/view/api-definition-syntax.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/site/logic/class.pl, apps/site/logic/controller.pl,
+    apps/site/view/_education.tmpl, apps/site/view/_head.tmpl,
+    apps/site/view/_header.tmpl, apps/site/view/atom.tmpl,
+    apps/site/view/rss091.tmpl, apps/site/view/rss092.tmpl,
+    apps/site/view/rss1.tmpl, apps/site/view/rss2.tmpl, bin/critic.pl,
+    critic.pl, db/mongo-curriculum.js, lib/PHPCS/ruleset.xml,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php,
+    tests/api/functional/ApiTest.php, tests/site/test.pl,
+    virtual_host, web/index.pl: massive refactoring
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Tue, 3 Jul 2012 20:46:38 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/api/view/_header.twig,
+    apps/api/view/api-definition-syntax.twig,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/site/logic/class.pl, apps/site/view/_education.tmpl,
+    apps/site/view/_experience.tmpl, apps/site/view/_head.tmpl,
+    apps/site/view/_header.tmpl, apps/site/view/_js.tmpl,
+    apps/site/view/_language.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/_summary.tmpl, apps/site/view/atom.tmpl,
+    apps/site/view/html5.tmpl, apps/site/view/rss091.tmpl,
+    apps/site/view/rss092.tmpl, apps/site/view/rss1.tmpl,
+    apps/site/view/rss2.tmpl, apps/site/view/vcard.tmpl,
+    tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    web/media/css/main.css: refactoring
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Mon, 2 Jul 2012 08:05:20 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/api/view/information.twig, apps/site/logic/class.pl,
+    apps/site/view/_education.tmpl, apps/site/view/_experience.tmpl,
+    apps/site/view/_head.tmpl, apps/site/view/_info.tmpl,
+    apps/site/view/_language.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/_summary.tmpl, apps/site/view/atom.tmpl,
+    apps/site/view/html5.tmpl, apps/site/view/index.tmpl,
+    apps/site/view/rss091.tmpl, apps/site/view/rss092.tmpl,
+    apps/site/view/rss1.tmpl, apps/site/view/rss2.tmpl,
+    apps/site/view/vcard.tmpl,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    tests/site/test.pl, virtual_host, web/media/css/custom.css,
+    web/media/css/docs.css, web/media/css/main.css: closed #28, #18,
+    #17
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sun, 1 Jul 2012 22:58:23 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/stream/logic/controller.js, web/stream.js: added the files
+    for stream
+  * Makefile, README.md, apps/api/logic/bootstrap.php,
+    apps/api/logic/controller.php, apps/site/logic/class.pl,
+    apps/site/view/_experience.tmpl, tests/site/test.pl: closed #21
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 29 Jun 2012 17:51:55 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * Makefile, README.md, apps/site/logic/class.pl, critic.pl,
+    tests/site/test.pl: closed #24
+  * README.md, apps/site/logic/class.pl, web/media/css/print.css: some
+    minor changes
+  * tests/stream/test.js: removed useless file, for now
+  * Makefile, README.md, apps/site/logic/class.pl,
+    apps/site/logic/controller.pl,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php, phpunit.xml,
+    report/api/code_coverage/.gitignore,
+    report/site/code_coverage/.gitignore, report/site/logs/.gitignore,
+    test/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    test/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    test/script/test.py, test/site/test.pl,
+    tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    tests/script/test.py, tests/site/test.pl, tests/stream/test.js,
+    web/index.pl: some refactoring and fixing. closed #14 #15 #23 #27
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 27 Jun 2012 07:46:31 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * Makefile, README.md, apps/api/logic/app.php,
+    apps/api/logic/bootstrap.php, apps/api/logic/controller.php,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/site/logic/controller.pl, apps/site/view/_education.tmpl,
+    apps/site/view/_experience.tmpl, apps/site/view/_head.tmpl,
+    apps/site/view/_js.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/html5.tmpl, apps/site/view/index.tmpl.old,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/StrategyInterface.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php,
+    lib/vendor/bootstrap/css/bootstrap-responsive.css,
+    .../bootstrap/css/bootstrap-responsive.min.css,
+    lib/vendor/bootstrap/css/bootstrap.css,
+    lib/vendor/bootstrap/css/bootstrap.min.css,
+    .../bootstrap/img/glyphicons-halflings-white.png,
+    lib/vendor/bootstrap/img/glyphicons-halflings.png,
+    lib/vendor/bootstrap/js/bootstrap.js,
+    lib/vendor/bootstrap/js/bootstrap.min.js,
+    test/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    test/api/unit/FabioCicerchia/Api/UtilsTest.php, test/site/test.pl,
+    web/media/css/bootstrap, web/media/css/bootstrap-responsive.css,
+    web/media/css/bootstrap.min.css, web/media/css/custom.css,
+    web/media/css/main.css, web/media/css/reset.css,
+    web/media/images/bootstrap, web/media/js/bootstrap,
+    web/media/js/bootstrap-collapse.js,
+    web/media/js/bootstrap-dropdown.js,
+    web/media/js/bootstrap-scrollspy.js,
+    web/media/js/bootstrap-scrollspy.js.1,
+    web/media/js/bootstrap-tooltip.js,
+    web/media/js/bootstrap-tooltip.js.1, web/media/js/bootswatch.js,
+    web/media/js/main.js: changes to css + draft test suite +
+    refactoring & fixing
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sun, 24 Jun 2012 12:55:55 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * README.md, apps/api/logic/controller.php,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/skill.twig, apps/site/logic/controller.pl,
+    apps/site/view/_education.tmpl, apps/site/view/_experience.tmpl,
+    apps/site/view/_head.tmpl, apps/site/view/_header.tmpl,
+    apps/site/view/_info.tmpl, apps/site/view/_js.tmpl,
+    apps/site/view/_language.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/_summary.tmpl, apps/site/view/html5.tmpl,
+    apps/site/view/index.tmpl, apps/site/view/index.tmpl.old,
+    virtual_host, web/index.pl,
+    web/media/css/bootstrap-responsive.css,
+    web/media/css/bootstrap.min.css, web/media/css/docs.css,
+    web/media/css/main.css, web/media/css/print.css,
+    web/media/images/glyphicons-halflings-white.png,
+    web/media/images/glyphicons-halflings.png,
+    web/media/images/logo_new.png, web/media/js/bootstrap-collapse.js,
+    web/media/js/bootstrap-dropdown.js,
+    web/media/js/bootstrap-scrollspy.js,
+    web/media/js/bootstrap-scrollspy.js.1,
+    web/media/js/bootstrap-tooltip.js,
+    web/media/js/bootstrap-tooltip.js.1, web/media/js/bootswatch.js,
+    web/media/js/jquery.js: first draft of the web site section
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 22 Jun 2012 19:46:14 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * Makefile, apps/api/logic/controller.php,
+    apps/api/view/information.twig,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    test/api/functional/ApiTest.php,
+    test/api/unit/FabioCicerchia/Api/UtilsTest.php: some refactoring +
+    closed issue #8
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Tue, 12 Jun 2012 19:12:23 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    test/api/functional/ApiTest.php,
+    test/api/unit/FabioCicerchia/Api/UtilsTest.php: fixed a wrong
+    namespace for SPL + fix on language
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sat, 9 Jun 2012 12:26:38 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * README.md, apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/logic/controller.php, apps/api/view/education.twig,
+    apps/api/view/experience.twig, apps/api/view/information.twig,
+    apps/api/view/language.twig, apps/api/view/skill.twig,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    test/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    test/api/unit/FabioCicerchia/Api/UtilsTest.php: closed #9
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 8 Jun 2012 20:18:51 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php: closed #11
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Thu, 7 Jun 2012 19:31:52 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/view/_header.twig, apps/api/view/education.twig,
+    apps/api/view/experience.twig, apps/api/view/information.twig,
+    apps/api/view/language.twig, apps/api/view/root.twig,
+    apps/site/view/index.pl,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php, phpunit.xml,
+    test/api/functional/ApiTest.php, test/api/functional/test.php:
+    some fixes due functional testing optimisation for #11
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 6 Jun 2012 22:08:11 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/ServiceInterface.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php: some fixes in the
+    phpdoc blocks + remove unused interface. #7
+  * db/mongo-curriculum.js: closed #5
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sat, 2 Jun 2012 09:08:26 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/view/_header.twig,
+    apps/api/view/api-definition-syntax.twig,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/root.twig,
+    apps/api/view/service-expression-syntax.twig,
+    apps/api/view/skill.twig, db/mongo-curriculum.js,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/ServiceInterface.php,
+    .../lib/FabioCicerchia/Api/StrategyInterface.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php: changed the
+    definition of the mimetype, some fixes on the code. related to #7
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 1 Jun 2012 20:15:44 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * Makefile, docs/api/.gitignore, report/api/logs/app/.gitignore,
+    report/api/logs/lib/.gitignore, report/api/logs/test/.gitignore:
+    closed #13
+  * .../lib/FabioCicerchia/Api/TwigExtension.php: forgot to add a file
+    for #7
+  * Makefile, phpdoc.xml: closed #12
+  * db/mongo-curriculum.js: closed #4
+  * apps/api/logic/bootstrap.php, apps/api/view/_header.twig,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/root.twig, apps/api/view/skill.twig,
+    .../lib/FabioCicerchia/Api/Service/Skill.php: closed #7
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Thu, 31 May 2012 19:45:02 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/root.twig,
+    apps/api/view/service-expression-syntax.twig,
+    apps/api/view/skill.twig, console.sh, host.vhost,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/ServiceInterface.php,
+    .../lib/FabioCicerchia/Api/StrategyInterface.php,
+    test/api/functional/test.php, test/api/test.php, web/api.php: some
+    fixes and refactoring for issue #7
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 30 May 2012 19:51:46 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * virtual_host: fixed #2
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Tue, 29 May 2012 18:51:01 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/api/logic/app.php, apps/api/logic/bootstrap.php, web/api.php:
+    closed #10, some code-optimisation for #7
+  * Makefile: closed #6
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Mon, 28 May 2012 20:02:47 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * virtual_host: closes #1
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sat, 26 May 2012 12:05:45 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/root.twig,
+    apps/api/view/service-expression-syntax.twig,
+    apps/api/view/skill.twig: added the service expression syntax +
+    fixes on the code to use the ses
+  * apps/api/logic/app.php, apps/api/logic/bootstrap.php: added
+    comments + mini-refactoring
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sat, 19 May 2012 12:49:42 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * Makefile, apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/root.twig, apps/api/view/skill.twig, web/api.php:
+    some fixes to adapt the code to the coding standard + refactoring
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 18 May 2012 21:21:27 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/api/logic/app.php, apps/api/view/education.twig,
+    apps/api/view/experience.twig, apps/api/view/information.twig,
+    apps/api/view/language.twig, apps/api/view/root.twig,
+    apps/api/view/service-expression-syntax.twig,
+    apps/api/view/skill.twig: some improvement to the API structure
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Thu, 17 May 2012 22:47:34 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * Makefile, apps/api/logic/app.php, apps/api/logic/bootstrap.php,
+    apps/api/view/education.twig, apps/api/view/experience.twig,
+    apps/api/view/information.twig, apps/api/view/language.twig,
+    apps/api/view/root.twig, apps/api/view/skill.twig,
+    apps/script/benchmark.py, apps/script/check_accessibility.py,
+    apps/script/check_validation.py, apps/script/deploy.py,
+    apps/script/generate_cache.py, console.sh, test/api/test.php,
+    test/script/test.py, test/site/test.pl, web/api.php,
+    web/humans.txt, web/index.pl, web/media/css/main.css,
+    web/media/js/main.js: some structure improvement + first draft of
+    the API
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Mon, 14 May 2012 22:38:36 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * .gitignore, .gitmodules, Makefile, apps/api/logic/app.php,
+    apps/api/logic/bootstrap.php, apps/api/silex.phar,
+    apps/script/benchmark.py, apps/script/check_accessibility.py,
+    apps/script/check_validation.py, apps/script/deploy.py,
+    apps/script/generate_cache.py, apps/site/logic/controller.pl,
+    apps/site/view/index.pl, cache/apache/.gitignore,
+    cache/api/.gitignore, cache/site/.gitignore,
+    cache/stream/.gitignore, host.vhost, lib/PHPCS/ruleset.xml,
+    lib/vendor/OWASP-CRS, lib/vendor/Silex-Extensions,
+    lib/vendor/Twig, lib/vendor/mongodb, logs/.gitignore, phpunit.xml,
+    test/api/test.php, test/script/test.py, test/site/test.pl,
+    tmp/.gitignore, web/api.php, web/favicon.ico, web/humans.txt,
+    web/index.pl, web/media/css/bootstrap, web/media/css/main.css,
+    web/media/css/reset.css, web/media/js/main.js, web/minify,
+    web/modsecurity_crs_10_config.conf, web/robots.txt: initial
+    version
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Thu, 1 Mar 2012 00:34:57 +0100
+

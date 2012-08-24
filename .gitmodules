@@ -7,3 +7,6 @@
 [submodule "web/minify"]
 	path = web/minify
 	url = git://github.com/mrclay/minify.git
+[submodule "lib/git2changelog"]
+	path = lib/git2changelog
+	url = git://github.com/jvasile/git2changelog.git

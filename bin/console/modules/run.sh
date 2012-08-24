@@ -93,42 +93,10 @@ run_todo() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_changelog() ----------------------------------------------------------
-# TODO: Save to a file.
 run_changelog() {
-    horizontal_line
-    echo "CHANGELOG"
-    horizontal_line
-
-    OLDIFS=$IFS
-    IFS=$'\n'
-    HISTORY=$(git log --format="%cd [%h] %s (by %cn <%ce>)" --date=short)
-    DATE=""
-    for LINE in $HISTORY; do
-        NEW_DATE=`echo "$LINE" | cut -d " " -f 1`
-        if [ "$NEW_DATE" != "$DATE" ]; then
-            echo -e "\n$NEW_DATE"
-        fi
-
-        LINE=${LINE/$NEW_DATE /}
-        echo " $LINE" | fold -sw 80 | sed -r "s/^/              /" | sed -r "s/^ {15}/    /"
-
-        if [[ "$LINE" =~ "#" ]]; then
-            IFS=$' '
-            for TOKEN in $LINE; do
-                MATCH=`echo "$TOKEN" | grep "#"`
-                if [ -n "$MATCH" ]; then
-                    URL="https://github.com/fabiocicerchia/fabiocicerchia.github.com/issues/${MATCH/\#/}"
-                    TITLE=$(curl $URL 2>&1 | grep '<h2 class="content-title">' | sed -r "s/.*>(.*)<.*/\1/")
-                    echo " Ref: $MATCH $TITLE" | fold -sw 68 | sed -r "s/^/              /" | sed -r "s/^ {15}/              /"
-                fi
-            done
-            IFS=$'\n'
-        fi
-
-        DATE=$NEW_DATE
-    done
-    IFS=$OLDIFS
+    python $ROOTDIR/lib/git2changelog/git2changelog.py > $ROOTDIR/CHANGELOG
 }
+# }}} --------------------------------------------------------------------------
 
 # {{{ _ver_cmp_1() -------------------------------------------------------------
 # Compare with one element of version components
