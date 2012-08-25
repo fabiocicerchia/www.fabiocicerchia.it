@@ -666,7 +666,7 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/404');
 
-        $this->assertEquals('Error, you are unauthorised to know more about it.', $client->getResponse()->getContent());
+        $this->assertEquals('Error, you are unauthorised to know more about this.', $client->getResponse()->getContent());
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

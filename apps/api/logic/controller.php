@@ -64,8 +64,7 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
         return;
     }
 
-    $message  = $e->getMessage(); // TODO: Remove or restore it?
-    $message  = 'Error, you are unauthorised to know more about it.';
+    $message  = 'Error, you are unauthorised to know more about this.';
     $response = new Response($message, $code);
     $response->headers->set('Content-Language', 'en');
 

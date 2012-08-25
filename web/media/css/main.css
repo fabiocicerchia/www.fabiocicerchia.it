@@ -1871,3 +1871,11 @@ address {
 #reference_list small a {
     text-transform:           capitalize;
 }
+
+#nojs {
+    position:                 absolute;
+    right:                    7%;
+    text-align:               center;
+    top:                      60px;
+    width:                    33%;
+}

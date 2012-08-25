@@ -252,6 +252,7 @@ install_perl_modules() {
     sudo cpanm -n --installdeps install Digest::MD5
     sudo cpanm -n --installdeps install File::Basename
     sudo cpanm -n --installdeps install File::Spec
+    sudo cpanm -n --installdeps install JSON
     sudo cpanm -n --installdeps install Locale::TextDomain
     sudo cpanm -n --installdeps install LWP
     sudo cpanm -n --installdeps install Perl::Critic
@@ -268,6 +269,7 @@ install_perl_modules() {
     sudo cpanm -n install Digest::MD5
     sudo cpanm -n install File::Basename
     sudo cpanm -n install File::Spec
+    sudo cpanm -n install JSON
     sudo cpanm -n install Locale::TextDomain
     sudo cpanm -n install LWP
     sudo cpanm -n install Perl::Critic

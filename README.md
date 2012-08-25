@@ -217,6 +217,7 @@ These are the external libraries that has been used:
     * Digest::MD5 - [Doc](http://search.cpan.org/~gaas/Digest-MD5-2.52/MD5.pm)
     * File::Basename - [Doc](http://search.cpan.org/~rjbs/perl-5.16.0/lib/File/Basename.pm)
     * File::Spec - [Doc](http://search.cpan.org/~kjalb/File-Spec/Spec.pm)
+    * JSON - [Doc](http://search.cpan.org/~makamaka/JSON-2.53/lib/JSON.pm)
     * Locale::TextDomain - [Doc](http://search.cpan.org/~guido/libintl-perl-1.20/lib/Locale/TextDomain.pm)
     * LWP - [Doc](http://search.cpan.org/~gaas/libwww-perl-6.04/lib/LWP.pm)
     * Perl::Critic - [Home](http://perlcritic.tigris.org/)

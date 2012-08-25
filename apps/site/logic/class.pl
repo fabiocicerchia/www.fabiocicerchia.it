@@ -33,12 +33,9 @@
 
 package FabioCicerchiaSite;
 
-# TODO: Reduce number of modules used.
-
 use strict;
 use warnings;
 use version; our $VERSION = qv('1.0');
-use Data::Dumper;    # TODO: Remove it.
 use Date::Format;
 use Digest::MD5;
 use File::Basename;
@@ -49,7 +46,7 @@ use Readonly;
 use Template::Filters;
 use Template;
 use XML::Simple;
-use JSON qw( decode_json );    # TODO: Add this
+use JSON qw( decode_json );
 
 Readonly my $LWP_TIMEOUT => 10;
 
@@ -109,7 +106,6 @@ sub action_code_snippets {
         my $res = close FILE;
     }
 
-    # TODO: Duplicated code.
     my $vars = {
         'HTTP_HOST' => $ENV{'HTTP_HOST'},
         'language'  => 'en',
@@ -252,13 +248,11 @@ sub action_show {
         'language'      => $language
     };
 
-# TODO: Clean this code...
 # http://template-toolkit.org/docs/modules/Template/Filters.html#CONFIGURATION_OPTIONS
     my $filters =
         Template::Filters->new( { FILTERS => { 'gettext' => \&gettext }, } );
 
     # TODO: IMPLEMENT IF NOT MODIFIED
-    # TODO: Clean this code...
     print 'Cache-Control: public, max-age=28800, smax-age=28800' . "\n";
     print 'Last-Modified: '
         . time2str( '%a, %d %b %Y %H:%M:%S GMT', $last_modified ) . "\n";

@@ -52,6 +52,7 @@ require_ok('Devel::Cover');
 require_ok('Digest::MD5');
 require_ok('File::Basename');
 require_ok('File::Spec');
+require_ok('JSON');
 require_ok('Locale::TextDomain');
 require_ok('LWP');
 require_ok('Perl::Critic');
