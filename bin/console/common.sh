@@ -105,7 +105,7 @@ call_subroutines() {
         printf "%${NUM_SPC}s"
 
         echo
-        $SUBROUTINE 2>&1
+        $SUBROUTINE 2>&1 || handle_errors $?
         STATUS=$?
     done
 
@@ -161,9 +161,9 @@ print_status() {
 ################################################################################
 # {{{ all() --------------------------------------------------------------------
 all() {
-    test
-    sca
-    docs
+    test || handle_errors $?
+    sca || handle_errors $?
+    docs || handle_errors $?
 
     return $?
 }
@@ -177,7 +177,7 @@ config() {
         SUBROUTINE="config_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
-            $SUBROUTINE
+            $SUBROUTINE || handle_errors $?
         fi
     else
         call_subroutines "^config_"
@@ -195,7 +195,7 @@ docs() {
         SUBROUTINE="doc_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
-            $SUBROUTINE
+            $SUBROUTINE || handle_errors $?
         fi
     else
         call_subroutines "^doc_"
@@ -228,7 +228,7 @@ install() {
         SUBROUTINE="install_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
-            $SUBROUTINE
+            $SUBROUTINE || handle_errors $?
         fi
     else
         call_subroutines "^install_"
@@ -263,7 +263,7 @@ sca() {
         SUBROUTINE="sca_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
-            $SUBROUTINE
+            $SUBROUTINE || handle_errors $?
         fi
     else
         call_subroutines "^sca_"
@@ -281,7 +281,7 @@ test() {
         SUBROUTINE="test_$SUBACTION"
         EXISTS=$(declare -f "$SUBROUTINE" | wc -l)
         if [ $EXISTS -gt 0 ]; then
-            $SUBROUTINE
+            $SUBROUTINE || handle_errors $?
         fi
     else
         call_subroutines "^test_"
@@ -292,9 +292,10 @@ test() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ list_subactions() --------------------------------------------------------
-# TODO: Wrap multiline.
 list_subactions() {
-    egrep -r "^$1" $CURRENT_PATH/modules/ | cut -d ":" -f 2 | sed -r "s/\(\).*/,/" | sed -r "s/$1//"  | tr "\n" " " | sed -r "s/, $//"
+    egrep -r "^$1" $CURRENT_PATH/modules/ | cut -d ":" -f 2 | \
+          sed -r "s/\(\).*/,/" | sed -r "s/$1//"  | tr "\n" " " | \
+          sed -r "s/, $//"
 }
 # }}} --------------------------------------------------------------------------
 

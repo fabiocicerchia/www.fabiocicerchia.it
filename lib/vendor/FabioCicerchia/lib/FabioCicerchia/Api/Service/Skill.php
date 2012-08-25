@@ -77,22 +77,12 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
     {
         $data = parent::elaborateData($data);
 
-        // TODO: Refactor.
-        // Retrieve the list of skill with its "months" value. -----------------
+        // Retrieve the list of skill with its "months" value.
         $skillsWithMonths = [];
-
         if ($this->getCollection() instanceof \Doctrine\MongoDB\Collection) {
-            $experience = new Experience($this->getCollection()->getDatabase());
-            $experienceData = $experience->getData();
-            foreach ($experienceData['entities'] as $entity) {
-                $this->parseSkillValues($entity, $skillsWithMonths);
-                if (isset($entity['projects']) === true) {
-                    foreach ($entity['projects'] as $project) {
-                        $this->parseSkillValues($project, $skillsWithMonths);
-                    }
-                }
-            }
+            $skillsWithMonths = $this->getSkillWithMonths();
 
+            // Attach the months value to main data.
             foreach ($data as $key => $item) {
                 foreach ($item['list'] as $subkey => $elem) {
                     $monthKey = isset($elem['name']['en_GB']) === true
@@ -114,6 +104,30 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
     }
     // }}} ---------------------------------------------------------------------
 
+    // {{{ getSkillWithMonths --------------------------------------------------
+    /**
+     * Retrive a list of skill with its months value.
+     *
+     * @return array
+     */
+    protected function getSkillWithMonths()
+    {
+        $skillsWithMonths = [];
+
+        $experience = new Experience($this->getCollection()->getDatabase());
+        foreach ($experience->getData()['entities'] as $entity) {
+            $this->parseSkillValues($entity, $skillsWithMonths);
+            if (isset($entity['projects']) === true) {
+                foreach ($entity['projects'] as $project) {
+                    $this->parseSkillValues($project, $skillsWithMonths);
+                }
+            }
+        }
+
+        return $skillsWithMonths;
+    }
+    // }}} ---------------------------------------------------------------------
+
     // {{{ parseSkillValues ----------------------------------------------------
     /**
      * Retrieve the "months" value inside an array.
@@ -123,7 +137,7 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
      *
      * @return void
      */
-    private function parseSkillValues(array $entity, array &$data)
+    protected function parseSkillValues(array $entity, array &$data)
     {
         $availableKeys = ['methodologies', 'techniques', 'technologies', 'tools'];
 

@@ -165,7 +165,6 @@ $closures['api'] = function ($apiName) use ($app) {
     $data['api_name'] = $apiName;
 
     // Response
-    // TODO: Less code here below...
     $response = new Response();
     if ($app['debug'] === false) {
         $lastModified = Utils::getLastModified($data);
@@ -177,7 +176,6 @@ $closures['api'] = function ($apiName) use ($app) {
         $response->headers->set('Last-Modified', $lastModified);
     }
 
-    // TODO: Less code here below...
     if ($response->isNotModified($app['request']) === false) {
         // MimeType
         $availableMimeTypes = [

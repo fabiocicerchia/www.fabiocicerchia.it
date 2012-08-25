@@ -31,8 +31,6 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
-# TODO: Run PEP8 & PYLINT.
-
 from __future__ import print_function
 import urllib
 from common import *
@@ -51,10 +49,10 @@ print('Validate W3C:')
 for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
-    url_param  = 'uri=%URI%&charset=(detect automatically)&doctype=Inline'
+    url_param = 'uri=%URI%&charset=(detect automatically)&doctype=Inline'
     url_param += '&group=0&user-agent=W3C_Validator/1.2'
-    xpath      = './/*[@id="form"]//*[text()="Result:"]/'
-    xpath     += 'following-sibling::*[1]/text()'
+    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+    xpath += 'following-sibling::*[1]/text()'
 
     res = validate('GET', 'http://validator.w3.org/check?', url_param, v,
                    xpath, '.*Passed.*')
@@ -68,9 +66,10 @@ print('Validate CSS 3:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    url_param = 'uri=%URI%&profile=css3&usermedium=all&warning=2&vextwarning=&lang=en'
-    xpath     = './/*[@id="results_container"]//*[local-name()="div"]/'
-    xpath    += '*[local-name()="h3"]/text()'
+    url_param = 'uri=%URI%&profile=css3&usermedium=all&warning=2&vextwarning=&'
+    url_param += 'lang=en'
+    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath += '*[local-name()="h3"]/text()'
 
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
@@ -85,9 +84,10 @@ print('Validate CSS 2.1:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    url_param = 'uri=%URI%&profile=css21&usermedium=all&warning=2&vextwarning=&lang=en'
-    xpath     = './/*[@id="results_container"]//*[local-name()="div"]/'
-    xpath    += '*[local-name()="h3"]/text()'
+    url_param = 'uri=%URI%&profile=css21&usermedium=all&warning=2&vextwarning='
+    url_param += '&lang=en'
+    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath += '*[local-name()="h3"]/text()'
 
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
@@ -102,9 +102,10 @@ print('Validate CSS 2:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    url_param = 'uri=%URI%&profile=css2&usermedium=all&warning=2&vextwarning=&lang=en'
-    xpath     = './/*[@id="results_container"]//*[local-name()="div"]/'
-    xpath    += '*[local-name()="h3"]/text()'
+    url_param = 'uri=%URI%&profile=css2&usermedium=all&warning=2&vextwarning=&'
+    url_param += 'lang=en'
+    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath += '*[local-name()="h3"]/text()'
 
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
@@ -119,9 +120,10 @@ print('Validate CSS Mobile:')
 for k, v in pages['css'].iteritems():
     print('    ' + k + ': ', end='')
 
-    url_param = 'uri=%URI%&profile=mobile&usermedium=all&warning=2&vextwarning=&lang=en'
-    xpath     = './/*[@id="results_container"]//*[local-name()="div"]/'
-    xpath    += '*[local-name()="h3"]/text()'
+    url_param = 'uri=%URI%&profile=mobile&usermedium=all&warning=2'
+    url_param += 'vextwarning=&lang=en'
+    xpath = './/*[@id="results_container"]//*[local-name()="div"]/'
+    xpath += '*[local-name()="h3"]/text()'
 
     res = validate('GET', 'http://jigsaw.w3.org/css-validator/validator?',
                    url_param, v, xpath,
@@ -137,7 +139,7 @@ for k, v in pages['site']['feed'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'url': '%URI%'})
-    xpath     = './/*[@id="main"]//*[local-name()="h2"]/text()'
+    xpath = './/*[@id="main"]//*[local-name()="h2"]/text()'
 
     res = validate('GET', 'http://validator.w3.org/feed/check.cgi?',
                    url_param, v, xpath, '.*Congratulations!.*')
@@ -152,7 +154,7 @@ for k, v in pages['site']['url_hp'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'uri': '%URI%'})
-    xpath     = './/*[@class="bad msg"]/text()'
+    xpath = './/*[@class="bad msg"]/text()'
 
     res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
                    True)
@@ -163,7 +165,7 @@ for k, v in pages['site']['feed'].iteritems():
     print('    ' + k + ': ', end='')
 
     url_param = urllib.urlencode({'uri': '%URI%'})
-    xpath     = './/*[@class="bad msg"]/text()'
+    xpath = './/*[@class="bad msg"]/text()'
 
     res = validate('GET', 'http://redbot.org/?', url_param, v, xpath, '.+',
                    True)
@@ -181,7 +183,7 @@ for k, v in pages['site']['feed'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
 #    url_param = urllib.urlencode({'docAddr': '%URI%', 'async': 'false'})
-#    xpath     = './/*[text() = "mobileOK score: "]/..//text()'
+#    xpath = './/*[text() = "mobileOK score: "]/..//text()'
 #
 #    res = validate('GET', 'http://validator.w3.org/mobile/check?',
 #                   url_param, v, xpath, '.*mobileOK score.+9[0-9]%.*')
@@ -197,7 +199,7 @@ for k, v in pages['site']['url_hp'].iteritems():
 
     url_param = urllib.urlencode({'url': '%URI%', 'view': 'cse'})
 
-    xpath  = './/*[@id="form"]//*[text()="Result:"]/'
+    xpath = './/*[@id="form"]//*[text()="Result:"]/'
     xpath += 'following-sibling::*[1]/text()'
 
     res = validate('GET',

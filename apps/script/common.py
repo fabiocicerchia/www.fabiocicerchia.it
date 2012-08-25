@@ -39,9 +39,7 @@ import re
 from lxml import etree
 # http://lxml.de/parsing.html
 
-# TODO: Use a demo instance (eg: demo.fabiocicerchia.it) where run this checks.
-# TODO: Add a new environment inside virtualhost and capistrano.
-BASE_URL = 'http://www.fabiocicerchia.it'
+BASE_URL = 'http://demo.fabiocicerchia.it'
 
 pages = {
     'api': {
@@ -138,7 +136,6 @@ def validate(http_method, remote_url, params, page, match,
 
     status = (match != None)
 
-    # TODO: Remove this condition.
     if (match_reverse):
         status = not status
 

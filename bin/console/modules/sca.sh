@@ -36,7 +36,6 @@
 ################################################################################
 
 # {{{ sca_phpcs() --------------------------------------------------------------
-# TODO: Wrap multiline.
 sca_phpcs() {
     print_subheader "RUNNING PHP_CodeSniffer"
 
@@ -88,16 +87,18 @@ sca_phploc() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ sca_phpcpd() -------------------------------------------------------------
-# TODO: Wrap multiline.
 sca_phpcpd() {
     print_subheader "RUNNING PHPCPD"
 
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
-    phpcpd --log-pmd "$REPORTDIR/api/logs/app/phpcpd.xml" "$API_APPSOURCEDIR" > "$REPORTDIR/api/logs/app/duplications.txt"
-    phpcpd --log-pmd "$REPORTDIR/api/logs/lib/phpcpd.xml" "$API_LIBSOURCEDIR" > "$REPORTDIR/api/logs/lib/duplications.txt"
-    phpcpd --log-pmd "$REPORTDIR/api/logs/test/phpcpd.xml" "$API_TESTSOURCEDIR" > "$REPORTDIR/api/logs/test/duplications.txt"
+    phpcpd --log-pmd "$REPORTDIR/api/logs/app/phpcpd.xml" \
+           "$API_APPSOURCEDIR" > "$REPORTDIR/api/logs/app/duplications.txt"
+    phpcpd --log-pmd "$REPORTDIR/api/logs/lib/phpcpd.xml" \
+           "$API_LIBSOURCEDIR" > "$REPORTDIR/api/logs/lib/duplications.txt"
+    phpcpd --log-pmd "$REPORTDIR/api/logs/test/phpcpd.xml" \
+           "$API_TESTSOURCEDIR" > "$REPORTDIR/api/logs/test/duplications.txt"
 
     return $?
 }

@@ -55,6 +55,16 @@ run_check_validation() {
 }
 # }}} --------------------------------------------------------------------------
 
+# {{{ run_benchmark() ----------------------------------------------------------
+run_benchmark() {
+    print_subheader "RUNNING BENCHMARK"
+
+    python $SCRIPT_APP_SOURCEDIR/benchmark.py
+
+    return $?
+}
+# }}} --------------------------------------------------------------------------
+
 # {{{ run_todo() ---------------------------------------------------------------
 # TODO: Save to a file.
 run_todo() {
@@ -127,8 +137,8 @@ ver_cmp() {
 
 # {{{ run_dependencies() -------------------------------------------------------
 run_dependencies() {
-    # TODO: wrap multiline.
-    declare -a commands=('cat' 'curl' 'cut' 'dirname' 'egrep' 'find' 'fold' 'sed' 'seq' 'wc' 'wget' 'xargs');
+    declare -a commands=('cat' 'curl' 'cut' 'dirname' 'egrep' 'find' 'fold' \
+            'sed' 'seq' 'wc' 'wget' 'xargs');
 
     for i in "${commands[@]}"; do
         echo -en "Checking '${TXTCYN}$i${TXTRST}'... "
@@ -142,8 +152,9 @@ run_dependencies() {
 
     # --------------------------------------------------------------------------
 
-    # TODO: wrap multiline.
-    declare -A versions=(['apache2']='2.2.22' ['cap']='2.12.0', ['git']='1.7.9.5' ['git flow']='0.4.1' ['mongo']='2.0.4' ['php']='5.4' ['perl']='5.14.2' ['python']='2.7');
+    declare -A versions=(['apache2']='2.2.22' ['cap']='2.12.0', \
+            ['git']='1.7.9.5' ['git flow']='0.4.1' ['mongo']='2.0.4' \
+            ['php']='5.4' ['perl']='5.14.2' ['python']='2.7');
 
     for i in "${!versions[@]}"; do
         echo -en "Checking '${TXTCYN}$i v${versions[$i]}${TXTRST}'... "
@@ -159,13 +170,18 @@ run_dependencies() {
         if [ $PIECES -gt 1 ]; then
             PRG=$(dirname $PRG)"/$i"
         fi
-        # TODO: wrap multiline.
-        VERSION=$($PRG --version 2>&1 | egrep "([0-9]+\.)+([0-9]+\.?)+(-?[a-z]+[0-9]*)?" | sed -r "s/.*[^0-9\.](([0-9]+\.)([0-9]+\.?)+(-?[a-z]+[0-9]*)?).*/\1/")
+        VERSION=$($PRG --version 2>&1 | \
+                egrep "([0-9]+\.)+([0-9]+\.?)+(-?[a-z]+[0-9]*)?" | \
+                sed -r "s/.*[^0-9\.](([0-9]+\.)([0-9]+\.?)+(-?[a-z]+[0-9]*)?).*/\1/")
         if [ -z "$VERSION" ]; then
-            VERSION=$($PRG -V 2>&1 | egrep "([0-9]+\.)+([0-9]+\.?)+(-?[a-z]+[0-9]*)?" | sed -r "s/.*[^0-9\.](([0-9]+\.)([0-9]+\.?)+(-?[a-z]+[0-9]*)?).*/\1/")
+            VERSION=$($PRG -V 2>&1 | \
+                    egrep "([0-9]+\.)+([0-9]+\.?)+(-?[a-z]+[0-9]*)?" | \
+                    sed -r "s/.*[^0-9\.](([0-9]+\.)([0-9]+\.?)+(-?[a-z]+[0-9]*)?).*/\1/")
         fi
         if [ -z "$VERSION" ]; then
-            VERSION=$($PRG version 2>&1 | egrep "([0-9]+\.)+([0-9]+\.?)+(-?[a-z]+[0-9]*)?" | sed -r "s/.*[^0-9\.](([0-9]+\.)([0-9]+\.?)+(-?[a-z]+[0-9]*)?).*/\1/")
+            VERSION=$($PRG version 2>&1 | \
+                    egrep "([0-9]+\.)+([0-9]+\.?)+(-?[a-z]+[0-9]*)?" | \
+                    sed -r "s/.*[^0-9\.](([0-9]+\.)([0-9]+\.?)+(-?[a-z]+[0-9]*)?).*/\1/")
         fi
 
         ver_cmp "$VERSION" "${versions[$i]}"
@@ -178,8 +194,8 @@ run_dependencies() {
 
     # --------------------------------------------------------------------------
 
-    # TODO: wrap multiline.
-    declare -a modules=('actions' 'cache' 'disk_cache' 'expires' 'headers' 'mem_cache' 'php5' 'perl' 'rewrite' 'security2' 'speling');
+    declare -a modules=('actions' 'cache' 'disk_cache' 'expires' 'headers' \
+            'mem_cache' 'php5' 'perl' 'rewrite' 'security2' 'speling');
 
     APACHE2CTL=$(whereis apache2ctl | cut -d " " -f 2 | head -n 1)
     for i in "${modules[@]}"; do
@@ -213,8 +229,9 @@ run_dependencies() {
 
     # --------------------------------------------------------------------------
 
-    # TODO: wrap multiline.
-    declare -a modules2=('Data::Dumper' 'Date::Format' 'Devel::Cover' 'Digest::MD5' 'File::Basename' 'File::Spec' 'LWP' 'POSIX' 'Perl::Critic' 'Pod::Coverage' 'Template' 'Test::More' 'XML::Simple');
+    declare -a modules2=('Data::Dumper' 'Date::Format' 'Devel::Cover' \
+            'Digest::MD5' 'File::Basename' 'File::Spec' 'LWP' 'POSIX' \
+            'Perl::Critic' 'Pod::Coverage' 'Template' 'Test::More' 'XML::Simple');
     for i in "${modules2[@]}"; do
         echo -en "Checking '${TXTCYN}Perl Module $i${TXTRST}'... "
         EXISTS=$(perl -M$i -e 'print "\$$i::VERSION\n";' 2>&1 | grep "Can't locate")
@@ -240,8 +257,9 @@ run_dependencies() {
 
     # ------------------------------------------------------------------------------
 
-    # TODO: wrap multiline.
-    declare -a commands2=('add-apt-repository' 'apt-get' 'cover' 'cpanminus' 'pdepend' 'pear' 'pecl' 'pep8' 'perltidy' 'phpcb' 'phpcov' 'phpcpd' 'phpcs' 'phpdoc' 'phploc' 'phpmd' 'phpunit' 'pylint');
+    declare -a commands2=('add-apt-repository' 'apt-get' 'cover' 'cpanminus' \
+            'pdepend' 'pear' 'pecl' 'pep8' 'perltidy' 'phpcb' 'phpcov' \
+            'phpcpd' 'phpcs' 'phpdoc' 'phploc' 'phpmd' 'phpunit' 'pylint');
 
     for i in "${commands2[@]}"; do
         echo -en "Checking '${TXTCYN}$i${TXTRST}'... "
@@ -300,8 +318,9 @@ run_generate_gettext() {
     OLDIFS=$IFS
     IFS=$'\n'
 
-    # TODO: wrap multiline.
-    LINES=$(egrep -rn "\[% FILTER gettext %\].+\[% END %\]" $SITE_APP_SOURCEDIR/view/|sed -r "s/(.+):(.+):.*?\[% FILTER gettext %\](.+)\[% END %\].*/\3\t\1:\2/" | sort)
+    LINES=$(egrep -rn "\[% FILTER gettext %\].+\[% END %\]" \
+          $SITE_APP_SOURCEDIR/view/ | \
+          sed -r "s/(.+):(.+):.*?\[% FILTER gettext %\](.+)\[% END %\].*/\3\t\1:\2/" | sort)
     PREVIOUS_LABEL=''
 
     for LINE in $LINES; do

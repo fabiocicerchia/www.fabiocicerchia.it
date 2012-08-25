@@ -74,9 +74,9 @@ install_php() {
 
     if [ -z "$TRAVIS_CI" ]; then
         sudo add-apt-repository ppa:ondrej/php5
-        sudo apt-get -q update
-        sudo apt-get -q upgrade
-        sudo apt-get -q dist-upgrade
+        sudo apt-get --force-yes -q update
+        sudo apt-get --force-yes -q upgrade
+        sudo apt-get --force-yes -q dist-upgrade
     else
         echo "SKIPPED"
     fi
@@ -90,7 +90,7 @@ install_mongo() {
     print_subheader "INSTALLING MONGODB"
 
     if [ -z "$TRAVIS_CI" ]; then
-        sudo apt-get -q install mongodb
+        sudo apt-get --force-yes -q install mongodb
     else
         echo "SKIPPED"
     fi
@@ -103,7 +103,7 @@ install_mongo() {
 install_imagick() {
     print_subheader "INSTALLING IMAGICK"
 
-    sudo apt-get -q install php5-imagick
+    sudo apt-get --force-yes -q install php5-imagick
 
     return $?
 }
@@ -185,7 +185,7 @@ install_phpdoc2() {
 
     pear_add_channel "pear.phpdoc.org"
     sudo pear -q install --alldeps phpdoc/phpDocumentor-alpha
-    sudo apt-get -q install graphviz
+    sudo apt-get --force-yes -q install graphviz
 
     return $?
 }
@@ -288,7 +288,7 @@ install_perl_modules() {
 install_pychecker() {
     print_subheader "INSTALLING PYCHECKER"
 
-    sudo apt-get -q install pychecker
+    sudo apt-get --force-yes -q install pychecker
 
     return $?
 }
@@ -298,7 +298,7 @@ install_pychecker() {
 install_pylint() {
     print_subheader "INSTALLING PYLINT"
 
-    sudo apt-get -q install pylint
+    sudo apt-get --force-yes -q install pylint
 
     return $?
 }
@@ -308,7 +308,7 @@ install_pylint() {
 install_pep8() {
     print_subheader "INSTALLING PEP8"
 
-    sudo apt-get -q install pep8
+    sudo apt-get --force-yes -q install pep8
 
     return $?
 }
@@ -318,7 +318,7 @@ install_pep8() {
 install_epydoc() {
     print_subheader "INSTALLING EPYDOC"
 
-    sudo apt-get -q install python-epydoc
+    sudo apt-get --force-yes -q install python-epydoc
 
     return $?
 }
@@ -328,7 +328,7 @@ install_epydoc() {
 install_capistrano() {
     print_subheader "INSTALLING CAPISTRANO"
 
-    sudo apt-get -q install gem
+    sudo apt-get --force-yes -q install gem
     sudo gem install -q capistrano
     sudo gem install -q capistrano-ext
 
