@@ -1,3 +1,4 @@
+<!-- TODO: Migrate this file to partials -->
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <meta charset="utf-8" />
 <base href="http://[% HTTP_HOST %]" />
@@ -7,9 +8,7 @@
 <link href="http://microformats.org/profile/hresume" rel="profile" />
 <link href="https://plus.google.com/110733047203682160091" rel="author" title="[% FILTER gettext %]Fabio Cicerchia on Google+[% END %]" />
 <link href="/humans.txt" rel="author" type="text/plain" />
-<link href="/media/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-<link href="/media/css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" />
-<link href="/media/css/main.css" rel="stylesheet" />
+<link href="/minified.css" rel="stylesheet" type="text/css" />
 [% IF data.language %]
 [% FOREACH entity IN data.language.entity %]
 [% short_code = entity.content.code.short %]

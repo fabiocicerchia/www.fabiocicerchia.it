@@ -258,7 +258,7 @@ run_dependencies() {
     # ------------------------------------------------------------------------------
 
     declare -a commands2=('add-apt-repository' 'apt-get' 'cover' 'cpanminus' \
-            'pdepend' 'pear' 'pecl' 'pep8' 'perltidy' 'phpcb' 'phpcov' \
+            'nikto' 'pdepend' 'pear' 'pecl' 'pep8' 'perltidy' 'phpcb' 'phpcov' \
             'phpcpd' 'phpcs' 'phpdoc' 'phploc' 'phpmd' 'phpunit' 'pylint');
 
     for i in "${commands2[@]}"; do
@@ -274,6 +274,7 @@ run_dependencies() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_generate_gettext() ---------------------------------------------------
+# TODO: Add output messages.
 run_generate_gettext() {
     CURR_DATE=$(date +%Y-%m-%d\ %H:%M%z)
 
@@ -340,6 +341,7 @@ run_generate_gettext() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_compile_gettext() ----------------------------------------------------
+# TODO: Add output messages.
 run_compile_gettext() {
     FILES_PO=$(find $SITE_APP_SOURCEDIR/locale -name "*.po" -type f)
     for FILE_PO in $FILES_PO; do
@@ -351,7 +353,18 @@ run_compile_gettext() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_authors() ------------------------------------------------------------
+# TODO: Add output messages.
 run_authors() {
     git log --pretty="%aN <%aE>" | sort -u > $ROOTDIR/AUTHORS
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ run_nikto() --------------------------------------------------------------
+# TODO: Add output messages.
+run_nikto() {
+    sudo nikto -update
+    nikto -C all -nocache -evasion 1,2,3,4,5,6 -h http://fabiocicerchia.github \
+          -o $REPORTDIR/site/logs/nikto.html -Format html -nossl \
+          -Tuning 0,1,2,3,4,5,6,7,8,9,a,b,c,x
 }
 # }}} --------------------------------------------------------------------------

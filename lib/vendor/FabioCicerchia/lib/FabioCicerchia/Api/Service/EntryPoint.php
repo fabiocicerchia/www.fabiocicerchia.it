@@ -55,6 +55,8 @@ class EntryPoint
     /**
      * Get the list of implemented services.
      *
+     * ### General Information #################################################
+     *
      * @since Version 0.1
      *
      * @return array

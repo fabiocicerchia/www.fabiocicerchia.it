@@ -34,7 +34,7 @@
     From:        London, United Kingdom
 
 /* SITE */
-    Last update: 2012/07/31
+    Last update: 2012/08/128
     Technology:  Linux, Apache, MongoDB, PHP, Perl, Python, JavaScript, REST
     Components:  Silex, jQuery, Twitter Bootstrap, Google Minify, OWASP-CRS
     Standards:   HTML5, CSS3, Atom, RSS

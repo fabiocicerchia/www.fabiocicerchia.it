@@ -49,12 +49,8 @@ test_php() {
 test_perl() {
     print_subheader "RUNNING TEST::MORE & COVER"
 
-    #if [ -z "$TRAVIS_CI" ]; then
-        perl -MDevel::Cover=-dir,$REPORTDIR/site/logs $SITE_TEST_SOURCEDIR/test.pl
-        cover -outputdir $REPORTDIR/site/code_coverage $REPORTDIR/site/logs/cover_db
-    #else
-    #    echo "SKIPPED" # TODO: find a way to make this works.
-    #fi
+    perl -MDevel::Cover=-dir,$REPORTDIR/site/logs $SITE_TEST_SOURCEDIR/test.pl
+    cover -outputdir $REPORTDIR/site/code_coverage $REPORTDIR/site/logs/cover_db
 
     return $?
 }

@@ -34,9 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: 100% Internal Coverage.
-// TODO: 100% Overall Coverage.
-
 require_once TEST_LIB_PATH . 'Api/ServiceAbstract.php';
 require_once TEST_LIB_PATH . 'TestCase.php';
 
@@ -54,9 +51,12 @@ require_once TEST_LIB_PATH . 'TestCase.php';
  */
 class ServiceAbstractTest extends FabioCicerchia\TestCase
 {
-    // {{{ testRunWithEmptyData
+    // {{{ Methods - Public ====================================================
+    // {{{ Method: testRunWithEmptyData ----------------------------------------
     /**
      * Test method "run" with empty data.
+     *
+     * ### General Information #################################################
      *
      * @since Version 0.1
      *
@@ -83,9 +83,11 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testGetDataReturnCorrectValue
+    // {{{ Method: testGetDataReturnCorrectValue -------------------------------
     /**
      * Test method "getData" and check if return the correct value.
+     *
+     * ### General Information #################################################
      *
      * @since Version 0.1
      *
@@ -105,9 +107,11 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ testGetCollectionReturnCorrectValue
+    // {{{ Method: testGetCollectionReturnCorrectValue -------------------------
     /**
      * Test method "getCollection" and check if return the correct value.
+     *
+     * ### General Information #################################################
      *
      * @since Version 0.1
      *
@@ -125,4 +129,28 @@ class ServiceAbstractTest extends FabioCicerchia\TestCase
         $this->assertEquals(null, $stub->getCollection());
     }
     // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: testGetCollectionNameReturnCorrectValue ---------------------
+    /**
+     * Test method "getCollectionName" and check if return the correct value.
+     *
+     * ### General Information #################################################
+     *
+     * @since Version 0.1
+     *
+     * @return void
+     */
+    public function testGetCollectionNameReturnCorrectValue()
+    {
+        $stub = $this->getMockForAbstractClass(
+            'FabioCicerchia\Api\ServiceAbstract',
+            [],
+            '',
+            false
+        );
+
+        $this->assertEquals(null, $stub->getCollectionName());
+    }
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 }

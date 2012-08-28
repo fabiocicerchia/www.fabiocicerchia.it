@@ -66,6 +66,8 @@ class Language extends \FabioCicerchia\Api\ServiceAbstract
     /**
      * Modify if needed the data.
      *
+     * ### General Information #################################################
+     *
      * @param array $data The data.
      *
      * @see   FabioCicerchia\Api\ServiceAbstract::elaborateData()
@@ -75,16 +77,15 @@ class Language extends \FabioCicerchia\Api\ServiceAbstract
      */
     protected function elaborateData(array $data)
     {
-        $data = parent::elaborateData($data);
-        $data = ['entities' => $data];
-
-        return $data;
+        return ['entities' => parent::elaborateData($data)];
     }
     // }}} ---------------------------------------------------------------------
 
     // {{{ Method: execDataQuery -----------------------------------------------
     /**
      * Retrieve all the documents from a collection.
+     *
+     * ### General Information #################################################
      *
      * @link  https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
      * @see   FabioCicerchia\Api\ServiceAbstract::getCollection() The Collection Handle.

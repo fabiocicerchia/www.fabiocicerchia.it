@@ -66,6 +66,8 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
     /**
      * Modify if needed the data.
      *
+     * ### General Information #################################################
+     *
      * @param array $data The data.
      *
      * @see   FabioCicerchia\Api\ServiceAbstract::elaborateData()
@@ -98,15 +100,15 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
             }
         }
 
-        $data = ['entities' => $data, 'tags' => $skillsWithMonths];
-
-        return $data;
+        return ['entities' => $data, 'tags' => $skillsWithMonths];
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ getSkillWithMonths --------------------------------------------------
+    // {{{ Method: getSkillWithMonths ------------------------------------------
     /**
-     * Retrive a list of skill with its months value.
+     * Retrieve a list of skill with its months value.
+     *
+     * ### General Information #################################################
      *
      * @return array
      */
@@ -128,9 +130,11 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
     }
     // }}} ---------------------------------------------------------------------
 
-    // {{{ parseSkillValues ----------------------------------------------------
+    // {{{ Method: parseSkillValues --------------------------------------------
     /**
      * Retrieve the "months" value inside an array.
+     *
+     * ### General Information #################################################
      *
      * @param array $entity The array to parse.
      * @param array $data   The skill container.

@@ -35,7 +35,7 @@ package FabioCicerchiaSite;
 
 use strict;
 use warnings;
-use version; our $VERSION = qv('1.0');
+use version; our $VERSION = qv('0.1');
 use Date::Format;
 use Digest::MD5;
 use File::Basename;
@@ -64,7 +64,6 @@ sub action404 {
 
     return;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_code_snippets ---------------------------------------------
@@ -122,7 +121,6 @@ sub action_code_snippets {
 
     return $output;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_references ------------------------------------------------
@@ -149,7 +147,6 @@ sub action_references {
 
     return $output;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_maps ------------------------------------------------------
@@ -176,7 +173,6 @@ sub action_maps {
 
     return $output;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_dev -------------------------------------------------------
@@ -203,7 +199,6 @@ sub action_dev {
 
     return $output;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: action_show ------------------------------------------------------
@@ -220,6 +215,8 @@ sub action_show {
     my $self = shift;
 
     my ( $data, $last_modified, $etag, $language ) = $self->get_data();
+
+    $language = 'en'; # TODO: REMOVE THIS!
 
     my @lang_tokens = split /,/smx, $language;
     if ( scalar(@lang_tokens) > 1 ) {
@@ -274,15 +271,21 @@ sub action_show {
     my $output = q{};
     $template->process( $self->{'formatCurrent'} . '.tmpl', $vars, \$output );
 
-    #$output =~ s/\/\*.+?\*\/|\/\/.+[\n\r]//gsmx; # NO JS COMMENTS
-    #$output =~ s/<!--[^>]*-->//gsmx; # NO HTML COMMENTS
-    #$output =~ s/(>)\s+(<)|(\s)\s+/\1\2/gsmx; # NO SPACES
+    # Remove HTML comments.
+    $output =~ s/<!(?:--(?:[^-]*|-[^-]+)*--\s*)>//gsmx;
+    # Remove single-line comments that contain would-be multi-line delimiters
+    #    E.g. // Comment /* <--
+    $output =~ s/\/\/.*?\/?\*.+?(?:\n|\r|$)|\/\*[\s\S]*?\/\/[\s\S]*?\*\///gsmx;
+    # Remove multi-line comments that contain would be single-line delimiters
+    #    E.g. /* // <--
+    #$output =~ s/\/\/.+?(?=\n|\r|$)|\/\*[\s\S]+?\*\///gsmx;
+    # Remove spaces
+    $output =~ s/\s*(<[^>]+>)\s*/\1/gsmx;
 
     print $output;
 
     return q{};
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: call_api ---------------------------------------------------------
@@ -303,7 +306,6 @@ sub call_api {
 
     return $browser->get( 'http://' . $ENV{'HTTP_HOST'} . '/api.php' . $url );
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: get_data ---------------------------------------------------------
@@ -350,11 +352,10 @@ API:
     my @return = ( $data, $last_ts, $ctx->hexdigest, $lang );
     return @return;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: get_item_data ----------------------------------------------------
-# Usage      : FabioCicerchiaSite->get_data()
+# Usage      : FabioCicerchiaSite->get_item_data()
 # Purpose    : Retrieve the data from the API.
 # Returns    : Array.
 # Parameters : String $url, String $language.
@@ -392,7 +393,6 @@ sub get_item_data {
 
     return [ $data, $ts, $ctx->hexdigest, $lang ];
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: gettext ----------------------------------------------------------
@@ -407,7 +407,6 @@ sub gettext {
 
     return __($text);
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: execute_action ---------------------------------------------------
@@ -429,8 +428,7 @@ sub execute_action {
 
     return $self->$method_to_call();
 }
-
-# }}}
+# }}} --------------------------------------------------------------------------
 
 # {{{ Method: new --------------------------------------------------------------
 # Usage      : FabioCicerchiaSite->new()
@@ -501,14 +499,14 @@ sub new {
     $self->{'formatCurrent'} = $self->{'formatDefault'};
 
     # Then use the value from the request if exists ...
-    if ( defined( $self->{'request'}{'format'} ) ) {
+    if ( defined( $self->{'request'}->{'format'} ) ) {
 
         # ... filtering the values not authorised.
-        if (grep { $_ eq $self->{'request'}{'format'} }
-            keys $self->{'formatAllowed'}
+        if (grep { $_ eq $self->{'request'}->{'format'} }
+            keys %{$self->{'formatAllowed'}}
             )
         {
-            $self->{'formatCurrent'} = $self->{'request'}{'format'};
+            $self->{'formatCurrent'} = $self->{'request'}->{'format'};
         }
     }
 
@@ -534,7 +532,6 @@ sub new {
 
     return $self;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: retrieve_xml -----------------------------------------------------
@@ -565,7 +562,6 @@ sub retrieve_xml {
 
     return $simple->XMLin($content);
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: set_request ------------------------------------------------------
@@ -579,7 +575,7 @@ sub retrieve_xml {
 sub set_request {
     my $self = shift;
 
-    my @allowed_keys = keys $self->{'request'};
+    my @allowed_keys = keys %{$self->{'request'}};
 
     my %get_params = ();
 
@@ -607,7 +603,6 @@ sub set_request {
 
     return;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # {{{ Method: show -------------------------------------------------------------
@@ -638,7 +633,6 @@ sub show {
 
     return;
 }
-
 # }}} --------------------------------------------------------------------------
 
 # TODO: Test::Pod.

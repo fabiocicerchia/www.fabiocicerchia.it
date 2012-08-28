@@ -38,17 +38,17 @@ use FabioCicerchia\Api\Service\EntryPoint;
 use FabioCicerchia\Api\Service\Strategy;
 use FabioCicerchia\Api\Utils;
 
-// -----------------------------------------------------------------------------
-// SETUP SOME STUFF ------------------------------------------------------------
-// -----------------------------------------------------------------------------
+// SETUP SOME STUFF ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $closures = [];
 
-// -----------------------------------------------------------------------------
-// ERROR HANDLING --------------------------------------------------------------
-// -----------------------------------------------------------------------------
+// ERROR HANDLING ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 /**
  * Error - Closure.
+ *
+ * ### General Information #####################################################
  *
  * @param \Exception $e    The Exception instance.
  * @param integer    $code The exception code.
@@ -71,11 +71,12 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
     return $response;
 };
 
-// -----------------------------------------------------------------------------
-// ROUTE ROOT ------------------------------------------------------------------
-// -----------------------------------------------------------------------------
+// ROUTE ROOT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /**
  * Root - Closure.
+ *
+ * ### General Information #####################################################
  *
  * @link  https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
  * @see   FabioCicerchia\Api\Service\EntryPoint::getServices()
@@ -124,11 +125,12 @@ $closures['root'] = function () use ($app) {
     return $response;
 };
 
-// -----------------------------------------------------------------------------
-// ROUTE API -------------------------------------------------------------------
-// -----------------------------------------------------------------------------
+// ROUTE API ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /**
  * API - Closure.
+ *
+ * ### General Information #####################################################
  *
  * @param string $apiName The API name retrieved from URL.
  *
@@ -166,6 +168,7 @@ $closures['api'] = function ($apiName) use ($app) {
 
     // Response
     $response = new Response();
+    // TODO: Extract this code and make a function.
     if ($app['debug'] === false) {
         $lastModified = Utils::getLastModified($data);
 
@@ -176,6 +179,7 @@ $closures['api'] = function ($apiName) use ($app) {
         $response->headers->set('Last-Modified', $lastModified);
     }
 
+    // TODO: Extract this code and make a function.
     if ($response->isNotModified($app['request']) === false) {
         // MimeType
         $availableMimeTypes = [
@@ -209,11 +213,12 @@ $closures['api'] = function ($apiName) use ($app) {
     return $response;
 };
 
-// -----------------------------------------------------------------------------
-// ROUTE API DEFINITION SYNTAX -------------------------------------------------
-// -----------------------------------------------------------------------------
+// ROUTE API DEFINITION SYNTAX ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /**
  * API Definition Syntax - Closure.
+ *
+ * ### General Information #####################################################
  *
  * @see   Symfony\Component\HttpFoundation\Response
  * @uses  Silex\Application $app The Silex Application instance.

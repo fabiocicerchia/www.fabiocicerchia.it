@@ -35,11 +35,11 @@ set :document_root, "/var/www/fabiocicerchia_demo/current/web/"
 
 set :scm,                   :git
 set :repository,            "git://github.com/fabiocicerchia/fabiocicerchia.github.com.git"
-set :branch,                "master"
+set :branch,                "develop"
 set :git_enable_submodules, 1
 set :deploy_via,            :remote_cache
 
-set :user,        "root"
+set :user,        "root" # TODO: Change user to "capistrano".
 set :use_sudo,    false
 set :ssh_options, {:forward_agent => true}
 default_run_options[:pty] = true

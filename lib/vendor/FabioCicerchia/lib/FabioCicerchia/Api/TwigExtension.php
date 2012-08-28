@@ -55,9 +55,10 @@ class TwigExtension extends \Twig_Extension
     /**
      * Just the preg_replace.
      *
-     * <pre>
-     *   {{ post.title|preg_replace("/Hello/", "World") }}
-     * </pre>
+     * ### Example #############################################################
+     *     {{ post.title|preg_replace("/Hello/", "World") }}
+     *
+     * ### General Information #################################################
      *
      * @param mixed   $subject     The string or an array with strings to search
      *                             and replace.
@@ -87,6 +88,8 @@ class TwigExtension extends \Twig_Extension
     /**
      * Returns a list of filters to add to the existing list.
      *
+     * ### General Information #################################################
+     *
      * @see   Twig_Filter_Method
      * @since Version 0.1
      *
@@ -103,6 +106,8 @@ class TwigExtension extends \Twig_Extension
     // {{{ Method: getName -----------------------------------------------------
     /**
      * Returns the name of the extension.
+     *
+     * ### General Information #################################################
      *
      * @since Version 0.1
      *

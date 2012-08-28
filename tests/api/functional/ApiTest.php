@@ -58,6 +58,8 @@ class ApiTest extends WebTestCase
     /**
      * Return the instance of Silex\Application.
      *
+     * ### General Information #################################################
+     *
      * @since Version 0.1
      *
      * @return Silex\Application
@@ -73,6 +75,8 @@ class ApiTest extends WebTestCase
     // {{{ Method: provideUrl --------------------------------------------------
     /**
      * Data Provider to return a list of url.
+     *
+     * ### General Information #################################################
      *
      * @return array
      */
@@ -103,6 +107,8 @@ class ApiTest extends WebTestCase
     /**
      * Data Provider to return a list of URL and its status code.
      *
+     * ### General Information #################################################
+     *
      * @return array
      */
     public function provideStatusCode()
@@ -131,6 +137,8 @@ class ApiTest extends WebTestCase
     // {{{ Method: provideMimeType ---------------------------------------------
     /**
      * Data Provider to return a list of URL and its mime type.
+     *
+     * ### General Information #################################################
      *
      * @return array
      */
@@ -161,6 +169,10 @@ class ApiTest extends WebTestCase
     /**
      * Data Provider to return a list of URL and its cache-control value.
      *
+     * ### General Information #################################################
+     *
+     * ### General Information #################################################
+     *
      * @return array
      */
     public function provideCache()
@@ -190,6 +202,8 @@ class ApiTest extends WebTestCase
     /**
      * Data Provider to return a list of URL and its language value.
      *
+     * ### General Information #################################################
+     *
      * @return array
      */
     public function provideUrlLanguages()
@@ -217,6 +231,8 @@ class ApiTest extends WebTestCase
     /**
      * Data Provider to return a list of URL and its cache-control value for
      * each HTTP method.
+     *
+     * ### General Information #################################################
      *
      * @return array
      */
@@ -265,6 +281,8 @@ class ApiTest extends WebTestCase
     /**
      * Test all the routes to check the HTTP Status Code.
      *
+     * ### General Information #################################################
+     *
      * @param string  $url    The URL to be checked.
      * @param integer $status The HTTP status code.
      *
@@ -288,6 +306,8 @@ class ApiTest extends WebTestCase
     /**
      * Test all the routes to check the MIME Type.
      *
+     * ### General Information #################################################
+     *
      * @param string $url       The URL to be checked.
      * @param string $mime_type The MIME-Type to be checked.
      *
@@ -309,6 +329,8 @@ class ApiTest extends WebTestCase
     // {{{ Method: testEveryRouteCheckResponse ---------------------------------
     /**
      * Test all the routes to check the Response.
+     *
+     * ### General Information #################################################
      *
      * @medium
      * @since Version 0.1
@@ -344,6 +366,8 @@ class ApiTest extends WebTestCase
     /**
      * Test all the routes to check the Cache.
      *
+     * ### General Information #################################################
+     *
      * @param string $url   The URL to be checked.
      * @param string $cache The cache value to be checked.
      *
@@ -376,6 +400,8 @@ class ApiTest extends WebTestCase
     /**
      * Test all the routes to check the Response with a wrong HTTP Method.
      *
+     * ### General Information #################################################
+     *
      * @param string  $url        The URL to be checked.
      * @param string  $httpMethod The invalid HTTP Method.
      * @param integer $status     The HTTP status code.
@@ -398,9 +424,9 @@ class ApiTest extends WebTestCase
     /**
      * Test all the routes to check the Charset.
      *
-     * @param string  $url        The URL to be checked.
-     * @param string  $httpMethod The invalid HTTP Method.
-     * @param integer $status     The HTTP status code.
+     * ### General Information #################################################
+     *
+     * @param string $url The URL to be checked.
      *
      * @dataProvider provideUrl
      * @since Version 0.1
@@ -420,7 +446,10 @@ class ApiTest extends WebTestCase
     /**
      * Test all the routes to check the Language.
      *
-     * @param string $url The URL to be checked.
+     * ### General Information #################################################
+     *
+     * @param string $url  The URL to be checked.
+     * @param string $lang The language value to be checked.
      *
      * @dataProvider provideUrlLanguages
      *
@@ -444,6 +473,8 @@ class ApiTest extends WebTestCase
     // {{{ Method: testInformationRouteCheckResponse ---------------------------
     /**
      * Test the route "Information" to check the Response.
+     *
+     * ### General Information #################################################
      *
      * @medium
      * @since Version 0.1
@@ -478,6 +509,8 @@ class ApiTest extends WebTestCase
     // {{{ Method: testEducationRouteCheckResponse -----------------------------
     /**
      * Test the route "Education" to check the Response.
+     *
+     * ### General Information #################################################
      *
      * @medium
      * @since Version 0.1
@@ -516,6 +549,10 @@ class ApiTest extends WebTestCase
     // {{{ Method: testExperienceRouteCheckResponse ----------------------------
     /**
      * Test the route "Experience" to check the Response.
+     *
+     * ### General Information #################################################
+     *
+     * ### General Information #################################################
      *
      * @medium
      * @since Version 0.1
@@ -581,6 +618,8 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Skill" to check the Response.
      *
+     * ### General Information #################################################
+     *
      * @medium
      * @since Version 0.1
      *
@@ -619,6 +658,8 @@ class ApiTest extends WebTestCase
     /**
      * Test the route "Language" to check the Response.
      *
+     * ### General Information #################################################
+     *
      * @medium
      * @since Version 0.1
      *
@@ -656,6 +697,8 @@ class ApiTest extends WebTestCase
     // {{{ Method: test404RouteCheckResponse -----------------------------------
     /**
      * Test the route "404" to check the Response.
+     *
+     * ### General Information #################################################
      *
      * @since Version 0.1
      *

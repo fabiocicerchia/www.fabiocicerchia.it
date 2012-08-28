@@ -1,4 +1,5 @@
 # PBP .perltidyrc file
+# TODO: Script to install this file.
 
 -l=78    # Max line width is 78 cols
 -i=4     # Indent level is 4 cols

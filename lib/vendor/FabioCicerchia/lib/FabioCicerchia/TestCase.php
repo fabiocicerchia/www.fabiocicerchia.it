@@ -64,6 +64,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Check the PHPUnit's debug flag to enable the debug mode.
      *
+     * ### General Information #################################################
+     *
      * @since Version 0.1
      *
      * @return boolean The value of the PHPUnit debug.
@@ -78,6 +80,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Prints human-readable information about a variable, only if the debug is
      * enabled.
+     *
+     * ### General Information #################################################
      *
      * @param mixed $value The value to print.
      *
@@ -100,6 +104,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Just the opposite of PHPUnit_Framework_Assert::fail().
      *
+     * ### General Information #################################################
+     *
      * @param string $message The message.
      *
      * @see   PHPUnit_Framework_TestCase::assertTrue()
@@ -118,6 +124,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     // {{{ Method: callMethod --------------------------------------------------
     /**
      * Call a method, changing the visibility.
+     *
+     * ### General Information #################################################
      *
      * @param string $method The method to call.
      * @param array  $params The parameters to pass.
@@ -140,6 +148,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Get the value of a property, changing the visibility.
      *
+     * ### General Information #################################################
+     *
      * @param string $name The property to get.
      *
      * @see   FabioCicerchia\TestCase::$object
@@ -159,6 +169,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     // {{{ Method: retrieveMethod ----------------------------------------------
     /**
      * Change the visibility of a method to use it directly.
+     *
+     * ### General Information #################################################
      *
      * @param string $object The object's instance.
      * @param string $name   The method to retrieve.
@@ -185,6 +197,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Change the visibility of a property to use it directly.
      *
+     * ### General Information #################################################
+     *
      * @param string $object The object instance.
      * @param string $name   The property to retrieve.
      *
@@ -210,6 +224,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Set the value of a property, changing the visibility.
      *
+     * ### General Information #################################################
+     *
      * @param string $name  The property to change.
      * @param mixed  $value The value.
      *
@@ -232,6 +248,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      *
+     * ### General Information #################################################
+     *
      * @see   FabioCicerchia\TestCase::output()
      * @since Version 0.1
      *
@@ -251,6 +269,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Check if the current PHP version support the method
      * ReflectionMethod::setAccessible.
+     *
+     * ### General Information #################################################
      *
      * @see   PHPUnit_Framework_TestCase::markTestSkipped()
      * @since Version 0.1

@@ -34,8 +34,7 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: 100% Internal Coverage.
-// TODO: 100% Overall Coverage.
+// TODO: 100% Coverage.
 
 require_once TEST_LIB_PATH . 'TestCase.php';
 require_once TEST_LIB_PATH . 'Api/Service/Strategy.php';
@@ -59,6 +58,8 @@ class StrategyTest extends FabioCicerchia\TestCase
     /**
      * Test method "getData" return the correct value.
      *
+     * ### General Information #################################################
+     *
      * @since Version 0.1
      *
      * @return void
@@ -76,6 +77,8 @@ class StrategyTest extends FabioCicerchia\TestCase
     // {{{ Method: testInstancing ----------------------------------------------
     /**
      * Test method "__construct".
+     *
+     * ### General Information #################################################
      *
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage The parameter $service_name must be a string.

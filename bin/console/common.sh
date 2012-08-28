@@ -300,6 +300,7 @@ list_subactions() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ help() -------------------------------------------------------------------
+# TODO: Refactor.
 help() {
     echo
     echo -e "${BLDWHT}USAGE:$TXTRST"
@@ -336,7 +337,7 @@ help() {
     echo -en "             ${TXTYLW}Subactions${TXTRST}: "
     echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
     echo -e "    ${TXTCYN}test$TXTRST [${TXTBLU}subaction${TXTRST}]     Test the code."
-    SUBROUTINES=$(list_subactions "sca_")
+    SUBROUTINES=$(list_subactions "test_")
     echo -en "             ${TXTYLW}Subactions${TXTRST}: "
     echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
 

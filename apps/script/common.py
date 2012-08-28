@@ -31,8 +31,6 @@
 # Link:     http://www.fabiocicerchia.it
 #
 
-# TODO: Run PEP8 & PYLINT.
-
 from __future__ import print_function
 import urllib
 import re

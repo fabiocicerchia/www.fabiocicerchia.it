@@ -151,16 +151,17 @@ These are the external libraries that has been used:
 ### 2.7. Tools
 These are the tools that has been used:
 
- * PHPUnit v3.6.11 - [Home](http://www.phpunit.de/) | [Doc](http://www.phpunit.de/manual/3.6/en/index.html)
- * PHP_CodeBrowser v1.0.2 - [Repo](https://github.com/Mayflower/PHP_CodeBrowser)
- * PHP_CodeCoverage v1.1.2 - [Repo](https://github.com/sebastianbergmann/php-code-coverage)
- * PHP_Code_Sniffer v1.3.4 - [Home](http://pear.php.net/package/PHP_CodeSniffer/) | [Doc](http://pear.php.net/package/PHP_CodeSniffer/docs)
  * PHP Depend v1.0.7 - [Home](http://pdepend.org/) | [Doc](http://pdepend.org/documentation/getting-started.html)
  * PHP Mess Detector v1.3.3 - [Home](http://phpmd.org/) | [Doc](http://phpmd.org/documentation/index.html)
- * phpDocumentor v2.0.0a3 - [Home](http://www.phpdoc.org/) | [Doc](http://www.phpdoc.org/docs/latest/index.html)
+ * PHP-CS-Fixer - [Home](http://cs.sensiolabs.org/) | [Repo](https://github.com/fabpot/PHP-CS-Fixer)
+ * PHP_Code_Sniffer v1.3.4 - [Home](http://pear.php.net/package/PHP_CodeSniffer/) | [Doc](http://pear.php.net/package/PHP_CodeSniffer/docs)
+ * PHP_CodeBrowser v1.0.2 - [Repo](https://github.com/Mayflower/PHP_CodeBrowser)
+ * PHP_CodeCoverage v1.1.2 - [Repo](https://github.com/sebastianbergmann/php-code-coverage)
  * phpcov v1.0.0 - [Repo](https://github.com/sebastianbergmann/phpcov)
  * phpcpd v1.3.5 - [Repo](https://github.com/sebastianbergmann/phpcpd)
+ * phpDocumentor v2.0.0a3 - [Home](http://www.phpdoc.org/) | [Doc](http://www.phpdoc.org/docs/latest/index.html)
  * phploc v1.6.4 - [Repo](https://github.com/sebastianbergmann/phploc)
+ * PHPUnit v3.6.11 - [Home](http://www.phpunit.de/) | [Doc](http://www.phpunit.de/manual/3.6/en/index.html)
 
 ---
 
@@ -233,8 +234,9 @@ These are the tools that has been used:
 
  * CPAN Minus v1.5007 - [Repo](https://github.com/miyagawa/cpanminus)
  * Google Minify v2.1.5 - [Home](http://code.google.com/p/minify/) | [Doc](http://code.google.com/p/minify/wiki/UserGuide)
- * Poedit v1.4.6 - [Home](http://www.poedit.net)
+ * nikto v2.1.4 - [Home](http://cirt.net/nikto2)
  * perltidy v20120619 - [Home](http://perltidy.sourceforge.net) | [Doc](http://perltidy.sourceforge.net/perltidy.html)
+ * Poedit v1.4.6 - [Home](http://www.poedit.net)
 
 ### 3.7. SEO
 These are the SEO enhancements that has been implemented:
@@ -287,8 +289,14 @@ These are the external libraries that has been used:
 These are the tools that has been used:
 
  * epydoc v3.0.1 - [Home](http://epydoc.sourceforge.net/)
+ * Google Webmaster Tools - Rich Snippets Testing Tool - [Home](http://www.google.com/webmasters/tools/richsnippets)
+ * IDI Web Accessibility Checker - [Home](http://achecker.ca)
  * pep8 v0.6.1 - [Doc](http://www.python.org/dev/peps/pep-0008/)
  * pylint v0.25.0 - [Home](http://www.logilab.org/project/pylint)
+ * REDbot - [Home](http://redbot.org)
+ * The W3C CSS Validation Service - [Home](http://jigsaw.w3.org/css-validator)
+ * The W3C Markup Validation Service - [Home](http://validator.w3.org)
+ * W3C Feed Validation Service, for Atom and RSS - [Home](http://validator.w3.org/feed/)
 
 ---
 
@@ -327,32 +335,58 @@ These are the tools that has been used:
     * cd
     * curl
     * cut
+    * date
     * declare
     * dirname
+    * echo
     * egrep
+    * export
     * find
     * fold
-    * getopts
+    * grep
+    * head
+    * let
+    * lsb_release
+    * make
+    * mkdir
+    * msgfmt
+    * printf
+    * pwd
+    * readlink
     * sed
-    * seq
     * source
+    * sudo
+    * tar
+    * tput
+    * tr
     * wc
     * wget
+    * whereis
+    * which
     * xargs
 
  * External Tools:
     * a2enmod
     * add-apt-repository
+    * apache2ctl
+    * apt-cache
     * apt-get
+    * apt-key
+    * apxs2
+    * cap
     * cover
     * cpanm
     * epydoc
+    * gem
     * git
+    * mongo
+    * nikto
     * pdepend
     * pear
     * pecl
-    * pep8
     * perl
+    * perlbrew
+    * php
     * phpcb
     * phpcpd
     * phpcs
@@ -360,8 +394,8 @@ These are the tools that has been used:
     * phploc
     * phpmd
     * phpunit
+    * pip
     * pod2html
-    * pylint
     * python
 
 ---

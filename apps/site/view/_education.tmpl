@@ -1,5 +1,6 @@
 [% USE date %]
 [% USE String %]
+<!-- TODO: Migrate this file to partials -->
 <section id="education">
     <div class="page-header">
         <h2>[% FILTER gettext %]Education[% END %]</h2>
@@ -7,9 +8,9 @@
 
     <div class="row">
         <div class="span12 vcalendar">
-            [% closed = 1 %]
+            [% closed = 1 %] <!-- TODO: This is ugly -->
             [% FOREACH entity IN data.education.entity %]
-            [% IF loop.index mod 2 == 0 %]<div class="row-fluid">[% closed = 0 %][% END %]
+            [% IF loop.index mod 2 == 0 %]<div class="row-fluid">[% closed = 0 %][% END %] <!-- TODO: This is ugly -->
             [% id_title = entity.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             [% id_company = entity.content.company.title.content | lower | replace('[^a-z0-9 ]', '') | replace(' ', '_') %]
             <div class="span6 education vevent" id="[% id_title %]_[% id_company %]" itemscope="itemscope" itemtype="http://schema.org/EducationEvent">
@@ -37,9 +38,9 @@
                 </div>
                 [% END %]
             </div>
-            [% IF loop.count mod 2 == 0 %]</div>[% closed = 1 %][% END %]
+            [% IF loop.count mod 2 == 0 %]</div>[% closed = 1 %][% END %] <!-- TODO: This is ugly -->
             [% END %]
-            [% IF closed == 0 %]</div>[% END %]
+            [% IF closed == 0 %]</div>[% END %] <!-- TODO: This is ugly -->
         </div>
     </div>
 </section>

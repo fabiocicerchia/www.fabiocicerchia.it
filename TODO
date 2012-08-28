@@ -2,11 +2,20 @@
 TODO LIST
 --------------------------------------------------------------------------------
 
-File: ./tests/api/unit/FabioCicerchia/Api/ServiceAbstractTest.php
+File: ./config/system/.perltidyrc
 --------------------------------------------------------------------------------
 
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
+  - Script to install this file. (line 2)
+
+File: ./config/system/.bashrc
+--------------------------------------------------------------------------------
+
+  - Script to install this file. (line 1)
+
+File: ./config/deploy/demo.rb
+--------------------------------------------------------------------------------
+
+  - Change user to "capistrano". (line 42)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
 --------------------------------------------------------------------------------
@@ -17,262 +26,133 @@ File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
 File: ./tests/api/unit/FabioCicerchia/Api/Service/StrategyTest.php
 --------------------------------------------------------------------------------
 
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/LanguageTest.php
---------------------------------------------------------------------------------
-
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/SkillTest.php
---------------------------------------------------------------------------------
-
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/InformationTest.php
---------------------------------------------------------------------------------
-
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/EducationTest.php
---------------------------------------------------------------------------------
-
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/ExperienceTest.php
---------------------------------------------------------------------------------
-
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
-
-File: ./tests/api/unit/FabioCicerchia/Api/UtilsTest.php
---------------------------------------------------------------------------------
-
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
+  - 100% Coverage. (line 37)
 
 File: ./tests/script/test.py
 --------------------------------------------------------------------------------
 
-  - Write tests. (line 8)
+  - Write tests. (line 34)
 
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/TestCase.php
+File: ./lib/PHPCS/ruleset.xml
 --------------------------------------------------------------------------------
 
-  - Run PHP-CS-Fixer. (line 37)
+  - Use ruleset for PSR2 (line 5)
 
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/TwigExtension.php
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
 --------------------------------------------------------------------------------
 
-  - Remove and just use "date". (line 71)
+  - Add description. (line 284)
+  - Add description. (line 287)
+  - Add description. (line 288)
 
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Skill.php
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/ResultPrinter.php
 --------------------------------------------------------------------------------
 
-  - Refactor. (line 80)
+  - Include this class in phpunit.xml (line 37)
+  - Add description. (line 58)
+  - Add description (line 156)
 
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Experience.php
+File: ./apps/site/view/_header.tmpl
 --------------------------------------------------------------------------------
 
-  - Is it possible to combine them into one? (line 96)
+  - Migrate this file to partials (line 1)
 
-File: ./apps/site/view/dev.tmpl
+File: ./apps/site/view/_experience.tmpl
 --------------------------------------------------------------------------------
 
-  - Extract (line 20)
-  - Set up the aliases (line 43)
-
-File: ./apps/site/view/references.tmpl
---------------------------------------------------------------------------------
-
-  - Extract (line 20)
-  - Used just to auth the first time, locally (line 51)
-  - Move this (line 62)
+  - Migrate this file to partials (line 3)
 
 File: ./apps/site/view/_js.tmpl
 --------------------------------------------------------------------------------
 
-  - IN.User.logout(); (line 3)
-  - Use jQuery (line 20)
-  - Use jQuery (line 27)
-  - Implement NoJS Behaviour. (line 76)
+  - Migrate this file to partials (line 1)
 
 File: ./apps/site/view/_head.tmpl
 --------------------------------------------------------------------------------
 
-  - Use a list of feeds with a foreach (line 14)
-  - Change this for the other pages (line 34)
-  - Change this for the other pages (line 38)
-  - Change this for the other pages (line 40)
-  - Convert to a dynamic value. (line 45)
-  - Change this for the other pages (line 50)
+  - Migrate this file to partials (line 1)
+  - Convert to a dynamic value. (line 35)
 
-File: ./apps/site/view/code-snippets.tmpl
+File: ./apps/site/view/_education.tmpl
 --------------------------------------------------------------------------------
 
-  - Extract (line 20)
-  - Add id (line 56)
-  - Fix this, that doesn't work (line 74)
+  - Migrate this file to partials (line 3)
+  - This is ugly (line 11)
+  - This is ugly (line 13)
+  - This is ugly (line 41)
+  - This is ugly (line 43)
 
-File: ./apps/site/view/html5.tmpl
+File: ./apps/site/view/_summary.tmpl
 --------------------------------------------------------------------------------
 
-  - Extract (line 20)
+  - Migrate this file to partials (line 1)
 
-File: ./apps/site/view/maps.tmpl
+File: ./apps/site/view/_skill.tmpl
 --------------------------------------------------------------------------------
 
-  - Extract (line 19)
-  - This doesn't work properly (line 50)
-  - Hidden the URL (line 51)
+  - Migrate this file to partials (line 1)
+
+File: ./apps/site/view/_language.tmpl
+--------------------------------------------------------------------------------
+
+  - Migrate this file to partials (line 1)
 
 File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------
 
-  - Reduce number of modules used. (line 36)
-  - Remove it. (line 41)
-  - Add this (line 52)
-  - Use cache. (line 84)
-  - Duplicated code. (line 97)
-  - Clean this code... (line 104)
-  - Duplicated code. (line 136)
-  - Clean this code... (line 142)
-  - Duplicated code. (line 174)
-  - Clean this code... (line 180)
-  - Duplicated code. (line 212)
-  - Clean this code... (line 218)
-  - Duplicated code. (line 250)
-  - Clean this code... (line 256)
-  - Is it possible to assign a var to 3? (line 309)
-  - Clean this code... (line 322)
-  - IMPLEMENT IF NOT MODIFIED (line 327)
-  - Clean this code... (line 328)
-  - Remove this method. (line 379)
-  - Try to use fewer variables. (line 399)
-  - Test::Pod. (line 721)
-  - Test::Pod::Coverage. (line 722)
+  - REMOVE THIS! (line 219)
+  - IMPLEMENT IF NOT MODIFIED (line 252)
+  - Test::Pod. (line 638)
+  - Test::Pod::Coverage. (line 639)
+
+File: ./apps/api/view/_header.twig
+--------------------------------------------------------------------------------
+
+  - Migrate this file to partials (line 1)
 
 File: ./apps/api/logic/controller.php
 --------------------------------------------------------------------------------
 
-  - Remove or restore it? (line 67)
-  - Provide different mime-types (XML, JSON, ...) (line 114)
-  - Less code here below... (line 162)
-  - Less code here below... (line 174)
-  - Provide different mime-types (XML, JSON, ...) (line 180)
-  - Provide different mime-types (XML, JSON, ...) (line 215)
-
-File: ./apps/api/logic/bootstrap.php
---------------------------------------------------------------------------------
-
-  - Set this value based on a ENV variable. (line 43)
-
-File: ./apps/script/common.py
---------------------------------------------------------------------------------
-
-  - Run PEP8 & PYLINT. (line 34)
-  - Use a demo instance (eg: demo.fabiocicerchia.it) where run this checks.
-    (line 42)
-  - Add a new environment inside virtualhost and capistrano. (line 43)
-  - Remove this condition. (line 141)
-
-File: ./apps/script/benchmark.py
---------------------------------------------------------------------------------
-
-  - Run PEP8 & PYLINT. (line 34)
-  - Find a way to repeat a command n times. (line 71)
-  - Find a way to sum the values of array. (line 80)
-  - Is it useful to use __main__ here? (line 104)
+  - Extract this code and make a function. (line 171)
+  - Extract this code and make a function. (line 182)
 
 File: ./apps/script/check_accessibility.py
 --------------------------------------------------------------------------------
 
-  - Run PEP8 & PYLINT. (line 34)
-  - Use http://www.sidar.org/hera/index.php.it ? (line 40)
-  - Serialize to compact the code. (line 51)
-  - Serialize to compact the code. (line 77)
-  - Serialize to compact the code. (line 103)
-  - Serialize to compact the code. (line 129)
-  - Serialize to compact the code. (line 155)
+  - Use http://www.sidar.org/hera/index.php.it ? (line 38)
 
 File: ./apps/script/check_validation.py
 --------------------------------------------------------------------------------
 
-  - Run PEP8 & PYLINT. (line 34)
-  -
-    Http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&l
-    ocale=en_EN (line 40)
-  - Http://www.sidar.org/hera/ (line 41)
-  - YSlow (line 42)
-  - Page Speed (line 43)
-  - Serialize to compact the code. (line 54)
-  - Serialize to compact the code. (line 77)
-  - Serialize to compact the code. (line 102)
-  - Serialize to compact the code. (line 127)
-  - Serialize to compact the code. (line 152)
-  - Uncomment? (line 214)
-  - This takes a while, does it worth? (line 250)
-
-File: ./web/sitemap.xml
---------------------------------------------------------------------------------
-
-  - Generate by command line (line 2)
+  - Http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN (line 38)
+  - Http://www.sidar.org/hera/ (line 39)
+  - YSlow (line 40)
+  - Page Speed (line 41)
+  - Uncomment? (line 178)
+  - This takes a while, does it worth? (line 214)
 
 File: ./web/media/css/main.css
 --------------------------------------------------------------------------------
 
-  - Merge duplicate classes. */ (line 35)
+  - Merge duplicate classes. (line 35)
 
 File: ./bin/console/common.sh
 --------------------------------------------------------------------------------
 
   - Http://fvue.nl/wiki/Bash:_Error_handling (line 118)
-  - Wrap multiline. (line 295)
+  - Refactor. (line 303)
 
 File: ./bin/console/console.sh
 --------------------------------------------------------------------------------
 
   - Refactor! (line 57)
 
-File: ./bin/console/modules/tests.sh
---------------------------------------------------------------------------------
-
-  - Find a way to make this works. (line 56)
-
-File: ./bin/console/modules/sca.sh
---------------------------------------------------------------------------------
-
-  - Wrap multiline. (line 39)
-  - Wrap multiline. (line 91)
-
 File: ./bin/console/modules/run.sh
 --------------------------------------------------------------------------------
 
-  -  (line 58)
-  - Save to a file. (line 59)
-  -  (line 60)
-  - LIST" (line 64)
-  - FILE) (line 71)
-  - 0-9a-z]*(.)?/\1: \U\2/i") (line 72)
-  - Save to a file. (line 96)
-  - Wrap multiline. (line 161)
-  - Wrap multiline. (line 176)
-  - Wrap multiline. (line 193)
-  - Wrap multiline. (line 212)
-  - Check PEAR/PECL. (line 227)
-  - TXTRST}" (line 229)
-  - TXTRST}" (line 231)
-  - TXTRST}" (line 233)
-  - TXTRST}" (line 235)
-  - TXTRST}" (line 237)
-  - TXTRST}" (line 239)
-  - TXTRST}" (line 241)
-  - TXTRST}" (line 243)
-  - Wrap multiline. (line 247)
-  - Wrap multiline. (line 274)
-  - Wrap multiline. (line 334)
+  - Save to a file. (line 69)
+  - Check PEAR/PECL. (line 212)
+  - Add output messages. (line 277)
+  - Add output messages. (line 344)
+  - Add output messages. (line 356)
+  - Add output messages. (line 363)

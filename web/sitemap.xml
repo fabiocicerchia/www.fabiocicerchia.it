@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- TODO: Generate by command line -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
@@ -9,6 +8,22 @@
     </url>
     <url>
         <loc>http://www.fabiocicerchia.it/it</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://www.fabiocicerchia.it/code-snippets.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    <url>
+        <loc>http://www.fabiocicerchia.it/references.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://www.fabiocicerchia.it/maps.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    <url>
+        <loc>http://www.fabiocicerchia.it/dev.html</loc>
         <changefreq>monthly</changefreq>
     </url>
 </urlset>

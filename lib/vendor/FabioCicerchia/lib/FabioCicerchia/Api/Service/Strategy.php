@@ -66,6 +66,8 @@ class Strategy
     /**
      * Retrieve the data from the Service.
      *
+     * ### General Information #################################################
+     *
      * @see FabioCicerchia\Api\Service\Strategy::$strategy The instance of Service.
      * @see FabioCicerchia\Api\Service\*::getData()         Getter for $data.
      * @since Version 0.1
@@ -84,8 +86,10 @@ class Strategy
     /**
      * The constructor.
      *
-     * @param string                    $service_name The name of the service.
-     * @param Doctrine\MongoDB\Database $db_handle    The Database Handle.
+     * ### General Information #################################################
+     *
+     * @param string                     $service_name The name of the service.
+     * @param \Doctrine\MongoDB\Database $db_handle    The Database Handle.
      *
      * @link   http://www.php.net/manual/en/class.invalidargumentexception.php
      * @link   http://www.php.net/manual/en/class.unexpectedvalueexception.php

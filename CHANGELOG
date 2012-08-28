@@ -1,5 +1,30 @@
 fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
+  * apps/api/logic/controller.php, apps/script/benchmark.py,
+    apps/script/check_accessibility.py,
+    apps/script/check_validation.py, apps/script/common.py,
+    apps/site/view/_head.tmpl, bin/console/common.sh,
+    bin/console/modules/install.sh, bin/console/modules/run.sh,
+    bin/console/modules/sca.sh,
+    .../lib/FabioCicerchia/Api/Service/Skill.php: some fixes
+  * README.md, apps/api/logic/controller.php,
+    apps/site/logic/class.pl, apps/site/view/_js.tmpl,
+    apps/site/view/code-snippets.tmpl, apps/site/view/dev.tmpl,
+    apps/site/view/html5.tmpl, apps/site/view/maps.tmpl,
+    bin/console/modules/install.sh, tests/api/functional/ApiTest.php,
+    tests/site/test.pl, web/media/css/main.css: some other todo done
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sat, 25 Aug 2012 17:00:56 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * .gitmodules, apps/site/locale/it_IT/LC_MESSAGES/messages.po,
+    apps/site/locale/messages.pot, apps/site/logic/class.pl,
+    bin/console/modules/run.sh, composer.lock, composer.phar,
+    lib/git2changelog, lib/vendor/git2changelog: added some labels,
+    fixed perl, changed path for git2changelog
+  * .gitmodules, CHANGELOG, bin/console/modules/run.sh,
+    lib/git2changelog: added debian-version CHANGELOG
   * AUTHORS, BUGS, README.md, TODO, apps/api/logic/bootstrap.php,
     apps/api/logic/controller.php, apps/api/view/_header.twig,
     apps/api/view/api-definition-syntax.twig,
@@ -43,7 +68,7 @@ fabiocicerchia.github.com (0.1.1) unstable; urgency=low
     web/media/images/beta.png, web/media/js/main.js: removed some todo
     + some fixes
 
- -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 24 Aug 2012 20:46:07 +0100
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 24 Aug 2012 20:54:37 +0100
 
 fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 

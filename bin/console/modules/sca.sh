@@ -60,11 +60,11 @@ sca_phpmd() {
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
-    phpmd "$API_APPSOURCEDIR" xml codesize,design,naming,unusedcode \
+    phpmd "$API_APP_SOURCEDIR" xml codesize,design,naming,unusedcode \
           --reportfile "$REPORTDIR/api/logs/app/phpmd.xml"
-    phpmd "$API_LIBSOURCEDIR" xml codesize,design,naming,unusedcode \
+    phpmd "$API_LIB_SOURCEDIR" xml codesize,design,naming,unusedcode \
           --reportfile "$REPORTDIR/api/logs/lib/phpmd.xml"
-    phpmd "$API_TESTSOURCEDIR" xml codesize,design,naming,unusedcode \
+    phpmd "$API_TEST_SOURCEDIR" xml codesize,design,naming,unusedcode \
           --reportfile "$REPORTDIR/api/logs/test/phpmd.xml"
 
     return $?
@@ -78,9 +78,9 @@ sca_phploc() {
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
-    phploc --log-xml "$REPORTDIR/api/logs/app/phploc.xml" "$API_APPSOURCEDIR"
-    phploc --log-xml "$REPORTDIR/api/logs/lib/phploc.xml" "$API_LIBSOURCEDIR"
-    phploc --log-xml "$REPORTDIR/api/logs/test/phploc.xml" "$API_TESTSOURCEDIR"
+    phploc --log-xml "$REPORTDIR/api/logs/app/phploc.xml" "$API_APP_SOURCEDIR"
+    phploc --log-xml "$REPORTDIR/api/logs/lib/phploc.xml" "$API_LIB_SOURCEDIR"
+    phploc --log-xml "$REPORTDIR/api/logs/test/phploc.xml" "$API_TEST_SOURCEDIR"
 
     return $?
 }
@@ -94,11 +94,11 @@ sca_phpcpd() {
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
     phpcpd --log-pmd "$REPORTDIR/api/logs/app/phpcpd.xml" \
-           "$API_APPSOURCEDIR" > "$REPORTDIR/api/logs/app/duplications.txt"
+           "$API_APP_SOURCEDIR" > "$REPORTDIR/api/logs/app/duplications.txt"
     phpcpd --log-pmd "$REPORTDIR/api/logs/lib/phpcpd.xml" \
-           "$API_LIBSOURCEDIR" > "$REPORTDIR/api/logs/lib/duplications.txt"
+           "$API_LIB_SOURCEDIR" > "$REPORTDIR/api/logs/lib/duplications.txt"
     phpcpd --log-pmd "$REPORTDIR/api/logs/test/phpcpd.xml" \
-           "$API_TESTSOURCEDIR" > "$REPORTDIR/api/logs/test/duplications.txt"
+           "$API_TEST_SOURCEDIR" > "$REPORTDIR/api/logs/test/duplications.txt"
 
     return $?
 }
@@ -113,13 +113,13 @@ sca_pdepend() {
     mkdir -p "$REPORTDIR/api/logs/test/"
     pdepend --jdepend-chart="$REPORTDIR/pdepend-chart_app.svg" \
             --overview-pyramid="$REPORTDIR/pdepend-pyramid_app.svg" \
-            --jdepend-xml="$REPORTDIR/api/logs/app/pdepend.xml" "$API_APPSOURCEDIR"
+            --jdepend-xml="$REPORTDIR/api/logs/app/pdepend.xml" "$API_APP_SOURCEDIR"
     pdepend --jdepend-chart="$REPORTDIR/pdepend-chart_lib.svg" \
             --overview-pyramid="$REPORTDIR/pdepend-pyramid_lib.svg" \
-            --jdepend-xml="$REPORTDIR/api/logs/lib/pdepend.xml" "$API_LIBSOURCEDIR"
+            --jdepend-xml="$REPORTDIR/api/logs/lib/pdepend.xml" "$API_LIB_SOURCEDIR"
     pdepend --jdepend-chart="$REPORTDIR/pdepend-chart_test.svg" \
             --overview-pyramid="$REPORTDIR/pdepend-pyramid_test.svg" \
-            --jdepend-xml="$REPORTDIR/api/logs/test/pdepend.xml" "$API_TESTSOURCEDIR"
+            --jdepend-xml="$REPORTDIR/api/logs/test/pdepend.xml" "$API_TEST_SOURCEDIR"
 
     return $?
 }
@@ -129,12 +129,12 @@ sca_pdepend() {
 sca_phpcb() {
     print_subheader "RUNNING PHP_CODE_BROWSER"
 
-    phpcb --log="$REPORTDIR/api/logs/app/" --source="$API_APPSOURCEDIR" \
-          --output="$REPORTDIR/code_browser/app"
-    phpcb --log="$REPORTDIR/api/logs/lib/" --source="$API_LIBSOURCEDIR" \
-          --output="$REPORTDIR/code_browser/lib"
-    phpcb --log="$REPORTDIR/api/logs/test/" --source="$API_TESTSOURCEDIR" \
-          --output="$REPORTDIR/code_browser/test"
+    phpcb --log="$REPORTDIR/api/logs/app/" --source="$API_APP_SOURCEDIR" \
+          --output="$REPORTDIR/api/code_browser/app"
+    phpcb --log="$REPORTDIR/api/logs/lib/" --source="$API_LIB_SOURCEDIR" \
+          --output="$REPORTDIR/api/code_browser/lib"
+    phpcb --log="$REPORTDIR/api/logs/test/" --source="$API_TEST_SOURCEDIR" \
+          --output="$REPORTDIR/api/code_browser/test"
 
     return $?
 }

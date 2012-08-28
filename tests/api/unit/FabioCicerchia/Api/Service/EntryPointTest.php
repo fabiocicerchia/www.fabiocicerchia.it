@@ -59,6 +59,8 @@ class EntryPointTest extends FabioCicerchia\TestCase
     /**
      * Test method "getService".
      *
+     * ### General Information #################################################
+     *
      * @since Version 0.1
      *
      * @return void

@@ -56,6 +56,8 @@ class Utils
      * Return a clean array with all the data converted for the specified
      * language.
      *
+     * ### General Information #################################################
+     *
      * @param array  $data     The data.
      * @param string $language The language.
      *
@@ -90,6 +92,8 @@ class Utils
     /**
      * Return the current language based on the available languages and on
      * the HTTP Accept-Language header.
+     *
+     * ### General Information #################################################
      *
      * @param array  $available_languages The available languages.
      * @param string $accept_language     The string of HTTP Accept-Language.
@@ -127,6 +131,8 @@ class Utils
      * Retrieve the language based on the HTTP header "Accept-Language" and the
      * value in the DB.
      *
+     * ### General Information #################################################
+     *
      * @param \Silex\Application         $app      The Silex Application instance.
      * @param \Doctrine\MongoDB\Database $database The MongoDB Database instance.
      *
@@ -141,7 +147,11 @@ class Utils
     ) {
         $current_lang        = 'en';
         $available_languages = [$current_lang => $current_lang];
-        $accept_language     = $app['request']->headers->get('accept-language');
+        $accept_language     = [];
+        if (empty($app['request']) === false) {
+            $accept_language     = $app['request']->headers->get('accept-language');
+        }
+
         if (empty($accept_language) === false) {
             $db_languages = $database->selectCollection('language')
                                      ->find([], ['code' => true])->toArray();
@@ -164,6 +174,8 @@ class Utils
     // {{{ Method: getLastModified ---------------------------------------------
     /**
      * Retrieve the timestamp of the last modified date.
+     *
+     * ### General Information #################################################
      *
      * @param array $data The data.
      *
@@ -195,12 +207,112 @@ class Utils
         return $lastModified;
     }
     // }}} ---------------------------------------------------------------------
+
+
+    // {{{ Method: httpPriorityOrder -------------------------------------------
+    /**
+     * Return an array based on the priority of the HTTP header [RFC2616].
+     *
+     * ### General Information #################################################
+     *
+     * @param string $string The string of HTTP Header.
+     *
+     * @throws \InvalidArgumentException The parameter $string must be a string.
+     * @since  Version 0.1
+     *
+     * @return array
+     */
+    public static function httpPriorityOrder($string)
+    {
+        if (is_string($string) === false) {
+            $message = 'The parameter $string must be a string.';
+            throw new \InvalidArgumentException($message);
+        }
+
+        $string = preg_replace('/ +/', '', $string);
+        $string = preg_replace('/([^,]+),/', '\1;q=1.0,', $string . ',');
+        $string = substr($string, 0, -1); // Remove the trailing comma.
+        $string = preg_replace('/(;q=[\d\.]+);q=[\d\.]+/', '\1', $string);
+        $tokens = explode(',', $string);
+
+        $values = [];
+        foreach ($tokens as $idx => $token) {
+            list($mimetype, $priority) = preg_split('/;q=/', $token);
+            array_push($values, $priority . ' ' . $idx . ' ' . $mimetype);
+        }
+
+        usort($values, ['\\FabioCicerchia\\Api\\Utils', 'httpCustomSorting']);
+
+        foreach ($values as $idx => $value) {
+            $regex        = '/.+ ([^ ]+)(?:;level=.+)?$/U';
+            $values[$idx] = preg_replace($regex, '\1', $value);
+        }
+
+        return array_merge(array_unique($values));
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: retrieveCurrentValue ----------------------------------------
+    /**
+     * Return the current item based on the available items.
+     *
+     * ### General Information #################################################
+     *
+     * @param array $available The available items.
+     * @param array $accepted  The accepted items.
+     *
+     * @since Version 0.1
+     *
+     * @return string
+     */
+    public static function retrieveCurrentValue(
+        array $available,
+        array $accepted
+    ) {
+        foreach ($accepted as $item) {
+            if (array_search($item, $available) !== false) {
+                return $item;
+            }
+        }
+
+        return $available[0];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: transform ---------------------------------------------------
+    /**
+     * TODO: Add description.
+     *
+     * ### General Information #################################################
+     * @param  string $string   TODO: Add description.
+     * @param  string $mimeType TODO: Add description.
+     *
+     * @return void
+     */
+    public function transform($string, $mimeType)
+    {
+        switch($mimeType) {
+            case 'application/json':
+                $xml   = simplexml_load_string($string);
+                $array = json_decode(json_encode((array) $xml), 1);
+                $json  = json_encode($array);
+                return $json;
+
+            case 'application/xml':
+            case 'application/xml':
+            default:
+                return $string;
+        }
+    }
+    // }}} ---------------------------------------------------------------------
     // }}} =====================================================================
 
     // {{{ Methods - Protected =================================================
     // {{{ Method: httpCustomSorting -------------------------------------------
     /**
      * Sort the array based on the priority of the HTTP header [RFC2616].
+     *
+     * ### General Information #################################################
      *
      * @param string $a The first element.
      * @param string $b The second element.
@@ -254,98 +366,6 @@ class Utils
 
         // last check on the order value
         return strcmp($a_order, $b_order);
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: httpPriorityOrder -------------------------------------------
-    /**
-     * Return an array based on the priority of the HTTP header [RFC2616].
-     *
-     * @param string $string The string of HTTP Header.
-     *
-     * @throws \InvalidArgumentException The parameter $string must be a string.
-     * @since  Version 0.1
-     *
-     * @return array
-     */
-    public static function httpPriorityOrder($string)
-    {
-        if (is_string($string) === false) {
-            $message = 'The parameter $string must be a string.';
-            throw new \InvalidArgumentException($message);
-        }
-
-        $string = preg_replace('/ +/', '', $string);
-        $string = preg_replace('/([^,]+),/', '\1;q=1.0,', $string . ',');
-        $string = substr($string, 0, -1); // Remove the trailing comma.
-        $string = preg_replace('/(;q=[\d\.]+);q=[\d\.]+/', '\1', $string);
-        $tokens = explode(',', $string);
-
-        $values = [];
-        foreach ($tokens as $idx => $token) {
-            list($mimetype, $priority) = preg_split('/;q=/', $token);
-            array_push($values, $priority . ' ' . $idx . ' ' . $mimetype);
-        }
-
-        usort($values, ['\\FabioCicerchia\\Api\\Utils', 'httpCustomSorting']);
-
-        foreach ($values as $idx => $value) {
-            $regex        = '/.+ ([^ ]+)(?:;level=.+)?$/U';
-            $values[$idx] = preg_replace($regex, '\1', $value);
-        }
-
-        return array_merge(array_unique($values));
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: retrieveCurrentValue -------------------------------------
-    /**
-     * Return the current item based on the available items.
-     *
-     * @param array $available The available items.
-     * @param array $accepted  The accepted items.
-     *
-     * @since Version 0.1
-     *
-     * @return string
-     */
-    public static function retrieveCurrentValue(
-        array $available,
-        array $accepted
-    ) {
-        foreach ($accepted as $item) {
-            if (array_search($item, $available) !== false) {
-                return $item;
-            }
-        }
-
-        return $available[0];
-    }
-    // }}} ---------------------------------------------------------------------
-
-    // {{{ Method: transform ---------------------------------------------------
-    /**
-     * TODO: Add description.
-     *
-     * @param  string $string   TODO: Add description.
-     * @param  string $mimeType TODO: Add description.
-     *
-     * @return void
-     */
-    public function transform($string, $mimeType)
-    {
-        switch($mimeType) {
-            case 'application/json':
-                $xml   = simplexml_load_string($string);
-                $array = json_decode(json_encode((array) $xml), 1);
-                $json  = json_encode($array);
-                return $json;
-
-            case 'application/xml':
-            case 'application/xml':
-            default:
-                return $string;
-        }
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

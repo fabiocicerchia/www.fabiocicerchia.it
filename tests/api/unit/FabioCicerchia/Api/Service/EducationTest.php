@@ -34,9 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: 100% Internal Coverage.
-// TODO: 100% Overall Coverage.
-
 require_once TEST_LIB_PATH . 'TestCase.php';
 require_once TEST_LIB_PATH . 'Api/ServiceAbstract.php';
 require_once TEST_LIB_PATH . 'Api/Service/Education.php';
@@ -59,6 +56,8 @@ class EducationTest extends FabioCicerchia\TestCase
     // {{{ Method: testRunWithEmptyData ----------------------------------------
     /**
      * Test method "run" with empty data.
+     *
+     * ### General Information #################################################
      *
      * @since Version 0.1
      *

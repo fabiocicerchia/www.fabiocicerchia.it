@@ -34,9 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: 100% Internal Coverage.
-// TODO: 100% Overall Coverage.
-
 use \FabioCicerchia\Api\Utils;
 
 require_once TEST_LIB_PATH . 'Api/Utils.php';
@@ -61,6 +58,8 @@ class UtilsTest extends FabioCicerchia\TestCase
      * Language provider. The first key is mapping of "available" langs, the
      * second one is HTTP header "Accept" and the last one is the final value
      * that should match as best option suitable.
+     *
+     * ### General Information #################################################
      *
      * @return array
      */
@@ -106,6 +105,8 @@ class UtilsTest extends FabioCicerchia\TestCase
      * Data provider. The first key is the input data to parse, the second one
      * is language value to use and the last one is the expected output.
      *
+     * ### General Information #################################################
+     *
      * @return array
      */
     public function provideDataToConvert()
@@ -138,6 +139,8 @@ class UtilsTest extends FabioCicerchia\TestCase
      * Data provider. The first key is the input data to parse, the second one
      * is the expected output as extracted timestamp.
      *
+     * ### General Information #################################################
+     *
      * @return array
      */
     public function provideFakeData()
@@ -167,6 +170,8 @@ class UtilsTest extends FabioCicerchia\TestCase
     // {{{ Method: providePrioritisedString ------------------------------------
     /**
      * Provide a list of prioritised string.
+     *
+     * ### General Information #################################################
      *
      * @return array
      */
@@ -245,6 +250,8 @@ class UtilsTest extends FabioCicerchia\TestCase
     /**
      * Test method "getCurrentLanguage" with real Accept HTTP Header.
      *
+     * ### General Information #################################################
+     *
      * @param array  $db_language The input data.
      * @param string $string      The languages to use.
      * @param string $value       The expected output.
@@ -265,6 +272,8 @@ class UtilsTest extends FabioCicerchia\TestCase
     /**
      * Test method "getCurrentLanguage" using wrong values.
      *
+     * ### General Information #################################################
+     *
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage The parameter $accept_language must be a string.
      *
@@ -282,9 +291,11 @@ class UtilsTest extends FabioCicerchia\TestCase
     /**
      * Test method "convertForI18n".
      *
-     * @param array  $input    The input data.
-     * @param string $language The language to use.
-     * @param array  $output   The expected output.
+     * ### General Information #################################################
+     *
+     * @param array  $input  The input data.
+     * @param string $lang   The language to use.
+     * @param array  $output The expected output.
      *
      * @dataProvider provideDataToConvert
      *
@@ -319,6 +330,8 @@ class UtilsTest extends FabioCicerchia\TestCase
     /**
      * Test method "getLastModified".
      *
+     * ### General Information #################################################
+     *
      * @param array  $input  The input data.
      * @param string $output The output data.
      *
@@ -337,6 +350,8 @@ class UtilsTest extends FabioCicerchia\TestCase
     // {{{ Method: testHttpPriorityOrder ---------------------------------------
     /**
      * Test method "httpPriorityOrder".
+     *
+     * ### General Information #################################################
      *
      * @param string $input  The input data.
      * @param array  $output The output data.
@@ -358,6 +373,8 @@ class UtilsTest extends FabioCicerchia\TestCase
     // {{{ Method: testHttpPriorityOrderWithWrongValue -------------------------
     /**
      * Test method "httpPriorityOrder" using wrong values.
+     *
+     * ### General Information #################################################
      *
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage The parameter $string must be a string.

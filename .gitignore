@@ -1,2 +1,16 @@
+# Based on https://github.com/github/gitignore
+# Linux.gitignore
 *~
-*.swp
+
+# SublimeText.gitignore
+/*.sublime-project
+*.sublime-workspace
+
+# vim.gitignore
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# Except this file
+!.gitignore

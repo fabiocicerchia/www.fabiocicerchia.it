@@ -216,14 +216,8 @@ for k, v in pages['site']['url_hp'].iteritems():
 #for k, v in pages['site']['url_hp'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
-#    url_param = urllib.urlencode({
-#        'uri':       '%URI%',
-#        'summary':   'on',
-#        'hide_type': 'all',
-#        'depth':     '',
-#        'check':     'Check'
-#    })
-#    xpath  = './/*[@id="form"]//*[text()="Result:"]/'
+#    url_param = 'uri=%URI%&summary=on&hide_type=all&depth=&check=Check'
+#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
 #    xpath += 'following-sibling::*[1]/text()'
 #
 #    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
@@ -234,14 +228,8 @@ for k, v in pages['site']['url_hp'].iteritems():
 #for k, v in pages['site']['feed'].iteritems():
 #    print('    ' + k + ': ', end='')
 #
-#    url_param = urllib.urlencode({
-#        'uri':       '%URI%',
-#        'summary':   'on',
-#        'hide_type': 'all',
-#        'depth':     '',
-#        'check':     'Check'
-#    })
-#    xpath  = './/*[@id="form"]//*[text()="Result:"]/'
+#    url_param = 'uri=%URI%&summary=on&hide_type=all&depth=&check=Check'
+#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
 #    xpath += 'following-sibling::*[1]/text()'
 #
 #    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,

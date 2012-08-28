@@ -73,10 +73,25 @@ install_php() {
     print_subheader "INSTALLING PHP"
 
     if [ -z "$TRAVIS_CI" ]; then
-        sudo add-apt-repository ppa:ondrej/php5
-        sudo apt-get --force-yes -q update
-        sudo apt-get --force-yes -q upgrade
-        sudo apt-get --force-yes -q dist-upgrade
+        EXISTS_COMMAND=$(which add-apt-repository)
+        if [ -n "$EXISTS_COMMAND" ]; then
+            sudo add-apt-repository ppa:ondrej/php5
+        else
+            echo "" >> /etc/apt/sources.list
+            echo "deb http://packages.dotdeb.org squeeze all" \
+                 >> /etc/apt/sources.list
+            echo "deb-src http://packages.dotdeb.org squeeze all" \
+                 >> /etc/apt/sources.list
+            echo "deb http://packages.dotdeb.org squeeze-php54 all" \
+                 >> /etc/apt/sources.list
+            echo "deb-src http://packages.dotdeb.org squeeze-php54 all" \
+                 >> /etc/apt/sources.list
+            wget http://www.dotdeb.org/dotdeb.gpg
+            cat dotdeb.gpg | sudo apt-key add -
+        fi
+        sudo apt-get -y -q update
+        sudo apt-get -y -q upgrade
+        sudo apt-get -y -q dist-upgrade
     else
         echo "SKIPPED"
     fi
@@ -85,12 +100,47 @@ install_php() {
 }
 # }}} --------------------------------------------------------------------------
 
+# {{{ install_perl() ------------------------------------------------------------
+install_perl() {
+    print_subheader "INSTALLING PERL"
+
+    IS_UBUNTU=$(lsb_release -a 2>&1 | grep Ubuntu | wc -l)
+
+    if [ $IS_UBUNTU -gt 1 ]; then
+        sudo apt-get -y -q install perl
+    else
+        curl -kL http://install.perlbrew.pl | bash
+        echo "source ~/perl5/perlbrew/etc/bashrc" >> ~/.bash_profile
+        reset
+        perlbrew install perl-5.14.2 -D usethreads
+    fi
+
+    return $?
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ install_cpanm() ------------------------------------------------------------
+install_cpanm() {
+    print_subheader "INSTALLING CPANM"
+
+    EXISTS_WITH_APT=$(sudo apt-cache search cpanminus | wc -l)
+
+    if [ "$EXISTS_WITH_APT" == "0" ]; then
+        curl -L http://cpanmin.us | perl - --sudo App::cpanminus
+    else
+        sudo apt-get -y -q install cpanminus
+    fi
+
+    return $?
+}
+# }}} --------------------------------------------------------------------------
+
 # {{{ install_mongo() ----------------------------------------------------------
 install_mongo() {
     print_subheader "INSTALLING MONGODB"
 
     if [ -z "$TRAVIS_CI" ]; then
-        sudo apt-get --force-yes -q install mongodb
+        sudo apt-get -y -q install mongodb
     else
         echo "SKIPPED"
     fi
@@ -103,7 +153,7 @@ install_mongo() {
 install_imagick() {
     print_subheader "INSTALLING IMAGICK"
 
-    sudo apt-get --force-yes -q install php5-imagick
+    sudo apt-get -y -q install php5-imagick
 
     return $?
 }
@@ -185,7 +235,7 @@ install_phpdoc2() {
 
     pear_add_channel "pear.phpdoc.org"
     sudo pear -q install --alldeps phpdoc/phpDocumentor-alpha
-    sudo apt-get --force-yes -q install graphviz
+    sudo apt-get -y -q install graphviz
 
     return $?
 }
@@ -236,6 +286,7 @@ install_phpmongo() {
     print_subheader "INSTALLING PHP MONGODB"
 
     sudo pecl -q install mongo
+    sudo echo "extension=mongo.so" > /etc/php5/conf.d/mongo.ini
 
     return $?
 }
@@ -284,11 +335,36 @@ install_perl_modules() {
 }
 # }}} --------------------------------------------------------------------------
 
+# {{{ install_apache_modules() -------------------------------------------------
+install_apache_modules() {
+    print_subheader "INSTALLING APACHE MODULES"
+
+    IS_UBUNTU=$(lsb_release -a 2>&1 | grep Ubuntu | wc -l)
+
+    sudo apt-get -y -q install libapache2-mod-php5
+
+    if [ $IS_UBUNTU -gt 1 ]; then
+        sudo apt-get -y -q install libapache2-mod-perl2
+    else
+        cd /tmp/
+        wget http://perl.apache.org/dist/mod_perl-2.0-current.tar.gz
+        tar xvzf mod_perl-2.0-current.tar.gz
+        cd mod_perl-2.0*
+        perl Makefile.PL
+        APACHE_MODULE_PATH=$(/usr/bin/apxs2 -q LIBEXECDIR)
+        echo "LoadModule perl_module $APACHE_MODULE_PATH/mod_perl.so" > \
+             /etc/apache2/mods-enabled/perl.load
+    fi
+
+    return $?
+}
+# }}} --------------------------------------------------------------------------
+
 # {{{ install_pychecker() ------------------------------------------------------
 install_pychecker() {
     print_subheader "INSTALLING PYCHECKER"
 
-    sudo apt-get --force-yes -q install pychecker
+    sudo apt-get -y -q install pychecker
 
     return $?
 }
@@ -298,7 +374,7 @@ install_pychecker() {
 install_pylint() {
     print_subheader "INSTALLING PYLINT"
 
-    sudo apt-get --force-yes -q install pylint
+    sudo apt-get -y -q install pylint
 
     return $?
 }
@@ -308,7 +384,7 @@ install_pylint() {
 install_pep8() {
     print_subheader "INSTALLING PEP8"
 
-    sudo apt-get --force-yes -q install pep8
+    sudo apt-get -y -q install pep8
 
     return $?
 }
@@ -318,7 +394,7 @@ install_pep8() {
 install_epydoc() {
     print_subheader "INSTALLING EPYDOC"
 
-    sudo apt-get --force-yes -q install python-epydoc
+    sudo apt-get -y -q install python-epydoc
 
     return $?
 }
@@ -328,9 +404,19 @@ install_epydoc() {
 install_capistrano() {
     print_subheader "INSTALLING CAPISTRANO"
 
-    sudo apt-get --force-yes -q install gem
+    sudo apt-get -y -q install gem
     sudo gem install -q capistrano
     sudo gem install -q capistrano-ext
+
+    return $?
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ install_nikto() -----------------------------------------------------
+install_nikto() {
+    print_subheader "INSTALLING NIKTO"
+
+    sudo apt-get -y -q install nikto
 
     return $?
 }

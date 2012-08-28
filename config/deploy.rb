@@ -32,3 +32,35 @@ set :stages, ['demo', 'production']
 set :default_stage, 'demo'
 
 require 'capistrano/ext/multistage'
+
+after "deploy", :clean_cache
+
+# {{{ Task: init_env -----------------------------------------------------------
+task :init_env do
+  run "cd #{current_path}; ./console install php"
+  run "cd #{current_path}; ./console install perl"
+  run "cd #{current_path}; ./console install cpanm"
+  run "cd #{current_path}; ./console install mongo"
+  run "cd #{current_path}; ./console install phpmongo"
+  run "cd #{current_path}; ./console install apache_modules"
+  run "cd #{current_path}; ./console install perl_modules"
+  run "cd #{current_path}; ./console init"
+  run "cd #{current_path}; ./console config"
+  run "cd #{current_path}; ./console run compile_gettext"
+end
+# }}} --------------------------------------------------------------------------
+
+# {{{ Task: clean_cache --------------------------------------------------------
+task :clean_cache do
+  run "rm -rf #{current_path}/cache/apache/*"
+  run "rm -rf #{current_path}/cache/api/*"
+  run "rm -rf #{current_path}/cache/stream/*"
+  run "rm -rf #{current_path}/tmp/*"
+end
+# }}} --------------------------------------------------------------------------
+
+# {{{ Task: console ------------------------------------------------------------
+task :console do
+    run "cd #{current_path}; ./console #{arg1} #{arg2}"
+end
+# }}} --------------------------------------------------------------------------

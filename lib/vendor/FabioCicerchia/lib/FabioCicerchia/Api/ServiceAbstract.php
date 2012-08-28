@@ -80,6 +80,8 @@ abstract class ServiceAbstract
     /**
      * Getter for $collection.
      *
+     * ### General Information #################################################
+     *
      * @see   FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
      * @since Version 0.1
      *
@@ -94,6 +96,8 @@ abstract class ServiceAbstract
     // {{{ Method: getCollectionName -------------------------------------------
     /**
      * Getter for $collectionName.
+     *
+     * ### General Information #################################################
      *
      * @see   FabioCicerchia\Api\ServiceAbstract::$collectionName The name of the collection.
      * @since Version 0.1
@@ -110,6 +114,8 @@ abstract class ServiceAbstract
     /**
      * Getter for $data.
      *
+     * ### General Information #################################################
+     *
      * @see   FabioCicerchia\Api\ServiceAbstract::$data The data.
      * @since Version 0.1
      *
@@ -124,6 +130,8 @@ abstract class ServiceAbstract
     // {{{ Method: run ---------------------------------------------------------
     /**
      * Launch the main task.
+     *
+     * ### General Information #################################################
      *
      * @see   FabioCicerchia\Api\ServiceAbstract::getRawData()    Retrieve data from the collection and manipulate it.
      * @see   FabioCicerchia\Api\ServiceAbstract::elaborateData() Modify if needed the data.
@@ -141,9 +149,11 @@ abstract class ServiceAbstract
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================
 
-    // {{{ elaborateData
+    // {{{ Method: elaborateData -----------------------------------------------
     /**
      * Modify if needed the data.
+     *
+     * ### General Information #################################################
      *
      * @param array $data The data.
      *
@@ -155,11 +165,13 @@ abstract class ServiceAbstract
     {
         return $data;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ getRawData
+    // {{{ Method: getRawData --------------------------------------------------
     /**
      * Retrieve the data from the collection and manipulate it.
+     *
+     * ### General Information #################################################
      *
      * @see   FabioCicerchia\Api\ServiceAbstract::execDataQuery() Retrieve all the documents from a collection.
      * @since Version 0.1
@@ -172,11 +184,13 @@ abstract class ServiceAbstract
 
         return $data;
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ execDataQuery
+    // {{{ Method: execDataQuery -----------------------------------------------
     /**
      * Retrieve all the documents from a collection.
+     *
+     * ### General Information #################################################
      *
      * @link  https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Cursor.php
      * @see   FabioCicerchia\Api\ServiceAbstract::$collection The Collection Handle.
@@ -188,13 +202,15 @@ abstract class ServiceAbstract
     {
         return $this->collection->find()->toArray();
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
 
-    // {{{ setDatabase
+    // {{{ Method: setDatabase -------------------------------------------------
     /**
      * Executed to set up the database handle.
      *
-     * @param Doctrine\MongoDB\Database $db_handle The Database Handle.
+     * ### General Information #################################################
+     *
+     * @param \Doctrine\MongoDB\Database $db_handle The Database Handle.
      *
      * @link  https://github.com/doctrine/mongodb/blob/master/lib/Doctrine/MongoDB/Database.php
      * @see   Doctrine\MongoDB\Database::selectCollection()
@@ -207,7 +223,7 @@ abstract class ServiceAbstract
     {
         $this->collection = $db_handle->selectCollection($this->getCollectionName());
     }
-    // }}}
+    // }}} ---------------------------------------------------------------------
     // }}} =====================================================================
 
     // {{{ Methods - Special ===================================================
@@ -215,7 +231,9 @@ abstract class ServiceAbstract
     /**
      * The constructor.
      *
-     * @param Doctrine\MongoDB\Database $db_handle The Database Handle.
+     * ### General Information #################################################
+     *
+     * @param \Doctrine\MongoDB\Database $db_handle The Database Handle.
      *
      * @see   FabioCicerchia\Api\ServiceAbstract::setDatabase() Executed to set up the database handle.
      * @see   FabioCicerchia\Api\ServiceAbstract::run()         Launch the main task.

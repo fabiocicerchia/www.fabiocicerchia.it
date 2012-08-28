@@ -48,3 +48,6 @@ if (defined('TEST_LIB_PATH') === false) {
 if (defined('ROOT_PATH') === false) {
     define('ROOT_PATH', TEST_ROOT_PATH);
 }
+
+require_once ROOT_PATH . 'lib/vendor/autoload.php';
+require_once ROOT_PATH . 'lib/vendor/FabioCicerchia/lib/FabioCicerchia/ResultPrinter.php';
