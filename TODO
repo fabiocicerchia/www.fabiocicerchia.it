@@ -48,7 +48,6 @@ File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
 File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/ResultPrinter.php
 --------------------------------------------------------------------------------
 
-  - Include this class in phpunit.xml (line 37)
   - Add description. (line 58)
   - Add description (line 156)
 

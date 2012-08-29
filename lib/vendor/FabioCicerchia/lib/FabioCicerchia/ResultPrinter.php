@@ -34,8 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: Include this class in phpunit.xml
-
 namespace FabioCicerchia;
 
 /**

@@ -96,7 +96,7 @@
           RewriteCond %{REQUEST_FILENAME} -d
           RewriteRule ^.+$               -                          [NC,L]
 
-          RewriteRule ^minified\.(.+)$   minify/min/?g=$1           [L]
+          RewriteRule ^minified\.(.+)$   minify/?g=$1               [L]
 
           RewriteRule ^(.{2})$           index.pl?lang=$1           [NC,QSA,L]
           RewriteRule ^([^\.]+)\.html$   index.pl?action=$1         [NC,QSA,L]

@@ -363,7 +363,7 @@ run_authors() {
 # TODO: Add output messages.
 run_nikto() {
     sudo nikto -update
-    nikto -C all -nocache -evasion 1,2,3,4,5,6 -h http://fabiocicerchia.github \
+    nikto -C all -nocache -evasion 1,2,3,4,5,6 -h http://demo.fabiocicerchia.it \
           -o $REPORTDIR/site/logs/nikto.html -Format html -nossl \
           -Tuning 0,1,2,3,4,5,6,7,8,9,a,b,c,x
 }

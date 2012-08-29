@@ -1,5 +1,70 @@
 fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
+  * .travis.yml, README.md: modified conf for travis
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 29 Aug 2012 07:13:47 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * .gitignore, CHANGELOG, README.md, TODO, apps/api/logic/app.php,
+    apps/api/logic/bootstrap.php, apps/api/logic/controller.php,
+    apps/api/view/_header.twig, apps/script/check_validation.py,
+    apps/script/common.py, apps/site/.gitignore,
+    apps/site/locale/it_IT/LC_MESSAGES/messages.mo,
+    apps/site/locale/it_IT/LC_MESSAGES/messages.po,
+    apps/site/locale/messages.pot, apps/site/logic/class.pl,
+    apps/site/logic/controller.pl, apps/site/view/_education.tmpl,
+    apps/site/view/_experience.tmpl, apps/site/view/_head.tmpl,
+    apps/site/view/_header.tmpl, apps/site/view/_js.tmpl,
+    apps/site/view/_language.tmpl, apps/site/view/_skill.tmpl,
+    apps/site/view/_summary.tmpl, apps/site/view/references.tmpl,
+    bin/console/common.sh, bin/console/modules/install.sh,
+    bin/console/modules/run.sh, bin/console/modules/sca.sh,
+    bin/console/modules/tests.sh, cache/apache/.gitignore,
+    cache/api/.gitignore, cache/site/.gitignore,
+    cache/stream/.gitignore, composer.json, config/deploy.rb,
+    config/deploy/demo.rb, config/deploy/production.rb,
+    config/system/.bashrc, config/system/.perltidyrc,
+    config/virtual_host, db/mongo-curriculum.js, docs/api/.gitignore,
+    docs/pod2htmd.tmp, docs/pod2htmi.tmp, docs/script/.gitignore,
+    docs/site/.gitignore, lib/vendor/.gitignore,
+    .../lib/FabioCicerchia/Api/Service/Education.php,
+    .../lib/FabioCicerchia/Api/Service/EntryPoint.php,
+    .../lib/FabioCicerchia/Api/Service/Experience.php,
+    .../lib/FabioCicerchia/Api/Service/Information.php,
+    .../lib/FabioCicerchia/Api/Service/Language.php,
+    .../lib/FabioCicerchia/Api/Service/Skill.php,
+    .../lib/FabioCicerchia/Api/Service/Strategy.php,
+    .../lib/FabioCicerchia/Api/ServiceAbstract.php,
+    .../lib/FabioCicerchia/Api/TwigExtension.php,
+    .../lib/FabioCicerchia/Api/Utils.php,
+    .../lib/FabioCicerchia/ResultPrinter.php,
+    .../FabioCicerchia/lib/FabioCicerchia/TestCase.php,
+    logs/.gitignore, report/api/code_browser/app/.gitignore,
+    report/api/code_browser/lib/.gitignore,
+    report/api/code_browser/test/.gitignore,
+    report/api/code_coverage/.gitignore,
+    report/api/logs/app/.gitignore, report/api/logs/lib/.gitignore,
+    report/api/logs/test/.gitignore, report/api/testdox/.gitignore,
+    report/site/code_coverage/.gitignore, report/site/logs/.gitignore,
+    tests/api/bootstrap.php, tests/api/functional/ApiTest.php,
+    .../FabioCicerchia/Api/Service/EducationTest.php,
+    .../FabioCicerchia/Api/Service/EntryPointTest.php,
+    .../FabioCicerchia/Api/Service/ExperienceTest.php,
+    .../FabioCicerchia/Api/Service/InformationTest.php,
+    .../FabioCicerchia/Api/Service/LanguageTest.php,
+    .../unit/FabioCicerchia/Api/Service/SkillTest.php,
+    .../FabioCicerchia/Api/Service/StrategyTest.php,
+    .../FabioCicerchia/Api/ServiceAbstractTest.php,
+    tests/api/unit/FabioCicerchia/Api/UtilsTest.php,
+    tests/script/test.py, tests/site/.gitignore, tmp/.gitignore,
+    web/api.php, web/humans.txt, web/robots.txt, web/sitemap.xml: code
+    fixed, almost done
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Tue, 28 Aug 2012 23:39:34 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
   * apps/api/logic/controller.php, apps/script/benchmark.py,
     apps/script/check_accessibility.py,
     apps/script/check_validation.py, apps/script/common.py,
