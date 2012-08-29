@@ -68,6 +68,8 @@ class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
         $this->printDetails($defect->thrownException());
         $this->printStackTrace($defect->thrownException()->getTrace());
     }
+    // }}} ---------------------------------------------------------------------
+    // }}} =====================================================================
 
     // {{{ Methods - Private ===================================================
     // {{{ Method: printStackTrace ---------------------------------------------
@@ -159,7 +161,7 @@ class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
      *
      * @return void
      */
-    private function printDetails(Exception $exception)
+    private function printDetails(\Exception $exception)
     {
         $tab = ' ';
         $data = array(
