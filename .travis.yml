@@ -11,7 +11,14 @@ python:
 
 before_script:
   - export TRAVIS_CI=1
-  - ./console install
+  - ./console install php
+  - ./console install perl
+  - ./console install cpanm
+  - ./console install mongo
+  - ./console install phpunit
+  - ./console install phpmongo
+  - ./console install perl_modules
+  - ./console install apache_modules
   - ./console init
   - phpenv rehash
 

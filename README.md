@@ -89,7 +89,9 @@ These are the tools that has been used:
  * Git Extras - [Repo](https://github.com/visionmedia/git-extras)
  * Git Flow v0.4.1 - [Repo](https://github.com/nvie/gitflow)
  * Git v1.7.9.5 - [Home](http://git-scm.com/) | [Doc](http://git-scm.com/documentation)
+ * GitHub - [Home](http://github.com/)
  * Sublime Text v2.0.1 - [Home](http://www.sublimetext.com/)
+ * TravisCI - [Home](http://travis-ci.org/)
  * vim v7.3.429 - [Home](http://www.vim.org/)
 
 ---
