@@ -61,6 +61,7 @@ $closures = [];
  */
 $closures['error'] = function (\Exception $e, $code) use ($app) {
     if ($app['debug'] === true) {
+        throw $e;
         return;
     }
 
