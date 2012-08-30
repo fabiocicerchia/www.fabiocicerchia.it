@@ -97,8 +97,6 @@ class ApiTest extends WebTestCase
             ['/language'],
             // Set #6 ----------------------------------------------------------
             ['/api-definition-syntax'],
-            // Set #7 ----------------------------------------------------------
-            ['/404'],
         ];
     }
     // }}} ---------------------------------------------------------------------
@@ -128,8 +126,6 @@ class ApiTest extends WebTestCase
             ['/language', 200],
             // Set #6 ----------------------------------------------------------
             ['/api-definition-syntax', 200],
-            // Set #7 ----------------------------------------------------------
-            ['/404', 404],
         ];
     }
     // }}} ---------------------------------------------------------------------
@@ -159,8 +155,6 @@ class ApiTest extends WebTestCase
             ['/language', 'application/vnd.ads+xml;v=1.0'],
             // Set #6 ----------------------------------------------------------
             ['/api-definition-syntax', 'text/plain; charset=UTF-8'],
-            // Set #7 ----------------------------------------------------------
-            ['/404', 'text/html; charset=UTF-8'],
         ];
     }
     // }}} ---------------------------------------------------------------------
@@ -192,8 +186,6 @@ class ApiTest extends WebTestCase
             ['/language', 'max-age=28800, public, s-maxage=28800'],
             // Set #6 ----------------------------------------------------------
             ['/api-definition-syntax', 'no-cache'],
-            // Set #7 ----------------------------------------------------------
-            ['/404', 'no-cache'],
         ];
     }
     // }}} ---------------------------------------------------------------------
@@ -261,8 +253,6 @@ class ApiTest extends WebTestCase
             ['/language', 405],
             // Set #6 ----------------------------------------------------------
             ['/api-definition-syntax', 405],
-            // Set #7 ----------------------------------------------------------
-            ['/404', 404],
         ];
 
         $data = [];
@@ -296,13 +286,7 @@ class ApiTest extends WebTestCase
     public function testEveryRouteCheckStatusCode($url, $status)
     {
         $client  = $this->createClient();
-        try {
-            $crawler = $client->request('GET', $url);
-        } catch (\Exception $e) {
-            if ($e->getMessage() === 'No route found for "GET /404"') {
-                return $this->assertTrue(true, 'Just confirm that everything is fine.');
-            }
-        }
+        $crawler = $client->request('GET', $url);
 
         print_r($client->getResponse()->getContent());
 
