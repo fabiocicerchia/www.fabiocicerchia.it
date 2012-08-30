@@ -296,9 +296,9 @@ class ApiTest extends WebTestCase
     public function testEveryRouteCheckStatusCode($url, $status)
     {
         $client  = $this->createClient();
-        $crawler = $client->request('GET', $url);
-
-        print_r($client->getResponse()->getContent());
+        try {
+            $crawler = $client->request('GET', $url);
+        } catch (\Exception $e) {}
 
         $this->assertEquals($status, $client->getResponse()->getStatusCode());
     }
