@@ -300,7 +300,7 @@ class ApiTest extends WebTestCase
             $crawler = $client->request('GET', $url);
         } catch (\Exception $e) {
             if ($e->getMessage() === 'No route found for "GET /404"') {
-                return $this->pass();
+                return $this->assertTrue(true, 'Just confirm that everything is fine.');
             }
         }
 
