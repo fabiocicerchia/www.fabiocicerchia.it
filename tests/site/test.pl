@@ -139,7 +139,7 @@ subtest 'Functional Testing' => sub {
         'DOCUMENT_ROOT',
         '/var/www/fabiocicerchia/current/web',
         'HTTP_HOST',
-        'localhost',
+        'fabiocicerchia.github',
         'MOD_PERL',
         'mod_perl/2.0.5',
         'UNIQUE_ID',
@@ -248,6 +248,70 @@ subtest 'Functional Testing' => sub {
     local $ENV{'REDIRECT_QUERY_STRING'} = 'format=vcard';
     local $ENV{'REDIRECT_URL'}          = '/vcard';
     local $ENV{'REQUEST_URI'}           = '/vcard';
+
+    $obj = new_ok($class_name);
+
+    $res = open STDOUT, '>>', '/dev/null';
+    STDOUT->autoflush(1);
+    $obj->show();
+    $res = close STDOUT;
+
+    ############################################################################
+    # CODE-SNIPPETS
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    local $ENV{'QUERY_STRING'}          = 'action=code-snippets';
+    local $ENV{'REDIRECT_QUERY_STRING'} = 'action=code-snippets';
+    local $ENV{'REDIRECT_URL'}          = '/code-snippets';
+    local $ENV{'REQUEST_URI'}           = '/code-snippets';
+
+    $obj = new_ok($class_name);
+
+    $res = open STDOUT, '>>', '/dev/null';
+    STDOUT->autoflush(1);
+    $obj->show();
+    $res = close STDOUT;
+
+    ############################################################################
+    # REFERENCES
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    local $ENV{'QUERY_STRING'}          = 'action=references';
+    local $ENV{'REDIRECT_QUERY_STRING'} = 'action=references';
+    local $ENV{'REDIRECT_URL'}          = '/references';
+    local $ENV{'REQUEST_URI'}           = '/references';
+
+    $obj = new_ok($class_name);
+
+    $res = open STDOUT, '>>', '/dev/null';
+    STDOUT->autoflush(1);
+    $obj->show();
+    $res = close STDOUT;
+
+    ############################################################################
+    # MAPS
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    local $ENV{'QUERY_STRING'}          = 'action=maps';
+    local $ENV{'REDIRECT_QUERY_STRING'} = 'action=maps';
+    local $ENV{'REDIRECT_URL'}          = '/maps';
+    local $ENV{'REQUEST_URI'}           = '/maps';
+
+    $obj = new_ok($class_name);
+
+    $res = open STDOUT, '>>', '/dev/null';
+    STDOUT->autoflush(1);
+    $obj->show();
+    $res = close STDOUT;
+
+    ############################################################################
+    # DEV
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    local $ENV{'QUERY_STRING'}          = 'action=dev';
+    local $ENV{'REDIRECT_QUERY_STRING'} = 'action=dev';
+    local $ENV{'REDIRECT_URL'}          = '/dev';
+    local $ENV{'REQUEST_URI'}           = '/dev';
 
     $obj = new_ok($class_name);
 

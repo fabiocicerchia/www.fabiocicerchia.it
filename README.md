@@ -43,7 +43,7 @@ These are the coding standards respected in the code:
     * File encoding UTF-8 (RFC3629) without BOM. - [Doc](http://tools.ietf.org/rfc/rfc3629.txt)
     * Line length between 80 and no more than 100 characters. - [Article](http://lkml.indiana.edu/hypermail/linux/kernel/1202.0/01847.html)
     * LF (Line feed, '\n', 0x0A, 10 in decimal) as End Of Line.
-    * No empty line as End Of File.
+    * No empty line at the End Of File.
 
 ### 1.2. Application Design
 These are the application design models that has been applied:

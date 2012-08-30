@@ -62,7 +62,7 @@ sub action404 {
     print "HTTP/1.1 404 Not Found\n\n";
     print "Location: /\n\n";
 
-    return;
+    return q{};
 }
 # }}} --------------------------------------------------------------------------
 
@@ -215,8 +215,6 @@ sub action_show {
     my $self = shift;
 
     my ( $data, $last_modified, $etag, $language ) = $self->get_data();
-
-    $language = 'en'; # TODO: REMOVE THIS!
 
     my @lang_tokens = split /,/smx, $language;
     if ( scalar(@lang_tokens) > 1 ) {
@@ -649,8 +647,8 @@ This documentation refers to package <FabioCicerchiaSite> version 0.1.
 
 =head1 SYNOPSIS
 
-    my $resume = FabioCicerchiaSite->new();
-    $resume->show();
+#    my $resume = FabioCicerchiaSite->new();
+#    $resume->show();
 
 =head1 REQUIRED ARGUMENTS
 

@@ -11,6 +11,7 @@ python:
 
 before_script:
   - export TRAVIS_CI=1
+  - ./console run dependencies
   - ./console install php
   - ./console install perl
   - ./console install cpanm

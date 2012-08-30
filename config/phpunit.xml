@@ -13,7 +13,7 @@
     stopOnFailure="true"
     stopOnIncomplete="false"
     stopOnSkipped="false"
-    strict="true">
+    strict="false">
 
     <testsuites>
         <testsuite name="UnitTests">

@@ -33,7 +33,7 @@
 
 use strict;
 use warnings;
-use version; our $VERSION = qv('0.1);
+use version; our $VERSION = qv('0.1');
 use File::Basename;
 
 do( dirname(__FILE__) . '/class.pl' );
