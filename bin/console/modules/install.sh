@@ -72,7 +72,7 @@ install_gitextras() {
 install_php() {
     print_subheader "INSTALLING PHP"
 
-    if [ -z "$TRAVIS_CI" ]; then
+    if [ -z "$TRAVIS" ]; then
         EXISTS_COMMAND=$(which add-apt-repository)
         if [ -n "$EXISTS_COMMAND" ]; then
             sudo add-apt-repository ppa:ondrej/php5
@@ -89,9 +89,9 @@ install_php() {
             wget http://www.dotdeb.org/dotdeb.gpg
             cat dotdeb.gpg | sudo apt-key add -
         fi
-        sudo apt-get -y -q update
-        sudo apt-get -y -q upgrade
-        sudo apt-get -y -q dist-upgrade
+        sudo apt-get -y -qq update
+        sudo apt-get -y -qq upgrade
+        sudo apt-get -y -qq dist-upgrade
     else
         echo "SKIPPED"
     fi
@@ -107,7 +107,7 @@ install_perl() {
     IS_UBUNTU=$(lsb_release -a 2>&1 | grep Ubuntu | wc -l)
 
     if [ $IS_UBUNTU -gt 1 ]; then
-        sudo apt-get -y -q install perl
+        sudo apt-get -y -qq install perl
     else
         curl -kL http://install.perlbrew.pl | bash
         echo "source ~/perl5/perlbrew/etc/bashrc" >> ~/.bash_profile
@@ -128,7 +128,7 @@ install_cpanm() {
     if [ "$EXISTS_WITH_APT" == "0" ]; then
         curl -L http://cpanmin.us | perl - --sudo App::cpanminus
     else
-        sudo apt-get -y -q install cpanminus
+        sudo apt-get -y -qq install cpanminus
     fi
 
     return $?
@@ -139,8 +139,8 @@ install_cpanm() {
 install_mongo() {
     print_subheader "INSTALLING MONGODB"
 
-    if [ -z "$TRAVIS_CI" ]; then
-        sudo apt-get -y -q install mongodb
+    if [ -z "$TRAVIS" ]; then
+        sudo apt-get -y -qq install mongodb
     else
         echo "SKIPPED"
     fi
@@ -153,7 +153,7 @@ install_mongo() {
 install_imagick() {
     print_subheader "INSTALLING IMAGICK"
 
-    sudo apt-get -y -q install php5-imagick
+    sudo apt-get -y -qq install php5-imagick
 
     return $?
 }
@@ -174,7 +174,7 @@ install_phpunit() {
 install_phpcb() {
     print_subheader "INSTALLING PHP_CODE_BROWSER"
 
-    if [ -z "$TRAVIS_CI" ]; then
+    if [ -z "$TRAVIS" ]; then
         pear_add_channel "pear.phpunit.de"
         sudo pear -q install --alldeps phpunit/PHP_CodeBrowser
     else
@@ -235,7 +235,7 @@ install_phpdoc2() {
 
     pear_add_channel "pear.phpdoc.org"
     sudo pear -q install --alldeps phpdoc/phpDocumentor-alpha
-    sudo apt-get -y -q install graphviz
+    sudo apt-get -y -qq install graphviz
 
     return $?
 }
@@ -245,7 +245,7 @@ install_phpdoc2() {
 install_pdepend() {
     print_subheader "INSTALLING PHP_DEPEND"
 
-    if [ -z "$TRAVIS_CI" ]; then
+    if [ -z "$TRAVIS" ]; then
         pear_add_channel "pear.pdepend.org"
         sudo pear -q install --alldeps pdepend/PHP_Depend-beta
     else
@@ -260,7 +260,7 @@ install_pdepend() {
 install_phpmd() {
     print_subheader "INSTALLING PHPMD"
 
-    if [ -z "$TRAVIS_CI" ]; then
+    if [ -z "$TRAVIS" ]; then
         pear_add_channel "pear.phpmd.org"
         sudo pear -q install --alldeps phpmd/PHP_PMD
     else
@@ -341,10 +341,10 @@ install_apache_modules() {
 
     IS_UBUNTU=$(lsb_release -a 2>&1 | grep Ubuntu | wc -l)
 
-    sudo apt-get -y -q install libapache2-mod-php5
+    sudo apt-get -y -qq install libapache2-mod-php5
 
     if [ $IS_UBUNTU -gt 1 ]; then
-        sudo apt-get -y -q install libapache2-mod-perl2
+        sudo apt-get -y -qq install libapache2-mod-perl2
     else
         cd /tmp/
         wget http://perl.apache.org/dist/mod_perl-2.0-current.tar.gz
@@ -364,7 +364,7 @@ install_apache_modules() {
 install_pychecker() {
     print_subheader "INSTALLING PYCHECKER"
 
-    sudo apt-get -y -q install pychecker
+    sudo apt-get -y -qq install pychecker
 
     return $?
 }
@@ -374,7 +374,7 @@ install_pychecker() {
 install_pylint() {
     print_subheader "INSTALLING PYLINT"
 
-    sudo apt-get -y -q install pylint
+    sudo apt-get -y -qq install pylint
 
     return $?
 }
@@ -384,7 +384,7 @@ install_pylint() {
 install_pep8() {
     print_subheader "INSTALLING PEP8"
 
-    sudo apt-get -y -q install pep8
+    sudo apt-get -y -qq install pep8
 
     return $?
 }
@@ -394,7 +394,7 @@ install_pep8() {
 install_epydoc() {
     print_subheader "INSTALLING EPYDOC"
 
-    sudo apt-get -y -q install python-epydoc
+    sudo apt-get -y -qq install python-epydoc
 
     return $?
 }
@@ -404,7 +404,7 @@ install_epydoc() {
 install_capistrano() {
     print_subheader "INSTALLING CAPISTRANO"
 
-    sudo apt-get -y -q install gem
+    sudo apt-get -y -qq install gem
     sudo gem install -q capistrano
     sudo gem install -q capistrano-ext
 
@@ -416,7 +416,7 @@ install_capistrano() {
 install_nikto() {
     print_subheader "INSTALLING NIKTO"
 
-    sudo apt-get -y -q install nikto
+    sudo apt-get -y -qq install nikto
 
     return $?
 }

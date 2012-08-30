@@ -10,7 +10,7 @@ python:
   - "2.7"
 
 before_script:
-  - export TRAVIS_CI=1
+  - export TRAVIS=true
   - export DEBUG_FLAG=1
   - ./console run dependencies
   - ./console install php
