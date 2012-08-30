@@ -304,6 +304,8 @@ class ApiTest extends WebTestCase
             }
         }
 
+        print_r($client->getResponse()->getContent());
+
         $this->assertEquals($status, $client->getResponse()->getStatusCode());
     }
     // }}} ---------------------------------------------------------------------
