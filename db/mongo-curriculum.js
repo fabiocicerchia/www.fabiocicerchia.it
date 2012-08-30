@@ -65,8 +65,8 @@ db.getCollection("education").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2012-04-02T00:00:00\")",
-        "end":   "ISODate(\"2012-04-27T00:00:00\")",
+        "start": ISODate("2012-04-02T00:00:00"),
+        "end":   ISODate("2012-04-27T00:00:00"),
         "hours": 80
     },
     "activities": {
@@ -81,8 +81,8 @@ db.getCollection("education").insert({
         "it_IT": ["CIW Associate", "CIW Application Developer", "Almeno 2 anni di esperienze lavorative"]
     },
     "date": {
-        "start": "ISODate(\"2011-04-27T00:00:00\")",
-        "end":   "ISODate(\"2011-04-27T00:00:00\")"
+        "start": ISODate("2011-04-27T00:00:00"),
+        "end":   ISODate("2011-04-27T00:00:00")
     },
     "institute": {
         "name": "IWA",
@@ -100,8 +100,8 @@ db.getCollection("education").insert({
         "it_IT": ["Fondamenti di CGI utilizzando Perl", "Dynamic Server Pages"]
     },
     "date": {
-        "start": "ISODate(\"2011-02-08T00:00:00\")",
-        "end":   "ISODate(\"2011-02-08T00:00:00\")"
+        "start": ISODate("2011-02-08T00:00:00"),
+        "end":   ISODate("2011-02-08T00:00:00")
     },
     "institute": {
         "name": "CIW Prometric Test Center 'Finsa Tech S.r.l.'",
@@ -130,8 +130,8 @@ db.getCollection("education").insert({
         "it_IT": ["Fondamenti di Business Internet", "Fondamenti di Sviluppo Siti", "Fondamenti di Tecnologie di Rete"]
     },
     "date": {
-        "start": "ISODate(\"2009-09-23T00:00:00\")",
-        "end":   "ISODate(\"2009-09-23T00:00:00\")"
+        "start": ISODate("2009-09-23T00:00:00"),
+        "end":   ISODate("2009-09-23T00:00:00")
     },
     "institute": {
         "name": "CIW Prometric Test Center 'Atrak S.r.l.'",
@@ -160,8 +160,8 @@ db.getCollection("education").insert({
         "it_IT": ["Basi di PHP", "Funzioni", "Array", "Programmazione Orientata agli Oggetti", "Sicurezza", "XML e Web Services", "Stringhe e Patterns", "Database e SQL", "Interazione Utente (Form, Sessioni, Cookie, HTTP Header)", "Flussi e Files", "Differenze tra PHP 4 e PHP 5", "Teoria e Progettazione"]
     },
     "date": {
-        "start": "ISODate(\"2008-06-25T00:00:00\")",
-        "end":   "ISODate(\"2008-06-25T00:00:00\")"
+        "start": ISODate("2008-06-25T00:00:00"),
+        "end":   ISODate("2008-06-25T00:00:00")
     },
     "institute": {
         "name": "Zend Pearson Vue Authorised Test Center 'IPSIA Carlo Cattaneo'",
@@ -190,8 +190,8 @@ db.getCollection("education").insert({
         "it_IT": ["Concetti di base della IT", "Uso del computer - Gestione files", "Elaborazione testi", "Foglio elettronico", "Database", "Presentazione", "Reti informatiche - Internet"]
     },
     "date": {
-        "start": "ISODate(\"2005-10-24T00:00:00\")",
-        "end":   "ISODate(\"2005-12-19T00:00:00\")",
+        "start": ISODate("2005-10-24T00:00:00"),
+        "end":   ISODate("2005-12-19T00:00:00"),
         "hours": 5
     },
     "institute": {
@@ -237,8 +237,8 @@ db.getCollection("education").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2000-09-04T00:00:00\")",
-        "end":   "ISODate(\"2005-07-05T00:00:00\")",
+        "start": ISODate("2000-09-04T00:00:00"),
+        "end":   ISODate("2005-07-05T00:00:00"),
         "hours": 5676
     },
     "activities": {
@@ -271,7 +271,7 @@ db.getCollection("experience").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2012-04-30T00:00:00\")",
+        "start": ISODate("2012-04-30T00:00:00"),
         "end": -1
     },
     "techniques": {
@@ -316,7 +316,7 @@ db.getCollection("experience").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2003-05-01T00:00:00\")",
+        "start": ISODate("2003-05-01T00:00:00"),
         "end":   -1
     },
     "description": {
@@ -328,7 +328,7 @@ db.getCollection("experience").insert({
             "name": "Bonzai",
             "url":  "http:\/\/www.bonzai-project.org",
             "date": {
-                "start": "ISODate(\"2006-08-22T00:00:00\")",
+                "start": ISODate("2006-08-22T00:00:00"),
                 "end":   -1
             },
             "role": {
@@ -416,15 +416,15 @@ db.getCollection("experience").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2010-06-21T00:00:00\")",
-        "end":   "ISODate(\"2012-03-30T00:00:00\")"
+        "start": ISODate("2010-06-21T00:00:00"),
+        "end":   ISODate("2012-03-30T00:00:00")
     },
     "projects": [
         {
             "name": "Samsung Galaxy S",
             "date": {
-                "start": "ISODate(\"2010-06-21T00:00:00\")",
-                "end":   "ISODate(\"2012-10-01T00:00:00\")"
+                "start": ISODate("2010-06-21T00:00:00"),
+                "end":   ISODate("2012-10-01T00:00:00")
             },
             "role": {
                 "en_GB": "Web Developer",
@@ -446,8 +446,8 @@ db.getCollection("experience").insert({
             "name": "Policlinic Campus Biomedical of Rome",
             "url":  "http:\/\/www.policlinicocampusbiomedico.it",
             "date": {
-                "start": "ISODate(\"2010-07-28T00:00:00\")",
-                "end":   "ISODate(\"2011-02-01T00:00:00\")"
+                "start": ISODate("2010-07-28T00:00:00"),
+                "end":   ISODate("2011-02-01T00:00:00")
             },
             "role": {
                 "en_GB": "Web Developer",
@@ -471,8 +471,8 @@ db.getCollection("experience").insert({
             "name": "San Raffaele",
             "url":  "http:\/\/www.sanraffaele.it",
             "date": {
-                "start": "ISODate(\"2010-10-05T00:00:00\")",
-                "end":   "ISODate(\"2012-03-30T00:00:00\")"
+                "start": ISODate("2010-10-05T00:00:00"),
+                "end":   ISODate("2012-03-30T00:00:00")
             },
             "role": {
                 "en_GB": "Lead Web Developer",
@@ -565,8 +565,8 @@ db.getCollection("experience").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2008-01-02T00:00:00\")",
-        "end":   "ISODate(\"2010-06-18T00:00:00\")"
+        "start": ISODate("2008-01-02T00:00:00"),
+        "end":   ISODate("2010-06-18T00:00:00")
     },
     "methodologies": {
         "Waterfall Model": {"months": 30}
@@ -615,8 +615,8 @@ db.getCollection("experience").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2007-05-24T00:00:00\")",
-        "end":   "ISODate(\"2007-12-31T00:00:00\")"
+        "start": ISODate("2007-05-24T00:00:00"),
+        "end":   ISODate("2007-12-31T00:00:00")
     },
     "description": {
         "en_GB": "Design and development of some web sites, applications web-based and desktop.",
@@ -626,8 +626,8 @@ db.getCollection("experience").insert({
         {
             "name": "StockInformatica",
             "date": {
-                "start": "ISODate(\"2007-05-24T00:00:00\")",
-                "end":   "ISODate(\"2007-12-31T00:00:00\")"
+                "start": ISODate("2007-05-24T00:00:00"),
+                "end":   ISODate("2007-12-31T00:00:00")
             },
             "role": {
                 "en_GB": "Web & Software Developer",
@@ -653,8 +653,8 @@ db.getCollection("experience").insert({
         {
             "name": "ItalianCamper",
             "date": {
-                "start": "ISODate(\"2007-05-24T00:00:00\")",
-                "end":   "ISODate(\"2007-12-31T00:00:00\")"
+                "start": ISODate("2007-05-24T00:00:00"),
+                "end":   ISODate("2007-12-31T00:00:00")
             },
             "role": {
                 "en_GB": "Web Developer",
@@ -674,8 +674,8 @@ db.getCollection("experience").insert({
         {
             "name": "NoPayZone",
             "date": {
-                "start": "ISODate(\"2007-08-30T00:00:00\")",
-                "end":   "ISODate(\"2007-09-28T00:00:00\")"
+                "start": ISODate("2007-08-30T00:00:00"),
+                "end":   ISODate("2007-09-28T00:00:00")
             },
             "role": {
                 "en_GB": "Web & Software Developer",
@@ -696,8 +696,8 @@ db.getCollection("experience").insert({
         {
             "name": "CoolZone",
             "date": {
-                "start": "ISODate(\"2012-08-30T00:00:00\")",
-                "end":   "ISODate(\"2012-09-28T00:00:00\")"
+                "start": ISODate("2012-08-30T00:00:00"),
+                "end":   ISODate("2012-09-28T00:00:00")
             },
             "role": {
                 "en_GB": "Web Developer",
@@ -734,8 +734,8 @@ db.getCollection("experience").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2005-10-03T00:00:00\")",
-        "end":   "ISODate(\"2006-10-02T00:00:00\")"
+        "start": ISODate("2005-10-03T00:00:00"),
+        "end":   ISODate("2006-10-02T00:00:00")
     }
 });
 db.getCollection("experience").insert({
@@ -760,15 +760,15 @@ db.getCollection("experience").insert({
         }
     },
     "date": {
-        "start": "ISODate(\"2004-05-01T00:00:00\")",
-        "end":   "ISODate(\"2005-10-01T00:00:00\")"
+        "start": ISODate("2004-05-01T00:00:00"),
+        "end":   ISODate("2005-10-01T00:00:00")
     }
 });
 
 /** information records **/
 db.getCollection("information").insert({
     "_id": ObjectId("4fc7b628f7c5e27a69b8d7aa"),
-    "birth_day": "ISODate(\"1986-02-09T00:00:00\")",
+    "birth_day": ISODate("1986-02-09T00:00:00"),
     "contacts": {
         "msn":   "fabio.cicerchia@live.it",
         "skype": "fabio.cicerchia",

@@ -36,7 +36,7 @@
                 {{ entity.gender|capitalize }}
             </gender>
             <birthday>
-                {{ entity.birth_day }}
+                {{ entity.birth_day.sec|date("Y-m-d\\TH:i:s\\Z") }}
             </birthday>
             <telephone>
                 {{ entity.telephone.uk }}
