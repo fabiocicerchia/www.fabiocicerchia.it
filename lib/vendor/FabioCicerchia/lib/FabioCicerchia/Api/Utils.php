@@ -289,7 +289,7 @@ class Utils
      *
      * @return void
      */
-    public function transform($string, $mimeType)
+    public static function transform($string, $mimeType)
     {
         switch($mimeType) {
             case 'application/json':

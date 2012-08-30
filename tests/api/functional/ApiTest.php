@@ -298,8 +298,6 @@ class ApiTest extends WebTestCase
         $client  = $this->createClient();
         $crawler = $client->request('GET', $url);
 
-        print_r($client->getResponse()->getContent());
-
         $this->assertEquals($status, $client->getResponse()->getStatusCode());
     }
     // }}} ---------------------------------------------------------------------
