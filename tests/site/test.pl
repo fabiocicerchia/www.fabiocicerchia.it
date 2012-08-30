@@ -155,10 +155,10 @@ subtest 'Functional Testing' => sub {
 
     my $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # RSS2
@@ -171,10 +171,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # RSS1
@@ -187,10 +187,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # RSS092
@@ -203,10 +203,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # RSS091
@@ -219,10 +219,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # ATOM
@@ -235,10 +235,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # VCARD
@@ -251,10 +251,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # CODE-SNIPPETS
@@ -267,10 +267,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # REFERENCES
@@ -283,10 +283,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # MAPS
@@ -299,10 +299,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # DEV
@@ -315,10 +315,10 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
-    $res = close STDOUT;
+    #$res = close STDOUT;
 
     ############################################################################
     # 404
@@ -331,7 +331,7 @@ subtest 'Functional Testing' => sub {
 
     $obj = new_ok($class_name);
 
-    $res = open STDOUT, '>>', '/dev/null';
+    #$res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);
     $obj->show();
 
