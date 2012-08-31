@@ -1684,9 +1684,21 @@ hr {
     font-weight:              bold;
 }
 
+[lang="it"] .dates .dtstart:before {
+    content:                  "Da: ";
+}
+
 .dates .dtend:before {
     content:                  " - To: ";
     font-weight:              bold;
+}
+
+[lang="it"] .dates .dtend:before {
+    content:                  " - A: ";
+}
+
+div.vevent .accordion .dates {
+    float:                    none;
 }
 
 #github_ribbon img {

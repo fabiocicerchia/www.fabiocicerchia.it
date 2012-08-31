@@ -49,21 +49,23 @@
                             </div>
                             <div class="accordion-body collapse" id="collapse[% current_id %]">
                                 <span class="role">[% project.role.content %]</span>
-                                [% IF entity.content.description %]
+                                [% IF project.description.content %]
                                 <div itemprop="description">
-                                    <p>[% entity.content.description %]</p>
+                                    <p>[% project.description.content %]</p>
                                 </div>
                                 [% END %]
-                                [% start = project.date.start | replace('T', ' ') | replace('Z', '') %]
+                                <div class="dates">
+                                [% start = project.published | replace('T', ' ') | replace('Z', '') %]
                                 <span class="dtstart">
                                     [% date.format(manip.UnixDate(start _ " GMT", "%s"), "%a, %d %b %Y") %]
                                 </span>
-                                [% IF project.date.end && project.date.end != project.date.start %]
-                                [% end = project.date.end | replace('T', ' ') | replace('Z', '') %]
+                                [% IF project.updated && project.updated != project.published %]
+                                [% end = project.updated | replace('T', ' ') | replace('Z', '') %]
                                 <span class="dtend">
                                     [% date.format(manip.UnixDate(end _ " GMT", "%s"), "%a, %d %b %Y") %]
                                 </span>
                                 [% END %]
+                                </div>
                                 [% IF project.link %]
                                     <a href="[% project.link.href %]" itemprop="url" rel="nofollow" target="_blank" title="The URL of the [% project.title.content %]">
                                         [% project.link.href %]
