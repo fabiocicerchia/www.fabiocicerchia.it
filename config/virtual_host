@@ -143,15 +143,15 @@
         </IfModule>
 
         # MCacheMaxObjectCount * MCacheMaxObjectSize = MAX MEMORY ALLOCATED
-        <IfModule mod_mem_cache.c>
-            CacheEnable mem /
-
-            # 100MB
-            MCacheSize 102400
-            MCacheMaxObjectCount 512
-            MCacheMinObjectSize 1
-            MCacheMaxObjectSize 2048
-        </IfModule>
+#        <IfModule mod_mem_cache.c>
+#            CacheEnable mem /
+#
+#            # 100MB
+#            MCacheSize 102400
+#            MCacheMaxObjectCount 512
+#            MCacheMinObjectSize 1
+#            MCacheMaxObjectSize 2048
+#        </IfModule>
     </IfModule>
 
     # EXPIRES #################################################################

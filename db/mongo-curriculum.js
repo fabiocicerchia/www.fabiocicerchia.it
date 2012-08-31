@@ -71,14 +71,14 @@ db.getCollection("education").insert({
     },
     "activities": {
         "en_GB": ["Grammar", "Vocabulary", "Reading", "Writing", "Pronunciation", "Speaking", "Listening"],
-        "it_IT": ["Grammatica","Vocabolario", "Lettura", "Scrittura", "Pronuncia", "Parlato", "Ascolto"]
+        "it_IT": ["Grammatica","Vocabolario", "Lettura", "Scrittura", "Pronuncia", "Produzione Orale", "Ascolto"]
     }
 });
 db.getCollection("education").insert({
     "_id": ObjectId("4fc7b402f7c5e27a69b8d7a1"),
     "activities": {
         "en_GB": ["CIW Associate", "CIW Application Developer", "At least 2 years of work experience"],
-        "it_IT": ["CIW Associate", "CIW Application Developer", "Almeno 2 anni di esperienze lavorative"]
+        "it_IT": ["CIW Associate", "CIW Application Developer", "Almeno 2 anni di esperienza lavorativa"]
     },
     "date": {
         "start": ISODate("2011-04-27T00:00:00"),
@@ -320,7 +320,7 @@ db.getCollection("experience").insert({
         "end":   -1
     },
     "description": {
-        "en_GB": "Web sites development and implementation (showcase sites and custom web applications).\nFrom June 2006 development and project management of Bonzai (planning, design, development and maintaining).\nFrom August 2005 collaboration with the Art Director Jeroen Bertsch. Realization of showcase sites with Wordpress and customized systems.",
+        "en_GB": "Web sites development and implementation (showcase sites and custom web applications).\nFrom June 2006 development and project management of Bonzai (planning, design, development and maintaining).\nFrom August 2005 collaboration with the Art Director Jeroen Bertsch. Development of showcase sites with Wordpress and customized systems.",
         "it_IT": "Sviluppo e realizzazione siti web (siti vetrina e applicazioni web personalizzate).\nDa Giugno 2006 sviluppo e gestione del progetto Bonzai ( pianificazione, progettazione, sviluppo e manutenzione).\nDa Agosto 2005 collaborazione con l'Art Director Jeroen Bertsch. Realizzazione di siti vetrina con Wordpress e con sistemi ad-hoc."
     },
     "projects": [
@@ -340,7 +340,7 @@ db.getCollection("experience").insert({
                 "it_IT": "Il mio progetto personale che trasforma i sorgenti PHP in bytecode (attraverso l'estensione bcompiler)."
             },
             "activities": {
-                "en_GB": ["Feature Development and Code Maintenance", "Maintenance of Website and repository PEAR", "Documentation"],
+                "en_GB": ["Feature Development and Code Maintenance", "Website Maintenance, repository PEAR", "Documentation"],
                 "it_IT": ["Implementazione feature e Manutenzione del codice", "Manutenzione sito web, repository PEAR", "Documentazione"]
             },
             "technologies": {
@@ -431,7 +431,7 @@ db.getCollection("experience").insert({
                 "it_IT": "Sviluppatore Web"
             },
             "description": {
-                "en_GB": "Development of a mini website for Samsung for the launch of Samsung Galaxy S",
+                "en_GB": "Development of a mini website for Samsung for the Samsung Galaxy S launch",
                 "it_IT": "Sviluppo di un minisito per Samsung per il lancio del Samsung Galaxy S"
             },
             "technologies": {
@@ -620,7 +620,7 @@ db.getCollection("experience").insert({
     },
     "description": {
         "en_GB": "Design and development of some web sites, applications web-based and desktop.",
-        "it_IT": ""
+        "it_IT": "Progettazione e sviluppo di alcuni siti web, applicazioni web-based e desktop."
     },
     "projects": [
         {
@@ -635,7 +635,7 @@ db.getCollection("experience").insert({
             },
             "description": {
                 "en_GB": "Maintenance and subsequent re-development of an e-commerce site that sold electronic and computer products.",
-                "it_IT": "Manutenzione e successivo rifacimento di uno sito e-commerce che vendeva prodotti di elettronica e computer."
+                "it_IT": "Manutenzione e successivo rifacimento di un sito e-commerce che vendeva prodotti di elettronica e computer."
             },
             "methodologies": {
                 "Waterfall Model": {"months": 8}
@@ -779,8 +779,8 @@ db.getCollection("information").insert({
         "it_IT": "maschio",
     },
     "info": {
-        "en_GB": "I'm a passionate Web Developer and a security maniac, always looking for new challenges and a never-ending know-how. Since 2003 I've always been focused on PHP and JS applications and I found the time to certificate myself as a PHP 5 Engineer, CIW Application Developer and IWA Web Professional; apart from these, I never forgot the basics: I'm an expert using bash and writing complex Regular Expressions.\nI'm interested and involved also on SEO, Accessibility and Project Management. Lately I'm mainly focused on in-depth study of MongoDB, Node.js and Python.\nIn the last years I've been daily committed on projects with the RAD framework Symfony, using practices like automated tests and always trying to use bleeding edge technologies and methods for my work. I also have on-the-battlefield experience about agile development, as, in DNSEE, we implemented some of the agile techniques (iteration planning, test-first, collective code ownership and so on).\nFor passion, curiosity and interest I've created Bonzai (formerly known as phpGuardian), an open-source tool for encoding the PHP projects.",
-        "it_IT": "Sono uno sviluppatore web appassionato, un maniaco della sicurezza sempre alla ricerca di nuove sfide e di un know-how senza fine. Dal 2003 sono sempre stata focalizzato su PHP e applicazioni JS, ho trovato il tempo di certificarmi come un ingegnere PHP 5, CIW Application Developer e IWA Web Professional, oltre a questo, non ho mai dimenticato le nozioni di base: sono esperto nell'utilizzo di bash e nello scrivere RegEx complesse.\nSono interessato e coinvolto anche in SEO, accessibilit&agrave; e Project Management.\nUltimamente mi sono concentrato principalmente sulla approfondito studio di MongoDB, Node.js e Python.\nNegli ultimi anni sono stato quotidianamente impegnato su progetti con symfony framework, utilizzando tecniche come test automatizzati e sempre cercando di utilizzare tecnologie e metodi all'avanguardia per il mio lavoro. Ho anche esperienze sul campo riguardo lo sviluppo agile, come, in Dnsee, abbiamo implementato alcune delle tecniche agili (iteration planning, test-first, collective code ownership e cos&igrave; via).\nPer la passione, curiosit&agrave; e interesse ho creato Bonzai (precedentemente noto come phpGuardian), uno strumento per codificare i sorgenti di progetti PHP."
+        "en_GB": "I'm a passionate <strong>Web Developer</strong>, I'm often hands on either <em>front-end</em> or <em>back-end</em>.\nFortunately I'm looking at any time for new challenges and trying to keep myself at the <strong>cutting edge</strong>. When isn't possible at work I always find the <em>time at home to study</em> new technologies and methodologies to apply the next day.\nSince the early 2000s I've been focused on the web development, and now almost totally involved with <strong>PHP</strong> and <strong>JS</strong> applications. I've certified myself as <em>PHP 5 Engineer</em> and <em>IWA Application Developer</em>.\nEvery my working day has a heavy sprinkle of shell-interaction during which I enjoy myself with <em>regular expressions</em> and <em>scripting</em>. But I'm not 100% of my time in front a black screen with green characters (even because thay aren't), I don't dislike at all <strong>refactoring</strong>, <strong>code documentation</strong>, and <strong>testing</strong> that are anything but boring.\nI like also work in such different areas like <strong>SEO</strong>, <strong>Accessibility</strong> and <strong>Project Management</strong>.\nLately I've been involved in the learning of <em>MongoDB</em>, <em>Perl</em>, <em>Python</em>, <em>Redis</em>, <em>XPath</em>, <em>Zend Framework</em>. Some of them for fun, some others for work. The last year I was totally committed on a big project developed using the RAD framework <strong>Symfony</strong> (with <strong>Doctrine</strong>) and practices like automated tests. I've got experience about <strong>agile development</strong> because we implemented some of the agile techniques (<em>iteration planning</em>, <em>test-first</em>, <em>collective code ownership</em> and so on).\nI had the opportunity to put mind and hands directly on the project management, following several aspects of the project life-cycle.\nJust for passion, curiosity and interest I've created <strong>Bonzai</strong> (formerly known as phpGuardian), an open-source tool for encoding the PHP projects. That kept me involved over the years a lot on the study of the PHP Core, the writing of a custom extension in C and the source code analysis.",
+        "it_IT": "Sono un <strong>Web Developer</strong> appassionato, spesso con le mani su <em>front-end</em> e <em>back-end</em>.\n Fortunatamente sono in cerca in ogni momento di nuove sfide e sto cercando di <strong>tenermi all'avanguardia</strong>. Quando non è possibile al lavoro trovo sempre il tempo a casa per studiare nuove tecnologie e metodologie da applicare il giorno successivo. Dai primi anni 2000 sono stato concentrato sullo sviluppo web, e ora quasi totalmente impegnato con applicazioni <strong>PHP</strong> e <strong>JS</strong>. Mi sono certificato come <em>PHP 5 Engineer</em> e <em>IWA Application Developer</em>.\n Ogni mia giornata di lavoro ha una bella spruzzata di interazione con la shell durante la quala mi diverto con <em>espressioni regolari</em> e <em>scripting</em>. Ma non sono il 100% del mio tempo davanti a uno schermo nero con caratteri verdi (anche perchè non lo sono), non mi dispiace il <strong>refactoring</strong>, <strong>documentazione del codice</strong>, e le <strong>prove</strong> che sono tutt'altro che noiosi. Mi piace anche lavorare in settori diversi, come <strong>SEO</strong>, <strong>Accessibilità</strong> e <strong>Project Management</strong>. Ultimamente sto stato impegnato nell'apprendimento di <em>MongoDB</em>, <em>Perl</em>, <em>Python</em>, <em>Redis</em>, <em>XPath</em>, <em>Zend Framework</em>. Alcuni di loro per divertimento, altri per il lavoro.\n L'anno scorso sono stato totalmente impegnato in un grande progetto sviluppato utilizzando il framework <strong>Symfony</strong> (con <strong>Doctrine</strong>) e pratiche come test automatizzati. Ho esperienza di <strong>sviluppo agile</strong> perchè abbiamo implementato alcune delle tecniche agili (<em>pianificazione dell'iterazione</em>, <em>test-first</em>, <em>proprietà collettiva del codice</em> e così via). Ho avuto l'opportunità di mettere la mente e le mani direttamente nella gestione del progetto, seguendo diversi aspetti del ciclo di vita del progetto. Giusto per passione, curiosità e interesse ho creato <strong>Bonzai</strong> (precedentemente chiamato phpGuardian), uno strumento open-source per la codifica dei progetti PHP. Questo mi ha tenuto coinvolto nel corso degli anni molto sullo studio del core di PHP, nella scrittura di un'estensione personalizzata in C e nell'analisi del codice sorgente."
     },
     "interest": {
         "en_GB": ["Programming", "Swimming", "Snowboarding"],

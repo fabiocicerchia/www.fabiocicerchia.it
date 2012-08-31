@@ -1,0 +1,1 @@
+../../lib/vendor/minify/min/index.php
