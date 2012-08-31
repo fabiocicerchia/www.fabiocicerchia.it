@@ -33,12 +33,15 @@
 
 use strict;
 use warnings;
+use diagnostics -verbose;
 use version; our $VERSION = qv('1.0');
 use Test::More qw(no_plan);
 use Devel::Cover;
 use File::Basename;
 use File::Spec;
 use FileHandle;
+
+enable diagnostics;
 
 # Check the files
 do File::Spec->rel2abs( dirname(__FILE__) )

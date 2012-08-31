@@ -47,6 +47,7 @@ use Template::Filters;
 use Template;
 use XML::Simple;
 use JSON qw( decode_json );
+use Data::Dumper;
 
 Readonly my $LWP_TIMEOUT => 10;
 
@@ -369,6 +370,11 @@ sub get_item_data {
     my $ts  = 0;
 
     my $response      = $self->call_api( $url, $language );
+
+    # DEBUG OUTPUT #############################################################
+    print Dumper($response) if basename($0) == 'test.pl';
+    ############################################################################
+
     my $data          = $self->retrieve_xml( $response->content() );
     my $last_modified = q{};
     if ( defined( $response->headers()->{'last-modified'} ) ) {
