@@ -360,7 +360,8 @@ install_apache_modules() {
         perl Makefile.PL
         APACHE_MODULE_PATH=$(/usr/bin/apxs2 -q LIBEXECDIR)
         echo "LoadModule perl_module $APACHE_MODULE_PATH/mod_perl.so" > \
-             /etc/apache2/mods-enabled/perl.load
+             /etc/apache2/mods-available/perl.load
+        ln -s /etc/apache2/mods-available/perl.load /etc/apache2/mods-enabled/perl.load
     fi
 
     return $?

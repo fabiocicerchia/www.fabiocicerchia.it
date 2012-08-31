@@ -93,7 +93,7 @@ subtest 'Unit Testing' => sub {
 
 subtest 'Functional Testing' => sub {
 
-    if ($ENV{'TRAVIS'}) return;
+    return if (defined $ENV{'TRAVIS'} && $ENV{'TRAVIS'} == 1);
 
     my %BASE_ENV = (
         'SCRIPT_NAME',

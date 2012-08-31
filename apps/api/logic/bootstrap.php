@@ -66,8 +66,9 @@ $app['twig']->addExtension($customFilters);
 // HTTP CACHE PROVIDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $options = [
-    'http_cache.cache_dir' => ROOT_PATH . 'cache/api/',
-    'http_cache.options'   => [
+    'http_cache.cache_dir'       => ROOT_PATH . 'cache/api/',
+    'http_cache.private_headers' => ['Authorization', 'Cookie', 'Accept-Language'],
+    'http_cache.options'         => [
         'debug' => $app['debug']
     ]
 ];

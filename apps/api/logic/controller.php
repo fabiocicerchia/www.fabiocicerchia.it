@@ -175,7 +175,7 @@ $closures['api'] = function ($apiName) use ($app) {
 
         $response->setMaxAge(28800);
         // This set the cache to public.
-        $response->setSharedMaxAge(28800);
+        //$response->setSharedMaxAge(28800);
         $response->setETag(md5(serialize($data)));
         $response->headers->set('Last-Modified', $lastModified);
     }
