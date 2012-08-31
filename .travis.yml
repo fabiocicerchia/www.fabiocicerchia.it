@@ -21,6 +21,8 @@ before_script:
   - ./console install perl_modules
   - ./console install apache_modules
   - ./console init
+  - cat /home/travis/builds/fabiocicerchia/fabiocicerchia.github.com/config/virtual_host | sed -r "s/\/var\/www\/fabiocicerchia\/current\//\/home\/travis\/builds\/fabiocicerchia\/fabiocicerchia.github.com\//" > /etc/apache2/site-enabled/site
+  - /etc/init.d/apache2 restart
   - phpenv rehash
 
 script: ./console -s test
