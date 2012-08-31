@@ -215,6 +215,7 @@ init() {
     curl -s http://getcomposer.org/installer | php
     php composer.phar install
     mongo localhost/curriculum $CURRENT_PATH/../../db/mongo-curriculum.js
+    chmod -R 777 $ROOTDIR/cache $ROOTDIR/logs $ROOTDIR/tmp
 
     return $?
 }
