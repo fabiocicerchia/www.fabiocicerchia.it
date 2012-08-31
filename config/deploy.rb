@@ -33,17 +33,22 @@ set :default_stage, 'demo'
 
 require 'capistrano/ext/multistage'
 
-after "deploy", :clean_cache
+after 'deploy', 'app:init_env'
+after 'deploy', 'app:clean_cache'
+
+namespace :app do
 
 # {{{ Task: init_env -----------------------------------------------------------
 task :init_env do
-  run "cd #{current_path}; ./console install php"
-  run "cd #{current_path}; ./console install perl"
-  run "cd #{current_path}; ./console install cpanm"
-  run "cd #{current_path}; ./console install mongo"
-  run "cd #{current_path}; ./console install phpmongo"
-  run "cd #{current_path}; ./console install apache_modules"
-  run "cd #{current_path}; ./console install perl_modules"
+  if (exists?(':install'))
+    run "cd #{current_path}; ./console install php"
+    run "cd #{current_path}; ./console install perl"
+    run "cd #{current_path}; ./console install cpanm"
+    run "cd #{current_path}; ./console install mongo"
+    run "cd #{current_path}; ./console install phpmongo"
+    run "cd #{current_path}; ./console install apache_modules"
+    run "cd #{current_path}; ./console install perl_modules"
+  end
   run "cd #{current_path}; ./console init"
   run "cd #{current_path}; ./console config"
   run "cd #{current_path}; ./console run compile_gettext"
@@ -64,3 +69,5 @@ task :console do
     run "cd #{current_path}; ./console #{arg1} #{arg2}"
 end
 # }}} --------------------------------------------------------------------------
+
+end

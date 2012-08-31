@@ -647,8 +647,8 @@ This documentation refers to package <FabioCicerchiaSite> version 0.1.
 
 =head1 SYNOPSIS
 
-#    my $resume = FabioCicerchiaSite->new();
-#    $resume->show();
+    my $resume = FabioCicerchiaSite->new();
+    $resume->show();
 
 =head1 REQUIRED ARGUMENTS
 
