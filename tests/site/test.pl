@@ -92,6 +92,9 @@ subtest 'Unit Testing' => sub {
 };
 
 subtest 'Functional Testing' => sub {
+
+    if ($ENV{'TRAVIS'}) return;
+
     my %BASE_ENV = (
         'SCRIPT_NAME',
         '/index.pl',
