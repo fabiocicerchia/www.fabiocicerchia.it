@@ -166,6 +166,17 @@ install_imagick() {
 }
 # }}} --------------------------------------------------------------------------
 
+# {{{ install_xdebug() ----------------------------------------------------------
+install_xdebug() {
+    print_subheader "INSTALLING XDEBUG"
+
+    sudo pecl -q install --alldeps xdebug
+    echo "zend_extension=xdebug.so" > /etc/php5/conf.d/xdebug.ini
+
+    return $?
+}
+# }}} --------------------------------------------------------------------------
+
 # {{{ install_phpunit() --------------------------------------------------------
 install_phpunit() {
     print_subheader "INSTALLING PHPUNIT"

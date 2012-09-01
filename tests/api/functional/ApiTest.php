@@ -175,15 +175,15 @@ class ApiTest extends WebTestCase
             // Set #0 ----------------------------------------------------------
             ['/', 'no-cache'],
             // Set #1 ----------------------------------------------------------
-            ['/information', 'max-age=28800, public, s-maxage=28800'],
+            ['/information', 'max-age=28800, private'],
             // Set #2 ----------------------------------------------------------
-            ['/education', 'max-age=28800, public, s-maxage=28800'],
+            ['/education', 'max-age=28800, private'],
             // Set #3 ----------------------------------------------------------
-            ['/experience', 'max-age=28800, public, s-maxage=28800'],
+            ['/experience', 'max-age=28800, private'],
             // Set #4 ----------------------------------------------------------
-            ['/skill', 'max-age=28800, public, s-maxage=28800'],
+            ['/skill', 'max-age=28800, private'],
             // Set #5 ----------------------------------------------------------
-            ['/language', 'max-age=28800, public, s-maxage=28800'],
+            ['/language', 'max-age=28800, private'],
             // Set #6 ----------------------------------------------------------
             ['/api-definition-syntax', 'no-cache'],
         ];
