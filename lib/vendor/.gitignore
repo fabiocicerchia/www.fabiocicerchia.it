@@ -4,7 +4,7 @@ bootstrap
 composer
 doctrine
 fate
-OWASP-CRS
+owasp-modsecurity-crs
 pimple
 silex
 symfony

@@ -56,14 +56,14 @@
         SecAuditLog /var/www/fabiocicerchia/current/logs/audit.log
         SecFilterDefaultAction "deny,log,auditlog,status:406"
 
-        Include /var/www/fabiocicerchia/current/web/modsecurity_crs_10_config.conf
-        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_20_protocol_violations.conf
-        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_21_protocol_anomalies.conf
-        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_40_generic_attacks.conf
-        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_42_tight_security.conf
-        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_41_sql_injection_attacks.conf
-        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_41_xss_attacks.conf
-        Include /var/www/fabiocicerchia/current/lib/vendor/OWASP-CRS/base_rules/modsecurity_crs_45_trojans.conf
+        Include /var/www/fabiocicerchia/current/web/modsecurity_crs_10_setup.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/owasp-modsecurity-crs/base_rules/modsecurity_crs_20_protocol_violations.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/owasp-modsecurity-crs/base_rules/modsecurity_crs_21_protocol_anomalies.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/owasp-modsecurity-crs/base_rules/modsecurity_crs_40_generic_attacks.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/owasp-modsecurity-crs/base_rules/modsecurity_crs_42_tight_security.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/owasp-modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/owasp-modsecurity-crs/base_rules/modsecurity_crs_41_xss_attacks.conf
+        Include /var/www/fabiocicerchia/current/lib/vendor/owasp-modsecurity-crs/base_rules/modsecurity_crs_45_trojans.conf
     </IfModule>
 
     # DIRECTORIES #############################################################

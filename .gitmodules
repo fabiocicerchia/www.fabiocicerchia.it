@@ -1,9 +1,9 @@
-[submodule "lib/vendor/OWASP-CRS"]
-	path = lib/vendor/OWASP-CRS
-	url = git://github.com/fabiocicerchia/OWASP-CRS.git
 [submodule "lib/vendor/git2changelog"]
 	path = lib/vendor/git2changelog
 	url = git://github.com/jvasile/git2changelog.git
 [submodule "lib/vendor/minify"]
 	path = lib/vendor/minify
 	url = git://github.com/mrclay/minify.git
+[submodule "lib/vendor/owasp-modsecurity-crs"]
+	path = lib/vendor/owasp-modsecurity-crs
+	url = git://github.com/SpiderLabs/owasp-modsecurity-crs.git
