@@ -169,6 +169,12 @@ $closures['api'] = function ($apiName) use ($app) {
 
     // Response
     $response = new Response();
+
+    // Language
+    list($currentLang, $toLang) = Utils::getLanguage($app, $database);
+    $response->headers->set('Content-Language', $currentLang);
+    $data['entities'] = Utils::convertForI18n($data['entities'], $toLang);
+
     // TODO: Extract this code and make a function.
     if ($app['debug'] === false) {
         $lastModified = Utils::getLastModified($data);
@@ -176,7 +182,7 @@ $closures['api'] = function ($apiName) use ($app) {
         $response->setMaxAge(28800);
         // This set the cache to public.
         //$response->setSharedMaxAge(28800);
-        $response->setETag(md5(serialize($data)));
+        $response->setETag(md5($toLang . serialize($data)));
         $response->headers->set('Last-Modified', $lastModified);
     }
 
@@ -196,11 +202,6 @@ $closures['api'] = function ($apiName) use ($app) {
 
         $response->headers->set('Content-Type', $mimeType);
 
-        // Language
-        list($currentLang, $toLang) = Utils::getLanguage($app, $database);
-        $response->headers->set('Content-Language', $currentLang);
-
-        $data['entities'] = Utils::convertForI18n($data['entities'], $toLang);
         $data['email']    = $database->selectCollection('information')
                                      ->find()->getNext()['contacts']['email'];
 

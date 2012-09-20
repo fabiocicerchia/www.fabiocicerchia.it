@@ -223,6 +223,9 @@ sub action_show {
         }
         else {
             $language = $lang_tokens[1];
+            if ( $language eq 'en' ) {
+                $language = 'en-GB';
+            }
             if ( length($language) == 2 ) {
                 $language .= q{-} . uc $language;
             }

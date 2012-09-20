@@ -145,7 +145,7 @@ subtest 'Functional Testing' => sub {
         'DOCUMENT_ROOT',
         '/var/www/fabiocicerchia/current/web',
         'HTTP_HOST',
-        'localhost',
+        'fabiocicerchia.github',
         'MOD_PERL',
         'mod_perl/2.0.5',
         'UNIQUE_ID',

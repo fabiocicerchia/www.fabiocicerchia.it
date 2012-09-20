@@ -1,8 +1,87 @@
 fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 
+  * .gitmodules, config/virtual_host, lib/vendor/.gitignore,
+    lib/vendor/OWASP-CRS, lib/vendor/owasp-modsecurity-crs,
+    web/modsecurity_crs_10_config.conf,
+    web/modsecurity_crs_10_setup.conf: switched OWASP-CRS to official
+    repository
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sun, 16 Sep 2012 18:10:20 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/site/view/_js.tmpl, bin/console/modules/install.sh,
+    config/deploy/production.rb, db/mongo-curriculum.js,
+    tests/api/functional/ApiTest.php, tests/site/test.pl: fixes post
+    golive
+  * apps/site/view/_experience.tmpl, db/mongo-curriculum.js,
+    web/media/css/main.css: some fixed before go live
+  * apps/api/logic/bootstrap.php, apps/api/logic/controller.php,
+    bin/console/common.sh, bin/console/modules/install.sh,
+    tests/site/test.pl, web/minify/config.php, web/minify/index.php:
+    some fixed before go live
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Sat, 1 Sep 2012 00:55:22 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * apps/site/logic/class.pl, config/virtual_host,
+    db/mongo-curriculum.js, web/minify, web/minify/config.php,
+    web/minify/groupsConfig.php, web/minify/index.php, web/minify/lib,
+    web/minify/utils.php: fix on perl + modified db + changed
+    structure for minify
+  * tests/site/test.pl: disabled functional testing on travis
+  * .travis.yml: removed commands to setup apache...
+  * .travis.yml: added commands to setup apache...
+  * tests/site/test.pl: modified host name
+  * apps/site/logic/class.pl, tests/site/test.pl: trying to figure out
+    why perl fails
+  * bin/console/common.sh: added chmod
+  * apps/site/logic/class.pl, bin/console/modules/install.sh,
+    config/deploy.rb: fixed typo
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Fri, 31 Aug 2012 18:30:58 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * tests/site/test.pl: re-enabled output printing for perl
+  * .travis.yml, tests/api/functional/ApiTest.php: remove debug for
+    testing
+  * README.md: new readme file
+  * LICENCE: added licence file
+  * tests/api/functional/ApiTest.php: removed 404 from tests
+  * tests/api/functional/ApiTest.php: changed assertion
+  * tests/api/functional/ApiTest.php: restored print_r
+  * tests/api/functional/ApiTest.php: added a check for exception
+  * tests/api/functional/ApiTest.php: added a catch to avoid an
+    unexpected exception
+  * apps/api/view/information.twig, db/mongo-curriculum.js: fix for
+    ISODate
+  * apps/api/view/information.twig: debugging...
+  * apps/api/logic/controller.php: debugging...
+  * .travis.yml, bin/console/modules/install.sh,
+    tests/api/functional/ApiTest.php: debugging...
+  * .../lib/FabioCicerchia/Api/Utils.php,
+    tests/api/functional/ApiTest.php: fixed static method problem
+  * .travis.yml: added debug flag
+  * .travis.yml, README.md, apps/site/logic/class.pl,
+    apps/site/logic/controller.pl, config/phpunit.xml,
+    tests/api/functional/ApiTest.php, tests/site/test.pl: fixing
+    broken tests
+
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Thu, 30 Aug 2012 07:18:14 +0100
+
+fabiocicerchia.github.com (0.1.1) unstable; urgency=low
+
+  * .../lib/FabioCicerchia/ResultPrinter.php: fixed typo
+  * .gitmodules, CHANGELOG, TODO, bin/console/modules/run.sh,
+    config/phpunit.xml, config/virtual_host,
+    .../lib/FabioCicerchia/ResultPrinter.php, lib/vendor/minify,
+    tests/site/test.pl, web/minify: integrated phpunit resultprinter,
+    some fixes, updated CHANGELOG
   * .travis.yml, README.md: modified conf for travis
 
- -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 29 Aug 2012 07:13:47 +0100
+ -- Fabio Cicerchia <info@fabiocicerchia.it>  Wed, 29 Aug 2012 07:54:44 +0100
 
 fabiocicerchia.github.com (0.1.1) unstable; urgency=low
 

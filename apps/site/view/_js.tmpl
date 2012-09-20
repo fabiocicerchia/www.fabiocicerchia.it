@@ -21,7 +21,7 @@
         element.src = "/minified.js",
         document.getElementsByTagName('body')[0].appendChild(element);
 
-        if (document.location.path == '/references.html') {
+        if (document.location.pathname == '/references.html') {
             var element = document.createElement("script");
             element.innerHTML = "api_key: ao91h14nkfqj\nonLoad: onLinkedInLoad\nauthorize: true\nscope: r_fullprofile r_network";
             element.src = "http://platform.linkedin.com/in.js",
