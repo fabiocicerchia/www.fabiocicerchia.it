@@ -209,6 +209,7 @@ docs() {
 init() {
     print_header "INITIALISE THE ENVIRONMENT"
 
+    cp -r $ROOTDIR/config/system/* ~/
     git submodule init
     git submodule update
     export COMPOSER_VENDOR_DIR=lib/vendor

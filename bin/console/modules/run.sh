@@ -66,13 +66,14 @@ run_benchmark() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_todo() ---------------------------------------------------------------
-# TODO: Save to a file.
 run_todo() {
+    print_subheader "GENERATING TODO"
+
     DIR=$2
 
-    horizontal_line
-    echo "TODO LIST"
-    horizontal_line
+    horizontal_line > $ROOTDIR/TODO
+    echo "TODO LIST" >> $ROOTDIR/TODO
+    horizontal_line >> $ROOTDIR/TODO
 
     for FILE in $(find $DIR -name "*.*"); do
         OLDIFS=$IFS
@@ -83,28 +84,34 @@ run_todo() {
         RES=$(echo "$RES" | sed -r "s/([0-9]+):\s*(.+?)\s*/\2 (line \1)/")
 
         if [ -n "$RES" ]; then
-            echo -en "\nFile: $FILE\n"
-            horizontal_line
+            echo -en "\nFile: $FILE\n" >> $ROOTDIR/TODO
+            horizontal_line >> $ROOTDIR/TODO
 
             for MATCH in $RES; do
                 LINE=$(echo "$MATCH" | sed -r "s/^  /<No Message> /")
                 LINE=$(echo -n "  - $LINE" | fold -sw 80 | sed -r "s/^/    /")
                 LINE=$(echo "$LINE" | sed -r "s/^ {6}- /  - /")
 
-                echo -ne "\n$LINE"
+                echo -ne "\n$LINE" >> $ROOTDIR/TODO
             done
 
-            echo
+            echo >> $ROOTDIR/TODO
         fi
 
         IFS=$OLDIFS
     done
+
+    echo "done"
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_changelog() ----------------------------------------------------------
 run_changelog() {
+    print_subheader "GENERATING CHANGELOG"
+
     python $ROOTDIR/lib/vendor/git2changelog/git2changelog.py > $ROOTDIR/CHANGELOG
+
+    echo "done"
 }
 # }}} --------------------------------------------------------------------------
 
@@ -136,6 +143,7 @@ ver_cmp() {
 }
 
 # {{{ run_dependencies() -------------------------------------------------------
+# TODO: Add output messages.
 run_dependencies() {
     declare -a commands=('cat' 'curl' 'cut' 'dirname' 'egrep' 'find' 'fold' \
             'sed' 'seq' 'wc' 'wget' 'xargs');
@@ -274,8 +282,9 @@ run_dependencies() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_generate_gettext() ---------------------------------------------------
-# TODO: Add output messages.
 run_generate_gettext() {
+    print_subheader "GENERATING GETTEXT"
+
     CURR_DATE=$(date +%Y-%m-%d\ %H:%M%z)
 
     echo "#"
@@ -337,12 +346,15 @@ run_generate_gettext() {
     done
 
     IFS=$OLDIFS
+
+    echo "done"
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_compile_gettext() ----------------------------------------------------
-# TODO: Add output messages.
 run_compile_gettext() {
+    print_subheader "COMPILING GETTEXT"
+
     FILES_PO=$(find $SITE_APP_SOURCEDIR/locale -name "*.po" -type f)
     for FILE_PO in $FILES_PO; do
         msgfmt -c $FILE_PO -o ${FILE_PO%.po}.mo
@@ -353,18 +365,24 @@ run_compile_gettext() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_authors() ------------------------------------------------------------
-# TODO: Add output messages.
 run_authors() {
+    print_subheader "GENERATING AUTHORS"
+
     git log --pretty="%aN <%aE>" | sort -u > $ROOTDIR/AUTHORS
+
+    echo "done"
 }
 # }}} --------------------------------------------------------------------------
 
 # {{{ run_nikto() --------------------------------------------------------------
-# TODO: Add output messages.
 run_nikto() {
+    print_subheader "RUNNING NIKTO"
+
     sudo nikto -update
     nikto -C all -nocache -evasion 1,2,3,4,5,6 -h http://demo.fabiocicerchia.it \
           -o $REPORTDIR/site/logs/nikto.html -Format html -nossl \
           -Tuning 0,1,2,3,4,5,6,7,8,9,a,b,c,x
+
+    echo "done"
 }
 # }}} --------------------------------------------------------------------------
