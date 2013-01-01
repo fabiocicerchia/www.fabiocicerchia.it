@@ -94,6 +94,7 @@ class Experience extends \FabioCicerchia\Api\ServiceAbstract
      */
     protected function execDataQuery()
     {
+        // TODO: No coverage for this line.
         $res = $this->getCollection()->find()->toArray();
 
         $data = [];

@@ -200,6 +200,7 @@ abstract class ServiceAbstract
      */
     protected function execDataQuery()
     {
+        // TODO: No coverage for this line.
         return $this->collection->find()->toArray();
     }
     // }}} ---------------------------------------------------------------------
@@ -221,6 +222,7 @@ abstract class ServiceAbstract
      */
     protected function setDatabase(\Doctrine\MongoDB\Database $db_handle)
     {
+        // TODO: No coverage for this line.
         $this->collection = $db_handle->selectCollection($this->getCollectionName());
     }
     // }}} ---------------------------------------------------------------------
@@ -243,6 +245,7 @@ abstract class ServiceAbstract
      */
     public function __construct(\Doctrine\MongoDB\Database $db_handle)
     {
+        // TODO: No coverage for this line.
         $this->setDatabase($db_handle);
         $this->run();
     }

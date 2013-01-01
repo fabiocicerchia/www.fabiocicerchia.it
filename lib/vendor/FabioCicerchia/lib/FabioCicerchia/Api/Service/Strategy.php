@@ -76,6 +76,7 @@ class Strategy
      */
     public function getData()
     {
+        // TODO: No coverage for this line.
         return $this->strategy->getData();
     }
     // }}} ---------------------------------------------------------------------
@@ -109,6 +110,7 @@ class Strategy
             throw new \InvalidArgumentException($message);
         }
 
+        // TODO: No coverage for this line.
         $class = '\\FabioCicerchia\\Api\\Service\\' . ucfirst($service_name);
 
         try {

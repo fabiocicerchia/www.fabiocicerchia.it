@@ -139,6 +139,8 @@ class Utils
      * @see    FabioCicerchia\Api\Utils::getCurrentLanguage()
      * @since  Version 0.1
      *
+     * @todo Cover this method.
+     *
      * @return string
      */
     public static function getLanguage(
@@ -190,15 +192,18 @@ class Utils
             if (isset($firstRecord['date']['end']) === true
                 && $firstRecord['date']['end'] instanceof \MongoDate
             ) {
+                // TODO: No coverage for this line.
                 $time = $firstRecord['date']['end']->sec;
             } elseif (isset($firstRecord['date']['start']) === true
                 && $firstRecord['date']['start'] instanceof \MongoDate
             ) {
+                // TODO: No coverage for this line.
                 $time = $firstRecord['date']['start']->sec;
             }
         }
 
         $mongodb_file = ROOT_PATH . 'db/mongo-curriculum.js';
+        // TODO: No coverage.
         $lastModified = isset($time) === true
                         ? $time
                         : filemtime($mongodb_file);
@@ -225,6 +230,7 @@ class Utils
     public static function httpPriorityOrder($string)
     {
         if (is_string($string) === false) {
+            // TODO: No coverage for this line.
             $message = 'The parameter $string must be a string.';
             throw new \InvalidArgumentException($message);
         }
@@ -281,11 +287,13 @@ class Utils
 
     // {{{ Method: transform ---------------------------------------------------
     /**
-     * TODO: Add description.
+     * Convert a plain string to a specified MIME Type format.
      *
      * ### General Information #################################################
-     * @param  string $string   TODO: Add description.
-     * @param  string $mimeType TODO: Add description.
+     * @param  string $string   The string to convert.
+     * @param  string $mimeType The MIME Type to used for the transformation.
+     *
+     * @todo Cover this method.
      *
      * @return void
      */
@@ -326,11 +334,13 @@ class Utils
     protected static function httpCustomSorting($a, $b)
     {
         if (is_string($a) === false) {
+            // TODO: No coverage for this line.
             $message = 'The parameter $a must be a string.';
             throw new \InvalidArgumentException($message);
         }
 
         if (is_string($b) === false) {
+            // TODO: No coverage for this line.
             $message = 'The parameter $b must be a string.';
             throw new \InvalidArgumentException($message);
         }
@@ -347,6 +357,7 @@ class Utils
         $a_match = strpos($a_value, 'level=') !== false;
         $b_match = strpos($b_value, 'level=') !== false;
         if ($a_match === true || $b_match === true) {
+            // TODO: No coverage for this line.
             return strcmp($b_match, $a_match);
         }
 
@@ -354,6 +365,7 @@ class Utils
         $a_level = (float) preg_replace('/.*level=(\d+)$/', '\1', $a_value);
         $b_level = (float) preg_replace('/.*level=(\d+)$/', '\1', $b_value);
         if ($a_level !== $b_level) {
+            // TODO: No coverage for this line.
             return strcmp($a_level, $b_level);
         }
 
@@ -361,6 +373,7 @@ class Utils
         if (strpos($a_value, '*') !== false
             || strpos($b_value, '*') !== false
         ) {
+            // TODO: No coverage for this line.
             return strcmp($b_value, $a_value);
         }
 

@@ -53,11 +53,12 @@ class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
     // {{{ Methods - Protected =================================================
     // {{{ Method: printDefectTrace --------------------------------------------
     /**
-     * TODO: Add description.
+     * Print Defect Trace.
+     * Just copied by PHPUnit source code.
      *
      * ### General Information #################################################
      *
-     * @param \PHPUnit_Framework_TestFailure $defect
+     * @param \PHPUnit_Framework_TestFailure $defect Instance of TestFailure.
      *
      * @return void
      */
