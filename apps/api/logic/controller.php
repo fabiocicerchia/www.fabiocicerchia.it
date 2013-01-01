@@ -96,6 +96,7 @@ $closures['root'] = function () use ($app) {
     ];
     $requestedMimeType = [];
     if (isset($_SERVER['HTTP_ACCEPT']) === true) {
+        // TODO: No coverage for this line.
         $requestedMimeType = Utils::httpPriorityOrder($_SERVER['HTTP_ACCEPT']);
     }
     $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
@@ -150,6 +151,7 @@ $closures['root'] = function () use ($app) {
  */
 $closures['api'] = function ($apiName) use ($app) {
     if (is_string($apiName) === false) {
+        // TODO: No coverage for this line.
         $message = 'The parameter $apiName must be a string.';
         throw new \InvalidArgumentException($message);
     }
@@ -161,6 +163,7 @@ $closures['api'] = function ($apiName) use ($app) {
     try {
         $service = new Strategy($apiName, $database);
     } catch (UnexpectedValueException $e) {
+        // TODO: No coverage for this line.
         $app->abort(404, 'The API ' . $apiName. ' does not exist.');
     }
 
@@ -169,12 +172,6 @@ $closures['api'] = function ($apiName) use ($app) {
 
     // Response
     $response = new Response();
-
-    // Language
-    list($currentLang, $toLang) = Utils::getLanguage($app, $database);
-    $response->headers->set('Content-Language', $currentLang);
-    $data['entities'] = Utils::convertForI18n($data['entities'], $toLang);
-
     // TODO: Extract this code and make a function.
     if ($app['debug'] === false) {
         $lastModified = Utils::getLastModified($data);
@@ -182,7 +179,7 @@ $closures['api'] = function ($apiName) use ($app) {
         $response->setMaxAge(28800);
         // This set the cache to public.
         //$response->setSharedMaxAge(28800);
-        $response->setETag(md5($toLang . serialize($data)));
+        $response->setETag(md5(serialize($data)));
         $response->headers->set('Last-Modified', $lastModified);
     }
 
@@ -196,12 +193,18 @@ $closures['api'] = function ($apiName) use ($app) {
         ];
         $requestedMimeType = [];
         if (isset($_SERVER['HTTP_ACCEPT']) === true) {
+            // TODO: No coverage for this line.
             $requestedMimeType = Utils::httpPriorityOrder($_SERVER['HTTP_ACCEPT']);
         }
         $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
 
         $response->headers->set('Content-Type', $mimeType);
 
+        // Language
+        list($currentLang, $toLang) = Utils::getLanguage($app, $database);
+        $response->headers->set('Content-Language', $currentLang);
+
+        $data['entities'] = Utils::convertForI18n($data['entities'], $toLang);
         $data['email']    = $database->selectCollection('information')
                                      ->find()->getNext()['contacts']['email'];
 

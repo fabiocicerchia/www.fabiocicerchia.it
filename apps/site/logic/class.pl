@@ -95,6 +95,7 @@ sub action_code_snippets {
         $gists = decode_json($data);
     }
     else {
+        # TODO: No coverage for this line.
         my $browser = LWP::UserAgent->new();
         $browser->timeout($LWP_TIMEOUT);
         my $data  = $browser->get($url);
@@ -219,13 +220,11 @@ sub action_show {
     my @lang_tokens = split /,/smx, $language;
     if ( scalar(@lang_tokens) > 1 ) {
         if ( substr $lang_tokens[0], 0, 2 eq substr $lang_tokens[1], 0, 2 ) {
+            # TODO: No coverage for this line.
             $language = $lang_tokens[0];
         }
         else {
             $language = $lang_tokens[1];
-            if ( $language eq 'en' ) {
-                $language = 'en-GB';
-            }
             if ( length($language) == 2 ) {
                 $language .= q{-} . uc $language;
             }
@@ -345,6 +344,7 @@ API:
         $lang = defined $curr_lang ? $curr_lang             : $lang;
 
         if ( defined $curr_ts && $curr_ts > $last_ts ) {
+            # TODO: No coverage for this line.
             $last_ts = $curr_ts;
         }
     }
@@ -375,10 +375,12 @@ sub get_item_data {
     my $data          = $self->retrieve_xml( $response->content() );
     my $last_modified = q{};
     if ( defined( $response->headers()->{'last-modified'} ) ) {
+        # TODO: No coverage for this line.
         $last_modified = $response->headers()->{'last-modified'};
     }
 
     if ( $last_modified ne q{} ) {
+        # TODO: No coverage for this line.
         my ( $wday, $day, $month, $year, $hour, $min, $sec ) =
             split /[\s:]/smx, $last_modified;
         $ts = POSIX::mktime(
@@ -525,6 +527,7 @@ sub new {
 
     # Then use the value from the request or from the http header if exists.
     if ( defined( $self->{'request'}{'lang'} ) ) {
+        # TODO: No coverage for this line.
         $self->{'i18nCurrent'} = $self->{'request'}{'lang'};
     }
     elsif ( defined $ENV{'HTTP_ACCEPT_LANGUAGE'} ) {

@@ -193,20 +193,21 @@ for k, v in pages['site']['feed'].iteritems():
 ###############################################################################
 # Web Site Validation of: Semantics
 ###############################################################################
-print('Validate Semantics:')
-for k, v in pages['site']['url_hp'].iteritems():
-    print('    ' + k + ': ', end='')
-
-    url_param = urllib.urlencode({'url': '%URI%', 'view': 'cse'})
-
-    xpath = './/*[@id="form"]//*[text()="Result:"]/'
-    xpath += 'following-sibling::*[1]/text()'
-
-    res = validate('GET',
-                   'http://www.google.com/webmasters/tools/richsnippets?',
-                   url_param, v, xpath, '.*Errors:.*', True)
-
-    print(res)
+# TODO: This doesn't identify the new version of Google Webmaster Tools.
+#print('Validate Semantics:')
+#for k, v in pages['site']['url_hp'].iteritems():
+#    print('    ' + k + ': ', end='')
+#
+#    url_param = urllib.urlencode({'url': '%URI%', 'view': 'cse'})
+#
+#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
+#    xpath += 'following-sibling::*[1]/text()'
+#
+#    res = validate('GET',
+#                   'http://www.google.com/webmasters/tools/richsnippets?',
+#                   url_param, v, xpath, '.*Errors:.*', True)
+#
+#    print(res)
 
 ###############################################################################
 # Web Site Validation of: Links

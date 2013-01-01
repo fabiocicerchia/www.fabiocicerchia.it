@@ -52,6 +52,7 @@ $app->get('/', $closures['root'])->method('GET')->bind('root');
 
 // ROUTE API ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// TODO: Add HTTP methods to retrieve / manipulate single resource.
 $app->get('/{apiName}', $closures['api'])->assert('apiName', '[a-z]+')
     ->method('GET')->bind('api');
 

@@ -117,7 +117,7 @@ def validate(http_method, remote_url, params, page, match,
     a string, that contain the response of validation."""
 
     page   = urllib.quote(BASE_URL + page)
-    params = params.replace('%25URI%25', page)
+    params = params.replace('%25URI%25', page).replace('%URI%', page)
 
     if (http_method == 'GET'):
         remote_url = remote_url + '%s' % params
