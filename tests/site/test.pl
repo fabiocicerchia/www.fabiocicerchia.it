@@ -56,13 +56,14 @@ require_ok('Digest::MD5');
 require_ok('File::Basename');
 require_ok('File::Spec');
 require_ok('JSON');
-require_ok('Locale::TextDomain');
 require_ok('LWP');
+require_ok('Locale::TextDomain');
+require_ok('POSIX');
 require_ok('Perl::Critic');
 require_ok('Pod::Coverage');
-require_ok('POSIX');
 require_ok('Readonly');
 require_ok('Template');
+require_ok('Template::Plugin::HTML::Strip');
 require_ok('Test::More');
 require_ok('XML::Simple');
 
@@ -99,7 +100,7 @@ subtest 'Functional Testing' => sub {
         'SCRIPT_NAME',
         '/index.pl',
         'SERVER_NAME',
-        'localhost',
+        'fabiocicerchia.localhost',
         'SERVER_ADMIN',
         '[no address given]',
         'HTTP_ACCEPT_ENCODING',
@@ -111,7 +112,7 @@ subtest 'Functional Testing' => sub {
         'HTTP_ACCEPT',
         'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         'SCRIPT_FILENAME',
-        '/var/www/fabiocicerchia/current/web/index.pl',
+        '/var/www/fabiocicerchia.github.com/web/index.pl',
         'SERVER_SOFTWARE',
         'Apache/2.2.22 (Ubuntu)',
         'TZ',
@@ -143,9 +144,9 @@ subtest 'Functional Testing' => sub {
         'SERVER_ADDR',
         '127.0.0.1',
         'DOCUMENT_ROOT',
-        '/var/www/fabiocicerchia/current/web',
+        '/var/www/fabiocicerchia.github.com/web',
         'HTTP_HOST',
-        'fabiocicerchia.github',
+        'fabiocicerchia.localhost',
         'MOD_PERL',
         'mod_perl/2.0.5',
         'UNIQUE_ID',
