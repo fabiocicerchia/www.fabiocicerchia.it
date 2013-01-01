@@ -42,11 +42,11 @@ sca_phpcs() {
     mkdir -p "$REPORTDIR/api/logs/app/"
     mkdir -p "$REPORTDIR/api/logs/lib/"
     mkdir -p "$REPORTDIR/api/logs/test/"
-    phpcs -s -v --standard="$ROOTDIR/lib/PHPCS/ruleset.xml" --report=xml \
+    phpcs -s -v --standard=PSR2 --report=xml \
           --report-file="$REPORTDIR/api/logs/app/phpcs.xml" "$API_APP_SOURCEDIR"
-    phpcs -s -v --standard="$ROOTDIR/lib/PHPCS/ruleset.xml" --report=xml \
+    phpcs -s -v --standard=PSR2 --report=xml \
           --report-file="$REPORTDIR/api/logs/lib/phpcs.xml" "$API_LIB_SOURCEDIR"
-    phpcs -s -v --standard="$ROOTDIR/lib/PHPCS/ruleset.xml" --report=xml \
+    phpcs -s -v --standard=PSR2 --report=xml \
           --report-file="$REPORTDIR/api/logs/test/phpcs.xml" "$API_TEST_SOURCEDIR"
 
     return $?
