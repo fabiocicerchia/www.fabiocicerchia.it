@@ -154,7 +154,7 @@ class ResultPrinter extends \PHPUnit_TextUI_ResultPrinter
 
     // {{{ Method: printDetails ------------------------------------------------
     /**
-     * TODO: Add description
+     * Print information about the Exception with additional information.
      *
      * ### General Information #################################################
      *
