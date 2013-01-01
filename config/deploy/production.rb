@@ -39,9 +39,10 @@ set :branch,                "master"
 set :git_enable_submodules, 1
 set :deploy_via,            :remote_cache
 
-set :user,        "root"
+set :user,        "capistrano"
 set :use_sudo,    false
 set :ssh_options, {:forward_agent => true}
+ssh_options[:port] = 1986
 default_run_options[:pty] = true
 
 role :app, domain

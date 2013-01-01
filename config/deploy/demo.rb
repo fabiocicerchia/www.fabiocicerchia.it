@@ -39,9 +39,10 @@ set :branch,                "develop"
 set :git_enable_submodules, 1
 set :deploy_via,            :remote_cache
 
-set :user,        "root" # TODO: Change user to "capistrano".
-set :use_sudo,    false
+set :user,        "capistrano"
+set :use_sudo,    true
 set :ssh_options, {:forward_agent => true}
+ssh_options[:port] = 1986
 default_run_options[:pty] = true
 
 role :app, domain
