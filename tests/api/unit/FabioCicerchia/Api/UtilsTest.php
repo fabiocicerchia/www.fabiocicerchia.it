@@ -2,7 +2,7 @@
 /**
  * FABIO CICERCHIA - WEBSITE
  *
- * Copyright 2012 Fabio Cicerchia.
+ * Copyright 2012 - 2013 Fabio Cicerchia.
  *
  * Permission is hereby granted, free of  charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
  * @package    FabioCicerchia\Api
  * @subpackage UtilsTest
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia.
+ * @copyright  2012 - 2013 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
  * @since      File available since Release 0.1
@@ -45,7 +45,7 @@ require_once TEST_LIB_PATH . 'Api/Utils.php';
  * @package    FabioCicerchia\Api
  * @subpackage Utils
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia. All Rights reserved.
+ * @copyright  2012 - 2013 Fabio Cicerchia. All Rights reserved.
  * @license    TBD <http://www.fabiocicerchia.it>
  * @link       http://www.fabiocicerchia.it
  * @since      File available since Release 0.1

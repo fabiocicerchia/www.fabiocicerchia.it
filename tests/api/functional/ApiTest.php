@@ -2,7 +2,7 @@
 /**
  * FABIO CICERCHIA - WEBSITE
  *
- * Copyright 2012 Fabio Cicerchia.
+ * Copyright 2012 - 2013 Fabio Cicerchia.
  *
  * Permission is hereby granted, free of  charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
  * @category  Test
  * @package   Api
  * @author    Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright 2012 Fabio Cicerchia.
+ * @copyright 2012 - 2013 Fabio Cicerchia.
  * @license   MIT <http://www.opensource.org/licenses/MIT>
  * @link      http://www.fabiocicerchia.it
  * @since     File available since Release 0.1
@@ -44,7 +44,7 @@ use Silex\WebTestCase;
  * @package    Api
  * @subpackage AppTest
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia. All Rights reserved.
+ * @copyright  2012 - 2013 Fabio Cicerchia. All Rights reserved.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
  * @since      File available since Release 0.1
@@ -342,7 +342,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('service > author > name')->text());
         $this->assertEquals('http://localhost', $crawler->filter('service > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('service > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('service > rights')->text());
+        $this->assertEquals('Copyright (c) 2012 - 2013, Fabio Cicerchia', $crawler->filter('service > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('service > entrypoint > id')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('service > entrypoint > title')->count());
@@ -486,7 +486,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
         $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
+        $this->assertEquals('Copyright (c) 2012 - 2013, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{32}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/m', $crawler->filter('entities > entity > title')->text());
@@ -522,7 +522,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
         $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
+        $this->assertEquals('Copyright (c) 2012 - 2013, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
@@ -564,7 +564,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
         $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
+        $this->assertEquals('Copyright (c) 2012 - 2013, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
@@ -630,7 +630,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
         $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
+        $this->assertEquals('Copyright (c) 2012 - 2013, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());
@@ -670,7 +670,7 @@ class ApiTest extends WebTestCase
         $this->assertEquals('Fabio Cicerchia', $crawler->filter('entities > author > name')->text());
         $this->assertEquals('http://localhost', $crawler->filter('entities > author > uri')->text());
         $this->assertEquals('info@fabiocicerchia.it', $crawler->filter('entities > author > email')->text());
-        $this->assertEquals('Copyright (c) 2012, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
+        $this->assertEquals('Copyright (c) 2012 - 2013, Fabio Cicerchia', $crawler->filter('entities > rights')->text());
         $this->assertGreaterThanOrEqual(1, $crawler->filter('entities > entity')->count());
         $this->assertRegExp('/^urn:uuid:[0-9a-f]{24}$/', $crawler->filter('entities > entity > id')->text());
         $this->assertRegExp('/^.+$/', $crawler->filter('entities > entity > title')->text());

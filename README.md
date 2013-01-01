@@ -75,7 +75,7 @@ Currently this is the status of the last build:
 TBW
 
 ## Licensing
-Copyright 2012 Fabio Cicerchia.
+Copyright 2012 - 2013 Fabio Cicerchia.
 
 The project is released under the MIT licence available herebelow or at
 <http://www.opensource.org/licenses/MIT>.

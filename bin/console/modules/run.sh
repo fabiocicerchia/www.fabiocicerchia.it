@@ -2,7 +2,7 @@
 #
 # FABIO CICERCHIA - WEBSITE
 #
-# Copyright 2012 Fabio Cicerchia.
+# Copyright 2012 - 2013 Fabio Cicerchia.
 #
 # Permission is hereby  granted, free of charge, to any  person obtaining a copy
 # of this software and associated  documentation files (the "Software"), to deal
@@ -290,7 +290,7 @@ run_generate_gettext() {
     echo "#"
     echo "# FABIO CICERCHIA - WEBSITE"
     echo "#"
-    echo "# Copyright 2012 Fabio Cicerchia."
+    echo "# Copyright 2012 - 2013 Fabio Cicerchia."
     echo "#"
     echo "# Permission is hereby  granted, free of charge, to any  person obtaining a copy"
     echo "# of this software and associated  documentation files (the \"Software\"), to deal"

@@ -2,7 +2,7 @@
 /**
  * FABIO CICERCHIA - WEBSITE
  *
- * Copyright 2012 Fabio Cicerchia.
+ * Copyright 2012 - 2013 Fabio Cicerchia.
  *
  * Permission is hereby granted, free of  charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
  * @package    Api
  * @subpackage App
  * @author     Fabio Cicerchia <info@fabiocicerchia.it>
- * @copyright  2012 Fabio Cicerchia.
+ * @copyright  2012 - 2013 Fabio Cicerchia.
  * @license    MIT <http://www.opensource.org/licenses/MIT>
  * @link       http://www.fabiocicerchia.it
  */
