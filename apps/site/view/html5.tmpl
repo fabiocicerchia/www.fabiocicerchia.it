@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="[% language.substr(0, 2) %]">
     <head>
-        [% INCLUDE _head.tmpl
+        [% INCLUDE partials/head.tmpl
            description = data.information.entity.0.summary.content
            title       = data.information.entity.0.content.role %]
     </head>
@@ -9,7 +9,7 @@
         [% INCLUDE partials/navbar.tmpl active = "home" %]
 
         <div class="container hresume">
-            [% INCLUDE _header.tmpl %]
+            [% INCLUDE partials/header.tmpl %]
 
             <div class="alert alert-info">
                 <button class="close" data-dismiss="alert" type="button">&times;</button>
@@ -21,23 +21,23 @@
                 <a href="https://github.com/fabiocicerchia/fabiocicerchia.github.com" target="_blank">[% FILTER gettext %]Go to the repository[% END %]</a>.
             </div>
 
-            [% INCLUDE _summary.tmpl %]
+            [% INCLUDE partials/summary.tmpl %]
 
-            [% INCLUDE _skill.tmpl %]
+            [% INCLUDE partials/skill.tmpl %]
 
-            [% INCLUDE _education.tmpl %]
+            [% INCLUDE partials/education.tmpl %]
 
-            [% INCLUDE _experience.tmpl %]
+            [% INCLUDE partials/experience.tmpl %]
 
-            [% INCLUDE _language.tmpl %]
+            [% INCLUDE partials/language.tmpl %]
 
             <footer class="footer">
                 <p class="pull-right">
-                    <i class="icon-chevron-up"></i>
+                    <em class="icon-chevron-up"></em>
                     <a href="javascript: window.scrollTo(0,0);">[% FILTER gettext %]Back to top[% END %]</a>
                 </p>
             </footer>
         </div>
-        [% INCLUDE _js.tmpl %]
+        [% INCLUDE partials/js.tmpl %]
     </body>
 </html>

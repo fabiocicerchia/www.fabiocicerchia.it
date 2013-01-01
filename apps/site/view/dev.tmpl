@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="[% language.substr(0, 2) %]">
     <head>
-        [% INCLUDE _head.tmpl
+        [% INCLUDE partials/head.tmpl
            description = "The side behind the screen"
            title       = "Dev" %]
     </head>
@@ -21,6 +21,6 @@
                 <li><a href="/dev/report/site/code_coverage/coverage.html">Report - Site - Code Coverage</a></li>
             </ul>
         </div>
-       [% INCLUDE _js.tmpl %]
+       [% INCLUDE partials/js.tmpl %]
     </body>
 </html>

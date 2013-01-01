@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="[% language.substr(0, 2) %]">
     <head>
-        [% INCLUDE _head.tmpl
+        [% INCLUDE partials/head.tmpl
            description = "How I solved my daily-problems"
            title       = "Code Snippets" %]
     </head>
@@ -31,11 +31,11 @@
 
             <footer class="footer">
                 <p class="pull-right">
-                    <i class="icon-chevron-up"></i>
+                    <em class="icon-chevron-up"></em>
                     <a href="javascript: window.scrollTo(0,0);">[% FILTER gettext %]Back to top[% END %]</a>
                 </p>
             </footer>
         </div>
-        [% INCLUDE _js.tmpl %]
+        [% INCLUDE partials/js.tmpl %]
     </body>
 </html>

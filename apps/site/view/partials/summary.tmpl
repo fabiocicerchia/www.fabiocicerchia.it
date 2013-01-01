@@ -1,0 +1,13 @@
+<section id="summary">
+    <div class="page-header">
+        <h2>[% FILTER gettext %]Summary[% END %]</h2>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <p>
+                [% data.information.entity.0.summary.content | replace("\n", "<br /><br />") %]
+            </p>
+        </div>
+    </div>
+</section>
