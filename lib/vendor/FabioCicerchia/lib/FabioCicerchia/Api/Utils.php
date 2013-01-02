@@ -306,6 +306,55 @@ class Utils
         return $output;
     }
     // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: getMimeType -------------------------------------------------
+    /**
+     * Retrieve MIME Type from a Request.
+     *
+     * ### General Information #################################################
+     * @param  array                                     $availableMimeTypes List of available MIME Types.
+     * @param  \Symfony\Component\HttpFoundation\Request $request            The request.
+     *
+     * @return string
+     */
+    public function getMimeType(
+        array $availableMimeTypes,
+        \Symfony\Component\HttpFoundation\Request $request
+    ) {
+        $requestedMimeType = [];
+        $httpAccept        = $request->headers->get('accept');
+        if ($httpAccept !== null) {
+            $requestedMimeType = Utils::httpPriorityOrder($httpAccept);
+        }
+        $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
+
+        return $mimeType;
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: setCacheHeaders ---------------------------------------------
+    /**
+     * Set the cache headers based on the response.
+     *
+     * ### General Information #################################################
+     * @param  string                                     $data     The data string.
+     * @param  \Symfony\Component\HttpFoundation\Response $response The Response.
+     *
+     * @return string
+     */
+    public function setCacheHeaders(
+        $data,
+        \Symfony\Component\HttpFoundation\Response &$response
+    ) {
+        $lastModified = Utils::getLastModified($data);
+
+        $response->setMaxAge(28800);
+        // This set the cache to public.
+        //$response->setSharedMaxAge(28800);
+        $response->setETag(md5(serialize($data)));
+        $response->headers->set('Last-Modified', $lastModified);
+    }
+    // }}} ---------------------------------------------------------------------
     // }}} =====================================================================
 
     // {{{ Methods - Protected =================================================

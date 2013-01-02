@@ -35,7 +35,7 @@ from __future__ import print_function
 import urllib
 from common import *
 
-# TODO: http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN
+# TODO: http://www.w3.org/2005/MWI/BPWG/Group/TaskForces/Checker/
 # TODO: http://www.sidar.org/hera/
 # TODO: YSlow
 # TODO: Page Speed
@@ -173,67 +173,44 @@ for k, v in pages['site']['feed'].iteritems():
     print(res)
 
 ###############################################################################
-# Web Site Validation of: Mobile
-###############################################################################
-# TODO: Uncomment?
-# When call the right URL using urllib this is the response of the page:
-# Servlet has thrown exception:java.lang.NullPointerException
-#print('Validate Mobile:')
-#for k, v in pages['site']['url_hp'].iteritems():
-#    print('    ' + k + ': ', end='')
-#
-#    url_param = urllib.urlencode({'docAddr': '%URI%', 'async': 'false'})
-#    xpath = './/*[text() = "mobileOK score: "]/..//text()'
-#
-#    res = validate('GET', 'http://validator.w3.org/mobile/check?',
-#                   url_param, v, xpath, '.*mobileOK score.+9[0-9]%.*')
-#
-#    print(res)
-
-###############################################################################
 # Web Site Validation of: Semantics
 ###############################################################################
-# TODO: This doesn't identify the new version of Google Webmaster Tools.
-#print('Validate Semantics:')
-#for k, v in pages['site']['url_hp'].iteritems():
-#    print('    ' + k + ': ', end='')
-#
-#    url_param = urllib.urlencode({'url': '%URI%', 'view': 'cse'})
-#
-#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
-#    xpath += 'following-sibling::*[1]/text()'
-#
-#    res = validate('GET',
-#                   'http://www.google.com/webmasters/tools/richsnippets?',
-#                   url_param, v, xpath, '.*Errors:.*', True)
-#
-#    print(res)
+print('Validate Semantics:')
+for k, v in pages['site']['url_hp'].iteritems():
+    print('    ' + k + ': ', end='')
+
+    url_param = urllib.urlencode({'url': '%URI%', 'html': ''})
+
+    xpath = './/*[@id="extracted-data-google"]/*[local-name()="div"][2]//text()'
+
+    res = validate('GET',
+                   'http://www.google.com/webmasters/tools/richsnippets?',
+                   url_param, v, xpath, '.*No data detected.*', True)
+
+    print(res)
 
 ###############################################################################
 # Web Site Validation of: Links
 ###############################################################################
-# TODO: This takes a while, does it worth?
-#print('Validate Links:')
-#for k, v in pages['site']['url_hp'].iteritems():
-#    print('    ' + k + ': ', end='')
-#
-#    url_param = 'uri=%URI%&summary=on&hide_type=all&depth=&check=Check'
-#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
-#    xpath += 'following-sibling::*[1]/text()'
-#
-#    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
-#                   v, xpath, '.*Passed.*')
-#
-#    print(res)
-#
-#for k, v in pages['site']['feed'].iteritems():
-#    print('    ' + k + ': ', end='')
-#
-#    url_param = 'uri=%URI%&summary=on&hide_type=all&depth=&check=Check'
-#    xpath = './/*[@id="form"]//*[text()="Result:"]/'
-#    xpath += 'following-sibling::*[1]/text()'
-#
-#    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
-#                   v, xpath, '.*Passed.*')
-#
-#    print(res)
+print('Validate Links:')
+for k, v in pages['site']['url_hp'].iteritems():
+    print('    ' + k + ': ', end='')
+
+    url_param = 'uri=%URI%&summary=on&hide_type=all&depth=&check=Check'
+    xpath = './/*[@id="main"]//text()'
+
+    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
+                   v, xpath, '.*Valid anchors.*')
+
+    print(res)
+
+for k, v in pages['site']['feed'].iteritems():
+    print('    ' + k + ': ', end='')
+
+    url_param = 'uri=%URI%&summary=on&hide_type=all&depth=&check=Check'
+    xpath = './/*[@id="main"]//text()'
+
+    res = validate('GET', 'http://validator.w3.org/checklink?', url_param,
+                   v, xpath, '.*Valid anchors.*')
+
+    print(res)

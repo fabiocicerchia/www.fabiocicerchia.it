@@ -2,12 +2,6 @@
 TODO LIST
 --------------------------------------------------------------------------------
 
-File: ./apps/api/logic/controller.php
---------------------------------------------------------------------------------
-
-  - Extract this code and make a function. (line 170)
-  - Extract this code and make a function. (line 181)
-
 File: ./apps/api/logic/app.php
 --------------------------------------------------------------------------------
 
@@ -31,21 +25,13 @@ File: ./apps/site/logic/class.pl
   - Test::Pod. (line 646)
   - Test::Pod::Coverage. (line 647)
 
-File: ./apps/site/view/partials/head.tmpl
---------------------------------------------------------------------------------
-
-  - Convert to a dynamic value. (line 34)
-
 File: ./apps/script/check_validation.py
 --------------------------------------------------------------------------------
 
-  - http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3ocale=en_EN (line 38)
+  - http://www.w3.org/2005/MWI/BPWG/Group/TaskForces/Checker/ (line 38)
   - http://www.sidar.org/hera/ (line 39)
   - YSlow (line 40)
   - Page Speed (line 41)
-  - Uncomment? (line 178)
-  - This doesn't identify the new version of Google Webmaster Tools. (line 196)
-  - This takes a while, does it worth? (line 215)
 
 File: ./apps/script/check_accessibility.py
 --------------------------------------------------------------------------------
@@ -70,5 +56,4 @@ File: ./bin/console/common.sh
 File: ./bin/console/modules/run.sh
 --------------------------------------------------------------------------------
 
-  - Add output messages. (line 146)
-  - Check PEAR/PECL. (line 220)
+  - Check PEAR/PECL. (line 221)

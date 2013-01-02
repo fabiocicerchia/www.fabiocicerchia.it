@@ -34,8 +34,7 @@
 from __future__ import print_function
 import urllib
 import re
-from lxml import etree
-# http://lxml.de/parsing.html
+import lxml.html
 
 BASE_URL = 'http://demo.fabiocicerchia.it'
 
@@ -67,10 +66,10 @@ pages = {
         }
     },
     'css': {
-        'css': '/minified/css',
+        'css': '/minified.css',
     },
     'js': {
-        'js': '/minified/js',
+        'js': '/minified.js',
     }
 }
 
@@ -124,9 +123,7 @@ def validate(http_method, remote_url, params, page, match,
 
     data = retrieve_url_content(http_method, remote_url, params)
 
-    parser = etree.XMLParser(ns_clean=False, resolve_entities=False,
-                             recover=True)
-    tree = etree.fromstring(data, parser)
+    tree = lxml.html.fromstring(data)
 
     elements = tree.xpath(match)
     text     = ''.join(elements)

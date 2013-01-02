@@ -143,8 +143,9 @@ ver_cmp() {
 }
 
 # {{{ run_dependencies() -------------------------------------------------------
-# TODO: Add output messages.
 run_dependencies() {
+    print_subheader "CALCULATING DEPENDIENCIES"
+
     declare -a commands=('cat' 'curl' 'cut' 'dirname' 'egrep' 'find' 'fold' \
             'sed' 'seq' 'wc' 'wget' 'xargs');
 

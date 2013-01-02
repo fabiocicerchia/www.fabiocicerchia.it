@@ -42,6 +42,13 @@ use FabioCicerchia\Api\Utils;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $closures = [];
 
+// MimeType
+$availableMimeTypes = [
+    'application/vnd.ads+xml;v=1.0',
+    'application/xml',
+    'application/json'
+];
+
 // ERROR HANDLING ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -89,19 +96,8 @@ $closures['error'] = function (\Exception $e, $code) use ($app) {
  *
  * @return Response
  */
-$closures['root'] = function () use ($app) {
-    // MimeType
-    $availableMimeTypes = [
-        'application/vnd.ads+xml;v=1.0',
-        'application/xml',
-        'application/json'
-    ];
-    $requestedMimeType = [];
-    $httpAccept        = $app['request']->headers->get('accept');
-    if ($httpAccept !== null) {
-        $requestedMimeType = Utils::httpPriorityOrder($httpAccept);
-    }
-    $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
+$closures['root'] = function () use ($app, $availableMimeTypes) {
+    $mimeType = Utils::getMimeType($availableMimeTypes, $app['request']);
 
     // DB
     $database = $app['mongodb']->selectDatabase('curriculum');
@@ -151,7 +147,7 @@ $closures['root'] = function () use ($app) {
  *
  * @return Response
  */
-$closures['api'] = function ($apiName) use ($app) {
+$closures['api'] = function ($apiName) use ($app, $availableMimeTypes) {
     // DB
     $database = $app['mongodb']->selectDatabase('curriculum');
 
@@ -167,32 +163,13 @@ $closures['api'] = function ($apiName) use ($app) {
 
     // Response
     $response = new Response();
-    // TODO: Extract this code and make a function.
-    if ($app['debug'] === false) {
-        $lastModified = Utils::getLastModified($data);
 
-        $response->setMaxAge(28800);
-        // This set the cache to public.
-        //$response->setSharedMaxAge(28800);
-        $response->setETag(md5(serialize($data)));
-        $response->headers->set('Last-Modified', $lastModified);
+    if ($app['debug'] === false) {
+        Utils::setCacheHeaders($data, $response);
     }
 
-    // TODO: Extract this code and make a function.
     if ($response->isNotModified($app['request']) === false) {
-        // MimeType
-        $availableMimeTypes = [
-            'application/vnd.ads+xml;v=1.0',
-            'application/xml',
-            'application/json'
-        ];
-        $requestedMimeType = [];
-        $httpAccept        = $app['request']->headers->get('accept');
-        if ($httpAccept !== null) {
-            $requestedMimeType = Utils::httpPriorityOrder($httpAccept);
-        }
-        $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
-
+        $mimeType = Utils::getMimeType($availableMimeTypes, $app['request']);
         $response->headers->set('Content-Type', $mimeType);
 
         // Language
