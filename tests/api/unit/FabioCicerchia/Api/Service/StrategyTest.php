@@ -34,8 +34,6 @@
  * @since      File available since Release 0.1
  */
 
-// TODO: 100% Coverage.
-
 require_once TEST_LIB_PATH . 'TestCase.php';
 require_once TEST_LIB_PATH . 'Api/Service/Strategy.php';
 

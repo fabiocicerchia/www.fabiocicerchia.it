@@ -110,8 +110,6 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
      *
      * ### General Information #################################################
      *
-     * @todo Cover this method
-     *
      * @return array
      */
     protected function getSkillWithMonths()
@@ -140,8 +138,6 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
      *
      * @param array $entity The array to parse.
      * @param array $data   The skill container.
-     *
-     * @todo Cover this method
      *
      * @return void
      */

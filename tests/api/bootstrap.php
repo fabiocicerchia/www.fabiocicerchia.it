@@ -50,4 +50,3 @@ if (defined('ROOT_PATH') === false) {
 }
 
 require_once ROOT_PATH . 'lib/vendor/autoload.php';
-require_once ROOT_PATH . 'lib/vendor/FabioCicerchia/lib/FabioCicerchia/ResultPrinter.php';

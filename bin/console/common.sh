@@ -303,7 +303,6 @@ list_subactions() {
 # }}} --------------------------------------------------------------------------
 
 # {{{ help() -------------------------------------------------------------------
-# TODO: Refactor.
 help() {
     echo
     echo -e "${BLDWHT}USAGE:$TXTRST"
@@ -313,37 +312,28 @@ help() {
     echo -e "    $TXTPUR-q$TXTRST                Quiet mode\n"
     echo -e "${BLDWHT}Available actions:$TXTRST"
     echo -e "    ${TXTCYN}all$TXTRST                  Simply call the following actions: test, sca, docs."
-    echo -e "    ${TXTCYN}config$TXTRST [${TXTBLU}subaction${TXTRST}]   Configure the environment."
-    SUBROUTINES=$(list_subactions "config_")
-    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
-    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
-    echo -e "    ${TXTCYN}deploy$TXTRST [${TXTBLU}subaction${TXTRST}]   Script to deploy the applications."
-    SUBROUTINES=$(list_subactions "deploy_")
-    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
-    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
-    echo -e "    ${TXTCYN}docs$TXTRST [${TXTBLU}subaction${TXTRST}]     Generate the documentation."
-    SUBROUTINES=$(list_subactions "doc_")
-    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
-    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
+    _print_action "config" "Configure the environment."
+    _print_action "deploy" "Script to deploy the applications."
+    _print_action "docs" "Generate the documentation."
     echo -e "    ${TXTCYN}help$TXTRST                 The help."
     echo -e "    ${TXTCYN}init$TXTRST                 Initialise the environment."
-    echo -e "    ${TXTCYN}install$TXTRST [${TXTBLU}subaction${TXTRST}]  Install all the dependencies."
-    SUBROUTINES=$(list_subactions "install_")
-    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
-    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
-    echo -e "    ${TXTCYN}run$TXTRST [${TXTBLU}script${TXTRST}]         Launch multiple scripts."
-    SUBROUTINES=$(list_subactions "run_")
-    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
-    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
-    echo -e "    ${TXTCYN}sca$TXTRST [${TXTBLU}subaction${TXTRST}]      Analise the code."
-    SUBROUTINES=$(list_subactions "sca_")
-    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
-    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
-    echo -e "    ${TXTCYN}test$TXTRST [${TXTBLU}subaction${TXTRST}]     Test the code."
-    SUBROUTINES=$(list_subactions "test_")
-    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
-    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
+    _print_action "install" "Install all the dependencies."
+    _print_action "run" "Launch multiple scripts."
+    _print_action "sca" "Analise the code."
+    _print_action "test" "Test the code."
 
     return $?
+}
+# }}} --------------------------------------------------------------------------
+
+# {{{ _print_action() ----------------------------------------------------------
+_print_action() {
+    NUM_SPC=$(( 9 - ${#1} ))
+    SPACES=$(printf "%${NUM_SPC}s\n")
+
+    echo -e "    ${TXTCYN}$1$TXTRST [${TXTBLU}subaction${TXTRST}]$SPACES$2"
+    SUBROUTINES=$(list_subactions "$1_")
+    echo -en "             ${TXTYLW}Subactions${TXTRST}: "
+    echo "$SUBROUTINES." | fold -sw 55 | sed ':a;N;$!ba;s/\n/\n                         /g'
 }
 # }}} --------------------------------------------------------------------------

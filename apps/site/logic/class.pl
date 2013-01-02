@@ -79,7 +79,6 @@ sub action_code_snippets {
 
     my $file_name      = dirname(__FILE__) . '/../../../tmp/gists.json';
     my $cache_valid    = undef;
-    # TODO: Test false condition
     if ( -s $file_name ) {
         my $file_timestamp = ( stat $file_name )[9];
         $cache_valid = $file_timestamp > localtime(time) - ( 24 * 60 * 60 );
@@ -87,7 +86,6 @@ sub action_code_snippets {
 
     my $gists = undef;
 
-    # TODO: Test false condition
     if ($cache_valid) {
         my $file = open FILE, '<' . $file_name;
         local $/=undef;
@@ -97,7 +95,6 @@ sub action_code_snippets {
         $gists = decode_json($data);
     }
     else {
-        # TODO: No coverage for this line.
         my $browser = LWP::UserAgent->new();
         $browser->timeout($LWP_TIMEOUT);
         my $data  = $browser->get($url);
@@ -532,9 +529,7 @@ sub new {
     $self->{'i18nCurrent'} = $self->{'i18nDefault'};
 
     # Then use the value from the request or from the http header if exists.
-    # TODO: Test true condition
     if ( defined( $self->{'request'}{'lang'} ) ) {
-        # TODO: No coverage for this line.
         $self->{'i18nCurrent'} = $self->{'request'}{'lang'};
     }
     # TODO: Test false condition

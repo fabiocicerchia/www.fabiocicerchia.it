@@ -97,9 +97,9 @@ $closures['root'] = function () use ($app) {
         'application/json'
     ];
     $requestedMimeType = [];
-    if (isset($_SERVER['HTTP_ACCEPT']) === true) {
-        // TODO: No coverage for this line.
-        $requestedMimeType = Utils::httpPriorityOrder($_SERVER['HTTP_ACCEPT']);
+    $httpAccept        = $app['request']->headers->get('accept');
+    if ($httpAccept !== null) {
+        $requestedMimeType = Utils::httpPriorityOrder($httpAccept);
     }
     $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
 
@@ -152,12 +152,6 @@ $closures['root'] = function () use ($app) {
  * @return Response
  */
 $closures['api'] = function ($apiName) use ($app) {
-    if (is_string($apiName) === false) {
-        // TODO: No coverage for this line.
-        $message = 'The parameter $apiName must be a string.';
-        throw new \InvalidArgumentException($message);
-    }
-
     // DB
     $database = $app['mongodb']->selectDatabase('curriculum');
 
@@ -165,7 +159,6 @@ $closures['api'] = function ($apiName) use ($app) {
     try {
         $service = new Strategy($apiName, $database);
     } catch (UnexpectedValueException $e) {
-        // TODO: No coverage for this line.
         $app->abort(404, 'The API ' . $apiName. ' does not exist.');
     }
 
@@ -194,9 +187,9 @@ $closures['api'] = function ($apiName) use ($app) {
             'application/json'
         ];
         $requestedMimeType = [];
-        if (isset($_SERVER['HTTP_ACCEPT']) === true) {
-            // TODO: No coverage for this line.
-            $requestedMimeType = Utils::httpPriorityOrder($_SERVER['HTTP_ACCEPT']);
+        $httpAccept        = $app['request']->headers->get('accept');
+        if ($httpAccept !== null) {
+            $requestedMimeType = Utils::httpPriorityOrder($httpAccept);
         }
         $mimeType = Utils::retrieveCurrentValue($availableMimeTypes, $requestedMimeType);
 

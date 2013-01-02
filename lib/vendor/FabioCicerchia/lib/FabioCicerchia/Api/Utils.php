@@ -208,7 +208,6 @@ class Utils
     }
     // }}} ---------------------------------------------------------------------
 
-
     // {{{ Method: httpPriorityOrder -------------------------------------------
     /**
      * Return an array based on the priority of the HTTP header [RFC2616].
@@ -284,26 +283,27 @@ class Utils
      * Convert a plain string to a specified MIME Type format.
      *
      * ### General Information #################################################
-     * @param  string $string   The string to convert.
+     * @param  string $xml      The XML string to convert.
      * @param  string $mimeType The MIME Type to used for the transformation.
      *
-     * @return void
+     * @return string
      */
-    public static function transform($string, $mimeType)
+    public static function transform($xml, $mimeType)
     {
         switch($mimeType) {
             case 'application/json':
-                // TODO: No coverage for this line.
-                $xml   = simplexml_load_string($string);
-                $array = json_decode(json_encode((array) $xml), 1);
-                $json  = json_encode($array);
-                return $json;
+                $simpleXml = simplexml_load_string($xml);
+                $array     = json_decode(json_encode((array) $simpleXml), 1);
+                $output    = json_encode($array);
+                break;
 
-            case 'application/xml':
+            case 'application/vnd.ads+xml;v=1.0':
             case 'application/xml':
             default:
-                return $string;
+                $output = $xml;
         }
+
+        return $output;
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================
@@ -327,13 +327,11 @@ class Utils
     protected static function httpCustomSorting($a, $b)
     {
         if (is_string($a) === false) {
-            // TODO: No coverage for this line.
             $message = 'The parameter $a must be a string.';
             throw new \InvalidArgumentException($message);
         }
 
         if (is_string($b) === false) {
-            // TODO: No coverage for this line.
             $message = 'The parameter $b must be a string.';
             throw new \InvalidArgumentException($message);
         }
@@ -349,7 +347,7 @@ class Utils
         // second check on level existence
         $a_match = strpos($a_value, 'level=') !== false;
         $b_match = strpos($b_value, 'level=') !== false;
-        if ($a_match === true || $b_match === true) {
+        if ($a_match !== $b_match) {
             return strcmp($b_match, $a_match);
         }
 
@@ -357,7 +355,6 @@ class Utils
         $a_level = (float) preg_replace('/.*level=(\d+)$/', '\1', $a_value);
         $b_level = (float) preg_replace('/.*level=(\d+)$/', '\1', $b_value);
         if ($a_level !== $b_level) {
-            // TODO: No coverage for this line.
             return strcmp($a_level, $b_level);
         }
 

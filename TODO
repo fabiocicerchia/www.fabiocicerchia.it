@@ -5,12 +5,8 @@ TODO LIST
 File: ./apps/api/logic/controller.php
 --------------------------------------------------------------------------------
 
-  - No coverage for this line. (line 101)
-  - No coverage for this line. (line 156)
-  - No coverage for this line. (line 168)
-  - Extract this code and make a function. (line 177)
-  - Extract this code and make a function. (line 188)
-  - No coverage for this line. (line 198)
+  - Extract this code and make a function. (line 170)
+  - Extract this code and make a function. (line 181)
 
 File: ./apps/api/logic/app.php
 --------------------------------------------------------------------------------
@@ -20,23 +16,20 @@ File: ./apps/api/logic/app.php
 File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------
 
-  - Test false condition (line 82)
-  - Test false condition (line 90)
-  - No coverage for this line. (line 100)
-  - Test false condition (line 223)
-  - Test true condition (line 225)
-  - No coverage for this line. (line 227)
-  - Test false condition (line 232)
-  - IMPLEMENT IF NOT MODIFIED (line 257)
-  - Remove spaces (line 287)
-  - Test false condition (line 348)
-  - Test false condition (line 350)
-  - Test false condition (line 512)
-  - Test false condition (line 525)
-  - Test true condition (line 535)
-  - No coverage for this line. (line 537)
-  - Test false condition (line 540)
-  - Test false condition (line 611)
+  - Test false condition (line 220)
+  - Test true condition (line 222)
+  - No coverage for this line. (line 224)
+  - Test false condition (line 229)
+  - IMPLEMENT IF NOT MODIFIED (line 254)
+  - Remove spaces (line 284)
+  - Test false condition (line 345)
+  - Test false condition (line 347)
+  - Test false condition (line 509)
+  - Test false condition (line 522)
+  - Test false condition (line 535)
+  - Test false condition (line 606)
+  - Test::Pod. (line 646)
+  - Test::Pod::Coverage. (line 647)
 
 File: ./apps/site/view/partials/head.tmpl
 --------------------------------------------------------------------------------
@@ -59,36 +52,6 @@ File: ./apps/script/check_accessibility.py
 
   - Use http://www.sidar.org/hera/index.php.it ? (line 38)
 
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Strategy.php
---------------------------------------------------------------------------------
-
-  - No coverage for this line. (line 117)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Skill.php
---------------------------------------------------------------------------------
-
-  - Cover this method (line 113)
-  - Cover this method (line 144)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
---------------------------------------------------------------------------------
-
-  - No coverage for this line. (line 296)
-  - No coverage for this line. (line 330)
-  - No coverage for this line. (line 336)
-  - No coverage for this line. (line 360)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/StrategyTest.php
---------------------------------------------------------------------------------
-
-  - 100% Coverage. (line 37)
-
-File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
---------------------------------------------------------------------------------
-
-  - 100% Internal Coverage. (line 37)
-  - 100% Overall Coverage. (line 38)
-
 File: ./tests/script/test.py
 --------------------------------------------------------------------------------
 
@@ -102,8 +65,7 @@ File: ./bin/console/console.sh
 File: ./bin/console/common.sh
 --------------------------------------------------------------------------------
 
-  - Http://fvue.nl/wiki/Bash:_Error_handling (line 118)
-  - Refactor. (line 306)
+  - http://fvue.nl/wiki/Bash:_Error_handling (line 118)
 
 File: ./bin/console/modules/run.sh
 --------------------------------------------------------------------------------

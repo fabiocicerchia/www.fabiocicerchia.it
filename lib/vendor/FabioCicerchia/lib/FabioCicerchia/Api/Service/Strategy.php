@@ -110,13 +110,12 @@ class Strategy
         }
 
         $class = '\\FabioCicerchia\\Api\\Service\\' . ucfirst($service_name);
-
-        try {
-            $this->strategy = new $class($db_handle);
-        } catch (\Exception $e) {
-            // TODO: No coverage for this line.
-            throw new \UnexpectedValueException($e->getMessage(), $e->getCode());
+        if (class_exists($class) === false) {
+            $message = 'The Service "' . $service_name . '" doesn\'t exists!';
+            throw new \UnexpectedValueException($message);
         }
+
+        $this->strategy = new $class($db_handle);
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

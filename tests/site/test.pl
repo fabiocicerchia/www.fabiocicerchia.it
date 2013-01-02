@@ -279,6 +279,20 @@ subtest 'Functional Testing' => sub {
     $obj->show();
     $res = close STDOUT;
 
+    unlink(File::Spec->rel2abs( dirname(__FILE__) ) . '/../../tmp/gists.json');
+    local %ENV = %BASE_ENV;
+    local $ENV{'QUERY_STRING'}          = 'action=code-snippets';
+    local $ENV{'REDIRECT_QUERY_STRING'} = 'action=code-snippets';
+    local $ENV{'REDIRECT_URL'}          = '/code-snippets';
+    local $ENV{'REQUEST_URI'}           = '/code-snippets';
+
+    $obj = new_ok($class_name);
+
+    $res = open STDOUT, '>>', '/dev/null';
+    STDOUT->autoflush(1);
+    $obj->show();
+    $res = close STDOUT;
+
     ############################################################################
     # REFERENCES
     ############################################################################
@@ -337,6 +351,19 @@ subtest 'Functional Testing' => sub {
     local $ENV{'REQUEST_URI'}           = q{/};
 
     $obj = new_ok($class_name);
+
+    $res = open STDOUT, '>>', '/dev/null';
+    STDOUT->autoflush(1);
+    $obj->show();
+    $res = close STDOUT;
+
+    ############################################################################
+    # MIXED
+    ############################################################################
+    local %ENV = %BASE_ENV;
+    local $ENV{'QUERY_STRING'} = 'lang=it';
+
+    my $obj = new_ok($class_name);
 
     $res = open STDOUT, '>>', '/dev/null';
     STDOUT->autoflush(1);

@@ -310,7 +310,7 @@ class ApiTest extends WebTestCase
     public function testEveryRouteCheckMimetype($url, $mime_type)
     {
         $client  = $this->createClient();
-        $crawler = $client->request('GET', $url);
+        $crawler = $client->request('GET', $url, [], [], ['HTTP_ACCEPT' => $mime_type]);
 
         $this->assertEquals($mime_type, $client->getResponse()->headers->get('Content-Type'));
     }
@@ -698,6 +698,25 @@ class ApiTest extends WebTestCase
     {
         $client  = $this->createClient();
         $crawler = $client->request('GET', '/404');
+
+        $this->assertEquals('Error, you are unauthorised to know more about this.', $client->getResponse()->getContent());
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: test404RouteFakeRoute ---------------------------------------
+    /**
+     * Test a fake route to check the 404 Response.
+     *
+     * ### General Information #################################################
+     *
+     * @since Version 0.1
+     *
+     * @return void
+     */
+    public function test404RouteFakeRoute()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('GET', '/fake');
 
         $this->assertEquals('Error, you are unauthorised to know more about this.', $client->getResponse()->getContent());
     }

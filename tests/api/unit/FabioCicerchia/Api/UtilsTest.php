@@ -243,8 +243,77 @@ class UtilsTest extends FabioCicerchia\TestCase
                 'da, en-gb;q=0.8, en;q=0.7',
                 ['da', 'en-gb', 'en']
             ],
+            // Set #13 ---------------------------------------------------------
+            [
+                'text/plain;level=2, text/html;level=2',
+                ['text/plain', 'text/html']
+            ],
         ];
     }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideCustomSortingWrong -----------------------------------
+    /**
+     * Provide a list of wrong string.
+     *
+     * ### General Information #################################################
+     *
+     * @return array
+     */
+    public function provideCustomSortingWrong()
+    {
+        return [
+            // Set #0 ----------------------------------------------------------
+            [
+                1,
+                1
+            ],
+            // Set #1 ----------------------------------------------------------
+            [
+                '',
+                1
+            ],
+            // Set #2 ----------------------------------------------------------
+            [
+                1,
+                ''
+            ]
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: provideTransform --------------------------------------------
+    /**
+     * Provide a list of transformed string.
+     *
+     * ### General Information #################################################
+     *
+     * @return array
+     */
+    public function provideTransform()
+    {
+        return [
+            // Set #0 ----------------------------------------------------------
+            [
+                'application/json',
+                '<string>text</string>',
+                '["text"]'
+            ],
+            // Set #1 ----------------------------------------------------------
+            [
+                'application/xml',
+                '<string>text</string>',
+                '<string>text</string>'
+            ],
+            // Set #2 ----------------------------------------------------------
+            [
+                'application/vnd.ads+xml;v=1.0',
+                '<string>text</string>',
+                '<string>text</string>'
+            ]
+        ];
+    }
+    // }}} ---------------------------------------------------------------------
 
     // {{{ Method: testGetCurrentLanguage --------------------------------------
     /**
@@ -387,6 +456,51 @@ class UtilsTest extends FabioCicerchia\TestCase
     {
         $method = $this->retrieveMethod(new Utils, 'httpPriorityOrder');
         $method->invokeArgs(new Utils, [[]]);
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: testHttpCustomSortingWithWrongValue -------------------------
+    /**
+     * Test method "httpCustomSorting" using wrong values.
+     *
+     * ### General Information #################################################
+     *
+     * @dataProvider provideCustomSortingWrong
+     *
+     * @expectedException InvalidArgumentException
+     *
+     * @since Version 0.1
+     *
+     * @return void
+     */
+    public function testHttpCustomSortingWithWrongValue($a, $b)
+    {
+        $method = $this->retrieveMethod(new Utils, 'httpCustomSorting');
+        $method->invokeArgs(new Utils, [$a, $b]);
+    }
+    // }}} ---------------------------------------------------------------------
+
+    // {{{ Method: testTransform -----------------------------------------------
+    /**
+     * Test method "transform".
+     *
+     * ### General Information #################################################
+     *
+     * @param string $mimeType The MIME Type.
+     * @param string $input    The input data.
+     * @param string $output   The output data.
+     *
+     * @dataProvider provideTransform
+     *
+     * @since Version 0.1
+     *
+     * @return void
+     */
+    public function testTransform($mimeType, $input, $output)
+    {
+        $method = $this->retrieveMethod(new Utils, 'transform');
+
+        $this->assertEquals($output, $method->invokeArgs(new Utils, [$input, $mimeType]));
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================
