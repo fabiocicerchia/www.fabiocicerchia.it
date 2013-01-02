@@ -61,8 +61,10 @@ $closures = [];
  */
 $closures['error'] = function (\Exception $e, $code) use ($app) {
     if ($app['debug'] === true) {
+        // @codeCoverageIgnoreStart
         throw $e;
         return;
+        // @codeCoverageIgnoreEnd
     }
 
     $message  = 'Error, you are unauthorised to know more about this.';

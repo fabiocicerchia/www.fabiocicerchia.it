@@ -41,9 +41,11 @@ use SilexExtension\MongoDbExtension;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 $app['debug'] = (bool)getenv('DEBUG_FLAG') === true;
 
+// @codeCoverageIgnoreStart
 if (defined('ROOT_PATH') === false) {
     define('ROOT_PATH', __DIR__ . '/../../../');
 }
+// @codeCoverageIgnoreEnd
 
 if (defined('VENDOR_PATH') === false) {
     define('VENDOR_PATH', ROOT_PATH . 'lib/vendor/');

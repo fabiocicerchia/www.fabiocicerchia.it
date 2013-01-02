@@ -92,11 +92,13 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     public function output($value)
     {
+        // @codeCoverageIgnoreStart
         if ($this->isDebug() === true) {
             echo PHP_EOL;
             print_r($value);
             echo PHP_EOL;
         }
+        // @codeCoverageIgnoreEnd
     }
     // }}} ---------------------------------------------------------------------
 
@@ -279,11 +281,13 @@ class TestCase extends \PHPUnit_Framework_TestCase
      */
     private function checkReflectionCompability()
     {
+        // @codeCoverageIgnoreStart
         if (version_compare(PHP_VERSION, '5.3.2') < 0) {
             $message  = 'The current PHP version (%s) doesn\'t support the ';
             $message .= '"ReflectionMethod::setAccessible" method.';
             $this->markTestSkipped(sprintf($message, PHP_VERSION));
         }
+        // @codeCoverageIgnoreEnd
     }
     // }}} ---------------------------------------------------------------------
     // }}} =====================================================================

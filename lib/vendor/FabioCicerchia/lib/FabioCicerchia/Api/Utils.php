@@ -139,8 +139,6 @@ class Utils
      * @see    FabioCicerchia\Api\Utils::getCurrentLanguage()
      * @since  Version 0.1
      *
-     * @todo Cover this method.
-     *
      * @return string
      */
     public static function getLanguage(
@@ -192,18 +190,15 @@ class Utils
             if (isset($firstRecord['date']['end']) === true
                 && $firstRecord['date']['end'] instanceof \MongoDate
             ) {
-                // TODO: No coverage for this line.
                 $time = $firstRecord['date']['end']->sec;
             } elseif (isset($firstRecord['date']['start']) === true
                 && $firstRecord['date']['start'] instanceof \MongoDate
             ) {
-                // TODO: No coverage for this line.
                 $time = $firstRecord['date']['start']->sec;
             }
         }
 
         $mongodb_file = ROOT_PATH . 'db/mongo-curriculum.js';
-        // TODO: No coverage.
         $lastModified = isset($time) === true
                         ? $time
                         : filemtime($mongodb_file);
@@ -230,7 +225,6 @@ class Utils
     public static function httpPriorityOrder($string)
     {
         if (is_string($string) === false) {
-            // TODO: No coverage for this line.
             $message = 'The parameter $string must be a string.';
             throw new \InvalidArgumentException($message);
         }
@@ -293,14 +287,13 @@ class Utils
      * @param  string $string   The string to convert.
      * @param  string $mimeType The MIME Type to used for the transformation.
      *
-     * @todo Cover this method.
-     *
      * @return void
      */
     public static function transform($string, $mimeType)
     {
         switch($mimeType) {
             case 'application/json':
+                // TODO: No coverage for this line.
                 $xml   = simplexml_load_string($string);
                 $array = json_decode(json_encode((array) $xml), 1);
                 $json  = json_encode($array);
@@ -357,7 +350,6 @@ class Utils
         $a_match = strpos($a_value, 'level=') !== false;
         $b_match = strpos($b_value, 'level=') !== false;
         if ($a_match === true || $b_match === true) {
-            // TODO: No coverage for this line.
             return strcmp($b_match, $a_match);
         }
 
@@ -373,7 +365,6 @@ class Utils
         if (strpos($a_value, '*') !== false
             || strpos($b_value, '*') !== false
         ) {
-            // TODO: No coverage for this line.
             return strcmp($b_value, $a_value);
         }
 

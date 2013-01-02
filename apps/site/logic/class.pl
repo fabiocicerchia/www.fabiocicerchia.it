@@ -79,6 +79,7 @@ sub action_code_snippets {
 
     my $file_name      = dirname(__FILE__) . '/../../../tmp/gists.json';
     my $cache_valid    = undef;
+    # TODO: Test false condition
     if ( -s $file_name ) {
         my $file_timestamp = ( stat $file_name )[9];
         $cache_valid = $file_timestamp > localtime(time) - ( 24 * 60 * 60 );
@@ -86,6 +87,7 @@ sub action_code_snippets {
 
     my $gists = undef;
 
+    # TODO: Test false condition
     if ($cache_valid) {
         my $file = open FILE, '<' . $file_name;
         local $/=undef;
@@ -218,13 +220,16 @@ sub action_show {
     my ( $data, $last_modified, $etag, $language ) = $self->get_data();
 
     my @lang_tokens = split /,/smx, $language;
+    # TODO: Test false condition
     if ( scalar(@lang_tokens) > 1 ) {
+        # TODO: Test true condition
         if ( substr $lang_tokens[0], 0, 2 eq substr $lang_tokens[1], 0, 2 ) {
             # TODO: No coverage for this line.
             $language = $lang_tokens[0];
         }
         else {
             $language = $lang_tokens[1];
+            # TODO: Test false condition
             if ( length($language) == 2 ) {
                 $language .= q{-} . uc $language;
             }
@@ -340,11 +345,12 @@ API:
 
         # Add the response to the final array
         $data->{$api} = $curr_data;
+        # TODO: Test false condition
         $hash = defined $curr_hash ? ( $hash . $curr_hash ) : $hash;
+        # TODO: Test false condition
         $lang = defined $curr_lang ? $curr_lang             : $lang;
 
         if ( defined $curr_ts && $curr_ts > $last_ts ) {
-            # TODO: No coverage for this line.
             $last_ts = $curr_ts;
         }
     }
@@ -375,12 +381,10 @@ sub get_item_data {
     my $data          = $self->retrieve_xml( $response->content() );
     my $last_modified = q{};
     if ( defined( $response->headers()->{'last-modified'} ) ) {
-        # TODO: No coverage for this line.
         $last_modified = $response->headers()->{'last-modified'};
     }
 
     if ( $last_modified ne q{} ) {
-        # TODO: No coverage for this line.
         my ( $wday, $day, $month, $year, $hour, $min, $sec ) =
             split /[\s:]/smx, $last_modified;
         $ts = POSIX::mktime(
@@ -505,6 +509,7 @@ sub new {
     if ( defined( $self->{'request'}->{'format'} ) ) {
 
         # ... filtering the values not authorised.
+        # TODO: Test false condition
         if (grep { $_ eq $self->{'request'}->{'format'} }
             keys %{$self->{'formatAllowed'}}
             )
@@ -517,6 +522,7 @@ sub new {
     $self->{'contentType'} = $self->{'contentType'};
 
     # Then use the value based on the current format,
+    # TODO: Test false condition
     if ( defined( $self->{'formatAllowed'}{ $self->{'formatCurrent'} } ) ) {
         $self->{'contentType'} =
             $self->{'formatAllowed'}{ $self->{'formatCurrent'} };
@@ -526,10 +532,12 @@ sub new {
     $self->{'i18nCurrent'} = $self->{'i18nDefault'};
 
     # Then use the value from the request or from the http header if exists.
+    # TODO: Test true condition
     if ( defined( $self->{'request'}{'lang'} ) ) {
         # TODO: No coverage for this line.
         $self->{'i18nCurrent'} = $self->{'request'}{'lang'};
     }
+    # TODO: Test false condition
     elsif ( defined $ENV{'HTTP_ACCEPT_LANGUAGE'} ) {
         $self->{'i18nCurrent'} = $ENV{'HTTP_ACCEPT_LANGUAGE'};
     }
@@ -600,6 +608,7 @@ sub set_request {
     }
 
     while ( my ( $key, $value ) = each %get_params ) {
+        # TODO: Test false condition
         if ( grep { $_ eq $key } @allowed_keys ) {
             $self->{'request'}{$key} = $value;
         }

@@ -2,20 +2,86 @@
 TODO LIST
 --------------------------------------------------------------------------------
 
-File: ./config/system/.perltidyrc
+File: ./apps/api/logic/controller.php
 --------------------------------------------------------------------------------
 
-  - Script to install this file. (line 2)
+  - No coverage for this line. (line 101)
+  - No coverage for this line. (line 156)
+  - No coverage for this line. (line 168)
+  - Extract this code and make a function. (line 177)
+  - Extract this code and make a function. (line 188)
+  - No coverage for this line. (line 198)
 
-File: ./config/system/.bashrc
+File: ./apps/api/logic/app.php
 --------------------------------------------------------------------------------
 
-  - Script to install this file. (line 1)
+  - Add HTTP methods to retrieve / manipulate single resource. (line 55)
 
-File: ./config/deploy/demo.rb
+File: ./apps/site/logic/class.pl
 --------------------------------------------------------------------------------
 
-  - Change user to "capistrano". (line 42)
+  - Test false condition (line 82)
+  - Test false condition (line 90)
+  - No coverage for this line. (line 100)
+  - Test false condition (line 223)
+  - Test true condition (line 225)
+  - No coverage for this line. (line 227)
+  - Test false condition (line 232)
+  - IMPLEMENT IF NOT MODIFIED (line 257)
+  - Remove spaces (line 287)
+  - Test false condition (line 348)
+  - Test false condition (line 350)
+  - Test false condition (line 512)
+  - Test false condition (line 525)
+  - Test true condition (line 535)
+  - No coverage for this line. (line 537)
+  - Test false condition (line 540)
+  - Test false condition (line 611)
+
+File: ./apps/site/view/partials/head.tmpl
+--------------------------------------------------------------------------------
+
+  - Convert to a dynamic value. (line 34)
+
+File: ./apps/script/check_validation.py
+--------------------------------------------------------------------------------
+
+  - http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3ocale=en_EN (line 38)
+  - http://www.sidar.org/hera/ (line 39)
+  - YSlow (line 40)
+  - Page Speed (line 41)
+  - Uncomment? (line 178)
+  - This doesn't identify the new version of Google Webmaster Tools. (line 196)
+  - This takes a while, does it worth? (line 215)
+
+File: ./apps/script/check_accessibility.py
+--------------------------------------------------------------------------------
+
+  - Use http://www.sidar.org/hera/index.php.it ? (line 38)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Strategy.php
+--------------------------------------------------------------------------------
+
+  - No coverage for this line. (line 117)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Service/Skill.php
+--------------------------------------------------------------------------------
+
+  - Cover this method (line 113)
+  - Cover this method (line 144)
+
+File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
+--------------------------------------------------------------------------------
+
+  - No coverage for this line. (line 296)
+  - No coverage for this line. (line 330)
+  - No coverage for this line. (line 336)
+  - No coverage for this line. (line 360)
+
+File: ./tests/api/unit/FabioCicerchia/Api/Service/StrategyTest.php
+--------------------------------------------------------------------------------
+
+  - 100% Coverage. (line 37)
 
 File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
 --------------------------------------------------------------------------------
@@ -23,135 +89,24 @@ File: ./tests/api/unit/FabioCicerchia/Api/Service/EntryPointTest.php
   - 100% Internal Coverage. (line 37)
   - 100% Overall Coverage. (line 38)
 
-File: ./tests/api/unit/FabioCicerchia/Api/Service/StrategyTest.php
---------------------------------------------------------------------------------
-
-  - 100% Coverage. (line 37)
-
 File: ./tests/script/test.py
 --------------------------------------------------------------------------------
 
   - Write tests. (line 34)
-
-File: ./lib/PHPCS/ruleset.xml
---------------------------------------------------------------------------------
-
-  - Use ruleset for PSR2 (line 5)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/Api/Utils.php
---------------------------------------------------------------------------------
-
-  - Add description. (line 284)
-  - Add description. (line 287)
-  - Add description. (line 288)
-
-File: ./lib/vendor/FabioCicerchia/lib/FabioCicerchia/ResultPrinter.php
---------------------------------------------------------------------------------
-
-  - Add description. (line 58)
-  - Add description (line 156)
-
-File: ./apps/site/view/_header.tmpl
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 1)
-
-File: ./apps/site/view/_experience.tmpl
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 3)
-
-File: ./apps/site/view/_js.tmpl
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 1)
-
-File: ./apps/site/view/_head.tmpl
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 1)
-  - Convert to a dynamic value. (line 35)
-
-File: ./apps/site/view/_education.tmpl
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 3)
-  - This is ugly (line 11)
-  - This is ugly (line 13)
-  - This is ugly (line 41)
-  - This is ugly (line 43)
-
-File: ./apps/site/view/_summary.tmpl
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 1)
-
-File: ./apps/site/view/_skill.tmpl
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 1)
-
-File: ./apps/site/view/_language.tmpl
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 1)
-
-File: ./apps/site/logic/class.pl
---------------------------------------------------------------------------------
-
-  - REMOVE THIS! (line 219)
-  - IMPLEMENT IF NOT MODIFIED (line 252)
-  - Test::Pod. (line 638)
-  - Test::Pod::Coverage. (line 639)
-
-File: ./apps/api/view/_header.twig
---------------------------------------------------------------------------------
-
-  - Migrate this file to partials (line 1)
-
-File: ./apps/api/logic/controller.php
---------------------------------------------------------------------------------
-
-  - Extract this code and make a function. (line 171)
-  - Extract this code and make a function. (line 182)
-
-File: ./apps/script/check_accessibility.py
---------------------------------------------------------------------------------
-
-  - Use http://www.sidar.org/hera/index.php.it ? (line 38)
-
-File: ./apps/script/check_validation.py
---------------------------------------------------------------------------------
-
-  - Http://ready.mobi/results.jsp?uri=http%3A%2F%2Fwww.fabiocicerchia.it%3Fbot%3D1&locale=en_EN (line 38)
-  - Http://www.sidar.org/hera/ (line 39)
-  - YSlow (line 40)
-  - Page Speed (line 41)
-  - Uncomment? (line 178)
-  - This takes a while, does it worth? (line 214)
-
-File: ./web/media/css/main.css
---------------------------------------------------------------------------------
-
-  - Merge duplicate classes. (line 35)
-
-File: ./bin/console/common.sh
---------------------------------------------------------------------------------
-
-  - Http://fvue.nl/wiki/Bash:_Error_handling (line 118)
-  - Refactor. (line 303)
 
 File: ./bin/console/console.sh
 --------------------------------------------------------------------------------
 
   - Refactor! (line 57)
 
+File: ./bin/console/common.sh
+--------------------------------------------------------------------------------
+
+  - Http://fvue.nl/wiki/Bash:_Error_handling (line 118)
+  - Refactor. (line 306)
+
 File: ./bin/console/modules/run.sh
 --------------------------------------------------------------------------------
 
-  - Save to a file. (line 69)
-  - Check PEAR/PECL. (line 212)
-  - Add output messages. (line 277)
-  - Add output messages. (line 344)
-  - Add output messages. (line 356)
-  - Add output messages. (line 363)
+  - Add output messages. (line 146)
+  - Check PEAR/PECL. (line 220)

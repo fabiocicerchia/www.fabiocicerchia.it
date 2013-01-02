@@ -95,7 +95,6 @@ class Information extends \FabioCicerchia\Api\ServiceAbstract
      */
     protected function execDataQuery()
     {
-        // TODO: No coverage for this line.
         return $this->getCollection()
                     ->find()->sort(['date.end' => 'desc'])->toArray();
     }

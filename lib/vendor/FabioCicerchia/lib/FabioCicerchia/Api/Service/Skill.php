@@ -82,7 +82,6 @@ class Skill extends \FabioCicerchia\Api\ServiceAbstract
         // Retrieve the list of skill with its "months" value.
         $skillsWithMonths = [];
         if ($this->getCollection() instanceof \Doctrine\MongoDB\Collection) {
-            // TODO: No coverage for this line.
             $skillsWithMonths = $this->getSkillWithMonths();
 
             // Attach the months value to main data.
