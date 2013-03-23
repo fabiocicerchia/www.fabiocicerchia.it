@@ -161,7 +161,7 @@ db.getCollection("education").insert({
             },
             "postal_code": "00192"
         },
-        "name": "Prometric Test Center \"Finsa Tech S.r.l.\""
+        "name": "Prometric Test Center \"Finsa Tech s.r.l.\""
     },
     "title": {
         "en_GB": "CIW Application Developer",
@@ -202,7 +202,7 @@ db.getCollection("education").insert({
             },
             "postal_code": "00142"
         },
-        "name": "Prometric Test Center \"Atrak S.r.l.\""
+        "name": "Prometric Test Center \"Atrak s.r.l.\""
     },
     "title": {
         "en_GB": "CIW Associate",
@@ -379,7 +379,7 @@ db.getCollection("education").insert({
             },
             "postal_code": "00044"
         },
-        "name": "ITIS Enrico Fermi",
+        "name": "I.T.I.S. Enrico Fermi",
         "url":  "http:\/\/www.fermifrascati.it\/"
     },
     "title": {
@@ -392,7 +392,7 @@ db.getCollection("education").insert({
 /* ============================== EXPERIENCE ================================ */
 /* ========================================================================== */
 
-/* Last Update: 2012-12-31 */
+/* Last Update: 2013-03-23 */
 db.getCollection("experience").insert({
     "_id": ObjectId("8ae7278a4d60c5f2195f2bec"), /* ID: FPL-LPD-LON-2012 */
     "date": {
@@ -421,41 +421,44 @@ db.getCollection("experience").insert({
         "it_IT": "Sviluppatore LAMP \/ PHP"
     },
     "techniques": {
-        "Code Coverage":                 {"months": 6},
-        "Defensive Programming":         {"months": 6},
+        "Code Coverage":                 {"months": 8},
+        "Defensive Programming":         {"months": 8},
         "Functional Testing":            {"months": 6},
         "Pair Programming":              {"months": 5},
-        "Profiling":                     {"months": 4},
-        "Static Code Analysis":          {"months": 6},
-        "Unit Testing":                  {"months": 6},
-        "User Stories & Planning Poker": {"months": 3}
+        "Profiling":                     {"months": 6},
+        "Static Code Analysis":          {"months": 8},
+        "Unit Testing":                  {"months": 8},
+        "User Stories & Planning Poker": {"months": 5}
     },
     "technologies": {
-        "Apache":     {"months": 7},
-        "AWS":        {"months": 1},
-        "Bash Shell": {"months": 7},
+        "Apache":     {"months": 9},
+        "AWS":        {"months": 3},
+        "Bash Shell": {"months": 9},
         "JavaScript": {"months": 4},
         "JSON-RPC":   {"months": 3},
-        "MongoDB":    {"months": 6},
+        "MongoDB":    {"months": 8},
         "MySQL":      {"months": 4},
-        "PHP":        {"months": 7},
-        "Redis":      {"months": 6},
+        "PHP":        {"months": 9},
+        "Redis":      {"months": 8},
         "REST":       {"months": 4},
         "XML":        {"months": 7}
     },
     "tools": {
-        "ApiGen":          {"months": 5},
-        "gedit":           {"months": 7},
-        "GreenHopper":     {"months": 3},
-        "Jira":            {"months": 7},
-        "NetBeans":        {"months": 7},
-        "PHP_CodeSniffer": {"months": 5},
-        "phpDocumentor 2": {"months": 6},
-        "PHPUnit":         {"months": 6},
+        "ApiGen":          {"months": 7},
+        "gedit":           {"months": 9},
+        "GreenHopper":     {"months": 5},
+        "Jasmine":         {"months": 2},
+        "Jira":            {"months": 9},
+        "NetBeans":        {"months": 9},
+        "PHP_CodeSniffer": {"months": 7},
+        "phpDocumentor 2": {"months": 8},
+        "PHPUnit":         {"months": 8},
+        "Selenium":        {"months": 4},
         "Sublime Text":    {"months": 5},
-        "SVN":             {"months": 7},
-        "vim":             {"months": 7},
-        "Zend Framework":  {"months": 7}
+        "SVN":             {"months": 9},
+        "vim":             {"months": 9},
+        "XHProf":          {"months": 3},
+        "Zend Framework":  {"months": 5}
     }
 });
 
@@ -705,7 +708,7 @@ db.getCollection("experience").insert({
     "company": {
         "_id": ObjectId("c29179ca15ee6a2eae206446"), /* ID: DITS-ROM */
         "location": {
-            "address":     "Via Flaminia Vecchia, 495",
+            "address": "Via Flaminia Vecchia, 495",
             "city": {
                 "en_GB": "Rome",
                 "it_IT": "Roma"
@@ -716,7 +719,7 @@ db.getCollection("experience").insert({
             },
             "postal_code": "00191"
         },
-        "name": "Dnsee (Interactive Thinking S.r.l.)",
+        "name": "Dnsee (Interactive Thinking s.r.l.)",
         "url":  "http:\/\/www.dnsee.com"
     },
     "date": {
@@ -884,7 +887,7 @@ db.getCollection("experience").insert({
             },
             "postal_code": "001947"
         },
-        "name": "Populis S.r.l. (ex GoAdv S.r.l.)",
+        "name": "Populis s.r.l. (formerly GoAdv)",
         "url":  "http:\/\/www.populis.com"
     },
     "date": {
@@ -947,7 +950,7 @@ db.getCollection("experience").insert({
             },
             "postal_code": "00197"
         },
-        "name": "ADQ S.p.A."
+        "name": "ADQ s.p.a."
     },
     "date": {
         "start": ISODate("2007-05-24T00:00:00"),
@@ -1153,7 +1156,6 @@ db.getCollection("information").insert({
         "email": "info@fabiocicerchia.it"
     },
     "focus_on": {
-        "AWS":           "http://aws.amazon.com/",
         "Arduino":       "http://www.arduino.cc/",
         "Backbone":      "http://backbonejs.org/", /* Backbone.js */
         "Burp":          "http://portswigger.net/burp/",
@@ -1168,7 +1170,6 @@ db.getCollection("information").insert({
         "HeadJS":        "http://headjs.com/",
         "Hubot":         "http://hubot.github.com/",
         "Jackrabbit":    "http://jackrabbit.apache.org/",
-        "Jasmine":       "http://pivotal.github.com/jasmine/",
         "Knockout":      "http://knockoutjs.com/",
         "LESS":          "http://lesscss.org/",
         "Lucene":        "http://lucene.apache.org/core/index.html",
@@ -1192,8 +1193,8 @@ db.getCollection("information").insert({
         "it_IT": "maschio",
     },
     "info": {
-        "en_GB": "I'm a passionate <strong>Web Developer</strong>, I often work either on <em>frontend</em> and <em>backend</em>.\nFortunately I'm looking at any time for new challenges and trying to keep myself at the <strong>cutting edge</strong>. When isn't possible at work I always find the <em>time at home to study</em> new technologies and methodologies to apply the next day.\nSince the early 2000s I've been focused on the web development, and now almost totally involved with <strong>PHP</strong> and <strong>JS</strong> applications. I've certified myself as <em>PHP 5 Engineer</em> and <em>IWA Application Developer</em>.\nEvery my working day has a heavy sprinkle of shell-interaction during which I enjoy myself with <em>regular expressions</em> and <em>scripting</em>. But I'm not 100% of my time in front a black screen with green characters (even because they aren't), I don't dislike at all <strong>refactoring</strong>, <strong>code documentation</strong>, and <strong>testing</strong> that are anything but boring.\nI like also work in such different areas like <strong>SEO</strong>, <strong>Accessibility</strong> and <strong>Project Management</strong>.\nLately I've been involved in the learning of <em>MongoDB</em>, <em>Perl</em>, <em>Python</em>, <em>Redis</em>, <em>XPath</em>, <em>Zend Framework</em>. Some of them for fun, some others for work. The last year I was totally committed on a big project developed using the RAD framework <strong>Symfony</strong> (with <strong>Doctrine</strong>) and practices like automated tests. I've got experience about <strong>agile development</strong> because we implemented some of the agile techniques (<em>iteration planning</em>, <em>test-first</em>, <em>collective code ownership</em> and so on).\nI had the opportunity to put mind and hands directly on the project management, following several aspects of the project life-cycle.\nJust for passion, curiosity and interest I've created <strong>Bonzai</strong> (formerly known as phpGuardian), an open-source tool for encoding the PHP projects. That kept me involved over the years a lot on the study of the PHP Core, the writing of a custom extension in C and the source code analysis.",
-        "it_IT": "Sono un <strong>Web Developer</strong> appassionato, mi capita spesso di lavorare sia sul <em>frontend</em> che sul <em>backend</em>.\n Fortunatamente sono in cerca in ogni momento di nuove sfide e sto cercando di <strong>tenermi all'avanguardia</strong>. Quando non &egrave; possibile al lavoro trovo sempre il tempo a casa per studiare nuove tecnologie e metodologie da applicare il giorno successivo. Dai primi anni 2000 sono stato concentrato sullo sviluppo web, e ora quasi totalmente impegnato con applicazioni <strong>PHP</strong> e <strong>JS</strong>. Mi sono certificato come <em>PHP 5 Engineer</em> e <em>IWA Application Developer</em>.\n Ogni mia giornata di lavoro ha una bella spruzzata di interazione con la shell durante la quala mi diverto con <em>espressioni regolari</em> e <em>scripting</em>. Ma non sono il 100% del mio tempo davanti a uno schermo nero con caratteri verdi (anche perch&egrave; non lo sono), non mi dispiace il <strong>refactoring</strong>, <strong>documentazione del codice</strong>, e le <strong>prove</strong> che sono tutt'altro che noiosi.\nMi piace anche lavorare in settori diversi, come <strong>SEO</strong>, <strong>Accessibilit&agrave;</strong> e <strong>Project Management</strong>.\nUltimamente sto stato impegnato nell'apprendimento di <em>MongoDB</em>, <em>Perl</em>, <em>Python</em>, <em>Redis</em>, <em>XPath</em>, <em>Zend Framework</em>. Alcuni di loro per divertimento, altri per il lavoro.\n L'anno scorso sono stato totalmente impegnato in un grande progetto sviluppato utilizzando il framework <strong>Symfony</strong> (con <strong>Doctrine</strong>) e pratiche come test automatizzati. Ho esperienza di <strong>sviluppo agile</strong> perch&egrave; abbiamo implementato alcune delle tecniche agili (<em>pianificazione dell'iterazione</em>, <em>test-first</em>, <em>propriet&agrave; collettiva del codice</em> e cos&igrave; via).\nHo avuto l'opportunit&agrave; di mettere la mente e le mani direttamente nella gestione del progetto, seguendo diversi aspetti del ciclo di vita del progetto.\nGiusto per passione, curiosit&agrave; e interesse ho creato <strong>Bonzai</strong> (precedentemente chiamato phpGuardian), uno strumento open-source per la codifica dei progetti PHP. Questo mi ha tenuto coinvolto nel corso degli anni molto sullo studio del core di PHP, nella scrittura di un'estensione personalizzata in C e nell'analisi del codice sorgente."
+        "en_GB": "I'm a passionate <strong>Web Developer</strong> with almost 10 years of experience</strong>, I work either on <em>frontend</em> or <em>backend</em>. I like also work in such different areas like <strong>SEO</strong>, <strong>Accessibility</strong> and <strong>Project Management</strong>. I'm looking at any time for new challenges and incentives to keep myself at the <strong>cutting edge</strong>. I like to <strong>share the knowledge</strong> to help everyone whenever possible, I enjoy even the constructive co-workers competition that ends up to either <em>knowledge-growing</em> or <em>product quality improvement</em>. I like to <em>spend my spare time to study</em> new technologies and methodologies to be applied the next day at work.\nSince the early 2000s I've been focused to the web development, and nowadays I'm almost totally involved with <strong>PHP</strong> and <strong>JS</strong> applications. I've obtained certification as <em>PHP 5 Engineer</em> and <em>IWA Application Developer</em>. Just for passion, curiosity and interest I've created <strong>Bonzai</strong>, an open-source tool for encoding the PHP projects. That kept me involved over the years a lot on the study of the PHP Core, the writing of a custom extension in C and the source code analysis.\nIn the last years I was committed on two big project, a web portal for an healthcare company and a real-time statistic system e-commerce oriented, by these projects I've got direct experience about <strong>agile development</strong> and about <strong>mentoring</strong> junior developers. I do like <strong>refactoring</strong> (sometimes just to improve either performance or scalability), <strong>documentation</strong> (not only about code), and <strong>testing</strong> that are anything but boring. I also had the opportunity to put mind and hands directly on the project management, following several aspects of those projects' life cycle.\nLately I've been involved in the learning, either for fun or work, of <em>MongoDB</em>, <em>Perl</em>, <em>Python</em>, <em>Redis</em>, <em>Xpath</em> and <em>Zend Framework</em>, and I'm going to start with <em>Arduino</em>, <em>Cacti</em>, <em>Doctrine 2</em>, <em>Node.js</em>, <em>Raspberry Pi</em>, <em>Symfony 2</em> and <em>mod_pagespeed</em>.",
+        "it_IT": "Sono un <strong>Web Developer</strong> appassionato con quasi 10 anni di esperienza, lavoro sia sul <em>frontend</em> che sul <em>backend</em>. Mi piace anche lavorare in settori diversi, come <strong>SEO</strong>, <strong>Accessibilit&agrave;</strong> e <strong>Project Management</strong>. Sono in cerca in ogni momento di nuove sfide e stimoli per <strong>tenermi all'avanguardia</strong>. Mi piace condividere la conoscenza per aiutare le persone quando possibile, mi diverto anche nella competizione costruttiva tra colleghi che sfocia nella <em>crescita delle conoscenze</em> o nell'<em>aumento della qualit&agrave; del prodotto</em>. Mi piace <em>spendere il mio tempo libero studiando</em> nuove tecnologie e metodologie da poter applicare il giorno successivo a lavoro.\nDai primi anni 2000 sono stato concentrato sullo sviluppo web, e ora sono quasi totalmente impegnato con applicazioni <strong>PHP</strong> e <strong>JS</strong>. Ho ottenuto certificazioni come <em>PHP 5 Engineer</em> e <em>IWA ApplicationDeveloper</em>. Giusto per passione, curiosit&agrave; e interesse ho creato <strong>Bonzai</strong>, uno strumento open-source per la codifica dei progetti PHP. Questo mi ha tenuto coinvolto nel corso degli anni molto sullo studio del core di PHP, nella scrittura di un'estensione personalizzata in C e nell'analisi del codice sorgente.\nNegli ultimi anni sono stato </span>concentrato su</span> due grandi progetti, un portale web per una azienda ospedaliera e un sistema di statistiche in tempo reale dedicato all'ecommerce, attraverso questi progetti ho avuto esperienza diretta di <strong>sviluppo agile</strong> e sul tutoraggio di junior developers. Mi piace il <strong>refactoring</strong> (alcune volte semplicemente per migliorare le performance o la scalabilit&agrave;), la <strong>documentazione</strong> (non solo del codice), ed il <strong>testing</strong> che sono tutt'altro che noiosi. Ho </span>anche </span>avuto l'opportunit&agrave; di mettere la mente e le mani direttamente nella gestione del progetto, seguendo diversi aspetti del ciclo di vita d</span>i quei progetti.\nUltimamente sto stato impegnato nell'apprendimento, sia per divertimento che per lavoro, di <em>MongoDB</em>, <em>Perl</em>, <em>Python</em>, <em>Redis</em>, <em>XPath</em>, <em>ZendFramework</em>, e sto per iniziare con <em>Arduino</em>, <em>Cacti</em>, <em>Doctrine 2</em>, <em>Node.js</em>, <em>Raspberry Pi</em>, <em>Symfony 2</em> e <em>mod_pagespeed</em>."
     },
     "interest": {
         "en_GB": [
@@ -1233,7 +1234,7 @@ db.getCollection("information").insert({
         "en_GB": "italian",
         "it_IT": "italiana"
     },
-    "role": "Web Developer",
+    "role": "Senior Web Developer",
     "social": {
         "facebook": "https:\/\/www.facebook.com\/fabio.cicerchia",
         "linkedin": "http:\/\/linkedin.com\/in\/fabiocicerchia",
@@ -1706,6 +1707,10 @@ db.getCollection("skill").insert({
         {
             "name":        "Hudson",
             "proficiency": "intermediate"
+        },
+        {
+            "name":        "Jasmine",
+            "proficiency": "beginner"
         },
         {
             "name":        "Jenkins",
