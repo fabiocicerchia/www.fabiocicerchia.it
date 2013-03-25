@@ -4,6 +4,7 @@ bootstrap
 composer
 doctrine
 fate
+log
 owasp-modsecurity-crs
 pimple
 silex

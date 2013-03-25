@@ -209,12 +209,13 @@ docs() {
 init() {
     print_header "INITIALISE THE ENVIRONMENT"
 
-    cp -r $ROOTDIR/config/system/* ~/
+    shopt -s dotglob
+    cp -r $ROOTDIR/config/system/** ~/
     git submodule init
     git submodule update
     export COMPOSER_VENDOR_DIR=lib/vendor
     curl -s http://getcomposer.org/installer | php
-    php composer.phar install
+    php composer.phar update
     mongo localhost/curriculum --eval "db.dropDatabase()"
     mongo localhost/curriculum $CURRENT_PATH/../../db/mongo-curriculum.js
     chmod -R 777 $ROOTDIR/cache $ROOTDIR/logs $ROOTDIR/tmp

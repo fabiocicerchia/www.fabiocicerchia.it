@@ -12,5 +12,8 @@
 Session.vim
 .netrwhist
 
+# Composer
+composer.phar
+
 # Except this file
 !.gitignore

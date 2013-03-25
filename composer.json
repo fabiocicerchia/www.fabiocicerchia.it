@@ -42,5 +42,8 @@
             "SilexExtension": "lib/vendor/Silex-Extensions/src"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "config": {
+        "vendor-dir": "lib/vendor"
+    }
 }
